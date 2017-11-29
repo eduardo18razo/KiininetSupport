@@ -53,6 +53,9 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     
                 }
+
+                LlenaHorariosConsulta();
+
                 ucAltaHorario.OnAceptarModal += AltaHorarioOnAceptarModal;
                 ucAltaHorario.OnCancelarModal += AltaHorarioOnCancelarModal;
             }
@@ -148,7 +151,7 @@ namespace KiiniHelp.UserControls.Consultas
                     lstcatalogos = lstcatalogos.Where(w => w.Descripcion.Contains(filtro)).ToList();
 
                 Response.Clear();
-                string ultimaEdicion = "Últ. edición";
+                string ultimaEdicion = "Últ. Edición";
                 MemoryStream ms =
                     new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstcatalogos.Select(
                                 s => new

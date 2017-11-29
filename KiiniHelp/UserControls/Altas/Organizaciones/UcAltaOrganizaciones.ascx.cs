@@ -56,15 +56,21 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 hfAlta.Value = value.ToString();
                 if (value)
                 {
+                    //Nuevo nivel
                     ddlTipoUsuario.Enabled = true;
                     btnSeleccionarModal.Visible = true;
                     pnlAlta.Visible = true;
+                    seleccionar.Visible = true;
+                    btnGuardar.Visible = false;
                 }
                 else
                 {
+                    //Editar nombre nivel
                     ddlTipoUsuario.Enabled = false;
-                    btnSeleccionarModal.Visible = false;
+                    btnSeleccionarModal.Visible = false;                 
                     pnlAlta.Visible = false;
+                    lblAccion.Text = "Editar";                  
+                    btnGuardar.Visible = true;
                 }
             }
         }
@@ -73,10 +79,15 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
             get { return bool.Parse(hfEsSeleccion.Value); }
             set
             {
+                //Seleccionar nivel
                 hfEsSeleccion.Value = value.ToString();
                 btnSeleccionarModal.Visible = value;
-                pnlAlta.Visible = value;                 //jgb                
+                pnlAlta.Visible = value;                                 
                 ddlTipoUsuario.Enabled = !value;
+
+                //Modificación para editar
+                seleccionar.Visible = false;
+                btnGuardar.Visible = false;
             }
         }
         public void SetOrganizacionActualizar()
@@ -1134,7 +1145,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                     switch (int.Parse(btnSeleccionarModal.CommandArgument))
                     {
                         case 1:
-                            throw new Exception("Selecciones una ubicacion de nivel 2");
+                            throw new Exception("Seleccione una ubicacion de nivel 2");
                             if (btnStatusNivel1.CssClass == "btn btn-success btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), null, null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 1);
@@ -1329,6 +1340,23 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                         break;
                 }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Guardar();
             }
             catch (Exception ex)
             {

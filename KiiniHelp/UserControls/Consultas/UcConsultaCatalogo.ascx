@@ -10,7 +10,8 @@
                 <li class="breadcrumb-item">
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
                 <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item active">Registro de Catálogos</li>
+                <li class="breadcrumb-item">Catálogos</li>
+                <li class="breadcrumb-item active">Registro</li>
             </ol>
 
             <section class="module">
@@ -36,7 +37,7 @@
                             <div class="search-box form-inline margin-bottom-lg">
                                 <label class="sr-only" for="txtFiltro">Catálogo</label>
                                 <div class="form-group ">
-                                    <asp:DropDownList runat="server" ID="ddlCatalogos" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlCatalogos_OnSelectedIndexChanged" />
+                                    <asp:DropDownList runat="server" ID="ddlCatalogos" Width="200px" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlCatalogos_OnSelectedIndexChanged" />
                                 </div>
                             </div>
                         </div>
@@ -63,7 +64,7 @@
                                     CssClass="table table-striped display" Width="99%"
                                     OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                     BorderStyle="None" PagerSettings-Mode="Numeric"
-                                    PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Descripción" HeaderStyle-Width="60%">

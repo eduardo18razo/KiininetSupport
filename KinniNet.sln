@@ -63,40 +63,6 @@ Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "SetupDemonio", "SetupDemoni
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://kiininettfs.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = KinniNet.Business\\KinniNet.Core.csproj
-		SccProjectTopLevelParentUniqueName1 = KinniNet.sln
-		SccProjectName1 = KinniNet.Business
-		SccLocalPath1 = KinniNet.Business
-		SccProjectUniqueName2 = KiiniNet.Entities\\KiiniNet.Entities.csproj
-		SccProjectTopLevelParentUniqueName2 = KinniNet.sln
-		SccProjectName2 = KiiniNet.Entities
-		SccLocalPath2 = KiiniNet.Entities
-		SccProjectUniqueName3 = KinniNet.Business.Utils\\KinniNet.Business.Utils.csproj
-		SccProjectTopLevelParentUniqueName3 = KinniNet.sln
-		SccProjectName3 = KinniNet.Business.Utils
-		SccLocalPath3 = KinniNet.Business.Utils
-		SccProjectUniqueName4 = KinniNet.Data\\KinniNet.Data.csproj
-		SccProjectTopLevelParentUniqueName4 = KinniNet.sln
-		SccProjectName4 = KinniNet.Data
-		SccLocalPath4 = KinniNet.Data
-		SccProjectUniqueName5 = KiiniNet.Services.Windows\\KiiniNet.Services.Windows.csproj
-		SccProjectTopLevelParentUniqueName5 = KinniNet.sln
-		SccProjectName5 = KiiniNet.Services.Windows
-		SccLocalPath5 = KiiniNet.Services.Windows
-		SccProjectUniqueName6 = KiininetServiceWindows\\KiininetServiceWindows.isproj
-		SccProjectTopLevelParentUniqueName6 = KinniNet.sln
-		SccProjectName6 = KiininetServiceWindows
-		SccLocalPath6 = KiininetServiceWindows
-		SccProjectUniqueName7 = SetupDemonio\\SetupDemonio.isproj
-		SccProjectTopLevelParentUniqueName7 = KinniNet.sln
-		SccProjectName7 = SetupDemonio
-		SccLocalPath7 = SetupDemonio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
 		Debug|Any CPU = Debug|Any CPU

@@ -80,7 +80,7 @@ namespace KiiniHelp.UserControls.Altas
                 ViewState["Alta"] = value.ToString();
                 ddlTipoUsuario.Enabled = value;
                 ddlTipoGrupo.Enabled = value;
-                lbltitulo.Text = value ? "Nuevo Gupo" : "Editar Gupo";
+                lbltitulo.Text = value ? "Nuevo Grupo" : "Editar Grupo";
             }
         }
 
@@ -191,8 +191,6 @@ namespace KiiniHelp.UserControls.Altas
                 Session.Remove("HorariosSubRoles");
                 Session.Remove("DiasSubRoles");
                 Session.Remove("DiasFestivos");
-
-
             }
             catch (Exception ex)
             {

@@ -10,7 +10,7 @@
 
 html {
     height: 100%;
-    background: #F4F4F4;  /*f9f9fb jgb*/
+    background: #F3F4F4;  /*f9f9fb jgb*/
 }
 
 .preload * {
@@ -33,6 +33,8 @@ body {
     min-height: 100%;
     overflow-x: hidden;
 }
+
+
 
 /*Scroll Bar*/
 ::-webkit-scrollbar {
@@ -115,6 +117,10 @@ body {
     margin-top: 40px;
 }
 
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
 .margin-right-10 {
 	margin-right: 10px;
 }
@@ -126,7 +132,7 @@ body {
 
 .bg-grey {
     background-color: #f5f5f5;
-    padding: 15px;
+    padding: 5px 15px;
 }
 
 
@@ -1149,6 +1155,8 @@ footer {
     position: relative;
     border-radius: 4px;
     background-clip: padding-box;
+    /*17-11-2017*/
+    margin-right: 8px;
 }
 
     .module.module-no-heading .module-content-inner {
@@ -1407,7 +1415,7 @@ a {
 
     a:hover {
         text-decoration: underline;
-        color: #dbdbdb;
+        color: #232323;
     }
 
     a:active {
@@ -1679,6 +1687,7 @@ a.btn {
     }
 
 .btn-group-lg > .btn,
+
 .btn-lg {
     padding: 8px 16px;
 }
@@ -3410,6 +3419,7 @@ label {
     color: #494d55;
 	padding-right: 15px;
 	font-weight: normal !important;
+    margin-bottom: 3px;
 }
 
     label .help-block {
@@ -4393,8 +4403,8 @@ ul.sortable {
 }
 
 .modal-body {
-    padding: 30px 60px;
-    height: 450px;
+    padding: 0px 60px;
+    height: 500px;
     overflow-y: auto;
 }
 
@@ -5939,6 +5949,49 @@ ul, ol {
 	padding-left: 15px;
 	
 }
+
+
+.table-striped > tbody > tr:first-child {
+    background-color: #FFFFFF;
+}
+
+.ocultaTexto {
+    width:130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.btn-guardar {
+    background: #F38A00;
+    border: 1px solid #F38A00;
+    color: #FFF;
+}
+
+    .btn-guardar:hover,
+    .btn-guardar:focus,
+    .btn-guardar:active,
+    .btn-guardar.active,
+    .btn-guardar.hover,
+    .btn-guardar.active:hover,
+    .btn-guardar:active:hover {
+        color: #FFF;    
+    }
+
+
+/*.labelFor {
+    margin-bottom: 5px !important;
+}*/
+
+/*select, input {
+    margin-top: 3px;
+
+}*/
+
+/*span {
+     margin-bottom: 4px;
+}*/
 
 /*.list-unstyled li #hiddenEdit li input{	
 	padding-top: 5px;

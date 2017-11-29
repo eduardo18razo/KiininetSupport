@@ -49,7 +49,7 @@
 
                         <div class="col-lg-3 col-md-3 text-center">
                             <div class="module-inner">
-                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Crear Nuevo Ticket" OnClick="btnNew_OnClick" />
+                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Nuevo" OnClick="btnNew_OnClick" />
                             </div>
                         </div>
 
@@ -67,7 +67,7 @@
                                     CssClass="table table-striped display" Width="99%"
                                     OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                     BorderStyle="None" PagerSettings-Mode="Numeric"
-                                    PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Ticket" ControlStyle-Width="10%">

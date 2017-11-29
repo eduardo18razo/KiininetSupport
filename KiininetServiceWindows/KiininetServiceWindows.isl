@@ -3986,9 +3986,6 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>SccPath</td><td/></row>
 		<row><td>SchemaVersion</td><td>776</td></row>
 		<row><td>Type</td><td>MSIE</td></row>
-		<row><td>VSSccAuxPath</td><td>SAK</td></row>
-		<row><td>VSSccLocalPath</td><td>SAK</td></row>
-		<row><td>VSSccProvider</td><td>SAK</td></row>
 	</table>
 
 	<table name="InstallUISequence">

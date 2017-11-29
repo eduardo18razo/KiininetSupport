@@ -16,7 +16,7 @@
         <div class="modal-body">
             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <div class="row" style="margin-top: -30px">
+                    <div class="row">
                         <div class="module-content-inner">
                             <div class="faq-section text-center margin-bottom-lg">
                                 <div class="faqs-tabbed tabpanel" role="tabpanel">
