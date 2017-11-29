@@ -204,7 +204,7 @@ namespace KinniNet.Core.Operacion
             return usuario.Id;
         }
 
-        public int RegistrarCliente(Usuario usuario, List<HelperCampoMascaraCaptura> datosAdicionalesCampos)
+        public int RegistrarCliente(Usuario usuario)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
@@ -285,56 +285,7 @@ namespace KinniNet.Core.Operacion
                     db.Usuario.AddObject(usuario);
                     db.SaveChanges();
                 }
-                ParametroDatosAdicionales datosAdicionales = new BusinessParametros().ObtenerDatosAdicionales(usuario.IdTipoUsuario);
-                if (datosAdicionales.IdMascara != null)
-                {
-                    Mascara mascara = new BusinessMascaras().ObtenerMascaraCaptura((int) datosAdicionales.IdMascara);
-                    string store = string.Format("{0} '{1}',", mascara.ComandoInsertar, usuario.Id);
-                    bool contieneArchivo = false;
-                    foreach (HelperCampoMascaraCaptura helperCampoMascaraCaptura in datosAdicionalesCampos)
-                    {
-                        if (mascara.CampoMascara.Any(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo))
-                        {
-
-                            store += string.Format("'{0}',", helperCampoMascaraCaptura.Valor.Replace("ticketid", usuario.Id.ToString()));
-                            contieneArchivo = true;
-                        }
-                        else if (mascara.CampoMascara.Any(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación))
-                        {
-                            //List<CatalogoGenerico> registros = new BusinessCatalogos().ObtenerRegistrosSistemaCatalogo((int)mascara.CampoMascara.Single(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo
-                            //    && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación).IdCatalogo, false);
-
-                            //string[] values = helperCampoMascaraCaptura.Valor.Split('|');
-                            //foreach (CatalogoGenerico registro in registros)
-                            //{
-                            //    if (values.Any(a => a == registro.Id.ToString()))
-                            store += string.Format("'{0}',", 1);
-                            //    else
-                            //        store += string.Format("'{0}',", 0);
-                            //}
-
-                        }
-                        else if (mascara.CampoMascara.Any(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango))
-                        {
-                            if (helperCampoMascaraCaptura.Valor != string.Empty)
-                            {
-                                string[] values = helperCampoMascaraCaptura.Valor.Split('|');
-                                store += string.Format("'{0}',", values[0]);
-                                store += string.Format("'{0}',", values[1]);
-                            }
-                            else
-                            {
-                                store += string.Format("'{0}',", "");
-                                store += string.Format("'{0}',", "");
-                            }
-                        }
-                        else
-                            store += string.Format("'{0}',", helperCampoMascaraCaptura.Valor.Replace("'", "''"));
-                    }
-                    store = store.Trim().TrimEnd(',');
-                    db.ExecuteStoreCommand(store);
-                }
-
+                
                 if (usuario.IdTipoUsuario == (int) BusinessVariables.EnumTiposUsuario.Cliente || usuario.IdTipoUsuario == (int) BusinessVariables.EnumTiposUsuario.Operador)
                 {
                     usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;

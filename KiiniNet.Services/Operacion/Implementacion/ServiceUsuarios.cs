@@ -24,13 +24,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public int RegistrarCliente(Usuario usuario, List<HelperCampoMascaraCaptura> datosAdicionalesCampos)
+        public int RegistrarCliente(Usuario usuario)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    return negocio.RegistrarCliente(usuario, datosAdicionalesCampos);
+                    return negocio.RegistrarCliente(usuario);
                 }
             }
             catch (Exception ex)

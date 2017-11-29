@@ -115,7 +115,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>+dRvI/zinPg9RyMzBlTR3u3pFyA=</dsig:DigestValue>
+        <dsig:DigestValue>UY5CnRX4vX30NTmJElg3HMJ3VNY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -127,7 +127,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>/pr9oF7hHllRhy29VhtdzPzFhhE=</dsig:DigestValue>
+        <dsig:DigestValue>bRnzRlzP9oDxTCYR2KDzretPEXg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -139,19 +139,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Hc3l7B69Mw0kpj3fcEb3BwWLh/g=</dsig:DigestValue>
+        <dsig:DigestValue>XYGIvBR/0SxOdSBSsCeuKsib//E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Core.dll" size="1158656">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Core.dll" size="1157120">
       <assemblyIdentity name="KinniNet.Core" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>+PDHwc+lOzelmqHl1Y0msppASSM=</dsig:DigestValue>
+        <dsig:DigestValue>BqikkiFcCfBtyOwHlAq88n4vha4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -163,7 +163,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>oOeB3iaGmMKU1yCIAy1TYBi8dgo=</dsig:DigestValue>
+        <dsig:DigestValue>datMr0EavMsYkIZF3QCUnO3fDhg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

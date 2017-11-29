@@ -12,7 +12,7 @@ namespace KiiniNet.Services.Operacion.Interface
         void GuardarUsuario(Usuario usuario);
 
         [OperationContract]
-        int RegistrarCliente(Usuario usuario, List<HelperCampoMascaraCaptura> datosAdicionalesCampos);
+        int RegistrarCliente(Usuario usuario);
 
         [OperationContract]
         void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv);

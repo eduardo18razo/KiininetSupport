@@ -37,7 +37,6 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\b
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Business.Utils.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Entities.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Data.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\bin\Debug\EPPlus.xml
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.InstallerSettings.resources
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.csproj.GenerateResource.Cache

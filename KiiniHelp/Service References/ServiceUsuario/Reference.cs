@@ -19,7 +19,7 @@ namespace KiiniHelp.ServiceUsuario {
         void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/RegistrarCliente", ReplyAction="http://tempuri.org/IServiceUsuarios/RegistrarClienteResponse")]
-        int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperCampoMascaraCaptura> datosAdicionalesCampos);
+        int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicional", ReplyAction="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicionalResponse")]
         void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv);
@@ -122,8 +122,8 @@ namespace KiiniHelp.ServiceUsuario {
             base.Channel.GuardarUsuario(usuario);
         }
         
-        public int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperCampoMascaraCaptura> datosAdicionalesCampos) {
-            return base.Channel.RegistrarCliente(usuario, datosAdicionalesCampos);
+        public int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario) {
+            return base.Channel.RegistrarCliente(usuario);
         }
         
         public void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv) {

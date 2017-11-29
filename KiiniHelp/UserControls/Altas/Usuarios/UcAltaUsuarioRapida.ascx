@@ -17,9 +17,9 @@
         <div class="row">
             <div class="form-horizontal">
                 <div class="form-group">
-                    <label for="txtNombre" class="col-sm-4 col-md-4 col-lg-4">Nombre</label>
-                    <label for="txtAp" class="col-sm-4 col-md-4 col-lg-4">Apellido paterno</label>
-                    <label for="txtAm" class="col-sm-4 col-md-4 col-lg-4">apellido materno</label>
+                    <label for="txtNombreRapido" class="col-sm-4 col-md-4 col-lg-4">Nombre</label>
+                    <label for="txtApRapido" class="col-sm-4 col-md-4 col-lg-4">Apellido paterno</label>
+                    <label for="txtAmRapido" class="col-sm-4 col-md-4 col-lg-4">apellido materno</label>
 
                 </div>
                 <div class="form-group">
@@ -49,10 +49,6 @@
                         <SearchContext DataSourceID="SourceFilterPhone" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False" />
                     </tc:RadSearchBox>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div runat="server" id="divControles">
             </div>
         </div>
         <asp:ObjectDataSource runat="server" ID="SourceFilterPhone" TypeName="KiiniHelp.UserControls.Agentes.BusquedaAgentes" SelectMethod="GetPhoneType"></asp:ObjectDataSource>
