@@ -30,3 +30,11 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Dat
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\obj\Debug\KinniNet.Data.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\obj\Debug\KinniNet.Data.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\obj\Debug\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Debug\KinniNet.Data.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Debug\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Debug\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\obj\Debug\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\obj\Debug\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\obj\Debug\KinniNet.Data.pdb
