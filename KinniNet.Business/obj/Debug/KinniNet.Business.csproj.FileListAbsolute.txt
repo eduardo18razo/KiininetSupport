@@ -1,0 +1,9 @@
+D:\KiiniNet\App\KinniNet\KinniNet.Business\obj\Debug\KinniNet.Business.csprojResolveAssemblyReference.cache
+D:\KiiniNet\App\KinniNet\KinniNet.Business\bin\Debug\KinniNet.Business.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Business\bin\Debug\KinniNet.Business.pdb
+D:\KiiniNet\App\KinniNet\KinniNet.Business\bin\Debug\KiiniNet.Entities.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Business\bin\Debug\KinniNet.Data.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Business\bin\Debug\KiiniNet.Entities.pdb
+D:\KiiniNet\App\KinniNet\KinniNet.Business\bin\Debug\KinniNet.Data.pdb
+D:\KiiniNet\App\KinniNet\KinniNet.Business\obj\Debug\KinniNet.Business.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Business\obj\Debug\KinniNet.Business.pdb

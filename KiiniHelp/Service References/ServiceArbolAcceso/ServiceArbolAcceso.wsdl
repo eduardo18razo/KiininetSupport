@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceArbolAcceso" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerOpcionesPermitidas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerOpcionesPermitidas" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerOpcionesPermitidas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerOpcionesPermitidasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_LevantaTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:LevantaTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_LevantaTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LevantaTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_RecadoTicketTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecadoTicketTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_RecadoTicketTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecadoTicketTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel1ByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel1ByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel1ByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel1ByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel2ByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel2ByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel2ByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel2ByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel3ByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel3ByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel3ByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel3ByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel4ByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel4ByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel4ByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel4ByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel5ByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel5ByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel5ByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel5ByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel6ByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel6ByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel6ByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel6ByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel7ByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel7ByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel7ByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel7ByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_EsNodoTerminalByGrupos_InputMessage">
+    <wsdl:part name="parameters" element="tns:EsNodoTerminalByGrupos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_EsNodoTerminalByGrupos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EsNodoTerminalByGruposResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel1_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel1" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel1Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel2" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel2Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel3_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel3" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel3_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel3Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel4_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel4" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel4_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel4Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel5_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel5" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel5_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel5Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel6_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel6" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel6_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel6Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel7_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel7" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerNivel7_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNivel7Response" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_EsNodoTerminal_InputMessage">
+    <wsdl:part name="parameters" element="tns:EsNodoTerminal" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_EsNodoTerminal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EsNodoTerminalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_GuardarArbol_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarArbol" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_GuardarArbol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarArbolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoByGruposUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoByGruposUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoByGruposUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoByGruposUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolAcceso_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolAcceso" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolAcceso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolAccesoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoAll" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_HabilitarArbol_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarArbol" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_HabilitarArbol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarArbolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ActualizardArbol_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizardArbol" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ActualizardArbol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizardArbolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalAll" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAllTipificacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalAllTipificacion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAllTipificacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalAllTipificacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByIdUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalByIdUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByIdUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalByIdUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceArbolAcceso">
+    <wsdl:operation name="ObtenerOpcionesPermitidas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerOpcionesPermitidas" message="tns:IServiceArbolAcceso_ObtenerOpcionesPermitidas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerOpcionesPermitidasResponse" message="tns:IServiceArbolAcceso_ObtenerOpcionesPermitidas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LevantaTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/LevantaTicket" message="tns:IServiceArbolAcceso_LevantaTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/LevantaTicketResponse" message="tns:IServiceArbolAcceso_LevantaTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecadoTicketTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/RecadoTicketTicket" message="tns:IServiceArbolAcceso_RecadoTicketTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/RecadoTicketTicketResponse" message="tns:IServiceArbolAcceso_RecadoTicketTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel1ByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel1ByGrupos" message="tns:IServiceArbolAcceso_ObtenerNivel1ByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel1ByGruposResponse" message="tns:IServiceArbolAcceso_ObtenerNivel1ByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel2ByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel2ByGrupos" message="tns:IServiceArbolAcceso_ObtenerNivel2ByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel2ByGruposResponse" message="tns:IServiceArbolAcceso_ObtenerNivel2ByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel3ByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel3ByGrupos" message="tns:IServiceArbolAcceso_ObtenerNivel3ByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel3ByGruposResponse" message="tns:IServiceArbolAcceso_ObtenerNivel3ByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel4ByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel4ByGrupos" message="tns:IServiceArbolAcceso_ObtenerNivel4ByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel4ByGruposResponse" message="tns:IServiceArbolAcceso_ObtenerNivel4ByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel5ByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel5ByGrupos" message="tns:IServiceArbolAcceso_ObtenerNivel5ByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel5ByGruposResponse" message="tns:IServiceArbolAcceso_ObtenerNivel5ByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel6ByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel6ByGrupos" message="tns:IServiceArbolAcceso_ObtenerNivel6ByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel6ByGruposResponse" message="tns:IServiceArbolAcceso_ObtenerNivel6ByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel7ByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel7ByGrupos" message="tns:IServiceArbolAcceso_ObtenerNivel7ByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel7ByGruposResponse" message="tns:IServiceArbolAcceso_ObtenerNivel7ByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EsNodoTerminalByGrupos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/EsNodoTerminalByGrupos" message="tns:IServiceArbolAcceso_EsNodoTerminalByGrupos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/EsNodoTerminalByGruposResponse" message="tns:IServiceArbolAcceso_EsNodoTerminalByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel1" message="tns:IServiceArbolAcceso_ObtenerNivel1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel1Response" message="tns:IServiceArbolAcceso_ObtenerNivel1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel2" message="tns:IServiceArbolAcceso_ObtenerNivel2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel2Response" message="tns:IServiceArbolAcceso_ObtenerNivel2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel3">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel3" message="tns:IServiceArbolAcceso_ObtenerNivel3_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel3Response" message="tns:IServiceArbolAcceso_ObtenerNivel3_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel4">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel4" message="tns:IServiceArbolAcceso_ObtenerNivel4_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel4Response" message="tns:IServiceArbolAcceso_ObtenerNivel4_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel5">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel5" message="tns:IServiceArbolAcceso_ObtenerNivel5_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel5Response" message="tns:IServiceArbolAcceso_ObtenerNivel5_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel6">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel6" message="tns:IServiceArbolAcceso_ObtenerNivel6_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel6Response" message="tns:IServiceArbolAcceso_ObtenerNivel6_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel7">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel7" message="tns:IServiceArbolAcceso_ObtenerNivel7_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel7Response" message="tns:IServiceArbolAcceso_ObtenerNivel7_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EsNodoTerminal">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/EsNodoTerminal" message="tns:IServiceArbolAcceso_EsNodoTerminal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/EsNodoTerminalResponse" message="tns:IServiceArbolAcceso_EsNodoTerminal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarArbol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/GuardarArbol" message="tns:IServiceArbolAcceso_GuardarArbol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/GuardarArbolResponse" message="tns:IServiceArbolAcceso_GuardarArbol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoByGruposUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoByGruposUsuario" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoByGruposUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoByGruposUsuarioResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoByGruposUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolAcceso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolAcceso" message="tns:IServiceArbolAcceso_ObtenerArbolAcceso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolAccesoResponse" message="tns:IServiceArbolAcceso_ObtenerArbolAcceso_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarArbol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/HabilitarArbol" message="tns:IServiceArbolAcceso_HabilitarArbol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/HabilitarArbolResponse" message="tns:IServiceArbolAcceso_HabilitarArbol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizardArbol">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ActualizardArbol" message="tns:IServiceArbolAcceso_ActualizardArbol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ActualizardArbolResponse" message="tns:IServiceArbolAcceso_ActualizardArbol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalAll" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalAllResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalAllTipificacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalAllTipificacion" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAllTipificacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalAllTipificacionResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalAllTipificacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalByIdUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuario" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByIdUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuarioResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByIdUsuario_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointAdministracion" type="tns:IServiceArbolAcceso">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerOpcionesPermitidas">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerOpcionesPermitidas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LevantaTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/LevantaTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecadoTicketTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/RecadoTicketTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel1ByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel1ByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel2ByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel2ByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel3ByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel3ByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel4ByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel4ByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel5ByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel5ByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel6ByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel6ByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel7ByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel7ByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsNodoTerminalByGrupos">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/EsNodoTerminalByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel1">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel2">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel3">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel4">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel4" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel5">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel5" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel6">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel6" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNivel7">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerNivel7" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsNodoTerminal">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/EsNodoTerminal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarArbol">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/GuardarArbol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoByGruposUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoByGruposUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolAcceso">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolAcceso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoAll">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarArbol">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/HabilitarArbol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizardArbol">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ActualizardArbol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalAll">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalAllTipificacion">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalAllTipificacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalByIdUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceArbolAcceso">
+    <wsdl:port name="EndPointAdministracion" binding="tns:EndPointAdministracion">
+      <soap:address location="http://localhost:15277/ServiceArbolAcceso.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

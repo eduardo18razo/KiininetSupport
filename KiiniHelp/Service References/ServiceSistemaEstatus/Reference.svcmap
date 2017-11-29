@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="01c74222-59f2-4496-b651-1d8f298eb6ec" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceEstatus.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceEstatus6.xsd" MetadataType="Schema" ID="f168bad9-1d3a-4368-abf0-ec3af759d3db" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceEstatus11.xsd" MetadataType="Schema" ID="6444a18d-99e8-45ef-a20b-f40e9d74484b" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceEstatus1.xsd" MetadataType="Schema" ID="ab80d25b-2adb-4fd4-bb16-649a2b3e3503" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceEstatus2.xsd" MetadataType="Schema" ID="3a033e9b-889f-4002-9bc5-4f20e62071cc" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceEstatus3.xsd" MetadataType="Schema" ID="83d7797b-d0a1-495e-b305-c84b2787c4f2" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceEstatus4.xsd" MetadataType="Schema" ID="6ac04beb-ef8d-4bf2-80ca-71b0217e2dbc" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceEstatus.wsdl" MetadataType="Wsdl" ID="49dff937-aadb-41a5-8dde-b09e7af7579a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?wsdl" />
+    <MetadataFile FileName="ServiceEstatus5.xsd" MetadataType="Schema" ID="719dd3d7-dc43-4d39-82b4-26368068bbc4" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceEstatus13.xsd" MetadataType="Schema" ID="65eced00-0336-4e13-97a5-3ede8dfc1ce7" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceEstatus7.xsd" MetadataType="Schema" ID="0d06a567-5e08-42ab-8f4f-65033a1ec926" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceEstatus.disco" MetadataType="Disco" ID="e5262391-6bea-43c7-a876-d8454d57267a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?disco" />
+    <MetadataFile FileName="ServiceEstatus8.xsd" MetadataType="Schema" ID="846e32b1-8b9a-479c-9ac5-6deb98bfbc1c" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceEstatus9.xsd" MetadataType="Schema" ID="b3bd11b0-46ab-459a-905f-e0b4e2a12899" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceEstatus10.xsd" MetadataType="Schema" ID="c62884e7-e6b5-4912-a809-83e321bd5a6e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceEstatus.xsd" MetadataType="Schema" ID="8b77f4f0-3119-48db-97ef-f901e217c359" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceEstatus12.xsd" MetadataType="Schema" ID="cecae884-a503-4bdc-a9db-a523ea1b0ff3" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceCatalogos" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceCatalogos.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceCatalogos_CrearCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_CrearCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ActualizarCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ActualizarCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogoConsulta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogoConsulta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogoConsulta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogoConsultaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogosMascaraCaptura_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogosMascaraCaptura" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerCatalogosMascaraCaptura_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCatalogosMascaraCapturaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_Habilitar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Habilitar" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_Habilitar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_AgregarRegistroSistema_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarRegistroSistema" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_AgregarRegistroSistema_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarRegistroSistemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ActualizarRegistroSistema_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarRegistroSistema" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ActualizarRegistroSistema_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarRegistroSistemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_HabilitarRegistroSistema_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarRegistroSistema" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_HabilitarRegistroSistema_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarRegistroSistemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerRegistrosSistemaCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerRegistrosSistemaCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerRegistrosSistemaCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerRegistrosSistemaCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerRegistrosArchivosCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerRegistrosArchivosCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ObtenerRegistrosArchivosCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerRegistrosArchivosCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_CrearCatalogoExcel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCatalogoExcel" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_CrearCatalogoExcel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearCatalogoExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ActualizarCatalogoExcel_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCatalogoExcel" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCatalogos_ActualizarCatalogoExcel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCatalogoExcelResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceCatalogos">
+    <wsdl:operation name="CrearCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/CrearCatalogo" message="tns:IServiceCatalogos_CrearCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/CrearCatalogoResponse" message="tns:IServiceCatalogos_CrearCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ActualizarCatalogo" message="tns:IServiceCatalogos_ActualizarCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ActualizarCatalogoResponse" message="tns:IServiceCatalogos_ActualizarCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogo" message="tns:IServiceCatalogos_ObtenerCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogoResponse" message="tns:IServiceCatalogos_ObtenerCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogos" message="tns:IServiceCatalogos_ObtenerCatalogos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogosResponse" message="tns:IServiceCatalogos_ObtenerCatalogos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogoConsulta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogoConsulta" message="tns:IServiceCatalogos_ObtenerCatalogoConsulta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogoConsultaResponse" message="tns:IServiceCatalogos_ObtenerCatalogoConsulta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogosMascaraCaptura">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogosMascaraCaptura" message="tns:IServiceCatalogos_ObtenerCatalogosMascaraCaptura_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerCatalogosMascaraCapturaResponse" message="tns:IServiceCatalogos_ObtenerCatalogosMascaraCaptura_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Habilitar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/Habilitar" message="tns:IServiceCatalogos_Habilitar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/HabilitarResponse" message="tns:IServiceCatalogos_Habilitar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarRegistroSistema">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/AgregarRegistroSistema" message="tns:IServiceCatalogos_AgregarRegistroSistema_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/AgregarRegistroSistemaResponse" message="tns:IServiceCatalogos_AgregarRegistroSistema_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarRegistroSistema">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ActualizarRegistroSistema" message="tns:IServiceCatalogos_ActualizarRegistroSistema_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ActualizarRegistroSistemaResponse" message="tns:IServiceCatalogos_ActualizarRegistroSistema_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarRegistroSistema">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/HabilitarRegistroSistema" message="tns:IServiceCatalogos_HabilitarRegistroSistema_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/HabilitarRegistroSistemaResponse" message="tns:IServiceCatalogos_HabilitarRegistroSistema_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRegistrosSistemaCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerRegistrosSistemaCatalogo" message="tns:IServiceCatalogos_ObtenerRegistrosSistemaCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerRegistrosSistemaCatalogoResponse" message="tns:IServiceCatalogos_ObtenerRegistrosSistemaCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRegistrosArchivosCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerRegistrosArchivosCatalogo" message="tns:IServiceCatalogos_ObtenerRegistrosArchivosCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ObtenerRegistrosArchivosCatalogoResponse" message="tns:IServiceCatalogos_ObtenerRegistrosArchivosCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearCatalogoExcel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/CrearCatalogoExcel" message="tns:IServiceCatalogos_CrearCatalogoExcel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/CrearCatalogoExcelResponse" message="tns:IServiceCatalogos_CrearCatalogoExcel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCatalogoExcel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceCatalogos/ActualizarCatalogoExcel" message="tns:IServiceCatalogos_ActualizarCatalogoExcel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceCatalogos/ActualizarCatalogoExcelResponse" message="tns:IServiceCatalogos_ActualizarCatalogoExcel_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointSeguridad" type="tns:IServiceCatalogos">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CrearCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/CrearCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ActualizarCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ObtenerCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogos">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ObtenerCatalogos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogoConsulta">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ObtenerCatalogoConsulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCatalogosMascaraCaptura">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ObtenerCatalogosMascaraCaptura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Habilitar">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/Habilitar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarRegistroSistema">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/AgregarRegistroSistema" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarRegistroSistema">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ActualizarRegistroSistema" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarRegistroSistema">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/HabilitarRegistroSistema" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRegistrosSistemaCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ObtenerRegistrosSistemaCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRegistrosArchivosCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ObtenerRegistrosArchivosCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearCatalogoExcel">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/CrearCatalogoExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCatalogoExcel">
+      <soap:operation soapAction="http://tempuri.org/IServiceCatalogos/ActualizarCatalogoExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceCatalogos">
+    <wsdl:port name="EndPointSeguridad" binding="tns:EndPointSeguridad">
+      <soap:address location="http://localhost:15277/Sistema/ServiceCatalogos.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,24 @@
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Office.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Word.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Office.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Word.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb

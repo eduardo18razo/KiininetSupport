@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KiiniNet_v2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblCatCampus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatColonia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMunicipio" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+    <Property Name="CP" Type="int" />
+  </EntityType>
+  <EntityType Name="tblCatCompania">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatDireccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatEstado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblCatGerencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatHolding">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatJefatura">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatMunicipio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEstado" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tblCatPais">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatPiso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatSiteRack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatSubDireccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatSubGerencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatSubZona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatTipoTelefono">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblCatTipoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatTorre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCatZona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCorreoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="correo" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tblDomicilio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCampus" Type="int" Nullable="false" />
+    <Property Name="IdColonia" Type="int" Nullable="false" />
+    <Property Name="calle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="noExt" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="noInt" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblOrganizacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdHolding" Type="int" Nullable="false" />
+    <Property Name="IdCompania" Type="int" Nullable="false" />
+    <Property Name="IdDireccion" Type="int" />
+    <Property Name="IdSubDireccion" Type="int" />
+    <Property Name="IdGerencia" Type="int" />
+    <Property Name="IdSubGerencia" Type="int" />
+    <Property Name="IdJefatura" Type="int" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblTelefonoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoTelefono" Type="int" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="numero" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="extension" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tblUbicacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdPais" Type="int" Nullable="false" />
+    <Property Name="IdCampus" Type="int" Nullable="false" />
+    <Property Name="IdTorre" Type="int" />
+    <Property Name="IdPiso" Type="int" />
+    <Property Name="IdZona" Type="int" />
+    <Property Name="IdSubZona" Type="int" />
+    <Property Name="IdSiteRack" Type="int" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdUbicacion" Type="int" Nullable="false" />
+    <Property Name="IdOrganizacion" Type="int" />
+    <Property Name="apellIdoPaterno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellIdoMaterno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="directorioActivo" Type="bit" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_c02_Municipios_c01_Estados">
+    <End Role="tblCatEstado" Type="Self.tblCatEstado" Multiplicity="0..1" />
+    <End Role="tblCatMunicipio" Type="Self.tblCatMunicipio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatEstado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCatMunicipio">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_c03_Colonias_c02_Municipios">
+    <End Role="tblCatMunicipio" Type="Self.tblCatMunicipio" Multiplicity="0..1" />
+    <End Role="tblCatColonia" Type="Self.tblCatColonia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatMunicipio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCatColonia">
+        <PropertyRef Name="IdMunicipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCorreoUsuario_tblUsuario">
+    <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="0..1" />
+    <End Role="tblCorreoUsuario" Type="Self.tblCorreoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCorreoUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblDomicilio_tblCatCampus">
+    <End Role="tblCatCampus" Type="Self.tblCatCampus" Multiplicity="1" />
+    <End Role="tblDomicilio" Type="Self.tblDomicilio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatCampus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDomicilio">
+        <PropertyRef Name="IdCampus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblDomicilio_tblCatColonias">
+    <End Role="tblCatColonia" Type="Self.tblCatColonia" Multiplicity="1" />
+    <End Role="tblDomicilio" Type="Self.tblDomicilio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatColonia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDomicilio">
+        <PropertyRef Name="IdColonia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatCompania">
+    <End Role="tblCatCompania" Type="Self.tblCatCompania" Multiplicity="1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatCompania">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdCompania" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatDireccion">
+    <End Role="tblCatDireccion" Type="Self.tblCatDireccion" Multiplicity="0..1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatDireccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatGerencia">
+    <End Role="tblCatGerencia" Type="Self.tblCatGerencia" Multiplicity="0..1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatGerencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdGerencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatHolding">
+    <End Role="tblCatHolding" Type="Self.tblCatHolding" Multiplicity="1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatHolding">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdHolding" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatJefatura">
+    <End Role="tblCatJefatura" Type="Self.tblCatJefatura" Multiplicity="0..1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatJefatura">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdJefatura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatSubDireccion">
+    <End Role="tblCatSubDireccion" Type="Self.tblCatSubDireccion" Multiplicity="0..1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSubDireccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdSubDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatSubGerencia">
+    <End Role="tblCatSubGerencia" Type="Self.tblCatSubGerencia" Multiplicity="0..1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSubGerencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdSubGerencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatTipoUsuario">
+    <End Role="tblCatTipoUsuario" Type="Self.tblCatTipoUsuario" Multiplicity="1" />
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTelefonoUsuario_tblCatTipoTelefono">
+    <End Role="tblCatTipoTelefono" Type="Self.tblCatTipoTelefono" Multiplicity="0..1" />
+    <End Role="tblTelefonoUsuario" Type="Self.tblTelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoTelefono">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblTelefonoUsuario">
+        <PropertyRef Name="IdTipoTelefono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTelefonoUsuario_tblUsuario">
+    <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="1" />
+    <End Role="tblTelefonoUsuario" Type="Self.tblTelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblTelefonoUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatCampus">
+    <End Role="tblCatCampus" Type="Self.tblCatCampus" Multiplicity="1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatCampus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdCampus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatPais">
+    <End Role="tblCatPais" Type="Self.tblCatPais" Multiplicity="1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatPais">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatPiso">
+    <End Role="tblCatPiso" Type="Self.tblCatPiso" Multiplicity="0..1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatPiso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdPiso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatSiteRack">
+    <End Role="tblCatSiteRack" Type="Self.tblCatSiteRack" Multiplicity="0..1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSiteRack">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdSiteRack" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatSubZona">
+    <End Role="tblCatSubZona" Type="Self.tblCatSubZona" Multiplicity="0..1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSubZona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdSubZona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatTipoUsuario">
+    <End Role="tblCatTipoUsuario" Type="Self.tblCatTipoUsuario" Multiplicity="1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatTorre">
+    <End Role="tblCatTorre" Type="Self.tblCatTorre" Multiplicity="0..1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTorre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdTorre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatZona">
+    <End Role="tblCatZona" Type="Self.tblCatZona" Multiplicity="0..1" />
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatZona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdZona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsuario_tblCatTipoUsuario">
+    <End Role="tblCatTipoUsuario" Type="Self.tblCatTipoUsuario" Multiplicity="1" />
+    <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUsuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsuario_tblOrganizacion">
+    <End Role="tblOrganizacion" Type="Self.tblOrganizacion" Multiplicity="1" />
+    <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrganizacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUsuario">
+        <PropertyRef Name="IdUbicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsuario_tblUbicacion">
+    <End Role="tblUbicacion" Type="Self.tblUbicacion" Multiplicity="1" />
+    <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUbicacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUsuario">
+        <PropertyRef Name="IdUbicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KiiniNet_v2ModelStoreContainer">
+    <EntitySet Name="tblCatCampus" EntityType="Self.tblCatCampus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatColonia" EntityType="Self.tblCatColonia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatCompania" EntityType="Self.tblCatCompania" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatDireccion" EntityType="Self.tblCatDireccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatEstado" EntityType="Self.tblCatEstado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatGerencia" EntityType="Self.tblCatGerencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatHolding" EntityType="Self.tblCatHolding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatJefatura" EntityType="Self.tblCatJefatura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatMunicipio" EntityType="Self.tblCatMunicipio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatPais" EntityType="Self.tblCatPais" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatPiso" EntityType="Self.tblCatPiso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatSiteRack" EntityType="Self.tblCatSiteRack" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatSubDireccion" EntityType="Self.tblCatSubDireccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatSubGerencia" EntityType="Self.tblCatSubGerencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatSubZona" EntityType="Self.tblCatSubZona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatTipoTelefono" EntityType="Self.tblCatTipoTelefono" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatTipoUsuario" EntityType="Self.tblCatTipoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatTorre" EntityType="Self.tblCatTorre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCatZona" EntityType="Self.tblCatZona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCorreoUsuario" EntityType="Self.tblCorreoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDomicilio" EntityType="Self.tblDomicilio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrganizacion" EntityType="Self.tblOrganizacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTelefonoUsuario" EntityType="Self.tblTelefonoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUbicacion" EntityType="Self.tblUbicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsuario" EntityType="Self.tblUsuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_c02_Municipios_c01_Estados" Association="Self.FK_c02_Municipios_c01_Estados">
+      <End Role="tblCatEstado" EntitySet="tblCatEstado" />
+      <End Role="tblCatMunicipio" EntitySet="tblCatMunicipio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_c03_Colonias_c02_Municipios" Association="Self.FK_c03_Colonias_c02_Municipios">
+      <End Role="tblCatMunicipio" EntitySet="tblCatMunicipio" />
+      <End Role="tblCatColonia" EntitySet="tblCatColonia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCorreoUsuario_tblUsuario" Association="Self.FK_tblCorreoUsuario_tblUsuario">
+      <End Role="tblUsuario" EntitySet="tblUsuario" />
+      <End Role="tblCorreoUsuario" EntitySet="tblCorreoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblDomicilio_tblCatCampus" Association="Self.FK_tblDomicilio_tblCatCampus">
+      <End Role="tblCatCampus" EntitySet="tblCatCampus" />
+      <End Role="tblDomicilio" EntitySet="tblDomicilio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblDomicilio_tblCatColonias" Association="Self.FK_tblDomicilio_tblCatColonias">
+      <End Role="tblCatColonia" EntitySet="tblCatColonia" />
+      <End Role="tblDomicilio" EntitySet="tblDomicilio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatCompania" Association="Self.FK_tblOrganizacion_tblCatCompania">
+      <End Role="tblCatCompania" EntitySet="tblCatCompania" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatDireccion" Association="Self.FK_tblOrganizacion_tblCatDireccion">
+      <End Role="tblCatDireccion" EntitySet="tblCatDireccion" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatGerencia" Association="Self.FK_tblOrganizacion_tblCatGerencia">
+      <End Role="tblCatGerencia" EntitySet="tblCatGerencia" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatHolding" Association="Self.FK_tblOrganizacion_tblCatHolding">
+      <End Role="tblCatHolding" EntitySet="tblCatHolding" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatJefatura" Association="Self.FK_tblOrganizacion_tblCatJefatura">
+      <End Role="tblCatJefatura" EntitySet="tblCatJefatura" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatSubDireccion" Association="Self.FK_tblOrganizacion_tblCatSubDireccion">
+      <End Role="tblCatSubDireccion" EntitySet="tblCatSubDireccion" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatSubGerencia" Association="Self.FK_tblOrganizacion_tblCatSubGerencia">
+      <End Role="tblCatSubGerencia" EntitySet="tblCatSubGerencia" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatTipoUsuario" Association="Self.FK_tblOrganizacion_tblCatTipoUsuario">
+      <End Role="tblCatTipoUsuario" EntitySet="tblCatTipoUsuario" />
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTelefonoUsuario_tblCatTipoTelefono" Association="Self.FK_tblTelefonoUsuario_tblCatTipoTelefono">
+      <End Role="tblCatTipoTelefono" EntitySet="tblCatTipoTelefono" />
+      <End Role="tblTelefonoUsuario" EntitySet="tblTelefonoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTelefonoUsuario_tblUsuario" Association="Self.FK_tblTelefonoUsuario_tblUsuario">
+      <End Role="tblUsuario" EntitySet="tblUsuario" />
+      <End Role="tblTelefonoUsuario" EntitySet="tblTelefonoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatCampus" Association="Self.FK_tblUbicacion_tblCatCampus">
+      <End Role="tblCatCampus" EntitySet="tblCatCampus" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatPais" Association="Self.FK_tblUbicacion_tblCatPais">
+      <End Role="tblCatPais" EntitySet="tblCatPais" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatPiso" Association="Self.FK_tblUbicacion_tblCatPiso">
+      <End Role="tblCatPiso" EntitySet="tblCatPiso" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatSiteRack" Association="Self.FK_tblUbicacion_tblCatSiteRack">
+      <End Role="tblCatSiteRack" EntitySet="tblCatSiteRack" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatSubZona" Association="Self.FK_tblUbicacion_tblCatSubZona">
+      <End Role="tblCatSubZona" EntitySet="tblCatSubZona" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatTipoUsuario" Association="Self.FK_tblUbicacion_tblCatTipoUsuario">
+      <End Role="tblCatTipoUsuario" EntitySet="tblCatTipoUsuario" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatTorre" Association="Self.FK_tblUbicacion_tblCatTorre">
+      <End Role="tblCatTorre" EntitySet="tblCatTorre" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatZona" Association="Self.FK_tblUbicacion_tblCatZona">
+      <End Role="tblCatZona" EntitySet="tblCatZona" />
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsuario_tblCatTipoUsuario" Association="Self.FK_tblUsuario_tblCatTipoUsuario">
+      <End Role="tblCatTipoUsuario" EntitySet="tblCatTipoUsuario" />
+      <End Role="tblUsuario" EntitySet="tblUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsuario_tblOrganizacion" Association="Self.FK_tblUsuario_tblOrganizacion">
+      <End Role="tblOrganizacion" EntitySet="tblOrganizacion" />
+      <End Role="tblUsuario" EntitySet="tblUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsuario_tblUbicacion" Association="Self.FK_tblUsuario_tblUbicacion">
+      <End Role="tblUbicacion" EntitySet="tblUbicacion" />
+      <End Role="tblUsuario" EntitySet="tblUsuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5796ae59-9e90-4f27-a43f-93efb34f1ffe" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceTipoInformacionConsulta.disco" MetadataType="Disco" ID="2148f523-7ab2-4239-9120-284dff5244b9" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?disco" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta.xsd" MetadataType="Schema" ID="d75c7166-4f8e-49cc-b923-0c855eb43c23" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta1.xsd" MetadataType="Schema" ID="ab59db57-2d1e-4466-99bf-ed037192aef5" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta2.xsd" MetadataType="Schema" ID="d19c517a-7b02-4a45-b86c-76fe32516184" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta3.xsd" MetadataType="Schema" ID="85091a83-08b9-4005-92cf-6ded5a986643" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta4.xsd" MetadataType="Schema" ID="baf7faa2-87d6-4834-8dff-671b39ac35eb" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta5.xsd" MetadataType="Schema" ID="770dc9fe-5d62-4f1f-a36b-abdaa6773b81" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta6.xsd" MetadataType="Schema" ID="2f5c8d54-7ad0-406b-a583-dcf273aeb5cd" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta7.xsd" MetadataType="Schema" ID="baf45bc5-50dd-4feb-944a-1801b5b06308" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta13.xsd" MetadataType="Schema" ID="b39896df-8c40-41ad-a23d-389ca4df9dea" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta8.xsd" MetadataType="Schema" ID="f908b0bd-e4de-4604-8b3c-5318898e41cd" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta9.xsd" MetadataType="Schema" ID="40ea8afe-5e6a-4acc-9432-a98a9456d290" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceTipoInfConsulta.wsdl" MetadataType="Wsdl" ID="3ebfb785-3cc5-43b3-9bbb-af021ebd36c8" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?wsdl" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta10.xsd" MetadataType="Schema" ID="841ea255-03fa-40a5-a288-be9e88fa8eb2" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta11.xsd" MetadataType="Schema" ID="e47b6a46-981a-48a9-a579-df6a5c7bc85c" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceTipoInformacionConsulta12.xsd" MetadataType="Schema" ID="da70f10d-0357-4e53-a13e-2dd7028697a3" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoInformacionConsulta.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

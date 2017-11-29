@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="21278d47-1cde-4925-b17e-9a4ef4916d3e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceImpactoUrgencia.disco" MetadataType="Disco" ID="efa890fd-d012-43b8-a742-e1b724c0c7b8" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?disco" />
+    <MetadataFile FileName="ServiceImpactoUrgencia.xsd" MetadataType="Schema" ID="916d56de-37aa-4eb4-ae8e-6c39e5471be8" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceImpactoUrgencia1.xsd" MetadataType="Schema" ID="bf0428b4-54fb-4f71-952e-b6e022eda082" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceImpactoUrgencia2.xsd" MetadataType="Schema" ID="c8883def-5166-41d8-9973-20a77545e365" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceImpactoUrgencia.wsdl" MetadataType="Wsdl" ID="4d83b237-7a90-4532-b76f-70ca2ed6ac8c" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?wsdl" />
+    <MetadataFile FileName="ServiceImpactoUrgencia3.xsd" MetadataType="Schema" ID="4ffddb21-3dfc-41a0-9fc5-88f58ae08691" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceImpactoUrgencia4.xsd" MetadataType="Schema" ID="e63d7f68-2a38-42cc-9642-5230b081dbb4" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceImpactoUrgencia5.xsd" MetadataType="Schema" ID="84387e0e-b13c-4192-be19-24808b1a7089" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceImpactoUrgencia6.xsd" MetadataType="Schema" ID="e7075b64-7b25-4265-8eaa-75662056e450" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceImpactoUrgencia7.xsd" MetadataType="Schema" ID="abb20f27-0a16-4f71-a0bd-4912d80b51b0" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceImpactoUrgencia8.xsd" MetadataType="Schema" ID="9eb31fdf-0bea-4b35-81ed-88cb1433a11a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceImpactoUrgencia10.xsd" MetadataType="Schema" ID="da4a4782-9b4e-4f72-848a-5f04d4141390" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceImpactoUrgencia9.xsd" MetadataType="Schema" ID="bcbae072-70c9-4f08-bd80-b03f0f9b569e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceImpactoUrgencia11.xsd" MetadataType="Schema" ID="ba3a1d09-e9ae-4e12-aa86-a69119a26edd" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceImpactoUrgencia12.xsd" MetadataType="Schema" ID="d294cd61-9095-496d-af71-1bf0ed96c5ec" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceImpactoUrgencia13.xsd" MetadataType="Schema" ID="778429a8-98e5-469a-9851-21e4d7ca8045" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceImpactoUrgencia.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

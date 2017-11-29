@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceAtencionTicket" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/SetviceAtencionTicket.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/SetviceAtencionTicket.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/SetviceAtencionTicket.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:15277/SetviceAtencionTicket.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceAtencionTicket_AutoAsignarTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:AutoAsignarTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_AutoAsignarTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AutoAsignarTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_CambiarEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarEstatus" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_CambiarEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_CambiarAsignacionTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarAsignacionTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_CambiarAsignacionTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CambiarAsignacionTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_AgregarComentarioConversacionTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarComentarioConversacionTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_AgregarComentarioConversacionTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarComentarioConversacionTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_MarcarAsignacionLeida_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarcarAsignacionLeida" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_MarcarAsignacionLeida_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MarcarAsignacionLeidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_ObtenerTicketEnAtencion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketEnAtencion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_ObtenerTicketEnAtencion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerTicketEnAtencionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_ObtenerNumeroTicketsEnAtencionNuevos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNumeroTicketsEnAtencionNuevos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceAtencionTicket_ObtenerNumeroTicketsEnAtencionNuevos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNumeroTicketsEnAtencionNuevosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceAtencionTicket">
+    <wsdl:operation name="AutoAsignarTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAtencionTicket/AutoAsignarTicket" message="tns:IServiceAtencionTicket_AutoAsignarTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAtencionTicket/AutoAsignarTicketResponse" message="tns:IServiceAtencionTicket_AutoAsignarTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAtencionTicket/CambiarEstatus" message="tns:IServiceAtencionTicket_CambiarEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAtencionTicket/CambiarEstatusResponse" message="tns:IServiceAtencionTicket_CambiarEstatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CambiarAsignacionTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAtencionTicket/CambiarAsignacionTicket" message="tns:IServiceAtencionTicket_CambiarAsignacionTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAtencionTicket/CambiarAsignacionTicketResponse" message="tns:IServiceAtencionTicket_CambiarAsignacionTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarComentarioConversacionTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAtencionTicket/AgregarComentarioConversacionTicket" message="tns:IServiceAtencionTicket_AgregarComentarioConversacionTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAtencionTicket/AgregarComentarioConversacionTicketResponse" message="tns:IServiceAtencionTicket_AgregarComentarioConversacionTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MarcarAsignacionLeida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAtencionTicket/MarcarAsignacionLeida" message="tns:IServiceAtencionTicket_MarcarAsignacionLeida_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAtencionTicket/MarcarAsignacionLeidaResponse" message="tns:IServiceAtencionTicket_MarcarAsignacionLeida_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketEnAtencion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAtencionTicket/ObtenerTicketEnAtencion" message="tns:IServiceAtencionTicket_ObtenerTicketEnAtencion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAtencionTicket/ObtenerTicketEnAtencionResponse" message="tns:IServiceAtencionTicket_ObtenerTicketEnAtencion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNumeroTicketsEnAtencionNuevos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceAtencionTicket/ObtenerNumeroTicketsEnAtencionNuevos" message="tns:IServiceAtencionTicket_ObtenerNumeroTicketsEnAtencionNuevos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceAtencionTicket/ObtenerNumeroTicketsEnAtencionNuevosResponse" message="tns:IServiceAtencionTicket_ObtenerNumeroTicketsEnAtencionNuevos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointSeguridad" type="tns:IServiceAtencionTicket">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AutoAsignarTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceAtencionTicket/AutoAsignarTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarEstatus">
+      <soap:operation soapAction="http://tempuri.org/IServiceAtencionTicket/CambiarEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CambiarAsignacionTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceAtencionTicket/CambiarAsignacionTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarComentarioConversacionTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceAtencionTicket/AgregarComentarioConversacionTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarcarAsignacionLeida">
+      <soap:operation soapAction="http://tempuri.org/IServiceAtencionTicket/MarcarAsignacionLeida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTicketEnAtencion">
+      <soap:operation soapAction="http://tempuri.org/IServiceAtencionTicket/ObtenerTicketEnAtencion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNumeroTicketsEnAtencionNuevos">
+      <soap:operation soapAction="http://tempuri.org/IServiceAtencionTicket/ObtenerNumeroTicketsEnAtencionNuevos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceAtencionTicket">
+    <wsdl:port name="EndPointSeguridad" binding="tns:EndPointSeguridad">
+      <soap:address location="http://localhost:15277/SetviceAtencionTicket.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

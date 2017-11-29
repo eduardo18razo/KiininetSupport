@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+  <xs:import schemaLocation="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+  <xs:import schemaLocation="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfNivel1">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nivel1" nillable="true" type="tns:Nivel1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNivel1" nillable="true" type="tns:ArrayOfNivel1" />
+  <xs:complexType name="Nivel1">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q1:ArrayOfArbolAcceso" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q2:TipoUsuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Nivel1" nillable="true" type="tns:Nivel1" />
+  <xs:complexType name="ArrayOfNivel2">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nivel2" nillable="true" type="tns:Nivel2" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNivel2" nillable="true" type="tns:ArrayOfNivel2" />
+  <xs:complexType name="Nivel2">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q3:ArrayOfArbolAcceso" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q4:TipoUsuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Nivel2" nillable="true" type="tns:Nivel2" />
+  <xs:complexType name="ArrayOfNivel3">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nivel3" nillable="true" type="tns:Nivel3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNivel3" nillable="true" type="tns:ArrayOfNivel3" />
+  <xs:complexType name="Nivel3">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q5:ArrayOfArbolAcceso" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q6:TipoUsuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Nivel3" nillable="true" type="tns:Nivel3" />
+  <xs:complexType name="ArrayOfNivel4">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nivel4" nillable="true" type="tns:Nivel4" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNivel4" nillable="true" type="tns:ArrayOfNivel4" />
+  <xs:complexType name="Nivel4">
+    <xs:sequence>
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q7:ArrayOfArbolAcceso" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q8:TipoUsuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Nivel4" nillable="true" type="tns:Nivel4" />
+  <xs:complexType name="ArrayOfNivel5">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nivel5" nillable="true" type="tns:Nivel5" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNivel5" nillable="true" type="tns:ArrayOfNivel5" />
+  <xs:complexType name="Nivel5">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q9:ArrayOfArbolAcceso" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q10:TipoUsuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Nivel5" nillable="true" type="tns:Nivel5" />
+  <xs:complexType name="ArrayOfNivel6">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nivel6" nillable="true" type="tns:Nivel6" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNivel6" nillable="true" type="tns:ArrayOfNivel6" />
+  <xs:complexType name="Nivel6">
+    <xs:sequence>
+      <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q11:ArrayOfArbolAcceso" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
+      <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q12:TipoUsuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Nivel6" nillable="true" type="tns:Nivel6" />
+  <xs:complexType name="ArrayOfNivel7">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Nivel7" nillable="true" type="tns:Nivel7" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNivel7" nillable="true" type="tns:ArrayOfNivel7" />
+  <xs:complexType name="Nivel7">
+    <xs:sequence>
+      <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q13:ArrayOfArbolAcceso" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
+      <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q14:TipoUsuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Nivel7" nillable="true" type="tns:Nivel7" />
+</xs:schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfHelperMensajes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <HelperMensajes>
+    <Key>Exito</Key>
+    <Value>Se guardó el registro exitosamente.</Value>
+  </HelperMensajes>
+  <HelperMensajes>
+    <Key>Error</Key>
+    <Value>No se puede guardar el registro.</Value>
+  </HelperMensajes>
+  <HelperMensajes>
+    <Key>FaltaTipoUsuario</Key>
+    <Value>Debe seleccionar un Tipo de Usuario</Value>
+  </HelperMensajes>
+  <HelperMensajes>
+    <Key>FaltaDescripcion</Key>
+    <Value>Debe especificar una descripción.</Value>
+  </HelperMensajes>
+  <HelperMensajes>
+    <Key>Actualizacion</Key>
+    <Value>Se actualizó el registro exitosamente.</Value>
+  </HelperMensajes>
+</ArrayOfHelperMensajes>

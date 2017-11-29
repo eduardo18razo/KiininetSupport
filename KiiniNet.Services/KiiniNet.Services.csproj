@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7CD92C6E-7151-422B-A274-B51B977A48E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KiiniNet.Services</RootNamespace>
+    <AssemblyName>KiiniNet.Services</AssemblyName>
+    <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <XsdCodeGenEnabled>True</XsdCodeGenEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Operacion\Implementacion\ServiceArea.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceAtencionTicket.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceConsultas.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceDiasHorario.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceFrecuencia.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceNota.cs" />
+    <Compile Include="Operacion\Implementacion\ServicePuesto.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceTicket.cs" />
+    <Compile Include="Operacion\Interface\IServiceArea.cs" />
+    <Compile Include="Operacion\Interface\IServiceAtencionTicket.cs" />
+    <Compile Include="Operacion\Interface\IServiceConsultas.cs" />
+    <Compile Include="Operacion\Interface\IServiceDiasHorario.cs" />
+    <Compile Include="Operacion\Interface\IServiceFrecuencia.cs" />
+    <Compile Include="Operacion\Interface\IServiceNota.cs" />
+    <Compile Include="Operacion\Interface\IServicePuesto.cs" />
+    <Compile Include="Operacion\Interface\IServiceTicket.cs" />
+    <Compile Include="Sistema\Implementacion\ServicePoliticas.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoNota.cs" />
+    <Compile Include="Sistema\Interface\IServicePoliticas.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoNota.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceCanal.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceImpactoUrgencia.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceNotificacion.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceCatalogos.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceDomicilioSistema.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceEstatus.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceRoles.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceSubRol.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoArbolAcceso.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoCampoMascara.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoDocumento.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoEncuesta.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoGrupo.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoInfConsulta.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoTelefono.cs" />
+    <Compile Include="Sistema\Implementacion\ServiceTipoUsuario.cs" />
+    <Compile Include="Sistema\Interface\IServiceCanal.cs" />
+    <Compile Include="Sistema\Interface\IServiceCatalogos.cs" />
+    <Compile Include="Sistema\Interface\IServiceDomicilioSistema.cs" />
+    <Compile Include="Sistema\Interface\IServiceEstatus.cs" />
+    <Compile Include="Sistema\Interface\IServiceImpactoUrgencia.cs" />
+    <Compile Include="Sistema\Interface\IServiceNotificacion.cs" />
+    <Compile Include="Sistema\Interface\IServiceRoles.cs" />
+    <Compile Include="Sistema\Interface\IServiceSubRol.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoArbolAcceso.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoCampoMascara.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoDocumento.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoEncuesta.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoGrupo.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoInfConsulta.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoTelefono.cs" />
+    <Compile Include="Sistema\Interface\IServiceTipoUsuario.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceArbolAcceso.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceEncuesta.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceGrupoUsuario.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceInformacionConsulta.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceOrganizacion.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceSla.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceSubGrupoUsuario.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceUbicacion.cs" />
+    <Compile Include="Operacion\Interface\IServiceArbolAcceso.cs" />
+    <Compile Include="Operacion\Interface\IServiceEncuesta.cs" />
+    <Compile Include="Operacion\Interface\IServiceGrupoUsuario.cs" />
+    <Compile Include="Operacion\Interface\IServiceInformacionConsulta.cs" />
+    <Compile Include="Operacion\Interface\IServiceOrganizacion.cs" />
+    <Compile Include="Operacion\Interface\IServiceSla.cs" />
+    <Compile Include="Operacion\Interface\IServiceSubGrupoUsuario.cs" />
+    <Compile Include="Operacion\Interface\IServiceUbicacion.cs" />
+    <Compile Include="Operacion\Interface\IServiceMascaras.cs" />
+    <Compile Include="Operacion\Interface\IServiceUsuarios.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceMascaras.cs" />
+    <Compile Include="Parametros\Interface\IServiceParametros.cs" />
+    <Compile Include="Parametros\Implementacion\ServiceParametros.cs" />
+    <Compile Include="Operacion\Implementacion\ServiceUsuarios.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Interface\IServiceSecurity.cs" />
+    <Compile Include="Security\Implementacion\ServiceSecurity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KiiniNet.Entities\KiiniNet.Entities.csproj">
+      <Project>{C003D316-9B3C-44EF-B6B4-48C98936B0A7}</Project>
+      <Name>KiiniNet.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KinniNet.Business.Utils\KinniNet.Business.Utils.csproj">
+      <Project>{911050F0-AACF-4706-8EEF-94754856737F}</Project>
+      <Name>KinniNet.Business.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KinniNet.Business\KinniNet.Core.csproj">
+      <Project>{7852a613-d901-44e2-9319-197c2cc9c390}</Project>
+      <Name>KinniNet.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio</VSToolsPath>
+    <WcfServiceModelTargetPath>$(VSToolsPath)\WCF</WcfServiceModelTargetPath>
+  </PropertyGroup>
+  <Import Project="$(WcfServiceModelTargetPath)\Microsoft.VisualStudio.ServiceModel.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{3D9AD99F-2412-4246-B90B-4EAA41C64699}">
+        <WcfProjectProperties>
+          <AutoStart>True</AutoStart>
+        </WcfProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

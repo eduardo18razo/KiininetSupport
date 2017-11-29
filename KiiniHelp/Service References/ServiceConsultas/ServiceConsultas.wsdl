@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceConsultas" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/ServiceConsultas.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceConsultas.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceConsultas.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceConsultas.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceConsultas.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceConsultas.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceConsultas_ConsultarTickets_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarTickets" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultarTickets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultarEficienciaTickets_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEficienciaTickets" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultarEficienciaTickets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEficienciaTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultarHits_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarHits" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultarHits_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarHitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultarEncuestas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEncuestas" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultarEncuestas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultarEncuestasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultaEncuestaPregunta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaEncuestaPregunta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_ConsultaEncuestaPregunta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaEncuestaPreguntaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaTicketGeografico_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaTicketGeografico" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaTicketGeografico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaTicketGeograficoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaHits_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaHits" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaHits_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaHitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaHitsGeografico_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaHitsGeografico" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaHitsGeografico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaHitsGeograficoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuesta_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuesta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuesta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuestaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuestaGeografica_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuestaGeografica" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuestaGeografica_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuestaGeograficaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuestaPregunta_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuestaPregunta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuestaPregunta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuestaPreguntaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuestaPreguntaGeografica_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuestaPreguntaGeografica" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEncuestaPreguntaGeografica_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEncuestaPreguntaGeograficaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEficienciaTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEficienciaTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEficienciaTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEficienciaTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEEficienciaTicketsGeografica_InputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEEficienciaTicketsGeografica" />
+  </wsdl:message>
+  <wsdl:message name="IServiceConsultas_GraficarConsultaEEficienciaTicketsGeografica_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GraficarConsultaEEficienciaTicketsGeograficaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceConsultas">
+    <wsdl:operation name="ConsultarTickets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarTickets" message="tns:IServiceConsultas_ConsultarTickets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarTicketsResponse" message="tns:IServiceConsultas_ConsultarTickets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEficienciaTickets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarEficienciaTickets" message="tns:IServiceConsultas_ConsultarEficienciaTickets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarEficienciaTicketsResponse" message="tns:IServiceConsultas_ConsultarEficienciaTickets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarHits">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarHits" message="tns:IServiceConsultas_ConsultarHits_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarHitsResponse" message="tns:IServiceConsultas_ConsultarHits_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEncuestas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarEncuestas" message="tns:IServiceConsultas_ConsultarEncuestas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultarEncuestasResponse" message="tns:IServiceConsultas_ConsultarEncuestas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaEncuestaPregunta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultaEncuestaPregunta" message="tns:IServiceConsultas_ConsultaEncuestaPregunta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/ConsultaEncuestaPreguntaResponse" message="tns:IServiceConsultas_ConsultaEncuestaPregunta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaTicket" message="tns:IServiceConsultas_GraficarConsultaTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketResponse" message="tns:IServiceConsultas_GraficarConsultaTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaTicketGeografico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketGeografico" message="tns:IServiceConsultas_GraficarConsultaTicketGeografico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketGeograficoResponse" message="tns:IServiceConsultas_GraficarConsultaTicketGeografico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaHits">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaHits" message="tns:IServiceConsultas_GraficarConsultaHits_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaHitsResponse" message="tns:IServiceConsultas_GraficarConsultaHits_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaHitsGeografico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaHitsGeografico" message="tns:IServiceConsultas_GraficarConsultaHitsGeografico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaHitsGeograficoResponse" message="tns:IServiceConsultas_GraficarConsultaHitsGeografico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuesta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuesta" message="tns:IServiceConsultas_GraficarConsultaEncuesta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaResponse" message="tns:IServiceConsultas_GraficarConsultaEncuesta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuestaGeografica">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaGeografica" message="tns:IServiceConsultas_GraficarConsultaEncuestaGeografica_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaGeograficaResponse" message="tns:IServiceConsultas_GraficarConsultaEncuestaGeografica_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuestaPregunta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaPregunta" message="tns:IServiceConsultas_GraficarConsultaEncuestaPregunta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaPreguntaResponse" message="tns:IServiceConsultas_GraficarConsultaEncuestaPregunta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuestaPreguntaGeografica">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaPreguntaGeografica" message="tns:IServiceConsultas_GraficarConsultaEncuestaPreguntaGeografica_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaPreguntaGeograficaResponse" message="tns:IServiceConsultas_GraficarConsultaEncuestaPreguntaGeografica_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEficienciaTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEficienciaTicket" message="tns:IServiceConsultas_GraficarConsultaEficienciaTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEficienciaTicketResponse" message="tns:IServiceConsultas_GraficarConsultaEficienciaTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEEficienciaTicketsGeografica">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEEficienciaTicketsGeografica" message="tns:IServiceConsultas_GraficarConsultaEEficienciaTicketsGeografica_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceConsultas/GraficarConsultaEEficienciaTicketsGeograficaResponse" message="tns:IServiceConsultas_GraficarConsultaEEficienciaTicketsGeografica_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointAdministracion" type="tns:IServiceConsultas">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultarTickets">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/ConsultarTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEficienciaTickets">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/ConsultarEficienciaTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarHits">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/ConsultarHits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarEncuestas">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/ConsultarEncuestas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaEncuestaPregunta">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/ConsultaEncuestaPregunta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaTicketGeografico">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketGeografico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaHits">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaHits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaHitsGeografico">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaHitsGeografico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuesta">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuestaGeografica">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaGeografica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuestaPregunta">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaPregunta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEncuestaPreguntaGeografica">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaEncuestaPreguntaGeografica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEficienciaTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaEficienciaTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GraficarConsultaEEficienciaTicketsGeografica">
+      <soap:operation soapAction="http://tempuri.org/IServiceConsultas/GraficarConsultaEEficienciaTicketsGeografica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceConsultas">
+    <wsdl:port name="EndPointAdministracion" binding="tns:EndPointAdministracion">
+      <soap:address location="http://localhost:15277/ServiceConsultas.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

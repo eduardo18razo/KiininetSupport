@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C003D316-9B3C-44EF-B6B4-48C98936B0A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KiiniNet.Entities</RootNamespace>
+    <AssemblyName>KiiniNet.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Cat\Arbol\Nodos\Nivel1.cs" />
+    <Compile Include="Cat\Arbol\Nodos\Nivel3.cs" />
+    <Compile Include="Cat\Arbol\Nodos\Nivel4.cs" />
+    <Compile Include="Cat\Arbol\Nodos\Nivel5.cs" />
+    <Compile Include="Cat\Arbol\Nodos\Nivel6.cs" />
+    <Compile Include="Cat\Arbol\Nodos\Nivel7.cs" />
+    <Compile Include="Cat\Arbol\Nodos\Nivel2.cs" />
+    <Compile Include="Cat\Mascaras\MascaraSeleccionCatalogo.cs" />
+    <Compile Include="Cat\Sistema\CampoCatalogo.cs" />
+    <Compile Include="Cat\Sistema\Canal.cs" />
+    <Compile Include="Cat\Mascaras\CampoMascara.cs" />
+    <Compile Include="Cat\Mascaras\Mascara.cs" />
+    <Compile Include="Cat\Mascaras\TipoCampoMascara.cs" />
+    <Compile Include="Cat\Operacion\ArbolAcceso.cs" />
+    <Compile Include="Cat\Operacion\GrupoUsuarioInventarioArbol.cs" />
+    <Compile Include="Cat\Operacion\InventarioArbolAcceso.cs" />
+    <Compile Include="Cat\Sistema\Catalogos.cs" />
+    <Compile Include="Cat\Sistema\EstatusAsignacion.cs" />
+    <Compile Include="Cat\Sistema\EstatusTicket.cs" />
+    <Compile Include="Cat\Sistema\Impacto.cs" />
+    <Compile Include="Cat\Sistema\Menu.cs" />
+    <Compile Include="Cat\Sistema\NivelOrganizacion.cs" />
+    <Compile Include="Cat\Sistema\NivelTicket.cs" />
+    <Compile Include="Cat\Sistema\NivelUbicacion.cs" />
+    <Compile Include="Cat\Sistema\Prioridad.cs" />
+    <Compile Include="Cat\Sistema\RespuestaTipoEncuesta.cs" />
+    <Compile Include="Cat\Sistema\RolMenu.cs" />
+    <Compile Include="Cat\Sistema\RolTipoGrupo.cs" />
+    <Compile Include="Cat\Sistema\RolTipoUsuario.cs" />
+    <Compile Include="Cat\Sistema\TipoArbolAcceso.cs" />
+    <Compile Include="Cat\Sistema\TipoCorreo.cs" />
+    <Compile Include="Cat\Sistema\TipoDocumento.cs" />
+    <Compile Include="Cat\Sistema\TipoEncuesta.cs" />
+    <Compile Include="Cat\Sistema\TipoGrupo.cs" />
+    <Compile Include="Cat\Sistema\TipoInfConsulta.cs" />
+    <Compile Include="Cat\Sistema\TipoLink.cs" />
+    <Compile Include="Cat\Sistema\TipoNota.cs" />
+    <Compile Include="Cat\Sistema\TipoNotificacion.cs" />
+    <Compile Include="Cat\Sistema\Urgencia.cs" />
+    <Compile Include="Cat\Usuario\DiaFeriado.cs" />
+    <Compile Include="Cat\Usuario\DiaFestivoDefault.cs" />
+    <Compile Include="Cat\Usuario\DiaFestivoSubGrupo.cs" />
+    <Compile Include="Cat\Usuario\DiasFeriados.cs" />
+    <Compile Include="Cat\Usuario\DiasFeriadosDetalle.cs" />
+    <Compile Include="Cat\Usuario\Encuesta.cs" />
+    <Compile Include="Cat\Usuario\EncuestaPregunta.cs" />
+    <Compile Include="Cat\Usuario\GrupoUsuario.cs" />
+    <Compile Include="Cat\Arbol\Organizacion\Holding.cs" />
+    <Compile Include="Cat\Arbol\Organizacion\Compania.cs" />
+    <Compile Include="Cat\Arbol\Organizacion\Direccion.cs" />
+    <Compile Include="Cat\Arbol\Organizacion\Jefatura.cs" />
+    <Compile Include="Cat\Arbol\Organizacion\SubGerencia.cs" />
+    <Compile Include="Cat\Arbol\Organizacion\Gerencia.cs" />
+    <Compile Include="Cat\Arbol\Organizacion\SubDireccion.cs" />
+    <Compile Include="Cat\Sistema\Rol.cs" />
+    <Compile Include="Cat\Sistema\SubRol.cs" />
+    <Compile Include="Cat\Usuario\Horario.cs" />
+    <Compile Include="Cat\Usuario\HorarioSubGrupo.cs" />
+    <Compile Include="Cat\Usuario\Puesto.cs" />
+    <Compile Include="Cat\Usuario\Sla.cs" />
+    <Compile Include="Cat\Usuario\SubGrupoUsuario.cs" />
+    <Compile Include="Helper\CatalogoGenerico.cs" />
+    <Compile Include="Helper\HelperArbolAcceso.cs" />
+    <Compile Include="Helper\HelperAsignacionGrupo.cs" />
+    <Compile Include="Helper\HelperCampoMascaraCaptura.cs" />
+    <Compile Include="Helper\HelperDatosGrafica.cs" />
+    <Compile Include="Helper\HelperDetalleTicket.cs" />
+    <Compile Include="Helper\HelperEncuesta.cs" />
+    <Compile Include="Helper\HelperMensajes.cs" />
+    <Compile Include="Helper\HelperFiles.cs" />
+    <Compile Include="Helper\HelperFiltroGrafico.cs" />
+    <Compile Include="Helper\HelperFrecuencia.cs" />
+    <Compile Include="Helper\HelperHits.cs" />
+    <Compile Include="Helper\HelperMascaraData.cs" />
+    <Compile Include="Helper\HelperNotasOpcion.cs" />
+    <Compile Include="Helper\HelperNotasUsuario.cs" />
+    <Compile Include="Helper\HelperReportesTicket.cs" />
+    <Compile Include="Helper\HelperSubGurpoUsuario.cs" />
+    <Compile Include="Helper\HelperTicketDetalle.cs" />
+    <Compile Include="Helper\HelperticketEnAtencion.cs" />
+    <Compile Include="Helper\HelperTickets.cs" />
+    <Compile Include="Helper\HelperTicketsUsuario.cs" />
+    <Compile Include="Helper\HelperUsuario.cs" />
+    <Compile Include="Operacion\Area.cs" />
+    <Compile Include="Operacion\Frecuencia.cs" />
+    <Compile Include="Operacion\HitConsulta.cs" />
+    <Compile Include="Operacion\HitGrupoUsuario.cs" />
+    <Compile Include="Operacion\InformacionConsulta.cs" />
+    <Compile Include="Operacion\InformacionConsultaDatos.cs" />
+    <Compile Include="Operacion\InformacionConsultaDocumentos.cs" />
+    <Compile Include="Operacion\InformacionConsultaRate.cs" />
+    <Compile Include="Operacion\InventarioInfConsulta.cs" />
+    <Compile Include="Operacion\NotaGeneral.cs" />
+    <Compile Include="Operacion\NotaGeneralGrupo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Operacion\NotaOpcionGrupo.cs" />
+    <Compile Include="Operacion\NotaOpcionUsuario.cs" />
+    <Compile Include="Operacion\RespuestaEncuesta.cs" />
+    <Compile Include="Operacion\SLADetalle.cs" />
+    <Compile Include="Operacion\SmsService.cs" />
+    <Compile Include="Operacion\Tickets\ConversacionArchivo.cs" />
+    <Compile Include="Operacion\Tickets\PreTicket.cs" />
+    <Compile Include="Operacion\Tickets\SlaEstimadoTicket.cs" />
+    <Compile Include="Operacion\Tickets\SlaEstimadoTicketDetalle.cs" />
+    <Compile Include="Operacion\Tickets\Ticket.cs" />
+    <Compile Include="Operacion\Tickets\TicketConversacion.cs" />
+    <Compile Include="Operacion\Tickets\TicketGrupoUsuario.cs" />
+    <Compile Include="Operacion\Tickets\TicketAsignacion.cs" />
+    <Compile Include="Operacion\Tickets\TicketEstatus.cs" />
+    <Compile Include="Operacion\TiempoInformeArbol.cs" />
+    <Compile Include="Operacion\Usuarios\BitacoraAcceso.cs" />
+    <Compile Include="Operacion\Usuarios\PreguntaReto.cs" />
+    <Compile Include="Operacion\Usuarios\TelefonoUsuario.cs" />
+    <Compile Include="Cat\Sistema\TipoTelefono.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Domicilio\Colonia.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Domicilio\Domicilio.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Domicilio\Estado.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Domicilio\Municipio.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Torre.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Piso.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Zona.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\SubZona.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\SiteRack.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Campus.cs" />
+    <Compile Include="Cat\Arbol\Ubicaciones\Pais.cs" />
+    <Compile Include="Operacion\Usuarios\UsuarioGrupo.cs" />
+    <Compile Include="Operacion\Usuarios\CorreoUsuario.cs" />
+    <Compile Include="Cat\Operacion\Organizacion.cs" />
+    <Compile Include="Operacion\Usuarios\UsuarioLinkPassword.cs" />
+    <Compile Include="Operacion\Usuarios\UsuarioPassword.cs" />
+    <Compile Include="Parametros\AliasUbicacion.cs" />
+    <Compile Include="Parametros\AliasOrganizacion.cs" />
+    <Compile Include="Parametros\Aplicaciones.cs" />
+    <Compile Include="Parametros\EstatusAsignacionSubRolGeneral.cs" />
+    <Compile Include="Parametros\EstatusAsignacionSubRolGeneralDefault.cs" />
+    <Compile Include="Parametros\EstatusTicketSubRolGeneral.cs" />
+    <Compile Include="Parametros\EstatusTicketSubRolGeneralDefault.cs" />
+    <Compile Include="Cat\Usuario\HorarioDetalle.cs" />
+    <Compile Include="Parametros\ParametroCorreo.cs" />
+    <Compile Include="Parametros\ParametroPassword.cs" />
+    <Compile Include="Parametros\ParametrosAplicacion.cs" />
+    <Compile Include="Parametros\ParametrosGenerales.cs" />
+    <Compile Include="Parametros\ParametrosSla.cs" />
+    <Compile Include="Parametros\ParametrosTelefonos.cs" />
+    <Compile Include="Parametros\ParametrosUsuario.cs" />
+    <Compile Include="Parametros\SubRolEscalacionPermitida.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cat\Sistema\TipoUsuario.cs" />
+    <Compile Include="Cat\Operacion\Ubicacion.cs" />
+    <Compile Include="Operacion\Usuarios\Usuario.cs" />
+    <Compile Include="Operacion\Usuarios\UsuarioRol.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

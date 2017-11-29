@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="630aadfd-75dd-45b8-822b-a6e8af9d2b7c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceDiasHorario.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceDiasHorario.disco" MetadataType="Disco" ID="bdbf325b-d79d-400f-9d27-05be1b0fb03c" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?disco" />
+    <MetadataFile FileName="ServiceDiasHorario8.xsd" MetadataType="Schema" ID="22bbdd40-6ad3-4355-85ea-6b062dcb4d29" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceDiasHorario1.xsd" MetadataType="Schema" ID="a2e498c0-7f65-4b3e-ad6b-191b663242ee" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceDiasHorario2.xsd" MetadataType="Schema" ID="0336feff-303a-4072-a940-dada9ae8ed7f" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceDiasHorario3.xsd" MetadataType="Schema" ID="5fee2092-9b80-46df-a548-ba80430ea933" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceDiasHorario4.xsd" MetadataType="Schema" ID="7fd76abf-0615-4d0c-a9ac-c6c30cbe2280" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceDiasHorario.xsd" MetadataType="Schema" ID="1e07f417-28f0-4aa8-a2c4-f699e89fb1ac" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceDiasHorario6.xsd" MetadataType="Schema" ID="c01e6b17-4992-4750-b240-b49ba36301be" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceDiasHorario7.xsd" MetadataType="Schema" ID="4550d2f3-fd27-4f86-8d11-2f6a558b9744" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceDiasHorario.wsdl" MetadataType="Wsdl" ID="9281bdba-c130-41bc-bf0b-a41067fb36f3" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?wsdl" />
+    <MetadataFile FileName="ServiceDiasHorario5.xsd" MetadataType="Schema" ID="655da89c-eb9b-4821-94e0-4b0aaa0b2f96" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceDiasHorario9.xsd" MetadataType="Schema" ID="2d5d27cb-f924-4e1c-a3e1-271187b860e7" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceDiasHorario10.xsd" MetadataType="Schema" ID="47b392a3-1590-4233-97bb-d96956e7e0bc" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceDiasHorario11.xsd" MetadataType="Schema" ID="b4e5d01c-dbaf-4c2e-a161-f6351f4a5547" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceDiasHorario12.xsd" MetadataType="Schema" ID="a6ba1cc0-c957-4a2a-bb2c-14e540a1b6a9" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceDiasHorario13.xsd" MetadataType="Schema" ID="6304bd50-d30e-466c-92d6-d3cd848004d6" SourceId="1" SourceUrl="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd11" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

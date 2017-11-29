@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KiiniNet_v2ModelStoreContainer" CdmEntityContainer="connection">
+    <EntitySetMapping Name="Campus">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Campus">
+        <MappingFragment StoreEntitySet="tblCatCampus">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Colonia">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Colonia">
+        <MappingFragment StoreEntitySet="tblCatColonia">
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ñ">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Compañia">
+        <MappingFragment StoreEntitySet="tblCatCompania">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direccion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Direccion">
+        <MappingFragment StoreEntitySet="tblCatDireccion">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estado">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Estado">
+        <MappingFragment StoreEntitySet="tblCatEstado">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gerencia">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Gerencia">
+        <MappingFragment StoreEntitySet="tblCatGerencia">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Holding">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Holding">
+        <MappingFragment StoreEntitySet="tblCatHolding">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jefatura">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Jefatura">
+        <MappingFragment StoreEntitySet="tblCatJefatura">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Municipio">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Municipio">
+        <MappingFragment StoreEntitySet="tblCatMunicipio">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pais">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Pais">
+        <MappingFragment StoreEntitySet="tblCatPais">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Piso">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Piso">
+        <MappingFragment StoreEntitySet="tblCatPiso">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SiteRack">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.SiteRack">
+        <MappingFragment StoreEntitySet="tblCatSiteRack">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubDireccion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.SubDireccion">
+        <MappingFragment StoreEntitySet="tblCatSubDireccion">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubGerencia">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.SubGerencia">
+        <MappingFragment StoreEntitySet="tblCatSubGerencia">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubZona">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.SubZona">
+        <MappingFragment StoreEntitySet="tblCatSubZona">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoTelefono">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoTelefono">
+        <MappingFragment StoreEntitySet="tblCatTipoTelefono">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoUsuario">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoUsuario">
+        <MappingFragment StoreEntitySet="tblCatTipoUsuario">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Torre">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Torre">
+        <MappingFragment StoreEntitySet="tblCatTorre">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zona">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Zona">
+        <MappingFragment StoreEntitySet="tblCatZona">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CorreoUsuario">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.CorreoUsuario">
+        <MappingFragment StoreEntitySet="tblCorreoUsuario">
+          <ScalarProperty Name="Correo" ColumnName="correo" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Domicilio">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Domicilio">
+        <MappingFragment StoreEntitySet="tblDomicilio">
+          <ScalarProperty Name="NoInt" ColumnName="noInt" />
+          <ScalarProperty Name="NoExt" ColumnName="noExt" />
+          <ScalarProperty Name="Calle" ColumnName="calle" />
+          <ScalarProperty Name="IdColonia" ColumnName="IdColonia" />
+          <ScalarProperty Name="IdCampus" ColumnName="IdCampus" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Organizacion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Organizacion">
+        <MappingFragment StoreEntitySet="tblOrganizacion">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="IdJefatura" ColumnName="IdJefatura" />
+          <ScalarProperty Name="IdSubGerencia" ColumnName="IdSubGerencia" />
+          <ScalarProperty Name="IdGerencia" ColumnName="IdGerencia" />
+          <ScalarProperty Name="IdSubDireccion" ColumnName="IdSubDireccion" />
+          <ScalarProperty Name="IdDireccion" ColumnName="IdDireccion" />
+          <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+          <ScalarProperty Name="IdHolding" ColumnName="IdHolding" />
+          <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TelefonoUsuario">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TelefonoUsuario">
+        <MappingFragment StoreEntitySet="tblTelefonoUsuario">
+          <ScalarProperty Name="Extension" ColumnName="extension" />
+          <ScalarProperty Name="Numero" ColumnName="numero" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdTipoTelefono" ColumnName="IdTipoTelefono" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ubicacion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Ubicacion">
+        <MappingFragment StoreEntitySet="tblUbicacion">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="IdSiteRack" ColumnName="IdSiteRack" />
+          <ScalarProperty Name="IdSubZona" ColumnName="IdSubZona" />
+          <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+          <ScalarProperty Name="IdPiso" ColumnName="IdPiso" />
+          <ScalarProperty Name="IdTorre" ColumnName="IdTorre" />
+          <ScalarProperty Name="IdCampus" ColumnName="IdCampus" />
+          <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+          <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.Usuario">
+        <MappingFragment StoreEntitySet="tblUsuario">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="DirectorioActivo" ColumnName="directorioActivo" />
+          <ScalarProperty Name="Nombre" ColumnName="nombre" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="apellIdoMaterno" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="apellIdoPaterno" />
+          <ScalarProperty Name="IdOrganizacion" ColumnName="IdOrganizacion" />
+          <ScalarProperty Name="IdUbicacion" ColumnName="IdUbicacion" />
+          <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

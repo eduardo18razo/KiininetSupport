@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceDiasHorario" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceDiasHorario.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceDiasHorario_ObtenerHorarioDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerHorarioDefault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerHorarioDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerHorarioDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerHorarioConsulta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerHorarioConsulta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerHorarioConsulta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerHorarioConsultaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_CrearHorario_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearHorario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_CrearHorario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearHorarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ActualizarHorario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarHorario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ActualizarHorario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarHorarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerHorarioById_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerHorarioById" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerHorarioById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerHorarioByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_HabilitarHorario_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarHorario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_HabilitarHorario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarHorarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriadosConsulta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriadosConsulta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriadosConsulta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriadosConsultaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasDefault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_AgregarDiaFeriado_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarDiaFeriado" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_AgregarDiaFeriado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarDiaFeriadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiaByFecha_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiaByFecha" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiaByFecha_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiaByFechaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiaFeriado_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiaFeriado" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiaFeriado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiaFeriadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriados_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriados" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ActualizarDiasFestivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDiasFestivos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ActualizarDiasFestivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarDiasFestivosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_CrearDiasFestivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearDiasFestivos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_CrearDiasFestivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearDiasFestivosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriadosUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriadosUser" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriadosUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriadosUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriadosUserById_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriadosUserById" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_ObtenerDiasFeriadosUserById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDiasFeriadosUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_HabilitarDiasFestivos_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarDiasFestivos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDiasHorario_HabilitarDiasFestivos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarDiasFestivosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceDiasHorario">
+    <wsdl:operation name="ObtenerHorarioDefault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioDefault" message="tns:IServiceDiasHorario_ObtenerHorarioDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioDefaultResponse" message="tns:IServiceDiasHorario_ObtenerHorarioDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerHorarioConsulta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioConsulta" message="tns:IServiceDiasHorario_ObtenerHorarioConsulta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioConsultaResponse" message="tns:IServiceDiasHorario_ObtenerHorarioConsulta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearHorario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/CrearHorario" message="tns:IServiceDiasHorario_CrearHorario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/CrearHorarioResponse" message="tns:IServiceDiasHorario_CrearHorario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarHorario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ActualizarHorario" message="tns:IServiceDiasHorario_ActualizarHorario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ActualizarHorarioResponse" message="tns:IServiceDiasHorario_ActualizarHorario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerHorarioById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioById" message="tns:IServiceDiasHorario_ObtenerHorarioById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioByIdResponse" message="tns:IServiceDiasHorario_ObtenerHorarioById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarHorario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/HabilitarHorario" message="tns:IServiceDiasHorario_HabilitarHorario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/HabilitarHorarioResponse" message="tns:IServiceDiasHorario_HabilitarHorario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriadosConsulta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosConsulta" message="tns:IServiceDiasHorario_ObtenerDiasFeriadosConsulta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosConsultaResponse" message="tns:IServiceDiasHorario_ObtenerDiasFeriadosConsulta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasDefault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasDefault" message="tns:IServiceDiasHorario_ObtenerDiasDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasDefaultResponse" message="tns:IServiceDiasHorario_ObtenerDiasDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDiaFeriado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/AgregarDiaFeriado" message="tns:IServiceDiasHorario_AgregarDiaFeriado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/AgregarDiaFeriadoResponse" message="tns:IServiceDiasHorario_AgregarDiaFeriado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiaByFecha">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiaByFecha" message="tns:IServiceDiasHorario_ObtenerDiaByFecha_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiaByFechaResponse" message="tns:IServiceDiasHorario_ObtenerDiaByFecha_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiaFeriado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiaFeriado" message="tns:IServiceDiasHorario_ObtenerDiaFeriado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiaFeriadoResponse" message="tns:IServiceDiasHorario_ObtenerDiaFeriado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriados" message="tns:IServiceDiasHorario_ObtenerDiasFeriados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosResponse" message="tns:IServiceDiasHorario_ObtenerDiasFeriados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDiasFestivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ActualizarDiasFestivos" message="tns:IServiceDiasHorario_ActualizarDiasFestivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ActualizarDiasFestivosResponse" message="tns:IServiceDiasHorario_ActualizarDiasFestivos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearDiasFestivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/CrearDiasFestivos" message="tns:IServiceDiasHorario_CrearDiasFestivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/CrearDiasFestivosResponse" message="tns:IServiceDiasHorario_CrearDiasFestivos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriadosUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosUser" message="tns:IServiceDiasHorario_ObtenerDiasFeriadosUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosUserResponse" message="tns:IServiceDiasHorario_ObtenerDiasFeriadosUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriadosUserById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosUserById" message="tns:IServiceDiasHorario_ObtenerDiasFeriadosUserById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosUserByIdResponse" message="tns:IServiceDiasHorario_ObtenerDiasFeriadosUserById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarDiasFestivos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDiasHorario/HabilitarDiasFestivos" message="tns:IServiceDiasHorario_HabilitarDiasFestivos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDiasHorario/HabilitarDiasFestivosResponse" message="tns:IServiceDiasHorario_HabilitarDiasFestivos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointAdministracion" type="tns:IServiceDiasHorario">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerHorarioDefault">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerHorarioConsulta">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioConsulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearHorario">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/CrearHorario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarHorario">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ActualizarHorario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerHorarioById">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerHorarioById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarHorario">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/HabilitarHorario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriadosConsulta">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosConsulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasDefault">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerDiasDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarDiaFeriado">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/AgregarDiaFeriado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiaByFecha">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerDiaByFecha" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiaFeriado">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerDiaFeriado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriados">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarDiasFestivos">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ActualizarDiasFestivos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearDiasFestivos">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/CrearDiasFestivos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriadosUser">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDiasFeriadosUserById">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/ObtenerDiasFeriadosUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarDiasFestivos">
+      <soap:operation soapAction="http://tempuri.org/IServiceDiasHorario/HabilitarDiasFestivos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceDiasHorario">
+    <wsdl:port name="EndPointAdministracion" binding="tns:EndPointAdministracion">
+      <soap:address location="http://localhost:15277/ServiceDiasHorario.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

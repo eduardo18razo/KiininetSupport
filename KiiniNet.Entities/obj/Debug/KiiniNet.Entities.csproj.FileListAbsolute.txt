@@ -1,0 +1,9 @@
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KiiniNet.Entities\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KiiniNet.Entities\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KiiniNet.Entities\obj\Debug\KiiniNet.Entities.dll
+C:\Users\Win 10\Source\Workspaces\Kiininet CEP\KiiniNet.Entities\obj\Debug\KiiniNet.Entities.pdb
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Entities\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Entities\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Entities\obj\Debug\KiiniNet.Entities.csprojResolveAssemblyReference.cache
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Entities\obj\Debug\KiiniNet.Entities.dll
+C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Entities\obj\Debug\KiiniNet.Entities.pdb

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+  <xs:complexType name="ArrayOfColonia">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Colonia" nillable="true" type="tns:Colonia" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfColonia" nillable="true" type="tns:ArrayOfColonia" />
+  <xs:complexType name="Colonia">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CP" type="xs:int" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Domicilio" nillable="true" type="tns:ArrayOfDomicilio" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdMunicipio" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Municipio" nillable="true" type="tns:Municipio" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Colonia" nillable="true" type="tns:Colonia" />
+  <xs:complexType name="ArrayOfDomicilio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Domicilio" nillable="true" type="tns:Domicilio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDomicilio" nillable="true" type="tns:ArrayOfDomicilio" />
+  <xs:complexType name="Domicilio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Calle" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" minOccurs="0" name="Campus" nillable="true" type="q1:Campus" />
+      <xs:element minOccurs="0" name="Colonia" nillable="true" type="tns:Colonia" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdCampus" type="xs:int" />
+      <xs:element minOccurs="0" name="IdColonia" type="xs:int" />
+      <xs:element minOccurs="0" name="NoExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NoInt" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Domicilio" nillable="true" type="tns:Domicilio" />
+  <xs:complexType name="Municipio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Colonia" nillable="true" type="tns:ArrayOfColonia" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="tns:Estado" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdEstado" nillable="true" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Municipio" nillable="true" type="tns:Municipio" />
+  <xs:complexType name="Estado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdPais" type="xs:int" />
+      <xs:element minOccurs="0" name="Municipio" nillable="true" type="tns:ArrayOfMunicipio" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" minOccurs="0" name="Pais" nillable="true" type="q2:Pais" />
+      <xs:element minOccurs="0" name="RegionCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Estado" nillable="true" type="tns:Estado" />
+  <xs:complexType name="ArrayOfMunicipio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Municipio" nillable="true" type="tns:Municipio" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMunicipio" nillable="true" type="tns:ArrayOfMunicipio" />
+</xs:schema>

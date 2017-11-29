@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="53492454-cce6-4d75-b72c-0305160eeed8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceDomicilioSistema.xsd" MetadataType="Schema" ID="5373581c-c3d6-4d14-8002-c5baeb6b26eb" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceDomicilioSistema.disco" MetadataType="Disco" ID="934c2555-514f-475b-9eea-90f9ad10ee07" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?disco" />
+    <MetadataFile FileName="ServiceDomicilioSistema2.xsd" MetadataType="Schema" ID="5e48c4a7-f3bd-4d72-9a96-765a9ef5ce78" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceDomicilioSistema3.xsd" MetadataType="Schema" ID="793de426-04d7-4cce-a127-dda1d4667ebc" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceDomicilioSistema4.xsd" MetadataType="Schema" ID="29a6f23f-c612-41bf-a218-132d06c4d74e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceDomicilioSistema13.xsd" MetadataType="Schema" ID="daaa990e-6c82-44ab-acc4-6e48306b8619" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceDomicilioSistema5.xsd" MetadataType="Schema" ID="2e6286c2-c81c-4c25-b20e-683c1e3122a1" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceDomicilioSistema6.xsd" MetadataType="Schema" ID="92bf1373-7822-430a-99e0-4251e50e1241" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceDomicilioSistema12.xsd" MetadataType="Schema" ID="11183a49-d151-441a-984d-32693b3fde50" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceDomicilioSistema8.xsd" MetadataType="Schema" ID="1431885c-cbad-4a65-8795-ea742647d901" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceDomicilioSistema9.xsd" MetadataType="Schema" ID="ec6ec365-8487-48d5-8fb5-f60df49a307e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceDomicilioSistema.wsdl" MetadataType="Wsdl" ID="5e334d2e-7c5c-4b77-9ff5-eb5142d905ae" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?wsdl" />
+    <MetadataFile FileName="ServiceDomicilioSistema10.xsd" MetadataType="Schema" ID="f047088d-a0d6-445a-b8d8-2138793cb9f9" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceDomicilioSistema11.xsd" MetadataType="Schema" ID="f6aba87f-d377-4eb7-8226-8f44f43af6a0" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceDomicilioSistema1.xsd" MetadataType="Schema" ID="6824bf1d-6b16-4963-8225-b07e20aab2f9" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceDomicilioSistema7.xsd" MetadataType="Schema" ID="fc79ac2d-2aee-4cc0-bd67-914e832b0815" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

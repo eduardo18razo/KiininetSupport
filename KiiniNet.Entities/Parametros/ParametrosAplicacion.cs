@@ -1,0 +1,4 @@
+﻿namespace KiiniNet.Entities.Parametros
+{
+    
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3efbb63b-b6bf-408a-85e5-d3db1ec04fdf" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceTicket.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceTicket3.xsd" MetadataType="Schema" ID="912d382d-24c4-41f1-89b4-2ff377b4e320" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceTicket4.xsd" MetadataType="Schema" ID="938ad8c2-3ce9-4609-ae87-fe3311f2e3c3" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd14" />
+    <MetadataFile FileName="ServiceTicket31.xsd" MetadataType="Schema" ID="6d6f741c-4bef-4e7c-a4f3-09e9bb9c62ad" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceTicket5.xsd" MetadataType="Schema" ID="8506bb90-0a09-49cc-81e5-75328868b15c" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd15" />
+    <MetadataFile FileName="ServiceTicket.disco" MetadataType="Disco" ID="51943850-ed77-4810-97eb-694d19bcb32e" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?disco" />
+    <MetadataFile FileName="ServiceTicket.wsdl" MetadataType="Wsdl" ID="0a00eedb-2451-468d-badd-53c7c532f8f7" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?wsdl" />
+    <MetadataFile FileName="ServiceTicket32.xsd" MetadataType="Schema" ID="97be0904-67e8-4796-a70e-16bf53f60d54" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceTicket33.xsd" MetadataType="Schema" ID="06da7109-aabd-4428-a184-ad197c6c8b96" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceTicket34.xsd" MetadataType="Schema" ID="100d04dd-a925-4a41-8ee5-3623302dfda7" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceTicket35.xsd" MetadataType="Schema" ID="58354a5c-71f1-41c1-98af-f70fdd102840" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceTicket36.xsd" MetadataType="Schema" ID="d6e006df-0b2d-4491-aa52-1af291c843df" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceTicket37.xsd" MetadataType="Schema" ID="15b8e3da-f9c4-4233-9f5e-e08279592bd8" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceTicket38.xsd" MetadataType="Schema" ID="c4effdc0-e263-4505-834e-9f202d3c7299" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceTicket39.xsd" MetadataType="Schema" ID="385e0297-5262-454c-9857-21df09e8376e" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceTicket.xsd" MetadataType="Schema" ID="08fb44dd-6184-4693-a16f-5e0697517d98" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceTicket1.xsd" MetadataType="Schema" ID="297ffd11-2abf-486b-9ac4-0a95c2ae53c7" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceTicket310.xsd" MetadataType="Schema" ID="bca472c1-6e6e-4a64-819f-1e97fd010818" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceTicket2.xsd" MetadataType="Schema" ID="73eba779-55f5-4fad-8dc2-1592b3cb1015" SourceId="1" SourceUrl="http://localhost:15277/ServiceTicket.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c271f15d-9c5b-43ca-9849-60c18ddad9ae" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceTipoTelefono.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceTipoTelefono.xsd" MetadataType="Schema" ID="c5a3210f-5c8a-472c-a02e-930b064353a5" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceTipoTelefono1.xsd" MetadataType="Schema" ID="780f76e5-69e6-4fc9-9c90-3ae9cc628bee" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceTipoTelefono2.xsd" MetadataType="Schema" ID="7d58a4e5-1bff-478c-9e2c-98e76f66fa83" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceTipoTelefono3.xsd" MetadataType="Schema" ID="65d2a3c2-9704-4111-ac86-e7ef243e9277" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceTipoTelefono4.xsd" MetadataType="Schema" ID="b76e0a1b-0523-4167-b194-2e46cdb17e02" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceTipoTelefono.disco" MetadataType="Disco" ID="02b01fa7-3e65-4a37-b861-3086dbf9e71c" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?disco" />
+    <MetadataFile FileName="ServiceTipoTelefono5.xsd" MetadataType="Schema" ID="d9ad70f2-c9a9-41ab-b065-14a0d0aaf414" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceTipoTelefono6.xsd" MetadataType="Schema" ID="31e2c185-8582-4077-9543-65b8b19d2944" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceTipoTelefono.wsdl" MetadataType="Wsdl" ID="8bb46a7e-6914-43ba-881b-8ceb853b62b7" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?wsdl" />
+    <MetadataFile FileName="ServiceTipoTelefono7.xsd" MetadataType="Schema" ID="ed16c325-29dc-460f-9fad-8366ab9d2e97" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceTipoTelefono8.xsd" MetadataType="Schema" ID="015c3ac8-c063-4dce-bdbd-9b7f2e85739d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceTipoTelefono9.xsd" MetadataType="Schema" ID="cd88e9bb-b3cf-4611-8f63-2f4774bdffcc" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceTipoTelefono10.xsd" MetadataType="Schema" ID="ef796e05-bebc-46dd-9888-ddc589d0024f" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceTipoTelefono11.xsd" MetadataType="Schema" ID="ca8c66e7-1085-4f56-83cd-a646e09e4127" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceTipoTelefono12.xsd" MetadataType="Schema" ID="469c400d-4c08-493e-abe2-fc2369481853" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceTipoTelefono13.xsd" MetadataType="Schema" ID="d5555717-6109-407c-a600-f75f7d5d8696" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoTelefono.svc?xsd=xsd11" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EAGetMail</id>
+    <version>4.6.3.2</version>
+    <title>EAGetMail</title>
+    <authors>AdminSystem Software Limited</authors>
+    <owners>AdminSystem Software Limited</owners>
+    <licenseUrl>https://www.emailarchitect.net/eagetmail/license.aspx</licenseUrl>
+    <projectUrl>https://www.emailarchitect.net/eagetmail/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Retrieve email from POP3 server or IMAP4 server and parse email in C#, VB, ASP.NET, Managed C++ or other .NET environment applications.</description>
+    <summary />
+    <copyright>AdminSystem Software Limited</copyright>
+  </metadata>
+</package>

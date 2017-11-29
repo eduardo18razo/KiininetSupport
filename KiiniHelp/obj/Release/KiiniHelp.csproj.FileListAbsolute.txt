@@ -1,0 +1,17 @@
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\KiiniHelp.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\KiiniHelp.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\KiiniHelp.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\obj\Release\KiiniHelp.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\obj\Release\KiiniHelp.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\obj\Release\KiiniHelp.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\MSCaptcha.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\Recaptcha.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\EPPlus.xml
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\Recaptcha.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniHelp\bin\Winthusiasm.HtmlEditor.pdb

@@ -1,0 +1,2159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KiiniNet_v2Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ArbolAcceso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdTipoArbolAcceso" Type="int" Nullable="false" />
+    <Property Name="IdNivel1" Type="int" Nullable="false" />
+    <Property Name="IdNivel2" Type="int" />
+    <Property Name="IdNivel3" Type="int" />
+    <Property Name="IdNivel4" Type="int" />
+    <Property Name="IdNivel5" Type="int" />
+    <Property Name="IdNivel6" Type="int" />
+    <Property Name="IdNivel7" Type="int" />
+    <Property Name="EsTerminal" Type="bit" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="CampoMascara">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMascara" Type="int" />
+    <Property Name="IdTipoCampoMascara" Type="int" />
+    <Property Name="IdCatalogo" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Requerido" Type="bit" />
+    <Property Name="LongitudMinima" Type="int" />
+    <Property Name="LongitudMaxima" Type="int" />
+    <Property Name="SimboloMoneda" Type="nvarchar" MaxLength="10" />
+    <Property Name="ValorMaximo" Type="int" />
+  </EntityType>
+  <EntityType Name="Campus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Catalogos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tabla" Type="nvarchar" MaxLength="150" />
+    <Property Name="EsMascaraCaptura" Type="bit" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Colonia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMunicipio" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+    <Property Name="CP" Type="int" />
+  </EntityType>
+  <EntityType Name="Compania">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CorreoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="Correo" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Direccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Domicilio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCampus" Type="int" Nullable="false" />
+    <Property Name="IdColonia" Type="int" Nullable="false" />
+    <Property Name="Calle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NoExt" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NoInt" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Encuesta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoEncuesta" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EsPonderacion" Type="bit" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="EncuestaPregunta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEncuesta" Type="int" />
+    <Property Name="Pregunta" Type="nvarchar" MaxLength="150" />
+    <Property Name="Ponderacion" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Gerencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GrupoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoGrupo" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="GrupoUsuarioInventarioArbol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdInventarioArbolAcceso" Type="int" Nullable="false" />
+    <Property Name="IdGrupoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdSubRol" Type="int" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Holding">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InformacionConsulta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoInfConsulta" Type="int" />
+    <Property Name="IdTipoDocumento" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="InformacionConsultaDatos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdInformacionConsulta" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Orden" Type="int" />
+    <Property Name="IdPadre" Type="int" />
+  </EntityType>
+  <EntityType Name="InventarioArbolAcceso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdArbolAcceso" Type="int" Nullable="false" />
+    <Property Name="IdMascara" Type="int" />
+    <Property Name="IdSLA" Type="int" />
+    <Property Name="IdEncuesta" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="InventarioInfConsulta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdInventario" Type="int" Nullable="false" />
+    <Property Name="IdInfConsulta" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jefatura">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mascara">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="NoCampos" Type="int" />
+    <Property Name="NombreTabla" Type="nvarchar" MaxLength="150" />
+    <Property Name="ComandoInsertar" Type="nvarchar" MaxLength="250" />
+    <Property Name="ComandoActualizar" Type="nvarchar" MaxLength="250" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Municipio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdEstado" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Nivel1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Nivel2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Nivel3">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Nivel4">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Nivel5">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Nivel6">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Nivel7">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Organizacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdHolding" Type="int" Nullable="false" />
+    <Property Name="IdCompania" Type="int" />
+    <Property Name="IdDireccion" Type="int" />
+    <Property Name="IdSubDireccion" Type="int" />
+    <Property Name="IdGerencia" Type="int" />
+    <Property Name="IdSubGerencia" Type="int" />
+    <Property Name="IdJefatura" Type="int" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Pais">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ParametrosAplicaciones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Activa" Type="bit" />
+  </EntityType>
+  <EntityType Name="ParametrosTelefonos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="IdTipoTelefono" Type="int" />
+    <Property Name="NumeroTelefonos" Type="int" />
+    <Property Name="Obligatorios" Type="int" />
+  </EntityType>
+  <EntityType Name="Piso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RespuestaEncuesta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTicket" Type="int" Nullable="false" />
+    <Property Name="IdEncuesta" Type="int" />
+    <Property Name="IdPregunta" Type="int" />
+    <Property Name="IdRespuesta" Type="int" />
+    <Property Name="Ponderacion" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="RespuestaTipoEncuesta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoEncuesta" Type="int" />
+    <Property Name="Respuesta" Type="nvarchar" MaxLength="50" />
+    <Property Name="TipoDatoSql" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="EsUnico" Type="bit" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="RolTipoGrupo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+    <Property Name="IdTipoGrupo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolTipoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SiteRack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SLA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TiempoHoraProceso" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubDireccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubGerencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubGrupoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdGrupoUsuario" Type="int" />
+    <Property Name="IdSubRol" Type="int" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="SubRol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRol" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubZona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TelefonoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoTelefono" Type="int" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Extension" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TipoArbolAcceso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoCampoMascara">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TipoDatoSql" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LongitudMinima" Type="bit" Nullable="false" />
+    <Property Name="LongitudMaxima" Type="bit" Nullable="false" />
+    <Property Name="Entero" Type="bit" Nullable="false" />
+    <Property Name="Decimal" Type="bit" Nullable="false" />
+    <Property Name="ValorMaximo" Type="bit" Nullable="false" />
+    <Property Name="SimboloMoneda" Type="bit" Nullable="false" />
+    <Property Name="Catalogo" Type="bit" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoDocumento">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoEncuesta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoGrupo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoInfConsulta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="EsBaseDatos" Type="bit" />
+    <Property Name="EsDirectorio" Type="bit" />
+    <Property Name="EsUrl" Type="bit" />
+    <Property Name="EsServicio" Type="bit" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="TipoTelefono">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EsResidente" Type="bit" Nullable="false" />
+    <Property Name="NumeroCorreos" Type="int" Nullable="false" />
+    <Property Name="CorreosObligatorios" Type="int" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Torre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ubicacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdPais" Type="int" Nullable="false" />
+    <Property Name="IdCampus" Type="int" />
+    <Property Name="IdTorre" Type="int" />
+    <Property Name="IdPiso" Type="int" />
+    <Property Name="IdZona" Type="int" />
+    <Property Name="IdSubZona" Type="int" />
+    <Property Name="IdSiteRack" Type="int" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+    <Property Name="IdUbicacion" Type="int" Nullable="false" />
+    <Property Name="IdOrganizacion" Type="int" />
+    <Property Name="ApellidoPaterno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DirectorioActivo" Type="bit" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuarioGrupo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="IdRol" Type="int" />
+    <Property Name="IdGrupoUsuario" Type="int" />
+    <Property Name="IdSubGrupoUsuario" Type="int" />
+  </EntityType>
+  <EntityType Name="UsuarioRol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="IdRolTipoUsuario" Type="int" />
+  </EntityType>
+  <EntityType Name="Zona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ArbolAcceso_Nivel1">
+    <End Role="Nivel1" Type="Self.Nivel1" Multiplicity="1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nivel1">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdNivel1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArbolAcceso_Nivel2">
+    <End Role="Nivel2" Type="Self.Nivel2" Multiplicity="0..1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nivel2">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdNivel2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArbolAcceso_Nivel3">
+    <End Role="Nivel3" Type="Self.Nivel3" Multiplicity="0..1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nivel3">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdNivel3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArbolAcceso_Nivel4">
+    <End Role="Nivel4" Type="Self.Nivel4" Multiplicity="0..1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nivel4">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdNivel4" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArbolAcceso_Nivel5">
+    <End Role="Nivel5" Type="Self.Nivel5" Multiplicity="0..1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nivel5">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdNivel5" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArbolAcceso_Nivel6">
+    <End Role="Nivel6" Type="Self.Nivel6" Multiplicity="0..1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nivel6">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdNivel6" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArbolAcceso_Nivel7">
+    <End Role="Nivel7" Type="Self.Nivel7" Multiplicity="0..1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nivel7">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdNivel7" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Campus_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Campus" Type="Self.Campus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Campus">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Colonia_Municipio">
+    <End Role="Municipio" Type="Self.Municipio" Multiplicity="0..1" />
+    <End Role="Colonia" Type="Self.Colonia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Municipio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Colonia">
+        <PropertyRef Name="IdMunicipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compania_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Compania" Type="Self.Compania" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Compania">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CorreoUsuario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="CorreoUsuario" Type="Self.CorreoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CorreoUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direccion_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Direccion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Domicilio_Campus">
+    <End Role="Campus" Type="Self.Campus" Multiplicity="1" />
+    <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Domicilio">
+        <PropertyRef Name="IdCampus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Domicilio_Colonia">
+    <End Role="Colonia" Type="Self.Colonia" Multiplicity="1" />
+    <End Role="Domicilio" Type="Self.Domicilio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Colonia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Domicilio">
+        <PropertyRef Name="IdColonia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EncuestaPregunta_Encuesta">
+    <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="0..1" />
+    <End Role="EncuestaPregunta" Type="Self.EncuestaPregunta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encuesta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EncuestaPregunta">
+        <PropertyRef Name="IdEncuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gerencia_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Gerencia" Type="Self.Gerencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gerencia">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuario_TipoGrupo1">
+    <End Role="TipoGrupo" Type="Self.TipoGrupo" Multiplicity="0..1" />
+    <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoGrupo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuario">
+        <PropertyRef Name="IdTipoGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioInventarioArbol_GrupoUsuario">
+    <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="1" />
+    <End Role="GrupoUsuarioInventarioArbol" Type="Self.GrupoUsuarioInventarioArbol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioInventarioArbol">
+        <PropertyRef Name="IdGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioInventarioArbol_InventarioArbolAcceso">
+    <End Role="InventarioArbolAcceso" Type="Self.InventarioArbolAcceso" Multiplicity="1" />
+    <End Role="GrupoUsuarioInventarioArbol" Type="Self.GrupoUsuarioInventarioArbol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventarioArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioInventarioArbol">
+        <PropertyRef Name="IdInventarioArbolAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioInventarioArbol_SubRol">
+    <End Role="SubRol" Type="Self.SubRol" Multiplicity="1" />
+    <End Role="GrupoUsuarioInventarioArbol" Type="Self.GrupoUsuarioInventarioArbol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubRol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioInventarioArbol">
+        <PropertyRef Name="IdSubRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Holding_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Holding" Type="Self.Holding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Holding">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InformacionConsulta_TipoDocumento">
+    <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="0..1" />
+    <End Role="InformacionConsulta" Type="Self.InformacionConsulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDocumento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InformacionConsulta">
+        <PropertyRef Name="IdTipoDocumento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InformacionConsultaDatos_InformacionConsulta">
+    <End Role="InformacionConsulta" Type="Self.InformacionConsulta" Multiplicity="1" />
+    <End Role="InformacionConsultaDatos" Type="Self.InformacionConsultaDatos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InformacionConsulta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InformacionConsultaDatos">
+        <PropertyRef Name="IdInformacionConsulta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventarioArbolAcceso_Encuesta">
+    <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="0..1" />
+    <End Role="InventarioArbolAcceso" Type="Self.InventarioArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encuesta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioArbolAcceso">
+        <PropertyRef Name="IdEncuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventarioArbolAcceso_SLA">
+    <End Role="SLA" Type="Self.SLA" Multiplicity="0..1" />
+    <End Role="InventarioArbolAcceso" Type="Self.InventarioArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLA">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioArbolAcceso">
+        <PropertyRef Name="IdSLA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventarioInfConsulta_InformacionConsulta">
+    <End Role="InformacionConsulta" Type="Self.InformacionConsulta" Multiplicity="1" />
+    <End Role="InventarioInfConsulta" Type="Self.InventarioInfConsulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InformacionConsulta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioInfConsulta">
+        <PropertyRef Name="IdInfConsulta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventarioInfConsulta_InventarioArbolAcceso">
+    <End Role="InventarioArbolAcceso" Type="Self.InventarioArbolAcceso" Multiplicity="1" />
+    <End Role="InventarioInfConsulta" Type="Self.InventarioInfConsulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventarioArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioInfConsulta">
+        <PropertyRef Name="IdInventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jefatura_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Jefatura" Type="Self.Jefatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jefatura">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Municipio_Estado">
+    <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="Municipio" Type="Self.Municipio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Municipio">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel1_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Nivel1" Type="Self.Nivel1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel1">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel2_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Nivel2" Type="Self.Nivel2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel2">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel3_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Nivel3" Type="Self.Nivel3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel3">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel4_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Nivel4" Type="Self.Nivel4" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel4">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel5_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Nivel5" Type="Self.Nivel5" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel5">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel6_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Nivel6" Type="Self.Nivel6" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel6">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel7_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Nivel7" Type="Self.Nivel7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel7">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizacion_Compania">
+    <End Role="Compania" Type="Self.Compania" Multiplicity="0..1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compania">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdCompania" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizacion_Direccion">
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="0..1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizacion_Gerencia">
+    <End Role="Gerencia" Type="Self.Gerencia" Multiplicity="0..1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gerencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdGerencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizacion_Holding">
+    <End Role="Holding" Type="Self.Holding" Multiplicity="1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Holding">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdHolding" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizacion_Jefatura">
+    <End Role="Jefatura" Type="Self.Jefatura" Multiplicity="0..1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jefatura">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdJefatura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizacion_SubDireccion">
+    <End Role="SubDireccion" Type="Self.SubDireccion" Multiplicity="0..1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubDireccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdSubDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organizacion_SubGerencia">
+    <End Role="SubGerencia" Type="Self.SubGerencia" Multiplicity="0..1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubGerencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdSubGerencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pais_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Pais" Type="Self.Pais" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pais">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Piso_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Piso" Type="Self.Piso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Piso">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RespuestaTipoEncuesta_TipoEncuesta">
+    <End Role="TipoEncuesta" Type="Self.TipoEncuesta" Multiplicity="0..1" />
+    <End Role="RespuestaTipoEncuesta" Type="Self.RespuestaTipoEncuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEncuesta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RespuestaTipoEncuesta">
+        <PropertyRef Name="IdTipoEncuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolTipoGrupo_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolTipoGrupo" Type="Self.RolTipoGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoGrupo">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolTipoGrupo_TipoGrupo">
+    <End Role="TipoGrupo" Type="Self.TipoGrupo" Multiplicity="1" />
+    <End Role="RolTipoGrupo" Type="Self.RolTipoGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoGrupo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoGrupo">
+        <PropertyRef Name="IdTipoGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolTipoUsuario_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolTipoUsuario" Type="Self.RolTipoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoUsuario">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolTipoUsuario_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="RolTipoUsuario" Type="Self.RolTipoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoUsuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteRack_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="SiteRack" Type="Self.SiteRack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteRack">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubDireccion_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="SubDireccion" Type="Self.SubDireccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubDireccion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubGerencia_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="SubGerencia" Type="Self.SubGerencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubGerencia">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubGrupoUsuario_GrupoUsuario">
+    <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="0..1" />
+    <End Role="SubGrupoUsuario" Type="Self.SubGrupoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubGrupoUsuario">
+        <PropertyRef Name="IdGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubGrupoUsuario_SubRol">
+    <End Role="SubRol" Type="Self.SubRol" Multiplicity="0..1" />
+    <End Role="SubGrupoUsuario" Type="Self.SubGrupoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubRol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubGrupoUsuario">
+        <PropertyRef Name="IdSubRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="SubRol" Type="Self.SubRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubRol">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubZona_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="SubZona" Type="Self.SubZona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubZona">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblArbolAcceso_tblCatTipoArbolAcceso">
+    <End Role="TipoArbolAcceso" Type="Self.TipoArbolAcceso" Multiplicity="1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdTipoArbolAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblArbolAcceso_tblCatTipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCampoMascara_tblCatCatalogos">
+    <End Role="Catalogos" Type="Self.Catalogos" Multiplicity="0..1" />
+    <End Role="CampoMascara" Type="Self.CampoMascara" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalogos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CampoMascara">
+        <PropertyRef Name="IdCatalogo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCampoMascara_tblCatTipoCampoMascara">
+    <End Role="TipoCampoMascara" Type="Self.TipoCampoMascara" Multiplicity="0..1" />
+    <End Role="CampoMascara" Type="Self.CampoMascara" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoCampoMascara">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CampoMascara">
+        <PropertyRef Name="IdTipoCampoMascara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCampoMascara_tblMascara">
+    <End Role="Mascara" Type="Self.Mascara" Multiplicity="0..1" />
+    <End Role="CampoMascara" Type="Self.CampoMascara" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mascara">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CampoMascara">
+        <PropertyRef Name="IdMascara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEncuesta_tblCatTipoEncuesta">
+    <End Role="TipoEncuesta" Type="Self.TipoEncuesta" Multiplicity="1" />
+    <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEncuesta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Encuesta">
+        <PropertyRef Name="IdTipoEncuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblInformacionConsulta_tblCatTipoInfConsulta">
+    <End Role="TipoInfConsulta" Type="Self.TipoInfConsulta" Multiplicity="0..1" />
+    <End Role="InformacionConsulta" Type="Self.InformacionConsulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoInfConsulta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InformacionConsulta">
+        <PropertyRef Name="IdTipoInfConsulta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblInventarioArbolAcceso_tblArbolAcceso">
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="1" />
+    <End Role="InventarioArbolAcceso" Type="Self.InventarioArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioArbolAcceso">
+        <PropertyRef Name="IdArbolAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblInventarioArbolAcceso_tblMascara">
+    <End Role="Mascara" Type="Self.Mascara" Multiplicity="0..1" />
+    <End Role="InventarioArbolAcceso" Type="Self.InventarioArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mascara">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventarioArbolAcceso">
+        <PropertyRef Name="IdMascara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatTipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblParamTelefonos_tblCatTipoTelefono">
+    <End Role="TipoTelefono" Type="Self.TipoTelefono" Multiplicity="0..1" />
+    <End Role="ParametrosTelefonos" Type="Self.ParametrosTelefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoTelefono">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParametrosTelefonos">
+        <PropertyRef Name="IdTipoTelefono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblParamTelefonos_tblCatTipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="ParametrosTelefonos" Type="Self.ParametrosTelefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParametrosTelefonos">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRespuestaEncuesta_tblEncuesta">
+    <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="0..1" />
+    <End Role="RespuestaEncuesta" Type="Self.RespuestaEncuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encuesta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RespuestaEncuesta">
+        <PropertyRef Name="IdEncuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRespuestaEncuesta_tblEncuestaPregunta">
+    <End Role="EncuestaPregunta" Type="Self.EncuestaPregunta" Multiplicity="0..1" />
+    <End Role="RespuestaEncuesta" Type="Self.RespuestaEncuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EncuestaPregunta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RespuestaEncuesta">
+        <PropertyRef Name="IdPregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRespuestaEncuesta_tblRespuestaTipoEncuesta">
+    <End Role="RespuestaTipoEncuesta" Type="Self.RespuestaTipoEncuesta" Multiplicity="0..1" />
+    <End Role="RespuestaEncuesta" Type="Self.RespuestaEncuesta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RespuestaTipoEncuesta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RespuestaEncuesta">
+        <PropertyRef Name="IdRespuesta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TelefonoUsuario_TipoTelefono">
+    <End Role="TipoTelefono" Type="Self.TipoTelefono" Multiplicity="0..1" />
+    <End Role="TelefonoUsuario" Type="Self.TelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoTelefono">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelefonoUsuario">
+        <PropertyRef Name="IdTipoTelefono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TelefonoUsuario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="TelefonoUsuario" Type="Self.TelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelefonoUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Torre_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Torre" Type="Self.Torre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torre">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_Campus">
+    <End Role="Campus" Type="Self.Campus" Multiplicity="0..1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdCampus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_Pais">
+    <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pais">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_Piso">
+    <End Role="Piso" Type="Self.Piso" Multiplicity="0..1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Piso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdPiso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_SiteRack">
+    <End Role="SiteRack" Type="Self.SiteRack" Multiplicity="0..1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SiteRack">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdSiteRack" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_SubZona">
+    <End Role="SubZona" Type="Self.SubZona" Multiplicity="0..1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubZona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdSubZona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_Torre">
+    <End Role="Torre" Type="Self.Torre" Multiplicity="0..1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdTorre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_Zona">
+    <End Role="Zona" Type="Self.Zona" Multiplicity="0..1" />
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdZona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Organizacion">
+    <End Role="Organizacion" Type="Self.Organizacion" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organizacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdOrganizacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Ubicacion">
+    <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ubicacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdUbicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioGrupo_GrupoUsuario">
+    <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="0..1" />
+    <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioGrupo">
+        <PropertyRef Name="IdGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioGrupo_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioGrupo">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioGrupo_SubGrupoUsuario">
+    <End Role="SubGrupoUsuario" Type="Self.SubGrupoUsuario" Multiplicity="0..1" />
+    <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubGrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioGrupo">
+        <PropertyRef Name="IdSubGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioGrupo_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioGrupo">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRol_RolTipoUsuario">
+    <End Role="RolTipoUsuario" Type="Self.RolTipoUsuario" Multiplicity="0..1" />
+    <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RolTipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioRol">
+        <PropertyRef Name="IdRolTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioRol_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioRol">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zona_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="Zona" Type="Self.Zona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Zona">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KiiniNet_v2Model1StoreContainer">
+    <EntitySet Name="ArbolAcceso" EntityType="Self.ArbolAcceso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CampoMascara" EntityType="Self.CampoMascara" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Campus" EntityType="Self.Campus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Catalogos" EntityType="Self.Catalogos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Colonia" EntityType="Self.Colonia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Compania" EntityType="Self.Compania" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CorreoUsuario" EntityType="Self.CorreoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Domicilio" EntityType="Self.Domicilio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Encuesta" EntityType="Self.Encuesta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EncuestaPregunta" EntityType="Self.EncuestaPregunta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gerencia" EntityType="Self.Gerencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GrupoUsuario" EntityType="Self.GrupoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GrupoUsuarioInventarioArbol" EntityType="Self.GrupoUsuarioInventarioArbol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Holding" EntityType="Self.Holding" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InformacionConsulta" EntityType="Self.InformacionConsulta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InformacionConsultaDatos" EntityType="Self.InformacionConsultaDatos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventarioArbolAcceso" EntityType="Self.InventarioArbolAcceso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventarioInfConsulta" EntityType="Self.InventarioInfConsulta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jefatura" EntityType="Self.Jefatura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mascara" EntityType="Self.Mascara" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Municipio" EntityType="Self.Municipio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nivel1" EntityType="Self.Nivel1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nivel2" EntityType="Self.Nivel2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nivel3" EntityType="Self.Nivel3" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nivel4" EntityType="Self.Nivel4" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nivel5" EntityType="Self.Nivel5" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nivel6" EntityType="Self.Nivel6" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nivel7" EntityType="Self.Nivel7" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organizacion" EntityType="Self.Organizacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParametrosAplicaciones" EntityType="Self.ParametrosAplicaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParametrosTelefonos" EntityType="Self.ParametrosTelefonos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Piso" EntityType="Self.Piso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RespuestaEncuesta" EntityType="Self.RespuestaEncuesta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RespuestaTipoEncuesta" EntityType="Self.RespuestaTipoEncuesta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolTipoGrupo" EntityType="Self.RolTipoGrupo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolTipoUsuario" EntityType="Self.RolTipoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SiteRack" EntityType="Self.SiteRack" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLA" EntityType="Self.SLA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubDireccion" EntityType="Self.SubDireccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubGerencia" EntityType="Self.SubGerencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubGrupoUsuario" EntityType="Self.SubGrupoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubRol" EntityType="Self.SubRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubZona" EntityType="Self.SubZona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TelefonoUsuario" EntityType="Self.TelefonoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoArbolAcceso" EntityType="Self.TipoArbolAcceso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoCampoMascara" EntityType="Self.TipoCampoMascara" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoEncuesta" EntityType="Self.TipoEncuesta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoGrupo" EntityType="Self.TipoGrupo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoInfConsulta" EntityType="Self.TipoInfConsulta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoTelefono" EntityType="Self.TipoTelefono" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Torre" EntityType="Self.Torre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ArbolAcceso_Nivel1" Association="Self.FK_ArbolAcceso_Nivel1">
+      <End Role="Nivel1" EntitySet="Nivel1" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArbolAcceso_Nivel2" Association="Self.FK_ArbolAcceso_Nivel2">
+      <End Role="Nivel2" EntitySet="Nivel2" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArbolAcceso_Nivel3" Association="Self.FK_ArbolAcceso_Nivel3">
+      <End Role="Nivel3" EntitySet="Nivel3" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArbolAcceso_Nivel4" Association="Self.FK_ArbolAcceso_Nivel4">
+      <End Role="Nivel4" EntitySet="Nivel4" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArbolAcceso_Nivel5" Association="Self.FK_ArbolAcceso_Nivel5">
+      <End Role="Nivel5" EntitySet="Nivel5" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArbolAcceso_Nivel6" Association="Self.FK_ArbolAcceso_Nivel6">
+      <End Role="Nivel6" EntitySet="Nivel6" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArbolAcceso_Nivel7" Association="Self.FK_ArbolAcceso_Nivel7">
+      <End Role="Nivel7" EntitySet="Nivel7" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Campus_TipoUsuario" Association="Self.FK_Campus_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Campus" EntitySet="Campus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Colonia_Municipio" Association="Self.FK_Colonia_Municipio">
+      <End Role="Municipio" EntitySet="Municipio" />
+      <End Role="Colonia" EntitySet="Colonia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compania_TipoUsuario" Association="Self.FK_Compania_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Compania" EntitySet="Compania" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CorreoUsuario_Usuario" Association="Self.FK_CorreoUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="CorreoUsuario" EntitySet="CorreoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direccion_TipoUsuario" Association="Self.FK_Direccion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Direccion" EntitySet="Direccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Domicilio_Campus" Association="Self.FK_Domicilio_Campus">
+      <End Role="Campus" EntitySet="Campus" />
+      <End Role="Domicilio" EntitySet="Domicilio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Domicilio_Colonia" Association="Self.FK_Domicilio_Colonia">
+      <End Role="Colonia" EntitySet="Colonia" />
+      <End Role="Domicilio" EntitySet="Domicilio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EncuestaPregunta_Encuesta" Association="Self.FK_EncuestaPregunta_Encuesta">
+      <End Role="Encuesta" EntitySet="Encuesta" />
+      <End Role="EncuestaPregunta" EntitySet="EncuestaPregunta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gerencia_TipoUsuario" Association="Self.FK_Gerencia_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Gerencia" EntitySet="Gerencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuario_TipoGrupo1" Association="Self.FK_GrupoUsuario_TipoGrupo1">
+      <End Role="TipoGrupo" EntitySet="TipoGrupo" />
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioInventarioArbol_GrupoUsuario" Association="Self.FK_GrupoUsuarioInventarioArbol_GrupoUsuario">
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+      <End Role="GrupoUsuarioInventarioArbol" EntitySet="GrupoUsuarioInventarioArbol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioInventarioArbol_InventarioArbolAcceso" Association="Self.FK_GrupoUsuarioInventarioArbol_InventarioArbolAcceso">
+      <End Role="InventarioArbolAcceso" EntitySet="InventarioArbolAcceso" />
+      <End Role="GrupoUsuarioInventarioArbol" EntitySet="GrupoUsuarioInventarioArbol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioInventarioArbol_SubRol" Association="Self.FK_GrupoUsuarioInventarioArbol_SubRol">
+      <End Role="SubRol" EntitySet="SubRol" />
+      <End Role="GrupoUsuarioInventarioArbol" EntitySet="GrupoUsuarioInventarioArbol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Holding_TipoUsuario" Association="Self.FK_Holding_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Holding" EntitySet="Holding" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InformacionConsulta_TipoDocumento" Association="Self.FK_InformacionConsulta_TipoDocumento">
+      <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+      <End Role="InformacionConsulta" EntitySet="InformacionConsulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InformacionConsultaDatos_InformacionConsulta" Association="Self.FK_InformacionConsultaDatos_InformacionConsulta">
+      <End Role="InformacionConsulta" EntitySet="InformacionConsulta" />
+      <End Role="InformacionConsultaDatos" EntitySet="InformacionConsultaDatos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventarioArbolAcceso_Encuesta" Association="Self.FK_InventarioArbolAcceso_Encuesta">
+      <End Role="Encuesta" EntitySet="Encuesta" />
+      <End Role="InventarioArbolAcceso" EntitySet="InventarioArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventarioArbolAcceso_SLA" Association="Self.FK_InventarioArbolAcceso_SLA">
+      <End Role="SLA" EntitySet="SLA" />
+      <End Role="InventarioArbolAcceso" EntitySet="InventarioArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventarioInfConsulta_InformacionConsulta" Association="Self.FK_InventarioInfConsulta_InformacionConsulta">
+      <End Role="InformacionConsulta" EntitySet="InformacionConsulta" />
+      <End Role="InventarioInfConsulta" EntitySet="InventarioInfConsulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventarioInfConsulta_InventarioArbolAcceso" Association="Self.FK_InventarioInfConsulta_InventarioArbolAcceso">
+      <End Role="InventarioArbolAcceso" EntitySet="InventarioArbolAcceso" />
+      <End Role="InventarioInfConsulta" EntitySet="InventarioInfConsulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jefatura_TipoUsuario" Association="Self.FK_Jefatura_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Jefatura" EntitySet="Jefatura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Municipio_Estado" Association="Self.FK_Municipio_Estado">
+      <End Role="Estado" EntitySet="Estado" />
+      <End Role="Municipio" EntitySet="Municipio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel1_TipoUsuario" Association="Self.FK_Nivel1_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel1" EntitySet="Nivel1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel2_TipoUsuario" Association="Self.FK_Nivel2_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel2" EntitySet="Nivel2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel3_TipoUsuario" Association="Self.FK_Nivel3_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel3" EntitySet="Nivel3" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel4_TipoUsuario" Association="Self.FK_Nivel4_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel4" EntitySet="Nivel4" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel5_TipoUsuario" Association="Self.FK_Nivel5_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel5" EntitySet="Nivel5" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel6_TipoUsuario" Association="Self.FK_Nivel6_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel6" EntitySet="Nivel6" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel7_TipoUsuario" Association="Self.FK_Nivel7_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel7" EntitySet="Nivel7" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizacion_Compania" Association="Self.FK_Organizacion_Compania">
+      <End Role="Compania" EntitySet="Compania" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizacion_Direccion" Association="Self.FK_Organizacion_Direccion">
+      <End Role="Direccion" EntitySet="Direccion" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizacion_Gerencia" Association="Self.FK_Organizacion_Gerencia">
+      <End Role="Gerencia" EntitySet="Gerencia" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizacion_Holding" Association="Self.FK_Organizacion_Holding">
+      <End Role="Holding" EntitySet="Holding" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizacion_Jefatura" Association="Self.FK_Organizacion_Jefatura">
+      <End Role="Jefatura" EntitySet="Jefatura" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizacion_SubDireccion" Association="Self.FK_Organizacion_SubDireccion">
+      <End Role="SubDireccion" EntitySet="SubDireccion" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organizacion_SubGerencia" Association="Self.FK_Organizacion_SubGerencia">
+      <End Role="SubGerencia" EntitySet="SubGerencia" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pais_TipoUsuario" Association="Self.FK_Pais_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Pais" EntitySet="Pais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Piso_TipoUsuario" Association="Self.FK_Piso_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Piso" EntitySet="Piso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RespuestaTipoEncuesta_TipoEncuesta" Association="Self.FK_RespuestaTipoEncuesta_TipoEncuesta">
+      <End Role="TipoEncuesta" EntitySet="TipoEncuesta" />
+      <End Role="RespuestaTipoEncuesta" EntitySet="RespuestaTipoEncuesta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolTipoGrupo_Rol" Association="Self.FK_RolTipoGrupo_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolTipoGrupo" EntitySet="RolTipoGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolTipoGrupo_TipoGrupo" Association="Self.FK_RolTipoGrupo_TipoGrupo">
+      <End Role="TipoGrupo" EntitySet="TipoGrupo" />
+      <End Role="RolTipoGrupo" EntitySet="RolTipoGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolTipoUsuario_Rol" Association="Self.FK_RolTipoUsuario_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolTipoUsuario" EntitySet="RolTipoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolTipoUsuario_TipoUsuario" Association="Self.FK_RolTipoUsuario_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="RolTipoUsuario" EntitySet="RolTipoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteRack_TipoUsuario" Association="Self.FK_SiteRack_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SiteRack" EntitySet="SiteRack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubDireccion_TipoUsuario" Association="Self.FK_SubDireccion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SubDireccion" EntitySet="SubDireccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubGerencia_TipoUsuario" Association="Self.FK_SubGerencia_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SubGerencia" EntitySet="SubGerencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubGrupoUsuario_GrupoUsuario" Association="Self.FK_SubGrupoUsuario_GrupoUsuario">
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+      <End Role="SubGrupoUsuario" EntitySet="SubGrupoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubGrupoUsuario_SubRol" Association="Self.FK_SubGrupoUsuario_SubRol">
+      <End Role="SubRol" EntitySet="SubRol" />
+      <End Role="SubGrupoUsuario" EntitySet="SubGrupoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubRol_Rol" Association="Self.FK_SubRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="SubRol" EntitySet="SubRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubZona_TipoUsuario" Association="Self.FK_SubZona_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SubZona" EntitySet="SubZona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblArbolAcceso_tblCatTipoArbolAcceso" Association="Self.FK_tblArbolAcceso_tblCatTipoArbolAcceso">
+      <End Role="TipoArbolAcceso" EntitySet="TipoArbolAcceso" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblArbolAcceso_tblCatTipoUsuario" Association="Self.FK_tblArbolAcceso_tblCatTipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCampoMascara_tblCatCatalogos" Association="Self.FK_tblCampoMascara_tblCatCatalogos">
+      <End Role="Catalogos" EntitySet="Catalogos" />
+      <End Role="CampoMascara" EntitySet="CampoMascara" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCampoMascara_tblCatTipoCampoMascara" Association="Self.FK_tblCampoMascara_tblCatTipoCampoMascara">
+      <End Role="TipoCampoMascara" EntitySet="TipoCampoMascara" />
+      <End Role="CampoMascara" EntitySet="CampoMascara" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCampoMascara_tblMascara" Association="Self.FK_tblCampoMascara_tblMascara">
+      <End Role="Mascara" EntitySet="Mascara" />
+      <End Role="CampoMascara" EntitySet="CampoMascara" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEncuesta_tblCatTipoEncuesta" Association="Self.FK_tblEncuesta_tblCatTipoEncuesta">
+      <End Role="TipoEncuesta" EntitySet="TipoEncuesta" />
+      <End Role="Encuesta" EntitySet="Encuesta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblInformacionConsulta_tblCatTipoInfConsulta" Association="Self.FK_tblInformacionConsulta_tblCatTipoInfConsulta">
+      <End Role="TipoInfConsulta" EntitySet="TipoInfConsulta" />
+      <End Role="InformacionConsulta" EntitySet="InformacionConsulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblInventarioArbolAcceso_tblArbolAcceso" Association="Self.FK_tblInventarioArbolAcceso_tblArbolAcceso">
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+      <End Role="InventarioArbolAcceso" EntitySet="InventarioArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblInventarioArbolAcceso_tblMascara" Association="Self.FK_tblInventarioArbolAcceso_tblMascara">
+      <End Role="Mascara" EntitySet="Mascara" />
+      <End Role="InventarioArbolAcceso" EntitySet="InventarioArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatTipoUsuario" Association="Self.FK_tblOrganizacion_tblCatTipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblParamTelefonos_tblCatTipoTelefono" Association="Self.FK_tblParamTelefonos_tblCatTipoTelefono">
+      <End Role="TipoTelefono" EntitySet="TipoTelefono" />
+      <End Role="ParametrosTelefonos" EntitySet="ParametrosTelefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblParamTelefonos_tblCatTipoUsuario" Association="Self.FK_tblParamTelefonos_tblCatTipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="ParametrosTelefonos" EntitySet="ParametrosTelefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRespuestaEncuesta_tblEncuesta" Association="Self.FK_tblRespuestaEncuesta_tblEncuesta">
+      <End Role="Encuesta" EntitySet="Encuesta" />
+      <End Role="RespuestaEncuesta" EntitySet="RespuestaEncuesta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRespuestaEncuesta_tblEncuestaPregunta" Association="Self.FK_tblRespuestaEncuesta_tblEncuestaPregunta">
+      <End Role="EncuestaPregunta" EntitySet="EncuestaPregunta" />
+      <End Role="RespuestaEncuesta" EntitySet="RespuestaEncuesta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRespuestaEncuesta_tblRespuestaTipoEncuesta" Association="Self.FK_tblRespuestaEncuesta_tblRespuestaTipoEncuesta">
+      <End Role="RespuestaTipoEncuesta" EntitySet="RespuestaTipoEncuesta" />
+      <End Role="RespuestaEncuesta" EntitySet="RespuestaEncuesta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TelefonoUsuario_TipoTelefono" Association="Self.FK_TelefonoUsuario_TipoTelefono">
+      <End Role="TipoTelefono" EntitySet="TipoTelefono" />
+      <End Role="TelefonoUsuario" EntitySet="TelefonoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TelefonoUsuario_Usuario" Association="Self.FK_TelefonoUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="TelefonoUsuario" EntitySet="TelefonoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Torre_TipoUsuario" Association="Self.FK_Torre_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Torre" EntitySet="Torre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_Campus" Association="Self.FK_Ubicacion_Campus">
+      <End Role="Campus" EntitySet="Campus" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_Pais" Association="Self.FK_Ubicacion_Pais">
+      <End Role="Pais" EntitySet="Pais" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_Piso" Association="Self.FK_Ubicacion_Piso">
+      <End Role="Piso" EntitySet="Piso" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_SiteRack" Association="Self.FK_Ubicacion_SiteRack">
+      <End Role="SiteRack" EntitySet="SiteRack" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_SubZona" Association="Self.FK_Ubicacion_SubZona">
+      <End Role="SubZona" EntitySet="SubZona" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_TipoUsuario" Association="Self.FK_Ubicacion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_Torre" Association="Self.FK_Ubicacion_Torre">
+      <End Role="Torre" EntitySet="Torre" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_Zona" Association="Self.FK_Ubicacion_Zona">
+      <End Role="Zona" EntitySet="Zona" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Organizacion" Association="Self.FK_Usuario_Organizacion">
+      <End Role="Organizacion" EntitySet="Organizacion" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Ubicacion" Association="Self.FK_Usuario_Ubicacion">
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioGrupo_GrupoUsuario" Association="Self.FK_UsuarioGrupo_GrupoUsuario">
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+      <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioGrupo_Rol" Association="Self.FK_UsuarioGrupo_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioGrupo_SubGrupoUsuario" Association="Self.FK_UsuarioGrupo_SubGrupoUsuario">
+      <End Role="SubGrupoUsuario" EntitySet="SubGrupoUsuario" />
+      <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioGrupo_Usuario" Association="Self.FK_UsuarioGrupo_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRol_RolTipoUsuario" Association="Self.FK_UsuarioRol_RolTipoUsuario">
+      <End Role="RolTipoUsuario" EntitySet="RolTipoUsuario" />
+      <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioRol_Usuario" Association="Self.FK_UsuarioRol_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zona_TipoUsuario" Association="Self.FK_Zona_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Zona" EntitySet="Zona" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KiiniNet_v2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="connection" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Campus" EntityType="KiiniNet_v2Model.Campus" />
+    <EntitySet Name="Colonia" EntityType="KiiniNet_v2Model.Colonia" />
+    <EntitySet Name="ñ" EntityType="KiiniNet_v2Model.Compañia" />
+    <EntitySet Name="Direccion" EntityType="KiiniNet_v2Model.Direccion" />
+    <EntitySet Name="Estado" EntityType="KiiniNet_v2Model.Estado" />
+    <EntitySet Name="Gerencia" EntityType="KiiniNet_v2Model.Gerencia" />
+    <EntitySet Name="Holding" EntityType="KiiniNet_v2Model.Holding" />
+    <EntitySet Name="Jefatura" EntityType="KiiniNet_v2Model.Jefatura" />
+    <EntitySet Name="Municipio" EntityType="KiiniNet_v2Model.Municipio" />
+    <EntitySet Name="Pais" EntityType="KiiniNet_v2Model.Pais" />
+    <EntitySet Name="Piso" EntityType="KiiniNet_v2Model.Piso" />
+    <EntitySet Name="SiteRack" EntityType="KiiniNet_v2Model.SiteRack" />
+    <EntitySet Name="SubDireccion" EntityType="KiiniNet_v2Model.SubDireccion" />
+    <EntitySet Name="SubGerencia" EntityType="KiiniNet_v2Model.SubGerencia" />
+    <EntitySet Name="SubZona" EntityType="KiiniNet_v2Model.SubZona" />
+    <EntitySet Name="TipoTelefono" EntityType="KiiniNet_v2Model.TipoTelefono" />
+    <EntitySet Name="TipoUsuario" EntityType="KiiniNet_v2Model.TipoUsuario" />
+    <EntitySet Name="Torre" EntityType="KiiniNet_v2Model.Torre" />
+    <EntitySet Name="Zona" EntityType="KiiniNet_v2Model.Zona" />
+    <EntitySet Name="CorreoUsuario" EntityType="KiiniNet_v2Model.CorreoUsuario" />
+    <EntitySet Name="Domicilio" EntityType="KiiniNet_v2Model.Domicilio" />
+    <EntitySet Name="Organizacion" EntityType="KiiniNet_v2Model.Organizacion" />
+    <EntitySet Name="TelefonoUsuario" EntityType="KiiniNet_v2Model.TelefonoUsuario" />
+    <EntitySet Name="Ubicacion" EntityType="KiiniNet_v2Model.Ubicacion" />
+    <EntitySet Name="Usuario" EntityType="KiiniNet_v2Model.Usuario" />
+    <AssociationSet Name="FK_tblDomicilio_tblCatCampus" Association="KiiniNet_v2Model.FK_tblDomicilio_tblCatCampus">
+      <End Role="tblCatCampus" EntitySet="Campus" />
+      <End Role="tblDomicilio" EntitySet="Domicilio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatCampus" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatCampus">
+      <End Role="tblCatCampus" EntitySet="Campus" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_c03_Colonias_c02_Municipios" Association="KiiniNet_v2Model.FK_c03_Colonias_c02_Municipios">
+      <End Role="tblCatMunicipio" EntitySet="Municipio" />
+      <End Role="tblCatColonia" EntitySet="Colonia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblDomicilio_tblCatColonias" Association="KiiniNet_v2Model.FK_tblDomicilio_tblCatColonias">
+      <End Role="tblCatColonia" EntitySet="Colonia" />
+      <End Role="tblDomicilio" EntitySet="Domicilio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatCompania" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatCompania">
+      <End Role="tblCatCompania" EntitySet="ñ" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatDireccion" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatDireccion">
+      <End Role="tblCatDireccion" EntitySet="Direccion" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_c02_Municipios_c01_Estados" Association="KiiniNet_v2Model.FK_c02_Municipios_c01_Estados">
+      <End Role="tblCatEstado" EntitySet="Estado" />
+      <End Role="tblCatMunicipio" EntitySet="Municipio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatGerencia" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatGerencia">
+      <End Role="tblCatGerencia" EntitySet="Gerencia" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatHolding" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatHolding">
+      <End Role="tblCatHolding" EntitySet="Holding" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatJefatura" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatJefatura">
+      <End Role="tblCatJefatura" EntitySet="Jefatura" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatPais" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatPais">
+      <End Role="tblCatPais" EntitySet="Pais" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatPiso" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatPiso">
+      <End Role="tblCatPiso" EntitySet="Piso" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatSiteRack" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatSiteRack">
+      <End Role="tblCatSiteRack" EntitySet="SiteRack" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatSubDireccion" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatSubDireccion">
+      <End Role="tblCatSubDireccion" EntitySet="SubDireccion" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatSubGerencia" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatSubGerencia">
+      <End Role="tblCatSubGerencia" EntitySet="SubGerencia" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatSubZona" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatSubZona">
+      <End Role="tblCatSubZona" EntitySet="SubZona" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTelefonoUsuario_tblCatTipoTelefono" Association="KiiniNet_v2Model.FK_tblTelefonoUsuario_tblCatTipoTelefono">
+      <End Role="tblCatTipoTelefono" EntitySet="TipoTelefono" />
+      <End Role="tblTelefonoUsuario" EntitySet="TelefonoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario">
+      <End Role="tblCatTipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatTipoUsuario">
+      <End Role="tblCatTipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsuario_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblUsuario_tblCatTipoUsuario">
+      <End Role="tblCatTipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="tblUsuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatTorre" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatTorre">
+      <End Role="tblCatTorre" EntitySet="Torre" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUbicacion_tblCatZona" Association="KiiniNet_v2Model.FK_tblUbicacion_tblCatZona">
+      <End Role="tblCatZona" EntitySet="Zona" />
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCorreoUsuario_tblUsuario" Association="KiiniNet_v2Model.FK_tblCorreoUsuario_tblUsuario">
+      <End Role="tblUsuario" EntitySet="Usuario" />
+      <End Role="tblCorreoUsuario" EntitySet="CorreoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsuario_tblOrganizacion" Association="KiiniNet_v2Model.FK_tblUsuario_tblOrganizacion">
+      <End Role="tblOrganizacion" EntitySet="Organizacion" />
+      <End Role="tblUsuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblTelefonoUsuario_tblUsuario" Association="KiiniNet_v2Model.FK_tblTelefonoUsuario_tblUsuario">
+      <End Role="tblUsuario" EntitySet="Usuario" />
+      <End Role="tblTelefonoUsuario" EntitySet="TelefonoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUsuario_tblUbicacion" Association="KiiniNet_v2Model.FK_tblUsuario_tblUbicacion">
+      <End Role="tblUbicacion" EntitySet="Ubicacion" />
+      <End Role="tblUsuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Campus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Domicilios" Relationship="KiiniNet_v2Model.FK_tblDomicilio_tblCatCampus" FromRole="tblCatCampus" ToRole="tblDomicilio" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatCampus" FromRole="tblCatCampus" ToRole="tblUbicacion" />
+  </EntityType>
+  <EntityType Name="Colonia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdMunicipio" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CP" Type="Int32" />
+    <NavigationProperty Name="Municipio" Relationship="KiiniNet_v2Model.FK_c03_Colonias_c02_Municipios" FromRole="tblCatColonia" ToRole="tblCatMunicipio" />
+    <NavigationProperty Name="Domicilios" Relationship="KiiniNet_v2Model.FK_tblDomicilio_tblCatColonias" FromRole="tblCatColonia" ToRole="tblDomicilio" />
+  </EntityType>
+  <EntityType Name="Compañia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatCompania" FromRole="tblCatCompania" ToRole="tblOrganizacion" />
+  </EntityType>
+  <EntityType Name="Direccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatDireccion" FromRole="tblCatDireccion" ToRole="tblOrganizacion" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Municipios" Relationship="KiiniNet_v2Model.FK_c02_Municipios_c01_Estados" FromRole="tblCatEstado" ToRole="tblCatMunicipio" />
+  </EntityType>
+  <EntityType Name="Gerencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatGerencia" FromRole="tblCatGerencia" ToRole="tblOrganizacion" />
+  </EntityType>
+  <EntityType Name="Holding">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatHolding" FromRole="tblCatHolding" ToRole="tblOrganizacion" />
+  </EntityType>
+  <EntityType Name="Jefatura">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatJefatura" FromRole="tblCatJefatura" ToRole="tblOrganizacion" />
+  </EntityType>
+  <EntityType Name="Municipio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdEstado" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Colonias" Relationship="KiiniNet_v2Model.FK_c03_Colonias_c02_Municipios" FromRole="tblCatMunicipio" ToRole="tblCatColonia" />
+    <NavigationProperty Name="Estado" Relationship="KiiniNet_v2Model.FK_c02_Municipios_c01_Estados" FromRole="tblCatMunicipio" ToRole="tblCatEstado" />
+  </EntityType>
+  <EntityType Name="Pais">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatPais" FromRole="tblCatPais" ToRole="tblUbicacion" />
+  </EntityType>
+  <EntityType Name="Piso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatPiso" FromRole="tblCatPiso" ToRole="tblUbicacion" />
+  </EntityType>
+  <EntityType Name="SiteRack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatSiteRack" FromRole="tblCatSiteRack" ToRole="tblUbicacion" />
+  </EntityType>
+  <EntityType Name="SubDireccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatSubDireccion" FromRole="tblCatSubDireccion" ToRole="tblOrganizacion" />
+  </EntityType>
+  <EntityType Name="SubGerencia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatSubGerencia" FromRole="tblCatSubGerencia" ToRole="tblOrganizacion" />
+  </EntityType>
+  <EntityType Name="SubZona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatSubZona" FromRole="tblCatSubZona" ToRole="tblUbicacion" />
+  </EntityType>
+  <EntityType Name="TipoTelefono">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="TelefonosUsuario" Relationship="KiiniNet_v2Model.FK_tblTelefonoUsuario_tblCatTipoTelefono" FromRole="tblCatTipoTelefono" ToRole="tblTelefonoUsuario" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Organizaciones" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario" FromRole="tblCatTipoUsuario" ToRole="tblOrganizacion" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatTipoUsuario" FromRole="tblCatTipoUsuario" ToRole="tblUbicacion" />
+    <NavigationProperty Name="Usuarios" Relationship="KiiniNet_v2Model.FK_tblUsuario_tblCatTipoUsuario" FromRole="tblCatTipoUsuario" ToRole="tblUsuario" />
+  </EntityType>
+  <EntityType Name="Torre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatTorre" FromRole="tblCatTorre" ToRole="tblUbicacion" />
+  </EntityType>
+  <EntityType Name="Zona">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Ubicaciones" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatZona" FromRole="tblCatZona" ToRole="tblUbicacion" />
+  </EntityType>
+  <EntityType Name="CorreoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="Correo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_tblCorreoUsuario_tblUsuario" FromRole="tblCorreoUsuario" ToRole="tblUsuario" />
+  </EntityType>
+  <EntityType Name="Domicilio">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCampus" Type="Int32" Nullable="false" />
+    <Property Name="IdColonia" Type="Int32" Nullable="false" />
+    <Property Name="Calle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoExt" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoInt" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Campus" Relationship="KiiniNet_v2Model.FK_tblDomicilio_tblCatCampus" FromRole="tblDomicilio" ToRole="tblCatCampus" />
+    <NavigationProperty Name="Colonia" Relationship="KiiniNet_v2Model.FK_tblDomicilio_tblCatColonias" FromRole="tblDomicilio" ToRole="tblCatColonia" />
+  </EntityType>
+  <EntityType Name="Organizacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdHolding" Type="Int32" Nullable="false" />
+    <Property Name="IdCompania" Type="Int32" Nullable="false" />
+    <Property Name="IdDireccion" Type="Int32" />
+    <Property Name="IdSubDireccion" Type="Int32" />
+    <Property Name="IdGerencia" Type="Int32" />
+    <Property Name="IdSubGerencia" Type="Int32" />
+    <Property Name="IdJefatura" Type="Int32" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="Compañia" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatCompania" FromRole="tblOrganizacion" ToRole="tblCatCompania" />
+    <NavigationProperty Name="Direccion" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatDireccion" FromRole="tblOrganizacion" ToRole="tblCatDireccion" />
+    <NavigationProperty Name="Gerencia" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatGerencia" FromRole="tblOrganizacion" ToRole="tblCatGerencia" />
+    <NavigationProperty Name="Holding" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatHolding" FromRole="tblOrganizacion" ToRole="tblCatHolding" />
+    <NavigationProperty Name="Jefatura" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatJefatura" FromRole="tblOrganizacion" ToRole="tblCatJefatura" />
+    <NavigationProperty Name="SubDireccion" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatSubDireccion" FromRole="tblOrganizacion" ToRole="tblCatSubDireccion" />
+    <NavigationProperty Name="SubGerencia" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatSubGerencia" FromRole="tblOrganizacion" ToRole="tblCatSubGerencia" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario" FromRole="tblOrganizacion" ToRole="tblCatTipoUsuario" />
+    <NavigationProperty Name="Usuarios" Relationship="KiiniNet_v2Model.FK_tblUsuario_tblOrganizacion" FromRole="tblOrganizacion" ToRole="tblUsuario" />
+  </EntityType>
+  <EntityType Name="TelefonoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoTelefono" Type="Int32" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Numero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TipoTelefono" Relationship="KiiniNet_v2Model.FK_tblTelefonoUsuario_tblCatTipoTelefono" FromRole="tblTelefonoUsuario" ToRole="tblCatTipoTelefono" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_tblTelefonoUsuario_tblUsuario" FromRole="tblTelefonoUsuario" ToRole="tblUsuario" />
+  </EntityType>
+  <EntityType Name="Ubicacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdPais" Type="Int32" Nullable="false" />
+    <Property Name="IdCampus" Type="Int32" Nullable="false" />
+    <Property Name="IdTorre" Type="Int32" />
+    <Property Name="IdPiso" Type="Int32" />
+    <Property Name="IdZona" Type="Int32" />
+    <Property Name="IdSubZona" Type="Int32" />
+    <Property Name="IdSiteRack" Type="Int32" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Campus" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatCampus" FromRole="tblUbicacion" ToRole="tblCatCampus" />
+    <NavigationProperty Name="Pais" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatPais" FromRole="tblUbicacion" ToRole="tblCatPais" />
+    <NavigationProperty Name="Piso" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatPiso" FromRole="tblUbicacion" ToRole="tblCatPiso" />
+    <NavigationProperty Name="SiteRack" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatSiteRack" FromRole="tblUbicacion" ToRole="tblCatSiteRack" />
+    <NavigationProperty Name="SubZona" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatSubZona" FromRole="tblUbicacion" ToRole="tblCatSubZona" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatTipoUsuario" FromRole="tblUbicacion" ToRole="tblCatTipoUsuario" />
+    <NavigationProperty Name="Torre" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatTorre" FromRole="tblUbicacion" ToRole="tblCatTorre" />
+    <NavigationProperty Name="Zona" Relationship="KiiniNet_v2Model.FK_tblUbicacion_tblCatZona" FromRole="tblUbicacion" ToRole="tblCatZona" />
+    <NavigationProperty Name="Usuarios" Relationship="KiiniNet_v2Model.FK_tblUsuario_tblUbicacion" FromRole="tblUbicacion" ToRole="tblUsuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdUbicacion" Type="Int32" Nullable="false" />
+    <Property Name="IdOrganizacion" Type="Int32" />
+    <Property Name="ApellidoPaterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApellidoMaterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DirectorioActivo" Type="Boolean" Nullable="false" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblUsuario_tblCatTipoUsuario" FromRole="tblUsuario" ToRole="tblCatTipoUsuario" />
+    <NavigationProperty Name="CorreosUsuario" Relationship="KiiniNet_v2Model.FK_tblCorreoUsuario_tblUsuario" FromRole="tblUsuario" ToRole="tblCorreoUsuario" />
+    <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_tblUsuario_tblOrganizacion" FromRole="tblUsuario" ToRole="tblOrganizacion" />
+    <NavigationProperty Name="TelefonosUsuario" Relationship="KiiniNet_v2Model.FK_tblTelefonoUsuario_tblUsuario" FromRole="tblUsuario" ToRole="tblTelefonoUsuario" />
+    <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_tblUsuario_tblUbicacion" FromRole="tblUsuario" ToRole="tblUbicacion" />
+  </EntityType>
+  <Association Name="FK_tblDomicilio_tblCatCampus">
+    <End Type="KiiniNet_v2Model.Campus" Role="tblCatCampus" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Domicilio" Role="tblDomicilio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatCampus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDomicilio">
+        <PropertyRef Name="IdCampus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatCampus">
+    <End Type="KiiniNet_v2Model.Campus" Role="tblCatCampus" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatCampus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdCampus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_c03_Colonias_c02_Municipios">
+    <End Type="KiiniNet_v2Model.Municipio" Role="tblCatMunicipio" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Colonia" Role="tblCatColonia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatMunicipio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCatColonia">
+        <PropertyRef Name="IdMunicipio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblDomicilio_tblCatColonias">
+    <End Type="KiiniNet_v2Model.Colonia" Role="tblCatColonia" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Domicilio" Role="tblDomicilio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatColonia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblDomicilio">
+        <PropertyRef Name="IdColonia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatCompania">
+    <End Type="KiiniNet_v2Model.Compañia" Role="tblCatCompania" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatCompania">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdCompania" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatDireccion">
+    <End Type="KiiniNet_v2Model.Direccion" Role="tblCatDireccion" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatDireccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_c02_Municipios_c01_Estados">
+    <End Type="KiiniNet_v2Model.Estado" Role="tblCatEstado" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Municipio" Role="tblCatMunicipio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatEstado">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCatMunicipio">
+        <PropertyRef Name="IdEstado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatGerencia">
+    <End Type="KiiniNet_v2Model.Gerencia" Role="tblCatGerencia" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatGerencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdGerencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatHolding">
+    <End Type="KiiniNet_v2Model.Holding" Role="tblCatHolding" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatHolding">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdHolding" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatJefatura">
+    <End Type="KiiniNet_v2Model.Jefatura" Role="tblCatJefatura" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatJefatura">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdJefatura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatPais">
+    <End Type="KiiniNet_v2Model.Pais" Role="tblCatPais" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatPais">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdPais" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatPiso">
+    <End Type="KiiniNet_v2Model.Piso" Role="tblCatPiso" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatPiso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdPiso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatSiteRack">
+    <End Type="KiiniNet_v2Model.SiteRack" Role="tblCatSiteRack" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSiteRack">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdSiteRack" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatSubDireccion">
+    <End Type="KiiniNet_v2Model.SubDireccion" Role="tblCatSubDireccion" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSubDireccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdSubDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatSubGerencia">
+    <End Type="KiiniNet_v2Model.SubGerencia" Role="tblCatSubGerencia" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSubGerencia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdSubGerencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatSubZona">
+    <End Type="KiiniNet_v2Model.SubZona" Role="tblCatSubZona" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatSubZona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdSubZona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTelefonoUsuario_tblCatTipoTelefono">
+    <End Type="KiiniNet_v2Model.TipoTelefono" Role="tblCatTipoTelefono" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.TelefonoUsuario" Role="tblTelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoTelefono">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblTelefonoUsuario">
+        <PropertyRef Name="IdTipoTelefono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatTipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="tblCatTipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblOrganizacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatTipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="tblCatTipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsuario_tblCatTipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="tblCatTipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Usuario" Role="tblUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUsuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatTorre">
+    <End Type="KiiniNet_v2Model.Torre" Role="tblCatTorre" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatTorre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdTorre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUbicacion_tblCatZona">
+    <End Type="KiiniNet_v2Model.Zona" Role="tblCatZona" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCatZona">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUbicacion">
+        <PropertyRef Name="IdZona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCorreoUsuario_tblUsuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="tblUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.CorreoUsuario" Role="tblCorreoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblCorreoUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsuario_tblOrganizacion">
+    <End Type="KiiniNet_v2Model.Organizacion" Role="tblOrganizacion" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Usuario" Role="tblUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrganizacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUsuario">
+        <PropertyRef Name="IdUbicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblTelefonoUsuario_tblUsuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="tblUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.TelefonoUsuario" Role="tblTelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblTelefonoUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUsuario_tblUbicacion">
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="tblUbicacion" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Usuario" Role="tblUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUbicacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblUsuario">
+        <PropertyRef Name="IdUbicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

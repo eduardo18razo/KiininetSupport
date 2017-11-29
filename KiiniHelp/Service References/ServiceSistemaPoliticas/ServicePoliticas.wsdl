@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServicePoliticas" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneralDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusAsignacionSubRolGeneralDefault" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneralDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusAsignacionSubRolGeneralDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusTicketSubRolGeneralDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusTicketSubRolGeneralDefault" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusTicketSubRolGeneralDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusTicketSubRolGeneralDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneral_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusAsignacionSubRolGeneral" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneral_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusAsignacionSubRolGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusTicketSubRolGeneral_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusTicketSubRolGeneral" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_ObtenerEstatusTicketSubRolGeneral_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusTicketSubRolGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneralDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusAsignacionSubRolGeneralDefault" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneralDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusAsignacionSubRolGeneralDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusTicketSubRolGeneralDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusTicketSubRolGeneralDefault" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusTicketSubRolGeneralDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusTicketSubRolGeneralDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneral_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusAsignacionSubRolGeneral" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneral_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusAsignacionSubRolGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusTicketSubRolGeneral_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusTicketSubRolGeneral" />
+  </wsdl:message>
+  <wsdl:message name="IServicePoliticas_HabilitarEstatusTicketSubRolGeneral_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarEstatusTicketSubRolGeneralResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServicePoliticas">
+    <wsdl:operation name="ObtenerEstatusAsignacionSubRolGeneralDefault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusAsignacionSubRolGeneralDefault" message="tns:IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneralDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusAsignacionSubRolGeneralDefaultResponse" message="tns:IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneralDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusTicketSubRolGeneralDefault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusTicketSubRolGeneralDefault" message="tns:IServicePoliticas_ObtenerEstatusTicketSubRolGeneralDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusTicketSubRolGeneralDefaultResponse" message="tns:IServicePoliticas_ObtenerEstatusTicketSubRolGeneralDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusAsignacionSubRolGeneral">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusAsignacionSubRolGeneral" message="tns:IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneral_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusAsignacionSubRolGeneralResponse" message="tns:IServicePoliticas_ObtenerEstatusAsignacionSubRolGeneral_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusTicketSubRolGeneral">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusTicketSubRolGeneral" message="tns:IServicePoliticas_ObtenerEstatusTicketSubRolGeneral_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/ObtenerEstatusTicketSubRolGeneralResponse" message="tns:IServicePoliticas_ObtenerEstatusTicketSubRolGeneral_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusAsignacionSubRolGeneralDefault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusAsignacionSubRolGeneralDefault" message="tns:IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneralDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusAsignacionSubRolGeneralDefaultResponse" message="tns:IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneralDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusTicketSubRolGeneralDefault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusTicketSubRolGeneralDefault" message="tns:IServicePoliticas_HabilitarEstatusTicketSubRolGeneralDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusTicketSubRolGeneralDefaultResponse" message="tns:IServicePoliticas_HabilitarEstatusTicketSubRolGeneralDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusAsignacionSubRolGeneral">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusAsignacionSubRolGeneral" message="tns:IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneral_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusAsignacionSubRolGeneralResponse" message="tns:IServicePoliticas_HabilitarEstatusAsignacionSubRolGeneral_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusTicketSubRolGeneral">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusTicketSubRolGeneral" message="tns:IServicePoliticas_HabilitarEstatusTicketSubRolGeneral_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusTicketSubRolGeneralResponse" message="tns:IServicePoliticas_HabilitarEstatusTicketSubRolGeneral_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicePoliticas" type="tns:IServicePoliticas">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerEstatusAsignacionSubRolGeneralDefault">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/ObtenerEstatusAsignacionSubRolGeneralDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusTicketSubRolGeneralDefault">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/ObtenerEstatusTicketSubRolGeneralDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusAsignacionSubRolGeneral">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/ObtenerEstatusAsignacionSubRolGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusTicketSubRolGeneral">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/ObtenerEstatusTicketSubRolGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusAsignacionSubRolGeneralDefault">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/HabilitarEstatusAsignacionSubRolGeneralDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusTicketSubRolGeneralDefault">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/HabilitarEstatusTicketSubRolGeneralDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusAsignacionSubRolGeneral">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/HabilitarEstatusAsignacionSubRolGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarEstatusTicketSubRolGeneral">
+      <soap:operation soapAction="http://tempuri.org/IServicePoliticas/HabilitarEstatusTicketSubRolGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicePoliticas">
+    <wsdl:port name="BasicHttpBinding_IServicePoliticas" binding="tns:BasicHttpBinding_IServicePoliticas">
+      <soap:address location="http://localhost:15277/Sistema/ServicePoliticas.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

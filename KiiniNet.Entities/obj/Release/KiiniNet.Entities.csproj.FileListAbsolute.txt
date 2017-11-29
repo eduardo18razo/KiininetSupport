@@ -1,0 +1,4 @@
+C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniNet.Entities\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniNet.Entities\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniNet.Entities\obj\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniNet.Entities\obj\Release\KiiniNet.Entities.pdb

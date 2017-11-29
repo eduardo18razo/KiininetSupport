@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ae5f56be-a4b3-4f61-a4a0-8e5ea638bae9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceArea.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceArea12.xsd" MetadataType="Schema" ID="534c69c2-8621-4ed0-952c-ad1036a1dc0d" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceArea1.xsd" MetadataType="Schema" ID="d797c551-e6ff-47a4-9f02-ede052182089" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceArea2.xsd" MetadataType="Schema" ID="51e97341-3848-41a1-9e22-74a709cf6d5c" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceArea7.xsd" MetadataType="Schema" ID="3721c9e9-cd63-4923-87da-b05e04e86645" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceArea4.xsd" MetadataType="Schema" ID="87c407ce-d390-4f99-a8ff-9bd9b6e6354b" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceArea5.xsd" MetadataType="Schema" ID="8ca801ae-c168-4410-a70e-a21a396edb38" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceArea6.xsd" MetadataType="Schema" ID="e46c8219-01c1-4c30-995b-1eca7e7763f7" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceArea.xsd" MetadataType="Schema" ID="ec3dec17-7663-4c84-9734-e0caa8787778" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceArea3.xsd" MetadataType="Schema" ID="e3469f64-587d-4530-9ecd-a8f427368bd4" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceArea8.xsd" MetadataType="Schema" ID="116940e6-3a80-4d40-8026-c27e0799a658" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceArea.wsdl" MetadataType="Wsdl" ID="3a04281f-1a9a-46c1-8df7-97ff3aa3d594" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?wsdl" />
+    <MetadataFile FileName="ServiceArea9.xsd" MetadataType="Schema" ID="a4c401a1-80a9-42af-9e2d-691ef513592c" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceArea13.xsd" MetadataType="Schema" ID="39f4d986-78f1-4083-b699-6dc53aa586d9" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceArea10.xsd" MetadataType="Schema" ID="fb83ff1b-cccf-4272-8cad-aef40ab277e5" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceArea11.xsd" MetadataType="Schema" ID="ddbd9fcd-8653-49af-84a1-edabfe7d7ed6" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceArea.disco" MetadataType="Disco" ID="1f70b547-48d2-406c-ab2f-4c830117ffbc" SourceId="1" SourceUrl="http://localhost:15277/ServiceArea.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

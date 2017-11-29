@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1acd7544-8184-4455-b17f-d58c1c02c0f1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceConsultas.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceConsultas.wsdl" MetadataType="Wsdl" ID="fc9e00b7-7a13-4edb-8289-b56ee9ba213c" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?wsdl" />
+    <MetadataFile FileName="ServiceConsultas5.xsd" MetadataType="Schema" ID="1296d531-c628-4cfd-8253-aac472572c06" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceConsultas3.xsd" MetadataType="Schema" ID="159b4d70-2823-489c-888e-8466f608cf24" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceConsultas7.xsd" MetadataType="Schema" ID="5c0aefb1-ff7d-48f2-8dfb-ed1ce8495722" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceConsultas14.xsd" MetadataType="Schema" ID="45d56cb0-c549-4765-b8d2-11233a1e4553" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceConsultas.disco" MetadataType="Disco" ID="554646a0-ef2e-468e-90b1-ee64216e50cc" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?disco" />
+    <MetadataFile FileName="ServiceConsultas15.xsd" MetadataType="Schema" ID="28fa72ef-6d4a-4634-a679-e5c2e6e31d00" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceConsultas2.xsd" MetadataType="Schema" ID="a289f0d3-0473-445f-97a7-a609a860e028" SourceId="1" SourceUrl="http://localhost:15277/ServiceConsultas.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

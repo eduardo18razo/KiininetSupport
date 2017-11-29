@@ -1,0 +1,71 @@
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KinniNet.Data.pdb
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\EntityFramework.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\EntityFramework.xml
+D:\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\es\EntityFramework.resources.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
+D:\KiiniNet\App\KinniNet\KinniNet.Data\obj\Release\KinniNet.Data.dll
+D:\KiiniNet\App\KinniNet\KinniNet.Data\obj\Release\KinniNet.Data.pdb
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\EntityFramework.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\EntityFramework.xml
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\bin\Release\es\EntityFramework.resources.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\obj\Release\KinniNet.Data.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KinniNet\KinniNet.Data\obj\Release\KinniNet.Data.pdb
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\EntityFramework.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\EntityFramework.xml
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\bin\Release\es\EntityFramework.resources.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\obj\Release\KinniNet.Data.dll
+C:\Users\Eduardo\Documents\Visual Studio 2013\Projects\KiiniNet\App\KiiniNet\KinniNet.Data\obj\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\EntityFramework.dll
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\EntityFramework.xml
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\bin\Release\es\EntityFramework.resources.dll
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\obj\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Documents\Visual Studio 2013\KiiniNet\KinniNet.Data\obj\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\EntityFramework.dll
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\EntityFramework.xml
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\bin\Release\es\EntityFramework.resources.dll
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\obj\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\KiiniNet\App\KinniNet.Data\obj\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\obj\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Repo\KinniNet.Data\obj\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\obj\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Data\obj\Release\KinniNet.Data.pdb

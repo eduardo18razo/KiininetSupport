@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7852A613-D901-44E2-9319-197C2CC9C390}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KinniNet.Core</RootNamespace>
+    <AssemblyName>KinniNet.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EAGetMail40, Version=4.6.3.2, Culture=neutral, PublicKeyToken=e10a0812eb29cf94, processorArchitecture=MSIL">
+      <HintPath>..\packages\EAGetMail.4.6.3.2\lib\net40\EAGetMail40.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EASendMail40, Version=7.3.1.2, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
+      <HintPath>..\packages\EASendMail.7.3.1.2\lib\net40\EASendMail40.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Demonio\BusinessDemonioSms.cs" />
+    <Compile Include="Demonio\BusinessTicketMailService.cs" />
+    <Compile Include="Demonio\Imap4Mail.cs" />
+    <Compile Include="Operacion\BusinessAtencionTicket.cs" />
+    <Compile Include="Operacion\BusinessConsultas.cs" />
+    <Compile Include="Demonio\BusinessDemonio.cs" />
+    <Compile Include="Operacion\BusinessArea.cs" />
+    <Compile Include="Operacion\BusinessFrecuencia.cs" />
+    <Compile Include="Operacion\BusinessNota.cs" />
+    <Compile Include="Operacion\BusinessPuesto.cs" />
+    <Compile Include="Operacion\BusinessTicket.cs" />
+    <Compile Include="Sistema\BusinessCanal.cs" />
+    <Compile Include="Sistema\BusinessCatalogos.cs" />
+    <Compile Include="Operacion\BusinessArbolAcceso.cs" />
+    <Compile Include="Operacion\BusinessEncuesta.cs" />
+    <Compile Include="Operacion\BusinessGrupoUsuario.cs" />
+    <Compile Include="Operacion\BusinessInformacionConsulta.cs" />
+    <Compile Include="Operacion\BusinessMascaras.cs" />
+    <Compile Include="Operacion\BusinessOrganizacion.cs" />
+    <Compile Include="Operacion\BusinessSla.cs" />
+    <Compile Include="Operacion\BusinessSubGrupoUsuario.cs" />
+    <Compile Include="Operacion\BusinessUbicacion.cs" />
+    <Compile Include="Operacion\BusinessUsuarios.cs" />
+    <Compile Include="Parametros\BusinessParametros.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\BusinessSecurity.cs" />
+    <Compile Include="Sistema\BusinessDomicilioSistema.cs" />
+    <Compile Include="Sistema\BusinessEstatus.cs" />
+    <Compile Include="Operacion\BusinessDiasHorario.cs" />
+    <Compile Include="Sistema\BusinessImpactoUrgencia.cs" />
+    <Compile Include="Sistema\BusinessNotificacion.cs" />
+    <Compile Include="Sistema\BusinessPoliticas.cs" />
+    <Compile Include="Sistema\BusinessRoles.cs" />
+    <Compile Include="Sistema\BusinessSubRol.cs" />
+    <Compile Include="Sistema\BusinessTipoArbolAcceso.cs" />
+    <Compile Include="Sistema\BusinessTipoCampoMascara.cs" />
+    <Compile Include="Sistema\BusinessTipoDocumento.cs" />
+    <Compile Include="Sistema\BusinessTipoEncuesta.cs" />
+    <Compile Include="Sistema\BusinessTipoGrupo.cs" />
+    <Compile Include="Sistema\BusinessTipoInfConsulta.cs" />
+    <Compile Include="Sistema\BusinessTipoNota.cs" />
+    <Compile Include="Sistema\BusinessTipoTelefono.cs" />
+    <Compile Include="Sistema\BusinessTipoUsuario.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KiiniNet.Entities\KiiniNet.Entities.csproj">
+      <Project>{C003D316-9B3C-44EF-B6B4-48C98936B0A7}</Project>
+      <Name>KiiniNet.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KinniNet.Business.Utils\KinniNet.Business.Utils.csproj">
+      <Project>{911050f0-aacf-4706-8eef-94754856737f}</Project>
+      <Name>KinniNet.Business.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KinniNet.Data\KinniNet.Data.csproj">
+      <Project>{9791FEA4-D188-41F0-820F-E0D3A309684B}</Project>
+      <Name>KinniNet.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Habilite la restauración del paquete NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
