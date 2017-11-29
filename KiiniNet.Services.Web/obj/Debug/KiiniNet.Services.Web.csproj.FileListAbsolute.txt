@@ -36,6 +36,25 @@ C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Services.Web\bin\KinniNet.Da
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.csprojResolveAssemblyReference.cache
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.dll
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KiiniNet.Services.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KinniNet.Core.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\EASendMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KiiniNet.Services.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KinniNet.Core.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\bin\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.dll.config
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.pdb
@@ -44,14 +63,9 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\K
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KinniNet.Business.Utils.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KinniNet.Core.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\EPPlus.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\Microsoft.Office.Interop.Word.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\Microsoft.Office.Interop.Excel.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\Microsoft.Office.Interop.PowerPoint.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\office.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\EAGetMail40.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\EASendMail40.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KinniNet.Data.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\Microsoft.Vbe.Interop.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KiiniNet.Services.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KiiniNet.Entities.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\KinniNet.Business.Utils.pdb

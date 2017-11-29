@@ -21,7 +21,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Grupos" /></h3>
                             </div>
                             <p>
-                                Texto para grupos
+                                Un grupo está conformado por un conjunto de usuarios (usuarios finales y operadores) que tienen privilegios comunes sobre las funciones dentro de su cuenta. El rol es la función que desempeña un usuario. Los usuarios deben estar asignados a por lo menos un grupo, pero pueden pertenecer a más de uno. Es importante tomar en cuenta que: 1) un grupo está ligado únicamente a un rol, 2) varios grupos pueden estar ligandos al mismo rol, 3) un usuario puede tener más de un rol y 4) un usuario puede pertenecer a más de un Grupo, solamente si tiene dicho rol.
                             </p>
                         </div>
                     </div>

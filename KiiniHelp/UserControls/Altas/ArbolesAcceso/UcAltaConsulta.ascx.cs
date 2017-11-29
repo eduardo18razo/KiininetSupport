@@ -911,7 +911,8 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             {
                 Metodos.LimpiarCombo(ddlNivel1);
                 ddlNivel1_OnSelectedIndexChanged(ddlNivel1, null);
-                //Metodos.LlenaComboCatalogo(ddlNivel1, _servicioArbolAcceso.ObtenerNivel1(IdArea, TipoArbol, IdTipoUsuario, true));
+                //Lo descomento ECL
+                Metodos.LlenaComboCatalogo(ddlNivel1, _servicioArbolAcceso.ObtenerNivel1(IdArea, TipoArbol, IdTipoUsuario, true));
             }
             catch (Exception ex)
             {

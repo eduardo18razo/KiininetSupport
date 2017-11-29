@@ -499,6 +499,33 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.WebControls.Button btnSeleccionarModal;
         
         /// <summary>
+        /// Control divNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNombre;
+        
+        /// <summary>
+        /// Control lblOperacionDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOperacionDescripcion;
+        
+        /// <summary>
+        /// Control txtDescripcionCatalogo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionCatalogo;
+        
+        /// <summary>
         /// Control dataCampus.
         /// </summary>
         /// <remarks>
@@ -587,24 +614,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCapturaDescripcion;
-        
-        /// <summary>
-        /// Control lblOperacionDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOperacionDescripcion;
-        
-        /// <summary>
-        /// Control txtDescripcionCatalogo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcionCatalogo;
         
         /// <summary>
         /// Control chkHabilitado.

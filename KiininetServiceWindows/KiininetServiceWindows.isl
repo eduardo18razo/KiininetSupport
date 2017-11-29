@@ -3983,12 +3983,12 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PatchSequence</td><td>1.0.0</td></row>
 		<row><td>SaveAsSchema</td><td/></row>
 		<row><td>SccEnabled</td><td>0</td></row>
-		<row><td>SccPath</td><td/></row>
+		<row><td>SccPath</td><td>$/Calidad CPX/KiininetServiceWindows</td></row>
 		<row><td>SchemaVersion</td><td>776</td></row>
 		<row><td>Type</td><td>MSIE</td></row>
-		<row><td>VSSccAuxPath</td><td>SAK</td></row>
-		<row><td>VSSccLocalPath</td><td>SAK</td></row>
-		<row><td>VSSccProvider</td><td>SAK</td></row>
+		<row><td>VSSccAuxPath</td><td>https://kiininettfs.visualstudio.com</td></row>
+		<row><td>VSSccLocalPath</td><td>.</td></row>
+		<row><td>VSSccProvider</td><td>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</td></row>
 	</table>
 
 	<table name="InstallUISequence">
