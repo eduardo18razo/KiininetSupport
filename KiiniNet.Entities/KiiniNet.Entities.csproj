@@ -143,6 +143,7 @@
     <Compile Include="Operacion\Tickets\SlaEstimadoTicketDetalle.cs" />
     <Compile Include="Operacion\Tickets\Ticket.cs" />
     <Compile Include="Operacion\Tickets\TicketConversacion.cs" />
+    <Compile Include="Operacion\Tickets\TicketCorreo.cs" />
     <Compile Include="Operacion\Tickets\TicketGrupoUsuario.cs" />
     <Compile Include="Operacion\Tickets\TicketAsignacion.cs" />
     <Compile Include="Operacion\Tickets\TicketEstatus.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Parametros\EstatusTicketSubRolGeneralDefault.cs" />
     <Compile Include="Cat\Usuario\HorarioDetalle.cs" />
     <Compile Include="Parametros\ParametroCorreo.cs" />
+    <Compile Include="Parametros\ParametroDatosAdicionales.cs" />
     <Compile Include="Parametros\ParametroPassword.cs" />
     <Compile Include="Parametros\ParametrosAplicacion.cs" />
     <Compile Include="Parametros\ParametrosGenerales.cs" />

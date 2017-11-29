@@ -13,6 +13,7 @@ using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSeguridad;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KiiniHelp.ServiceTicket;
+using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Helper;
@@ -30,6 +31,7 @@ namespace KiiniHelp.UserControls.Temporal
         private readonly ServiceSecurityClient _servicioSeguridad = new ServiceSecurityClient();
         private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         private readonly ServiceArbolAccesoClient _servicioArbolAccesoClient = new ServiceArbolAccesoClient();
+        private readonly ServiceUsuariosClient _servicioUsuariosClient = new ServiceUsuariosClient();
         private List<Control> _lstControles;
         private List<string> _lstError = new List<string>();
         private List<string> Alerta
@@ -405,7 +407,7 @@ namespace KiiniHelp.UserControls.Temporal
                                 ID = "lstRadio" + campo.NombreCampo,
                                 Text = campo.Descripcion,
                                 RepeatColumns = 5,
-                                RepeatDirection = RepeatDirection.Horizontal,                                                       
+                                RepeatDirection = RepeatDirection.Horizontal,
                             };
                             lstRadio.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             if (campo.EsArchivo)
@@ -531,12 +533,12 @@ namespace KiiniHelp.UserControls.Temporal
                                 ID = "txt" + campo.NombreCampo,
                                 CssClass = "form-control"
                             };
-                             CalendarExtender ceeFechaOpcion = new CalendarExtender
-                            {
-                                ID = "cee" + campo.Descripcion,
-                                TargetControlID = txtFecha.ID,
-                                Format = "dd/MM/yyyy"
-                            };
+                            CalendarExtender ceeFechaOpcion = new CalendarExtender
+                           {
+                               ID = "cee" + campo.Descripcion,
+                               TargetControlID = txtFecha.ID,
+                               Format = "dd/MM/yyyy"
+                           };
                             txtFecha.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             //txtFecha.Attributes["placeholder"] = campo.Descripcion; jgb
                             txtFecha.Attributes["for"] = "FECHA";
@@ -562,12 +564,12 @@ namespace KiiniHelp.UserControls.Temporal
                                 ID = "txt" + campo.NombreCampo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio,
                                 CssClass = "form-control"
                             };
-                             CalendarExtender ceeFechaInicio = new CalendarExtender
-                            {
-                                ID = "cee" + campo.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio,
-                                TargetControlID = txtFechaInicio.ID,
-                                Format = "dd/MM/yyyy"
-                            };
+                            CalendarExtender ceeFechaInicio = new CalendarExtender
+                           {
+                               ID = "cee" + campo.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio,
+                               TargetControlID = txtFechaInicio.ID,
+                               Format = "dd/MM/yyyy"
+                           };
                             txtFechaInicio.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             //txtFechaInicio.Attributes["placeholder"] = campo.Descripcion; jgb
                             txtFechaInicio.Attributes["for"] = "FECHAINICIO";
@@ -937,21 +939,22 @@ namespace KiiniHelp.UserControls.Temporal
             try
             {
                 List<HelperCampoMascaraCaptura> capturaMascara = ObtenerCapturaMascara();
-                int idTipoUsuario = Session["UserData"] == null
-                    ? (int) BusinessVariables.EnumTiposUsuario.ClienteInvitado
-                    : ((Usuario) Session["UserData"]).IdTipoUsuario;
-                Usuario user = _servicioSeguridad.GetUserInvitadoDataAutenticate(idTipoUsuario);
-                KiiniNet.Entities.Operacion.Tickets.Ticket result = _servicioTicket.CrearTicket(user.Id, user.Id,
-                    int.Parse(_serviciosParametros.ObtenerParametrosGenerales().FormularioPortal), capturaMascara,
-                    (int) BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
-                hfTicketGenerado.Value = result.Id.ToString();
-                if (CampoRandom)
-                    hfRandomGenerado.Value = result.ClaveRegistro;
-                if (Session["Files"] != null)
-                    ConfirmaArchivos(result.Id);
-                if (OnAceptarModal != null)
-                    OnAceptarModal();
-                Limpiar();
+                ucAltaUsuarioRapida.RegistraUsuario();
+                Usuario user = _servicioUsuariosClient.ObtenerDetalleUsuario(ucAltaUsuarioRapida.IdUsuario);
+                if (user != null)
+                {
+                    KiiniNet.Entities.Operacion.Tickets.Ticket result = _servicioTicket.CrearTicket(user.Id, user.Id,
+                        int.Parse(_serviciosParametros.ObtenerParametrosGenerales().FormularioPortal), capturaMascara,
+                        (int) BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
+                    hfTicketGenerado.Value = result.Id.ToString();
+                    if (CampoRandom)
+                        hfRandomGenerado.Value = result.ClaveRegistro;
+                    if (Session["Files"] != null)
+                        ConfirmaArchivos(result.Id);
+                    if (OnAceptarModal != null)
+                        OnAceptarModal();
+                    Limpiar();
+                }
             }
             catch (Exception ex)
             {

@@ -20,7 +20,6 @@
     <link href="assets/css/elegant-icons.css" rel="stylesheet" />
     <link href="assets/css/bootstrap-markdown.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
-
     <script type="text/javascript">
         function MostrarPopup(modalName) {
             $(modalName).on('shown.bs.modal', function () {
@@ -93,31 +92,31 @@
             </Scripts>
         </asp:ScriptManager>
         <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
-                <ProgressTemplate>
-                    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
-                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
-                    </div>
-                </ProgressTemplate>
-            </asp:UpdateProgress>
+            <ProgressTemplate>
+                <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
+                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
         <header class="header">
             <div class="branding ">
                 <h1 class="logo text-center">
                     <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
                         <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
-                       <%-- <span class="nav-label"><span class="h3"><strong>--%>
-                            <asp:Label runat="server" ID="lblBranding" Visible="false"/>
+                        <%-- <span class="nav-label"><span class="h3"><strong>--%>
+                        <asp:Label runat="server" ID="lblBranding" Visible="false" />
                         <%--   </strong></span></span>--%>
                     </asp:HyperLink>
                 </h1>
             </div>
             <div class="topbar bg_w_header">
                 <div class="search-container">
-                    <div id="main-search" style="padding-top:20px;">      
-                        <i id="main-search-toggle" class="fa fa-search icon"></i>                  
+                    <div id="main-search" style="padding-top: 20px;">
+                        <i id="main-search-toggle" class="fa fa-search icon"></i>
                         <div id="main_search_input_wrapper" class="main_search_input_wrapper">
                             <asp:TextBox ID="main_search_input" ClientIDMode="Static" CssClass="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
                             <span id="clear-search" aria-hidden="true" class="fs1 icon icon_close_alt2 clear-search"></span>
-                        </div>                        
+                        </div>
 
                     </div>
                 </div>
@@ -150,7 +149,7 @@
                                     <span class="arrow" style="right: 25px"></span>
                                     <div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                           <%-- <br />--%>
+                                            <%-- <br />--%>
                                             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <uc1:UcLogCopia runat="server" ID="UcLogCopia" />
@@ -169,53 +168,52 @@
         </header>
         <div id="content-wrapper" class="content-wrapper">
             <div class="container-fluid">
-                <div class="row" style="margin-top:50px;">                          
-                        <div class="module-content collapse in centra-carrusel" id="content-1">
-                            <div class="module-content-inner no-padding-bottom no-padding-top">
-                                <div class="carousel slide" data-ride="carousel" id="carouselPresenter">
-                                    <%
-                                        string[] arch = Directory.GetFiles(ConfigurationManager.AppSettings["RepositorioCarousel"], "*.jpg", SearchOption.TopDirectoryOnly);
-                                        int nNumOfDrives = arch.Length;
+                <div class="row" style="margin-top: 50px;">
+                    <div class="module-content collapse in centra-carrusel" id="content-1">
+                        <div class="module-content-inner no-padding-bottom no-padding-top">
+                            <div class="carousel slide" data-ride="carousel" id="carouselPresenter">
+                                <%
+                                    string[] arch = Directory.GetFiles(ConfigurationManager.AppSettings["RepositorioCarousel"], "*.jpg", SearchOption.TopDirectoryOnly);
+                                    int nNumOfDrives = arch.Length;
 
+                                %>
+                                <ol class="carousel-indicators">
+                                    <% 
+                                        for (int i = 0; i < nNumOfDrives; i++)
+                                        {
+                                            if (i == 0)
+                                                Response.Write(string.Format("<li data-target='#carouselPresenter' data-slide-to='{0}' class='active'></li>", i));
+                                            else
+                                                Response.Write(string.Format("<li data-target='#carouselPresenter' data-slide-to='{0}'></li>", i));
+                                        }
                                     %>
-                                    <ol class="carousel-indicators">
-                                        <% 
-                                            for (int i = 0; i < nNumOfDrives; i++)
-                                            {
-                                                if (i == 0)
-                                                    Response.Write(string.Format("<li data-target='#carouselPresenter' data-slide-to='{0}' class='active'></li>", i));
-                                                else
-                                                    Response.Write(string.Format("<li data-target='#carouselPresenter' data-slide-to='{0}'></li>", i));
-                                            }
-                                        %>
-                                    </ol>
-                                    <div class="carousel-inner">
-                                        <%
-                                            for (int image = 0; image < nNumOfDrives; image++)
-                                            {
-                                                FileInfo info = new FileInfo(arch[image]);
-                                                if (image == 0)
-                                                    Response.Write(string.Format("<div class='item active text-center' style='max-height:454px; max-width: 1200px'>\n" +
-                                                                                    "<img src='assets/carouselImage/{0}' alt='' height='454' width='1200'/>\n" +
-                                                                                "</div>\n", info.Name));
-                                                else
-                                                    Response.Write(string.Format("<div class='item text-center' style='max-height:454px; max-width: 1200px'>\n" +
-                                                                                    "<img src='assets/carouselImage/{0}' alt='' height='454' width='1200'/>\n" +
-                                                                                "</div>\n", info.Name));
-                                            }
-                                        %>
-                                    </div>
-                                    <a class="left carousel-control" data-slide="prev" href="#carouselPresenter">
-                                        <span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span>
-                                    </a><a class="right carousel-control" data-slide="next" href="#carouselPresenter"><span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <%
+                                        for (int image = 0; image < nNumOfDrives; image++)
+                                        {
+                                            FileInfo info = new FileInfo(arch[image]);
+                                            if (image == 0)
+                                                Response.Write(string.Format("<div class='item active text-center' style='max-height:454px; max-width: 1200px'>\n" +
+                                                                                "<img src='assets/carouselImage/{0}' alt='' height='454' width='1200'/>\n" +
+                                                                            "</div>\n", info.Name));
+                                            else
+                                                Response.Write(string.Format("<div class='item text-center' style='max-height:454px; max-width: 1200px'>\n" +
+                                                                                "<img src='assets/carouselImage/{0}' alt='' height='454' width='1200'/>\n" +
+                                                                            "</div>\n", info.Name));
+                                        }
+                                    %>
                                 </div>
+                                <a class="left carousel-control" data-slide="prev" href="#carouselPresenter">
+                                    <span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span>
+                                </a><a class="right carousel-control" data-slide="next" href="#carouselPresenter"><span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a>
                             </div>
                         </div>
+                    </div>
                     <%--</div>--%>
-
                 </div>
                 <%--                <br />--%>
-                <h4 class="title">Para ofrecerte un mejor servicio indicanos que tipo de usuario eres.</h4>              
+                <h4 class="title">Para ofrecerte un mejor servicio indicanos que tipo de usuario eres.</h4>
                 <%--  <hr />
                 <hr />--%>
                 <div id="masonry" class="row">

@@ -41,6 +41,8 @@ namespace KiiniNet.Entities.Cat.Operacion
         [DataMember]
         public bool EsTerminal { get; set; }
         [DataMember]
+        public bool Publico { get; set; }
+        [DataMember]
         public bool Sistema { get; set; }
         [DataMember]
         public bool Habilitado { get; set; }

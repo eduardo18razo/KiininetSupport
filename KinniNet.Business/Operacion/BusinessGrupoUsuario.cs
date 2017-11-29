@@ -65,7 +65,7 @@ namespace KinniNet.Core.Operacion
                 //if (supervisor)
                 //{
                 result = db.GrupoUsuario.Join(db.UsuarioGrupo, gu => gu.Id, ug => ug.IdGrupoUsuario, (gu, ug) => new { gu, ug })
-                    .Where(@t => @t.ug.IdUsuario == idUsuario && @t.gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente)
+                    .Where(@t => @t.ug.IdUsuario == idUsuario && @t.gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && @t.gu.Habilitado)
                     .Select(@t => @t.gu).Distinct().ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
@@ -94,7 +94,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario).Select(s => s.GrupoUsuario).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario).Select(s => s.GrupoUsuario).Where(w => w.Habilitado).Distinct().OrderBy(o => o.Descripcion).ToList();
                 foreach (GrupoUsuario gpo in result)
                 {
                     db.LoadProperty(gpo, "TipoUsuario");
@@ -215,7 +215,7 @@ namespace KinniNet.Core.Operacion
                 else
                     qry = qry.Where(w => w.InventarioArbolAcceso.ArbolAcceso.IdNivel7 == null);
 
-                result = qry.Select(s => s.GrupoUsuario).Distinct().ToList();
+                result = qry.Select(s => s.GrupoUsuario).Where(w => w.Habilitado).Distinct().ToList();
 
                 foreach (GrupoUsuario grupo in result)
                 {
@@ -309,7 +309,8 @@ namespace KinniNet.Core.Operacion
                         new GrupoUsuario
                         {
                             Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione,
-                            Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione
+                            Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione,
+                            Habilitado = true
                         });
             }
             catch (Exception ex)
@@ -329,7 +330,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).ToList();
+                result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).Where(w => w.Habilitado).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new GrupoUsuario
@@ -412,7 +413,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = ((IQueryable<UsuarioGrupo>)from ug in db.UsuarioGrupo
-                                                    join gu in db.GrupoUsuario on ug.IdGrupoUsuario equals gu.Id into joingroups
+                                                    join gu in db.GrupoUsuario.Where(w => w.Habilitado) on ug.IdGrupoUsuario equals gu.Id into joingroups
                                                     from sgu in db.SubGrupoUsuario.Where(w => w.Id == ug.IdSubGrupoUsuario).DefaultIfEmpty()
                                                     from sr in db.SubRol.Where(w => w.Id == sgu.IdSubRol).DefaultIfEmpty()
                                                     where ug.IdUsuario == idUsuario
@@ -841,10 +842,10 @@ namespace KinniNet.Core.Operacion
                                     });
                 else
                 {
-                    int idRol = (int) BusinessVariables.EnumRoles.Usuario;
+                    int idRol = (int)BusinessVariables.EnumRoles.Usuario;
                     var qry = from statusDefault in db.EstatusTicketSubRolGeneralDefault.Where(
                                 w => w.IdRolSolicita == idRol)
-                        select statusDefault;
+                              select statusDefault;
 
                     foreach (EstatusTicketSubRolGeneralDefault generalDefault in qry.ToList())
                     {

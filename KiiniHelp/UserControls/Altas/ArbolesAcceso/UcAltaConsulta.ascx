@@ -34,7 +34,6 @@
             <!--/CONTAINER IZQUIERDA-->
 
             <!--CONTAINER DERECHA-->
-
             <!--Filtro 1 ORGANIZACIÓN-->
             <div>
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
@@ -55,6 +54,10 @@
                             <div class="form-group">
                                 Artículo<br />
                                 <asp:DropDownList runat="server" ID="ddlConsultas" CssClass="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-10">Publico</label>
+                                <asp:CheckBox runat="server" ID="chkPublico" CssClass="chkIphone" Width="30px" Text="Activo" Checked="False" />
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-10">Activo</label>

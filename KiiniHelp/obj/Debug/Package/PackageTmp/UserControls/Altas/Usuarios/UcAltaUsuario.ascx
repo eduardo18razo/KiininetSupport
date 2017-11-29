@@ -456,13 +456,14 @@
                                                                     <div class="form-group col-lg-4 col-md-4" style="padding: 5px">
                                                                         <span class="tag label label-info">
                                                                             <div class="row col-lg-4 col-md-4" style="padding: 5px">
+                                                                                <div style="width:100%">
                                                                                 <span style="font-weight:400" class="text-left"><%# Eval("DescripcionGrupo") %></span>
                                                                                 <asp:Repeater runat="server" ID="rptSubGrupos">
                                                                                     <HeaderTemplate>
                                                                                         <br />
                                                                                     </HeaderTemplate>
                                                                                     <ItemTemplate>
-                                                                                        <div style="font-weight:200; padding-left:40px" class="text-left">
+                                                                                        <div style="font-weight:200; padding-left:40px;" class="text-left">
                                                                                             <br />
                                                                                         <%# Eval("Descripcion") %>
                                                                                         <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove-sign glyphicon-white" ID="btnRemoveRolSub" OnClick="btnRemoveRolSub_OnClick" CommandName='<%# Container.ItemIndex %>' CommandArgument='<%# Eval("Id") %>' />
@@ -471,6 +472,7 @@
                                                                                 </asp:Repeater>                                                                                
                                                                                 <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove-sign glyphicon-white" ID="btnRemoveRol" OnClick="btnRemoveRol_OnClick" Visible='<%# Eval("SubGrupos") == null %>' CommandName='<%# Eval("IdTipoGrupo") %>' CommandArgument='<%# Eval("IdGrupo") %>' />
                                                                             </div>
+                                                                                </div>
                                                                         </span>
                                                                     </div>
                                                                 </ItemTemplate>

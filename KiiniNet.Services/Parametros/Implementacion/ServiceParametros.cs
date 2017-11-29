@@ -98,5 +98,20 @@ namespace KiiniNet.Services.Parametros.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public ParametroDatosAdicionales ObtenerDatosAdicionales(int idTipoUsuario)
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerDatosAdicionales(idTipoUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

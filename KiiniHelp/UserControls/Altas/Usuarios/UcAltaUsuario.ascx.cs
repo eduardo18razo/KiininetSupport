@@ -1538,6 +1538,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     PersonaFisica = chkPersonaFisica.Checked,
                     NombreUsuario = txtUserName.Text.Trim(),
                     Password = ResolveUrl("~/ConfirmacionCuenta.aspx"),
+                    Autoregistro = false,
                     Habilitado = true
                 };
                 List<ParametrosTelefonos> lstParamTelefonos = _servicioParametros.TelefonosObligatorios(Convert.ToInt32(ddlTipoUsuario.SelectedValue));

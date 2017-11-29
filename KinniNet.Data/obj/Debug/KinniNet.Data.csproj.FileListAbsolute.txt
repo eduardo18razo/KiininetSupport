@@ -14,3 +14,19 @@ C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Data\bin\Debug\KiiniNet.Enti
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Data\obj\Debug\KinniNet.Data.csprojResolveAssemblyReference.cache
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Data\obj\Debug\KinniNet.Data.dll
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Data\obj\Debug\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\bin\Debug\KinniNet.Data.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\bin\Debug\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\bin\Debug\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\obj\Debug\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\obj\Debug\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Data\obj\Debug\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\bin\Debug\KinniNet.Data.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\bin\Debug\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\bin\Debug\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\obj\Debug\KinniNet.Data.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\obj\Debug\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KinniNet.Data\obj\Debug\KinniNet.Data.pdb

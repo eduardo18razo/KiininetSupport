@@ -356,8 +356,8 @@ namespace KiiniHelp.Users.Graficos
                     ucFiltrosGraficasHits.FiltroUbicaciones, ucFiltrosGraficasHits.FiltroTipificaciones,
                     ucFiltrosGraficasHits.FiltroVip, ucFiltrosGraficasHits.FiltroFechas, 0, 1000);
                 if (lstConsulta == null) return;
-                UcFiltrosParametrosGraficoHits.UbicacionesGraficar = lstConsulta.GroupBy(g => new { g.IdUbicacion, g.Ubicacion }).Select(s => new HelperFiltroGrafico { Id = s.Key.IdUbicacion, Descripcion = s.Key.Ubicacion, Total = s.Count() }).ToList();
-                UcFiltrosParametrosGraficoHits.OrganizacionesGraficar = lstConsulta.GroupBy(g => new { g.IdOrganizacion, g.Organizacion }).Select(s => new HelperFiltroGrafico { Id = s.Key.IdOrganizacion, Descripcion = s.Key.Organizacion, Total = s.Count() }).ToList();
+                UcFiltrosParametrosGraficoHits.UbicacionesGraficar = lstConsulta.GroupBy(g => new { g.IdUbicacion, g.Ubicacion }).Select(s => new HelperFiltroGrafico { Id = int.Parse(s.Key.IdUbicacion.ToString()), Descripcion = s.Key.Ubicacion, Total = s.Count() }).ToList();
+                UcFiltrosParametrosGraficoHits.OrganizacionesGraficar = lstConsulta.GroupBy(g => new { g.IdOrganizacion, g.Organizacion }).Select(s => new HelperFiltroGrafico { Id = int.Parse(s.Key.IdOrganizacion.ToString()), Descripcion = s.Key.Organizacion, Total = s.Count() }).ToList();
                 UcFiltrosParametrosGraficoHits.TipificacionesGraficar = lstConsulta.GroupBy(g => new { g.IdTipificacion, g.Tipificacion }).Select(s => new HelperFiltroGrafico { Id = s.Key.IdTipificacion, Descripcion = s.Key.Tipificacion, Total = s.Count() }).ToList();
                 gvResult.DataSource = lstConsulta;
                 gvResult.DataBind();
@@ -414,8 +414,8 @@ namespace KiiniHelp.Users.Graficos
                         new ServiceUbicacionClient().ObtenerUbicacionByRegionCode(hfRegion.Value).Select(s => s.Id).ToList(), ucFiltrosGraficasHits.FiltroTipificaciones,
                         ucFiltrosGraficasHits.FiltroVip, ucFiltrosGraficasHits.FiltroFechas, 0, 1000);
                     if (lstConsulta == null) return;
-                    ucDetalleGeograficoHit.UbicacionesGraficar = lstConsulta.GroupBy(g => new { g.IdUbicacion, g.Ubicacion }).Select(s => new HelperFiltroGrafico { Id = s.Key.IdUbicacion, Descripcion = s.Key.Ubicacion, Total = s.Count() }).ToList();
-                    ucDetalleGeograficoHit.OrganizacionesGraficar = lstConsulta.GroupBy(g => new { g.IdOrganizacion, g.Organizacion }).Select(s => new HelperFiltroGrafico { Id = s.Key.IdOrganizacion, Descripcion = s.Key.Organizacion, Total = s.Count() }).ToList();
+                    ucDetalleGeograficoHit.UbicacionesGraficar = lstConsulta.GroupBy(g => new { g.IdUbicacion, g.Ubicacion }).Select(s => new HelperFiltroGrafico { Id = int.Parse(s.Key.IdUbicacion.ToString()), Descripcion = s.Key.Ubicacion, Total = s.Count() }).ToList();
+                    ucDetalleGeograficoHit.OrganizacionesGraficar = lstConsulta.GroupBy(g => new { g.IdOrganizacion, g.Organizacion }).Select(s => new HelperFiltroGrafico { Id = int.Parse(s.Key.IdOrganizacion.ToString()), Descripcion = s.Key.Organizacion, Total = s.Count() }).ToList();
                     ucDetalleGeograficoHit.TipificacionesGraficar = lstConsulta.GroupBy(g => new { g.IdTipificacion, g.Tipificacion }).Select(s => new HelperFiltroGrafico { Id = s.Key.IdTipificacion, Descripcion = s.Key.Tipificacion, Total = s.Count() }).ToList();
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalDetalleGeografico\");", true);
                 }

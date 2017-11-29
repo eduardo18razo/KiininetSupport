@@ -1,71 +1,21 @@
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniMaster.dll.config
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniMaster.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniMaster.pdb
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniNet.Entities.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniNet.Services.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniNet.Services.Web.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KinniNet.Business.Utils.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KinniNet.Core.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\EPPlus.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\EAGetMail40.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\EASendMail40.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KinniNet.Data.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniNet.Entities.pdb
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniNet.Services.Web.pdb
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KiiniNet.Services.pdb
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KinniNet.Business.Utils.pdb
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KinniNet.Core.pdb
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\EPPlus.xml
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\bin\KinniNet.Data.pdb
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\obj\Debug\KiiniMaster.dll
-C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniMaster\obj\Debug\KiiniMaster.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniMaster.dll.config
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniMaster.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniMaster.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniNet.Entities.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniNet.Services.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniNet.Services.Web.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KinniNet.Business.Utils.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KinniNet.Core.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\EPPlus.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\EAGetMail40.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\EASendMail40.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KinniNet.Data.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniNet.Entities.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniNet.Services.Web.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KiiniNet.Services.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KinniNet.Business.Utils.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KinniNet.Core.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\EPPlus.xml
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\bin\KinniNet.Data.pdb
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\obj\Debug\KiiniMaster.dll
-C:\Users\Eduardo Cerritos\Desktop\TFS\KiiniMaster\obj\Debug\KiiniMaster.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniMaster.dll.config
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniMaster.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniMaster.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Entities.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.Web.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Business.Utils.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Core.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EPPlus.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\Microsoft.Office.Interop.Word.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\Microsoft.Office.Interop.Excel.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\Microsoft.Office.Interop.PowerPoint.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\office.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EAGetMail40.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EASendMail40.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Data.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\Microsoft.Vbe.Interop.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Entities.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.Web.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Business.Utils.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Core.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EPPlus.xml
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Data.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniMaster.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniMaster.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniMaster.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniNet.Services.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniNet.Services.Web.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KinniNet.Core.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\EASendMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniNet.Services.Web.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KiiniNet.Services.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KinniNet.Core.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\bin\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\obj\Debug\KiiniMaster.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Eduardo\KiiniMaster\obj\Debug\KiiniMaster.pdb

@@ -81,7 +81,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbol" type="xs:int" />
-        <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="idTipoUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="idUsuario" nillable="true" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

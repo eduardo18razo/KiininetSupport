@@ -29,5 +29,18 @@ namespace KinniNet.Core.Demonio
                 throw new Exception(ex.Message);
             }
         }
+
+        public void EnviaCorreoTicketGenerado(int idTicket, string clave, string body, string to)
+        {
+            try
+            {
+                //TODO: Cambiar cliente por parametro
+                new Imap4Mail.Retrieve().SendMailTicket(BusinessVariables.EnumtServerImap.Gmail, idTicket, clave, body, to);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

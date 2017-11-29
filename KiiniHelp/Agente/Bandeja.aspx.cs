@@ -201,7 +201,7 @@ namespace KiiniHelp.Agente
                         lst = lst.Where(w => !w.DentroSla).ToList();
 
                     ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
-                    
+
                 }
                 Tickets = lst;
                 gvTickets.Rebind();
@@ -804,7 +804,7 @@ namespace KiiniHelp.Agente
                 if (master != null)
                 {
                     master.CambiaTicket = true;
-                    master.AddTicketOpen(Convert.ToInt32(((LinkButton)sender).CommandArgument), ((LinkButton)sender).Text);
+                    master.AddTicketOpen(Convert.ToInt32(((LinkButton)sender).CommandArgument), ((LinkButton)sender).Text, bool.Parse(((LinkButton)sender).CommandName));
                 }
             }
             catch (Exception ex)
@@ -815,6 +815,74 @@ namespace KiiniHelp.Agente
                 }
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
+            }
+        }
+
+        protected void gvTickets_OnFilterCheckListItemsRequested(object sender, GridFilterCheckListItemsRequestedEventArgs e)
+        {
+            try
+            {
+                IGridDataColumn gridDataColumn = e.Column as IGridDataColumn;
+                if (gridDataColumn != null)
+                {
+                    string dataField = gridDataColumn.GetActiveDataField();
+                    switch (dataField)
+                    {
+                        case "ImagenSla":
+                            e.ListBox.DataSource = Tickets.Select(s => s.ImagenSla).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "ImagenPrioridad":
+                            e.ListBox.DataSource = Tickets.Select(s => s.ImagenPrioridad).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "UsuarioSolicito.TipoUsuario.Descripcion":
+                            e.ListBox.DataSource = Tickets.Select(s => s.UsuarioSolicito.TipoUsuario.Descripcion).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "NumeroTicket":
+                            e.ListBox.DataSource = Tickets.Select(s => s.NumeroTicket).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "Canal":
+                            e.ListBox.DataSource = Tickets.Select(s => s.Canal).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "UsuarioSolicito.NombreCompleto":
+                            e.ListBox.DataSource = Tickets.Select(s => s.UsuarioSolicito.NombreCompleto).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "Tipificacion":
+                            e.ListBox.DataSource = Tickets.Select(s => s.Tipificacion).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "TipoTicketAbreviacion":
+                            e.ListBox.DataSource = Tickets.Select(s => s.TipoTicketAbreviacion).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "FechaHora":
+                            e.ListBox.DataSource = Tickets.Select(s => s.FechaHora).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "EstatusTicket.Descripcion":
+                            e.ListBox.DataSource = Tickets.Select(s => s.EstatusTicket.Descripcion).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "UsuarioAsignado":
+                            e.ListBox.DataSource = Tickets.Select(s => s.UsuarioAsignado).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "GrupoAsignado":
+                            e.ListBox.DataSource = Tickets.Select(s => s.GrupoAsignado).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

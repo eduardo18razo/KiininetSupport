@@ -54,7 +54,7 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public List<Area> ObtenerAreasUsuarioPublicoByIdRol(int idUsuario, int idRol, bool insertarSeleccion)
+        public List<Area> ObtenerAreasUsuarioPublicoByIdRol(int idRol, bool insertarSeleccion)
         {
             List<Area> result;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -65,10 +65,7 @@ namespace KinniNet.Core.Operacion
                                       join aa in db.ArbolAcceso on a.Id equals aa.IdArea
                                       join iaa in db.InventarioArbolAcceso on aa.Id equals iaa.IdArbolAcceso
                                       join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
-                                      join gu in db.GrupoUsuario on new { gpo = guia.IdGrupoUsuario, tu = aa.IdTipoUsuario } equals new { gpo = gu.Id, tu = gu.IdTipoUsuario }
-                                      join ug in db.UsuarioGrupo on gu.Id equals ug.IdGrupoUsuario
-                                      join ur in db.UsuarioRol on ug.IdUsuario equals ur.IdUsuario
-                                      where guia.IdRol == idRol && ur.IdUsuario == idUsuario && !aa.Sistema && aa.Habilitado
+                                      where guia.IdRol == idRol && !aa.Sistema && aa.Habilitado && aa.Publico
                                       select a.Id).Distinct().ToList();
                 result = db.Area.Where(w => lstAreas.Contains(w.Id)).ToList();
                 if (insertarSeleccion)
@@ -226,7 +223,7 @@ namespace KinniNet.Core.Operacion
                     db.ContextOptions.ProxyCreationEnabled = _proxy;
                     List<int> lstAreas = (from a in db.Area
                                           join aa in db.ArbolAcceso on a.Id equals aa.IdArea
-                                          where BusinessVariables.IdsPublicos.Contains(aa.IdTipoUsuario)
+                                          where aa.Publico
                                           select a.Id).Distinct().ToList();
                     result = db.Area.Where(w => lstAreas.Contains(w.Id)).ToList();
                     if (insertarSeleccion)

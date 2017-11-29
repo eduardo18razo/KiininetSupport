@@ -24,13 +24,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public int RegistrarCliente(Usuario usuario)
+        public int RegistrarCliente(Usuario usuario, List<HelperCampoMascaraCaptura> datosAdicionalesCampos)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    return negocio.RegistrarCliente(usuario);
+                    return negocio.RegistrarCliente(usuario, datosAdicionalesCampos);
                 }
             }
             catch (Exception ex)
@@ -159,13 +159,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public void HabilitarUsuario(int idUsuario, bool habilitado)
+        public void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    negocio.HabilitarUsuario(idUsuario, habilitado);
+                    negocio.HabilitarUsuario(idUsuario, habilitado, tmpurl);
                 }
             }
             catch (Exception ex)
@@ -361,6 +361,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
                     return negocio.ObtenerDatosTicketUsuario(idUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Usuario GetUsuarioByCorreo(string correo)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    return negocio.GetUsuarioByCorreo(correo);
                 }
             }
             catch (Exception ex)

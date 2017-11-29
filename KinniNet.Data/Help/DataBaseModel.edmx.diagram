@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="274a177c190245e2b35a53a2cf71a3b9" Name="Diagram1" ZoomLevel="81" ShowGrid="true">
+      <Diagram DiagramId="274a177c190245e2b35a53a2cf71a3b9" Name="Diagram1" ZoomLevel="75" ShowGrid="true">
         <EntityTypeShape EntityType="KiiniNet_v2Model.TipoSubGrupo" Width="1.5" PointX="5.875" PointY="58.25" IsExpanded="true" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TipoSubGrupo_TipoGrupo" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.Campus" Width="1.5" PointX="3" PointY="134.875" IsExpanded="true" />
@@ -364,6 +364,12 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_ParametrosUsuario_Organizacion" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_ParametrosUsuario_Ubicacion" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.ParametroDatosAdicionales" Width="1.5" PointX="24" PointY="89.875" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_ParametroDatosAdicionales_Mascara" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.TicketCorreo" Width="1.5" PointX="23.125" PointY="74.375" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketCorreo_Ticket" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

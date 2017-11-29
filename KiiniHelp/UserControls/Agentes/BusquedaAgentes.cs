@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using KiiniHelp.ServiceSistemaTipoTelefono;
 using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Agentes
 {
@@ -20,7 +22,7 @@ namespace KiiniHelp.UserControls.Agentes
 
         public List<TipoTelefono> GetPhoneType()
         {
-            List<TipoTelefono> itemsList = _servicioTipoTelefono.ObtenerTiposTelefono(false);
+            List<TipoTelefono> itemsList = _servicioTipoTelefono.ObtenerTiposTelefono(false).Where(w=>w.Id == (int)BusinessVariables.EnumTipoTelefono.Celular).ToList();
             return itemsList;
         }
     }

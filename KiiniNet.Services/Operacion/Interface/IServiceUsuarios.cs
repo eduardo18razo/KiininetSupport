@@ -12,7 +12,7 @@ namespace KiiniNet.Services.Operacion.Interface
         void GuardarUsuario(Usuario usuario);
 
         [OperationContract]
-        int RegistrarCliente(Usuario usuario);
+        int RegistrarCliente(Usuario usuario, List<HelperCampoMascaraCaptura> datosAdicionalesCampos);
 
         [OperationContract]
         void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv);
@@ -40,7 +40,7 @@ namespace KiiniNet.Services.Operacion.Interface
         byte[] ObtenerFoto(int idUsuario);
 
         [OperationContract]
-        void HabilitarUsuario(int idUsuario, bool habilitado);
+        void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl);
 
         [OperationContract]
         List<Usuario> ObtenerAtendedoresEncuesta(int idUsuario, List<int?> encuestas);
@@ -80,5 +80,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         HelperUsuario ObtenerDatosTicketUsuario(int idUsuario);
+
+        [OperationContract]
+        Usuario GetUsuarioByCorreo(string correo);
     }
 }

@@ -596,6 +596,7 @@
     <EntitySetMapping Name="ArbolAcceso">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.ArbolAcceso">
         <MappingFragment StoreEntitySet="ArbolAcceso">
+          <ScalarProperty Name="Publico" ColumnName="Publico" />
           <ScalarProperty Name="Evaluacion" ColumnName="Evaluacion" />
           <ScalarProperty Name="IdUsuarioAlta" ColumnName="IdUsuarioAlta" />
           <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
@@ -649,6 +650,7 @@
     <EntitySetMapping Name="HitConsulta">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.HitConsulta">
         <MappingFragment StoreEntitySet="HitConsulta">
+          <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
           <ScalarProperty Name="FechaHoraAlta" ColumnName="FechaHoraAlta" />
           <ScalarProperty Name="IdOrganizacion" ColumnName="IdOrganizacion" />
           <ScalarProperty Name="IdUbicacion" ColumnName="IdUbicacion" />
@@ -1195,6 +1197,7 @@
     <EntitySetMapping Name="Usuario">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Autoregistro" ColumnName="Autoregistro" />
           <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
           <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
           <ScalarProperty Name="Sistema" ColumnName="Sistema" />
@@ -1549,6 +1552,24 @@
           <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParametroDatosAdicionales">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametroDatosAdicionales">
+        <MappingFragment StoreEntitySet="ParametroDatosAdicionales">
+          <ScalarProperty Name="IdMascara" ColumnName="IdMascara" />
+          <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketCorreo">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketCorreo">
+        <MappingFragment StoreEntitySet="TicketCorreo">
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -48,6 +48,7 @@
             <asp:HiddenField runat="server" ID="hfEsPropietario" />
             <asp:HiddenField runat="server" ID="hfGrupoAsignado" />
             <asp:HiddenField runat="server" ID="hfNivelAsignacion" />
+            <asp:HiddenField runat="server" ID="hfAsigna" />
 
             <section class="module">
                 <div class="row">

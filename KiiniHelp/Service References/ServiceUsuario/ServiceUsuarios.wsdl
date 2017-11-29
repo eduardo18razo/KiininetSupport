@@ -16,9 +16,9 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/System" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd16" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceUsuarios_GuardarUsuario_InputMessage">
@@ -165,6 +165,12 @@
   <wsdl:message name="IServiceUsuarios_ObtenerDatosTicketUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerDatosTicketUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GetUsuarioByCorreo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsuarioByCorreo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GetUsuarioByCorreo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsuarioByCorreoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceUsuarios">
     <wsdl:operation name="GuardarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario" message="tns:IServiceUsuarios_GuardarUsuario_InputMessage" />
@@ -261,6 +267,10 @@
     <wsdl:operation name="ObtenerDatosTicketUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuario" message="tns:IServiceUsuarios_ObtenerDatosTicketUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuarioResponse" message="tns:IServiceUsuarios_ObtenerDatosTicketUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioByCorreo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" message="tns:IServiceUsuarios_GetUsuarioByCorreo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse" message="tns:IServiceUsuarios_GetUsuarioByCorreo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceUsuarios">
@@ -474,6 +484,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerDatosTicketUsuario">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioByCorreo">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

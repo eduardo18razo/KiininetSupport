@@ -19,7 +19,7 @@ namespace KiiniHelp.ServiceUsuario {
         void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/RegistrarCliente", ReplyAction="http://tempuri.org/IServiceUsuarios/RegistrarClienteResponse")]
-        int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario);
+        int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperCampoMascaraCaptura> datosAdicionalesCampos);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicional", ReplyAction="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicionalResponse")]
         void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv);
@@ -46,7 +46,7 @@ namespace KiiniHelp.ServiceUsuario {
         byte[] ObtenerFoto(int idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/HabilitarUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/HabilitarUsuarioResponse")]
-        void HabilitarUsuario(int idUsuario, bool habilitado);
+        void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerAtendedoresEncuesta", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerAtendedoresEncuestaResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAtendedoresEncuesta(int idUsuario, System.Collections.Generic.List<System.Nullable<int>> encuestas);
@@ -86,6 +86,9 @@ namespace KiiniHelp.ServiceUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuarioResponse")]
         KiiniNet.Entities.Helper.HelperUsuario ObtenerDatosTicketUsuario(int idUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo", ReplyAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse")]
+        KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -119,8 +122,8 @@ namespace KiiniHelp.ServiceUsuario {
             base.Channel.GuardarUsuario(usuario);
         }
         
-        public int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario) {
-            return base.Channel.RegistrarCliente(usuario);
+        public int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperCampoMascaraCaptura> datosAdicionalesCampos) {
+            return base.Channel.RegistrarCliente(usuario, datosAdicionalesCampos);
         }
         
         public void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv) {
@@ -155,8 +158,8 @@ namespace KiiniHelp.ServiceUsuario {
             return base.Channel.ObtenerFoto(idUsuario);
         }
         
-        public void HabilitarUsuario(int idUsuario, bool habilitado) {
-            base.Channel.HabilitarUsuario(idUsuario, habilitado);
+        public void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl) {
+            base.Channel.HabilitarUsuario(idUsuario, habilitado, tmpurl);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAtendedoresEncuesta(int idUsuario, System.Collections.Generic.List<System.Nullable<int>> encuestas) {
@@ -209,6 +212,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public KiiniNet.Entities.Helper.HelperUsuario ObtenerDatosTicketUsuario(int idUsuario) {
             return base.Channel.ObtenerDatosTicketUsuario(idUsuario);
+        }
+        
+        public KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo) {
+            return base.Channel.GetUsuarioByCorreo(correo);
         }
     }
 }

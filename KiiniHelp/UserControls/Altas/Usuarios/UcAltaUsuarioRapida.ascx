@@ -8,7 +8,12 @@
 </style>
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-        <asp:HiddenField runat="server" ID="hfIdUsuario"/>
+        <asp:HiddenField runat="server" ID="hfIdUsuario" />
+        <asp:HiddenField runat="server" ID="hfIdTipoUsuario" />
+        <asp:HiddenField runat="server" ID="hfIdMascara" />
+        <asp:HiddenField runat="server" ID="hfComandoInsertar" />
+        <asp:HiddenField runat="server" ID="hfComandoActualizar" />
+        <asp:HiddenField runat="server" ID="hfRandom" />
         <div class="row">
             <div class="form-horizontal">
                 <div class="form-group">
@@ -19,31 +24,35 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-md-4 col-lg-4">
-                        <asp:TextBox class="form-control" ID="txtNombre" ClientIDMode="Static" runat="server" />
+                        <asp:TextBox class="form-control" ID="txtNombreRapido" ClientIDMode="Static" runat="server" />
                     </div>
                     <div class="col-sm-4 col-md-4 col-lg-4">
-                        <asp:TextBox class="form-control" ID="txtAp" ClientIDMode="Static" runat="server" />
+                        <asp:TextBox class="form-control" ID="txtApRapido" ClientIDMode="Static" runat="server" />
                     </div>
                     <div class="col-sm-4 col-md-4 col-lg-4">
-                        <asp:TextBox class="form-control" ID="txtAm" ClientIDMode="Static" runat="server" />
+                        <asp:TextBox class="form-control" ID="txtAmRapido" ClientIDMode="Static" runat="server" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="txtCorreo" class="col-sm-4 col-md-4 col-lg-4" >Correo</label>
+                    <label for="txtCorreoRapido" class="col-sm-4 col-md-4 col-lg-4">Correo</label>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <asp:TextBox class="form-control" type="email" ID="txtCorreo" ClientIDMode="Static" runat="server" />
+                        <asp:TextBox class="form-control" type="email" ID="txtCorreoRapido" ClientIDMode="Static" runat="server" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="txtCorreo" class="col-sm-4 col-md-4 col-lg-4">Teléfono</label>
+                    <label for="txtCorreoRapido" class="col-sm-4 col-md-4 col-lg-4">Teléfono</label>
                 </div>
                 <div class="form-group">
-                    <tc:RadSearchBox runat="server" EnableAutoComplete="False" ShowSearchButton="False" Style="width: 100%" ID="txtTelefono" >
-                        <SearchContext DataSourceID="SourceFilterPhone" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False"/>
+                    <tc:RadSearchBox runat="server" EnableAutoComplete="False" ShowSearchButton="False" Style="width: 100%" ID="txtTelefonoRapido">
+                        <SearchContext DataSourceID="SourceFilterPhone" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False" />
                     </tc:RadSearchBox>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div runat="server" id="divControles">
             </div>
         </div>
         <asp:ObjectDataSource runat="server" ID="SourceFilterPhone" TypeName="KiiniHelp.UserControls.Agentes.BusquedaAgentes" SelectMethod="GetPhoneType"></asp:ObjectDataSource>

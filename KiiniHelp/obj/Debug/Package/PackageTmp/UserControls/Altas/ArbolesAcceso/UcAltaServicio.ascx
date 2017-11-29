@@ -165,10 +165,10 @@
                                         Responsable de Atención<br />
                                         <asp:DropDownList runat="server" ID="ddlGrupoResponsableAtencion" CssClass="form-control" />
                                     </div>
-                                    <div class="form-group">
+                                    <%--<div class="form-group">
                                         Consultas Especiales<br />
                                         <asp:ListBox ID="lstGrupoEspecialConsultaServicios" runat="server" SelectionMode="Multiple"></asp:ListBox>
-                                    </div>
+                                    </div>--%>
 
                                     <div class="form-group">
                                         Responsable de Categoría<br />
@@ -178,7 +178,8 @@
 
                                     <div class="form-group">
                                         Agente Universal<br />
-                                        <asp:DropDownList runat="server" ID="ddlGrupoAgenteUniversal" CssClass="form-control" />
+                                        <asp:ListBox  ID="lstGruposAu" SelectionMode="Multiple" runat="server"/>
+                                        <%--<asp:ListBox ID="lbxGruposAgenteUniversal" runat="server" SelectionMode="Multiple" ></asp:ListBox>--%>
                                     </div>
 
                                 </div>
@@ -286,13 +287,13 @@
                                             <asp:DropDownList runat="server" ID="ddlCanalDev" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
                                             <asp:CheckBox runat="server" ID="chkVencimientoDev" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
                                         </div>
-                                        <%--<div class="form-group">
-                                            <asp:CheckBox runat="server" ID="chkNotificacionConsulta" AutoPostBack="True" OnCheckedChanged="chkNotificacionConsulta_OnCheckedChanged" CssClass="col-md-12" Text="ESPECIAL DE CONSULTA" />
-                                            <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-5" Enabled="False" ID="txtTiempoNotificacionConsulta" />
-                                            <asp:DropDownList runat="server" ID="ddlNotificacionGrupoConsulta" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                            <asp:DropDownList runat="server" ID="ddlCanalConsulta" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                            <asp:CheckBox runat="server" ID="chkVencimientoConsulta" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
-                                        </div>--%>
+                                        <div class="form-group">
+                                            <asp:CheckBox runat="server" ID="chkNotificacionOperacion" AutoPostBack="True" OnCheckedChanged="chkNotificacionOperacion_OnCheckedChanged" CssClass="col-md-12" Text="ESPECIAL DE CONSULTA" />
+                                            <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-5" Enabled="False" ID="txtTiempoNotificacionOperacion" />
+                                            <asp:DropDownList runat="server" ID="ddlNotificacionGrupoOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
+                                            <asp:DropDownList runat="server" ID="ddlCanalOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
+                                            <asp:CheckBox runat="server" ID="chkVencimientoOperacion" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div runat="server" id="divStep6Data" visible="False">
@@ -315,14 +316,14 @@
                 </div>
         <script type="text/javascript">
             $(function () {
-                $('[id*=lstGrupoEspecialConsultaServicios]').multiselect({
+                $('[id*=lstGruposAu]').multiselect({
                     includeSelectAllOption: true
                 });
             });
             var prm = Sys.WebForms.PageRequestManager.getInstance();
 
             prm.add_endRequest(function () {
-                $('[id*=lstGrupoEspecialConsultaServicios]').multiselect({
+                $('[id*=lstGruposAu]').multiselect({
                     includeSelectAllOption: true
                 });
             });

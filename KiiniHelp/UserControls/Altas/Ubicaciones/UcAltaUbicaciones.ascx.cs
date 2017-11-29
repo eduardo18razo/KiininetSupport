@@ -284,6 +284,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         break;
                 }
                 divCapturaDescripcion.Visible = true;
+                divNombre.Visible = true;
                 btnGuardarCatalogo.Visible = false;
             }
             catch (Exception e)
@@ -713,6 +714,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                 btnSeleccionarModal.Visible = true;
                 divCapturaDescripcion.Visible = true;
+                divNombre.Visible = true;
 
                 dataCampus.Visible = false;
                 txtDescripcionCatalogo.Text = string.Empty;
@@ -810,7 +812,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     hfCatalogo.Value = "1";
                 }
                 if (EsAlta)
+                {
                     divCapturaDescripcion.Visible = false;
+                    divNombre.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -928,11 +933,16 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                 }
                 if (EsAlta)
+                {
                     divCapturaDescripcion.Visible = int.Parse(btnSeleccionarModal.CommandArgument) > 1;
+                    divNombre.Visible = int.Parse(btnSeleccionarModal.CommandArgument) > 1;
+
+            }
             }
             catch (Exception ex)
             {
                 divCapturaDescripcion.Visible = false;
+                divNombre.Visible = false;
                 switch (int.Parse(btnSeleccionarModal.CommandArgument))
                 {
                     case 1:

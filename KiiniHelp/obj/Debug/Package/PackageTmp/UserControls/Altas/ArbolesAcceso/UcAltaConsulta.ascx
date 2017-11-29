@@ -34,7 +34,6 @@
             <!--/CONTAINER IZQUIERDA-->
 
             <!--CONTAINER DERECHA-->
-
             <!--Filtro 1 ORGANIZACIÓN-->
             <div>
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">

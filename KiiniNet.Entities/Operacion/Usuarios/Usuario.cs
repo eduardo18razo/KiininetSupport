@@ -42,6 +42,8 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         [DataMember]
         public bool PersonaFisica { get; set; }
         [DataMember]
+        public bool Autoregistro { get; set; }
+        [DataMember]
         public bool Habilitado { get; set; }
         [DataMember]
         public bool Activo { get; set; }

@@ -17,11 +17,13 @@ namespace KiiniNet.Entities.Operacion
         [DataMember]
         public int IdArbolAcceso { get; set; }
         [DataMember]
-        public int IdUsuario { get; set; }
+        public int IdTipoUsuario { get; set; }
         [DataMember]
-        public int IdUbicacion { get; set; }
+        public int? IdUsuario { get; set; }
         [DataMember]
-        public int IdOrganizacion { get; set; }
+        public int? IdUbicacion { get; set; }
+        [DataMember]
+        public int? IdOrganizacion { get; set; }
         [DataMember]
         public DateTime FechaHoraAlta { get; set; }
         [DataMember]
@@ -36,5 +38,7 @@ namespace KiiniNet.Entities.Operacion
         public virtual Organizacion Organizacion { get; set; }
         [DataMember]
         public virtual Ubicacion Ubicacion { get; set; }
+        [DataMember]
+        public virtual TipoUsuario TipoUsuario { get; set; }
     }
 }

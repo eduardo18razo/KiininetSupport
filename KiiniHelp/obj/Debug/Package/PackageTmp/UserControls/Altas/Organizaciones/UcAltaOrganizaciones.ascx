@@ -11,7 +11,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelarCatalogo_OnClick" Text='&times'></asp:LinkButton>              
+                    <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelarCatalogo_OnClick" Text='&times'></asp:LinkButton>
                     <h6 class="text-center">
                         <asp:Label runat="server" ID="lblTitleCatalogo" />
                     </h6>
@@ -20,7 +20,7 @@
                     <!-- TIPO DE USUARIO-->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            Tipo de Usuario<br />
+                            Selecciona el tipo de usuario que corresponde a esta organización:<br />
                             <div class="form-group">
                                 <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" />
                             </div>
@@ -30,6 +30,11 @@
 
                     <!--CONTAINER IZQUIERDA-->
                     <div class="row" runat="server" id="divData" visible="False">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label>
+                                Crea o selecciona de mayor a menor, los niveles que contiene la organización:
+                            </label>
+                        </div>
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                             <!--Step 1-->
                             <div class="margin-top" runat="server" id="divStep1">
@@ -123,34 +128,44 @@
                         <!--Filtro 1 ORGANIZACIÓN-->
                         <div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="bg-grey">
-                                    <h3 class="text-left">
-                                        <asp:Label runat="server" Text=""></asp:Label><asp:Label runat="server" ID="lblOperacion"></asp:Label></h3>
-                                    <hr />
-                                    <!--CAMPO-->
-                                    <div class="form-group">
-                                        <asp:DropDownList runat="server" CssClass="form-control" ID="ddlNivelSeleccionModal" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlNivelSeleccionModal_OnSelectedIndexChanged" />
-                                    </div>
 
-                                    <!--CAMPO-->
-                                    <p class="margin-top-40">
-                                        <asp:Button class="btn btn-primary" runat="server" Text="Siguiente" ID="btnSeleccionarModal" OnClick="btnSeleccionarModal_OnClick" />
-                                    </p>
-
-                                    <hr />
-                                    <div runat="server" ID="divClas"></div>
-                                    <!--CAMPO-->
-                                    <div runat="server" ID="pnlAlta" Visible="true">
-                                        <div class="form-group margin-top">
-                                            Nombre de
-                                            <asp:Label runat="server" ID="lblOperacionDescripcion" />*<br />
-                                            <asp:TextBox CssClass="form-control" ID="txtDescripcionCatalogo" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" autofocus="autofocus" />
-                                            <asp:LinkButton runat="server"  OnClick="btnGuardarCatalogo_OnClick" ID="btnGuardarCatalogo" class="fa fa-plus-circle">
-                                            </asp:LinkButton>
+                                <section class="module">
+                                    <div class="bg-grey">
+                                        <h4 class="text-left">
+                                            <asp:Label runat="server" Text="" /><asp:Label runat="server" ID="lblOperacion" /></h4>
+                                        <hr />
+                                        <label>Selecciona existente</label>
+                                        <!--CAMPO-->
+                                        <div class="form-group">
+                                            <asp:DropDownList runat="server" CssClass="form-control" ID="ddlNivelSeleccionModal" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlNivelSeleccionModal_OnSelectedIndexChanged" />
                                         </div>
+
+                                        <!--CAMPO-->
+                                        <p class="margin-top-20  text-right">
+                                            <%--<asp:Button CssClass="btn btn-success" ID="btnTerminar" runat="server" Text="Terminar" OnClick="btnTerminar_OnClick"></asp:Button>--%>
+                                            <asp:Button class="btn btn-primary" runat="server" Text="Siguiente" ID="btnSeleccionarModal" OnClick="btnSeleccionarModal_OnClick" />
+                                        </p>
                                     </div>
-
-
+                                </section>
+                                <%--<hr />--%>
+                                <br />
+                                <div runat="server" id="pnlAlta" visible="true">
+                                    <section class="module">
+                                        <div class="bg-grey">
+                                            <div runat="server" id="divClas"></div>
+                                            <!--CAMPO-->
+                                            <h4>Crea Nuevo:</h4>
+                                            <hr />
+                                            <div class="form-group margin-top">
+                                                Nombre de
+                                            <asp:Label runat="server" ID="lblOperacionDescripcion" />*<br />
+                                                <asp:TextBox CssClass="form-control" ID="txtDescripcionCatalogo" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" autofocus="autofocus" />
+                                                <div class="text-right">
+                                                    <asp:LinkButton runat="server" OnClick="btnGuardarCatalogo_OnClick" ID="btnGuardarCatalogo" class="fa fa-plus-circle" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </div>
                                 <!--DIV que cierra el bg-grey -->
 

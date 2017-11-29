@@ -17,6 +17,10 @@
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <XsdCodeGenEnabled>True</XsdCodeGenEnabled>
     <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -131,7 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KiiniNet.Entities\KiiniNet.Entities.csproj">
-      <Project>{C003D316-9B3C-44EF-B6B4-48C98936B0A7}</Project>
+      <Project>{c003d316-9b3c-44ef-b6b4-48c98936b0a7}</Project>
       <Name>KiiniNet.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\KinniNet.Business.Utils\KinniNet.Business.Utils.csproj">

@@ -105,9 +105,11 @@ namespace KiiniNet.UnitTest
             try
             {
                 //new BusinessTicketMailService().RecibeCorreos();
+                //new BusinessTicketMailService().EnviaCorreoTicketGenerado(1, "VLF0", "Este es el cuerpo del mensaje <b> Hola</b> <s>sub</s>", "ecerritos@kiininet.com");
+                //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessDemonio().EnvioNotificacion();
                 //new KiiniNet.Services.Windows.ServiceNotificacion();
-                new BusinessDemonio().EnvioNotificacion();
+                //new BusinessDemonio().EnvioNotificacion();
                 //new BusinessDemonio().ActualizaSla();
                 //Usuario datosUsuario = new Usuario();
                 //datosUsuario.IdTipoUsuario = (int) BusinessVariables.EnumTiposUsuario.Cliente;

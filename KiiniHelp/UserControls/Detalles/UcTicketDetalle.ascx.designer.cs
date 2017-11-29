@@ -67,6 +67,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.HiddenField hfNivelAsignacion;
         
         /// <summary>
+        /// Control hfAsigna.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfAsigna;
+        
+        /// <summary>
         /// Control lblNoticket.
         /// </summary>
         /// <remarks>

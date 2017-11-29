@@ -73,12 +73,13 @@ namespace KiiniHelp
         {
             try
             {
-                Public master = Master as Public;
-                if (master != null)
-                {
-                    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado);
-                }
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado);
+                //Public master = Master as Public;
+                //if (master != null)
+                //{
+                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado);
+                //}
+                Session["TipoUsuarioPublico"] = (int)BusinessVariables.EnumTiposUsuario.Empleado;
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Empleado);
             }
             catch (Exception ex)
             {
@@ -95,12 +96,12 @@ namespace KiiniHelp
         {
             try
             {
-                Public master = Master as Public;
-                if (master != null)
-                {
-                    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
-                }
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                //Public master = Master as Public;
+                //if (master != null)
+                //{
+                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                //}
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
             }
             catch (Exception ex)
             {
@@ -117,12 +118,12 @@ namespace KiiniHelp
         {
             try
             {
-                Public master = Master as Public;
-                if (master != null)
-                {
-                    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado);
-                }
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.ProveedorInvitado);
+                //Public master = Master as Public;
+                //if (master != null)
+                //{
+                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado);
+                //}
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Proveedor);
             }
             catch (Exception ex)
             {
@@ -175,12 +176,12 @@ namespace KiiniHelp
         {
             try
             {
-                Public master = Master as Public;
-                if (master != null)
-                {
-                    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
-                }
-                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                //Public master = Master as Public;
+                //if (master != null)
+                //{
+                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                //}
+                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
             }
             catch (Exception ex)
             {

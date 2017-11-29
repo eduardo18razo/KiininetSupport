@@ -54,6 +54,12 @@
   <wsdl:message name="IServiceParametros_ObtenerAliasUbicacion_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerAliasUbicacionResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerDatosAdicionales_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosAdicionales" />
+  </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerDatosAdicionales_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosAdicionalesResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceParametros">
     <wsdl:operation name="TelefonosObligatorios">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/TelefonosObligatorios" message="tns:IServiceParametros_TelefonosObligatorios_InputMessage" />
@@ -78,6 +84,10 @@
     <wsdl:operation name="ObtenerAliasUbicacion">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerAliasUbicacion" message="tns:IServiceParametros_ObtenerAliasUbicacion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerAliasUbicacionResponse" message="tns:IServiceParametros_ObtenerAliasUbicacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosAdicionales">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionales" message="tns:IServiceParametros_ObtenerDatosAdicionales_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionalesResponse" message="tns:IServiceParametros_ObtenerDatosAdicionales_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceParametros" type="tns:IServiceParametros">
@@ -129,6 +139,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerAliasUbicacion">
       <soap:operation soapAction="http://tempuri.org/IServiceParametros/ObtenerAliasUbicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosAdicionales">
+      <soap:operation soapAction="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionales" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

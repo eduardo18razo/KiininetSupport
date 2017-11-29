@@ -263,7 +263,7 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public void GuardarHit(int idArbol, int idUsuario)
+        public void GuardarHit(int idArbol, int idTipoUsuario, int? idUsuario)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
@@ -274,9 +274,10 @@ namespace KinniNet.Core.Operacion
                 {
                     IdTipoArbolAcceso = arbol.IdTipoArbolAcceso,
                     IdArbolAcceso = idArbol,
-                    IdUsuario = idUsuario,
-                    IdUbicacion = new BusinessUbicacion().ObtenerUbicacionUsuario(new BusinessUsuarios().ObtenerUsuario(idUsuario).IdUbicacion).Id,
-                    IdOrganizacion = new BusinessOrganizacion().ObtenerOrganizacionUsuario(new BusinessUsuarios().ObtenerUsuario(idUsuario).IdOrganizacion).Id,
+                    IdTipoUsuario = idTipoUsuario,
+                    IdUsuario = idUsuario.HasValue ? idUsuario : null,
+                    IdUbicacion = idUsuario.HasValue ? new BusinessUbicacion().ObtenerUbicacionUsuario(new BusinessUsuarios().ObtenerUsuario(int.Parse(idUsuario.ToString())).IdUbicacion).Id : (int?) null,
+                    IdOrganizacion = idUsuario.HasValue ? new BusinessOrganizacion().ObtenerOrganizacionUsuario(new BusinessUsuarios().ObtenerUsuario(int.Parse(idUsuario.ToString())).IdOrganizacion).Id : (int?)null,
                     HitGrupoUsuario = new List<HitGrupoUsuario>(),
                     FechaHoraAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture)
                 };

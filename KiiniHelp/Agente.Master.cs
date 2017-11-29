@@ -68,14 +68,14 @@ namespace KiiniHelp
                 throw new Exception(e.Message);
             }
         }
-        public void AddTicketOpen(int idTicket, string titulo)
+        public void AddTicketOpen(int idTicket, string titulo, bool asigna)
         {
             try
             {
                 if (!TicketsAbiertos.Any(a => a.IdTicket == idTicket))
                     TicketsAbiertos.Add(new TicketSeleccionado { IdTicket = idTicket, Title = titulo });
                 LlenaTicketsAbiertos();
-                Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket);
+                Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket + "&asigna=" + asigna);
             }
             catch (Exception e)
             {

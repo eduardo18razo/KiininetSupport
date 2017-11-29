@@ -26,7 +26,7 @@ namespace KiiniHelp.ServiceAtencionTicket {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/AgregarComentarioConversacionTicket", ReplyAction="http://tempuri.org/IServiceAtencionTicket/AgregarComentarioConversacionTicketResp" +
             "onse")]
-        void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, System.Collections.Generic.List<string> archivos, bool privado);
+        void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, System.Collections.Generic.List<string> archivos, bool privado, bool enviaCorreo);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/MarcarAsignacionLeida", ReplyAction="http://tempuri.org/IServiceAtencionTicket/MarcarAsignacionLeidaResponse")]
         void MarcarAsignacionLeida(int idAsignacion);
@@ -78,8 +78,8 @@ namespace KiiniHelp.ServiceAtencionTicket {
             base.Channel.CambiarAsignacionTicket(idTicket, idEstatusAsignacion, idUsuarioAsignado, idNivelAsignado, idUsuarioAsigna, comentario);
         }
         
-        public void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, System.Collections.Generic.List<string> archivos, bool privado) {
-            base.Channel.AgregarComentarioConversacionTicket(idTicket, idUsuario, mensaje, sistema, archivos, privado);
+        public void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, System.Collections.Generic.List<string> archivos, bool privado, bool enviaCorreo) {
+            base.Channel.AgregarComentarioConversacionTicket(idTicket, idUsuario, mensaje, sistema, archivos, privado, enviaCorreo);
         }
         
         public void MarcarAsignacionLeida(int idAsignacion) {

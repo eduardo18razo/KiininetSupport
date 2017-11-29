@@ -172,22 +172,19 @@ namespace KinniNet.Business.Utils
 
         }
 
-        public static int[] IdsPublicos =
-        {
-            (int) EnumTiposUsuario.ClienteInvitado,
-            (int) EnumTiposUsuario.EmpleadoInvitado,
-            (int) EnumTiposUsuario.ProveedorInvitado
-        };
+        //public static int[] IdsPublicos =
+        //{
+        //    (int) EnumTiposUsuario.ClienteInvitado,
+        //    (int) EnumTiposUsuario.EmpleadoInvitado,
+        //    (int) EnumTiposUsuario.ProveedorInvitado
+        //};
 
         public enum EnumTiposUsuario
         {
             Operador = 1,
-            EmpleadoInvitado = 2,
-            Cliente = 3,
-            ClienteInvitado = 4,
-            Proveedor = 5,
-            ProveedorInvitado = 6,
-            Empleado = 7
+            Cliente = 2,
+            Proveedor = 3,
+            Empleado = 4
             
             //EmpleadoPersonaFisica = 7,
             //ClientaPersonaFisica = 8,
@@ -274,15 +271,14 @@ namespace KinniNet.Business.Utils
             Atención = 4,
             HelpCenter = 5,
             Tickets = 6,
-            LevantarTicket = 7,
-            Consultas = 8,
-            Servicio = 9,
-            Incidentes = 10,
-            View = 11,
-            Chat = 12,
-            CambiarContraseña = 13,
-            SolicitudMantenimiento = 14,
-            Notificaciones = 15,
+            Consultas = 7,
+            Servicio = 8,
+            Incidentes = 9,
+            View = 10,
+            Chat = 11,
+            CambiarContraseña = 12,
+            SolicitudMantenimiento = 13,
+            Notificaciones = 14,
 
 
         }

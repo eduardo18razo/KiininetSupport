@@ -90,6 +90,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
+                UcAltaAbrolAcceso.Cancelar();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
             }
             catch (Exception ex)

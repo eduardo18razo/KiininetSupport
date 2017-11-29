@@ -22,6 +22,10 @@
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -273,6 +277,8 @@
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Thin Italic.otf" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Thin.otf" />
     <Content Include="assets\fonts\MarkSimonson-Proxima-Nova-Regular.otf" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuario.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource" />
     <None Include="Service References\ServiceArbolAcceso\ServiceArbolAcceso14.xsd">
       <SubType>Designer</SubType>
     </None>

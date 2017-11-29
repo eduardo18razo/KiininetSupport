@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
@@ -16,6 +14,7 @@ using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
+using KinniNet.Core.Parametros;
 using KinniNet.Core.Sistema;
 using KinniNet.Data.Help;
 
@@ -38,6 +37,10 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.Usuario.SingleOrDefault(s => s.Id == idUsuario);
+                if (result != null)
+                {
+                    db.LoadProperty(result, "CorreoUsuario");
+                }
             }
             catch (Exception ex)
             {
@@ -138,7 +141,7 @@ namespace KinniNet.Core.Operacion
                 usuario.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
                 usuario.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
                 usuario.Nombre = usuario.Nombre.Trim();
-                usuario.NombreUsuario = usuario.NombreUsuario.PadRight(35).Substring(0, 30).Trim();
+                usuario.NombreUsuario = usuario.NombreUsuario.PadRight(30).Substring(0, 30).Trim();
                 usuario.Password = BusinessQueryString.Encrypt(ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g);
                 usuario.UsuarioLinkPassword = new List<UsuarioLinkPassword>
                 {
@@ -150,17 +153,6 @@ namespace KinniNet.Core.Operacion
                         IdTipoLink = (int) BusinessVariables.EnumTipoLink.Confirmacion
                     }
                 };
-                //if (usuario.UsuarioRol == null || usuario.UsuarioRol.Count <= 0)
-                //{
-                //    usuario.UsuarioRol = new List<UsuarioRol>();
-                //    foreach (Rol rol in new BusinessRoles().ObtenerRoles(usuario.IdTipoUsuario, false))
-                //    {
-                //        usuario.UsuarioRol.Add(new UsuarioRol
-                //        {
-
-                //        });
-                //    }
-                //}
                 foreach (UsuarioRol rol in usuario.UsuarioRol)
                 {
                     rol.IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(usuario.IdTipoUsuario, rol.RolTipoUsuario.IdRol).Id;
@@ -183,6 +175,8 @@ namespace KinniNet.Core.Operacion
                     }
                     rol.RolTipoUsuario = null;
                 }
+                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor)
+                    usuario.Habilitado = false;
                 usuario.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                 if (usuario.Id == 0)
                 {
@@ -210,7 +204,7 @@ namespace KinniNet.Core.Operacion
             return usuario.Id;
         }
 
-        public int RegistrarCliente(Usuario usuario)
+        public int RegistrarCliente(Usuario usuario, List<HelperCampoMascaraCaptura> datosAdicionalesCampos)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
@@ -231,6 +225,7 @@ namespace KinniNet.Core.Operacion
                 usuario.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
                 usuario.Nombre = usuario.Nombre.Trim();
                 usuario.NombreUsuario = string.IsNullOrEmpty(usuario.NombreUsuario) ? GeneraNombreUsuario(usuario.Nombre, usuario.ApellidoPaterno) : usuario.NombreUsuario;
+                usuario.NombreUsuario = usuario.NombreUsuario.PadRight(30).Substring(0, 30).Trim();
                 usuario.Password = BusinessQueryString.Encrypt(ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g);
                 ParametrosUsuario parametros = db.ParametrosUsuario.SingleOrDefault(s => s.IdTipoUsuario == usuario.IdTipoUsuario);
                 if (parametros == null)
@@ -283,20 +278,76 @@ namespace KinniNet.Core.Operacion
                         rol.RolTipoUsuario = null;
                     }
                 }
+                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor)
+                    usuario.Habilitado = false;
                 if (usuario.Id == 0)
                 {
                     db.Usuario.AddObject(usuario);
                     db.SaveChanges();
                 }
-                usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
-                if (correo != null)
+                ParametroDatosAdicionales datosAdicionales = new BusinessParametros().ObtenerDatosAdicionales(usuario.IdTipoUsuario);
+                if (datosAdicionales.IdMascara != null)
                 {
-                    String body = NamedFormat.Format(correo.Contenido, usuario);
-                    foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                    Mascara mascara = new BusinessMascaras().ObtenerMascaraCaptura((int) datosAdicionales.IdMascara);
+                    string store = string.Format("{0} '{1}',", mascara.ComandoInsertar, usuario.Id);
+                    bool contieneArchivo = false;
+                    foreach (HelperCampoMascaraCaptura helperCampoMascaraCaptura in datosAdicionalesCampos)
                     {
-                        BusinessCorreo.SendMail(correoUsuario.Correo, correo.TipoCorreo.Descripcion, body);
+                        if (mascara.CampoMascara.Any(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo))
+                        {
+
+                            store += string.Format("'{0}',", helperCampoMascaraCaptura.Valor.Replace("ticketid", usuario.Id.ToString()));
+                            contieneArchivo = true;
+                        }
+                        else if (mascara.CampoMascara.Any(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación))
+                        {
+                            //List<CatalogoGenerico> registros = new BusinessCatalogos().ObtenerRegistrosSistemaCatalogo((int)mascara.CampoMascara.Single(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo
+                            //    && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación).IdCatalogo, false);
+
+                            //string[] values = helperCampoMascaraCaptura.Valor.Split('|');
+                            //foreach (CatalogoGenerico registro in registros)
+                            //{
+                            //    if (values.Any(a => a == registro.Id.ToString()))
+                            store += string.Format("'{0}',", 1);
+                            //    else
+                            //        store += string.Format("'{0}',", 0);
+                            //}
+
+                        }
+                        else if (mascara.CampoMascara.Any(s => s.NombreCampo == helperCampoMascaraCaptura.NombreCampo && s.TipoCampoMascara.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango))
+                        {
+                            if (helperCampoMascaraCaptura.Valor != string.Empty)
+                            {
+                                string[] values = helperCampoMascaraCaptura.Valor.Split('|');
+                                store += string.Format("'{0}',", values[0]);
+                                store += string.Format("'{0}',", values[1]);
+                            }
+                            else
+                            {
+                                store += string.Format("'{0}',", "");
+                                store += string.Format("'{0}',", "");
+                            }
+                        }
+                        else
+                            store += string.Format("'{0}',", helperCampoMascaraCaptura.Valor.Replace("'", "''"));
+                    }
+                    store = store.Trim().TrimEnd(',');
+                    db.ExecuteStoreCommand(store);
+                }
+
+                if (usuario.IdTipoUsuario == (int) BusinessVariables.EnumTiposUsuario.Cliente || usuario.IdTipoUsuario == (int) BusinessVariables.EnumTiposUsuario.Operador)
+                {
+                    usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
+                    if (correo != null)
+                    {
+                        String body = NamedFormat.Format(correo.Contenido, usuario);
+                        foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                        {
+                            BusinessCorreo.SendMail(correoUsuario.Correo, correo.TipoCorreo.Descripcion, body);
+                        }
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -366,7 +417,8 @@ namespace KinniNet.Core.Operacion
                             userData.CorreoUsuario.Add(new CorreoUsuario
                             {
                                 IdUsuario = idUsuario,
-                                Correo = correoUsuario.Correo
+                                Correo = correoUsuario.Correo,
+                                Obligatorio = correoUsuario.Obligatorio
                             });
                     }
                     foreach (int i in correoEliminar)
@@ -384,7 +436,8 @@ namespace KinniNet.Core.Operacion
                                 IdUsuario = idUsuario,
                                 Numero = telefonoUsuario.Numero,
                                 IdTipoTelefono = telefonoUsuario.IdTipoTelefono,
-                                Extension = telefonoUsuario.Extension
+                                Extension = telefonoUsuario.Extension,
+                                Obligatorio = telefonoUsuario.Obligatorio
                             });
                     }
                     foreach (int i in telefonoEliminar)
@@ -595,13 +648,48 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public void HabilitarUsuario(int idUsuario, bool habilitado)
+        public void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                Usuario inf = db.Usuario.SingleOrDefault(w => w.Id == idUsuario);
-                if (inf != null) inf.Habilitado = habilitado;
+                Usuario user = db.Usuario.SingleOrDefault(w => w.Id == idUsuario);
+                if (user != null)
+                {
+                    user.Habilitado = habilitado;
+                    if (habilitado && user.Autoregistro)
+                    {
+                        Guid g = Guid.NewGuid();
+                        ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.AltaUsuario && s.Habilitado);
+                        if (correo != null)
+                        {
+                            db.LoadProperty(user, "CorreoUsuario");
+                            db.LoadProperty(user, "UsuarioLinkPassword");
+                            db.LoadProperty(correo, "TipoCorreo");
+
+                            user.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + user.Id + "_" + g;
+                            String body = NamedFormat.Format(correo.Contenido, user);
+                            foreach (CorreoUsuario correoUsuario in user.CorreoUsuario)
+                            {
+                                BusinessCorreo.SendMail(correoUsuario.Correo, correo.TipoCorreo.Descripcion, body);
+                            }
+                        }
+                        user.Password = BusinessQueryString.Encrypt(ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + user.Id + "_" + g);
+                        foreach (UsuarioLinkPassword linkPassword in user.UsuarioLinkPassword)
+                        {
+                            linkPassword.Activo = false;
+                        }
+                        user.UsuarioLinkPassword = user.UsuarioLinkPassword ?? new List<UsuarioLinkPassword>();
+                        user.UsuarioLinkPassword.Add(
+                            new UsuarioLinkPassword
+                            {
+                                Activo = true,
+                                Link = g,
+                                Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                IdTipoLink = (int)BusinessVariables.EnumTipoLink.Confirmacion
+                            });
+                    }
+                }
                 db.SaveChanges();
             }
             catch (Exception ex)
@@ -621,7 +709,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                IQueryable<Usuario> qry = db.Usuario.Where(w => !BusinessVariables.IdsPublicos.Contains(w.IdTipoUsuario));
+                IQueryable<Usuario> qry = db.Usuario;
                 if (idTipoUsuario != null)
                     qry = qry.Where(w => w.IdTipoUsuario == idTipoUsuario);
                 result = qry.OrderBy(o => o.ApellidoPaterno).ThenBy(tb => tb.ApellidoMaterno).ThenBy(tb => tb.Nombre).ToList();
@@ -657,7 +745,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 List<int> idsUsuarios = (db.Usuario.Join(db.UsuarioGrupo, u => u.Id, ug => ug.IdUsuario, (u, ug) => new { u, ug })
-                    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo && @t.ug.SubGrupoUsuario.IdSubRol == idNivel && !BusinessVariables.IdsPublicos.Contains(t.u.IdTipoUsuario) && @t.u.Habilitado)
+                    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo && @t.ug.SubGrupoUsuario.IdSubRol == idNivel && @t.u.Habilitado)
                     .Select(@t => @t.u.Id)).Distinct().ToList();
                 result = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).ToList();
                 //foreach (Usuario usuario in result)
@@ -691,7 +779,6 @@ namespace KinniNet.Core.Operacion
                 var qry = from u in db.Usuario
                           join ug in db.UsuarioGrupo on u.Id equals ug.IdUsuario
                           where ug.IdGrupoUsuario == idGrupo && u.Habilitado
-                          && !BusinessVariables.IdsPublicos.Contains(u.IdTipoUsuario)
                           select u;
                 result = new List<Usuario>();
                 foreach (Usuario usuario in qry)
@@ -1359,6 +1446,28 @@ namespace KinniNet.Core.Operacion
                 throw new Exception(e.Message);
             }
             return string.Format("{0} {1} hrs.", fecha, usuario.BitacoraAcceso.Any() ? usuario.BitacoraAcceso.Last(l => l.Success).Fecha.ToString("HH:mm") : DateTime.Now.ToString("HH:mm"));
+        }
+
+        public Usuario GetUsuarioByCorreo(string correo)
+        {
+            Usuario result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.Usuario.Join(db.CorreoUsuario, u => u.Id, cu => cu.IdUsuario, (u, cu) => new { u, cu })
+                    .Where(@t => @t.cu.Correo == correo & @t.cu.Obligatorio)
+                    .Select(@t => @t.u).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
         }
     }
 }

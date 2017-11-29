@@ -32,7 +32,7 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                lbTipoUsuario.Text = string.Format("{0}", ((Usuario)Session["UserData"]).IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado ? "Empleado" : ((Usuario)Session["UserData"]).IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado ? "Cliente" : "Proveedor"); 
+                lbTipoUsuario.Text = string.Format("{0}", ((Usuario)Session["UserData"]).IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado ? "Empleado" : ((Usuario)Session["UserData"]).IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente ? "Cliente" : "Proveedor"); 
                 rptAreas.DataSource = _servicioArea.ObtenerAreasTipoUsuario(((Usuario)Session["UserData"]).IdTipoUsuario, false);
                 rptAreas.DataBind();
             }

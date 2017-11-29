@@ -10,6 +10,7 @@ using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Tickets;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
 using KinniNet.Core.Sistema;
@@ -88,6 +89,7 @@ namespace KinniNet.Core.Operacion
             Ticket result;
             try
             {
+                string correo = string.Empty;
                 Usuario usuario = new BusinessUsuarios().ObtenerUsuario(idUsuario);
                 ArbolAcceso arbol = new BusinessArbolAcceso().ObtenerArbolAcceso(idArbol);
                 Mascara mascara = new BusinessMascaras().ObtenerMascaraCaptura(arbol.InventarioArbolAcceso.First().IdMascara ?? 0);
@@ -117,8 +119,15 @@ namespace KinniNet.Core.Operacion
                     ClaveRegistro = GeneraCampoRandom(),
                     EsTercero = usuario.Id != idUsuarioSolicito,
                     DentroSla = true,
+                    TicketCorreo = new List<TicketCorreo>(),
                     TicketGrupoUsuario = new List<TicketGrupoUsuario>(),
                 };
+                correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio).Correo;
+                if (correo != string.Empty)
+                    ticket.TicketCorreo.Add(new TicketCorreo
+                    {
+                        Correo = correo
+                    });
                 foreach (GrupoUsuarioInventarioArbol grupoArbol in arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol)
                 {
                     TicketGrupoUsuario grupo = new TicketGrupoUsuario { IdGrupoUsuario = grupoArbol.IdGrupoUsuario };
@@ -299,6 +308,14 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = new Ticket { Id = ticket.Id, Random = campoRandom, ClaveRegistro = ticket.ClaveRegistro };
                 new BusinessDemonio().ActualizaSla();
+
+                if (correo != string.Empty)
+                {
+                    string cuerpo = string.Format("Hola {0},<br>" +
+                                    "¡Gracias por contactarnos! Hemos recibido su correo y nos pondremos en contacto contigo lo antes posible. " +
+                                    "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa a https://soporte.kiininet.com/requests/3127595 Gracias", usuario.Nombre);
+                    new BusinessTicketMailService().EnviaCorreoTicketGenerado(result.Id, result.ClaveRegistro, cuerpo, correo);
+                }
             }
             catch (Exception ex)
             {

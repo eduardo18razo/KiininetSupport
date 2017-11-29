@@ -8,9 +8,9 @@ namespace KiiniNet.Entities.Helper
         public int IdHit { get; set; }
         public int IdTipoArbolAcceso { get; set; }
         public int IdTipificacion { get; set; }
-        public int IdUsuario { get; set; }
-        public int IdUbicacion { get; set; }
-        public int IdOrganizacion { get; set; }
+        public int? IdUsuario { get; set; }
+        public int? IdUbicacion { get; set; }
+        public int? IdOrganizacion { get; set; }
         public string TipoServicio { get; set; }
         public string Tipificacion { get; set; }
         public string NombreUsuario { get; set; }

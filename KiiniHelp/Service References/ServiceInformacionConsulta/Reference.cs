@@ -36,7 +36,7 @@ namespace KiiniHelp.ServiceInformacionConsulta {
         KiiniNet.Entities.Operacion.InformacionConsulta ActualizarInformacionConsulta(int idInformacionConsulta, KiiniNet.Entities.Operacion.InformacionConsulta informacion, System.Collections.Generic.List<string> documentosDescarga);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/GuardarHit", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/GuardarHitResponse")]
-        void GuardarHit(int idArbol, int idUsuario);
+        void GuardarHit(int idArbol, int idTipoUsuario, System.Nullable<int> idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsulta", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsultaResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.InformacionConsulta> ObtenerConsulta(string descripcion);
@@ -95,8 +95,8 @@ namespace KiiniHelp.ServiceInformacionConsulta {
             return base.Channel.ActualizarInformacionConsulta(idInformacionConsulta, informacion, documentosDescarga);
         }
         
-        public void GuardarHit(int idArbol, int idUsuario) {
-            base.Channel.GuardarHit(idArbol, idUsuario);
+        public void GuardarHit(int idArbol, int idTipoUsuario, System.Nullable<int> idUsuario) {
+            base.Channel.GuardarHit(idArbol, idTipoUsuario, idUsuario);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.InformacionConsulta> ObtenerConsulta(string descripcion) {
