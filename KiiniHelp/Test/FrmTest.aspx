@@ -99,7 +99,6 @@
                     oControl.disabled = true;
                 }
             </script>
-            <asp:TextBox runat="server" ID="txtpruebaLalo"></asp:TextBox>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <div class="form-horizontal col-lg-6 col-lg-offset-3">

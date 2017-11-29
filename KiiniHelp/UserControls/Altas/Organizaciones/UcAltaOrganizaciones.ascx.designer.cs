@@ -499,15 +499,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones {
         protected global::System.Web.UI.WebControls.Button btnSeleccionarModal;
         
         /// <summary>
-        /// Control divClas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divClas;
-        
-        /// <summary>
         /// Control pnlAlta.
         /// </summary>
         /// <remarks>
@@ -515,6 +506,15 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlAlta;
+        
+        /// <summary>
+        /// Control divClas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divClas;
         
         /// <summary>
         /// Control lblOperacionDescripcion.

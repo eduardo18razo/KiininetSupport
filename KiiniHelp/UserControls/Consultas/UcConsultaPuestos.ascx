@@ -20,7 +20,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Puestos" /></h3>
                             </div>
                             <p>
-                                Texto para puestos
+                               Los puestos representan las tareas y deberes específicos de un usuario dentro de la organización. Puedes crear puestos para facilitar la administración de los usuarios y sus eventos.
                             </p>
                         </div>
                     </div>

@@ -22,3 +22,42 @@ C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\Kin
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
 C:\Users\Janeth\Documents\TFS\Kiininet CEP\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\Office.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Word.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Calidad\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\Office.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Word.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Desarrollo Merge\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\EASendMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\EPPlus.xml
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\Office.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Word.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
