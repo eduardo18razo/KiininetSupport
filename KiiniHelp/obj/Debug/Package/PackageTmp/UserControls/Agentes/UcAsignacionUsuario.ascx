@@ -6,22 +6,21 @@
 
 <style>
     .RadSearchBox .rsbInner input {
-        width: 85% !important;
+        width: 90% !important;
     }
 </style>
-<script>
-    
+<script>    
 </script>
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfSelected" ClientIDMode="Static" Value="1"/>
         <div class="modal-header">
             <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelar_OnClick" Text='&times' />
-            <h2 class="modal-title" id="modal-new-ticket-label">
-                <asp:Label runat="server" Text="Asignación de usuario" /></h2>
+            <div class="modal-title" id="modal-new-ticket-label">
+                <asp:Label runat="server" Text="Asignación de usuario" /></div>
         </div>
-        <div class="modal-body">
-            <div class="row">
+        <div class="modal-body" style="height:250px">
+            <div class="row" style="padding-left: 15px;">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#usuarioRegistrado" aria-controls="home" role="tab" data-toggle="tab" onclick='document.getElementById("hfSelected").value = 1'>Usuario Registrado</a></li>
@@ -44,7 +43,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <asp:Button runat="server" ID="btnSeleccionarUsuario" Text="Asignar" CssClass="btn btn-success" OnClick="btnSeleccionarUsuario_OnClick" />
+            <asp:Button runat="server" ID="btnSeleccionarUsuario" style="margin-right: 16px;" Text="Asignar" CssClass="btn btn-success" OnClick="btnSeleccionarUsuario_OnClick" />
         </div>
         
     </ContentTemplate>

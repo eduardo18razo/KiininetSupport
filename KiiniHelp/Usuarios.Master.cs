@@ -143,6 +143,8 @@ namespace KiiniHelp
                     //btnSwitchRol.Visible = !administrador;
                     lblUsuario.Text = usuario.NombreCompleto;
                     lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
+                    int IdUsuario = usuario.Id;
+                    imgPerfil.ImageUrl = "~/DisplayImages.ashx?id=" + IdUsuario;
                     ObtenerAreas();
                     int rolSeleccionado = 0;
                     if (Session["RolSeleccionado"] != null)

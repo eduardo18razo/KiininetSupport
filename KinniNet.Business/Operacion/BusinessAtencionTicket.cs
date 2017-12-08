@@ -389,7 +389,7 @@ namespace KinniNet.Core.Operacion
                         result.UsuarioLevanto = new HelperUsuario();
 
                         result.UsuarioLevanto.IdUsuario = ticket.IdUsuarioLevanto;
-                        result.UsuarioLevanto.NombreCompleto = string.Format("{0} {1} {2}", ticket.UsuarioLevanto.ApellidoPaterno, ticket.UsuarioLevanto.ApellidoMaterno, ticket.UsuarioLevanto.Nombre);
+                        result.UsuarioLevanto.NombreCompleto = string.Format("{0} {1} {2}", ticket.UsuarioLevanto.Nombre, ticket.UsuarioLevanto.ApellidoPaterno, ticket.UsuarioLevanto.ApellidoMaterno);
                         result.UsuarioLevanto.TipoUsuarioDescripcion = ticket.UsuarioLevanto.TipoUsuario.Descripcion;
                         result.UsuarioLevanto.Vip = ticket.UsuarioLevanto.Vip;
                         result.UsuarioLevanto.FechaUltimoLogin = ticket.UsuarioLevanto.BitacoraAcceso != null && ticket.UsuarioLevanto.BitacoraAcceso.Count > 0 ? ticket.UsuarioLevanto.BitacoraAcceso.Last().Fecha.ToString("dd/MM/yyyy HH:mm") : "";
@@ -434,6 +434,7 @@ namespace KinniNet.Core.Operacion
                             result.Conversaciones.Add(new HelperConversacionDetalle
                             {
                                 Id = conversacion.Id,
+                                IdUsuario = conversacion.IdUsuario,
                                 Nombre = conversacion.Usuario.NombreCompleto,
                                 FechaHora = conversacion.FechaGeneracion,
                                 Comentario = conversacion.Mensaje,

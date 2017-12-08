@@ -10,7 +10,7 @@
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
-   <%-- <link rel="stylesheet" href="assets/css/pe-7-icons.css" />--%>
+    <%-- <link rel="stylesheet" href="assets/css/pe-7-icons.css" />--%>
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="assets/tmp/editor/ui/trumbowyg.min.css" />
     <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
+    <link rel="stylesheet" href="assets/css/elusive-icons.css" />
     <%--<style>
         body {
             font-size: 12px;
@@ -73,30 +74,30 @@
                 var control;
                 $(this).children("td").each(function (indexColumn) {
                     switch (indexColumn) {
-                    case 2:
-                        control = $(this).find("input[id*=txtDias]");
-                        if (control != null) {
-                            totaldias = totaldias + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
-                        }
-                        break;
-                    case 3:
-                        control = $(this).find("input[id*=txtHoras]");
-                        if (control != null) {
-                            totalhoras = totalhoras + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
-                        }
-                        break;
-                    case 4:
-                        control = $(this).find("input[id*=txtMinutos]");
-                        if (control != null) {
-                            totalminutos = totalminutos + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
-                        }
-                        break;
-                    case 5:
-                        control = $(this).find("input[id*=txtSegundos]");
-                        if (control != null) {
-                            totalsegundos = totalsegundos + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
-                        }
-                        break;
+                        case 2:
+                            control = $(this).find("input[id*=txtDias]");
+                            if (control != null) {
+                                totaldias = totaldias + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
+                            }
+                            break;
+                        case 3:
+                            control = $(this).find("input[id*=txtHoras]");
+                            if (control != null) {
+                                totalhoras = totalhoras + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
+                            }
+                            break;
+                        case 4:
+                            control = $(this).find("input[id*=txtMinutos]");
+                            if (control != null) {
+                                totalminutos = totalminutos + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
+                            }
+                            break;
+                        case 5:
+                            control = $(this).find("input[id*=txtSegundos]");
+                            if (control != null) {
+                                totalsegundos = totalsegundos + parseInt(control.val() === "" || control.val() === undefined ? 0 : control.val());
+                            }
+                            break;
                     }
 
                 });
@@ -106,30 +107,30 @@
                 var control;
                 $(this).children("td").each(function (indexColumn) {
                     switch (indexColumn) {
-                    case 2:
-                        control = $(this).find("input[id*=txtTotalDias]");
-                        if (control != null) {
-                            control.val(totaldias);
-                        }
-                        break;
-                    case 3:
-                        control = $(this).find("input[id*=txtTotalHoras]");
-                        if (control != null) {
-                            control.val(totalhoras);
-                        }
-                        break;
-                    case 4:
-                        control = $(this).find("input[id*=txtTotalMinutos]");
-                        if (control != null) {
-                            control.val(totalminutos);
-                        }
-                        break;
-                    case 5:
-                        control = $(this).find("input[id*=txtTotalSegundos]");
-                        if (control != null) {
-                            control.val(totalsegundos);
-                        }
-                        break;
+                        case 2:
+                            control = $(this).find("input[id*=txtTotalDias]");
+                            if (control != null) {
+                                control.val(totaldias);
+                            }
+                            break;
+                        case 3:
+                            control = $(this).find("input[id*=txtTotalHoras]");
+                            if (control != null) {
+                                control.val(totalhoras);
+                            }
+                            break;
+                        case 4:
+                            control = $(this).find("input[id*=txtTotalMinutos]");
+                            if (control != null) {
+                                control.val(totalminutos);
+                            }
+                            break;
+                        case 5:
+                            control = $(this).find("input[id*=txtTotalSegundos]");
+                            if (control != null) {
+                                control.val(totalsegundos);
+                            }
+                            break;
                     }
                 });
             });
@@ -147,8 +148,8 @@
             src_str = src_str.replace(/(<mark>[^<>]*)((<[^>]+>)+)([^<>]*<\/mark>)/, "$1</mark>$2<mark>$4");
 
             $("#test").html(src_str);
-        }  
-        
+        }
+
         function hidden(tablename) {
             //alert('hola');
             debugger;
@@ -229,7 +230,7 @@
                     <h1 class="logo text-center">
                         <asp:HyperLink NavigateUrl="~/Users/DashBoard.aspx" runat="server">
                             <asp:Image class="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
-                                <asp:Label runat="server" ID="lblBranding" Visible="false" />
+                            <asp:Label runat="server" ID="lblBranding" Visible="false" />
                         </asp:HyperLink>
                     </h1>
                 </div>
@@ -241,8 +242,8 @@
                         </div>
                     </div>
 
-                    <div class="search-container">
-                        <div id="main-search" style="padding-top:20px;">
+                    <div class="search-container" runat="server" visible="false">
+                        <div id="main-search" style="padding-top: 20px;">
                             <i id="main-search-toggle" class="fa fa-search icon"></i>
                             <div id="main_search_input_wrapper" class="main_search_input_wrapper">
                                 <asp:UpdatePanel runat="server">
@@ -259,10 +260,10 @@
                         <div class="utilities-container">
                             <div class="utilities">
                             </div>
-                                                                                                             
-                             <div>
-                                <div class="item item-notifications separador-vertical-derecho">
-                                    <%--<div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button">
+
+                            <div>
+                                <%--<div class="item item-notifications separador-vertical-derecho">
+                                    <div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Tickets</span>
                                         <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                     </div>
@@ -273,23 +274,22 @@
                                             <span class="pe-icon pe-7s-look icon"></span>Consultar ticket
                                             </asp:HyperLink>
                                         </li>
-                                    </ul>--%>
-                                </div>
-                               
-                                <div class="item item-notifications">
+                                    </ul>
+                                </div>--%>
+
+                                <div class="item item-notifications separador-vertical-derecho">
                                     <i id="side-panel-toggle" class="side-panel-toggle panel-hide icon fa fa-users icon" data-toggle="tooltip" data-placement="bottom" title="Roles">
                                         <span class="badge badge-circle badge-info">
                                             <asp:Label runat="server" ID="lblBadgeRoles"></asp:Label></span>
                                     </i>
                                 </div>
-                                 <%--<hr style="height:80%; border-color:red; width:1px"/>--%>
 
                                 <div class="item item-notifications" runat="server" id="divTickets">
                                     <div class="dropdown-toggle" id="dropdownMenu-notifications2" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Tickets</span>
                                         <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                         <span class="badge badge-circle badge-danger">
-                                            <asp:Label runat="server" ID="lblNoTickets"/>
+                                            <asp:Label runat="server" ID="lblNoTickets" />
                                         </span>
                                     </div>
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications">
@@ -325,7 +325,7 @@
                                         <span class="sr-only">Mensajes</span>
                                         <span class="pe-icon pe-7s-mail icon" data-toggle="tooltip" data-placement="bottom" title="Messages"></span>
                                         <span class="badge badge-circle badge-success" style="left: 30px; bottom: 22px;">
-                                            <asp:Label runat="server" ID="lblNoMensajes"/>
+                                            <asp:Label runat="server" ID="lblNoMensajes" />
                                         </span>
                                     </div>
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-messages">
@@ -434,22 +434,22 @@
                                         <h4 class="title">Menú de acceso rápido</h4>
                                         <ul class="more-list">
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-users icon"></span>
-                                                <br/>
+                                                <br />
                                                 Roles</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-ticket icon"></span>
-                                                <br/>
+                                                <br />
                                                 Tickets</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-mail icon"></span>
-                                                <br/>
+                                                <br />
                                                 Mensajes</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-config icon"></span>
-                                                <br/>
+                                                <br />
                                                 Ajustes</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-user icon"></span>
-                                                <br/>
+                                                <br />
                                                 Perfil</a></li>
                                             <li><a role="menuitem" href="help.html"><span class="pe-icon pe-7s-help2 icon"></span>
-                                                <br/>
+                                                <br />
                                                 Ayuda</a></li>
                                         </ul>
                                     </div>
@@ -472,10 +472,9 @@
                                 </li>--%>
                             </ul>
 
-                            <div class="dropdown-toggle" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
-                                <asp:Image ImageUrl="~/assets/images/profiles/perfil.png" alt="" runat="server" />
+                            <div class="dropdown-toggle" style="padding-top:10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
+                                <asp:Image ImageUrl="~/assets/images/profiles/perfil.png" alt="" ID="imgPerfil" runat="server" />
                                 <i class="fa fa-caret-down"></i>
-
                                 <p class="name" style="display: inline-block; color: #232323;">
                                     <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
                                     <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
@@ -495,13 +494,14 @@
                     </div>
 
 
-                    
+
                 </div>
             </header>
 
             <div id="content-wrapper" class="content-wrapper" style="padding-top: 0">
                 <div class="container-fluid" style="padding-left: 0">
-                    <div class="divMainMenu" id="divMainMenu" style="margin-top: 65px;" > <%----%>
+                    <div class="divMainMenu" id="divMainMenu" style="margin-top: 65px;">
+                        <%----%>
                         <asp:HiddenField runat="server" ID="hfCargaInicial" Value="False" />
                         <nav id="pMenu" class="pMenu">
                             <div class="menuLevel">
@@ -643,7 +643,7 @@
                             <%--<asp:LinkButton runat="server" CssClass="close" ID="lnkBtnCerrar" OnClick="lnkBtnCerrar_OnClick" Visible="False">
                         <span class="glyphicon glyphicon-remove"></span>
                             </asp:LinkButton>--%>
-                            
+
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -672,7 +672,7 @@
                                         Crear Ticket Nuevo</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <uc1:UcTicketPortal runat="server" id="ucTicketPortal" />
+                                    <uc1:UcTicketPortal runat="server" ID="ucTicketPortal" />
                                 </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -755,7 +755,7 @@
                     oControl.disabled = true;
                 }
             </script>
-            
+
         </form>
     </div>
 </body>

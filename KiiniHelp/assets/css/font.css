@@ -560,6 +560,8 @@
 }
 
 @font-face {
-	font-family: 'Proxima Nova RG';
-	src: url('../fonts/MarkSimonson-Proxima-Nova-Regular.otf'), local('Proxima Nova RG');
+    font-family: 'Proxima Nova RG';
+    src: url('../fonts/MarkSimonson-Proxima-Nova-Regular.otf'), local('Proxima Nova RG');
+    font-weight: normal;
+    font-style: normal;
 }

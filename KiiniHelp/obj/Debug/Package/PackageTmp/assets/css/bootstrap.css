@@ -1083,9 +1083,8 @@ html {
 }
 body {
   font-family:'Proxima Nova RG', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  /*line-height: 1.42857143; jgb*/
-  line-height: 1;
+  font-size: 14px; 
+  line-height: 1.42857143;
   color: #333;
   background-color: #fff;
 }
@@ -2647,7 +2646,8 @@ input[type="search"] {
 .checkbox label {
   min-height: 20px;
   padding-left: 20px;
-  margin-bottom: 0;
+  /*margin-bottom: 0;*/
+  margin: 3px 0;
   font-weight: normal;
   cursor: pointer;
 }
@@ -2920,7 +2920,7 @@ select[multiple].input-lg {
 @media (min-width: 768px) {
   .form-inline .form-group {
     display: inline-block;
-    margin-bottom: 0;
+    margin-bottom: 5px;
     vertical-align: middle;
   }
   .form-inline .form-control {

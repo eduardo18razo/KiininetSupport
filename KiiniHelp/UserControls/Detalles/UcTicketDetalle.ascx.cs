@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using KiiniHelp.ServiceAtencionTicket;
@@ -8,6 +9,7 @@ using KiiniHelp.ServiceTicket;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using KiiniHelp.ServiceUsuario;
 
 namespace KiiniHelp.UserControls.Detalles
 {
@@ -120,8 +122,13 @@ namespace KiiniHelp.UserControls.Detalles
 
                     lblNoticket.Text = ticket.IdTicket.ToString();
                     lblTituloTicket.Text = ticket.Tipificacion;
-                    lblNombreCorreo.Text = string.Format("{0} {1}", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
+                    //string.Format("{0} {1}", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket)
+                    //imgUsuarioTicket.ImageUrl = "~/DisplayImages.ashx?id=" + ticket.UsuarioLevanto.IdUsuario;
+
+                    lblNombreCorreo.Text = string.Format("{0} &#60;{1}&#62;", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
+                    lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto.ToString();
                     lblFechaAlta.Text = ticket.FechaLevanto;
+                    lblFecha.Text = ticket.FechaLevanto;
                     imgPrioridad.ImageUrl = "~/assets/images/icons/" + ticket.Impacto;
                     imgSLA.ImageUrl = ticket.DentroSla ? "~/assets/images/icons/SLA_verde.png" : "~/assets/images/icons/SLA_rojo.png";
                     lblTiempoRestanteSLa.Text = "Diferencia";
@@ -144,21 +151,28 @@ namespace KiiniHelp.UserControls.Detalles
                 throw new Exception(e.Message);
             }
         }
+
+        //Usuario usuario = ((Usuario)Session["UserData"]);
+        //private void LlenaDatosUsuario(HelperUsuario usuario)
         private void LlenaDatosUsuario(HelperUsuario usuario)
         {
             try
             {
                 if (usuario != null)
                 {
+
                     lblNombreDetalle.Text = usuario.NombreCompleto;
                     lblTipoUsuarioDetalle.Text = usuario.TipoUsuarioDescripcion.Substring(0, 1);
+
+                    //Falta validar que tenga foto
+                    //imgUsuarioDetalle.ImageUrl = "~/DisplayImages.ashx?id=" + usuario.IdUsuario;
+
                     imgVip.Visible = usuario.Vip;
                     lblFechaUltimaconexion.Text = usuario.FechaUltimoLogin;
                     ddlTicketUsuario.DataSource = usuario.TicketsAbiertos;
-                    ddlTicketUsuario.DataTextField = "Tipificacion";
+                    ddlTicketUsuario.DataTextField = "Tipificacion"; //"IdTicket" +
                     ddlTicketUsuario.DataValueField = "IdTicket";
                     ddlTicketUsuario.DataBind();
-
                     lblPuesto.Text = usuario.Puesto;
                     // usuario.FirstOrDefault(s => s.Obligatorio) != null ? usuario.CorreoUsuario.First(s => s.Obligatorio).Correo : string.Empty;
                     //TODO: Cambia a correo principal
@@ -170,7 +184,19 @@ namespace KiiniHelp.UserControls.Detalles
                     lblUbicacion.Text = usuario.Ubicacion;
                     lblFechaAltaDetalle.Text = usuario.Creado;
                     lblfechaUltimaActualizacion.Text = usuario.UltimaActualizacion;
+                    imgProfileNewComment.ImageUrl = ((Usuario)Session["UserData"]).Foto != null ? "~/DisplayImages.ashx?id=" + ((Usuario)Session["UserData"]).Id : "~/assets/images/profiles/profile-1.png";
+                    byte[] foto = new ServiceUsuariosClient().ObtenerFoto(usuario.IdUsuario);
+                    if (foto != null)
+                    {
 
+                        imgUsuarioTicket.ImageUrl = "~/DisplayImages.ashx?id=" + usuario.IdUsuario;
+                        imgUsuarioDetalle.ImageUrl = "~/DisplayImages.ashx?id=" + usuario.IdUsuario;
+                    }
+                    else
+                    {
+                        imgUsuarioTicket.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
+                        imgUsuarioDetalle.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
+                    }
                 }
             }
             catch (Exception e)
@@ -433,6 +459,37 @@ namespace KiiniHelp.UserControls.Detalles
             try
             {
                 LlenaConversacion(2);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void rptConversaciones_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        {
+            try
+            {
+
+                if (e.Item.ItemType == System.Web.UI.WebControls.ListItemType.Item || e.Item.ItemType == System.Web.UI.WebControls.ListItemType.AlternatingItem)
+                {
+                    System.Web.UI.WebControls.Image img = (System.Web.UI.WebControls.Image)e.Item.FindControl("imgAgente");
+                    if (img != null)
+                    {
+                        byte[] foto = new ServiceUsuariosClient().ObtenerFoto(((HelperConversacionDetalle)e.Item.DataItem).IdUsuario);
+                        if (foto != null)
+                            img.ImageUrl = "~/DisplayImages.ashx?id=" + ((HelperConversacionDetalle)e.Item.DataItem).IdUsuario;
+                        else
+
+                            img.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
+
+                    }
+                }
             }
             catch (Exception ex)
             {

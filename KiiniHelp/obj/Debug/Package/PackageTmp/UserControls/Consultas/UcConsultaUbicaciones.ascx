@@ -25,7 +25,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Ubicación" /></h3>
                             </div>
                             <p>
-                                Las organizaciones representan el lugar físico donde comúnmente se localiza un usuario. Estas se construyen en forma de árbol, se incluye la dirección y pueden contener desde uno hasta siete niveles de detalle. Puedes crear ubicaciones para facilitar la localización y administración de los usuarios y sus interacciones. 
+                                Las ubicaciones representan el lugar físico donde comúnmente se localiza un usuario. Estas se construyen en forma de árbol, se incluye la dirección y pueden contener desde uno hasta siete niveles de detalle. Puedes crear ubicaciones para facilitar la localización y administración de los usuarios y sus eventos. 
                             </p>
                         </div>
                     </div>                   
@@ -61,7 +61,7 @@
 
                         <div class="col-lg-4 col-md-4 text-center">
                             <asp:LinkButton CssClass="btn btn-success" Style="margin-top: 10px;" ID="btnNuevo" OnClick="btnNew_OnClick" runat="server">
-                                <i class="fa fa-plus"></i>Crear Nueva Ubicación</asp:LinkButton>
+                                <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
 
                                         <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
                                             OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
-                                            BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                            BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                             PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="TU" ControlStyle-Width="2%">
@@ -101,7 +101,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Nivel 2" HeaderStyle-Width="13%">
                                                     <ItemTemplate>
-                                                        <label style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; word-wrap: break-word;"><%# Eval("Campus.Descripcion")%></label>
+                                                        <label><%# Eval("Campus.Descripcion")%></label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Nivel 3" HeaderStyle-Width="13%">

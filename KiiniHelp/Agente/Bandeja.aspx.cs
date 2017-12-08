@@ -147,7 +147,7 @@ namespace KiiniHelp.Agente
             try
             {
                 if (lst == null || lst.Count <= 0) return;
-                lblTicketAbiertosHeader.Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
+                lblTicketAbiertosHeader.Text = "Tickets Abiertos (" + lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString() + ")";
                 ((Label)btnFiltroAbierto.FindControl("lblTicketsAbiertos")).Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
 
                 ((Label)btnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();

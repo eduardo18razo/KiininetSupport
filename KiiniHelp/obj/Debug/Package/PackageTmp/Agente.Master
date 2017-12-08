@@ -157,9 +157,7 @@
                     <h1 class="logo text-center">
                         <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
                             <asp:Image class="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
-                            <%--<span class="nav-label"><span class="h3"><strong>--%>
-                                <asp:Label runat="server" ID="lblBranding" Visible="false"/>
-                            <%--</strong></span></span>--%>
+                            <asp:Label runat="server" ID="lblBranding" Visible="false" />
                         </asp:HyperLink>
                     </h1>
                 </div>
@@ -170,7 +168,7 @@
                         </div>
                     </div>
 
-                    <div class="search-container">
+                    <div runat="server" class="search-container" visible="false">
                     </div>
 
                     <div class="navbar-tools">
@@ -190,9 +188,12 @@
                                             <asp:Label runat="server" ID="lblBadgeRoles"></asp:Label></span>
                                     </i>
                                 </div>
+
                                 <div class="item item-notifications" style="margin-right: 35px;">
-                                    <div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Tickets</span> <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
-                                        <span class="badge badge-circle badge-danger" style="left:32px;"><asp:Label runat="server" ID="lblNoTicketsAsignados"/></span> 
+                                    <div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button">
+                                        <span class="sr-only">Tickets</span> <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
+                                        <span class="badge badge-circle badge-danger" style="left: 32px;">
+                                            <asp:Label runat="server" ID="lblNoTicketsAsignados" /></span>
                                     </div>
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications">
                                         <span class="arrow"></span>
@@ -263,62 +264,6 @@
                                                 <div class="meta">Ene 6 </div>
                                             </div>
                                             <%--Borrar--%>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
                                         </div>
                                         <div class="dropdown-footer"><a href="#">Ver todos los mensajes</a> </div>
                                     </div>
@@ -330,22 +275,22 @@
                                         <h4 class="title">Menú de acceso rápido</h4>
                                         <ul class="more-list">
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-users icon"></span>
-                                                <br/>
+                                                <br />
                                                 Roles</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-ticket icon"></span>
-                                                <br/>
+                                                <br />
                                                 Tickets</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-mail icon"></span>
-                                                <br/>
+                                                <br />
                                                 Mensajes</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-config icon"></span>
-                                                <br/>
+                                                <br />
                                                 Ajustes</a></li>
                                             <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-user icon"></span>
-                                                <br/>
+                                                <br />
                                                 Perfil</a></li>
                                             <li><a role="menuitem" href="help.html"><span class="pe-icon pe-7s-help2 icon"></span>
-                                                <br/>
+                                                <br />
                                                 Ayuda</a></li>
                                         </ul>
                                     </div>
@@ -354,32 +299,31 @@
                         </div>
 
                         <div class="user-container dropdown">
-                           
+
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-user">
                                 <li>
                                     <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Detail=1" ID="btnMiPerfil" OnClick="btnMiPerfil_OnClick" runat="server">
                                     <span class="pe-icon pe-7s-user icon"></span>Mi perfil
                                     </asp:LinkButton>
                                 </li>
-                               <%-- <li>
+                                <%-- <li>
                                     <asp:LinkButton role="menuitem" NavigateUrl="~/Default.aspx" runat="server" OnClick="btnsOut_OnClick">
                                     <span class="fa fa-sign-out icon"></span>Salir
                                     </asp:LinkButton>
                                 </li>--%>
                             </ul>
 
-                             <div class="dropdown-toggle" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
-                                <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt="" runat="server" />
+                            <div class="dropdown-toggle" style="padding-top:10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
+                                <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt="" ID="imgPerfil" runat="server" />
                                 <i class="fa fa-caret-down"></i>
 
-                                <%-- <p class="name" style="display: inline-block; color: #232323;">
+                               <p class="name" style="display: inline-block; color: #232323;">
                                      <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
                                      <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
                                      / <strong class="text-theme">
                                          <asp:Label runat="server" ID="lblAreaSeleccionada" Style="font-size: x-small"></asp:Label>
-                                         <asp:Label runat="server" ID="lblTipoUsr" Style="font-size: x-small" Visible="False" /></strong>
-                                 </p>--%>
-
+                                         <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" Style="font-size: x-small" Visible="true" /></strong>
+                                 </p>
                             </div>
                         </div>
 
@@ -394,13 +338,13 @@
                 </div>
             </header>
             <header class="header header-Tabs" style="z-index: 9">
-                <div class="branding " style="background-color: #7C7C7C; height: 40px ">
-                    <h1 class="logo text-center" style="padding-top: 0; font-size: 16px; margin-top: 10px; background-color: #7C7C7C; color:#6E6E6E" >
-                        <asp:HyperLink NavigateUrl="~/Agente/Bandeja.aspx" runat="server" CssClass="fa fa-envelope">
-                        <span class="nav-label"><span class="h5">  Bandeja de Tickets</span></span>
-                        </asp:HyperLink>
+                <div class="branding " style="background-color: #7C7C7C; height: 40px">
+                    <h1 class="logo text-center" style="padding-top: 0; font-size: 14px; font-weight: lighter; margin-top: 12px; background-color: #7C7C7C; color: #6E6E6E">
+                        <asp:HyperLink NavigateUrl="~/Agente/Bandeja.aspx" runat="server"> <%--CssClass="fa fa-envelope"--%>
+                             <i class="fa fa-envelope" style="padding-right:5px; font-size:18px;"></i>
+                       Bandeja de Tickets </asp:HyperLink>
                     </h1>
-                </div>               
+                </div>
 
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upTabsTickets">
                     <ContentTemplate>
@@ -410,21 +354,26 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <li role="presentation" class="active liTab">
-                                    <span class="tag label label-info">
-                                        <div class="row col-lg-11 col-md-11 col-sm-11">
-                                            <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("IdTicket") %>' OnClick="lbtnTabTicket_OnClick">
-                                                <div class="row col-lg-11 col-md-11 col-sm-11 tab-row">
-                                                    <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>'></asp:Label>
-
-                                                </div>
-                                                <div class="row col-lg-11 col-md-11 col-sm-11 tab-row">
+                                    <%--<span class="tag label label-info">--%>
+                                    <div class="row" style="padding-top: 5px;">
+                                        <div class="form-inline">
+                                            <div class="col-lg-10 col-md-10 col-sm-10">
+                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("IdTicket") %>' OnClick="lbtnTabTicket_OnClick">
+                                                    <%-- <div class="row col-lg-11 col-md-11 col-sm-11 tab-row">--%>
                                                     <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>'></asp:Label>
-                                                </div>
-                                            </asp:LinkButton>
+                                                    <%--</div>--%>
+                                                    <asp:Label runat="server" Text=" "></asp:Label>
+                                                    <%-- <div class="row col-lg-11 col-md-11 col-sm-11 tab-row">--%>
+                                                    <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>'></asp:Label>
+                                                    <%-- </div>   --%>
+                                                </asp:LinkButton>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-2 tab-row">
+                                                <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove glyphicon-white" ID="btnRemoveTab" CommandArgument='<%# Eval("IdTicket") %>' OnClick="btnRemoveTab_OnClick"></asp:LinkButton>
+                                            </div>
                                         </div>
-                                        <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove glyphicon-white" ID="btnRemoveTab" CommandArgument='<%# Eval("IdTicket") %>' OnClick="btnRemoveTab_OnClick"></asp:LinkButton>
-                                    </span>
-
+                                    </div>
+                                    <%--</span>--%>
                                 </li>
                             </ItemTemplate>
                             <FooterTemplate>
@@ -437,7 +386,8 @@
 
             <div id="content-wrapper" class="content-wrapper" style="padding-top: 0">
                 <div class="container-fluid" style="padding-left: 0">
-                    <div class="divMainMenu" id="divMainMenu" style="margin-top: 65px;"> <%----%>
+                    <div class="divMainMenu" id="divMainMenu" style="margin-top: 65px;">
+                        <%----%>
                         <asp:HiddenField runat="server" ID="hfCargaInicial" Value="False" />
                         <nav id="pMenu" class="pMenu" style="top: 40px !important">
                             <div class="menuLevel">
@@ -585,10 +535,6 @@
                     </div>
                 </div>
             </div>
-
-            <%--<footer id="footer" class="site-footer text-right" style="padding-right:6px; padding-bottom:5px">
-                <div class="copyright">Kiininet &reg; </div>
-            </footer>--%>
 
             <footer id="footer" class="site-footer">
                 <div class="copyright">&copy; 2017 Kiininet. Todos los derechos reservados </div>

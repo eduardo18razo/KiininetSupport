@@ -13,31 +13,7 @@
         .rcbList li img {
             width: 30px;
         }
-
-      /*   .form-control, .RadButton, .t14, .rbLinkButton{
-            font-size: 14px;
-        }
-
-        p {
-            font-size: 14px;
-        }
-
-        .btn, a.btn {
-            font-size: 14px;
-        }
-
-        h4 {
-            font-size: 21px;
-            font-weight: bold;
-        }
-
-        body {
-            font-size: 14px;
-            background-color: #f3f4f4;
-        }
-
-          */
-               
+       
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -52,58 +28,60 @@
                         <div class="col-lg-9 col-md-8 col-sm-8 no-padding-right">
                             <div class="module-inner">
                                 <section class="module">
-
                                     <div class="module-inner">
                                         <div class="row ">
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <div>
-                                                    <h4 class="module-title margin-left-15">
-                                                        <asp:Label runat="server" Text="Tickets Abiertos (" />
-                                                        <asp:Label runat="server" ID="lblTicketAbiertosHeader" /><asp:Label runat="server" Text=" )" />
-                                                    </h4>
-                                                    <hr />
+                                            <div class="module-heading col-lg-12 col-md-12 col-sm-12">
+
+                                                <div class="module-title">
+                                                    <%--<asp:Label runat="server" CssClass="TitulosAzul" Text="Tickets Abiertos (" style="margin-right:0px"/>--%>
+                                                    <asp:Label runat="server" CssClass="TitulosAzul" ID="lblTicketAbiertosHeader" />
+                                                    <%--<asp:Label runat="server" Text=")" CssClass="TitulosAzul" />--%>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="row ">
                                             <div class="col-lg-7 col-md-7 col-sm-12 text-left">
 
                                                 <div class="row">
-                                                    <div class="form-group margin-left-15">
-                                                        <asp:Label runat="server" class="col-sm-2 control-label" Text="Grupo" />
+                                                    <div class="form-group">
+                                                        <asp:Label runat="server" class="col-sm-9 control-label" Text="Grupo" />
                                                         <%--<div class="col-sm-9">--%>
-                                                            <asp:DropDownList runat="server" ID="ddlGrupo" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlGrupo_OnSelectedIndexChanged" />
+                                                        <asp:DropDownList runat="server" ID="ddlGrupo" AutoPostBack="True" CssClass="form-control" Width="73%" OnSelectedIndexChanged="ddlGrupo_OnSelectedIndexChanged" />
                                                         <%--</div>--%>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="form-group margin-left-15">
-                                                        <asp:Label runat="server" class="col-sm-2 control-label" Text="Agente" />
-                                                      <%--  <div class="col-sm-9">--%>
-                                                            <asp:DropDownList runat="server" ID="ddlAgente" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlAgente_OnSelectedIndexChanged" />
-                                                       <%-- </div>--%>
+                                                    <div class="form-group">
+                                                        <asp:Label runat="server" class="col-sm-9 control-label" Text="Agente" />
+                                                        <%--  <div class="col-sm-9">--%>
+                                                        <asp:DropDownList runat="server" ID="ddlAgente" AutoPostBack="True" CssClass="form-control" Width="73%" OnSelectedIndexChanged="ddlAgente_OnSelectedIndexChanged" />
+                                                        <%-- </div>--%>
                                                     </div>
                                                 </div>
 
-                                                <div class="row" style="width: 90%; margin-top: 18px">
+                                                <div class="row" style="margin-top: 18px">
 
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-long-arrow-down margin-right-10 margin-left-15" Text="" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
-                                            <span style="font-family: 'Proxima Nova RG';"> Asignármelo</span>
+                                                    <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
+                                                        <i class="fa fa-long-arrow-down"></i>
+                                                        Asignármelo
                                                     </asp:LinkButton>
 
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-long-arrow-right margin-right-10" Text="" ID="btnAsignar" OnClick="btnAsignar_OnClick">
-                                             <span style="font-family: 'Proxima Nova RG';"> Asignar</span>
+                                                    <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAsignar" OnClick="btnAsignar_OnClick">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        Asignar
                                                     </asp:LinkButton>
 
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-long-arrow-right margin-right-10" Text="" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick">
-                                             <span style="font-family: 'Proxima Nova RG';"> Cambiar Estatus</span>
+                                                    <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        Cambiar Estatus
                                                     </asp:LinkButton>
 
-                                                    <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-refresh margin-right-10" ID="btnRefresh" OnClick="btnRefresh_OnClick">
-                                             <%--<span style="font-family: 'Proxima Nova RG';"> </span>--%>
+                                                    <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnRefresh" OnClick="btnRefresh_OnClick">
+                                                        <i class="fa fa-refresh"></i>
                                                     </asp:LinkButton>
 
-                                                    <asp:LinkButton runat="server" CssClass="btn fa fa-long-arrow-right" Text="Escalar" ID="btnEscalar" OnClick="btnEscalar_OnClick" Visible="False" />
+                                                    <asp:LinkButton runat="server" CssClass="btn fa fa-long-arrow-right margin-bottom-10" Text="Escalar" ID="btnEscalar" OnClick="btnEscalar_OnClick" Visible="False" />
                                                 </div>
 
                                             </div>
@@ -155,7 +133,7 @@
                                                         <HeaderStyle Width="60px"></HeaderStyle>
                                                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                                         <ItemTemplate>
-                                                            <div class="btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("UsuarioSolicito.TipoUsuario.Color") + " !important" %>'>
+                                                            <div class="btn btn-square-usuario btn-circle" style='<%# "Border: none !important; Background: " + Eval("UsuarioSolicito.TipoUsuario.Color") + " !important" %>'>
                                                                 <%# Eval("UsuarioSolicito.TipoUsuario.Descripcion").ToString().Substring(0,1) %>
                                                             </div>
                                                         </ItemTemplate>
@@ -218,32 +196,31 @@
                                 </section>
                             </div>
                         </div>
-                        
-                        <div class="col-lg-3 col-md-4 col-sm-4" >
+
+                        <div class="col-lg-3 col-md-4 col-sm-4">
                             <section class="module" style="min-height: 926px">
                                 <div class="module-inner">
 
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div>
-                                            <h4 class="module-title margin-left-15">
-                                                <asp:Label runat="server" Text="Filtros" />                                               
-                                            </h4>
-                                            <hr />
+                                    <div class="module-heading col-lg-12 col-md-12 col-sm-12">
+
+                                        <div class="module-title margin-left-15">
+                                            <asp:Label runat="server" Text="Filtros" CssClass="TitulosAzul" />
                                         </div>
+                                        <%--<hr />--%>
                                     </div>
 
-                                    <div class="row borderbootom">
+                                    <div class="row borderbootom padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Abierto" ID="btnFiltroAbierto" EnableEmbeddedSkins="False"
                                                 CommandArgument="Abierto" Style="text-align: left" OnClick="btnFiltro_OnClick">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" Font-Bold="true" runat="server" Text="Tickets Abiertos" />
-                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" Font-Bold="true" runat="server" ID="lblTicketsAbiertos" Style="text-align: right">0</asp:Label>
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Abiertos" />
+                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsAbiertos" Style="text-align: right">0</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
                                     </div>
-                                    <div class="row borderbootom">
+                                    <div class="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Tickets Sin Asignar" ID="btnFiltroSinAsignar" CommandArgument="SinAsignar" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
@@ -253,28 +230,28 @@
                                             </tc:RadButton>
                                         </div>
                                     </div>
-                                    <div class="row borderbootom">
+                                    <div class="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="En Espera" ID="btnFiltroEspera" CommandArgument="Espera" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" Font-Bold="true" runat="server" Text="Tickets Pendientes" />
-                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" Font-Bold="true" runat="server" ID="lblTicketsEspera" Style="text-align: right">2</asp:Label>
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Pendientes" />
+                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsEspera" Style="text-align: right">2</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
                                     </div>
 
-                                    <div class="row borderbootom">
+                                    <div class="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Recien Resuelto" ID="btnFiltroResuelto" CommandArgument="Resuelto" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" Font-Bold="true" runat="server" Text="Tickets Recién Resueltos (36hrs)" />
-                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" Font-Bold="true" runat="server" ID="lblTicketsResueltos" Style="text-align: right">0</asp:Label>
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Recién Resueltos (36hrs)" />
+                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsResueltos" Style="text-align: right">0</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
                                     </div>
-                                    <div class="row borderbootom">
+                                    <div class="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Fuera SLA" ID="btnFueraSla" CommandArgument="FueraSla" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>

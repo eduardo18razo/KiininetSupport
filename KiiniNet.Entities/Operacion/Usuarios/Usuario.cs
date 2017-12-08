@@ -138,7 +138,7 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         public bool Administrador { get; set; }
         [DataMember]
         public bool Supervisor { get; set; }
-        public string NombreCompleto { get { return ApellidoPaterno + " " + ApellidoMaterno + " " + Nombre; } }
+        public string NombreCompleto { get { return Nombre + " " + ApellidoPaterno + " " + ApellidoMaterno; } }
         [DataMember]
         public string OrganizacionCompleta { get; set; }
         [DataMember]

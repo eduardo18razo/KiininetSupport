@@ -583,6 +583,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.Usuario.Single(w => w.Id == idUsuario).Foto;
+               // result = db.Usuario.Single(w => w.Id == idUsuario).Foto != null ? db.Usuario.Single(w => w.Id == idUsuario).Foto : new byte[0];
             }
             catch (Exception ex)
             {

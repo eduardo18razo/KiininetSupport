@@ -34,7 +34,13 @@
         .tag .remove {
             vertical-align: bottom;
             top: 0;
-            color: red;
+            color: #6e6e6e;
+            /*
+                Propuesta 2
+            vertical-align: bottom;
+            padding-bottom: 4px;
+            color: #6e6e6e;
+            font-size: 8px;*/
         }
 
         .tag a {
@@ -94,21 +100,27 @@
                             </div>
                             <div class="col-lg-8 text-center">
                                 <h3>
-                                    <asp:Label runat="server" ID="lblTitle" /></h3>
-                                <asp:Label runat="server" Text="Último Acceso: " />
-                                <asp:Label runat="server" ID="lblFechaUltimoAcceso" Text="Fecha Último Acceso"></asp:Label>
+                                    <%-- <asp:Label runat="server" ID="lblTitle" />--%></h3>
+
                             </div>
-                            <div class="col-lg-2 col-md-2 text-right" style="padding-top: 30px;">
+                            <%--<div class="col-lg-2 col-md-2 text-right" style="padding-top: 30px;">
                                 <asp:LinkButton runat="server" Text="Editar" CssClass="btn btn-primary" ID="btnEditar" OnClick="btnEditar_OnClick" />
-                            </div>
+                            </div>--%>
                         </div>
                         <div class="row">
                             <div class="module-heading">
                                 <div class="row">
-                                    <div class="col-lg-10 col-md-10">
-                                        <h3 class="module-title">DATOS GENERALES</h3>
+                                    <div class="col-lg-10 col-md-8 col-sm-8">
+                                        <h3 class="module-title">
+                                            <asp:Label runat="server" ID="lblTitle" /></h3>
+                                        <div runat="server" id="divUltimoAcceso">
+                                            <asp:Label runat="server" Text="Último Acceso: " />
+                                            <asp:Label runat="server" ID="lblFechaUltimoAcceso" Text="Fecha Último Acceso" />
+                                        </div>
                                     </div>
-
+                                    <div class="col-lg-2 col-md-4 col-sm-4 text-right">
+                                        <asp:LinkButton runat="server" Text="Editar" CssClass="btn btn-editar" ID="btnEditar" OnClick="btnEditar_OnClick" />
+                                    </div>
                                 </div>
                             </div>
 
@@ -116,12 +128,12 @@
                                 <div class="col-lg-1 col-md-1">
                                     <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="Upload" Style="display: none" ClientIDMode="Static" />
                                     <div class="form-group avatar" runat="server" id="divAvatar" visible="True">
-                                        <figure class="figure col-md-12 col-sm-12 col-xs-12 center-content-div">
-                                            <asp:Image CssClass="img-rounded img-responsive" ImageUrl="~/assets/images/profiles/profile-square-1.png" ID="imgPerfil" alt="" runat="server" />
+                                        <figure class="figure col-md-12 col-sm-6 col-xs-6 center-content-div">
+                                            <asp:Image CssClass="img-rounded img-responsive" Style="padding-top: 25px;" ImageUrl="~/assets/images/profiles/profile-square-1.png" ID="imgPerfil" alt="imgPerfil" runat="server" />
 
-                                            <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer;">
+                                            <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer; max-height: 165px; max-width: 165px;">
                                                 <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer" />
-                                                <asp:LinkButton runat="server" Text="Cambiar" ID="btnCambiarImagen" ClientIDMode="Static"></asp:LinkButton>
+                                                <asp:LinkButton runat="server" Text="Cambiar" style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-editar" />
                                             </asp:Panel>
                                         </figure>
                                         <div class="form-group col-sm-10">
@@ -137,17 +149,18 @@
                                 <div class="col-lg-11 col-md-11">
 
                                     <div class="row" runat="server" id="divTipousuario">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left: 18px">
-                                            <asp:Label runat="server" Text="Tipo de usuario" CssClass="col-lg-1" Style="padding-top: 10px;" />
-                                            <div class="col-lg-5" style="padding-right: 12px">
-                                                <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" AutoPostBack="true" />
-                                            </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="padding-left: 20px">
+                                            <asp:Label runat="server" Text="Tipo de usuario" Style="padding-top: 10px;" />
+                                            <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" AutoPostBack="true" Enabled="false" />
                                         </div>
-                                        <br />
-                                        <br />
                                     </div>
-
+                                    <br />
                                     <div class="row">
+                                        <div class="col-lg-3 col-md-3" style="padding-left: 20px">
+                                            <asp:Label runat="server" Text="Nombre" />
+                                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
+                                        </div>
+
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
                                             <asp:Label runat="server" Text="Apellido Paterno" />
                                             <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" placeholder="Apellido paterno" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
@@ -156,11 +169,6 @@
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
                                             <asp:Label runat="server" Text="Apellido Materno" />
                                             <asp:TextBox ID="txtAm" runat="server" CssClass="form-control" placeholder="Apellido materno" onkeypress="return ValidaCampo(this,1)" MaxLength="32" />
-                                        </div>
-
-                                        <div class="col-lg-3 col-md-3" style="padding-left: 20px">
-                                            <asp:Label runat="server" Text="Nombre" />
-                                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                         </div>
 
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
@@ -182,25 +190,25 @@
                                         <div class="col-lg-2 col-md-2 " style="padding-top: 18px">
                                             <div class="form-inline">
                                                 <label for="chkVip" class="col-lg-9 col-md-9 text-right">VIP</label>
-                                                <asp:CheckBox runat="server" Text="VIP" ID="chkVip" CssClass="chkIphone col-lg-3 col-md-3 col-sm-1" />
+                                                <asp:CheckBox runat="server" Text="VIP" ID="chkVip" CssClass="chkIphone padding-5-top" Width="30px" />
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-1" style="padding-top: 18px"></div>
+                                       <%-- <div class="col-lg-1" style="padding-top: 18px"></div>--%>
 
                                         <div class="col-lg-2 col-md-2" style="padding-top: 18px">
                                             <div class="form-inline">
                                                 <label for="chkVip" class="col-lg-9 col-md-9 text-right">Directorio activo</label>
-                                                <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" CssClass="chkIphone col-lg-3 col-md-3 col-sm-1" />
+                                                <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" CssClass="chkIphone padding-5-top" Width="30px" />
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-1" style="padding-top: 18px"></div>
+                                       <%-- <div class="col-lg-1" style="padding-top: 18px"></div>--%>
 
                                         <div class="col-lg-2 col-md-2" style="padding-top: 18px">
                                             <div class="form-inline">
-                                                <label for="chkPersonaFisica" class="col-lg-9 col-md-9">Persona Fisica</label>
-                                                <asp:CheckBox runat="server" Text="Persona Fisica" ID="chkPersonaFisica" CssClass="chkIphone col-lg-3 col-md-3" />
+                                                <label for="chkPersonaFisica" class="col-lg-9 col-md-9 text-right">Persona Fisica</label>
+                                                <asp:CheckBox runat="server" Text="Persona Fisica" ID="chkPersonaFisica" CssClass="chkIphone padding-5-top" Width="30px" />
                                             </div>
                                         </div>
                                     </div>
@@ -217,7 +225,7 @@
                             <!--TÍTULO DATOS GENERALES-->
                             <div class="module-inner">
                                 <div class="module-heading">
-                                    <h3 class="module-title">DATOS DE CONTACTO</h3>
+                                    <h3 class="module-title">Datos de Contacto</h3>
                                 </div>
                                 <br />
                                 <!--FILA 1-->
@@ -288,7 +296,7 @@
                             <!--TÍTULO ORGANIZACIÓN-->
                             <div class="module-inner">
                                 <div class="module-heading">
-                                    <h3 class="module-title">ORGANIZACIÓN</h3>
+                                    <h3 class="module-title">Organización</h3>
                                 </div>
 
                                 <div class="row">
@@ -363,7 +371,7 @@
                             <!--TÍTULO UBICACIÓN-->
                             <div class="module-inner">
                                 <div class="module-heading">
-                                    <h3 class="module-title">UBICACIÓN</h3>
+                                    <h3 class="module-title">Ubicación</h3>
                                 </div>
 
                                 <div class="row">
@@ -417,7 +425,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 text-right">
                                         <asp:Button CssClass="btn btn-primary" runat="server" ID="btnModalUbicacion" Text="Seleccionar" OnClick="btnModalUbicacion_OnClick" />
@@ -429,15 +436,15 @@
                     </div>
                     <!--/GRUPO UBICACIÓN -->
                 </section>
-                <section class="module">
 
+                <section class="module">
                     <!-- ROLES Y GRUPOS -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <!--TÍTULO ROLES Y GRUPOS-->
                             <div class="module-inner">
                                 <div class="module-heading">
-                                    <h3 class="module-title">ROLES Y GRUPOS</h3>
+                                    <h3 class="module-title">Roles y Grupos</h3>
                                 </div>
                                 <%--    <br />--%>
                                 <!--FILA 1-->
@@ -448,28 +455,30 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <div runat="server" id="divRolesGrupos" class="col-lg-12 col-md-12">
                                                         <asp:Label runat="server" Visible="False" ID="lblIdRol" Text='<%# Eval("IdRol") %>' />
-                                                        <span style="font-weight:700; "><%# Eval("DescripcionRol") %></span>
+                                                        <span style="font-weight: 700;"><%# Eval("DescripcionRol") %></span>
                                                         <div class="col-lg-12 col-md-12">
                                                             <asp:Repeater runat="server" ID="rptGrupos" OnItemDataBound="rptGrupos_OnItemDataBound">
                                                                 <ItemTemplate>
-                                                                    <asp:Label runat="server" Visible="False" ID="lblIdGrupo" Text='<%# Eval("IdGrupo") %>'/>
+                                                                    <asp:Label runat="server" Visible="False" ID="lblIdGrupo" Text='<%# Eval("IdGrupo") %>' />
                                                                     <div class="form-group col-lg-4 col-md-4" style="padding: 5px">
                                                                         <span class="tag label label-info">
                                                                             <div class="row col-lg-4 col-md-4" style="padding: 5px">
-                                                                                <span style="font-weight:400" class="text-left"><%# Eval("DescripcionGrupo") %></span>
-                                                                                <asp:Repeater runat="server" ID="rptSubGrupos">
-                                                                                    <HeaderTemplate>
-                                                                                        <br />
-                                                                                    </HeaderTemplate>
-                                                                                    <ItemTemplate>
-                                                                                        <div style="font-weight:200; padding-left:40px" class="text-left">
+                                                                                <div style="width: 100%">
+                                                                                    <span style="font-weight: 400" class="text-left"><%# Eval("DescripcionGrupo") %></span>
+                                                                                    <asp:Repeater runat="server" ID="rptSubGrupos">
+                                                                                        <HeaderTemplate>
                                                                                             <br />
-                                                                                        <%# Eval("Descripcion") %>
-                                                                                        <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove-sign glyphicon-white" ID="btnRemoveRolSub" OnClick="btnRemoveRolSub_OnClick" CommandName='<%# Container.ItemIndex %>' CommandArgument='<%# Eval("Id") %>' />
-                                                                                         </div>
-                                                                                    </ItemTemplate>
-                                                                                </asp:Repeater>                                                                                
-                                                                                <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove-sign glyphicon-white" ID="btnRemoveRol" OnClick="btnRemoveRol_OnClick" Visible='<%# Eval("SubGrupos") == null %>' CommandName='<%# Eval("IdTipoGrupo") %>' CommandArgument='<%# Eval("IdGrupo") %>' />
+                                                                                        </HeaderTemplate>
+                                                                                        <ItemTemplate>
+                                                                                            <div style="font-weight: 200; padding-left: 40px;" class="text-left">
+                                                                                                <br />
+                                                                                                <%# Eval("Descripcion") %>
+                                                                                                <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove glyphicon-white" ID="btnRemoveRolSub" OnClick="btnRemoveRolSub_OnClick" CommandName='<%# Container.ItemIndex %>' CommandArgument='<%# Eval("Id") %>' />
+                                                                                            </div>
+                                                                                        </ItemTemplate>
+                                                                                    </asp:Repeater>
+                                                                                    <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove-sign glyphicon-white" ID="btnRemoveRol" OnClick="btnRemoveRol_OnClick" Visible='<%# Eval("SubGrupos") == null %>' CommandName='<%# Eval("IdTipoGrupo") %>' CommandArgument='<%# Eval("IdGrupo") %>' />
+                                                                                </div>
                                                                             </div>
                                                                         </span>
                                                                     </div>
@@ -499,7 +508,7 @@
                 <section class="module" id="divBtnGuardar" runat="server" visible="true">
                     <div class="module-inner">
                         <div class="row" style="width: 100%; text-align: center">
-                             <br />
+                            <br />
                             <asp:Button runat="server" Text="Cancelar" ID="btnCancelarEdicion" CssClass="btn btn-default margin-left" Style="margin-right: 45px" OnClick="btnCancelarEdicion_OnClick" />
                             <asp:Button runat="server" Text="Guardar" ID="btnGuardar" CssClass="btn btn-success margin-left" OnClick="btnGuardar_OnClick" />
                         </div>

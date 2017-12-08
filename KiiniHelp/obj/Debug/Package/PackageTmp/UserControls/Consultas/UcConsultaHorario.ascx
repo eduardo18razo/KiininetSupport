@@ -21,10 +21,10 @@
                         <div class="module-inner">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Horarios" /></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="Horarios" Font-Bold="true" /></h3>
                             </div>
                             <p>
-                                Texto para horarios
+                                Los horarios son las horas laborales específicas para cada día de la semana, se asocian a un usuario o un grupo y se crean reglas de negocio en torno a éstos. 
                             </p>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="col-lg-6 col-md-6 text-center">
                             <div class="module-inner">
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-download" Text="  Descargar reporte" ID="btnDownload" OnClick="btnDownload_OnClick" />
-                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Crear nuevo horario" OnClick="btnNew_OnClick" />
+                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Nuevo" OnClick="btnNew_OnClick" />
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                                     CssClass="table table-striped display" Width="99%"
                                     OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                     BorderStyle="None" PagerSettings-Mode="Numeric"
-                                    PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Nombre" HeaderStyle-Width="25%">

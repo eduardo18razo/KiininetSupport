@@ -14,7 +14,7 @@
     }
     
     .RadAutoCompleteBoxPopup {
-        width: 100% !important;
+        width: 58% !important;
     }
 </style>
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
@@ -22,7 +22,7 @@
         <div class="row">
             <div class="form-horizontal">
                 <div class="form-group">
-                    <asp:Label runat="server" Text="Buscar usuario registrado" CssClass="col-xs-12 col-sm-12 col-md-12 col-lg-12" />
+                    <asp:Label runat="server" Text="Buscar Usuario Registrado" CssClass="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 15px;" />
                     <tc:RadAutoCompleteBox runat="server" ID="rtxtUsuario" RenderMode="Lightweight" MinFilterLength="1" TextSettings-SelectionMode="Single" MaxResultCount="3" DataSourceID="SourceAutocomplete"
                         DataTextField="NombreCompleto" DataValueField="Id" InputType="Text">
                         <TextSettings SelectionMode="Single" ></TextSettings>
