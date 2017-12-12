@@ -67,6 +67,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.HiddenField hfNivelAsignacion;
         
         /// <summary>
+        /// Control hfUsuarioLevanto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfUsuarioLevanto;
+        
+        /// <summary>
         /// Control lblNoticket.
         /// </summary>
         /// <remarks>
@@ -337,13 +346,13 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblFechaUltimaconexion;
         
         /// <summary>
-        /// Control ddlTicketUsuario.
+        /// Control rddConcentradoTicketsUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTicketUsuario;
+        protected global::Telerik.Web.UI.RadDropDownList rddConcentradoTicketsUsuario;
         
         /// <summary>
         /// Control lblPuesto.

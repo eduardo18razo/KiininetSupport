@@ -78,6 +78,12 @@ namespace KiiniHelp.UserControls.Detalles
             set { hfNivelAsignacion.Value = value.ToString(); }
         }
 
+        private int IdUsuarioLevanto
+        {
+            get { return int.Parse(hfUsuarioLevanto.Value); }
+            set { hfUsuarioLevanto.Value = value.ToString(); }
+        }
+
         private List<HelperConversacionDetalle> ConversacionTicketActivo
         {
             get { return (List<HelperConversacionDetalle>)Session["ConversacionTicketActivo"]; }
@@ -135,6 +141,7 @@ namespace KiiniHelp.UserControls.Detalles
                     divEstatus.Style.Add("background-color", ticket.ColorEstatus);
                     lblEstatus.Text = ticket.DescripcionEstatusTicket;
                     IdNivelAsignacion = ticket.IdNivelAsignacion.HasValue ? (int)ticket.IdNivelAsignacion : 0;
+                    IdUsuarioLevanto = ticket.UsuarioLevanto.IdUsuario;
 
                     LlenaDatosUsuario(ticket.UsuarioLevanto);
                     ConversacionTicketActivo = ticket.Conversaciones;
@@ -164,15 +171,16 @@ namespace KiiniHelp.UserControls.Detalles
                     lblNombreDetalle.Text = usuario.NombreCompleto;
                     lblTipoUsuarioDetalle.Text = usuario.TipoUsuarioDescripcion.Substring(0, 1);
 
-                    //Falta validar que tenga foto
-                    //imgUsuarioDetalle.ImageUrl = "~/DisplayImages.ashx?id=" + usuario.IdUsuario;
-
                     imgVip.Visible = usuario.Vip;
                     lblFechaUltimaconexion.Text = usuario.FechaUltimoLogin;
-                    ddlTicketUsuario.DataSource = usuario.TicketsAbiertos;
-                    ddlTicketUsuario.DataTextField = "Tipificacion"; //"IdTicket" +
-                    ddlTicketUsuario.DataValueField = "IdTicket";
-                    ddlTicketUsuario.DataBind();
+                  
+                    rddConcentradoTicketsUsuario.DataSource = usuario.TicketsAbiertos;
+                    rddConcentradoTicketsUsuario.DataBind();
+                  
+                    //ddlTicketUsuario.DataSource = usuario.TicketsAbiertos;
+                    //ddlTicketUsuario.DataTextField = "Tipificacion"; //"IdTicket" +
+                    //ddlTicketUsuario.DataValueField = "IdTicket";
+                    //ddlTicketUsuario.DataBind();
                     lblPuesto.Text = usuario.Puesto;
                     // usuario.FirstOrDefault(s => s.Obligatorio) != null ? usuario.CorreoUsuario.First(s => s.Obligatorio).Correo : string.Empty;
                     //TODO: Cambia a correo principal
@@ -501,5 +509,32 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
+
+        protected void rptConcentradoTicketsUsuario_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.ItemType == System.Web.UI.WebControls.ListItemType.Item || e.Item.ItemType == System.Web.UI.WebControls.ListItemType.AlternatingItem)
+                {
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblEstatusTicketConcentrado");
+                    if (lbl != null)
+                    {
+                        HelperticketEnAtencion tickets = _servicioAtencionTicket.ObtenerTicketEnAtencion(((HelperTicketsUsuario)e.Item.DataItem).IdTicket , IdUsuarioLevanto);
+                        lbl.Style.Add("color", tickets.ColorEstatus);
+                        lbl.Text = tickets.DescripcionEstatusTicket;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+    
     }
 }

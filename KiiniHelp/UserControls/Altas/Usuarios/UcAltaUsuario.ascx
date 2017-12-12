@@ -50,7 +50,7 @@
             .tag a .glyphicon-white {
                 margin-bottom: 2px;
                 /*color: #3aa7aa;*/
-                color: #a2a6af;
+                color: #83868c;
             }
 </style>
 
@@ -92,21 +92,8 @@
                 <!--/MIGAS DE PAN-->
 
                 <!--MÓDULO FORMULARIO-->
-
                 <section class="module">
                     <div class="module-inner">
-                        <div class="row">
-                            <div class="col-lg-2 col-md-2 text-right">
-                            </div>
-                            <div class="col-lg-8 text-center">
-                                <h3>
-                                    <%-- <asp:Label runat="server" ID="lblTitle" />--%></h3>
-
-                            </div>
-                            <%--<div class="col-lg-2 col-md-2 text-right" style="padding-top: 30px;">
-                                <asp:LinkButton runat="server" Text="Editar" CssClass="btn btn-primary" ID="btnEditar" OnClick="btnEditar_OnClick" />
-                            </div>--%>
-                        </div>
                         <div class="row">
                             <div class="module-heading">
                                 <div class="row">
@@ -133,7 +120,7 @@
 
                                             <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer; max-height: 165px; max-width: 165px;">
                                                 <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer" />
-                                                <asp:LinkButton runat="server" Text="Cambiar" style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-editar" />
+                                                <asp:LinkButton runat="server" Text="Cambiar" Style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-editar" />
                                             </asp:Panel>
                                         </figure>
                                         <div class="form-group col-sm-10">
@@ -147,39 +134,36 @@
 
 
                                 <div class="col-lg-11 col-md-11">
-
                                     <div class="row" runat="server" id="divTipousuario">
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="padding-left: 20px">
-                                            <asp:Label runat="server" Text="Tipo de usuario" Style="padding-top: 10px;" />
+                                            <label>Tipo de usuario</label> <%--runat="server" Text="" Style="padding-top: 10px;" />--%>
                                             <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" AutoPostBack="true" Enabled="false" />
                                         </div>
                                     </div>
-                                    <br />
                                     <div class="row">
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
-                                            <asp:Label runat="server" Text="Nombre" />
+                                            <label>Nombre</label>
                                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                         </div>
 
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
-                                            <asp:Label runat="server" Text="Apellido Paterno" />
+                                            <label>Apellido Paterno</label>
                                             <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" placeholder="Apellido paterno" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                         </div>
 
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
-                                            <asp:Label runat="server" Text="Apellido Materno" />
+                                            <label>Apellido Materno</label>
                                             <asp:TextBox ID="txtAm" runat="server" CssClass="form-control" placeholder="Apellido materno" onkeypress="return ValidaCampo(this,1)" MaxLength="32" />
                                         </div>
 
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
-                                            <asp:Label runat="server" Text="Nombre usuario" />
+                                            <label>Nombre usuario</label>
                                             <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control texto-normal" onkeypress="return ValidaCampo(this,14)" OnTextChanged="txtAp_OnTextChanged" MaxLength="30" Style="text-transform: none" AutoPostBack="True" />
                                         </div>
                                     </div>
-                                    <br />
                                     <div class="row">
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px" runat="server" id="divPuesto">
-                                            <asp:Label runat="server" Text="Puesto*" />
+                                            <label>Puesto*</label>
                                             <asp:DropDownList runat="server" ID="ddlPuesto" CssClass="form-control" />
                                         </div>
                                         <div class="col-lg-1 col-md-1">
@@ -187,27 +171,23 @@
                                             <asp:LinkButton runat="server" CssClass="fa fa-plus-circle" ID="btnAddPuesto" OnClick="btnAddPuesto_OnClick" />
                                         </div>
 
-                                        <div class="col-lg-2 col-md-2 " style="padding-top: 18px">
+                                        <div class="col-lg-2 col-md-2 " style="padding-top: 22px">
                                             <div class="form-inline">
-                                                <label for="chkVip" class="col-lg-9 col-md-9 text-right">VIP</label>
+                                                <label for="chkVip" class="col-lg-9 col-md-9 text-right padding-10-right">VIP</label>
                                                 <asp:CheckBox runat="server" Text="VIP" ID="chkVip" CssClass="chkIphone padding-5-top" Width="30px" />
                                             </div>
                                         </div>
 
-                                       <%-- <div class="col-lg-1" style="padding-top: 18px"></div>--%>
-
-                                        <div class="col-lg-2 col-md-2" style="padding-top: 18px">
+                                        <div class="col-lg-2 col-md-2" style="padding-top: 22px">
                                             <div class="form-inline">
-                                                <label for="chkVip" class="col-lg-9 col-md-9 text-right">Directorio activo</label>
+                                                <label for="chkVip" class="col-lg-9 col-md-9 text-right padding-10-right">Directorio activo</label>
                                                 <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" CssClass="chkIphone padding-5-top" Width="30px" />
                                             </div>
                                         </div>
 
-                                       <%-- <div class="col-lg-1" style="padding-top: 18px"></div>--%>
-
-                                        <div class="col-lg-2 col-md-2" style="padding-top: 18px">
+                                        <div class="col-lg-2 col-md-2" style="padding-top: 22px">
                                             <div class="form-inline">
-                                                <label for="chkPersonaFisica" class="col-lg-9 col-md-9 text-right">Persona Fisica</label>
+                                                <label for="chkPersonaFisica" class="col-lg-9 col-md-9 text-right padding-10-right">Persona Fisica</label>
                                                 <asp:CheckBox runat="server" Text="Persona Fisica" ID="chkPersonaFisica" CssClass="chkIphone padding-5-top" Width="30px" />
                                             </div>
                                         </div>
@@ -292,88 +272,85 @@
                 <section class="module">
                     <!--GRUPO ORGANIZACIÓN -->
                     <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <!--TÍTULO ORGANIZACIÓN-->
-                            <div class="module-inner">
-                                <div class="module-heading">
-                                    <h3 class="module-title">Organización</h3>
-                                </div>
-
-                                <div class="row">
-                                    <div>
-                                        <div class="table-responsive">
-                                            <asp:Repeater runat="server" ID="rptOrganizacion">
-                                                <HeaderTemplate>
-                                                    <table class="table table-striped display">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="Label1">TU</asp:Label></th>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="lblHolding">Nivel 1</asp:Label></th>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="lblCompania">Nivel 2</asp:Label></th>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="lblDireccion">Nivel 3</asp:Label></th>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="lblSubDireccion">Nivel 4</asp:Label></th>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="lblGerencia">Nivel 5</asp:Label></th>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="lblSubGerencia">Nivel 6</asp:Label></th>
-                                                                <th>
-                                                                    <asp:Label runat="server" ID="lblJefatura">Nivel 7</asp:Label></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                </HeaderTemplate>
-                                                <ItemTemplate>
-                                                    <tr>
-                                                        <td>
-                                                            <asp:Label runat="server" ID="lblIdOrganizacion" Text='<%# Eval("Id")%>' Visible="False" />
-                                                            <button type="button" class="btn btn-default-alt btn-circle"><%# Eval("TipoUsuario.Abreviacion") %></button>
-                                                        </td>
-                                                        <td><%# Eval("Holding.Descripcion")%></td>
-                                                        <td><%# Eval("Compania.Descripcion")%></td>
-                                                        <td><%# Eval("Direccion.Descripcion")%></td>
-                                                        <td><%# Eval("SubDireccion.Descripcion")%></td>
-                                                        <td><%# Eval("Gerencia.Descripcion")%></td>
-                                                        <td><%# Eval("SubGerencia.Descripcion")%></td>
-                                                        <td><%# Eval("Jefatura.Descripcion")%></td>
-                                                    </tr>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    </tbody>
-                                            </table>
-                                                </FooterTemplate>
-                                            </asp:Repeater>
-                                        </div>
+                        <div class="module-inner col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="module-heading" style="height: 42px;">
+                                    <div class="col-lg-10 col-md-8 col-sm-8">
+                                        <h3 class="module-title">Organización</h3>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 text-right">
+                                    <div class="col-lg-2 col-md-4 col-sm-4 text-right">
                                         <asp:Button ID="btnModalOrganizacion" CssClass="btn btn-primary" runat="server" Text="Seleccionar" OnClick="btnModalOrganizacion_OnClick" />
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <div class="table-responsive">
+                                        <asp:Repeater runat="server" ID="rptOrganizacion">
+                                            <HeaderTemplate>
+                                                <table class="table table-striped display">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="Label1">TU</asp:Label></th>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="lblHolding">Nivel 1</asp:Label></th>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="lblCompania">Nivel 2</asp:Label></th>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="lblDireccion">Nivel 3</asp:Label></th>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="lblSubDireccion">Nivel 4</asp:Label></th>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="lblGerencia">Nivel 5</asp:Label></th>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="lblSubGerencia">Nivel 6</asp:Label></th>
+                                                            <th>
+                                                                <asp:Label runat="server" ID="lblJefatura">Nivel 7</asp:Label></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td>
+                                                        <asp:Label runat="server" ID="lblIdOrganizacion" Text='<%# Eval("Id")%>' Visible="False" />
+                                                        <button type="button" class="btn btn-default-alt btn-circle"><%# Eval("TipoUsuario.Abreviacion") %></button>
+                                                    </td>
+                                                    <td><%# Eval("Holding.Descripcion")%></td>
+                                                    <td><%# Eval("Compania.Descripcion")%></td>
+                                                    <td><%# Eval("Direccion.Descripcion")%></td>
+                                                    <td><%# Eval("SubDireccion.Descripcion")%></td>
+                                                    <td><%# Eval("Gerencia.Descripcion")%></td>
+                                                    <td><%# Eval("SubGerencia.Descripcion")%></td>
+                                                    <td><%# Eval("Jefatura.Descripcion")%></td>
+                                                </tr>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                </tbody>
+                                            </table>
+                                            </FooterTemplate>
+                                        </asp:Repeater>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!--/GRUPO ORGANIZACIÓN -->
                 </section>
                 <section class="module">
-
                     <!--GRUPO UBICACIÓN -->
                     <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                            <!--TÍTULO UBICACIÓN-->
-                            <div class="module-inner">
-                                <div class="module-heading">
-                                    <h3 class="module-title">Ubicación</h3>
+                        <div class="module-inner col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="module-heading" style="height: 42px;">
+                                    <div class="col-lg-10 col-md-8 col-sm-8">
+                                        <h3 class="module-title">Ubicación</h3>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 text-right">
+                                        <asp:Button CssClass="btn btn-primary" runat="server" ID="btnModalUbicacion" Text="Seleccionar" OnClick="btnModalUbicacion_OnClick" />
+                                    </div>
                                 </div>
-
                                 <div class="row">
                                     <div>
                                         <div class="table-responsive">
@@ -425,12 +402,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 text-right">
-                                        <asp:Button CssClass="btn btn-primary" runat="server" ID="btnModalUbicacion" Text="Seleccionar" OnClick="btnModalUbicacion_OnClick" />
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -440,13 +411,19 @@
                 <section class="module">
                     <!-- ROLES Y GRUPOS -->
                     <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <!--TÍTULO ROLES Y GRUPOS-->
-                            <div class="module-inner">
-                                <div class="module-heading">
-                                    <h3 class="module-title">Roles y Grupos</h3>
+                        <div class="module-inner col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <!--TÍTULO ROLES Y GRUPOS-->
+                                <div class="module-heading" style="height: 42px;">
+                                    <div class="col-lg-10 col-md-8 col-sm-8">
+
+                                        <h3 class="module-title">Roles y Grupos</h3>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 text-right">
+                                        <asp:Button CssClass="btn btn-primary" runat="server" Text="Agregar" ID="btnModalRoles" OnClick="btnModalRoles_OnClick" />
+                                    </div>
                                 </div>
-                                <%--    <br />--%>
+
                                 <!--FILA 1-->
                                 <div class="row">
                                     <asp:Repeater runat="server" ID="rptRoles" OnItemDataBound="rptRoles_OnItemDataBound">
@@ -478,7 +455,7 @@
                                                                                         </ItemTemplate>
                                                                                     </asp:Repeater>
                                                                                     <asp:LinkButton runat="server" class="remove el el-remove-circle" ID="btnRemoveRol" OnClick="btnRemoveRol_OnClick" Visible='<%# Eval("SubGrupos") == null %>' CommandName='<%# Eval("IdTipoGrupo") %>' CommandArgument='<%# Eval("IdGrupo") %>' />
-                                                                                <%--remove glyphicon glyphicon-remove-sign glyphicon-white--%>
+                                                                                    <%--remove glyphicon glyphicon-remove-sign glyphicon-white--%>
                                                                                 </div>
                                                                             </div>
                                                                         </span>
@@ -492,12 +469,6 @@
                                             <hr />
                                         </ItemTemplate>
                                     </asp:Repeater>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 text-right">
-                                        <asp:Button CssClass="btn btn-primary" runat="server" Text="Agregar" ID="btnModalRoles" OnClick="btnModalRoles_OnClick" />
-                                    </div>
                                 </div>
 
                             </div>

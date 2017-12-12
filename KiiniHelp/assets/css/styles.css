@@ -434,7 +434,9 @@ button.close:focus {
         /*border-right: 2px solid #F2F2F2;*/
     }
 
-    .header .utilities-container .icon {
+    .header .utilities-container .icon, 
+    .icon
+     {
         font-size: 22px;
         vertical-align: middle;
         position: relative;
