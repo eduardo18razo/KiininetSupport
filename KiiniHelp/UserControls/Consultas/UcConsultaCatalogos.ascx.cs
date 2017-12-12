@@ -58,7 +58,7 @@ namespace KiiniHelp.UserControls.Consultas
             Alerta = new List<string>();
             if (!IsPostBack)
             {
-
+                LlenaCatalogoConsulta();
             }
             ucAltaCatalogos.OnAceptarModal += AltaCatalogoOnAceptarModal;
             ucAltaCatalogos.OnCancelarModal += AltaCatalogoOnCancelarModal;

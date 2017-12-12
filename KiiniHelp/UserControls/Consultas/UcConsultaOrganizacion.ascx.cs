@@ -113,8 +113,8 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                if (lstTipoUsuario.Count >= 2)
-                    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
+                //if (lstTipoUsuario.Count >= 2)
+                //    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
 
 
@@ -131,7 +131,7 @@ namespace KiiniHelp.UserControls.Consultas
             {        
                
                 int? idTipoUsuario = null;
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
                 //List<Organizacion> lstOrganizaciones = _servicioOrganizacion.ObtenerOrganizaciones(idTipoUsuario, null, null, null, null, null, null, null);
                 List<Organizacion> lstOrganizaciones = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
@@ -250,11 +250,11 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 txtFiltroDecripcion.Text = string.Empty;
-                if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                {
-                    LimpiarOrganizaciones();
-                    return;
-                }
+                //if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                //{
+                //    LimpiarOrganizaciones();
+                //    return;
+                //}
 
                 LlenaOrganizaciones();
             }
@@ -317,7 +317,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     if (e.Item.ItemType == ListItemType.Header)
                     {
                         List<AliasOrganizacion> alias = _servicioParametros.ObtenerAliasOrganizacion(IdTipoUsuario);

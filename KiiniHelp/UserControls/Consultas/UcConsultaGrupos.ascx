@@ -53,7 +53,7 @@
 
                         <div class="col-lg-3 col-md-3 text-center">
                             <div class="module-inner">
-                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Crear Nuevo Grupo" ID="btnNew" OnClick="btnNew_OnClick" />
+                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Nuevo" ID="btnNew" OnClick="btnNew_OnClick" />
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,13 @@
                                         <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false"
                                             CssClass="table table-striped display" Width="99%"
                                             OnPageIndexChanging="gvPaginacion_PageIndexChanging"
+<<<<<<< HEAD
                                             BorderStyle="None" PagerSettings-Mode="Numeric"
                                             PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+=======
+                                            BorderStyle="None" PagerSettings-Mode="Numeric" 
+                                            PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+>>>>>>> Janeth_Garcia
                                             PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="TU" ControlStyle-Width="10%">

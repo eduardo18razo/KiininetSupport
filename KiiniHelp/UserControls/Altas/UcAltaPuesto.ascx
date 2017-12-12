@@ -7,9 +7,10 @@
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server" Text='&times;'/>
             <%--<h2 class="modal-title" id="modal-new-ticket-label">
                 <asp:Label runat="server" ID="lblBranding" /></h2>--%>
-            <p class="text-center">
-                <asp:Label runat="server" ID="lblOperacion"></asp:Label>                              
-            </p>
+            <h6 class="text-center">
+                <asp:Label runat="server" ID="lblOperacion" Font-Bold="true"/>          
+                <hr />                  
+            </h6>
         </div>
         <div class="modal-body">
             
@@ -23,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <hr />
+           <%-- <hr />--%>
 
             <div class="row">
                 <div>

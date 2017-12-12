@@ -51,7 +51,10 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniNet.Entities.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KinniNet.Business.Utils.dll
+<<<<<<< HEAD
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\MSCaptcha.dll
+=======
+>>>>>>> Janeth_Garcia
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniNet.Entities.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KinniNet.Business.Utils.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.csprojResolveAssemblyReference.cache

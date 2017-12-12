@@ -51,7 +51,7 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    
+                    LlenaEncuestas();
                 }
                 ucAltaEncuesta.OnAceptarModal += AltaEncuestaOnAceptarModal;
                 ucAltaEncuesta.OnCancelarModal += AltaEncuestaOnCancelarModal;

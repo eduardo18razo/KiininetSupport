@@ -50,6 +50,8 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
+
+                LlenaInformacionConsulta();
                 Alerta = new List<string>();
             }
             catch (Exception ex)

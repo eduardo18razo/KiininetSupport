@@ -61,13 +61,14 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     List<CatalogoGenerico> lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(int.Parse(ddlCatalogos.SelectedValue), true, false).Where(w => w.Id != 0).ToList();
                     tblResults.DataSource = lst;
+                    tblResults.DataBind();
                 }
-                else
-                {
-                    tblResults.DataSource = null;
-                }
+                //else
+                //{
+                //    tblResults.DataSource = null;
+                //}
 
-                tblResults.DataBind();
+               
                 //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
@@ -85,7 +86,11 @@ namespace KiiniHelp.UserControls.Consultas
                 if (!IsPostBack)
                 {
                     LlenaCombos();
+                    List<CatalogoGenerico> lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(1, true, false).Where(w => w.Id != 0).ToList();
+                    tblResults.DataSource = lst;
+                    tblResults.DataBind();
                 }
+                
                 ucRegistroCatalogo.OnTerminarModal += AltaRegistroCatalogoOnTerminarModal;
                 ucRegistroCatalogo.OnCancelarModal += AltaRegistroCatalogoOnCancelarModal;
             }

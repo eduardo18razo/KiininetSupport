@@ -48,8 +48,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                
-                
+                LlenaMascaras();                
             }
             catch (Exception ex)
             {

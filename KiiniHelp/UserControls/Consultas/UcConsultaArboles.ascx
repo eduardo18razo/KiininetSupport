@@ -30,7 +30,7 @@
 
                 <div class="row">
                     <div class="module-inner separador-vertical-derecho">
-                        <div class="col-lg-5 col-md-5">
+                        <div class="col-lg-5 col-md-5 col-xs-12">
                             Consulta Opciones de Menú:<br />
                             <div class="search-box form-inline margin-bottom-lg">
                                 <label class="sr-only" for="txtFiltro">Buscar</label>
@@ -41,15 +41,15 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 separador-vertical-derecho">
+                        <div class="col-lg-5 col-md-5 separador-vertical-derecho">
                             ... o Consulta por Categoría y Tipo de Usuario<br />
                             <asp:DropDownList runat="server" ID="ddlArea" CssClass="form-control" Style="width: 200px; display: inline-block" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged" AutoPostBack="true" autocompletemode="SuggestAppend" casesensitive="false" />
-                            <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" Style="width: 120px; display: inline-block; margin-left: 20px" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" AutoPostBack="true" />
+                            <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" Style="width: 160px; display: inline-block; margin-left: 20px" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" AutoPostBack="true" />
                         </div>
 
-                        <div class="col-lg-3 col-md-3 text-center">
+                        <div class="col-lg-2 col-md-2 text-center">
                             <div class="module-inner">
-                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Crear Nueva Opción" OnClick="btnNew_OnClick" />
+                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Nuevo" OnClick="btnNew_OnClick" />
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                                             CssClass="table table-striped display" Width="99%"
                                             OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                             BorderStyle="None" PagerSettings-Mode="Numeric" 
-                                            PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                            PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                             PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="TU" ControlStyle-Width="5%">
@@ -127,9 +127,6 @@
                                                
                                             </Columns>
                                         </asp:GridView>
-
-
-
 
                                        <%-- <asp:Repeater runat="server" ID="rptResultados">
                                             <HeaderTemplate>

@@ -197,8 +197,8 @@
         <asp:HiddenField runat="server" ID="hfDomingo" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
-            <h2 class="modal-title" id="modal-new-ticket-label">
-                NUEVO HORARIO</h2>
+            <h6 class="modal-title" id="modal-new-ticket-label">
+                Nuevo Horario</h6>
             <hr class="bordercolor"/>
         </div>
         <div class="modal-body">
@@ -208,8 +208,8 @@
                     <ContentTemplate>
                         <div class="row center-block">
                             <div class="row center-block center-content-div centered">
-                                <div class="form-group margin-top">
-                                    Nombre del Horario<br />
+                                <div class="form-group margin-top-10">
+                                    Ingresa el nombre para el nuevo Horario<br />
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-6 col-lg-offset-3">
@@ -222,9 +222,13 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
                 <br />
+                <label>Selecciona las horas laborales por cada día de la semana.</label>
+                 <br />
                 <div class="bg-grey">
                     <asp:UpdatePanel runat="server" ID="upTableHorario" UpdateMode="Conditional">
                         <ContentTemplate>
+
+                            
                             <table class="table table-responsive" id="our_table" style="background: transparent">
                                 <tbody>
                                     <tr id="row1">
