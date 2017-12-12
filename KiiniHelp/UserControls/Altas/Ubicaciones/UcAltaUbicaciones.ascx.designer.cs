@@ -472,6 +472,15 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.WebControls.Label lblStepNivel7;
         
         /// <summary>
+        /// Control seleccionar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seleccionar;
+        
+        /// <summary>
         /// Control lblOperacion.
         /// </summary>
         /// <remarks>
@@ -499,6 +508,18 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.WebControls.Button btnSeleccionarModal;
         
         /// <summary>
+<<<<<<< HEAD
+=======
+        /// Control btnTerminar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTerminar;
+        
+        /// <summary>
+>>>>>>> Janeth_Garcia
         /// Control divNombre.
         /// </summary>
         /// <remarks>
@@ -508,6 +529,18 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNombre;
         
         /// <summary>
+<<<<<<< HEAD
+=======
+        /// Control lblAccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAccion;
+        
+        /// <summary>
+>>>>>>> Janeth_Garcia
         /// Control lblOperacionDescripcion.
         /// </summary>
         /// <remarks>
@@ -634,12 +667,12 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.WebControls.LinkButton btnGuardarCatalogo;
         
         /// <summary>
-        /// Control btnTerminar.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTerminar;
+        protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
     }
 }

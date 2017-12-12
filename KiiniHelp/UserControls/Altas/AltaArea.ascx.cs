@@ -39,7 +39,7 @@ namespace KiiniHelp.UserControls.Altas
             set
             {
                 hfEsAlta.Value = value.ToString();
-                lblOperacion.Text = value ? "Alta de Cátegoria" : "Editar Cátegoria";
+                lblOperacion.Text = value ? "Alta de Categoría" : "Editar Categoría";
             }
         }
 
@@ -72,7 +72,13 @@ namespace KiiniHelp.UserControls.Altas
             try
             {
                 Alerta = new List<string>();
+<<<<<<< HEAD
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
+=======
+                //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
+                //TODO: Se elimina para bloque de boton al click
+                //btnGuardarArea.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardarArea, null) + ";}";  
+>>>>>>> Janeth_Garcia
                 _mp = (UsuariosMaster)Page.Master;
             }
             catch (Exception ex)

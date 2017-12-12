@@ -542,8 +542,11 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         private void HabilitaDetalle(bool habilitado)
         {
             //divAvatar.Visible = habilitado || EditarDetalle;   
+            divUltimoAcceso.Visible = habilitado || EditarDetalle;
+            btnEditar.Visible = habilitado || EditarDetalle; 
+
             divBtnGuardar.Visible = !habilitado && !EditarDetalle;
-            divTipousuario.Visible = !habilitado && !EditarDetalle;
+            //divTipousuario.Visible = !habilitado && !EditarDetalle;
             txtNombre.ReadOnly = habilitado;
             txtAp.ReadOnly = habilitado;
             txtAm.ReadOnly = habilitado;
@@ -681,7 +684,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     if (Request.QueryString["IdUsuario"] != null && Request.QueryString["Detail"] == null)
                     {
                         IdUsuario = int.Parse(Request.QueryString["IdUsuario"]);
-                        lblTitle.Text = "EDITAR USUARIO";
+                        lblTitle.Text = "Editar Usuario";
                         EsDetalle = false;
                         Alta = false;
                     }
@@ -693,7 +696,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     }
                     else
                     {
-                        lblTitle.Text = "ALTA DE USUARIO";
+                        lblTitle.Text = "Alta De Usuario";
                         EsDetalle = false;
                         Alta = true;
                     }
@@ -1046,6 +1049,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 int idTipoUsuario = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
                 ucAltaOrganizaciones.EsSeleccion = true;
                 ucAltaOrganizaciones.EsAlta = true;
+                ucAltaOrganizaciones.Title = "Selecciona Organización";
                 ucAltaOrganizaciones.IdTipoUsuario = idTipoUsuario;
 
                 if (rptOrganizacion.Items.Count > 0)

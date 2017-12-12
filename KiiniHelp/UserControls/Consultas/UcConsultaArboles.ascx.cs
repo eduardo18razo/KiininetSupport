@@ -83,6 +83,7 @@ namespace KiiniHelp.UserControls.Consultas
             if (!IsPostBack)
             {
                 LlenaCombos();
+                LlenaArboles();
             }
         }
 
