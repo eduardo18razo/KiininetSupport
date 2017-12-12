@@ -574,73 +574,6 @@ namespace KinniNet.Core.Security
                                 }
                             }
                         }
-
-                    //if (arboles)
-                    //    foreach (Area area in lstAreas)
-                    //    {
-                    //        Menu menuToAdd = null;
-                    //        foreach (Menu menu in menusConsulta.Where(w => w.Id == (int)BusinessVariables.EnumMenu.Consultas || w.Id == (int)BusinessVariables.EnumMenu.Servicio || w.Id == (int)BusinessVariables.EnumMenu.Incidentes))
-                    //        {
-                    //            List<ArbolAcceso> lstArboles;
-                    //            switch (menu.Id)
-                    //            {
-                    //                case (int)BusinessVariables.EnumMenu.Consultas:
-                    //                    lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, area.Id).Where(w => !w.Sistema).Distinct().ToList();
-                    //                    if (lstArboles.Any())
-                    //                    {
-                    //                        var mconsulta = menusConsulta.SingleOrDefault(s => s.Id == (int)BusinessVariables.EnumMenu.Consultas);
-                    //                        menuToAdd = new Menu
-                    //                        {
-                    //                            Id = mconsulta.Id,
-                    //                            Descripcion = mconsulta.Descripcion,
-                    //                            Url = mconsulta.Url
-                    //                        };
-                    //                        //menuToAdd = menusConsulta.SingleOrDefault(s => s.Id == (int)BusinessVariables.EnumMenu.Consultas);
-                    //                        if (menuToAdd != null)
-                    //                        {
-                    //                            menuToAdd.Menu1 = null;
-                    //                            GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/General/FrmNodoConsultas.aspx?IdArbol=");
-                    //                        }
-                    //                    }
-                    //                    break;
-                    //                case (int)BusinessVariables.EnumMenu.Servicio:
-                    //                    lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, area.Id).Where(w => !w.Sistema).Distinct().ToList();
-                    //                    if (lstArboles.Any())
-                    //                    {
-                    //                        menuToAdd = menusConsulta.SingleOrDefault(s => s.Id == (int)BusinessVariables.EnumMenu.Servicio);
-                    //                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
-                    //                    }
-                    //                    break;
-                    //                case (int)BusinessVariables.EnumMenu.Incidentes:
-                    //                    lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, area.Id).Where(w => !w.Sistema).Distinct().ToList();
-                    //                    if (lstArboles.Any())
-                    //                    {
-                    //                        menuToAdd = menusConsulta.SingleOrDefault(s => s.Id == (int)BusinessVariables.EnumMenu.Incidentes);
-                    //                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
-                    //                    }
-                    //                    break;
-                    //            }
-                    //            if (menuToAdd != null)
-                    //            {
-                    //                if (result.Single(s => s.Descripcion == area.Descripcion && s.Id == area.Id).Menu1 == null)
-                    //                {
-                    //                    result.Single(s => s.Descripcion == area.Descripcion && s.Id == area.Id).Menu1 = new List<Menu> { menuToAdd };
-                    //                    menuToAdd = null;
-                    //                }
-                    //                else
-                    //                {
-                    //                    result.Single(s => s.Descripcion == area.Descripcion && s.Id == area.Id).Menu1.Add(menuToAdd);
-                    //                    menuToAdd = null;
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //else
-                    //{
-                    //    result.Remove(result.SingleOrDefault(s => s.Id == (int)BusinessVariables.EnumMenu.Consultas));
-                    //    result.Remove(result.SingleOrDefault(s => s.Id == (int)BusinessVariables.EnumMenu.Servicio));
-                    //    result.Remove(result.SingleOrDefault(s => s.Id == (int)BusinessVariables.EnumMenu.Incidentes));
-                    //}
                 }
                 catch (Exception ex)
                 {
@@ -706,6 +639,10 @@ namespace KinniNet.Core.Security
                                     menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
                                     GeneraSubMenus(menuToAdd, lstArboles, db, "~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
                                 }
+                            }
+                            if (result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM").Menu1 == null)
+                            {
+                                result.Remove(result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM"));
                             }
                         }
                 }

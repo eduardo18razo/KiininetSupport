@@ -1,5 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaGrupos.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaGrupos" %>
 <%@ Register Src="~/UserControls/Altas/UcAltaGrupoUsuario.ascx" TagPrefix="uc" TagName="UcAltaGrupoUsuario" %>
+<%@ Register Src="~/UserControls/Detalles/UcDetalleGrupoUsuarios.ascx" TagPrefix="uc" TagName="UcDetalleGrupoUsuarios" %>
+<%@ Register Src="~/UserControls/Detalles/UcDetalleGrupoOpciones.ascx" TagPrefix="uc" TagName="UcDetalleGrupoOpciones" %>
+
+
+
 
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server" style="height: 100%">
@@ -69,10 +74,10 @@
                                     <div class="table-responsive">
 
 
-                                        <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" 
+                                        <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false"
                                             CssClass="table table-striped display" Width="99%"
                                             OnPageIndexChanging="gvPaginacion_PageIndexChanging"
-                                            BorderStyle="None" PagerSettings-Mode="Numeric" 
+                                            BorderStyle="None" PagerSettings-Mode="Numeric"
                                             PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                             PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                             <Columns>
@@ -120,6 +125,16 @@
                                                         </ul>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="15%">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="15%">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
 
@@ -150,6 +165,32 @@
                 <div class="modal-dialog" style="height: 250px;">
                     <div class="modal-content">
                         <uc:UcAltaGrupoUsuario runat="server" ID="ucAltaGrupoUsuario" />
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+    <%--MODAL DETALLE GRUPO USUARIO--%>
+    <div class="modal fade" id="modalDetalleGrupoUsuario" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="modal-dialog" style="height: 250px;">
+                    <div class="modal-content">
+                        <uc:UcDetalleGrupoUsuarios runat="server" id="ucDetalleGrupoUsuarios" />
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+    <%--MODAL DETALLE GRUPO OPCIONES--%>
+    <div class="modal fade" id="modalDetalleGrupoOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="modal-dialog" style="height: 250px;">
+                    <div class="modal-content">
+                        <uc:UcDetalleGrupoOpciones runat="server" id="ucDetalleGrupoOpciones" />
                     </div>
                 </div>
             </ContentTemplate>

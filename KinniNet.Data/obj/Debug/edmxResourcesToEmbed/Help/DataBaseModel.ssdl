@@ -43,6 +43,10 @@
     <Property Name="Habilitado" Type="bit" />
     <Property Name="FechaAlta" Type="datetime" />
     <Property Name="IdUsuarioAlta" Type="int" />
+    <Property Name="MeGusta" Type="int" Nullable="false" />
+    <Property Name="NoMeGusta" Type="int" Nullable="false" />
+    <Property Name="Visitas" Type="int" Nullable="false" />
+    <Property Name="FechaVisita" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Area">
     <Key>

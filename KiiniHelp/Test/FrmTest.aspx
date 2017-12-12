@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrmTest.aspx.cs" ValidateRequest="false" Inherits="KiiniHelp.Test.FrmTest" Culture="Auto" UICulture="Auto" %>
 
 <%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=16.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register Src="~/UserControls/Detalles/UcDetalleGrupoUsuarios.ascx" TagPrefix="uc1" TagName="UcDetalleGrupo" %>
+<%@ Register TagPrefix="uc1" Namespace="KiiniHelp.UserControls.Detalles" Assembly="KiiniHelp" %>
+
 
 <!DOCTYPE html>
 
@@ -101,7 +104,8 @@
             </script>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <div class="form-horizontal col-lg-6 col-lg-offset-3">
+                    <uc1:UcDetalleGrupoUsuarios runat="server" id="ucDetalleGrupoUsuarios" />
+                   <%-- <div class="form-horizontal col-lg-6 col-lg-offset-3">
                         <div class="form-group">
                             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" required />
                             <ajax:MaskedEditExtender ID="MaskedEditExtender2" runat="server"
@@ -152,7 +156,7 @@
                         <div class="form-group">
                             <asp:Button Text="boton 2" runat="server" CssClass="btn btn-primary" OnClick="OnClick1" />
                         </div>
-                    </div>
+                    </div>--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </form>

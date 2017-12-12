@@ -10,7 +10,6 @@ using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Tickets;
 using KiiniNet.Entities.Operacion.Usuarios;
-using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
 using KinniNet.Core.Sistema;
@@ -82,6 +81,7 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
+        
         //ecl
         public Ticket CrearTicket(int idUsuario, int idUsuarioSolicito, int idArbol, List<HelperCampoMascaraCaptura> lstCaptura, int idCanal, bool campoRandom, bool esTercero, bool esMail)
         {
@@ -253,9 +253,10 @@ namespace KinniNet.Core.Operacion
                         }
                     }
                 }
-
+                
                 db.Ticket.AddObject(ticket);
                 db.SaveChanges();
+                new BusinessArbolAcceso().HitArbolAcceso(ticket.IdArbolAcceso);
 
                 string store = string.Format("{0} '{1}',", mascara.ComandoInsertar, ticket.Id);
                 bool contieneArchivo = false;
@@ -371,6 +372,7 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
+
         public List<HelperTickets> ObtenerTicketsUsuario(int idUsuario, int pageIndex, int pageSize)
         {
             DataBaseModelContext db = new DataBaseModelContext();
@@ -1014,6 +1016,5 @@ namespace KinniNet.Core.Operacion
             finally { db.Dispose(); }
             return result;
         }
-
     }
 }

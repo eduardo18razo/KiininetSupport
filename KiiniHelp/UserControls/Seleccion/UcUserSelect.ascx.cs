@@ -79,12 +79,12 @@ namespace KiiniHelp.UserControls.Seleccion
 
         protected void lbtnTypeUser_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + ((Usuario)Session["UserData"]).IdTipoUsuario);
+            Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + int.Parse(Request.Params["userTipe"]));
         }
 
         protected void lbtnCategoria_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + ((Usuario)Session["UserData"]).IdTipoUsuario);
+            Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + int.Parse(Request.Params["userTipe"]));
         }
     }
 }

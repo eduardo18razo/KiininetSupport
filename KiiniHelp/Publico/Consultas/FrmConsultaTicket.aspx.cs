@@ -39,8 +39,6 @@ namespace KiiniHelp.Publico.Consultas
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnComentar.OnClientClick = "SetComment(this);this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnComentar, null) + ";}";  
                 ucCambiarEstatusTicket.OnAceptarModal += UcCambiarEstatusTicket_OnAceptarModal;
                 ucCambiarEstatusTicket.OnCancelarModal += UcCambiarEstatusTicketOnCancelarModal;
             }

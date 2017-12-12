@@ -84,13 +84,28 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel)
+        public List<HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    return negocio.ObtenerUsuariosByGrupo(idGrupo, idNivel);
+                    return negocio.ObtenerUsuariosByGrupo(idGrupo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    return negocio.ObtenerUsuariosByGrupoAgente(idGrupo, idNivel);
                 }
             }
             catch (Exception ex)

@@ -261,6 +261,8 @@
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
+    <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
+    <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black Italic.otf" />
@@ -279,6 +281,7 @@
     <Content Include="assets\fonts\MarkSimonson-Proxima-Nova-Regular.otf" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuario.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo.datasource" />
     <None Include="Service References\ServiceArbolAcceso\ServiceArbolAcceso14.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -2897,6 +2900,20 @@
     <Compile Include="UserControls\Consultas\UcConsultaUbicacionesFisico.ascx.designer.cs">
       <DependentUpon>UcConsultaUbicacionesFisico.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx.cs">
+      <DependentUpon>UcDetalleGrupoUsuarios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx.designer.cs">
+      <DependentUpon>UcDetalleGrupoUsuarios.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx.cs">
+      <DependentUpon>UcDetalleGrupoOpciones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx.designer.cs">
+      <DependentUpon>UcDetalleGrupoOpciones.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Detalles\UcMensajeValidacion.ascx.cs">
       <DependentUpon>UcMensajeValidacion.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4079,7 +4096,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

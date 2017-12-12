@@ -213,11 +213,19 @@ namespace KinniNet.Core.Operacion
                 if (!db.TipoUsuario.Any(a => a.Id == usuario.IdTipoUsuario))
                     throw new Exception("Datos de usuario invalido.");
                 if (usuario.TelefonoUsuario == null || usuario.TelefonoUsuario.Count <= 0 || !usuario.TelefonoUsuario.Any(a => a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Obligatorio))
-                    throw new Exception("Datos de usuario invalido.");
+                {
+                    //throw new Exception("Datos de usuario invalido.");
+                }
+                else
+                    ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Obligatorio && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), null);
+
                 if (usuario.CorreoUsuario == null || usuario.CorreoUsuario.Count <= 0 || !usuario.CorreoUsuario.Any(a => a.Obligatorio))
-                    throw new Exception("Datos de usuario invalido.");
-                ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), null);
-                ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Obligatorio && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), null);
+                {
+                    //throw new Exception("Datos de usuario invalido.");
+                }
+                else
+                    ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), null);
+
                 string tmpurl = usuario.Password;
                 Guid g = Guid.NewGuid();
                 ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.AltaUsuario && s.Habilitado);
@@ -285,8 +293,8 @@ namespace KinniNet.Core.Operacion
                     db.Usuario.AddObject(usuario);
                     db.SaveChanges();
                 }
-                
-                if (usuario.IdTipoUsuario == (int) BusinessVariables.EnumTiposUsuario.Cliente || usuario.IdTipoUsuario == (int) BusinessVariables.EnumTiposUsuario.Operador)
+
+                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador)
                 {
                     usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
                     if (correo != null)
@@ -310,7 +318,7 @@ namespace KinniNet.Core.Operacion
             }
             return usuario.Id;
         }
-        private string GeneraNombreUsuario(string nombre, string apellidoPaterno)
+        public string GeneraNombreUsuario(string nombre, string apellidoPaterno)
         {
             string result = null;
             try
@@ -688,7 +696,93 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public List<Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel)
+        public List<HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo)
+        {
+            List<HelperDetalleUsuarioGrupo> result = null;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<int> idsUsuarios = (db.Usuario.Join(db.UsuarioGrupo, u => u.Id, ug => ug.IdUsuario, (u, ug) => new { u, ug })
+                    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo).Select(@t => @t.u.Id)).Distinct().ToList();
+                List<Usuario> usuarios = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).ToList();
+                if (usuarios.Any())
+                {
+                    result = new List<HelperDetalleUsuarioGrupo>();
+                    foreach (Usuario usuario in usuarios)
+                    {
+
+                        db.LoadProperty(usuario, "TipoUsuario");
+                        db.LoadProperty(usuario, "UsuarioGrupo");
+                        foreach (UsuarioGrupo usuarioGrupo in usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo))
+                        {
+                            db.LoadProperty(usuarioGrupo, "SubGrupoUsuario");
+                            if (usuarioGrupo.SubGrupoUsuario != null)
+                                db.LoadProperty(usuarioGrupo.SubGrupoUsuario, "SubRol");
+                        }
+                        HelperDetalleUsuarioGrupo add = new HelperDetalleUsuarioGrupo();
+                        add.IdUsuario = usuario.Id;
+                        add.NombreCompleto = usuario.NombreCompleto;
+                        add.NombreUsuarioCompleto = usuario.NombreUsuario;
+                        add.Supervisor = usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario == null) ?
+                                "No" :
+                                usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario.SubRol.Id == (int)BusinessVariables.EnumSubRoles.Supervisor)
+                                ? "Si" : "No";
+                        add.PrimerNivel = usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario == null) ?
+                                "No" :
+                                usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario.SubRol.Id == (int)BusinessVariables.EnumSubRoles.PrimererNivel)
+                                ? "Si" : "No";
+                        add.SegundoNivel = usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario == null) ?
+                                "No" :
+                                 usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario.SubRol.Id == (int)BusinessVariables.EnumSubRoles.SegundoNivel)
+                                ? "Si" : "No";
+                        add.TercerNivel = usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario == null) ?
+                                "No" :
+                                usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario.SubRol.Id == (int)BusinessVariables.EnumSubRoles.TercerNivel)
+                                ? "Si" : "No";
+                        add.CuartoNivel = usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario == null) ?
+                                "No" :
+                                usuario.UsuarioGrupo.Any(w => w.IdGrupoUsuario == idGrupo && w.SubGrupoUsuario.SubRol.Id == (int)BusinessVariables.EnumSubRoles.CuartoNivel)
+                                ? "Si" : "No";
+                        add.Activo = usuario.Activo ? "Si" : "No";
+                        result.Add(add);
+                        //    usuario.OrganizacionFinal = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, true);
+                        //    usuario.OrganizacionCompleta = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, false);
+                        //    usuario.UbicacionFinal = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, true);
+                        //    usuario.UbicacionCompleta = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, false);
+                        //result.Add(new HelperDetalleUsuarioGrupo
+                        //{
+                        //    IdUsuario = usuario.Id,
+                        //    NombreCompleto = usuario.NombreCompleto,
+                        //    NombreUsuarioCompleto = usuario.NombreUsuario,
+                        //    Supervisor = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
+                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor) ? "Si" : "No" : "No",
+                        //    PrimerNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
+                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel) ? "Si" : "No" : "No",
+                        //    SegundoNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
+                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.SegundoNivel) ? "Si" : "No" : "No",
+                        //    TercerNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
+                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.TercerNivel) ? "Si" : "No" : "No",
+                        //    CuartoNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s => s.SubGrupoUsuario).Any() ? 
+                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.CuartoNivel) ? "Si" : "No" : "No",
+                        //    Activo = usuario.Activo ? "Si" : "No"
+                        //});
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel)
         {
             List<Usuario> result;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -699,14 +793,14 @@ namespace KinniNet.Core.Operacion
                     .Where(@t => @t.ug.IdGrupoUsuario == idGrupo && @t.ug.SubGrupoUsuario.IdSubRol == idNivel && @t.u.Habilitado)
                     .Select(@t => @t.u.Id)).Distinct().ToList();
                 result = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).ToList();
-                //foreach (Usuario usuario in result)
-                //{
-                //    db.LoadProperty(usuario, "TipoUsuario");
-                //    usuario.OrganizacionFinal = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, true);
-                //    usuario.OrganizacionCompleta = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, false);
-                //    usuario.UbicacionFinal = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, true);
-                //    usuario.UbicacionCompleta = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, false);
-                //}
+                foreach (Usuario usuario in result)
+                {
+                    db.LoadProperty(usuario, "TipoUsuario");
+                    //    usuario.OrganizacionFinal = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, true);
+                    //    usuario.OrganizacionCompleta = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, false);
+                    //    usuario.UbicacionFinal = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, true);
+                    //    usuario.UbicacionCompleta = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, false);
+                }
 
             }
             catch (Exception ex)

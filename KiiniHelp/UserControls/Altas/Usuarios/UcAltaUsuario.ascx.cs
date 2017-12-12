@@ -654,8 +654,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";}";  
                 FileUpload1.Attributes["onchange"] = "UploadFile(this)";
 
                 ucAltaPuesto.OnTerminarModal += UcAltaPuestoOnOnAceptarModal;

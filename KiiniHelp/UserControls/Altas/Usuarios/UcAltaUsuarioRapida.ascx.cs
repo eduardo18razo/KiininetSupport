@@ -83,7 +83,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     IdTipoUsuario = int.Parse(Request.Params["userTipe"]);
                 else
                     IdTipoUsuario = (int)BusinessVariables.EnumTiposUsuario.Cliente;
-                //btnGuardar.OnClientClick = "this.disabled = true; " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";";
             }
             catch (Exception ex)
             {

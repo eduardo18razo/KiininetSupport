@@ -28,7 +28,8 @@ namespace KiiniHelp
 
                 if (httpEx.GetHttpCode() == 401)
                 {
-                    Response.Redirect("YourPage.aspx");
+                    Server.Transfer("");
+                    Response.Redirect("~/Test/FrmTest.aspx?Error?");
                 }
             }
         }

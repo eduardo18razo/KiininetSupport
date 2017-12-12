@@ -31,42 +31,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.HiddenField hfIdTipoUsuario;
         
         /// <summary>
-        /// Control hfIdMascara.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfIdMascara;
-        
-        /// <summary>
-        /// Control hfComandoInsertar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfComandoInsertar;
-        
-        /// <summary>
-        /// Control hfComandoActualizar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfComandoActualizar;
-        
-        /// <summary>
-        /// Control hfRandom.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfRandom;
-        
-        /// <summary>
         /// Control txtNombreRapido.
         /// </summary>
         /// <remarks>

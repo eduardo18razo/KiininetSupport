@@ -703,8 +703,6 @@ namespace KiiniHelp.UserControls.Temporal
         {
             try
             {
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";}";  
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
@@ -802,9 +800,8 @@ namespace KiiniHelp.UserControls.Temporal
                                 if (campo.Requerido)
                                     if (txtEntero.Text.Trim() == String.Empty)
                                         throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                //TODO: AGREGAR VALOR MINIMO A ESQUEMA
-                                //if (txtEntero.Text.Trim().Length < campo.LongitudMinima)
-                                //    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                if (txtEntero.Text.Trim().Length < campo.LongitudMinima)
+                                    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
                                 if (int.Parse(txtEntero.Text.Trim()) > campo.ValorMaximo)
                                     throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
 
@@ -818,9 +815,8 @@ namespace KiiniHelp.UserControls.Temporal
                                 if (campo.Requerido)
                                     if (txtDecimal.Text.Trim() == String.Empty)
                                         throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                //TODO: AGREGAR VALOR MINIMO A ESQUEMA
-                                //if (decimal.Parse(txtDecimal.Text.Trim()) < campo.LongitudMinima)
-                                //    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                if (decimal.Parse(txtDecimal.Text.Trim()) < campo.LongitudMinima)
+                                    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
                                 if (decimal.Parse(txtDecimal.Text.Trim().Replace('_', '0')) > campo.ValorMaximo)
                                     throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
 

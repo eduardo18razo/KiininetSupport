@@ -48,6 +48,10 @@
           <Property Name="Habilitado" Type="bit" />
           <Property Name="FechaAlta" Type="datetime" />
           <Property Name="IdUsuarioAlta" Type="int" />
+          <Property Name="MeGusta" Type="int" Nullable="false" />
+          <Property Name="NoMeGusta" Type="int" Nullable="false" />
+          <Property Name="Visitas" Type="int" Nullable="false" />
+          <Property Name="FechaVisita" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Area">
           <Key>
@@ -7911,6 +7915,10 @@
           <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoArbolAcceso" FromRole="ArbolAcceso" ToRole="TipoArbolAcceso" />
           <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_ArbolAcceso" FromRole="ArbolAcceso" ToRole="TiempoInformeArbol" />
           <Property Name="Publico" Type="Boolean" />
+          <Property Name="MeGusta" Type="Int32" Nullable="false" />
+          <Property Name="NoMeGusta" Type="Int32" Nullable="false" />
+          <Property Name="Visitas" Type="Int32" Nullable="false" />
+          <Property Name="FechaVisita" Type="DateTime" Nullable="false" Precision="3" />
           </EntityType>
         <Association Name="FK_ArbolAcceso_Nivel1">
           <End Type="KiiniNet_v2Model.Nivel1" Role="Nivel1" Multiplicity="1" />
@@ -11702,6 +11710,10 @@
           <EntitySetMapping Name="ArbolAcceso">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.ArbolAcceso">
               <MappingFragment StoreEntitySet="ArbolAcceso">
+                <ScalarProperty Name="FechaVisita" ColumnName="FechaVisita" />
+                <ScalarProperty Name="Visitas" ColumnName="Visitas" />
+                <ScalarProperty Name="NoMeGusta" ColumnName="NoMeGusta" />
+                <ScalarProperty Name="MeGusta" ColumnName="MeGusta" />
                 <ScalarProperty Name="Publico" ColumnName="Publico" />
                 <ScalarProperty Name="Evaluacion" ColumnName="Evaluacion" />
                 <ScalarProperty Name="IdUsuarioAlta" ColumnName="IdUsuarioAlta" />

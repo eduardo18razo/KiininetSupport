@@ -596,6 +596,10 @@
     <EntitySetMapping Name="ArbolAcceso">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.ArbolAcceso">
         <MappingFragment StoreEntitySet="ArbolAcceso">
+          <ScalarProperty Name="FechaVisita" ColumnName="FechaVisita" />
+          <ScalarProperty Name="Visitas" ColumnName="Visitas" />
+          <ScalarProperty Name="NoMeGusta" ColumnName="NoMeGusta" />
+          <ScalarProperty Name="MeGusta" ColumnName="MeGusta" />
           <ScalarProperty Name="Publico" ColumnName="Publico" />
           <ScalarProperty Name="Evaluacion" ColumnName="Evaluacion" />
           <ScalarProperty Name="IdUsuarioAlta" ColumnName="IdUsuarioAlta" />

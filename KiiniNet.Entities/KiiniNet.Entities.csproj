@@ -102,6 +102,7 @@
     <Compile Include="Helper\HelperAsignacionGrupo.cs" />
     <Compile Include="Helper\HelperCampoMascaraCaptura.cs" />
     <Compile Include="Helper\HelperDatosGrafica.cs" />
+    <Compile Include="Helper\HelperDetalleUsuarioGrupo.cs" />
     <Compile Include="Helper\HelperDetalleTicket.cs" />
     <Compile Include="Helper\HelperEncuesta.cs" />
     <Compile Include="Helper\HelperMensajes.cs" />

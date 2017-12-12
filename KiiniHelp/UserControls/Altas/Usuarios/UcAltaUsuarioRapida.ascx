@@ -8,18 +8,14 @@
 </style>
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-        <asp:HiddenField runat="server" ID="hfIdUsuario" />
-        <asp:HiddenField runat="server" ID="hfIdTipoUsuario" />
-        <asp:HiddenField runat="server" ID="hfIdMascara" />
-        <asp:HiddenField runat="server" ID="hfComandoInsertar" />
-        <asp:HiddenField runat="server" ID="hfComandoActualizar" />
-        <asp:HiddenField runat="server" ID="hfRandom" />
+        <asp:HiddenField runat="server" ID="hfIdUsuario"/>
+        <asp:HiddenField runat="server" ID="hfIdTipoUsuario"/>
         <div class="row">
             <div class="form-horizontal">
                 <div class="form-group">
-                    <label for="txtNombreRapido" class="col-sm-4 col-md-4 col-lg-4">Nombre</label>
-                    <label for="txtApRapido" class="col-sm-4 col-md-4 col-lg-4">Apellido paterno</label>
-                    <label for="txtAmRapido" class="col-sm-4 col-md-4 col-lg-4">apellido materno</label>
+                    <label for="txtNombre" class="col-sm-4 col-md-4 col-lg-4">Nombre</label>
+                    <label for="txtAp" class="col-sm-4 col-md-4 col-lg-4">Apellido paterno</label>
+                    <label for="txtAm" class="col-sm-4 col-md-4 col-lg-4">apellido materno</label>
 
                 </div>
                 <div class="form-group">
@@ -34,19 +30,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="txtCorreoRapido" class="col-sm-4 col-md-4 col-lg-4">Correo</label>
+                    <label for="txtCorreoRapido" class="col-sm-4 col-md-4 col-lg-4" >Correo</label>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <asp:TextBox class="form-control" type="email" ID="txtCorreoRapido" ClientIDMode="Static" runat="server" />
+                        <asp:TextBox class="form-control" type="emailRapido" ID="txtCorreoRapido" ClientIDMode="Static" runat="server" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="txtCorreoRapido" class="col-sm-4 col-md-4 col-lg-4">Teléfono</label>
                 </div>
                 <div class="form-group">
-                    <tc:RadSearchBox runat="server" EnableAutoComplete="False" ShowSearchButton="False" Style="width: 100%" ID="txtTelefonoRapido">
-                        <SearchContext DataSourceID="SourceFilterPhone" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False" />
+                    <tc:RadSearchBox runat="server" EnableAutoComplete="False" ShowSearchButton="False" Style="width: 100%" ID="txtTelefonoRapido" >
+                        <SearchContext DataSourceID="SourceFilterPhone" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False"/>
                     </tc:RadSearchBox>
                 </div>
             </div>

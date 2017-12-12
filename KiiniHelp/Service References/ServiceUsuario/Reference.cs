@@ -31,7 +31,10 @@ namespace KiiniHelp.ServiceUsuario {
         KiiniNet.Entities.Operacion.Usuarios.Usuario ObtenerDetalleUsuario(int idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupo", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAgente", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAgenteResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAtencion", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAtencionResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion);
@@ -138,8 +141,12 @@ namespace KiiniHelp.ServiceUsuario {
             return base.Channel.ObtenerDetalleUsuario(idUsuario);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel) {
-            return base.Channel.ObtenerUsuariosByGrupo(idGrupo, idNivel);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo) {
+            return base.Channel.ObtenerUsuariosByGrupo(idGrupo);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel) {
+            return base.Channel.ObtenerUsuariosByGrupoAgente(idGrupo, idNivel);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion) {

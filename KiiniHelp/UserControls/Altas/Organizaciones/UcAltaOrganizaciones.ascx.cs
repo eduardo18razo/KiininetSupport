@@ -682,8 +682,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
             {
                 _mp = (UsuariosMaster)Page.Master;
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardarCatalogo.OnClientClick = "this.disable = true;";
                 if (!IsPostBack)
                 {
                     LlenaCombosModal();

@@ -996,8 +996,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             try
             {
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";}";  
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {

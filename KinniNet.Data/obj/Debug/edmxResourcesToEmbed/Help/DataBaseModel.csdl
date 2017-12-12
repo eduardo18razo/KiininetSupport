@@ -2596,6 +2596,10 @@
     <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoArbolAcceso" FromRole="ArbolAcceso" ToRole="TipoArbolAcceso" />
     <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_ArbolAcceso" FromRole="ArbolAcceso" ToRole="TiempoInformeArbol" />
     <Property Name="Publico" Type="Boolean" />
+    <Property Name="MeGusta" Type="Int32" Nullable="false" />
+    <Property Name="NoMeGusta" Type="Int32" Nullable="false" />
+    <Property Name="Visitas" Type="Int32" Nullable="false" />
+    <Property Name="FechaVisita" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <Association Name="FK_ArbolAcceso_Nivel1">
     <End Type="KiiniNet_v2Model.Nivel1" Role="Nivel1" Multiplicity="1" />

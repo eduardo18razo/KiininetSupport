@@ -111,7 +111,6 @@ namespace KinniNet.Core.Operacion
 
         public InformacionConsulta ActualizarInformacionConsulta(int idInformacionConsulta, InformacionConsulta informacion, List<string> documentosDescarga)
         {
-            //TODO : Change method
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
@@ -269,6 +268,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
+                new BusinessArbolAcceso().HitArbolAcceso(idArbol);
                 ArbolAcceso arbol = new BusinessArbolAcceso().ObtenerArbolAcceso(idArbol);
                 HitConsulta hit = new HitConsulta
                 {
@@ -315,6 +315,7 @@ namespace KinniNet.Core.Operacion
                 if (hit.Id == 0)
                     db.HitConsulta.AddObject(hit);
                 db.SaveChanges();
+                
             }
             catch (Exception ex)
             {

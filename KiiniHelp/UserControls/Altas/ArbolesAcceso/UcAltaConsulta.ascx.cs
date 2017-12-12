@@ -331,8 +331,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             {
                 _mp = (UsuariosMaster)Page.Master;
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnSaveAll.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnSaveAll, null) + ";}";  
                 if (!IsPostBack)
                 {
                     LlenaCombos();

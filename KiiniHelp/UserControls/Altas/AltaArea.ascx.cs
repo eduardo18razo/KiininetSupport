@@ -73,8 +73,6 @@ namespace KiiniHelp.UserControls.Altas
             {
                 Alerta = new List<string>();
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardarArea.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardarArea, null) + ";}";  
                 _mp = (UsuariosMaster)Page.Master;
             }
             catch (Exception ex)

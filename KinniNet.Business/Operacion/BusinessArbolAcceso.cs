@@ -82,7 +82,7 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(arbol, "Area");
                         HelperArbolAcceso addArbol = new HelperArbolAcceso();
                         addArbol.Id = arbol.Id;
-                        addArbol.Descripcion = ObtenerTipificacion(arbol.Id);
+                        addArbol.DescripcionTipificacion = ObtenerTipificacion(arbol.Id);
                         addArbol.Ruta = ObtenerRutaCompleta(arbol.Id);
                         addArbol.Categoria = arbol.Area.Descripcion;
                         result.Add(addArbol);
@@ -773,6 +773,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 //TODO: Cambiar habilitado por el embebido
                 arbol.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                arbol.FechaVisita = arbol.FechaAlta;
                 arbol.Habilitado = true;
                 List<GrupoUsuario> lstGrupoUsuario = null;
                 if (arbol.Nivel1 != null)
@@ -830,19 +831,6 @@ namespace KinniNet.Core.Operacion
                             });
                         }
                     }
-                    //TODO: ELIMINAR ESTE FRAGMENTO Y DEJAR EL FRAGMENTO ANTERIOR
-                    //GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol((int)BusinessVariables.EnumRoles.ConsultasEspeciales, (int)BusinessVariables.EnumTiposUsuario.Operador);
-                    //if (gu != null)
-                    //{
-                    //    if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario == gu.Id))
-                    //        arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                    //        {
-                    //            IdRol = (int)BusinessVariables.EnumRoles.ConsultasEspeciales,
-                    //            IdGrupoUsuario = gu.Id,
-                    //            IdSubGrupoUsuario = null
-                    //        });
-                    //}
-
                 }
                 if (arbol.Id == 0)
                     db.ArbolAcceso.AddObject(arbol);
@@ -1188,6 +1176,31 @@ namespace KinniNet.Core.Operacion
                 db.Dispose();
             }
             return result;
+        }
+
+        public void HitArbolAcceso(int idArbol)
+        {
+            ArbolAcceso result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = true;
+                result = db.ArbolAcceso.SingleOrDefault(w => w.Habilitado && w.Id == idArbol);
+                if (result != null)
+                {
+                    result.Visitas++;
+                    result.FechaVisita = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
         }
 
         public List<GrupoUsuarioInventarioArbol> ObtenerGruposUsuarioArbol(int idArbol)
@@ -1813,9 +1826,9 @@ namespace KinniNet.Core.Operacion
                                               where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
                                               select ac;
 
-                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, Descripcion = ObtenerTipificacion(arbol.Id) }).ToList();
+                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, DescripcionTipificacion = ObtenerTipificacion(arbol.Id) }).ToList();
                 if (insertarSeleccion)
-                    result.Insert(0, new HelperArbolAcceso { Id = BusinessVariables.ComboBoxCatalogo.IndexSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione });
+                    result.Insert(0, new HelperArbolAcceso { Id = BusinessVariables.ComboBoxCatalogo.IndexSeleccione, DescripcionTipificacion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione });
             }
             catch (Exception ex)
             {
@@ -1864,7 +1877,7 @@ namespace KinniNet.Core.Operacion
                     qry = qry.Where(w => w.IdNivel7 == nivel7);
 
                 qry = qry.Where(w => w.EsTerminal);
-                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, Descripcion = ObtenerTipificacion(arbol.Id) }).ToList();
+                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, DescripcionTipificacion = ObtenerTipificacion(arbol.Id) }).ToList();
             }
             catch (Exception)
             {
@@ -1877,7 +1890,54 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-
+        public List<HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo)
+        {
+            List<HelperArbolAcceso> result = null;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<ArbolAcceso> qry = (from ac in db.ArbolAcceso
+                                              join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
+                                              join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
+                                              join ug in db.UsuarioGrupo on new { guia.IdRol, guia.IdGrupoUsuario, guia.IdSubGrupoUsuario } equals new { ug.IdRol, ug.IdGrupoUsuario, ug.IdSubGrupoUsuario }
+                                              where ug.IdGrupoUsuario == idGrupo && !ac.Sistema
+                         select ac).ToList();
+                if (qry.Any())
+                {
+                    result = new List<HelperArbolAcceso>();
+                    foreach (ArbolAcceso arbolAcceso in qry.ToList())
+                    {
+                        db.LoadProperty(arbolAcceso, "Area");
+                        db.LoadProperty(arbolAcceso, "TipoArbolAcceso");
+                        db.LoadProperty(arbolAcceso, "TipoUsuario");
+                        db.LoadProperty(arbolAcceso, "InventarioArbolAcceso");
+                        HelperArbolAcceso add = new HelperArbolAcceso
+                        {
+                            
+                            Id = arbolAcceso.Id,
+                            Titulo = arbolAcceso.InventarioArbolAcceso.First().Descripcion,
+                            TipoUsuario = arbolAcceso.TipoUsuario.Descripcion,
+                            Categoria = arbolAcceso.Area.Descripcion,
+                            DescripcionTipificacion = ObtenerTipificacion(arbolAcceso.Id),
+                            Nivel = ObtenerNivel(arbolAcceso.Id), 
+                            Tipo = arbolAcceso.TipoArbolAcceso.Descripcion,
+                            Activo = arbolAcceso.Habilitado ? "Si" : "No"
+                        };
+                        result.Add(add);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
 
         #endregion Flujo normal
     }

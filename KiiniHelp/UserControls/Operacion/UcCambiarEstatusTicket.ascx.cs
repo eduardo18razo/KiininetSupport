@@ -96,8 +96,6 @@ namespace KiiniHelp.UserControls.Operacion
             {
                 Alerta = new List<string>();
                 lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
-                //TODO: Se elimina para bloque de boton al click
-                //btnAceptar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnAceptar, null) + ";}";  
                 if (!IsPostBack)
                 {
                     

@@ -368,6 +368,53 @@ namespace KinniNet.Core.Operacion
             }
         }
 
+        public string FormatearFecha(DateTime fechaParse)
+        {
+            string fecha = "Hoy";
+            try
+            {
+                CultureInfo ci = new CultureInfo("Es-Es");
+                var days = (DateTime.Now - fechaParse).TotalDays;
+                switch (int.Parse(Math.Abs(Math.Round(days)).ToString()))
+                {
+                    case 0:
+                        fecha = "Hoy";
+                        break;
+                    case 1:
+                        fecha = "Ayer";
+                        break;
+                    case 2:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 3:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 4:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 5:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 6:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    default:
+                        fecha = fechaParse.ToString("dd-MM-yy");
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return string.Format("{0} {1} hrs.", fecha, fechaParse.ToString("HH:mm"));
+        }
+
         public HelperticketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario)
         {
             HelperticketEnAtencion result = null;
@@ -430,13 +477,14 @@ namespace KinniNet.Core.Operacion
                                             result.UsuarioLevanto.TicketsAbiertos.Add(new HelperTicketsUsuario
                                             {
                                                 IdTicket = t.Id,
-                                                Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(t.IdArbolAcceso)
+                                                Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(t.IdArbolAcceso),
+                                                IdEstatusTicket = t.IdEstatusTicket,
+                                                DescripcionEstatusTicket = t.EstatusTicket.Descripcion,
+                                                FechaCreacion = t.FechaHoraAlta,
+                                                FechaCreacionFormato = FormatearFecha(t.FechaHoraAlta)
                                             });
                                         }
-
-
                             }
-
 
                         result.UsuarioLevanto.Puesto = ticket.UsuarioLevanto.Puesto != null ? ticket.UsuarioLevanto.Puesto.Descripcion : string.Empty;
                         result.UsuarioLevanto.Correos = ticket.UsuarioLevanto.CorreoUsuario != null ? ticket.UsuarioLevanto.CorreoUsuario.Select(s => s.Correo).ToList() : null;
@@ -455,6 +503,7 @@ namespace KinniNet.Core.Operacion
                             result.Conversaciones.Add(new HelperConversacionDetalle
                             {
                                 Id = conversacion.Id,
+                                IdUsuario = conversacion.IdUsuario,
                                 Nombre = conversacion.Usuario.NombreCompleto,
                                 FechaHora = conversacion.FechaGeneracion,
                                 Comentario = conversacion.Mensaje,
