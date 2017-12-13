@@ -947,11 +947,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     divCapturaDescripcion.Visible = int.Parse(btnSeleccionarModal.CommandArgument) > 1;
                     divNombre.Visible = int.Parse(btnSeleccionarModal.CommandArgument) > 1;
 
-<<<<<<< HEAD
-            }
-=======
                 }
->>>>>>> Janeth_Garcia
             }
             catch (Exception ex)
             {

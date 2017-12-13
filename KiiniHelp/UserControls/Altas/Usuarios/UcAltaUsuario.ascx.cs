@@ -553,6 +553,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             txtUserName.ReadOnly = true;
             ddlPuesto.Enabled = !habilitado && !EditarDetalle;
             btnAddPuesto.Visible = !habilitado && !EditarDetalle;
+            btnCambiarImagen.Visible = !habilitado && !EditarDetalle;
             chkVip.Enabled = !habilitado;
             chkDirectoriActivo.Enabled = !habilitado;
             chkPersonaFisica.Enabled = !habilitado;

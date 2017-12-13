@@ -99,11 +99,13 @@
     <Content Include="assets\css\controls.css" />
     <Content Include="assets\css\divs.css" />
     <Content Include="assets\css\elegant-icons.css" />
+    <Content Include="assets\css\elusive-icons.css" />
     <Content Include="assets\css\font-awesome.css" />
     <Content Include="assets\css\menuStyle.css" />
     <Content Include="assets\css\pe-7-icons-helper.css" />
     <Content Include="assets\css\pe-7-icons.css" />
     <Content Include="assets\css\styles.css" />
+    <Content Include="assets\fonts\elusiveicons-webfont.svg" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\Pe-icon-7-strokebb1d.svg" />
@@ -135,6 +137,8 @@
     <Content Include="assets\images\profiles\perfil.png" />
     <Content Include="assets\images\profiles\profile-1.png" />
     <Content Include="assets\images\profiles\profile-square-1.png" />
+    <Content Include="assets\images\profiles\usr-gen-2.png" />
+    <Content Include="assets\images\profiles\usr-gen.jpg" />
     <Content Include="assets\images\step1.png" />
     <Content Include="assets\images\carousels\slide-1.jpg" />
     <Content Include="assets\images\carousels\slide-2.jpg" />
@@ -282,6 +286,9 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuario.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo.datasource" />
+    <Content Include="assets\fonts\elusiveicons-webfont.eot" />
+    <Content Include="assets\fonts\elusiveicons-webfont.ttf" />
+    <Content Include="assets\fonts\elusiveicons-webfont.woff" />
     <None Include="Service References\ServiceArbolAcceso\ServiceArbolAcceso14.xsd">
       <SubType>Designer</SubType>
     </None>

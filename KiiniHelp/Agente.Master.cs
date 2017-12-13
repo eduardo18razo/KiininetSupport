@@ -210,13 +210,18 @@ namespace KiiniHelp
                 {
                     bool administrador = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
-                    if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Administrador))
+                    if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Agente))
                     {
                         administrador = true;
                     }
                     if (administrador)
                         Session["CargaInicialModal"] = true.ToString();
                     hfCargaInicial.Value = (Session["CargaInicialModal"] ?? "False").ToString();
+                    lblUsuario.Text = usuario.NombreCompleto;
+                    int IdUsuario = usuario.Id;
+
+                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png";
+                    //lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
                     ObtenerAreas();
                     int rolSeleccionado = 0;
                     if (Session["RolSeleccionado"] != null)

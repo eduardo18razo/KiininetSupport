@@ -76,6 +76,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.HiddenField hfAsigna;
         
         /// <summary>
+        /// Control hfUsuarioLevanto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfUsuarioLevanto;
+        
+        /// <summary>
         /// Control lblNoticket.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.LinkButton btnCambiaEstatus;
         
         /// <summary>
+        /// Control imgProfileNewComment.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgProfileNewComment;
+        
+        /// <summary>
         /// Control rbtnPublics.
         /// </summary>
         /// <remarks>
@@ -256,6 +274,33 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Repeater rptConversaciones;
         
         /// <summary>
+        /// Control imgUsuarioTicket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgUsuarioTicket;
+        
+        /// <summary>
+        /// Control lblNombreU.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreU;
+        
+        /// <summary>
+        /// Control lblFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFecha;
+        
+        /// <summary>
         /// Control UcDetalleMascaraCaptura.
         /// </summary>
         /// <remarks>
@@ -263,6 +308,15 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::KiiniHelp.UserControls.Detalles.UcDetalleMascaraCaptura UcDetalleMascaraCaptura;
+        
+        /// <summary>
+        /// Control imgUsuarioDetalle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgUsuarioDetalle;
         
         /// <summary>
         /// Control lblNombreDetalle.
@@ -301,13 +355,13 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblFechaUltimaconexion;
         
         /// <summary>
-        /// Control ddlTicketUsuario.
+        /// Control rddConcentradoTicketsUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTicketUsuario;
+        protected global::Telerik.Web.UI.RadDropDownList rddConcentradoTicketsUsuario;
         
         /// <summary>
         /// Control lblPuesto.

@@ -26,14 +26,14 @@
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfIdUsuarioSolicito" />
             <asp:HiddenField runat="server" ID="hfAreaSeleccionada" Value="0" />
-            <section class="module">
+           <%-- <section class="module">--%>
                 <div class="row">
-                    <div class="col-lg-9 col-md-9 col-sm-9">
+                    <div class="col-lg-12 col-md-9 col-sm-9">
                         <div class="module-inner">
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <tc:RadSearchBox runat="server" DataTextField="Descripcion" OnSearch="txtBusquedaFormulario_OnSearch" DataValueField="Id" EnableAutoComplete="True" ShowSearchButton="True" ID="txtBusquedaFormulario" DataSourceID="SourceOpciones"
-                                        OnDataSourceSelect="txtBusquedaFormulario_OnDataSourceSelect" Width="350px">
+                                        OnDataSourceSelect="txtBusquedaFormulario_OnDataSourceSelect" Width="90%">
                                         <SearchContext DataSourceID="SourceAreasSearch" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False" />
                                     </tc:RadSearchBox>
                                 </div>  
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+           <%-- </section>--%>
 
             <asp:ObjectDataSource runat="server" ID="SourceOpciones" TypeName="KiiniHelp.UserControls.Agentes.BusquedaOpciones" SelectMethod="GetOptions">
                 <SelectParameters>

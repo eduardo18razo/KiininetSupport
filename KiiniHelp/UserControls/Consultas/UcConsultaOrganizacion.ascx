@@ -58,7 +58,8 @@
                         </div>
 
                         <div class="col-lg-4 col-md-4 text-center">
-                            <asp:LinkButton CssClass="btn btn-success" Style="margin-top: 10px;" ID="btnNew" OnClick="btnNew_OnClick" runat="server"><i class="fa fa-plus">
+                            <asp:LinkButton CssClass="btn btn-success" Style="margin-top: 10px;" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
+                                <i class="fa fa-plus">
                                      </i>Nuevo</asp:LinkButton>
                         </div>
 

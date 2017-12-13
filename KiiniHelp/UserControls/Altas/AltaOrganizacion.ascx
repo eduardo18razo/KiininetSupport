@@ -111,7 +111,7 @@
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <asp:Label runat="server" ID="lblTitleCatalogo"></asp:Label>
+                            <asp:Label runat="server" ID="lblTitleCatalogo"/>
                         </div>
                         <div class="panel-body">
                             <asp:HiddenField runat="server" ID="hfCatalogo" />

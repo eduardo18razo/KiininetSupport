@@ -20,6 +20,8 @@
     <link href="assets/css/elegant-icons.css" rel="stylesheet" />
     <link href="assets/css/bootstrap-markdown.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/elusive-icons.css" />
+
     <script type="text/javascript">
         function MostrarPopup(modalName) {
             $(modalName).on('shown.bs.modal', function () {
@@ -110,7 +112,7 @@
                 </h1>
             </div>
             <div class="topbar bg_w_header">
-                <div class="search-container">
+                <div class="search-container" runat="server" visible="false">
                     <div id="main-search" style="padding-top: 20px;">
                         <i id="main-search-toggle" class="fa fa-search icon"></i>
                         <div id="main_search_input_wrapper" class="main_search_input_wrapper">

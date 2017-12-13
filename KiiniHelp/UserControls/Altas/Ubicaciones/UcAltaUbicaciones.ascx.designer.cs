@@ -508,8 +508,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.WebControls.Button btnSeleccionarModal;
         
         /// <summary>
-<<<<<<< HEAD
-=======
         /// Control btnTerminar.
         /// </summary>
         /// <remarks>
@@ -519,7 +517,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.WebControls.Button btnTerminar;
         
         /// <summary>
->>>>>>> Janeth_Garcia
         /// Control divNombre.
         /// </summary>
         /// <remarks>
@@ -529,8 +526,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNombre;
         
         /// <summary>
-<<<<<<< HEAD
-=======
         /// Control lblAccion.
         /// </summary>
         /// <remarks>
@@ -540,7 +535,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.WebControls.Label lblAccion;
         
         /// <summary>
->>>>>>> Janeth_Garcia
         /// Control lblOperacionDescripcion.
         /// </summary>
         /// <remarks>
