@@ -292,7 +292,7 @@
                                             <asp:CheckBox runat="server" ID="chkVencimientoDev" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
                                         </div>
                                         <div class="form-group">
-                                            <asp:CheckBox runat="server" ID="chkNotificacionOperacion" AutoPostBack="True" OnCheckedChanged="chkNotificacionOperacion_OnCheckedChanged" CssClass="col-md-12" Text="ESPECIAL DE CONSULTA" />
+                                            <asp:CheckBox runat="server" ID="chkNotificacionOperacion" AutoPostBack="True" OnCheckedChanged="chkNotificacionOperacion_OnCheckedChanged" CssClass="col-md-12" Text="Responsable de operacion" />
                                             <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-5" Enabled="False" ID="txtTiempoNotificacionOperacion" />
                                             <asp:DropDownList runat="server" ID="ddlNotificacionGrupoOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
                                             <asp:DropDownList runat="server" ID="ddlCanalOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />

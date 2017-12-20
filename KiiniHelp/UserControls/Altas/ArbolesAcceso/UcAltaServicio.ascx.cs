@@ -396,20 +396,20 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     if (ddlCanalDev.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione un canal de notificacion para el Grupo de Desarrollo.");
                 }
-                //if (chkNotificacionConsulta.Checked)
-                //{
-                //    if (txtTiempoNotificacionConsulta.Text != string.Empty && int.Parse(txtTiempoNotificacionConsulta.Text) <= 0)
-                //        errors.Add("El tiempo de notificacion para el Grupos Especial de Consultas debe ser mayor a 0.");
+                if (chkNotificacionOperacion.Checked)
+                {
+                    if (txtTiempoNotificacionOperacion.Text != string.Empty && int.Parse(txtTiempoNotificacionOperacion.Text) <= 0)
+                        errors.Add("El tiempo de notificacion para el Grupos Especial de Consultas debe ser mayor a 0.");
 
-                //    if (txtTiempoNotificacionConsulta.Text == string.Empty)
-                //        errors.Add("Ingrese tiempo de notificacion para los Grupos Especial de Consultas.");
+                    if (txtTiempoNotificacionOperacion.Text == string.Empty)
+                        errors.Add("Ingrese tiempo de notificacion para los Grupos Especial de Consultas.");
 
-                //    if (ddlNotificacionGrupoConsulta.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //        errors.Add("Seleccione unidad de medida para los Grupos Especial de Consultas");
+                    if (ddlNotificacionGrupoOperacion.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                        errors.Add("Seleccione unidad de medida para los Grupos Especial de Consultas");
 
-                //    if (ddlCanalConsulta.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //        errors.Add("Seleccione un canal de notificacion para los Grupos Especial de Consultas.");
-                //}
+                    if (ddlCanalOperacion.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                        errors.Add("Seleccione un canal de notificacion para los Grupos Especial de Consultas.");
+                }
                 _lstError = errors;
                 if (!_lstError.Any()) return;
                 throw new Exception();
@@ -771,12 +771,12 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoDueño);
                         Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoMtto);
                         Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoDev);
-                        //Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoConsulta);
+                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoOperacion);
                         List<TipoNotificacion> lst = _servicioNotificacion.ObtenerTipos(true);
                         Metodos.LlenaComboCatalogo(ddlCanalDueño, lst);
                         Metodos.LlenaComboCatalogo(ddlCanalMtto, lst);
                         Metodos.LlenaComboCatalogo(ddlCanalDev, lst);
-                        //Metodos.LlenaComboCatalogo(ddlCanalConsulta, lst);
+                        Metodos.LlenaComboCatalogo(ddlCanalOperacion, lst);
                         btnPreview.Visible = false;
                         btnSaveAll.Visible = false;
                         btnSiguiente.Visible = true;

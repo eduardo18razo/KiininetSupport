@@ -66,7 +66,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 txtApRapido.Text = string.Empty;
                 txtAmRapido.Text = string.Empty;
                 txtCorreoRapido.Text = string.Empty;
-                txtTelefonoRapido.Text = string.Empty;
+                txtTelefonoCelularRapido.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -109,12 +109,13 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             bool capturoTelefono = false, capturoCorreo = false;
             if (txtCorreoRapido.Text.Trim() != string.Empty)
                 capturoCorreo = true;
-            if (txtTelefonoRapido.Text.Trim() != string.Empty)
+            if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
                 capturoTelefono = true;
             if (!capturoCorreo)
                 sb.Add("Debe capturar un correo.");
             if (!capturoTelefono)
-                sb.Add("Debe capturar un telefono.");
+                txtTelefonoCelularRapido.Text = "";
+            //sb.Add("Debe capturar un telefono.");
             if (!BusinessCorreo.IsValid(txtCorreoRapido.Text.Trim()))
             {
                 sb.Add(string.Format("Correo {0} con formato invalido", txtCorreoRapido.Text.Trim()));
@@ -187,15 +188,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         Autoregistro = true,
                         Habilitado = true
                     };
-                    if (txtTelefonoRapido.Text.Trim() != string.Empty)
-                        datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
+                    //if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
+                    datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
                         {
                             new TelefonoUsuario
                             {
                                 IdTipoTelefono = (int) BusinessVariables.EnumTipoTelefono.Celular,
                                 Confirmado = false,
                                 Extension = string.Empty,
-                                Numero = txtTelefonoRapido.Text.Trim(),
+                                Numero = txtTelefonoCelularRapido.Text.Trim(),
                                 Obligatorio = true
                             }
                         };

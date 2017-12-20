@@ -6,6 +6,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="height: 100%;">
-                <uc1:UcTicketDetalle runat="server" ID="UcTicketDetalle" />
+        <uc1:UcTicketDetalle runat="server" ID="UcTicketDetalle" />
     </div>
 </asp:Content>

@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaArboles.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaArboles" %>
 
 <%@ Register Src="~/UserControls/Altas/ArbolesAcceso/UcAltaAbrolAcceso.ascx" TagPrefix="uc1" TagName="UcAltaAbrolAcceso" %>
+<%@ Register Src="~/UserControls/Detalles/UcDetalleArbolAcceso.ascx" TagPrefix="uc1" TagName="UcDetalleArbolAcceso" %>
+
 
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server" style="height: 100%">
@@ -114,6 +116,12 @@
                                                         <label><%# Eval("Nivel") %></label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                
+                                                <asp:TemplateField HeaderText="Detalle" HeaderStyle-Width="15%">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
                                                     <ItemTemplate>
@@ -211,6 +219,19 @@
                 <<div class="modal-dialog" style="height: 250px;">
                     <div class="modal-content">
                         <uc1:UcAltaAbrolAcceso runat="server" ID="UcAltaAbrolAcceso" />
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+    
+    <%--MODAL DETALLE GRUPO OPCIONES--%>
+    <div class="modal fade" id="modalDetalleOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="modal-dialog" style="height: 250px;">
+                    <div class="modal-content">
+                        <uc1:UcDetalleArbolAcceso runat="server" ID="ucDetalleArbolAcceso" />
                     </div>
                 </div>
             </ContentTemplate>

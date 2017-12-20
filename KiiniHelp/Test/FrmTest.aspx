@@ -3,6 +3,8 @@
 <%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=16.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleGrupoUsuarios.ascx" TagPrefix="uc1" TagName="UcDetalleGrupo" %>
 <%@ Register TagPrefix="uc1" Namespace="KiiniHelp.UserControls.Detalles" Assembly="KiiniHelp" %>
+<%@ Register Src="~/UserControls/Detalles/UcDetalleArbolAcceso.ascx" TagPrefix="uc1" TagName="UcDetalleArbolAcceso" %>
+
 
 
 <!DOCTYPE html>
@@ -104,7 +106,8 @@
             </script>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <uc1:UcDetalleGrupoUsuarios runat="server" id="ucDetalleGrupoUsuarios" />
+                    <uc1:UcDetalleArbolAcceso runat="server" id="ucDetalleArbolAcceso" />
+                    <%--<uc1:UcDetalleGrupoUsuarios runat="server" id="ucDetalleGrupoUsuarios" />--%>
                    <%-- <div class="form-horizontal col-lg-6 col-lg-offset-3">
                         <div class="form-group">
                             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" required />

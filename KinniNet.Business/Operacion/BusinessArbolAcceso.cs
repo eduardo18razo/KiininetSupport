@@ -1151,6 +1151,18 @@ namespace KinniNet.Core.Operacion
                 db.LoadProperty(result, "Nivel7");
                 db.LoadProperty(result, "InventarioArbolAcceso");
                 db.LoadProperty(result, "TiempoInformeArbol");
+                foreach (TiempoInformeArbol informeArbol in result.TiempoInformeArbol)
+                {
+                    db.LoadProperty(informeArbol, "GrupoUsuario");
+                    db.LoadProperty(informeArbol, "TipoNotificacion");   
+                }
+                db.LoadProperty(result, "Impacto");
+                if (result.Impacto != null)
+                {
+                    db.LoadProperty(result.Impacto, "Prioridad");
+                    db.LoadProperty(result.Impacto, "Urgencia");
+                }
+                    
                 foreach (InventarioArbolAcceso inventarioArbol in result.InventarioArbolAcceso)
                 {
                     db.LoadProperty(inventarioArbol, "GrupoUsuarioInventarioArbol");
@@ -1160,6 +1172,9 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(gpo, "SubGrupoUsuario");
                     }
                     db.LoadProperty(inventarioArbol, "InventarioInfConsulta");
+                    db.LoadProperty(inventarioArbol, "Mascara");
+                    db.LoadProperty(inventarioArbol, "Sla");
+                    db.LoadProperty(inventarioArbol, "Encuesta");
                     foreach (InventarioInfConsulta inventarioInformacion in inventarioArbol.InventarioInfConsulta)
                     {
                         db.LoadProperty(inventarioInformacion, "InformacionConsulta");
@@ -1900,13 +1915,12 @@ namespace KinniNet.Core.Operacion
                 List<ArbolAcceso> qry = (from ac in db.ArbolAcceso
                                               join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
                                               join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
-                                              join ug in db.UsuarioGrupo on new { guia.IdRol, guia.IdGrupoUsuario, guia.IdSubGrupoUsuario } equals new { ug.IdRol, ug.IdGrupoUsuario, ug.IdSubGrupoUsuario }
-                                              where ug.IdGrupoUsuario == idGrupo && !ac.Sistema
+                                              where guia.IdGrupoUsuario == idGrupo && !ac.Sistema && ac.EsTerminal
                          select ac).ToList();
                 if (qry.Any())
                 {
                     result = new List<HelperArbolAcceso>();
-                    foreach (ArbolAcceso arbolAcceso in qry.ToList())
+                    foreach (ArbolAcceso arbolAcceso in qry.Distinct().ToList())
                     {
                         db.LoadProperty(arbolAcceso, "Area");
                         db.LoadProperty(arbolAcceso, "TipoArbolAcceso");

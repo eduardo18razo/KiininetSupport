@@ -99,6 +99,8 @@
         <script>
             Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(SetComment);
             function SetComment() {
+                $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
+                $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
                 var txtEditor = document.getElementById('ContentPlaceHolder1_ucAltaInformacionConsulta_txtEditor_designEditor');
                 if (txtEditor != undefined) {
                     var hfComentario = document.getElementById('<%= hfComentario.ClientID%>');
@@ -107,15 +109,16 @@
                     }
                 }
             }
-            $(function () {
-                $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
-                $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
-            });
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-            prm.add_endRequest(function () {
-                $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
-                $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
-            });
+
+            //$(function() {
+            //    $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
+            //    $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
+            //});
+            //});
+            //var prm = Sys.WebForms.PageRequestManager.getInstance();
+            //prm.add_endRequest(function () {
+               
+            //});
         </script>
     </ContentTemplate>
 </asp:UpdatePanel>

@@ -265,6 +265,7 @@
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
+    <Content Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
@@ -2906,6 +2907,13 @@
     </Compile>
     <Compile Include="UserControls\Consultas\UcConsultaUbicacionesFisico.ascx.designer.cs">
       <DependentUpon>UcConsultaUbicacionesFisico.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx.cs">
+      <DependentUpon>UcDetalleArbolAcceso.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx.designer.cs">
+      <DependentUpon>UcDetalleArbolAcceso.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx.cs">
       <DependentUpon>UcDetalleGrupoUsuarios.ascx</DependentUpon>

@@ -255,8 +255,12 @@ namespace KinniNet.Core.Operacion
                           join tgu in db.HitGrupoUsuario on h.Id equals tgu.IdHit
                           //join gu in db.GrupoUsuario on tgu.IdGrupoUsuario equals gu.Id
                           //join r in db.Rol on tgu.IdRol equals r.Id
-                          join or in db.Organizacion on h.IdOrganizacion equals or.Id
+                          join or in db.Organizacion on h.IdOrganizacion equals or.Id 
+                          into orj 
+                          from b in orj.DefaultIfEmpty()
                           join ub in db.Ubicacion on h.IdUbicacion equals ub.Id
+                          into ubj 
+                          from c in ubj.DefaultIfEmpty()
                           select new { h, tgu };
                 if (grupos.Any())
                     qry = from q in qry
@@ -308,15 +312,15 @@ namespace KinniNet.Core.Operacion
                         var t = lstHits.Count(c => c.IdArbolAcceso == hit.IdArbolAcceso);
                         result.Add(new HelperHits
                         {
-                            TipoUsuarioAbreviacion = hit.Usuario.TipoUsuario.Abreviacion,
-                            TipoUsuarioColor = hit.Usuario.TipoUsuario.Color,
+                            TipoUsuarioAbreviacion = hit.Usuario != null ? hit.Usuario.TipoUsuario.Abreviacion : "P",
+                            TipoUsuarioColor = hit.Usuario != null ? hit.Usuario.TipoUsuario.Color : "#ffffff",
                             IdOrganizacion = hit.IdOrganizacion.HasValue ? int.Parse(hit.IdOrganizacion.ToString()) : 0,
                             Organizacion = hit.IdOrganizacion.HasValue ? new BusinessOrganizacion().ObtenerDescripcionOrganizacionById(int.Parse(hit.IdOrganizacion.ToString()), false) : null,
                             IdUbicacion = hit.IdUbicacion. HasValue?int.Parse(hit.IdUbicacion.ToString()) : 0,
                             Ubicacion = hit.IdUbicacion.HasValue ? new BusinessUbicacion().ObtenerDescripcionUbicacionById(int.Parse(hit.IdUbicacion.ToString()), false) : null,
                             Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(hit.IdArbolAcceso),
                             TipoServicio = hit.TipoArbolAcceso.Descripcion,
-                            Vip = hit.Usuario.Vip,
+                            Vip = hit.Usuario != null && hit.Usuario.Vip,
                             FechaHora = hit.FechaHoraAlta.ToString("dd/MM/yyyy"),
                             Hora = hit.FechaHoraAlta.ToString("hh:mm:ss"),
                             Total = lstHits.Count(c => c.IdArbolAcceso == hit.IdArbolAcceso),
@@ -324,7 +328,7 @@ namespace KinniNet.Core.Operacion
                             IdTipoArbolAcceso = hit.IdTipoArbolAcceso,
                             IdTipificacion = hit.IdArbolAcceso,
                             IdUsuario = hit.IdUsuario,
-                            NombreUsuario = hit.Usuario.NombreCompleto,
+                            NombreUsuario = hit.Usuario != null ? hit.Usuario.NombreCompleto : string.Empty,
                         });
                     }
                 }

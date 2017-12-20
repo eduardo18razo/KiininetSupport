@@ -11,11 +11,15 @@
 
         <div runat="server" id="divControles">
         </div>
-        <div class="text-right">
-            <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
-        <asp:Button type="button text-left" class="btn btn-primary" runat="server" Text="Crear ticket" ID="btnGuardar" OnClick="btnGuardar_OnClick"/>
+        <div>
+            <div class="margin-bottom-10">
+                <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
+            </div>
+            <div class="margin-bottom-10">
+                <asp:Button type="button text-left" class="btn btn-primary" runat="server" Text="Crear ticket" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
+            </div>
         </div>
-        <asp:HiddenField runat="server" ID="hfTicketGenerado"/>  
-        <asp:HiddenField runat="server" ID="hfRandomGenerado"/>  
+        <asp:HiddenField runat="server" ID="hfTicketGenerado" />
+        <asp:HiddenField runat="server" ID="hfRandomGenerado" />
     </ContentTemplate>
 </asp:UpdatePanel>
