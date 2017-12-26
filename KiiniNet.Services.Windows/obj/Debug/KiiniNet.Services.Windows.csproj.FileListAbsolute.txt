@@ -1,27 +1,3 @@
 C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.csprojResolveAssemblyReference.cache
 C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.InstallerSettings.resources
 C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.csproj.GenerateResource.Cache
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Services.Windows.exe.config
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Services.Windows.exe.manifest
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Services.Windows.application
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Services.Windows.exe
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Services.Windows.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Core.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\EAGetMail40.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Business.Utils.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\EASendMail40.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Entities.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Data.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\EPPlus.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Core.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Business.Utils.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KiiniNet.Entities.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\KinniNet.Data.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\bin\Debug\EPPlus.xml
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.csprojResolveAssemblyReference.cache
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.InstallerSettings.resources
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.csproj.GenerateResource.Cache
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.exe.manifest
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.application
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.exe
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Windows\obj\Debug\KiiniNet.Services.Windows.pdb

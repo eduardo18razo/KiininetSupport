@@ -173,10 +173,10 @@ namespace KiiniHelp.UserControls.Detalles
 
                     imgVip.Visible = usuario.Vip;
                     lblFechaUltimaconexion.Text = usuario.FechaUltimoLogin;
-                  
+
                     rddConcentradoTicketsUsuario.DataSource = usuario.TicketsAbiertos;
                     rddConcentradoTicketsUsuario.DataBind();
-                  
+
                     //ddlTicketUsuario.DataSource = usuario.TicketsAbiertos;
                     //ddlTicketUsuario.DataTextField = "Tipificacion"; //"IdTicket" +
                     //ddlTicketUsuario.DataValueField = "IdTicket";
@@ -519,7 +519,7 @@ namespace KiiniHelp.UserControls.Detalles
                     System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblEstatusTicketConcentrado");
                     if (lbl != null)
                     {
-                        HelperticketEnAtencion tickets = _servicioAtencionTicket.ObtenerTicketEnAtencion(((HelperTicketsUsuario)e.Item.DataItem).IdTicket , IdUsuarioLevanto);
+                        HelperticketEnAtencion tickets = _servicioAtencionTicket.ObtenerTicketEnAtencion(((HelperTicketsUsuario)e.Item.DataItem).IdTicket, IdUsuarioLevanto);
                         lbl.Style.Add("color", tickets.ColorEstatus);
                         lbl.Text = tickets.DescripcionEstatusTicket;
                     }
@@ -535,6 +535,6 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
-    
+
     }
 }

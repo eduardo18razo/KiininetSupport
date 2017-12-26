@@ -33,9 +33,7 @@
                                             <div class="module-heading col-lg-12 col-md-12 col-sm-12">
 
                                                 <div class="module-title">
-                                                    <%--<asp:Label runat="server" CssClass="TitulosAzul" Text="Tickets Abiertos (" style="margin-right:0px"/>--%>
                                                     <asp:Label runat="server" CssClass="TitulosAzul" ID="lblTicketAbiertosHeader" />
-                                                    <%--<asp:Label runat="server" Text=")" CssClass="TitulosAzul" />--%>
                                                 </div>
 
                                             </div>
@@ -46,22 +44,17 @@
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <asp:Label runat="server" class="col-sm-9 control-label" Text="Grupo" />
-                                                        <%--<div class="col-sm-9">--%>
                                                         <asp:DropDownList runat="server" ID="ddlGrupo" AutoPostBack="True" CssClass="form-control" Width="73%" OnSelectedIndexChanged="ddlGrupo_OnSelectedIndexChanged" />
-                                                        <%--</div>--%>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <asp:Label runat="server" class="col-sm-9 control-label" Text="Agente" />
-                                                        <%--  <div class="col-sm-9">--%>
                                                         <asp:DropDownList runat="server" ID="ddlAgente" AutoPostBack="True" CssClass="form-control" Width="73%" OnSelectedIndexChanged="ddlAgente_OnSelectedIndexChanged" />
-                                                        <%-- </div>--%>
                                                     </div>
                                                 </div>
-
+                                                <%--empieza div botones operar ticket--%>
                                                 <div class="row" style="margin-top: 18px">
-
                                                     <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
                                                         <i class="fa fa-long-arrow-down"></i>
                                                         Asignármelo
@@ -83,7 +76,7 @@
 
                                                     <asp:LinkButton runat="server" CssClass="btn fa fa-long-arrow-right margin-bottom-10" Text="Escalar" ID="btnEscalar" OnClick="btnEscalar_OnClick" Visible="False" />
                                                 </div>
-
+                                                <%--termina div botones operar ticket--%>
                                             </div>
                                             <div class="col-lg-5 col-md-5 col-sm-12 text-right">
                                                 <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="OnClick">
@@ -312,7 +305,7 @@
             <ContentTemplate>
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-body">
+                        <div class="modal-body" > <%--style="background-color: #dbdbdb;"--%>
                             <uc1:UcDetalleUsuario runat="server" ID="UcDetalleUsuario" />
                         </div>
                     </div>

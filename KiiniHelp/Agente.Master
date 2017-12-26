@@ -73,7 +73,7 @@
             padding-top: 5px;
             border-right: 1px solid #000000;
             border-right: 1px solid rgba(0, 0, 0, .1);
-            height: 40px;
+            height: 37px;
         }
 
         .tab-row {
@@ -225,6 +225,10 @@
                                         <div class="dropdown-footer"><a href="#">Ver todos los tickets</a> </div>
                                     </div>
                                 </div>
+
+
+
+
                                 <div class="item item-messages dropdown" style="display: none">
                                     <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Mensajes</span> <span class="pe-icon pe-7s-mail icon" data-toggle="tooltip" data-placement="bottom" title="Messages"></span><span class="badge badge-circle badge-success">5</span> </div>
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-messages">
@@ -270,35 +274,9 @@
                                         <div class="dropdown-footer"><a href="#">Ver todos los mensajes</a> </div>
                                     </div>
                                 </div>
-                                <div class="item item-more dropdown" style="display: none">
-                                    <div class="dropdown-toggle" id="dropdownMenu-more" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Acceso Rápido</span> <span aria-hidden="true" class="fs1 icon icon_grid-3x3" data-toggle="tooltip" data-placement="bottom" title="Acceso Rápido"></span></div>
-                                    <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-more">
-                                        <span class="arrow"></span>
-                                        <h4 class="title">Menú de acceso rápido</h4>
-                                        <ul class="more-list">
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-users icon"></span>
-                                                <br />
-                                                Roles</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-ticket icon"></span>
-                                                <br />
-                                                Tickets</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-mail icon"></span>
-                                                <br />
-                                                Mensajes</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-config icon"></span>
-                                                <br />
-                                                Ajustes</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-user icon"></span>
-                                                <br />
-                                                Perfil</a></li>
-                                            <li><a role="menuitem" href="help.html"><span class="pe-icon pe-7s-help2 icon"></span>
-                                                <br />
-                                                Ayuda</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
+
 
                         <div class="user-container dropdown">
 
@@ -308,24 +286,19 @@
                                     <span class="pe-icon pe-7s-user icon"></span>Mi perfil
                                     </asp:LinkButton>
                                 </li>
-                                <%-- <li>
-                                    <asp:LinkButton role="menuitem" NavigateUrl="~/Default.aspx" runat="server" OnClick="btnsOut_OnClick">
-                                    <span class="fa fa-sign-out icon"></span>Salir
-                                    </asp:LinkButton>
-                                </li>--%>
                             </ul>
 
-                            <div class="dropdown-toggle" style="padding-top:10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
+                            <div class="dropdown-toggle" style="padding-top: 10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
                                 <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt="" ID="imgPerfil" runat="server" />
                                 <i class="fa fa-caret-down"></i>
 
-                               <p class="name" style="display: inline-block; color: #232323;">
-                                     <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
-                                     <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
-                                     / <strong class="text-theme">
-                                         <asp:Label runat="server" ID="lblAreaSeleccionada" Style="font-size: x-small"></asp:Label>
-                                         <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" Style="font-size: x-small" Visible="true" /></strong>
-                                 </p>
+                                <p class="name" style="display: inline-block; color: #232323;">
+                                    <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
+                                    <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
+                                    / <strong class="text-theme">
+                                        <asp:Label runat="server" ID="lblAreaSeleccionada" Style="font-size: x-small"></asp:Label>
+                                        <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" Style="font-size: x-small" Visible="true" /></strong>
+                                </p>
                             </div>
                         </div>
 
@@ -335,14 +308,13 @@
                             </asp:LinkButton>
                         </div>
 
-
                     </div>
                 </div>
             </header>
             <header class="header header-Tabs" style="z-index: 9">
                 <div class="branding " style="background-color: #7C7C7C; height: 40px">
                     <h1 class="logo text-center" style="padding-top: 0; font-size: 14px; font-weight: lighter; margin-top: 12px; background-color: #7C7C7C; color: #6E6E6E">
-                        <asp:HyperLink NavigateUrl="~/Agente/Bandeja.aspx" runat="server"> <%--CssClass="fa fa-envelope"--%>
+                        <asp:HyperLink NavigateUrl="~/Agente/Bandeja.aspx" runat="server"> 
                              <i class="fa fa-envelope" style="padding-right:5px; font-size:18px;"></i>
                        Bandeja de Tickets </asp:HyperLink>
                     </h1>
@@ -350,46 +322,124 @@
 
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upTabsTickets">
                     <ContentTemplate>
-                        <asp:Repeater runat="server" ID="rptTicketsAbiertos">
-                            <HeaderTemplate>
-                                <ul class="nav nav-tabs" role="tablist">
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <li role="presentation" class="active liTab">
-                                    <%--<span class="tag label label-info">--%>
-                                    <div class="row" style="padding-top: 5px;">
-                                        <div class="form-inline">
-                                            <div class="col-lg-10 col-md-10 col-sm-10">
-                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("IdTicket") %>' OnClick="lbtnTabTicket_OnClick">
-                                                    <%-- <div class="row col-lg-11 col-md-11 col-sm-11 tab-row">--%>
-                                                    <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>'></asp:Label>
-                                                    <%--</div>--%>
-                                                    <asp:Label runat="server" Text=" "></asp:Label>
-                                                    <%-- <div class="row col-lg-11 col-md-11 col-sm-11 tab-row">--%>
-                                                    <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>'></asp:Label>
-                                                    <%-- </div>   --%>
-                                                </asp:LinkButton>
+                        <div class="row">
+                            <div class="col-lg-9">
+
+                                <asp:Repeater runat="server" ID="rptTicketsAbiertos">
+                                    <HeaderTemplate>
+                                        <ul class="nav nav-tabs" role="tablist">
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <li role="presentation" class="active liTab">
+                                            <div class="row">
+                                                <div class="form-inline">
+                                                    <div class="col-lg-10 col-md-10 col-sm-10">
+                                                        <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("IdTicket") %>' OnClick="lbtnTabTicket_OnClick">
+                                                            <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>'></asp:Label>
+                                                            <asp:Label runat="server" Text=" "></asp:Label>
+                                                            <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />
+                                                        </asp:LinkButton>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 tab-row">
+                                                        <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove glyphicon-white" ID="btnRemoveTab" CommandArgument='<%# Eval("IdTicket") %>' OnClick="btnRemoveTab_OnClick" />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-2 tab-row">
-                                                <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove glyphicon-white" ID="btnRemoveTab" CommandArgument='<%# Eval("IdTicket") %>' OnClick="btnRemoveTab_OnClick"></asp:LinkButton>
+                                        </li>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        </ul>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </div>
+
+                            <div class="col-lg-1">
+                                <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upMasTickets" Visible="false">
+                                    <ContentTemplate>
+                                        <div class="item item-notifications">
+                                            <div class="dropdown-toggle" id="dropdownMenu-notifications2" style="width: 139px; height: 37px;" data-toggle="dropdown" aria-expanded="true" role="button">
+                                                <label style="width: 170px; padding: 5px; cursor: pointer;">Más Tickets ...</label>
+                                            </div>
+                                            <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications2" style="top: 39px;">
+                                                <%--style="margin-top: 0px; padding-top: 0px; padding-bottom: 0px;"--%>
+                                                <span class="arrow"></span>
+                                                <div class="notification-items no-overflow" style="width: 155px;">
+                                                    <div class="item media">
+                                                        <asp:Repeater runat="server" ID="rptTicketsAbiertosExtra">
+                                                            <HeaderTemplate>
+                                                                <ul class="nav" role="tablist">
+                                                            </HeaderTemplate>
+                                                            <ItemTemplate>
+                                                                <li role="presentation" class="active liTab borderbootom">
+                                                                    <div class="row">
+                                                                        <div class="form-inline">
+                                                                            <div class="col-lg-10 col-md-10 col-sm-10">
+                                                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
+                                                                                    <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>' />
+                                                                                    <asp:Label runat="server" Text=" "></asp:Label>
+                                                                                    <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />
+                                                                                </asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-lg-2 col-md-2 col-sm-2 tab-row">
+                                                                                <asp:LinkButton runat="server" class="remove glyphicon glyphicon-remove glyphicon-white" ID="btnRemoveTab" CommandArgument='<%# Eval("IdTicket") %>' OnClick="btnRemoveTab_OnClick"></asp:LinkButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                </ul>
+                                                            </FooterTemplate>
+                                                        </asp:Repeater>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                        </div>
+
+
+                        <%--  <div class="item item-notifications" style="margin-right: 10px;">
+                            <div class="dropdown-toggle" id="dropdownMenu-notifications3" style="background-color: bisque; width: 200px;" data-toggle="dropdown" aria-expanded="true" role="button">
+                                <label style="width: 170px; padding: 5px">Más Tickets</label>
+                                <span class="pe-icon pe-7s-angle-down-circle icon" style="font-size: 22px; font-weight: 700; top: 0px;" data-toggle="tooltip" data-placement="bottom" title="Ver más..."></span>
+                            </div>
+                            <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications3">
+                                <span class="arrow"></span>
+                                <div class="notification-items no-overflow">
+                                    <div class="item media">
+                                        <asp:Repeater runat="server" ID="rptConcentradoTicketsUsuario2">
+                                            <ItemTemplate>
+                                                <div class="media-body padding-10-left" style="font-size: 12px">
+                                                    <asp:Label runat="server" Text="Prueba" class="margin-top-10" />
+                                                    <asp:Label runat="server" Text="-" Width="10px" CssClass="text-center" />
+                                                    <asp:Label runat="server" Text="más tickets" />
+                                                </div>
+                                                <div class="meta padding-10-left margin-top-5 borderbootom " style="font-size: 12px">
+                                                    <asp:Label runat="server" ID="lblEstatusTicketConcentrado2" Text="" Width="65px" Style="color: red" />
+                                                    <asp:Label runat="server" Text="Ayer 08-12-2017" CssClass="text-right margin-bottom-10" />
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+
                                     </div>
-                                    <%--</span>--%>
-                                </li>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                </ul>
-                            </FooterTemplate>
-                        </asp:Repeater>
+                                </div>
+                            </div>
+                        </div>--%>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+
+
+
             </header>
 
             <div id="content-wrapper" class="content-wrapper" style="padding-top: 0">
                 <div class="container-fluid" style="padding-left: 0">
                     <div class="divMainMenu" id="divMainMenu" style="margin-top: 65px;">
-                        <%----%>
                         <asp:HiddenField runat="server" ID="hfCargaInicial" Value="False" />
                         <nav id="pMenu" class="pMenu" style="top: 40px !important">
                             <div class="menuLevel">

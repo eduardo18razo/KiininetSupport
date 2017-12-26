@@ -129,12 +129,20 @@ body {
     margin-bottom: 15px;
 }
 
+.margin-right-5 {
+    margin-right: 5px;
+}
+
 .margin-right-10 {
     margin-right: 10px;
 }
 
 .margin-right-15 {
     margin-right: 15px;
+}
+
+.margin-left-5 {
+    margin-left: 5px;
 }
 
 .margin-left-10 {
@@ -6083,17 +6091,13 @@ a.fa-plus-circle {
     text-decoration: none;
 }
 
-
 .fa-plus-circle:before {
     /*content: "\f055";
-    font-size: 200%;
     text-decoration: none;*/
     color: #ed1c24;
 }
 
-
-
-/*.list-unstyled li #hiddenEdit li input{	
-	padding-top: 5px;
-}*/
+.ComboEstandar {
+    width: 180px;
+}
 

@@ -458,18 +458,12 @@
                         </div>
 
                         <div class="user-container dropdown">
-
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-user">
                                 <li>
                                     <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Detail=1" ID="btnMiPerfil" OnClick="btnMiPerfil_OnClick" runat="server">
                                     <span class="pe-icon pe-7s-user icon"></span>Mi perfil
                                     </asp:LinkButton>
                                 </li>
-                                <%--<li>
-                                    <asp:LinkButton role="menuitem" NavigateUrl="~/Default.aspx" runat="server" OnClick="btnsOut_OnClick">
-                                    <span class="fa fa-sign-out icon"></span>Salir
-                                    </asp:LinkButton>
-                                </li>--%>
                             </ul>
 
                             <div class="dropdown-toggle" style="padding-top:10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
@@ -482,8 +476,8 @@
                                         <asp:Label runat="server" ID="lblAreaSeleccionada" Style="font-size: x-small"></asp:Label>
                                         <asp:Label runat="server" ID="lblTipoUsr" Style="font-size: x-small" Visible="False" /></strong>
                                 </p>
-
                             </div>
+
                         </div>
 
                         <div class="utilities-container margin-right-10" data-toggle="tooltip" data-placement="bottom">

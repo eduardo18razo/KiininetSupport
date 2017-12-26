@@ -144,7 +144,7 @@ namespace KiiniHelp
                     lblUsuario.Text = usuario.NombreCompleto;
                     lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
                     int IdUsuario = usuario.Id;
-                    imgPerfil.ImageUrl = "~/DisplayImages.ashx?id=" + IdUsuario;
+                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png"; 
                     ObtenerAreas();
                     int rolSeleccionado = 0;
                     if (Session["RolSeleccionado"] != null)
