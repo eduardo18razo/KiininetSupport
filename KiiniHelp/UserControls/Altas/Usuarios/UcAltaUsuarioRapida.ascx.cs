@@ -35,6 +35,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         {
             try
             {
+                ValidaCaptura();
                 GuardarUsuario();
             }
             catch (Exception ex)
@@ -97,38 +98,35 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
         private void ValidaCaptura()
         {
-            List<string> sb = new List<string>();
-
-            if (txtApRapido.Text.Trim() == string.Empty)
-                sb.Add("Apellido Paterno es un campo obligatorio.");
-            if (txtAmRapido.Text.Trim() == string.Empty)
-                sb.Add("Apellido Materno es un campo obligatorio.");
-            if (txtNombreRapido.Text.Trim() == string.Empty)
-                sb.Add("Nombre es un campo obligatorio.");
-
-            bool capturoTelefono = false, capturoCorreo = false;
-            if (txtCorreoRapido.Text.Trim() != string.Empty)
-                capturoCorreo = true;
-            if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
-                capturoTelefono = true;
-            if (!capturoCorreo)
-                sb.Add("Debe capturar un correo.");
-            if (!capturoTelefono)
-                txtTelefonoCelularRapido.Text = "";
-            //sb.Add("Debe capturar un telefono.");
-            if (!BusinessCorreo.IsValid(txtCorreoRapido.Text.Trim()))
+            try
             {
-                sb.Add(string.Format("Correo {0} con formato invalido", txtCorreoRapido.Text.Trim()));
+
+                if (txtApRapido.Text.Trim() == string.Empty)
+                    throw new Exception("Apellido Paterno es un campo obligatorio.");
+                if (txtAmRapido.Text.Trim() == string.Empty)
+                    throw new Exception("Apellido Materno es un campo obligatorio.");
+                if (txtNombreRapido.Text.Trim() == string.Empty)
+                    throw new Exception("Nombre es un campo obligatorio.");
+
+                bool capturoTelefono = false, capturoCorreo = false;
+                if (txtCorreoRapido.Text.Trim() != string.Empty)
+                    capturoCorreo = true;
+                if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
+                    capturoTelefono = true;
+                if (!capturoCorreo)
+                    throw new Exception("Debe capturar un correo.");
+                if (!capturoTelefono)
+                    txtTelefonoCelularRapido.Text = "";
+                //sb.Add("Debe capturar un telefono.");
+                if (!BusinessCorreo.IsValid(txtCorreoRapido.Text.Trim()) || txtCorreoRapido.Text.Trim().Contains(" "))
+                {
+                    throw new Exception(string.Format("Correo {0} con formato invalido", txtCorreoRapido.Text.Trim()));
+                }
             }
-            //if (!capturoCorreo && !capturoTelefono)
-            //    sb.Add("Debe capturar correo y/o telefono.");
-            MailAddress m = new MailAddress(txtCorreoRapido.Text);
-
-            if (sb.Count > 0)
+            catch (Exception)
             {
-                sb.Insert(0, "<h3>Datos Generales</h3>");
-                _lstError = sb;
-                throw new Exception("");
+                
+                throw;
             }
         }
 
@@ -223,12 +221,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             }
             catch (Exception ex)
             {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                throw new Exception(ex.Message);
             }
         }
     }

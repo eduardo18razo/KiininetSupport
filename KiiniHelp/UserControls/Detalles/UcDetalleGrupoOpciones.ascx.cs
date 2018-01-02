@@ -17,7 +17,7 @@ namespace KiiniHelp.UserControls.Detalles
         private readonly ServiceGrupoUsuarioClient _servicioGrupos = new ServiceGrupoUsuarioClient();
         private readonly ServiceArbolAccesoClient _servicioArbol = new ServiceArbolAccesoClient();
         private List<string> _lstError = new List<string>();
-        
+
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
@@ -173,15 +173,22 @@ namespace KiiniHelp.UserControls.Detalles
         {
             try
             {
-
+                LinkButton lnk = (LinkButton)sender;
+                if (lnk != null)
+                {
+                    if (Request.ApplicationPath != null)
+                    {
+                        string url = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + "Users/Administracion/ArbolesAcceso/FrmDetalleOpcion.aspx?IdArbol=" + lnk.CommandArgument +"','_blank');", true);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                if (_lstError == null)
+                if (_lstError == null || !_lstError.Any())
                 {
-                    _lstError = new List<string>();
+                    _lstError = new List<string> { ex.Message };
                 }
-                _lstError.Add(ex.Message);
                 Alerta = _lstError;
             }
         }

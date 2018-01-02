@@ -26,8 +26,7 @@ namespace KinniNet.Data.Help
         private const string ConnectionString = "name=connection";
         private const string ContainerName = "connection";
 
-        public DataBaseModelContext()
-            : base(ConnectionString, ContainerName)
+        public DataBaseModelContext() : base(ConnectionString, ContainerName)
         {
             try
             {
@@ -111,7 +110,6 @@ namespace KinniNet.Data.Help
                 //Mascara
                 _mascara = CreateObjectSet<Mascara>();
                 _campoMascara = CreateObjectSet<CampoMascara>();
-
 
                 //Operacion
                 _usuario = CreateObjectSet<Usuario>();

@@ -462,7 +462,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             List<TextBox> lstCorreos = rptCorreos.Items.Cast<RepeaterItem>().Select(item => (TextBox)item.FindControl("txtCorreo")).Where(w => w.Text != string.Empty).ToList();
             foreach (TextBox correo in lstCorreos)
             {
-                if (!BusinessCorreo.IsValid(correo.Text.Trim()))
+                if (!BusinessCorreo.IsValid(correo.Text.Trim()) || correo.Text.Trim().Contains(" "))
                 {
                     sb.Add(string.Format("Correo {0} con formato invalido", correo.Text.Trim()));
                 }

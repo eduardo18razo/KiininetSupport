@@ -93,6 +93,45 @@ namespace KiiniNet.UnitTest
         }
 
         [TestMethod]
+        public void Test()
+        {
+            try
+            {
+                //Parámetros del compilador
+                CompilerParameters objParametros = new CompilerParameters()
+                {
+                    GenerateInMemory = true,
+                    GenerateExecutable = false,
+                    IncludeDebugInformation = false
+                };
+
+                //Clase
+                string strClase =
+                    "using System;" +
+                    "namespace Scientia {" +
+                    "public class Formula {" +
+                    "public int IdPrueba = 5;" +
+                        "public object Ejecutar() {" +
+                            "return IdPrueba" +
+                    ";}}}";
+                //"return " + formula +
+
+                //Compilo todo y ejecuto el método
+                CodeDomProvider objCompiler = CodeDomProvider.CreateProvider("CSharp");
+                //En .NET 1.1 usaba esta linea:
+                //ICodeCompiler ICC = (new CSharpCodeProvider()).CreateCompiler();
+                CompilerResults objResultados = objCompiler.CompileAssemblyFromSource(objParametros, strClase);
+                object objClase = objResultados.CompiledAssembly.CreateInstance("Scientia.Formula", false, BindingFlags.CreateInstance, null, null, null, null);
+                var x = objClase.GetType().InvokeMember("Ejecutar", BindingFlags.InvokeMethod, null, objClase, null);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [TestMethod]
         public void TesConsultas()
         {
             //TODO: Eliminar Comentarios
@@ -169,6 +208,8 @@ namespace KiiniNet.UnitTest
                 throw new Exception(ex.Message);
             }
         }
+
+        
         public List<InfoClass> ObtenerPropiedadesObjeto(object obj)
         {
             List<InfoClass> result;
