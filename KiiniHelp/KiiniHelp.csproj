@@ -89,6 +89,7 @@
     <Content Include="Agente\DashBoardAgente.aspx" />
     <Content Include="Agente\FrmAgenteNuevoTicket.aspx" />
     <Content Include="Agente\FrmTicket.aspx" />
+    <Content Include="Agente\NuevaPagina.aspx" />
     <Content Include="assets\carouselImage\slide-1.jpg" />
     <Content Include="assets\carouselImage\slide-2.jpg" />
     <Content Include="assets\carouselImage\slide-3.jpg" />
@@ -2534,6 +2535,13 @@
     <Compile Include="Agente\FrmTicket.aspx.designer.cs">
       <DependentUpon>FrmTicket.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Agente\NuevaPagina.aspx.cs">
+      <DependentUpon>NuevaPagina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agente\NuevaPagina.aspx.designer.cs">
+      <DependentUpon>NuevaPagina.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConfirmacionCuenta.aspx.cs">
       <DependentUpon>ConfirmacionCuenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4092,7 +4100,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

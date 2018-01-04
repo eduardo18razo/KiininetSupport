@@ -9,10 +9,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="Agente.Master">
-      <publishTime>12/07/2017 18:30:41</publishTime>
+      <publishTime>12/20/2017 18:34:40</publishTime>
     </File>
     <File Include="Agente/Bandeja.aspx">
-      <publishTime>12/07/2017 18:30:41</publishTime>
+      <publishTime>12/21/2017 17:23:24</publishTime>
+    </File>
+    <File Include="Agente/DashBoardAgente.aspx">
+      <publishTime>12/22/2017 16:17:13</publishTime>
     </File>
     <File Include="Agente/FrmAgenteNuevoTicket.aspx">
       <publishTime>12/07/2017 18:30:42</publishTime>
@@ -72,7 +75,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/css/styles.css">
-      <publishTime>12/13/2017 13:01:18</publishTime>
+      <publishTime>12/22/2017 15:46:38</publishTime>
     </File>
     <File Include="assets/css/sumoselect.css">
       <publishTime>11/07/2017 10:14:35</publishTime>
@@ -483,10 +486,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/07/2017 18:30:48</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>12/11/2017 16:40:28</publishTime>
+      <publishTime>12/26/2017 12:20:13</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>12/11/2017 16:40:28</publishTime>
+      <publishTime>12/26/2017 12:20:13</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
       <publishTime>12/07/2017 18:30:47</publishTime>
@@ -1074,7 +1077,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 10:15:02</publishTime>
     </File>
     <File Include="UserControls/Altas/Organizaciones/UcAltaOrganizaciones.ascx">
-      <publishTime>12/07/2017 18:30:42</publishTime>
+      <publishTime>12/21/2017 16:23:17</publishTime>
     </File>
     <File Include="UserControls/Altas/Tickets/UcTicketAgente.ascx">
       <publishTime>11/07/2017 10:15:02</publishTime>
@@ -1128,7 +1131,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 10:15:02</publishTime>
     </File>
     <File Include="UserControls/Altas/Usuarios/UcAltaUsuario.ascx">
-      <publishTime>12/11/2017 17:13:18</publishTime>
+      <publishTime>12/22/2017 12:51:38</publishTime>
     </File>
     <File Include="UserControls/Altas/Usuarios/UcAltaUsuarioRapida.ascx">
       <publishTime>12/07/2017 18:30:42</publishTime>
@@ -1215,13 +1218,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 10:15:05</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleUsuario.ascx">
-      <publishTime>11/07/2017 10:15:05</publishTime>
+      <publishTime>12/22/2017 13:30:02</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcMensajeValidacion.ascx">
       <publishTime>11/07/2017 10:15:05</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcTicketDetalle.ascx">
-      <publishTime>12/11/2017 15:50:15</publishTime>
+      <publishTime>12/15/2017 12:02:12</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroAtendedores.ascx">
       <publishTime>11/07/2017 10:15:06</publishTime>
@@ -1521,10 +1524,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 10:15:10</publishTime>
     </File>
     <File Include="Usuarios.Master">
-      <publishTime>12/07/2017 18:30:42</publishTime>
+      <publishTime>12/15/2017 10:56:07</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/13/2017 11:09:02</publishTime>
+      <publishTime>12/26/2017 12:20:14</publishTime>
     </File>
     <File Include="Xml/Notificaciones.xml">
       <publishTime>11/07/2017 10:15:18</publishTime>

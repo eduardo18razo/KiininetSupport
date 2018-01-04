@@ -180,6 +180,7 @@ namespace KiiniHelp.Agente
                     int? idGrupo = null;
                     if (ddlGrupo.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         idGrupo = int.Parse(ddlGrupo.SelectedValue);
+
                     int? idAgente = null;
                     if (ddlAgente.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         idAgente = int.Parse(ddlAgente.SelectedValue);
