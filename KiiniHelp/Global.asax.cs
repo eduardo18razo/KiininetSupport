@@ -31,6 +31,7 @@ namespace KiiniHelp
             //        Response.Redirect("YourPage.aspx");
             //    }
             //}
+                    Response.Redirect("~/Test/FrmTest.aspx?Error?");
         }
         //{
             //// Código que se ejecuta cuando se produce un error no controlado

@@ -84,11 +84,12 @@ namespace KiiniHelp
                 throw new Exception(e.Message);
             }
         }
-        public void AddTicketOpen(int idTicket, string titulo)
+        public void AddTicketOpen(int idTicket, string titulo, bool asigna)
         {
             try
             {
                 if (!TicketsAbiertos.Any(a => a.IdTicket == idTicket))
+<<<<<<< HEAD
                 {
                     TicketsAbiertos.Add(new TicketSeleccionado { IdTicket = idTicket, Title = titulo, Nuevo = false });
                     LlenaTicketsAbiertos();
@@ -98,6 +99,11 @@ namespace KiiniHelp
 
                 }
                 Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket);
+=======
+                    TicketsAbiertos.Add(new TicketSeleccionado { IdTicket = idTicket, Title = titulo });
+                LlenaTicketsAbiertos();
+                Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket + "&asigna=" + asigna);
+>>>>>>> Eduardo_Cerritos
             }
             catch (Exception e)
             {

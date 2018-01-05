@@ -15,6 +15,7 @@
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfIdArbolAcceso" />
         <asp:HiddenField runat="server" ID="hfIdInformacinConsulta" />
+        <asp:HiddenField runat="server" ID="hfIdTipoUsuario" />
         <asp:HiddenField runat="server" ID="hfEvaluacion" />
         <asp:HiddenField runat="server" ID="hfMeGusta" />
         <br>

@@ -291,7 +291,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                _servicioUsuarios.HabilitarUsuario(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
+                _servicioUsuarios.HabilitarUsuario(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked, ResolveUrl("~/ConfirmacionCuenta.aspx"));
                 LlenaUsuarios();
             }
             catch (Exception ex)

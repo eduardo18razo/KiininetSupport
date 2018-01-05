@@ -141,7 +141,6 @@
                         <!--Filtro 1 ORGANIZACIÓN-->
                         <div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-
                                 <section class="module" runat="server" id="seleccionar">
                                     <div class="bg-grey">
                                         <h3 class="text-left">
@@ -203,7 +202,6 @@
                                                     Municipio*<br />
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtMunicipio" onkeydown="return (event.keyCode!=13);" ReadOnly="True"></asp:TextBox>
                                                 </div>
-
                                                 <!--ESTADO-->
                                                 <div class="form-group margin-top">
                                                     Estado*<br />
@@ -221,7 +219,6 @@
                                                     Número Exterior*<br />
                                                     <asp:TextBox runat="server" CssClass="form-control" ID="txtNoExt" onkeydown="return (event.keyCode!=13);" MaxLength="20"></asp:TextBox>
                                                 </div>
-
                                                 <!--NUM INT-->
                                                 <div class="form-group margin-top">
                                                     Número Interior<br />
@@ -246,7 +243,6 @@
                                         </div>
                                     </section>
                                 </div>
-
                             </div>
                         </div>
                         <!--/CONTAINER DERECHA-->

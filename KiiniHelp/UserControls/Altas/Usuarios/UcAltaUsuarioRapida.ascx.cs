@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using KiiniHelp.ServiceUsuario;
-using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
-using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Altas.Usuarios
@@ -53,27 +49,40 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             set { hfIdUsuario.Value = value.ToString(); }
         }
 
+        public int IdTipoUsuario
+        {
+            get { return hfIdTipoUsuario.Value == string.Empty ? 0 : int.Parse(hfIdTipoUsuario.Value); }
+            set
+            {
+                hfIdTipoUsuario.Value = value.ToString();
+            }
+        }
+
         private void Limpiar()
         {
             try
             {
-                txtNombre.Text = string.Empty;
-                txtAp.Text = string.Empty;
-                txtAm.Text = string.Empty;
-                txtCorreo.Text = string.Empty;
-                txtTelefono.Text = string.Empty;
+                txtNombreRapido.Text = string.Empty;
+                txtApRapido.Text = string.Empty;
+                txtAmRapido.Text = string.Empty;
+                txtCorreoRapido.Text = string.Empty;
+                txtTelefonoCelularRapido.Text = string.Empty;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 Alerta = new List<string>();
-                //btnGuardar.OnClientClick = "this.disabled = true; " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";";
+                if (Request.Params["userTipe"] != null)
+                    IdTipoUsuario = int.Parse(Request.Params["userTipe"]);
+                else
+                    IdTipoUsuario = (int)BusinessVariables.EnumTiposUsuario.Cliente;
             }
             catch (Exception ex)
             {
@@ -90,25 +99,30 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         {
             List<string> sb = new List<string>();
 
-            if (txtAp.Text.Trim() == string.Empty)
+            if (txtApRapido.Text.Trim() == string.Empty)
                 sb.Add("Apellido Paterno es un campo obligatorio.");
-            if (txtAm.Text.Trim() == string.Empty)
+            if (txtAmRapido.Text.Trim() == string.Empty)
                 sb.Add("Apellido Materno es un campo obligatorio.");
-            if (txtNombre.Text.Trim() == string.Empty)
+            if (txtNombreRapido.Text.Trim() == string.Empty)
                 sb.Add("Nombre es un campo obligatorio.");
 
             bool capturoTelefono = false, capturoCorreo = false;
-            if (txtCorreo.Text.Trim() != string.Empty)
+            if (txtCorreoRapido.Text.Trim() != string.Empty)
                 capturoCorreo = true;
-            if (txtTelefono.Text.Trim() != string.Empty)
+            if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
                 capturoTelefono = true;
             if (!capturoCorreo)
                 sb.Add("Debe capturar un correo.");
             if (!capturoTelefono)
-                sb.Add("Debe capturar un telefono.");
+                txtTelefonoCelularRapido.Text = "";
+            //sb.Add("Debe capturar un telefono.");
+            if (!BusinessCorreo.IsValid(txtCorreoRapido.Text.Trim()))
+            {
+                sb.Add(string.Format("Correo {0} con formato invalido", txtCorreoRapido.Text.Trim()));
+            }
             //if (!capturoCorreo && !capturoTelefono)
             //    sb.Add("Debe capturar correo y/o telefono.");
-            MailAddress m = new MailAddress(txtCorreo.Text);
+            MailAddress m = new MailAddress(txtCorreoRapido.Text);
 
             if (sb.Count > 0)
             {
@@ -123,7 +137,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             string result = null;
             try
             {
-                string username = (txtNombre.Text.Substring(0, 1).ToLower() + txtAp.Text.Trim().ToLower()).Replace(" ", string.Empty);
+                string username = (txtNombreRapido.Text.Substring(0, 1).ToLower() + txtApRapido.Text.Trim().ToLower()).Replace(" ", string.Empty);
                 username = username.PadRight(30).Substring(0, 30).Trim();
                 int limite = 10;
                 if (_servicioUsuario.ValidaUserName(username))
@@ -157,42 +171,53 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             try
             {
                 ValidaCaptura();
-                Usuario datosUsuario = new Usuario
+                Usuario datosUsuario = _servicioUsuario.GetUsuarioByCorreo(txtCorreoRapido.Text.Trim());
+                if (datosUsuario == null)
                 {
-                    IdTipoUsuario = (int) BusinessVariables.EnumTiposUsuario.Cliente,
-                    ApellidoPaterno = txtAp.Text.Trim(),
-                    ApellidoMaterno = txtAm.Text.Trim(),
-                    Nombre = txtNombre.Text.Trim(),
-                    DirectorioActivo = false,
-                    Vip = false,
-                    PersonaFisica = false,
-                    NombreUsuario = GeneraNombreUsuario(),
-                    Password = ResolveUrl("~/ConfirmacionCuenta.aspx"),
-                    Habilitado = true
-                };
-                if (txtTelefono.Text.Trim() != string.Empty)
+                    datosUsuario = new Usuario
+                    {
+                        IdTipoUsuario = IdTipoUsuario,
+                        ApellidoPaterno = txtApRapido.Text.Trim(),
+                        ApellidoMaterno = txtAmRapido.Text.Trim(),
+                        Nombre = txtNombreRapido.Text.Trim(),
+                        DirectorioActivo = false,
+                        Vip = false,
+                        PersonaFisica = false,
+                        NombreUsuario = GeneraNombreUsuario(),
+                        Password = ResolveUrl("~/ConfirmacionCuenta.aspx"),
+                        Autoregistro = true,
+                        Habilitado = true
+                    };
+                    //if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
                     datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
-                    {
-                        new TelefonoUsuario
                         {
-                            IdTipoTelefono = (int) BusinessVariables.EnumTipoTelefono.Celular,
-                            Confirmado = false,
-                            Extension = string.Empty,
-                            Numero = txtTelefono.Text.Trim(),
-                            Obligatorio = true
-                        }
-                    };
-                if (txtCorreo.Text.Trim() != string.Empty)
-                    datosUsuario.CorreoUsuario = new List<CorreoUsuario>
-                    {
-                        new CorreoUsuario
+                            new TelefonoUsuario
+                            {
+                                IdTipoTelefono = (int) BusinessVariables.EnumTipoTelefono.Celular,
+                                Confirmado = false,
+                                Extension = string.Empty,
+                                Numero = txtTelefonoCelularRapido.Text.Trim(),
+                                Obligatorio = true
+                            }
+                        };
+                    if (txtCorreoRapido.Text.Trim() != string.Empty)
+                        datosUsuario.CorreoUsuario = new List<CorreoUsuario>
                         {
-                            Correo = txtCorreo.Text.Trim(),
-                            Obligatorio = true,
-                        }
-                    };
-                IdUsuario = _servicioUsuario.RegistrarCliente(datosUsuario);
+                            new CorreoUsuario
+                            {
+                                Correo = txtCorreoRapido.Text.Trim(),
+                                Obligatorio = true,
+                            }
+                        };
+                    IdUsuario = _servicioUsuario.RegistrarCliente(datosUsuario);
+                }
+                else
+                {
+                    IdUsuario = datosUsuario.Id;
+                }
+
                 Limpiar();
+
                 if (OnAceptarModal != null)
                     OnAceptarModal();
             }

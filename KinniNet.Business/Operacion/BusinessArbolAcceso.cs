@@ -82,7 +82,7 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(arbol, "Area");
                         HelperArbolAcceso addArbol = new HelperArbolAcceso();
                         addArbol.Id = arbol.Id;
-                        addArbol.Descripcion = ObtenerTipificacion(arbol.Id);
+                        addArbol.DescripcionTipificacion = ObtenerTipificacion(arbol.Id);
                         addArbol.Ruta = ObtenerRutaCompleta(arbol.Id);
                         addArbol.Categoria = arbol.Area.Descripcion;
                         result.Add(addArbol);
@@ -593,7 +593,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.Habilitado).SelectMany(nivel => db.Nivel1.Where(w => w.Id == nivel.IdNivel1)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                //result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.Habilitado).SelectMany(nivel => db.Nivel1.Where(w => w.Id == nivel.IdNivel1)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.ArbolAcceso.Where(w => w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && !w.EsTerminal && w.Habilitado).SelectMany(nivel => db.Nivel1.Where(w => w.Id == nivel.IdNivel1)).Distinct().OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Nivel1 { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -614,7 +615,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel1 == idNivel1 && w.Habilitado).SelectMany(nivel => db.Nivel2.Where(w => w.Id == nivel.IdNivel2)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                //result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel1 == idNivel1 && w.Habilitado).SelectMany(nivel => db.Nivel2.Where(w => w.Id == nivel.IdNivel2)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.ArbolAcceso.Where(w => w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel1 == idNivel1 && !w.EsTerminal && w.Habilitado).SelectMany(nivel => db.Nivel2.Where(w => w.Id == nivel.IdNivel2)).Distinct().OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Nivel2 { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -635,7 +637,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel2 == idNivel2 && w.Habilitado).SelectMany(nivel => db.Nivel3.Where(w => w.Id == nivel.IdNivel3)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                //result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel2 == idNivel2 && w.Habilitado).SelectMany(nivel => db.Nivel3.Where(w => w.Id == nivel.IdNivel3)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.ArbolAcceso.Where(w => w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel2 == idNivel2 && !w.EsTerminal && w.Habilitado).SelectMany(nivel => db.Nivel3.Where(w => w.Id == nivel.IdNivel3)).Distinct().OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Nivel3 { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -656,7 +659,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel3 == idNivel3 && w.Habilitado).SelectMany(nivel => db.Nivel4.Where(w => w.Id == nivel.IdNivel4)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                //result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel3 == idNivel3 && w.Habilitado).SelectMany(nivel => db.Nivel4.Where(w => w.Id == nivel.IdNivel4)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.ArbolAcceso.Where(w => w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel3 == idNivel3 && !w.EsTerminal && w.Habilitado).SelectMany(nivel => db.Nivel4.Where(w => w.Id == nivel.IdNivel4)).Distinct().OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Nivel4 { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -677,7 +681,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel4 == idNivel4 && w.Habilitado).SelectMany(nivel => db.Nivel5.Where(w => w.Id == nivel.IdNivel5)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                //result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel4 == idNivel4 && w.Habilitado).SelectMany(nivel => db.Nivel5.Where(w => w.Id == nivel.IdNivel5)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.ArbolAcceso.Where(w => w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel4 == idNivel4 && !w.EsTerminal && w.Habilitado).SelectMany(nivel => db.Nivel5.Where(w => w.Id == nivel.IdNivel5)).Distinct().OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Nivel5 { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -698,7 +703,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel5 == idNivel5 && w.Habilitado).SelectMany(nivel => db.Nivel6.Where(w => w.Id == nivel.IdNivel6)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                //result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel5 == idNivel5 && w.Habilitado).SelectMany(nivel => db.Nivel6.Where(w => w.Id == nivel.IdNivel6)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.ArbolAcceso.Where(w => w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel5 == idNivel5 && !w.EsTerminal && w.Habilitado).SelectMany(nivel => db.Nivel6.Where(w => w.Id == nivel.IdNivel6)).Distinct().OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Nivel6 { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -719,7 +725,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel6 == idNivel6 && w.Habilitado).SelectMany(nivel => db.Nivel7.Where(w => w.Id == nivel.IdNivel7)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                //result = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbol && w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel6 == idNivel6 && w.Habilitado).SelectMany(nivel => db.Nivel7.Where(w => w.Id == nivel.IdNivel7)).Distinct().OrderBy(o => o.Descripcion).ToList();
+                result = db.ArbolAcceso.Where(w => w.IdArea == idArea && w.IdTipoUsuario == idTipoUsuario && w.IdNivel6 == idNivel6 && !w.EsTerminal && w.Habilitado).SelectMany(nivel => db.Nivel7.Where(w => w.Id == nivel.IdNivel7)).Distinct().OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Nivel7 { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -766,6 +773,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 //TODO: Cambiar habilitado por el embebido
                 arbol.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                arbol.FechaVisita = arbol.FechaAlta;
                 arbol.Habilitado = true;
                 List<GrupoUsuario> lstGrupoUsuario = null;
                 if (arbol.Nivel1 != null)
@@ -810,32 +818,19 @@ namespace KinniNet.Core.Operacion
                 if (arbol.EsTerminal)
                 {
                     // TODO: ESTE FRAGMENTO AGREGA LOS GRUPOS ESPECIALES DE CONSULTA ESPECIFICOS AL TIPO DE USUARIO
-                    //List<GrupoUsuario> gposEspCons = new BusinessGrupoUsuario().ObtenerGruposUsuarioByIdRol((int) BusinessVariables.EnumRoles.ConsultasEspeciales, false).Where(w => w.IdTipoUsuario == arbol.IdTipoUsuario).ToList();
-                    //foreach (GrupoUsuario gpoEspCons in gposEspCons)
-                    //{
-                    //    if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != gpoEspCons.Id))
-                    //    {
-                    //        arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                    //        {
-                    //            IdRol = (int)BusinessVariables.EnumRoles.ConsultasEspeciales,
-                    //            IdGrupoUsuario = gpoEspCons.Id,
-                    //            IdSubGrupoUsuario = null
-                    //        });
-                    //    }
-                    //}
-                    //TODO: ELIMINAR ESTE FRAGMENTO Y DEJAR EL FRAGMENTO ANTERIOR
-                    GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol((int)BusinessVariables.EnumRoles.ConsultasEspeciales, (int)BusinessVariables.EnumTiposUsuario.Operador);
-                    if (gu != null)
+                    List<GrupoUsuario> gposEspCons = new BusinessGrupoUsuario().ObtenerGruposUsuarioByIdRol((int)BusinessVariables.EnumRoles.ConsultasEspeciales, false).Where(w => w.IdTipoUsuario == arbol.IdTipoUsuario).ToList();
+                    foreach (GrupoUsuario gpoEspCons in gposEspCons)
                     {
-                        if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario == gu.Id))
+                        if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != gpoEspCons.Id))
+                        {
                             arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                             {
                                 IdRol = (int)BusinessVariables.EnumRoles.ConsultasEspeciales,
-                                IdGrupoUsuario = gu.Id,
+                                IdGrupoUsuario = gpoEspCons.Id,
                                 IdSubGrupoUsuario = null
                             });
+                        }
                     }
-
                 }
                 if (arbol.Id == 0)
                     db.ArbolAcceso.AddObject(arbol);
@@ -979,7 +974,6 @@ namespace KinniNet.Core.Operacion
                 IQueryable<ArbolAcceso> qry = from ac in db.ArbolAcceso
                                               join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
                                               join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
-                                              join ug in db.UsuarioGrupo on new { guia.IdRol, guia.IdGrupoUsuario, guia.IdSubGrupoUsuario, tu = ac.IdTipoUsuario } equals new { ug.IdRol, ug.IdGrupoUsuario, ug.IdSubGrupoUsuario, tu = ug.Usuario.IdTipoUsuario }
                                               where ac.IdTipoUsuario == idTipoUsuario && ac.IdTipoArbolAcceso == idTipoArbol && ac.Habilitado && ac.IdArea == idArea
                                               && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
                                               select ac;
@@ -1157,6 +1151,18 @@ namespace KinniNet.Core.Operacion
                 db.LoadProperty(result, "Nivel7");
                 db.LoadProperty(result, "InventarioArbolAcceso");
                 db.LoadProperty(result, "TiempoInformeArbol");
+                foreach (TiempoInformeArbol informeArbol in result.TiempoInformeArbol)
+                {
+                    db.LoadProperty(informeArbol, "GrupoUsuario");
+                    db.LoadProperty(informeArbol, "TipoNotificacion");   
+                }
+                db.LoadProperty(result, "Impacto");
+                if (result.Impacto != null)
+                {
+                    db.LoadProperty(result.Impacto, "Prioridad");
+                    db.LoadProperty(result.Impacto, "Urgencia");
+                }
+                    
                 foreach (InventarioArbolAcceso inventarioArbol in result.InventarioArbolAcceso)
                 {
                     db.LoadProperty(inventarioArbol, "GrupoUsuarioInventarioArbol");
@@ -1166,6 +1172,9 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(gpo, "SubGrupoUsuario");
                     }
                     db.LoadProperty(inventarioArbol, "InventarioInfConsulta");
+                    db.LoadProperty(inventarioArbol, "Mascara");
+                    db.LoadProperty(inventarioArbol, "Sla");
+                    db.LoadProperty(inventarioArbol, "Encuesta");
                     foreach (InventarioInfConsulta inventarioInformacion in inventarioArbol.InventarioInfConsulta)
                     {
                         db.LoadProperty(inventarioInformacion, "InformacionConsulta");
@@ -1182,6 +1191,31 @@ namespace KinniNet.Core.Operacion
                 db.Dispose();
             }
             return result;
+        }
+
+        public void HitArbolAcceso(int idArbol)
+        {
+            ArbolAcceso result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = true;
+                result = db.ArbolAcceso.SingleOrDefault(w => w.Habilitado && w.Id == idArbol);
+                if (result != null)
+                {
+                    result.Visitas++;
+                    result.FechaVisita = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
         }
 
         public List<GrupoUsuarioInventarioArbol> ObtenerGruposUsuarioArbol(int idArbol)
@@ -1807,9 +1841,9 @@ namespace KinniNet.Core.Operacion
                                               where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
                                               select ac;
 
-                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, Descripcion = ObtenerTipificacion(arbol.Id) }).ToList();
+                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, DescripcionTipificacion = ObtenerTipificacion(arbol.Id) }).ToList();
                 if (insertarSeleccion)
-                    result.Insert(0, new HelperArbolAcceso { Id = BusinessVariables.ComboBoxCatalogo.IndexSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione });
+                    result.Insert(0, new HelperArbolAcceso { Id = BusinessVariables.ComboBoxCatalogo.IndexSeleccione, DescripcionTipificacion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione });
             }
             catch (Exception ex)
             {
@@ -1858,7 +1892,7 @@ namespace KinniNet.Core.Operacion
                     qry = qry.Where(w => w.IdNivel7 == nivel7);
 
                 qry = qry.Where(w => w.EsTerminal);
-                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, Descripcion = ObtenerTipificacion(arbol.Id) }).ToList();
+                result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, DescripcionTipificacion = ObtenerTipificacion(arbol.Id) }).ToList();
             }
             catch (Exception)
             {
@@ -1871,7 +1905,53 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-
+        public List<HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo)
+        {
+            List<HelperArbolAcceso> result = null;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<ArbolAcceso> qry = (from ac in db.ArbolAcceso
+                                              join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
+                                              join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
+                                              where guia.IdGrupoUsuario == idGrupo && !ac.Sistema && ac.EsTerminal
+                         select ac).ToList();
+                if (qry.Any())
+                {
+                    result = new List<HelperArbolAcceso>();
+                    foreach (ArbolAcceso arbolAcceso in qry.Distinct().ToList())
+                    {
+                        db.LoadProperty(arbolAcceso, "Area");
+                        db.LoadProperty(arbolAcceso, "TipoArbolAcceso");
+                        db.LoadProperty(arbolAcceso, "TipoUsuario");
+                        db.LoadProperty(arbolAcceso, "InventarioArbolAcceso");
+                        HelperArbolAcceso add = new HelperArbolAcceso
+                        {
+                            
+                            Id = arbolAcceso.Id,
+                            Titulo = arbolAcceso.InventarioArbolAcceso.First().Descripcion,
+                            TipoUsuario = arbolAcceso.TipoUsuario.Descripcion,
+                            Categoria = arbolAcceso.Area.Descripcion,
+                            DescripcionTipificacion = ObtenerTipificacion(arbolAcceso.Id),
+                            Nivel = ObtenerNivel(arbolAcceso.Id), 
+                            Tipo = arbolAcceso.TipoArbolAcceso.Descripcion,
+                            Activo = arbolAcceso.Habilitado ? "Si" : "No"
+                        };
+                        result.Add(add);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
 
         #endregion Flujo normal
     }

@@ -3,12 +3,6 @@
   <xs:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
   <xs:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
   <xs:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfCompania">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Compania" nillable="true" type="tns:Compania" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCompania" nillable="true" type="tns:ArrayOfCompania" />
   <xs:complexType name="Compania">
     <xs:sequence>
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
@@ -100,6 +94,12 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="SubGerencia" nillable="true" type="tns:SubGerencia" />
+  <xs:complexType name="ArrayOfCompania">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Compania" nillable="true" type="tns:Compania" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompania" nillable="true" type="tns:ArrayOfCompania" />
   <xs:complexType name="ArrayOfDireccion">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Direccion" nillable="true" type="tns:Direccion" />

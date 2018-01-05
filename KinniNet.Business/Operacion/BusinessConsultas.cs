@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Objects;
 using System.Globalization;
 using System.Linq;
 using KiiniNet.Entities.Cat.Operacion;
@@ -20,17 +19,14 @@ namespace KinniNet.Core.Operacion
     public class BusinessConsultas : IDisposable
     {
         private readonly bool _proxy;
-
         public void Dispose()
         {
 
         }
-
         public BusinessConsultas(bool proxy = false)
         {
             _proxy = proxy;
         }
-
         #region Consultas
         public List<HelperReportesTicket> ConsultarTickets(int idUsuario, List<int> grupos, List<int> canales, List<int> tiposUsuario, List<int> organizaciones, List<int> ubicaciones, List<int> tipoArbol, List<int> tipificacion, List<int> prioridad, List<int> estatus, List<bool?> sla, List<bool?> vip, Dictionary<string, DateTime> fechas, int pageIndex, int pageSize)
         {
@@ -239,50 +235,6 @@ namespace KinniNet.Core.Operacion
         {
             return new BusinessArbolAcceso().ObtenerTipificacion(idArbol);
         }
-        public void testConsulta()
-        {
-            DataBaseModelContext db = new DataBaseModelContext();
-            try
-            {
-                var qry = from hc in db.HitConsulta
-                    join hgu in db.HitGrupoUsuario on hc.Id equals hgu.IdHit
-                    join r in db.Rol on hgu.IdRol equals r.Id
-                    join gu in db.GrupoUsuario on hgu.IdGrupoUsuario equals gu.Id
-                    join u in db.Usuario on hc.IdUsuario equals u.Id
-                    join tu in db.TipoUsuario on u.IdTipoUsuario equals tu.Id
-                    join aa in db.ArbolAcceso on hc.IdArbolAcceso equals aa.Id
-                    join taa in db.TipoArbolAcceso on aa.IdTipoArbolAcceso equals taa.Id
-                    join iaa in db.InventarioArbolAcceso on new {idArbolhit = hc.IdArbolAcceso, idArbol = aa.Id} equals new {idArbolhit = iaa.IdArbolAcceso, idArbol = iaa.IdArbolAcceso}
-                          select new HelperHits
-                    {
-                        Rol = r.Descripcion,
-                        Grupo = gu.Descripcion,
-                        TipoUsuarioAbreviacion = tu.Abreviacion,
-                        TipoUsuarioColor = tu.Color,
-                        IdOrganizacion = hc.IdOrganizacion,
-                        //Organizacion = getorganizacion(hc.IdOrganizacion),
-                        IdUbicacion = hc.IdUbicacion,
-                        //Ubicacion = getUbicacion(hc.IdUbicacion),
-                        //Tipificacion = gettipificacion(hc.IdArbolAcceso),
-                        TipoServicio = taa.Descripcion,
-                        Vip = u.Vip,
-                        //FechaHora = hc.FechaHoraAlta.ToString("dd/MM/yyyy"),
-                        //Hora = hc.FechaHoraAlta.ToString("hh:mm:ss"),
-                        IdHit = hc.Id,
-                        IdTipoArbolAcceso = taa.Id,
-                        IdTipificacion = aa.Id,
-                        IdUsuario = hc.IdUsuario,
-                        //NombreUsuario = u.NombreCompleto,
-                        
-                    };
-                var lst = qry.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally { db.Dispose(); }
-        }
 
         public List<HelperHits> ConsultarHits(int idUsuario, List<int> grupos, List<int> tiposUsuario, List<int> organizaciones, List<int> ubicaciones, List<int> tipificacion, List<bool?> vip, Dictionary<string, DateTime> fechas, int pageIndex, int pageSize)
         {
@@ -303,8 +255,12 @@ namespace KinniNet.Core.Operacion
                           join tgu in db.HitGrupoUsuario on h.Id equals tgu.IdHit
                           //join gu in db.GrupoUsuario on tgu.IdGrupoUsuario equals gu.Id
                           //join r in db.Rol on tgu.IdRol equals r.Id
-                          join or in db.Organizacion on h.IdOrganizacion equals or.Id
+                          join or in db.Organizacion on h.IdOrganizacion equals or.Id 
+                          into orj 
+                          from b in orj.DefaultIfEmpty()
                           join ub in db.Ubicacion on h.IdUbicacion equals ub.Id
+                          into ubj 
+                          from c in ubj.DefaultIfEmpty()
                           select new { h, tgu };
                 if (grupos.Any())
                     qry = from q in qry
@@ -318,11 +274,11 @@ namespace KinniNet.Core.Operacion
 
                 if (organizaciones.Any())
                     qry = from q in qry
-                          where organizaciones.Contains(q.h.IdOrganizacion)
+                          where organizaciones.Contains((int)q.h.IdOrganizacion)
                           select q;
                 if (ubicaciones.Any())
                     qry = from q in qry
-                          where ubicaciones.Contains(q.h.IdUbicacion)
+                          where ubicaciones.Contains((int)q.h.IdUbicacion)
                           select q;
 
                 if (tipificacion.Any())
@@ -350,21 +306,21 @@ namespace KinniNet.Core.Operacion
                     result = new List<HelperHits>();
                     foreach (HitConsulta hit in lstHits.Skip(pageIndex * pageSize).Take(pageSize).OrderBy(o => o.IdArbolAcceso))
                     {
-                        
+
                         if (result.Any(a => a.IdHit == hit.Id)) continue;
                         var dateFilter = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd"), "yyyy-MM-dd", CultureInfo.InvariantCulture);
                         var t = lstHits.Count(c => c.IdArbolAcceso == hit.IdArbolAcceso);
                         result.Add(new HelperHits
                         {
-                            TipoUsuarioAbreviacion = hit.Usuario.TipoUsuario.Abreviacion,
-                            TipoUsuarioColor = hit.Usuario.TipoUsuario.Color,
-                            IdOrganizacion = hit.IdOrganizacion,
-                            Organizacion = new BusinessOrganizacion().ObtenerDescripcionOrganizacionById(hit.IdOrganizacion,false),
-                            IdUbicacion = hit.IdUbicacion, 
-                            Ubicacion = new BusinessUbicacion().ObtenerDescripcionUbicacionById(hit.IdUbicacion, false),
+                            TipoUsuarioAbreviacion = hit.Usuario != null ? hit.Usuario.TipoUsuario.Abreviacion : "P",
+                            TipoUsuarioColor = hit.Usuario != null ? hit.Usuario.TipoUsuario.Color : "#ffffff",
+                            IdOrganizacion = hit.IdOrganizacion.HasValue ? int.Parse(hit.IdOrganizacion.ToString()) : 0,
+                            Organizacion = hit.IdOrganizacion.HasValue ? new BusinessOrganizacion().ObtenerDescripcionOrganizacionById(int.Parse(hit.IdOrganizacion.ToString()), false) : null,
+                            IdUbicacion = hit.IdUbicacion. HasValue?int.Parse(hit.IdUbicacion.ToString()) : 0,
+                            Ubicacion = hit.IdUbicacion.HasValue ? new BusinessUbicacion().ObtenerDescripcionUbicacionById(int.Parse(hit.IdUbicacion.ToString()), false) : null,
                             Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(hit.IdArbolAcceso),
                             TipoServicio = hit.TipoArbolAcceso.Descripcion,
-                            Vip = hit.Usuario.Vip,
+                            Vip = hit.Usuario != null && hit.Usuario.Vip,
                             FechaHora = hit.FechaHoraAlta.ToString("dd/MM/yyyy"),
                             Hora = hit.FechaHoraAlta.ToString("hh:mm:ss"),
                             Total = lstHits.Count(c => c.IdArbolAcceso == hit.IdArbolAcceso),
@@ -372,7 +328,7 @@ namespace KinniNet.Core.Operacion
                             IdTipoArbolAcceso = hit.IdTipoArbolAcceso,
                             IdTipificacion = hit.IdArbolAcceso,
                             IdUsuario = hit.IdUsuario,
-                            NombreUsuario = hit.Usuario.NombreCompleto,
+                            NombreUsuario = hit.Usuario != null ? hit.Usuario.NombreCompleto : string.Empty,
                         });
                     }
                 }
@@ -914,7 +870,6 @@ namespace KinniNet.Core.Operacion
         }
 
         #endregion Consultas
-
         #region Graficas
         public DataTable GraficarConsultaTicket(int idUsuario, List<int> grupos, List<int> tiposUsuario, List<int> organizaciones, List<int> ubicaciones, List<int> tipoArbol, List<int> tipificacion, List<int> prioridad, List<int> estatus, List<bool?> sla, List<bool?> vip, Dictionary<string, DateTime> fechas, List<int> filtroStackColumn, string stack, int tipoFecha)
         {
@@ -1408,11 +1363,11 @@ namespace KinniNet.Core.Operacion
 
                 if (organizaciones.Any())
                     qry = from q in qry
-                          where organizaciones.Contains(q.h.IdOrganizacion)
+                          where organizaciones.Contains((int) q.h.IdOrganizacion)
                           select q;
                 if (ubicaciones.Any())
                     qry = from q in qry
-                          where ubicaciones.Contains(q.h.IdUbicacion)
+                          where ubicaciones.Contains((int) q.h.IdUbicacion)
                           select q;
 
                 if (tipificacion.Any())
@@ -1647,11 +1602,11 @@ namespace KinniNet.Core.Operacion
 
                 if (organizaciones != null && organizaciones.Any())
                     qry = from q in qry
-                          where organizaciones.Contains(q.h.IdOrganizacion)
+                          where organizaciones.Contains((int) q.h.IdOrganizacion)
                           select q;
                 if (ubicaciones != null && ubicaciones.Any())
                     qry = from q in qry
-                          where ubicaciones.Contains(q.h.IdUbicacion)
+                          where ubicaciones.Contains((int) q.h.IdUbicacion)
                           select q;
 
                 if (tipificacion != null && tipificacion.Any())

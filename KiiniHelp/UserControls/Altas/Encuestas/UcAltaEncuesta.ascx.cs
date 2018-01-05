@@ -175,8 +175,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardarEncuesta.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardarEncuesta, null) + ";}";  
                 if (!IsPostBack)
                 {
                     Metodos.LlenaComboCatalogo(ddlTipoEncuesta, _serviceSistemaTipoEncuesta.ObtenerTiposEncuesta(true));

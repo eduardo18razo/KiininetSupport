@@ -6,9 +6,6 @@ namespace KiiniHelp.UserControls.Altas.Tickets
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //TODO: Se elimina para bloque de boton al click
-            //btnLevantar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnLevantar, null) + ";}";  
         }
     }
 }

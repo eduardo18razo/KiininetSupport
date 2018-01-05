@@ -193,9 +193,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardar.OnClientClick = "this.disabled = true; " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";";
-                //btnAgregarCampo.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnAgregarCampo, null) + ";}";  
                 ucAltaCatalogo.OnAceptarModal += UcAltaCatalogoOnOnAceptarModal;
                 ucAltaCatalogo.EsAlta = true;
                 if (IsPostBack) return;

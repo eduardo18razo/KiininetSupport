@@ -384,10 +384,8 @@ namespace KiiniHelp
                     rptMenu.DataBind();
                     Session["CargaInicialModal"] = "True";
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalRol\");", true);
-                    //TODO: Tickets redirect
                     if (areaSeleccionada == (int)BusinessVariables.EnumRoles.Agente)
                         Response.Redirect("~/Agente/Bandeja.aspx");
-                    //Response.Redirect("~/Agente/FrmBandejaTickets.aspx");
                     Response.Redirect("~/Users/DashBoard.aspx");
                 }
                 catch (Exception ex)

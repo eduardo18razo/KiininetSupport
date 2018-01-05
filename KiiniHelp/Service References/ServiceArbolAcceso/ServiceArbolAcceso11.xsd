@@ -5,7 +5,7 @@
   <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
   <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
   <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
-  <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
   <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="GrupoUsuario">
     <xs:sequence>
@@ -84,18 +84,6 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="EncuestaPregunta" nillable="true" type="tns:EncuestaPregunta" />
-  <xs:complexType name="ArrayOfGrupoUsuario">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="GrupoUsuario" nillable="true" type="tns:GrupoUsuario" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfGrupoUsuario" nillable="true" type="tns:ArrayOfGrupoUsuario" />
-  <xs:complexType name="ArrayOfPuesto">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Puesto" nillable="true" type="tns:Puesto" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPuesto" nillable="true" type="tns:ArrayOfPuesto" />
   <xs:complexType name="Puesto">
     <xs:sequence>
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
@@ -237,6 +225,18 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="HorarioDetalle" nillable="true" type="tns:HorarioDetalle" />
+  <xs:complexType name="ArrayOfGrupoUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GrupoUsuario" nillable="true" type="tns:GrupoUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGrupoUsuario" nillable="true" type="tns:ArrayOfGrupoUsuario" />
+  <xs:complexType name="ArrayOfPuesto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Puesto" nillable="true" type="tns:Puesto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPuesto" nillable="true" type="tns:ArrayOfPuesto" />
   <xs:complexType name="ArrayOfEncuesta">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Encuesta" nillable="true" type="tns:Encuesta" />

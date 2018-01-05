@@ -8,11 +8,16 @@
   <xs:element name="ArrayOfHelperArbolAcceso" nillable="true" type="tns:ArrayOfHelperArbolAcceso" />
   <xs:complexType name="HelperArbolAcceso">
     <xs:sequence>
+      <xs:element name="_x003C_Activo_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_Categoria_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_DescripcionLarga_x003E_k__BackingField" nillable="true" type="xs:string" />
-      <xs:element name="_x003C_Descripcion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DescripcionTipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Nivel_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_Ruta_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TipoUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Tipo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Titulo_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperArbolAcceso" nillable="true" type="tns:HelperArbolAcceso" />

@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfNullableOfint">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd16" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfHelperDetalleUsuarioGrupo">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperDetalleUsuarioGrupo" nillable="true" type="tns:HelperDetalleUsuarioGrupo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfNullableOfint" nillable="true" type="tns:ArrayOfNullableOfint" />
+  <xs:element name="ArrayOfHelperDetalleUsuarioGrupo" nillable="true" type="tns:ArrayOfHelperDetalleUsuarioGrupo" />
+  <xs:complexType name="HelperDetalleUsuarioGrupo">
+    <xs:sequence>
+      <xs:element name="_x003C_Activo_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_CuartoNivel_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_IdUsuario_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_NombreCompleto_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NombreUsuarioCompleto_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PrimerNivel_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_SegundoNivel_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Supervisor_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_TercerNivel_x003E_k__BackingField" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperDetalleUsuarioGrupo" nillable="true" type="tns:HelperDetalleUsuarioGrupo" />
+  <xs:complexType name="HelperUsuario">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Correos" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Creado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaUltimoLogin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreCompleto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroTicketsAbiertos" type="xs:int" />
+      <xs:element minOccurs="0" name="Organizacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Puesto" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Telefonos" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="TicketsAbiertos" nillable="true" type="tns:ArrayOfHelperTicketsUsuario" />
+      <xs:element minOccurs="0" name="TipoUsuarioDescripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ubicacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UltimaActualizacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Vip" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperUsuario" nillable="true" type="tns:HelperUsuario" />
+  <xs:complexType name="ArrayOfHelperTicketsUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperTicketsUsuario" nillable="true" type="tns:HelperTicketsUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperTicketsUsuario" nillable="true" type="tns:ArrayOfHelperTicketsUsuario" />
+  <xs:complexType name="HelperTicketsUsuario">
+    <xs:sequence>
+      <xs:element name="_x003C_DescripcionEstatusTicket_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaCreacionFormato_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaCreacion_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_IdEstatusTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperTicketsUsuario" nillable="true" type="tns:HelperTicketsUsuario" />
 </xs:schema>

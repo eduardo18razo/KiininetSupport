@@ -186,7 +186,8 @@ namespace KiiniHelp.Test
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack)
+                ucDetalleArbolAcceso.IdArbolAcceso = 7;
         }
 
         //protected void Submit(object sender, EventArgs e)

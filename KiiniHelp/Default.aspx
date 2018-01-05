@@ -91,6 +91,7 @@
                 <asp:ScriptReference Path="~/assets/js/bootstrap-notify.js" />
                 <asp:ScriptReference Path="~/assets/js/bootstrap-notify.min.js" />
                 <asp:ScriptReference Path="~/assets/js/Notificaciones.js" />
+                <asp:ScriptReference Path="~/assets/js/validation.js" />
             </Scripts>
         </asp:ScriptManager>
         <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">

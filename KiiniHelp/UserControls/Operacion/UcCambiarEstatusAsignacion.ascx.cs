@@ -142,7 +142,7 @@ namespace KiiniHelp.UserControls.Operacion
                 int idUsuario = ((Usuario)Session["UserData"]).Id;
                 if (lstAsignacionesPermitidas.Any(a => a.IdSubRolPermitido == (int)BusinessVariables.EnumSubRoles.Supervisor))
                 {
-                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupo(IdGrupo, (int)BusinessVariables.EnumSubRoles.Supervisor).Where(w => w.Id != idUsuario).ToList();
+                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupoAgente(IdGrupo, (int)BusinessVariables.EnumSubRoles.Supervisor).Where(w => w.Id != idUsuario).ToList();
                     lstSupervisor.DataSource = lstUsuarios;
                     lstSupervisor.DataTextField = "NombreCompleto";
                     lstSupervisor.DataValueField = "Id";
@@ -151,7 +151,7 @@ namespace KiiniHelp.UserControls.Operacion
                 }
                 if (lstAsignacionesPermitidas.Any(a => a.IdSubRolPermitido == (int)BusinessVariables.EnumSubRoles.PrimererNivel))
                 {
-                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupo(IdGrupo, (int)BusinessVariables.EnumSubRoles.PrimererNivel).Where(w => w.Id != idUsuario).ToList();
+                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupoAgente(IdGrupo, (int)BusinessVariables.EnumSubRoles.PrimererNivel).Where(w => w.Id != idUsuario).ToList();
                     lstUsuariosGrupoNivel1.DataSource = lstUsuarios;
                     lstUsuariosGrupoNivel1.DataTextField = "NombreCompleto";
                     lstUsuariosGrupoNivel1.DataValueField = "Id";
@@ -160,7 +160,7 @@ namespace KiiniHelp.UserControls.Operacion
                 }
                 if (lstAsignacionesPermitidas.Any(a => a.IdSubRolPermitido == (int)BusinessVariables.EnumSubRoles.SegundoNivel))
                 {
-                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupo(IdGrupo, (int)BusinessVariables.EnumSubRoles.SegundoNivel).Where(w => w.Id != idUsuario).ToList();
+                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupoAgente(IdGrupo, (int)BusinessVariables.EnumSubRoles.SegundoNivel).Where(w => w.Id != idUsuario).ToList();
                     lstUsuariosGrupoNivel2.DataSource = lstUsuarios;
                     lstUsuariosGrupoNivel2.DataTextField = "NombreCompleto";
                     lstUsuariosGrupoNivel2.DataValueField = "Id";
@@ -169,7 +169,7 @@ namespace KiiniHelp.UserControls.Operacion
                 }
                 if (lstAsignacionesPermitidas.Any(a => a.IdSubRolPermitido == (int)BusinessVariables.EnumSubRoles.TercerNivel))
                 {
-                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupo(IdGrupo, (int)BusinessVariables.EnumSubRoles.TercerNivel).Where(w => w.Id != idUsuario).ToList();
+                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupoAgente(IdGrupo, (int)BusinessVariables.EnumSubRoles.TercerNivel).Where(w => w.Id != idUsuario).ToList();
                     lstUsuariosGrupoNivel3.DataSource = lstUsuarios;
                     lstUsuariosGrupoNivel3.DataTextField = "NombreCompleto";
                     lstUsuariosGrupoNivel3.DataValueField = "Id";
@@ -178,7 +178,7 @@ namespace KiiniHelp.UserControls.Operacion
                 }
                 if (lstAsignacionesPermitidas.Any(a => a.IdSubRolPermitido == (int)BusinessVariables.EnumSubRoles.CuartoNivel))
                 {
-                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupo(IdGrupo, (int)BusinessVariables.EnumSubRoles.CuartoNivel).Where(w => w.Id != idUsuario).ToList();
+                    lstUsuarios = _servicioUsuarios.ObtenerUsuariosByGrupoAgente(IdGrupo, (int)BusinessVariables.EnumSubRoles.CuartoNivel).Where(w => w.Id != idUsuario).ToList();
                     lstUsuariosGrupoNivel4.DataSource = lstUsuarios;
                     lstUsuariosGrupoNivel4.DataTextField = "NombreCompleto";
                     lstUsuariosGrupoNivel4.DataValueField = "Id";
@@ -286,8 +286,6 @@ namespace KiiniHelp.UserControls.Operacion
             {
                 Alerta = new List<string>();
                 lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
-                //TODO: Se elimina para bloque de boton al click
-                //btnAceptar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnAceptar, null) + ";}";  
                 if (!IsPostBack)
                 {
 

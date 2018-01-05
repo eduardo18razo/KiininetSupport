@@ -7,13 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using System.Text;
-using System.Threading;
-using KiiniNet.Entities.Operacion.Usuarios;
-using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
-using KinniNet.Core.Operacion;
-using KinniNet.Data.Help;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KiiniNet.UnitTest
@@ -104,10 +98,13 @@ namespace KiiniNet.UnitTest
             //TODO: Eliminar Comentarios
             try
             {
+                new BusinessTicketMailService().RecibeCorreos();
+                //new BusinessTicketMailService().RecibeCorreos();
+                //new BusinessTicketMailService().EnviaCorreoTicketGenerado(1, "VLF0", "Este es el cuerpo del mensaje <b> Hola</b> <s>sub</s>", "ecerritos@kiininet.com");
                 //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessDemonio().EnvioNotificacion();
                 //new KiiniNet.Services.Windows.ServiceNotificacion();
-                new BusinessDemonio().EnvioNotificacion();
+                //new BusinessDemonio().EnvioNotificacion();
                 //new BusinessDemonio().ActualizaSla();
                 //Usuario datosUsuario = new Usuario();
                 //datosUsuario.IdTipoUsuario = (int) BusinessVariables.EnumTiposUsuario.Cliente;

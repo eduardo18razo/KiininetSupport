@@ -25,7 +25,10 @@ namespace KiiniNet.Services.Operacion.Interface
         Usuario ObtenerDetalleUsuario(int idUsuario);
 
         [OperationContract]
-        List<Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel);
+        List<HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo);
+
+        [OperationContract]
+        List<Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel);
 
         [OperationContract]
         List<Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion);
@@ -40,7 +43,7 @@ namespace KiiniNet.Services.Operacion.Interface
         byte[] ObtenerFoto(int idUsuario);
 
         [OperationContract]
-        void HabilitarUsuario(int idUsuario, bool habilitado);
+        void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl);
 
         [OperationContract]
         List<Usuario> ObtenerAtendedoresEncuesta(int idUsuario, List<int?> encuestas);
@@ -80,5 +83,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         HelperUsuario ObtenerDatosTicketUsuario(int idUsuario);
+
+        [OperationContract]
+        Usuario GetUsuarioByCorreo(string correo);
     }
 }

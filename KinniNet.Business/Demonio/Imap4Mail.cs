@@ -167,11 +167,22 @@ namespace KinniNet.Core.Demonio
                                 if (referencesArray.Any(w => w.Contains("ticket")))
                                     Smtp.SendNotificationCommentTicket(cliente, oMail);
                             }
-
-
                             MarcarLeidoNoLeido(oClient, infoMail);
-
                         }
+                    oClient.Quit();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+
+            public void SendMailTicket(BusinessVariables.EnumtServerImap cliente, int idTicket, string clave, string body, string to)
+            {
+                try
+                {
+                    MailClient oClient = GetMailClient(cliente);
+                    Smtp.SendNotificationTicketGenerated(cliente, idTicket, clave, body, to);
 
                     oClient.Quit();
                 }
@@ -179,7 +190,6 @@ namespace KinniNet.Core.Demonio
                 {
                     throw new Exception(ex.Message);
                 }
-
             }
         }
 
@@ -264,20 +274,13 @@ namespace KinniNet.Core.Demonio
                 }
             }
 
-            public static void SendMail(BusinessVariables.EnumtServerImap server)
+            public static void SendNotificationTicketGenerated(BusinessVariables.EnumtServerImap server, int idTicket, string clave, string body, string to)
             {
                 try
                 {
-                    SmtpMail oMail = new SmtpMail("TryIt");
                     SmtpClient oSmtp = new SmtpClient();
-                    oMail.From = "gmailid@gmail.com";
-                    oMail.To = "ecerritos@kiininet.com";
-                    oMail.Subject = "test email from gmail account";
-                    oMail.TextBody = "this is a test email sent from c# project with gmail.";
-                    oMail.HtmlBody = "<font size=5>This is</font> <font color=red><b>a test</b></font>";
-                    oMail.AddAttachment("d:\\FreeTextBox.dll");
-                    oMail.AddAttachment("http://www.emailarchitect.net/webapp/img/logo.jpg");
-                    oSmtp.SendMail(GetServer(server), oMail);
+                    SmtpServer servidor = GetServer(server);
+                    oSmtp.SendMail(servidor, ManagerMessage.NewMail.SenMailTicket(servidor, server, idTicket, clave, body, to));
                 }
                 catch (Exception ex)
                 {
@@ -307,6 +310,69 @@ namespace KinniNet.Core.Demonio
             }
             public static class NewMail
             {
+                public static SmtpMail SenMailTicket(SmtpServer servidor, BusinessVariables.EnumtServerImap server, int idTicket, string clave, string body, string to)
+                {
+                    SmtpMail reply = new SmtpMail("TryIt");
+                    try
+                    {
+                        string references = reply.Headers.GetValueOfKey("References");
+
+                        if (string.IsNullOrEmpty(references))
+                            references += "~ticket&" + idTicket + "~";
+
+                        reply.Headers.Add("References", references);
+                        reply.From.Address = servidor.User;
+                        reply.Subject += "Re:";
+                        reply.Subject = reply.Subject.Replace("(Trial Version)", string.Empty).Trim();
+                        reply.To = to;
+                        reply.HtmlBody = GeneraCorreoTicket("eduardo18razo@gmail.com", "Kiininet", string.Empty, DateTime.Now.ToShortDateString().ToString(CultureInfo.InvariantCulture), idTicket, clave, body);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                    return reply;
+                }
+
+                private static string GeneraCorreoTicket(string fromAddress, string fromName, string sourceBody, string sentDate, int idTicket, string claveRegistro, string body)
+                {
+                    StringBuilder result = new StringBuilder();
+                    try
+                    {
+                        result.Append("<hr/>");
+                        result.Append(string.Format("<p>Hemos generado su ticket <br>No.: {0} <br>Clave: {1}.</p>", idTicket, claveRegistro));
+                        //result.Append("<p>Responderemos lo mas pronto posible, Si tienes algun comentario contesta este correo .</p>");
+                        //result.Append("<p>Saludos,<br>");
+                        ////TODO: Change Name Sender
+                        //result.Append("KiiniHelp");
+                        result.Append("<p>" + body + "</p>");
+                        result.Append("<br>");
+
+                        result.Append("<div>");
+                        result.AppendFormat("Fecha {0}, ", sentDate);
+
+                        if (!string.IsNullOrEmpty(fromName))
+                            result.Append(fromName + ' ');
+
+                        result.AppendFormat("<<a href=\"mailto:{0}\">{0}</a>> wrote:<br/>", fromAddress);
+
+                        if (!string.IsNullOrEmpty(sourceBody))
+                        {
+                            result.Append("<blockqoute style=\"margin: 0 0 0 5px;border-left:2px blue solid;padding-left:5px\">");
+                            result.Append(sourceBody);
+                            result.Append("</blockquote>");
+                        }
+
+                        result.Append("</div>");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                    return result.ToString();
+                }
+
+
                 public static SmtpMail CreateReplyNewTicket(Mail source)
                 {
                     SmtpMail reply = new SmtpMail("TryIt");
@@ -326,7 +392,34 @@ namespace KinniNet.Core.Demonio
                         string subject = source.Subject.Replace("(Trial Version)", string.Empty).Trim();
                         List<HelperCampoMascaraCaptura> capturaMascara = GeneraCaptura(mascara, source.From.Address, subject, source.TextBody, source.Attachments, out attname);
 
-                        Usuario user = new BusinessSecurity.Autenticacion().GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                        Usuario user = new BusinessUsuarios().GetUsuarioByCorreo(source.From.Address);
+                        if (user == null)
+                        {
+                            user = new Usuario
+                            {
+                                IdTipoUsuario = (int)BusinessVariables.EnumTiposUsuario.Cliente,
+                                ApellidoPaterno = source.From.Name.Trim() == string.Empty ? source.From.Address.Split('@')[0] : source.From.Name.Trim(),
+                                ApellidoMaterno = source.From.Name.Trim() == string.Empty ? source.From.Address.Split('@')[0] : source.From.Name.Trim(),
+                                Nombre = source.From.Name.Trim(),
+                                DirectorioActivo = false,
+                                Vip = false,
+                                PersonaFisica = false,
+                                NombreUsuario = new BusinessUsuarios().GeneraNombreUsuario(source.From.Name.Trim() == string.Empty ? source.From.Address.Split('@')[0] : source.From.Name.Trim(), source.From.Name.Trim() == string.Empty ? source.From.Address.Split('@')[0] : source.From.Name.Trim()),
+                                Password = ConfigurationManager.AppSettings["siteUrl"] + "/ConfirmacionCuenta.aspx",
+                                Autoregistro = true,
+                                Habilitado = true
+                            };
+                            if (source.From.Address.Trim() != string.Empty)
+                                user.CorreoUsuario = new List<CorreoUsuario>
+                        {
+                            new CorreoUsuario
+                            {
+                                Correo = source.From.Address.Trim(),
+                                Obligatorio = true,
+                            }
+                        };
+                            user = new BusinessUsuarios().ObtenerDetalleUsuario(new BusinessUsuarios().RegistrarCliente(user));
+                        }
                         Ticket ticket = new BusinessTicket().CrearTicket(user.Id, user.Id, arbol.Id, capturaMascara, (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Correo, mascara.Random, true, true);
                         if (att != null)
                         {
@@ -363,7 +456,6 @@ namespace KinniNet.Core.Demonio
 
                     return reply;
                 }
-
                 private static void ObtenerFormulario(out ArbolAcceso arbol, out Mascara mascara)
                 {
                     try
@@ -563,8 +655,9 @@ namespace KinniNet.Core.Demonio
 
                         int idticket = int.Parse(ticketContains[1]);
                         if (idticket == 0) return null;
-
-                        Usuario user = new BusinessSecurity.Autenticacion().GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                        HelperDetalleTicket ticket = new BusinessTicket().ObtenerDetalleTicket(idticket);
+                        //new BusinessSecurity.Autenticacion().GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.Cliente);
+                        Usuario user = new BusinessUsuarios().ObtenerDetalleUsuario(ticket.IdUsuarioLevanto);
                         if (attachment.Any())
                         {
                             string attname;
@@ -579,7 +672,7 @@ namespace KinniNet.Core.Demonio
                                     att.SaveAs(String.Format("{0}{1}", ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["CarpetaTemporal"], attname), true);
                                 }
                             }
-                            new BusinessAtencionTicket().AgregarComentarioConversacionTicket(idticket, user.Id, respuesta, false, archivos, false);
+                            new BusinessAtencionTicket().AgregarComentarioConversacionTicket(idticket, user.Id, respuesta, false, archivos, false, false);
                             foreach (string archivo in archivos)
                             {
                                 File.Move(ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["CarpetaTemporal"] + archivo, ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["CarpetaTemporal"] + archivo.Replace("ticketid", idticket.ToString()));
@@ -589,7 +682,7 @@ namespace KinniNet.Core.Demonio
                             }
                         }
                         else
-                            new BusinessAtencionTicket().AgregarComentarioConversacionTicket(idticket, user.Id, respuesta, false, null, false);
+                            new BusinessAtencionTicket().AgregarComentarioConversacionTicket(idticket, user.Id, respuesta, false, null, false, false);
 
 
 
@@ -598,11 +691,8 @@ namespace KinniNet.Core.Demonio
 
                         reply.Headers.Add("References", references);
 
-
-
                         if (!source.Subject.StartsWith("Re:", StringComparison.OrdinalIgnoreCase))
                             reply.Subject = "Re: ";
-
                         reply.Subject += source.Subject;
 
                         reply.Subject = reply.Subject.Replace("(Trial Version)", string.Empty).Trim();

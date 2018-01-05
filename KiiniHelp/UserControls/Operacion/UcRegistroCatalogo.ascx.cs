@@ -72,8 +72,6 @@ namespace KiiniHelp.UserControls.Operacion
             {
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 AlertaGeneral = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardarArea.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardarArea, null) + ";}";  
             }
             catch (Exception ex)
             {

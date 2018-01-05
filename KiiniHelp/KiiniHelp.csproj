@@ -267,6 +267,9 @@
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
+    <Content Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx" />
+    <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
+    <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black Italic.otf" />
@@ -283,6 +286,9 @@
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Thin Italic.otf" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Thin.otf" />
     <Content Include="assets\fonts\MarkSimonson-Proxima-Nova-Regular.otf" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuario.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo.datasource" />
     <Content Include="assets\fonts\elusiveicons-webfont.eot" />
     <Content Include="assets\fonts\elusiveicons-webfont.ttf" />
     <Content Include="assets\fonts\elusiveicons-webfont.woff" />
@@ -2917,6 +2923,27 @@
     </Compile>
     <Compile Include="UserControls\Consultas\UcConsultaUbicacionesFisico.ascx.designer.cs">
       <DependentUpon>UcConsultaUbicacionesFisico.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx.cs">
+      <DependentUpon>UcDetalleArbolAcceso.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx.designer.cs">
+      <DependentUpon>UcDetalleArbolAcceso.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx.cs">
+      <DependentUpon>UcDetalleGrupoUsuarios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx.designer.cs">
+      <DependentUpon>UcDetalleGrupoUsuarios.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx.cs">
+      <DependentUpon>UcDetalleGrupoOpciones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx.designer.cs">
+      <DependentUpon>UcDetalleGrupoOpciones.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Detalles\UcMensajeValidacion.ascx.cs">
       <DependentUpon>UcMensajeValidacion.ascx</DependentUpon>

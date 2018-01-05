@@ -658,8 +658,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";}";  
                 FileUpload1.Attributes["onchange"] = "UploadFile(this)";
 
                 ucAltaPuesto.OnTerminarModal += UcAltaPuestoOnOnAceptarModal;
@@ -1543,6 +1541,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     PersonaFisica = chkPersonaFisica.Checked,
                     NombreUsuario = txtUserName.Text.Trim(),
                     Password = ResolveUrl("~/ConfirmacionCuenta.aspx"),
+                    Autoregistro = false,
                     Habilitado = true
                 };
                 List<ParametrosTelefonos> lstParamTelefonos = _servicioParametros.TelefonosObligatorios(Convert.ToInt32(ddlTipoUsuario.SelectedValue));

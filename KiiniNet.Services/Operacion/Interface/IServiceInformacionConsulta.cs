@@ -24,7 +24,7 @@ namespace KiiniNet.Services.Operacion.Interface
         InformacionConsulta ActualizarInformacionConsulta(int idInformacionConsulta, InformacionConsulta informacion, List<string> documentosDescarga);
 
         [OperationContract]
-        void GuardarHit(int idArbol, int idUsuario);
+        void GuardarHit(int idArbol, int idTipoUsuario, int? idUsuario);
 
         [OperationContract]
         List<InformacionConsulta> ObtenerConsulta(string descripcion);

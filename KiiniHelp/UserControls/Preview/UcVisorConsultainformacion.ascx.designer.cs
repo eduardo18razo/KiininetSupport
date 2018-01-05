@@ -29,7 +29,7 @@ namespace KiiniHelp.UserControls.Preview {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfIdArbolAcceso;
-        
+
         /// <summary>
         /// Control hfIdInformacinConsulta.
         /// </summary>
@@ -38,6 +38,15 @@ namespace KiiniHelp.UserControls.Preview {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfIdInformacinConsulta;
+
+        /// <summary>
+        /// Control hfIdTipoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdTipoUsuario;
         
         /// <summary>
         /// Control hfEvaluacion.

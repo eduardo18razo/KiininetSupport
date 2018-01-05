@@ -284,5 +284,29 @@ namespace KinniNet.Core.Parametros
             }
             return result;
         }
+
+        public ParametroDatosAdicionales ObtenerDatosAdicionales(int idTipoUsuario)
+        {
+            ParametroDatosAdicionales result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.ParametroDatosAdicionales.SingleOrDefault(w => w.IdTipoUsuario == idTipoUsuario);
+                if (result != null)
+                {
+                    db.LoadProperty(result, "Mascara");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
     }
 }

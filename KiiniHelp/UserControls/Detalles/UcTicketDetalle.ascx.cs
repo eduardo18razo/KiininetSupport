@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Web.UI;
 using KiiniHelp.ServiceAtencionTicket;
@@ -41,6 +40,12 @@ namespace KiiniHelp.UserControls.Detalles
         {
             get { return int.Parse(hfTicketActivo.Value); }
             set { hfTicketActivo.Value = value.ToString(); }
+        }
+
+        private bool Asigna
+        {
+            get { return bool.Parse(hfAsigna.Value); }
+            set { hfAsigna.Value = value.ToString(); }
         }
 
         public int IdEstatusAsignacion
@@ -112,7 +117,7 @@ namespace KiiniHelp.UserControls.Detalles
                 throw new Exception(e.Message);
             }
         }
-        public void LlenaTicket(int idTicket)
+        public void LlenaTicket(int idTicket, bool asigna)
         {
             try
             {
@@ -120,6 +125,7 @@ namespace KiiniHelp.UserControls.Detalles
                 //HelperTicketDetalle ticket = _servicioTicket.ObtenerTicket(idTicket, ((Usuario)Session["UserData"]).Id);
                 if (ticket != null)
                 {
+                    Asigna = asigna;
                     IdTicket = ticket.IdTicket;
                     EsPropietario = ticket.EsPropietario;
                     IdEstatusAsignacion = ticket.IdEstatusAsignacion;
@@ -147,7 +153,7 @@ namespace KiiniHelp.UserControls.Detalles
                     ConversacionTicketActivo = ticket.Conversaciones;
                     LlenaConversacion(0);
                     UcDetalleMascaraCaptura.IdTicket = idTicket;
-                    btnAsignar.Enabled = ticket.EsPropietario;
+                    btnAsignar.Enabled = asigna;
                     btnCambiaEstatus.Enabled = ticket.EsPropietario;
                     btnSendPublic.Enabled = ticket.EsPropietario;
                 }
@@ -224,9 +230,9 @@ namespace KiiniHelp.UserControls.Detalles
                 ucCambiarEstatusAsignacion.OnCancelarModal += UcCambiarEstatusAsignacionOnCancelarModal;
                 if (!IsPostBack)
                 {
-                    if (Request.QueryString["id"] != null)
+                    if (Request.QueryString["id"] != null && Request.QueryString["asigna"] != null)
                     {
-                        LlenaTicket(int.Parse(Request.QueryString["id"]));
+                        LlenaTicket(int.Parse(Request.QueryString["id"]), bool.Parse(Request.QueryString["asigna"]));
                     }
                 }
                 else
@@ -248,7 +254,7 @@ namespace KiiniHelp.UserControls.Detalles
             try
             {
 
-                LlenaTicket(IdTicket);
+                LlenaTicket(IdTicket, Asigna);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalEstatusCambio\");", true);
                 if (!UcCambiarEstatusTicket.CerroTicket)
                 {
@@ -410,8 +416,8 @@ namespace KiiniHelp.UserControls.Detalles
             {
                 if (txtConversacion.Text == string.Empty)
                     throw new Exception("Ingrese un comentario.");
-                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, ((Usuario)Session["UserData"]).Id, txtConversacion.Text, false, null, rbtnPrivate.Checked);
-                LlenaTicket(IdTicket);
+                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, ((Usuario)Session["UserData"]).Id, txtConversacion.Text, false, null, rbtnPrivate.Checked, !rbtnPrivate.Checked);
+                LlenaTicket(IdTicket, Asigna);
                 if (rbtnConversacionPublico.Checked)
                     LlenaConversacion(1);
                 else if (rbtnConversacionPrivado.Checked)

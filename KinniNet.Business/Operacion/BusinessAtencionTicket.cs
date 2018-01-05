@@ -6,7 +6,9 @@ using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Tickets;
+using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using KinniNet.Core.Demonio;
 using KinniNet.Data.Help;
 
 namespace KinniNet.Core.Operacion
@@ -286,34 +288,53 @@ namespace KinniNet.Core.Operacion
             }
         }
 
-        public void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, List<string> archivos, bool privado)
+        public void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, List<string> archivos, bool privado, bool enviaCorreo)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                var comment = new TicketConversacion
+                Ticket ticket = db.Ticket.SingleOrDefault(s => s.Id == idTicket);
+                if (ticket != null)
                 {
-                    IdTicket = idTicket,
-                    IdUsuario = idUsuario,
-                    Mensaje = mensaje,
-                    FechaGeneracion =
-                        DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff",
-                            CultureInfo.InvariantCulture),
-                    Sistema = sistema,
-                    Leido = false,
-                    Privado = privado,
-                    FechaLectura = null
-                };
-                if (archivos != null)
-                {
-                    comment.ConversacionArchivo = new List<ConversacionArchivo>();
-                    foreach (ConversacionArchivo archivoComment in archivos.Select(archivo => new ConversacionArchivo { Archivo = archivo.Replace("ticketid", idTicket.ToString()) }))
+                    var comment = new TicketConversacion
                     {
-                        comment.ConversacionArchivo.Add(archivoComment);
+                        IdTicket = idTicket,
+                        IdUsuario = idUsuario,
+                        Mensaje = mensaje,
+                        FechaGeneracion =
+                            DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),
+                                "yyyy-MM-dd HH:mm:ss:fff",
+                                CultureInfo.InvariantCulture),
+                        Sistema = sistema,
+                        Leido = false,
+                        Privado = privado,
+                        FechaLectura = null
+                    };
+                    if (archivos != null)
+                    {
+                        comment.ConversacionArchivo = new List<ConversacionArchivo>();
+                        foreach (ConversacionArchivo archivoComment in archivos.Select(archivo => new ConversacionArchivo { Archivo = archivo.Replace("ticketid", idTicket.ToString()) }))
+                        {
+                            comment.ConversacionArchivo.Add(archivoComment);
+                        }
+                    }
+                    db.TicketConversacion.AddObject(comment);
+                    db.SaveChanges();
+                    string correo = string.Empty;
+                    Usuario usuario = new BusinessUsuarios().ObtenerUsuario(ticket.IdUsuarioSolicito);
+                    correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio).Correo;
+                    if (correo != string.Empty && enviaCorreo)
+                    {
+                        string cuerpo = string.Format("Hola {0},<br>" +
+                                        "¡Se ha registrado un nuevo comentario en tu soicitud!" +
+                                        "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa a https://soporte.kiininet.com/requests/3127595 Gracias", usuario.Nombre);
+                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
+                        //ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.GenerarTicket && s.Habilitado);
+                        //String body = NamedFormat.Format(correo.Contenido, usuario);
+                        //BusinessCorreo.SendMail(correo, BusinessVariables.EnumTipoCorreo.GenerarTicket.ToString(), cuerpo);
                     }
                 }
-                db.TicketConversacion.AddObject(comment);
-                db.SaveChanges();
+
             }
             catch (Exception ex)
             {
@@ -345,6 +366,53 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
+        }
+
+        public string FormatearFecha(DateTime fechaParse)
+        {
+            string fecha = "Hoy";
+            try
+            {
+                CultureInfo ci = new CultureInfo("Es-Es");
+                var days = (DateTime.Now - fechaParse).TotalDays;
+                switch (int.Parse(Math.Abs(Math.Round(days)).ToString()))
+                {
+                    case 0:
+                        fecha = "Hoy";
+                        break;
+                    case 1:
+                        fecha = "Ayer";
+                        break;
+                    case 2:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 3:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 4:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 5:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    case 6:
+                        fecha =
+                            ci.DateTimeFormat.GetDayName(fechaParse.DayOfWeek).ToString();
+                        break;
+                    default:
+                        fecha = fechaParse.ToString("dd-MM-yy");
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return string.Format("{0} {1} hrs.", fecha, fechaParse.ToString("HH:mm"));
         }
 
         public HelperticketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario)
@@ -409,13 +477,14 @@ namespace KinniNet.Core.Operacion
                                             result.UsuarioLevanto.TicketsAbiertos.Add(new HelperTicketsUsuario
                                             {
                                                 IdTicket = t.Id,
-                                                Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(t.IdArbolAcceso)
+                                                Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(t.IdArbolAcceso),
+                                                IdEstatusTicket = t.IdEstatusTicket,
+                                                DescripcionEstatusTicket = t.EstatusTicket.Descripcion,
+                                                FechaCreacion = t.FechaHoraAlta,
+                                                FechaCreacionFormato = FormatearFecha(t.FechaHoraAlta)
                                             });
                                         }
-
-
                             }
-
 
                         result.UsuarioLevanto.Puesto = ticket.UsuarioLevanto.Puesto != null ? ticket.UsuarioLevanto.Puesto.Descripcion : string.Empty;
                         result.UsuarioLevanto.Correos = ticket.UsuarioLevanto.CorreoUsuario != null ? ticket.UsuarioLevanto.CorreoUsuario.Select(s => s.Correo).ToList() : null;
@@ -466,7 +535,7 @@ namespace KinniNet.Core.Operacion
                 {
                     result = ticket.TicketAsignacion.Last().IdUsuarioAsignado == idUsuario && !ticket.TicketAsignacion.Last().Visto ? result + 1 : result;
                 }
-                
+
             }
             catch (Exception ex)
             {

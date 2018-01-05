@@ -57,6 +57,7 @@
       <xs:element minOccurs="0" name="SlaEstimadoTicket" nillable="true" type="tns:SlaEstimadoTicket" />
       <xs:element minOccurs="0" name="TicketAsignacion" nillable="true" type="tns:ArrayOfTicketAsignacion" />
       <xs:element minOccurs="0" name="TicketConversacion" nillable="true" type="tns:ArrayOfTicketConversacion" />
+      <xs:element minOccurs="0" name="TicketCorreo" nillable="true" type="tns:ArrayOfTicketCorreo" />
       <xs:element minOccurs="0" name="TicketEstatus" nillable="true" type="tns:ArrayOfTicketEstatus" />
       <xs:element minOccurs="0" name="TicketGrupoUsuario" nillable="true" type="tns:ArrayOfTicketGrupoUsuario" />
       <xs:element minOccurs="0" name="TiempoEspera" nillable="true" type="xs:string" />
@@ -227,6 +228,23 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="ConversacionArchivo" nillable="true" type="tns:ConversacionArchivo" />
+  <xs:complexType name="ArrayOfTicketCorreo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketCorreo" nillable="true" type="tns:TicketCorreo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTicketCorreo" nillable="true" type="tns:ArrayOfTicketCorreo" />
+  <xs:complexType name="TicketCorreo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Correo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTicket" type="xs:int" />
+      <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TicketCorreo" nillable="true" type="tns:TicketCorreo" />
   <xs:complexType name="ArrayOfPreTicket">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="PreTicket" nillable="true" type="tns:PreTicket" />

@@ -13,10 +13,10 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceArbolAcceso_ObtenerOpcionesPermitidas_InputMessage">
@@ -187,6 +187,12 @@
   <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByIdUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalByIdUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByGrupoUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalByGrupoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByGrupoUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoTerminalByGrupoUsuarioResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceArbolAcceso">
     <wsdl:operation name="ObtenerOpcionesPermitidas">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerOpcionesPermitidas" message="tns:IServiceArbolAcceso_ObtenerOpcionesPermitidas_InputMessage" />
@@ -299,6 +305,10 @@
     <wsdl:operation name="ObtenerArbolesAccesoTerminalByIdUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuario" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByIdUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuarioResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByIdUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalByGrupoUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByGrupoUsuario" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByGrupoUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByGrupoUsuarioResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoTerminalByGrupoUsuario_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointAdministracion" type="tns:IServiceArbolAcceso">
@@ -548,6 +558,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerArbolesAccesoTerminalByIdUsuario">
       <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoTerminalByGrupoUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByGrupoUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

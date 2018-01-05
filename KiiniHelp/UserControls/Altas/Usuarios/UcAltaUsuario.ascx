@@ -78,7 +78,6 @@
                 <asp:HiddenField runat="server" ID="hfEditaDetalle" />
                 <asp:HiddenField runat="server" ID="hfGeneraUsuario" Value="true" />
                 <asp:HiddenField runat="server" ID="hfConsultas" Value="false" />
-
                 <!--MIGAS DE PAN-->
                 <div class="row">
                     <div class="project-heading">

@@ -229,6 +229,15 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.DropDownList ddlFormularios;
         
         /// <summary>
+        /// Control chkPublico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPublico;
+        
+        /// <summary>
         /// Control chkNivelHabilitado.
         /// </summary>
         /// <remarks>
@@ -535,15 +544,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.DropDownList ddlGrupoResponsableAtencion;
         
         /// <summary>
-        /// Control lstGrupoEspecialConsultaServicios.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstGrupoEspecialConsultaServicios;
-        
-        /// <summary>
         /// Control ddlGrupoDuenoServicio.
         /// </summary>
         /// <remarks>
@@ -553,13 +553,13 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.DropDownList ddlGrupoDuenoServicio;
         
         /// <summary>
-        /// Control ddlGrupoAgenteUniversal.
+        /// Control lstGruposAu.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoAgenteUniversal;
+        protected global::System.Web.UI.WebControls.ListBox lstGruposAu;
         
         /// <summary>
         /// Control divStep4Data.
@@ -803,6 +803,51 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkVencimientoDev;
+        
+        /// <summary>
+        /// Control chkNotificacionOperacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionOperacion;
+        
+        /// <summary>
+        /// Control txtTiempoNotificacionOperacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionOperacion;
+        
+        /// <summary>
+        /// Control ddlNotificacionGrupoOperacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionGrupoOperacion;
+        
+        /// <summary>
+        /// Control ddlCanalOperacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCanalOperacion;
+        
+        /// <summary>
+        /// Control chkVencimientoOperacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoOperacion;
         
         /// <summary>
         /// Control divStep6Data.

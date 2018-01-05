@@ -142,8 +142,7 @@
                         <!--Filtro 1 ORGANIZACIÓN-->
                         <div>
                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-
-                                <section class="module" runat="server" id="seleccionar">
+                               <section class="module" runat="server" id="seleccionar">
                                     <div class="bg-grey">
                                         <h4 class="text-left">
                                             <asp:Label runat="server" Text="" /><asp:Label runat="server" ID="lblOperacion" /></h4>

@@ -22,57 +22,57 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.HiddenField hfIdUsuario;
         
         /// <summary>
-        /// Control txtNombre.
+        /// Control hfIdTipoUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.HiddenField hfIdTipoUsuario;
         
         /// <summary>
-        /// Control txtAp.
+        /// Control txtNombreRapido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAp;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreRapido;
         
         /// <summary>
-        /// Control txtAm.
+        /// Control txtApRapido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAm;
+        protected global::System.Web.UI.WebControls.TextBox txtApRapido;
         
         /// <summary>
-        /// Control txtCorreo.
+        /// Control txtAmRapido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreo;
+        protected global::System.Web.UI.WebControls.TextBox txtAmRapido;
         
         /// <summary>
-        /// Control txtTelefono.
+        /// Control txtCorreoRapido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadSearchBox txtTelefono;
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoRapido;
         
         /// <summary>
-        /// Control SourceFilterPhone.
+        /// Control txtTelefonoCelularRapido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource SourceFilterPhone;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoCelularRapido;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
@@ -78,8 +77,8 @@ namespace KiiniHelp.UserControls.Consultas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
             UcAltaAbrolAcceso.OnCancelarModal += UcAltaAbrolAccesoOnOnCancelarModal;
+            ucDetalleArbolAcceso.OnCancelarModal += ucDetalleArbolAcceso_OnCancelarModal;
             if (!IsPostBack)
             {
                 LlenaCombos();
@@ -87,10 +86,28 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
+        void ucDetalleArbolAcceso_OnCancelarModal()
+        {
+            try
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalDetalleOpciones\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
         private void UcAltaAbrolAccesoOnOnCancelarModal()
         {
             try
             {
+                UcAltaAbrolAcceso.Cancelar();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
             }
             catch (Exception ex)
@@ -212,6 +229,24 @@ namespace KiiniHelp.UserControls.Consultas
             LlenaArboles();
         }
 
-        #endregion 
+        #endregion
+
+        protected void lnkBtnDetalleOpciones_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ucDetalleArbolAcceso.IdArbolAcceso = int.Parse(((LinkButton)sender).CommandArgument);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalDetalleOpciones\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

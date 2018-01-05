@@ -147,6 +147,44 @@ namespace KiiniHelp.UserControls.Consultas
                 ucAltaGrupoUsuario.FromOpcion = false;
                 ucAltaGrupoUsuario.OnAceptarModal += UcAltaGrupoUsuarioOnOnAceptarModal;
                 ucAltaGrupoUsuario.OnCancelarModal += UcAltaGrupoUsuarioOnOnCancelarModal;
+
+                ucDetalleGrupoUsuarios.OnCancelarModal += ucDetalleGrupo_OnCancelarModal;
+                ucDetalleGrupoOpciones.OnCancelarModal += ucDetalleGrupoOpciones_OnCancelarModal;
+
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        void ucDetalleGrupoOpciones_OnCancelarModal()
+        {
+            try
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalDetalleGrupoOpciones\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        void ucDetalleGrupo_OnCancelarModal()
+        {
+            try
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalDetalleGrupoUsuario\");", true);
             }
             catch (Exception ex)
             {
@@ -356,7 +394,42 @@ namespace KiiniHelp.UserControls.Consultas
             LlenaGrupos();
         }
 
-        #endregion 
+        #endregion
 
+        protected void lnkBtnDetalleUsuario_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ucDetalleGrupoUsuarios.IdGrupo = int.Parse(((LinkButton)sender).CommandArgument);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalDetalleGrupoUsuario\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void lnkBtnDetalleOpciones_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ucDetalleGrupoOpciones.IdGrupo = int.Parse(((LinkButton)sender).CommandArgument);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalDetalleGrupoOpciones\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

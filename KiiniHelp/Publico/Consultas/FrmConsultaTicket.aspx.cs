@@ -39,8 +39,6 @@ namespace KiiniHelp.Publico.Consultas
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnComentar.OnClientClick = "SetComment(this);this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnComentar, null) + ";}";  
                 ucCambiarEstatusTicket.OnAceptarModal += UcCambiarEstatusTicket_OnAceptarModal;
                 ucCambiarEstatusTicket.OnCancelarModal += UcCambiarEstatusTicketOnCancelarModal;
             }
@@ -69,7 +67,7 @@ namespace KiiniHelp.Publico.Consultas
                         ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");window.location.replace(\"" + urlHome + "\");", true);
                     }
                 }
-                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
                 lblticket.Text = string.Empty;
 
             }
@@ -168,7 +166,7 @@ namespace KiiniHelp.Publico.Consultas
                 ucCambiarEstatusTicket.IdTicket = Convert.ToInt32(lblticket.Text);
                 ucCambiarEstatusTicket.IdEstatusActual = int.Parse(hfEstatusActual.Value);
                 ucCambiarEstatusTicket.IdGrupo = 0;
-                ucCambiarEstatusTicket.IdUsuario = Session["UserData"] != null ? ((Usuario)Session["UserData"]).Id : new ServiceSecurityClient().GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado).Id;
+                ucCambiarEstatusTicket.IdUsuario = Session["UserData"] != null ? ((Usuario)Session["UserData"]).Id : new ServiceSecurityClient().GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.Cliente).Id;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalEstatusCambio\");", true);
             }
             catch (Exception ex)
@@ -188,7 +186,7 @@ namespace KiiniHelp.Publico.Consultas
             {
                 if (hfComentario.Value == string.Empty)
                     throw new Exception("Ingrese un comentario.");
-                _servicioAtencionTicket.AgregarComentarioConversacionTicket(int.Parse(lblticket.Text), int.Parse(hfIdUsuarioTicket.Value), hfComentario.Value.Trim(), false, null, false);
+                _servicioAtencionTicket.AgregarComentarioConversacionTicket(int.Parse(lblticket.Text), int.Parse(hfIdUsuarioTicket.Value), hfComentario.Value.Trim(), false, null, false, true);
                 HelperDetalleTicket detalle = _servicioticket.ObtenerDetalleTicketNoRegistrado(int.Parse(txtTicket.Text.Trim()), txtClave.Text.Trim());
                 if (detalle != null)
                 {
@@ -212,7 +210,7 @@ namespace KiiniHelp.Publico.Consultas
         {
             try
             {
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
             }
             catch (Exception)
             {

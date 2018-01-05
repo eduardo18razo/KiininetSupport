@@ -133,7 +133,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             txtNoExt.Text = org.Campus.Domicilio.First().NoExt;
                             txtNoInt.Text = org.Campus.Domicilio.First().NoInt;
                         }
-                        //TODO: SetAliasModal() Campus actualizar
                         SetAliasModal();
                         dataCampus.Visible = true;
                         btnStatusNivel1.CssClass = "btn btn-success btn-square";
