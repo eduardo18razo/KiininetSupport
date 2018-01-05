@@ -57,16 +57,14 @@
             <asp:HiddenField runat="server" ID="hfAsigna" />
             <asp:HiddenField runat="server" ID="hfUsuarioLevanto" />
 
-            <%-- <section class="module">--%>
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12">
 
                     <section class="module">
-                        <%-- <div class="row">--%>
                         <div class="module-inner">
                             <div class="row">
                                 <div class="col-lg-1 col-md-2 col-sm-2">
-                                    <span class="fa fa-envelope fa-30x padding-10 " style="" /><%--margin-top-5   border-rounded--%>
+                                    <span class="fa fa-envelope fa-30x padding-10 " />
                                 </div>
                                 <div class="col-lg-8 col-md-6 col-sm-12">
                                     <div class="row">
@@ -120,9 +118,7 @@
                                 </div>
                             </div>
 
-
                         </div>
-                        <%--</div>--%>
                     </section>
 
                     <section class="module">
@@ -266,7 +262,6 @@
                                                 <div class="notification-items no-overflow">
                                                     <div class="item media">--%>
                                         <tc:RadDropDownList runat="server" ID="rddConcentradoTicketsUsuario" DataTextField="Tipificacion" DropDownWidth="190px">
-                                            <%--OnItemDataBound="rptConcentradoTicketsUsuario_ItemDataBound"--%>
                                             <ItemTemplate>
                                                 <div>
                                                     <div class="margin-top-10" style="font-size: 11px;">

@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Agente\Bandeja.aspx" />
+    <Content Include="Agente\DashBoardAgente.aspx" />
     <Content Include="Agente\FrmAgenteNuevoTicket.aspx" />
     <Content Include="Agente\FrmTicket.aspx" />
     <Content Include="assets\carouselImage\slide-1.jpg" />
@@ -2519,6 +2520,13 @@
     <Compile Include="Agente\Bandeja.aspx.designer.cs">
       <DependentUpon>Bandeja.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Agente\DashBoardAgente.aspx.cs">
+      <DependentUpon>DashBoardAgente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agente\DashBoardAgente.aspx.designer.cs">
+      <DependentUpon>DashBoardAgente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Agente\FrmAgenteNuevoTicket.aspx.cs">
       <DependentUpon>FrmAgenteNuevoTicket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4119,7 +4127,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

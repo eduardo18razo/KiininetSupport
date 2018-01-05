@@ -157,6 +157,24 @@ namespace KiiniHelp {
         protected global::System.Web.UI.WebControls.Repeater rptTicketsAbiertos;
         
         /// <summary>
+        /// Control upMasTickets.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upMasTickets;
+        
+        /// <summary>
+        /// Control rptTicketsAbiertosExtra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptTicketsAbiertosExtra;
+        
+        /// <summary>
         /// Control hfCargaInicial.
         /// </summary>
         /// <remarks>

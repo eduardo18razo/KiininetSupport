@@ -43,10 +43,11 @@ namespace KiiniHelp.UserControls.Detalles
                     IdTipoUsuario = userDetail.IdTipoUsuario;
                     lblnombreCompleto.Text = userDetail.NombreCompleto;
                     lblFechaUltimoAcceso.Text = userDetail.FechaUltimoAccesoExito;
-                    txtAp.Text = userDetail.ApellidoPaterno;
-                    txtAm.Text = userDetail.ApellidoMaterno;
-                    txtNombre.Text = userDetail.Nombre;
-                    txtUserName.Text = userDetail.NombreUsuario;
+                    //txtAp.Text = userDetail.ApellidoPaterno;
+                    //txtAm.Text = userDetail.ApellidoMaterno;
+                    //txtNombre.Text = userDetail.Nombre;
+                    //txtUserName.Text = userDetail.NombreUsuario;
+                    imgPerfil.ImageUrl = userDetail.Foto != null ? "~/DisplayImages.ashx?id=" + userDetail.Id : "~/assets/images/profiles/profile-square-1.png";
                     ddlPuesto.SelectedValue = userDetail.IdPuesto.ToString();
                     chkVip.Checked = userDetail.Vip;
                     chkDirectoriActivo.Checked = userDetail.DirectorioActivo;
@@ -57,7 +58,6 @@ namespace KiiniHelp.UserControls.Detalles
                     UcDetalleOrganizacion.IdOrganizacion = userDetail.IdOrganizacion;
                     UcDetalleUbicacion.IdUbicacion = userDetail.IdUbicacion;
                     UcDetalleGrupoUsuario.IdUsuario = userDetail.Id;
-                    
                 }
             }
         }

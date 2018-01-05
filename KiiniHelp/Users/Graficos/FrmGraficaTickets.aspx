@@ -39,7 +39,7 @@
                         <asp:UpdatePanel runat="server" UpdateMode="Conditional" Visible="True" ID="upGrafica">
                             <ContentTemplate>
                                 <asp:HiddenField runat="server" ID="hfGraficaGenerada" Value="false" />
-                                <iframe name="geocharts" runat="server" id="frameGeoCharts" Visible="False" style="width: 850px; height: 650px; border: none">
+                                <iframe name="geocharts" runat="server" id="frameGeoCharts" Visible="false" style="width: 850px; height: 650px; border: none">
                                 </iframe>
                                 <asp:Chart ID="cGrafico" runat="server" Width="800px" Height="600px" Visible="False">
                                     <Titles>

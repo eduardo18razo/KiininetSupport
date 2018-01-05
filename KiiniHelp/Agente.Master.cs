@@ -35,9 +35,24 @@ namespace KiiniHelp
         {
             try
             {
-                rptTicketsAbiertos.DataSource = TicketsAbiertos;
+                int totalTickets = TicketsAbiertos.Count;
+
+                if (totalTickets > 6)
+                {
+                    upMasTickets.Visible = true;
+                    rptTicketsAbiertosExtra.DataSource = TicketsAbiertos.Skip(6).ToList();
+                    rptTicketsAbiertosExtra.DataBind();
+                }
+                else
+                {
+                    upMasTickets.Visible = false;
+                }
+
+                rptTicketsAbiertos.DataSource = TicketsAbiertos.Take(6);
                 rptTicketsAbiertos.DataBind();
+
                 upTabsTickets.Update();
+                upMasTickets.Update();
             }
             catch (Exception e)
             {
@@ -54,6 +69,7 @@ namespace KiiniHelp
             }
             set { Session["TicketsAbiertos"] = value; }
         }
+
 
         public void AddNewTicket(int idUsuarioSolicita)
         {
@@ -73,6 +89,7 @@ namespace KiiniHelp
             try
             {
                 if (!TicketsAbiertos.Any(a => a.IdTicket == idTicket))
+
                     TicketsAbiertos.Add(new TicketSeleccionado { IdTicket = idTicket, Title = titulo });
                 LlenaTicketsAbiertos();
                 Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket + "&asigna=" + asigna);
@@ -560,7 +577,6 @@ namespace KiiniHelp
                     else
                         Response.Redirect("~/Agente/FrmTicket.aspx?id=" + ((LinkButton)sender).CommandArgument);
                 }
-
             }
             catch (Exception ex)
             {
