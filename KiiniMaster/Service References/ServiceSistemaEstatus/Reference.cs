@@ -22,13 +22,13 @@ namespace KiiniMaster.ServiceSistemaEstatus {
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacion(bool insertarSeleccion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuario", ReplyAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idEstatusActual, bool esPropietario, bool insertarSeleccion);
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idGrupo, int idEstatusActual, bool esPropietario, bool insertarSeleccion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuario", ReplyAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuarioResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idSubRol, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion);
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/HasComentarioObligatorio", ReplyAction="http://tempuri.org/IServiceEstatus/HasComentarioObligatorioResponse")]
-        bool HasComentarioObligatorio(int idUsuario, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario);
+        bool HasComentarioObligatorio(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -66,16 +66,16 @@ namespace KiiniMaster.ServiceSistemaEstatus {
             return base.Channel.ObtenerEstatusAsignacion(insertarSeleccion);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idEstatusActual, bool esPropietario, bool insertarSeleccion) {
-            return base.Channel.ObtenerEstatusTicketUsuario(idUsuario, idEstatusActual, esPropietario, insertarSeleccion);
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idGrupo, int idEstatusActual, bool esPropietario, bool insertarSeleccion) {
+            return base.Channel.ObtenerEstatusTicketUsuario(idUsuario, idGrupo, idEstatusActual, esPropietario, insertarSeleccion);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idSubRol, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion) {
-            return base.Channel.ObtenerEstatusAsignacionUsuario(idUsuario, idSubRol, estatusAsignacionActual, esPropietario, insertarSeleccion);
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion) {
+            return base.Channel.ObtenerEstatusAsignacionUsuario(idUsuario, idGrupo, idSubRol, estatusAsignacionActual, esPropietario, insertarSeleccion);
         }
         
-        public bool HasComentarioObligatorio(int idUsuario, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario) {
-            return base.Channel.HasComentarioObligatorio(idUsuario, idSubRol, estatusAsignacionActual, estatusAsignar, esPropietario);
+        public bool HasComentarioObligatorio(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario) {
+            return base.Channel.HasComentarioObligatorio(idUsuario, idGrupo, idSubRol, estatusAsignacionActual, estatusAsignar, esPropietario);
         }
     }
 }

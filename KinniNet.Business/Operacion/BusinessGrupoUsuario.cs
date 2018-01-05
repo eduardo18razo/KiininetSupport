@@ -390,8 +390,11 @@ namespace KinniNet.Core.Operacion
                 RolTipoGrupo rolTipoGrupo = db.RolTipoGrupo.SingleOrDefault(w => w.IdRol == idRol);
                 if (rolTipoGrupo != null)
                 {
-                    result = db.GrupoUsuario.First(f => f.IdTipoGrupo == rolTipoGrupo.IdTipoGrupo && f.IdTipoUsuario == idTipoUsuario && f.Sistema);
-                    db.LoadProperty(result, "SubGrupoUsuario");
+                    if (db.GrupoUsuario.Any(f => f.IdTipoGrupo == rolTipoGrupo.IdTipoGrupo && f.IdTipoUsuario == idTipoUsuario && f.Sistema))
+                    {
+                        result = db.GrupoUsuario.First(f => f.IdTipoGrupo == rolTipoGrupo.IdTipoGrupo && f.IdTipoUsuario == idTipoUsuario && f.Sistema);
+                        db.LoadProperty(result, "SubGrupoUsuario");
+                    }
                 }
             }
             catch (Exception ex)

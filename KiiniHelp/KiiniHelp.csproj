@@ -270,6 +270,7 @@
     <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
+    <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black Italic.otf" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black.otf" />
@@ -3055,6 +3056,13 @@
     </Compile>
     <Compile Include="UserControls\UcLogCopia.ascx.designer.cs">
       <DependentUpon>UcLogCopia.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx.cs">
+      <DependentUpon>FrmDetalleOpcion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx.designer.cs">
+      <DependentUpon>FrmDetalleOpcion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Administracion\ArbolesAcceso\FrmPreviewAltaOpcionConsulta.aspx.cs">
       <DependentUpon>FrmPreviewAltaOpcionConsulta.aspx</DependentUpon>
