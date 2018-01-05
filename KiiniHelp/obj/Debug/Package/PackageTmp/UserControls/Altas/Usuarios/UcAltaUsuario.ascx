@@ -160,6 +160,8 @@
                                             <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control texto-normal" onkeypress="return ValidaCampo(this,14)" OnTextChanged="txtAp_OnTextChanged" MaxLength="30" Style="text-transform: none" AutoPostBack="True" />
                                         </div>
                                     </div>
+
+
                                     <div class="row">
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px" runat="server" id="divPuesto">
                                             <label>Puesto*</label>
@@ -179,7 +181,7 @@
 
                                         <div class="col-lg-2 col-md-2" style="padding-top: 22px">
                                             <div class="form-inline">
-                                                <label for="chkVip" class="col-lg-9 col-md-9 text-right padding-10-right">Directorio activo</label>
+                                                <label for="chkDirectoriActivo" class="col-lg-9 col-md-9 text-right padding-10-right">Directorio activo</label>
                                                 <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" CssClass="chkIphone padding-5-top" Width="30px" />
                                             </div>
                                         </div>
@@ -191,6 +193,10 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+
+
                                 </div>
                             </div>
                         </div>

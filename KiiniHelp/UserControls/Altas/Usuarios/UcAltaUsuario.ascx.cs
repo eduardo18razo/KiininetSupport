@@ -64,7 +64,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
         public int IdUsuario
         {
-            get { return Convert.ToInt32(hfIdUsuario.Value); }
+            get { return hfIdUsuario.Value.Trim() == string.Empty ? 0 : Convert.ToInt32(hfIdUsuario.Value); }
             set
             {
                 hfIdUsuario.Value = value.ToString();
