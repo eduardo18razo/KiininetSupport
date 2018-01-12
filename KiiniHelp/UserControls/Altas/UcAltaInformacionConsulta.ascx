@@ -18,7 +18,7 @@
 <hr />
 <asp:UpdatePanel runat="server" ID="upAltaInformacionConsulta" UpdateMode="Conditional">
     <ContentTemplate>
-        <asp:HiddenField runat="server" ID="hfComentario"/>
+        <asp:HiddenField runat="server" ID="hfComentario" />
         <section class="module">
             <div class="row">
                 <div class="col-lg-8 col-md-8">
@@ -79,7 +79,6 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="form-group">
-
                                     <span class="span-upload">
                                         <ajax:AsyncFileUpload ID="afuArchivo" runat="server" CssClass="FileUploadClass" UploaderStyle="Traditional" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadComplete="uploadComplete" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
                                         Cargar archivos (max 10 MB)
@@ -99,8 +98,6 @@
         <script>
             Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(SetComment);
             function SetComment() {
-                $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
-                $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
                 var txtEditor = document.getElementById('ContentPlaceHolder1_ucAltaInformacionConsulta_txtEditor_designEditor');
                 if (txtEditor != undefined) {
                     var hfComentario = document.getElementById('<%= hfComentario.ClientID%>');
@@ -110,6 +107,12 @@
                 }
             }
 
+            $(document).ready(SetTags);
+            function SetTags() {
+                $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
+                $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
+            }
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(SetTags);
             //$(function() {
             //    $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
             //    $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
@@ -117,7 +120,7 @@
             //});
             //var prm = Sys.WebForms.PageRequestManager.getInstance();
             //prm.add_endRequest(function () {
-               
+
             //});
         </script>
     </ContentTemplate>

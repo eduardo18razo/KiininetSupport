@@ -1,4 +1,1 @@
 C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTestData.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTestData.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.pdb

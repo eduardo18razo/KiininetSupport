@@ -241,8 +241,8 @@ namespace KiiniHelp.UserControls.Altas
                         IdInformacionConsulta = int.Parse(Request.QueryString["IdInformacionConsulta"]);
                     }
                 }
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Scripttagsbusqueda", "$('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });", true);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Scripttags", "$('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });", true);
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Scripttagsbusqueda", "$('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });", true);
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Scripttags", "$('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });", true);
             }
             catch (Exception ex)
             {
@@ -262,6 +262,11 @@ namespace KiiniHelp.UserControls.Altas
                 List<HelperFiles> files = Session["selectedFiles"] == null ? new List<HelperFiles>() : (List<HelperFiles>)Session["selectedFiles"];
                 if (!files.Any(a => a.NombreArchivo.Contains(afuArchivo.FileName)))
                 {
+
+                    Int64 sumaArchivos = Int64.Parse(Session["FileSize"].ToString());
+                    sumaArchivos += int.Parse(e.FileSize);
+                    if ((sumaArchivos / 1024) > (10 * 1024))
+                        throw new Exception(string.Format("El tamaño maximo de carga es de {0}MB", "10"));
                     afuArchivo.PostedFile.SaveAs(BusinessVariables.Directorios.RepositorioTemporalInformacionConsulta + afuArchivo.FileName);
                     HelperFiles hFiles = new HelperFiles { NombreArchivo = e.FileName.Split('\\').Last(), Tamaño = BusinessFile.ConvertirTamaño(e.FileSize), Extension = Path.GetExtension(afuArchivo.FileName) };
                     files.Add(hFiles);

@@ -843,7 +843,7 @@ namespace KinniNet.Core.Operacion
                                         LevantaTicket = statusDefault.LevantaTicket,
                                         Habilitado = statusDefault.Habilitado
                                     });
-                else
+                else if (grupo.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario)
                 {
                     int idRol = (int)BusinessVariables.EnumRoles.Usuario;
                     var qry = from statusDefault in db.EstatusTicketSubRolGeneralDefault.Where(

@@ -7,7 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using KiiniNet.Entities.Cat.Sistema;
 using KinniNet.Core.Demonio;
+using KinniNet.Core.Sistema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KiiniNet.UnitTest
@@ -97,6 +99,7 @@ namespace KiiniNet.UnitTest
         {
             try
             {
+                
                 //Parámetros del compilador
                 CompilerParameters objParametros = new CompilerParameters()
                 {
@@ -137,6 +140,7 @@ namespace KiiniNet.UnitTest
             //TODO: Eliminar Comentarios
             try
             {
+                //new BusinessCatalogos().CrearCatalogoExcel(new Catalogos(), false, "file", "hoja");
                 new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessTicketMailService().EnviaCorreoTicketGenerado(1, "VLF0", "Este es el cuerpo del mensaje <b> Hola</b> <s>sub</s>", "ecerritos@kiininet.com");

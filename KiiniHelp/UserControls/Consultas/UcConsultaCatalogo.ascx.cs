@@ -42,7 +42,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                List<Catalogos> lstCatalogosConsultas = _servicioCatalogos.ObtenerCatalogosMascaraCaptura(true).Where(w => !w.Sistema).ToList();
+                List<Catalogos> lstCatalogosConsultas = _servicioCatalogos.ObtenerCatalogosMascaraCaptura(true).Where(w => !w.Sistema && !w.Archivo).ToList();
                 Metodos.LlenaComboCatalogo(ddlCatalogos, lstCatalogosConsultas);
 
             }
@@ -86,9 +86,9 @@ namespace KiiniHelp.UserControls.Consultas
                 if (!IsPostBack)
                 {
                     LlenaCombos();
-                    List<CatalogoGenerico> lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(1, true, false).Where(w => w.Id != 0).ToList();
-                    tblResults.DataSource = lst;
-                    tblResults.DataBind();
+                    //List<CatalogoGenerico> lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(1, true, false).Where(w => w.Id != 0).ToList();
+                    //tblResults.DataSource = lst;
+                    //tblResults.DataBind();
                 }
                 
                 ucRegistroCatalogo.OnTerminarModal += AltaRegistroCatalogoOnTerminarModal;

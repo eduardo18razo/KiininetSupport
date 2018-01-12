@@ -118,6 +118,7 @@
                 </div>
             </section>
             <script type="text/javascript">
+
                 $(function () {
                     hidden('#' + "<%=tblResults.ClientID %>");
                 });
