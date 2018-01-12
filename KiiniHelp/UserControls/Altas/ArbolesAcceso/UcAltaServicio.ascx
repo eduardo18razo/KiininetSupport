@@ -59,11 +59,11 @@
                     </div>
                     <div>
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                            <div class="bg-grey">
+                            <div>
                                 <div runat="server" id="divStep1Data">
                                     <div class="form-group">
-                                        Escribe el titulo de la opción<br />
-                                        <asp:TextBox runat="server" ID="txtDescripcionNivel" placeholder="DESCRIPCION" class="form-control" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
+                                        Escribe el título de la opción<br />
+                                        <asp:TextBox runat="server" ID="txtDescripcionNivel" placeholder="Descripción" class="form-control" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
                                     </div>
                                     <div class="form-group">
                                         Quien ve el contenido<br />

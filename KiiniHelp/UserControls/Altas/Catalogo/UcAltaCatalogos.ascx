@@ -7,12 +7,10 @@
         <asp:HiddenField runat="server" ID="hfIdCatalogo" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server" Text='&times;' />
-            <h2 class="modal-title" id="modal-new-ticket-label">
-                <asp:Label runat="server" ID="lblBrandingModal" /></h2>
-            <p class="text-center">
-                <asp:Label runat="server" ID="lblOperacion"></asp:Label>
-            </p>
-            <hr class="bordercolor" />
+
+            <h6 class="modal-title" id="modal-new-ticket-label">
+                <asp:Label runat="server" ID="lblOperacion"/></h6>
+
         </div>
 
         <div class="modal-body">
@@ -34,14 +32,13 @@
 
 
                             <div class="form-group">
-                                <asp:Label runat="server" Text="Opción de campo" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                <asp:Label runat="server" Text="Opción de campo" CssClass="col-lg-4 col-md-4 col-sm-4" style="padding-top: 12px;"/>
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <asp:Repeater runat="server" ID="rptRegistros">
                                         <ItemTemplate>
                                             <div class="row margin-top-5">
                                                 <asp:Label runat="server" ID="lblIdRegistro" Visible="False" Text='<%# Eval("Id") %>' />
                                                 <div class="col-lg-10 col-md-10 col-sm-10">
-                                                    <%--<asp:TextBox runat="server" ID="txtRegistro" Text='<%# Container.DataItem.ToString() %>' CssClass="form-control" />--%>
                                                     <asp:TextBox runat="server" ID="txtDescripcionRegistro" Text='<%# Eval("Descripcion") %>' CssClass="form-control" MaxLength="50" onkeydown="return (event.keyCode!=13);"/>
                                                 </div>
                                                 <asp:LinkButton runat="server" Text="Borrar" ID="btnBorrarRegistro" CommandArgument='<%# Container.ItemIndex %>' OnClick="btnBorrarRegistro_OnClick"></asp:LinkButton>
@@ -53,7 +50,7 @@
                                                 <div class="col-lg-10 col-md-10 col-sm-10">
                                                     <asp:TextBox runat="server" ID="txtRegistroNew" CssClass="form-control" MaxLength="50"  onkeydown="return (event.keyCode!=13);"/>
                                                 </div>
-                                                <asp:LinkButton runat="server" CssClass="fa fa-plus-circle" ID="btnAgregarRegistro" OnClick="btnAgregarRegistro_OnClick" CommandArgument='<%# Container.ItemIndex %>' />
+                                                <asp:LinkButton runat="server" CssClass="fa fa-plus-circle" style="padding-top: 5px; padding-left: 5px;" ID="btnAgregarRegistro" OnClick="btnAgregarRegistro_OnClick" CommandArgument='<%# Container.ItemIndex %>' />
                                             </div>
                                         </FooterTemplate>
                                     </asp:Repeater>
@@ -86,7 +83,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <p class="text-right margin-top-40">
+                        <p class="text-right">
                             <asp:Button runat="server" CssClass="btn btn-primary" Text="Guardar" ID="btnGuardar"  />
                             <asp:Button runat="server" CssClass="btn btn-danger" Text="Limpiar" ID="btnLimpiar" OnClick="btnLimpiar_OnClick" Visible="False" />
                             <asp:Button runat="server" CssClass="btn btn-danger" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" Visible="False" />

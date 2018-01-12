@@ -170,7 +170,7 @@ Categoría > Consulta, Servicio o Problema > Nivel 1 > Nivel 2 > Nivel 3 > Nivel
     <div class="modal fade" id="modalAltaArea" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upAltaArea" runat="server">
             <ContentTemplate>
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog" style="height: 250px;">
                     <div class="modal-content">
                         <uc1:AltaArea runat="server" ID="ucAltaArea" />
                     </div>

@@ -85,7 +85,7 @@
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Titulo" HeaderStyle-Width="25%">
+                                                <asp:TemplateField HeaderText="Título" HeaderStyle-Width="25%">
                                                     <ItemTemplate>
                                                         <label><%# Eval("Tipificacion")%></label>
                                                     </ItemTemplate>

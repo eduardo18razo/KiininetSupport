@@ -9,10 +9,9 @@
         <asp:HiddenField runat="server" ID="hfIdTipoArbol" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
-            <h2 class="modal-title" id="modal-new-ticket-label">
-                <br />
-                ALTA DE OPCIÓN</h2>
+            <h6 class="modal-title" id="modal-new-ticket-label">Alta de Opción</h6>
         </div>
+
         <div class="modal-body">
             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
@@ -20,25 +19,24 @@
                         <div class="module-content-inner">
                             <div class="faq-section text-center margin-bottom-lg">
                                 <div class="faqs-tabbed tabpanel" role="tabpanel">
-                                    <ul class="nav nav-tabs nav-tabs-theme-3 margin-bottom-lg" role="tablist">
+                                    <ul class="nav nav-tabs nav-tabs margin-bottom-lg" role="tablist">
                                         <li role="presentation" class="active">
-                                            <a href="#tabAltaConsulta" aria-controls="tabAltaConsulta" role="tab" data-toggle="tab"><span class="pe-icon fa fa-group icon"></span>
-                                                <br>
+                                            <a href="#tabAltaConsulta" aria-controls="tabAltaConsulta" role="tab" data-toggle="tab">
+                                                <span class="pe-icon fa fa-group icon"></span>
                                                 Consulta</a>
                                         </li>
                                         <li role="presentation">
                                             <a href="#tabAltaForma" aria-controls="tabAltaForma" role="tab" data-toggle="tab"><span class="pe-icon fa fa-clock-o icon"></span>
-                                                <br>
                                                 Servicio/Problema</a>
                                         </li>
                                     </ul>
 
                                     <div class="tab-content text-left">
-                                        <div role="tabpanel" class="tab-pane tab-pane fade in active" id="tabAltaConsulta">
+                                        <div role="tabpanel" class="tab-pane tab-pane fade active in" id="tabAltaConsulta">
                                             <div class="row">
                                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <uc1:UcAltaConsulta runat="server" id="UcAltaConsulta" />
+                                                        <uc1:UcAltaConsulta runat="server" ID="UcAltaConsulta" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>
@@ -48,7 +46,7 @@
                                             <div class="row">
                                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <uc1:UcAltaServicio runat="server" id="UcAltaServicio" />
+                                                        <uc1:UcAltaServicio runat="server" ID="UcAltaServicio" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>

@@ -37,11 +37,11 @@
             <!--Filtro 1 ORGANIZACIÓN-->
             <div>
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                    <div class="bg-grey">
+                    <div>
                         <div runat="server" id="divStep1Data">
                             <div class="form-group">
-                                Escribe el titulo de la opción<br />
-                                <asp:TextBox runat="server" ID="txtDescripcionNivel" placeholder="DESCRIPCION" MaxLength="50" onkeydown="return (event.keyCode!=13);" class="form-control" />
+                                Escribe el título de la opción<br />
+                                <asp:TextBox runat="server" ID="txtDescripcionNivel" placeholder="Descripción" MaxLength="50" onkeydown="return (event.keyCode!=13);" class="form-control" />
                             </div>
                             <div class="form-group">
                                 Quien ve el contenido<br />
@@ -56,7 +56,7 @@
                                 <asp:DropDownList runat="server" ID="ddlConsultas" CssClass="form-control" />
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-10">Publico</label>
+                                <label class="col-lg-10">Público</label>
                                 <asp:CheckBox runat="server" ID="chkPublico" CssClass="chkIphone" Width="30px" Text="Activo" Checked="False" />
                             </div>
                             <div class="form-group">
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 Mostrar en categoría<br />
                                 <asp:DropDownList runat="server" ID="ddlArea" CssClass="form-control" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                <asp:TextBox CssClass="form-control" ID="txtDescripcionArea" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                <asp:TextBox CssClass="form-control" ID="txtDescripcionArea" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" style="margin-top: 10px; opacity: 0.5;"/>
                                 <asp:LinkButton runat="server" ID="btnGuardarArea" OnClick="btnGuardarArea_OnClick" class="fa fa-plus-circle" />
 
                             </div>
@@ -80,39 +80,39 @@
                             <div class="form-group">
                                 Nivel 1<br />
                                 <asp:DropDownList runat="server" ID="ddlNivel1" CssClass="form-control" OnSelectedIndexChanged="ddlNivel1_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN1" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN1" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" style="margin-top: 10px; opacity: 0.5;"/>
                                 <asp:LinkButton runat="server" ID="btnAgregarNivel1" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="1" />
                             </div>
                             <div class="form-group" runat="server" id="divNivel2" visible="False">
                                 Nivel 2<br />
                                 <asp:DropDownList runat="server" ID="ddlNivel2" CssClass="form-control" OnSelectedIndexChanged="ddlNivel2_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN2" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN2" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" style="margin-top: 10px; opacity: 0.5;"/>
                                 <asp:LinkButton runat="server" ID="btnAgregarNivel2" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="2" Enabled="False" />
 
                             </div>
                             <div class="form-group" runat="server" id="divNivel3" visible="False">
                                 Nivel 3<br />
                                 <asp:DropDownList runat="server" ID="ddlNivel3" CssClass="form-control" OnSelectedIndexChanged="ddlNivel3_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN3" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN3" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" style="margin-top: 10px; opacity: 0.5;"/>
                                 <asp:LinkButton runat="server" ID="btnAgregarNivel3" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="3" Enabled="False" />
 
                             </div>
                             <div class="form-group" runat="server" id="divNivel4" visible="False">
                                 Nivel 4<br />
                                 <asp:DropDownList runat="server" ID="ddlNivel4" CssClass="form-control" OnSelectedIndexChanged="ddlNivel4_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN4" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN4" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" style="margin-top: 10px; opacity: 0.5;"/>
                                 <asp:LinkButton runat="server" ID="btnAgregarNivel4" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="4" Enabled="False" />
                             </div>
                             <div class="form-group" runat="server" id="divNivel5" visible="False">
                                 Nivel 5<br />
                                 <asp:DropDownList runat="server" ID="ddlNivel5" CssClass="form-control" OnSelectedIndexChanged="ddlNivel5_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN5" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN5" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" style="margin-top: 10px; opacity: 0.5;"/>
                                 <asp:LinkButton runat="server" ID="btnAgregarNivel5" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="5" Enabled="False" />
                             </div>
                             <div class="form-group" runat="server" id="divNivel6" visible="False">
                                 Nivel 6<br />
                                 <asp:DropDownList runat="server" ID="ddlNivel6" CssClass="form-control" OnSelectedIndexChanged="ddlNivel6_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN6" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                <asp:TextBox CssClass="form-control" ID="txtDescripcionN6" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" style="margin-top: 10px; opacity: 0.5;"/>
                                 <asp:LinkButton runat="server" ID="btnAgregarNivel6" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="6" Enabled="False" />
                             </div>
                             <%--<div class="form-group" runat="server" id="divNivel7" visible="False">

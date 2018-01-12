@@ -10,5 +10,4 @@
             <uc1:UcConsultaInformacionConsulta runat="server" ID="UcConsultaInformacionConsulta" />
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>

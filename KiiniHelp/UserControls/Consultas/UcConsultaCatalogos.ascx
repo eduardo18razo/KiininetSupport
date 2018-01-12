@@ -2,8 +2,6 @@
 <%@ Register Src="~/UserControls/Altas/UcCargaCatalgo.ascx" TagPrefix="uc1" TagName="UcCargaCatalgo" %>
 <%@ Register Src="~/UserControls/Altas/Catalogo/UcAltaCatalogos.ascx" TagPrefix="uc1" TagName="UcAltaCatalogos" %>
 
-
-
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server" style="height: 100%">
         <ContentTemplate>
@@ -16,8 +14,7 @@
                 <li class="breadcrumb-item active">Consulta</li>
             </ol>
 
-            <br>
-
+            <%--<br>--%>
             <section class="module">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">

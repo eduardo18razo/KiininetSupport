@@ -21,7 +21,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Formularios" /></h3>
                             </div>
                             <p>
-                                Texto para Días Formularios
+                                Texto para Formularios
                             </p>
                         </div>
                     </div>
@@ -102,12 +102,24 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                        
-                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="9%">
+                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEdit">
                                                     <li>
-                                                        <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="btnEditar_OnClick"></asp:ImageButton>
-                                                        | 
+                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
+                                                      <%--  | 
+                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="OnClick"></asp:LinkButton>                                                    --%>
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="5%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                    <li>
+                                                       <%-- <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
+                                                        | --%>
                                                         <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="OnClick"></asp:LinkButton>                                                    
                                                     </li>
                                                 </ul>

@@ -134,8 +134,8 @@
     <div class="modal fade" id="modalAltaHorario" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upAltaHorario" runat="server">
             <ContentTemplate>
-                <div class="modal-dialog">
-                    <div class="modal-content">
+                <div class="modal-dialog" > <%--style="width:400px;"--%>
+                    <div class="modal-content" >
                         <uc:UcAltaDiasFestivos runat="server" ID="ucAltaDiasFestivos" />
                     </div>
                 </div>

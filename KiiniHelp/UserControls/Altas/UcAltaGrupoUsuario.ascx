@@ -23,13 +23,12 @@
         <asp:HiddenField runat="server" ID="hfIdTipoSubGrupo" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
-            <h6 class="modal-title" id="modal-new-ticket-label">                
-                <asp:Label runat="server" ID="lbltitulo" Font-Bold="true" />
-                <hr />
+            <h6 class="modal-title" id="modal-new-ticket-label">
+                <asp:Label runat="server" ID="lbltitulo" />
             </h6>
             <asp:Label runat="server" Text="Alta Grupo de Usuario" ID="lblTitle" Visible="False"></asp:Label>
         </div>
-       <%-- <hr />--%>
+        <%-- <hr />--%>
         <div class="modal-body">
             <div class="row">
                 <div>
@@ -53,12 +52,13 @@
                                         <div role="tabpanel" class="tab-pane tab-pane fade in active" id="tabAltaGrupo">
                                             <asp:UpdatePanel runat="server">
                                                 <ContentTemplate>
-                                                    <div class="row center-block center-content-div centered">
-                                                        <div class="form-group margin-top">
+                                                    <div class="row">
+                                                        <div class="form-group">
                                                             Nombre del Nuevo grupo<br />
-                                                        </div>
-                                                        <div class="col-sm-6 col-lg-offset-3">
-                                                            <asp:TextBox runat="server" ID="txtDescripcionGrupoUsuario" placeholder="DESCRIPCION" class="form-control col-sm-3" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
+
+                                                            <div class="col-sm-12 no-padding-left">
+                                                                <asp:TextBox runat="server" ID="txtDescripcionGrupoUsuario" class="form-control col-sm-3" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <asp:CheckBox runat="server" ID="chkHabilitado" Checked="True" Visible="False" />
@@ -67,9 +67,9 @@
                                                         <asp:RadioButton runat="server" ID="rbtnRecado" GroupName="gpoContacCenterParamtro" Text="Levanta Recados" CssClass="col-sm-12" />
                                                     </div>
 
-                                                    <div class="row center-block center-content-div centered">
+                                                    <div class="row">
                                                         <div runat="server" id="divSubRoles" visible="False">
-                                                            <div class="form-group margin-top">
+                                                            <div class="form-group margin-top-10">
                                                                 Selecciona los niveles de escalación que tendrá este Grupo:<br />
                                                             </div>
                                                             <asp:HiddenField runat="server" ID="hfOperacion" />
@@ -103,8 +103,8 @@
                                                         </div>
                                                     </div>
                                                     <br />
-                                                    <div class="row text-right">
-                                                        <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary" Text="Guardar" OnClick="btnGuardar_OnClick" />
+                                                    <div class="row text-right padding-20-bottom">
+                                                        <asp:Button ID="btnGuardar" runat="server" CssClass="btn btn-primary " Text="Guardar" OnClick="btnGuardar_OnClick" />
                                                     </div>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>

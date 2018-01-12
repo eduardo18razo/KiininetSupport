@@ -7,10 +7,11 @@ using KiiniHelp.ServiceSeguridad;
 using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using System.Web.UI;
 
 namespace KiiniHelp
 {
-    public partial class ConfirmacionCuenta : System.Web.UI.Page
+    public partial class ConfirmacionCuenta : Page
     {
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
         private List<string> _lstError = new List<string>();
@@ -19,10 +20,12 @@ namespace KiiniHelp
         {
             set
             {
-                panelAlertaGeneral.Visible = value.Any();
-                if (!panelAlertaGeneral.Visible) return;
-                rptErrorGeneral.DataSource = value.Select(s => new { Detalle = s }).ToList();
-                rptErrorGeneral.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
 
@@ -55,8 +58,8 @@ namespace KiiniHelp
                     if (txtcodigo.Text.Trim() == string.Empty)
                         sb.AppendLine(string.Format("<li>el numero de telefono {0} no ha sido confirmado</li>", txttelefono.Text));
                 }
-                if (rptPreguntas.Items.Count <= 0)
-                    sb.AppendLine("<li>Debe especificar al menos una pregunta</li>");
+                if (txtPregunta.Text.Trim() == string.Empty || txtRespuesta.Text.Trim() == string.Empty)
+                    sb.AppendLine("<li>Debe especificar una pregunta y respuesta</li>");
                 if (sb.ToString() != string.Empty)
                 {
                     sb.Append("</ul>");
@@ -77,7 +80,7 @@ namespace KiiniHelp
             {
                 Usuario userData = _servicioUsuarios.ObtenerDetalleUsuario(idUsuario);
                 rptConfirmacion.DataSource = userData.TelefonoUsuario.Where(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Obligatorio && !w.Confirmado).OrderBy(o => o.Id).Take(1);
-                rptConfirmacion.DataBind();            
+                rptConfirmacion.DataBind();
             }
             catch (Exception ex)
             {
@@ -97,7 +100,6 @@ namespace KiiniHelp
                 AlertaGeneral = new List<string>();
                 if (!IsPostBack)
                 {
-                    Session["PreguntaReto"] = null;
                     if (Request.Params["confirmacionalta"] != null)
                     {
                         string[] values = Request.Params["confirmacionalta"].Split('_');
@@ -189,7 +191,6 @@ namespace KiiniHelp
         {
             try
             {
-                btnAddPregunta_OnClick();
                 ValidaCaptura();
                 new ServiceSecurityClient().ValidaPassword(txtContrasena.Text.Trim());
                 string result = string.Empty;
@@ -204,8 +205,8 @@ namespace KiiniHelp
                 }
                 if (result.Trim() != string.Empty)
                     throw new Exception(result);
-
-                _servicioUsuarios.ConfirmaCuenta(int.Parse(Request.Params["confirmacionalta"].Split('_')[0]), txtContrasena.Text.Trim(), confirmaciones, (List<PreguntaReto>)Session["PreguntaReto"], Request.Params["confirmacionalta"].Split('_')[1]);
+                
+                _servicioUsuarios.ConfirmaCuenta(int.Parse(Request.Params["confirmacionalta"].Split('_')[0]), txtContrasena.Text.Trim(), confirmaciones, new List<PreguntaReto> { new PreguntaReto{Pregunta = txtPregunta.Text.Trim(), Respuesta = txtRespuesta.Text.Trim(), IdUsuario = int.Parse(Request.Params["confirmacionalta"].Split('_')[0])} }, Request.Params["confirmacionalta"].Split('_')[1]);
                 Response.Redirect("~/Default.aspx");
             }
             catch (Exception ex)
@@ -218,77 +219,7 @@ namespace KiiniHelp
                 AlertaGeneral = _lstError;
             }
         }
-
-        protected void btnAddPregunta_OnClick() // object sender, EventArgs e
-        {
-            try
-            {
-
-                if (txtPregunta.Text.Trim() == string.Empty)
-                    throw new Exception("Especifique una pregunta");
-                if (txtRespuesta.Text.Trim() == string.Empty)
-                    throw new Exception("Especifique una respuesta");
-
-                List<PreguntaReto> tmpPreguntas = ((List<PreguntaReto>)Session["PreguntaReto"]) ?? new List<PreguntaReto>();
-
-                if (txtIdPregunta.Text.Trim() == string.Empty)
-                    tmpPreguntas.Add(new PreguntaReto
-                    {
-                        Id = tmpPreguntas.Count + 1,
-                        Pregunta = txtPregunta.Text.Trim(),
-                        Respuesta = txtRespuesta.Text.Trim()
-                    });
-                else
-                {
-                    PreguntaReto pregunta = tmpPreguntas.SingleOrDefault(s => s.Id == Convert.ToInt32(txtIdPregunta.Text.Trim()));
-                    if (pregunta != null)
-                    {
-                        pregunta.Pregunta = txtPregunta.Text.Trim();
-                        pregunta.Respuesta = txtRespuesta.Text.Trim();
-                    }
-                }
-
-
-                rptPreguntas.DataSource = tmpPreguntas;
-                rptPreguntas.DataBind();
-                Session["PreguntaReto"] = tmpPreguntas;
-                txtIdPregunta.Text = string.Empty;
-                txtPregunta.Text = string.Empty;
-                txtRespuesta.Text = string.Empty;
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                AlertaGeneral = _lstError;
-            }
-        }
-        protected void OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                PreguntaReto pregunta = ((List<PreguntaReto>)Session["PreguntaReto"]).SingleOrDefault(s => s.Id == Convert.ToInt32(((LinkButton)sender).CommandArgument));
-                if (pregunta != null)
-                {
-                    txtIdPregunta.Text = pregunta.Id.ToString();
-                    txtPregunta.Text = pregunta.Pregunta;
-                    txtRespuesta.Text = pregunta.Respuesta;
-                }
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                AlertaGeneral = _lstError;
-            }
-        }
-
+        
         protected void tmpSendNotificacion_OnTick(object sender, EventArgs e)
         {
             try

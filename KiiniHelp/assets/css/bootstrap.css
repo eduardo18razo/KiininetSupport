@@ -2558,7 +2558,7 @@ output {
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
-  background-color: #fff;
+  background-color: #ecf0f1; /*Color fondo secciones form*/
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -5852,8 +5852,8 @@ button.list-group-item-danger.active:focus {
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
-  filter: alpha(opacity=20);
-  opacity: .2;
+  filter: alpha(opacity=80);
+  opacity: 1;
 }
 .close:hover,
 .close:focus {
@@ -5861,7 +5861,7 @@ button.list-group-item-danger.active:focus {
   text-decoration: none;
   cursor: pointer;
   filter: alpha(opacity=50);
-  opacity: .5;
+  opacity: 1;
 }
 button.close {
   -webkit-appearance: none;
@@ -5876,7 +5876,7 @@ button.close {
 .modal {
   position: fixed;
   top: 0;
-  right: 0;
+  right:  0;
   bottom: 0;
   left: 0;
   z-index: 1050;
@@ -5952,6 +5952,7 @@ button.close {
 .modal-body {
   position: relative;
   padding: 15px;
+  
 }
 .modal-footer {
   padding: 15px;
@@ -5977,7 +5978,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
+    width: 40%; /*ANCHO DEL MODAL*/
     margin: 30px auto;
   }
   .modal-content {
@@ -5990,7 +5991,7 @@ button.close {
 }
 @media (min-width: 992px) {
   .modal-lg {
-    width: 900px;
+    width: 900px; /* ANCHO DEL MODAL */
   }
 }
 .tooltip {

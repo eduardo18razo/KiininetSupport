@@ -70,7 +70,7 @@ namespace KiiniHelp.UserControls.Operacion
         {
             try
             {
-                lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
+                // lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 AlertaGeneral = new List<string>();
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace KiiniHelp.UserControls.Operacion
                 Limpiar();
                 if (OnAceptarModal != null)
                     OnAceptarModal();
-                if(!EsAlta)
+                if (!EsAlta)
                     btnTerminar_OnClick(btnTerminar, null);
             }
             catch (Exception ex)
@@ -174,6 +174,6 @@ namespace KiiniHelp.UserControls.Operacion
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
 
-        
+
     }
 }

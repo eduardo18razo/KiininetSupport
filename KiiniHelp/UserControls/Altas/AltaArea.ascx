@@ -7,28 +7,24 @@
                     <asp:HiddenField runat="server" ID="hfFileName" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
-            <h2 class="modal-title" id="modal-new-ticket-label">                
-                <%--<asp:Label runat="server" ID="lblBranding" />--%></h2>
-            <h6 class="text-center">
-                <asp:Label runat="server" ID="lblOperacion" Font-Bold="true"/>
-                 <hr />  
+            <h6 class="modal-title" id="modal-new-ticket-label">                
+                <asp:Label runat="server"  ID="lblOperacion" Font-Bold="true"/>
             </h6>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="bg-grey">
-                            <h3 class="text-left">Editar Categoría</h3>
-                            <hr />
-
+                        <div>
+                          <%--  <h6 class="text-left">Editar Categoría</h6>
+                            <hr />--%>
                             <div class="form-group margin-top">
-                                Escribe el nombre de la Categoría*<br />
+                                Escribe el nombre de la Categoría<br />
                                 <asp:TextBox runat="server" ID="txtDescripcionAreas" CssClass="form-control" onkeydown="return (event.keyCode!=13);" autofocus="autofocus" MaxLength="50" />
                             </div>
                             <ajax:AsyncFileUpload ID="afDosnload" runat="server" UploaderStyle="Traditional" OnUploadedComplete="afDosnload_OnUploadedComplete" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" Visible="False" />
-                            <p class="margin-top-40">
-                                <asp:Button runat="server" CssClass="btn btn-success" Text="Guardar" ID="btnGuardarArea" OnClick="btnGuardar_OnClick" />
+                            <p class="margin-top-20">
+                                <asp:Button runat="server" CssClass="btn btn-primary" Text="Guardar" ID="btnGuardarArea" OnClick="btnGuardar_OnClick" />
                             </p>
                         </div>
                         <p class="text-right margin-top-40">

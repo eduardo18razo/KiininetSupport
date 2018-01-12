@@ -10,9 +10,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelarCatalogo_OnClick" Text='&times'></asp:LinkButton>
-                    <h6 class="text-center">
-                        <asp:Label runat="server" ID="lblTitleCatalogo" Font-Bold="true"></asp:Label>
-                        <hr />
+                    <h6 class="text-left">
+                        <asp:Label runat="server" class="modal-title" ID="lblTitleCatalogo" />                    
                     </h6>
                 </div>
 
@@ -177,7 +176,7 @@
 
                                             </div>
 
-                                            <div runat="server" id="dataCampus" visible="False">
+                                            <div runat="server" id="dataCampus" visible="true">
                                                 <!--CP-->
                                                 <div class="form-group margin-top">
                                                     CP*<br />

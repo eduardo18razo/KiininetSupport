@@ -6,18 +6,16 @@
 <%@ Register Src="~/UserControls/Seleccion/UcRolGrupo.ascx" TagPrefix="uc" TagName="UcRolGrupo" %>
 
 
-<style>
+<%--<style>
     .texto-normal {
         text-transform: none;
     }
-    /* adapted from http://maxwells.github.io/bootstrap-tags.html */
     .tag {
         font-size: 12px;
         padding: .3em .4em .4em;
         margin: 0 .1em;
         background-color: transparent;
         border-color: #e6e7ea;
-        /*color: #e6e7ea;*/
         color: #a2a6af;
     }
 
@@ -35,12 +33,6 @@
             vertical-align: bottom;
             top: 0;
             color: #6e6e6e;
-            /*
-                Propuesta 2
-            vertical-align: bottom;
-            padding-bottom: 4px;
-            color: #6e6e6e;
-            font-size: 8px;*/
         }
 
         .tag a {
@@ -49,10 +41,9 @@
 
             .tag a .glyphicon-white {
                 margin-bottom: 2px;
-                /*color: #3aa7aa;*/
                 color: #83868c;
             }
-</style>
+</style>--%>
 
 <script type="text/javascript">
     function UploadFile(fileUpload) {
@@ -105,7 +96,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-4 col-sm-4 text-right">
-                                        <asp:LinkButton runat="server" Text="Editar" CssClass="btn btn-editar" ID="btnEditar" OnClick="btnEditar_OnClick" />
+                                        <asp:LinkButton runat="server" Text="Editar" CssClass="btn btn-primary" ID="btnEditar" OnClick="btnEditar_OnClick" />
                                     </div>
                                 </div>
                             </div>
@@ -114,12 +105,12 @@
                                 <div class="col-lg-1 col-md-1">
                                     <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="Upload" Style="display: none" ClientIDMode="Static" />
                                     <div class="form-group avatar" runat="server" id="divAvatar" visible="True">
-                                        <figure class="figure col-md-12 col-sm-6 col-xs-6 center-content-div">
+                                        <figure class="figure col-md-12 col-sm-6 col-xs-6 center-content-div center-block centered">
                                             <asp:Image CssClass="img-rounded img-responsive" Style="padding-top: 25px;" ImageUrl="~/assets/images/profiles/profile-square-1.png" ID="imgPerfil" alt="imgPerfil" runat="server" />
 
                                             <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer; max-height: 165px; max-width: 165px;">
                                                 <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer" />
-                                                <asp:LinkButton runat="server" Text="Cambiar" Style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-editar" />
+                                                <asp:LinkButton runat="server" Text="Editar" Style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-primary" />
                                             </asp:Panel>
                                         </figure>
                                         <div class="form-group col-sm-10">
@@ -142,17 +133,17 @@
                                     <div class="row">
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
                                             <label>Nombre</label>
-                                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
+                                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                         </div>
 
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
                                             <label>Apellido Paterno</label>
-                                            <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" placeholder="Apellido paterno" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
+                                            <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                         </div>
 
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">
                                             <label>Apellido Materno</label>
-                                            <asp:TextBox ID="txtAm" runat="server" CssClass="form-control" placeholder="Apellido materno" onkeypress="return ValidaCampo(this,1)" MaxLength="32" />
+                                            <asp:TextBox ID="txtAm" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" MaxLength="32" />
                                         </div>
 
                                         <div class="col-lg-3 col-md-3" style="padding-left: 20px">

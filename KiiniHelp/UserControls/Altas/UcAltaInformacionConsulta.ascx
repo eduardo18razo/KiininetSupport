@@ -30,7 +30,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="module-inner">
                         <asp:Button runat="server" CssClass="btn btn-default col-lg-3 col-md-3" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-default col-lg-4 col-md-4 margin-left-5" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
+                        <asp:Button runat="server" CssClass="btn btn-primary col-lg-4 col-md-4 margin-left-5" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
                         <asp:Button runat="server" CssClass="btn btn-success col-lg-3 col-md-3 margin-left-5" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
                     </div>
                 </div>

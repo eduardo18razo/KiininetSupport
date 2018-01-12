@@ -42,8 +42,6 @@
                 <asp:ScriptReference Path="~/assets/tmp/editor/plugins/base64/trumbowyg.base64.min.js" />
                 <asp:ScriptReference Path="~/assets/tmp/editor/plugins/upload/trumbowyg.upload.min.js" />
                 <asp:ScriptReference Path="~/assets/tmp/jquery.tagsinput.min.js" />
-
-
                 <asp:ScriptReference Path="~/assets/js/jquery.sumoselect.min.js" />
                 <asp:ScriptReference Path="~/assets/js/validation.js" />
             </Scripts>
@@ -58,28 +56,8 @@
         <asp:UpdatePanel ID="upGeneral" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Timer runat="server" ID="tmpSendNotificacion" OnTick="tmpSendNotificacion_OnTick" Interval="60000" Enabled="False" />
-                <header class="" id="panelAlertaGeneral" runat="server" visible="False" style="width: 600px; margin: 0 auto">
-                    <div class="alert alert-danger">
-                        <div>
-                            <div style="float: left">
-                                <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
-                            </div>
-                            <div style="float: left">
-                                <h3>Error</h3>
-                            </div>
-                            <div class="clearfix clear-fix" />
-                        </div>
-                        <hr />
-                        <asp:Repeater runat="server" ID="rptErrorGeneral">
-                            <ItemTemplate>
-                                <%# Eval("Detalle")  %>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                </header>
                 <div class="panel panel-primary" style="width: 800px; margin: 0 auto">
                     <div style="padding: 0px 20px">
-                        <%--class="panel-heading"--%>
                         <h4 class="h2">Confirma tus Datos</h4>
                         <hr />
                     </div>
@@ -106,7 +84,7 @@
                                             <asp:Label runat="server" ID="lblIdUsuario" Text='<%# Eval("IdUsuario") %>' Visible="False" />
                                             <table>
                                                 <tr>
-                                                    <td colspan="3" style="text-align: left; padding-left: 65px; padding-right:40px">
+                                                    <td colspan="3" style="text-align: left; padding-left: 65px; padding-right: 40px">
                                                         <br />
                                                         <asp:Label runat="server" Text="Si tu número celular es correcto envía el código para verificar tu cuenta, en caso contrario puedes modificar tu número celular" />
                                                         <br />
@@ -145,26 +123,6 @@
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
-                            <%--<asp:Repeater runat="server" ID="rptConfirmacion2">
-                                <ItemTemplate>
-                                    <div class="form-group">
-                                        <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
-                                        <asp:Label runat="server" ID="lblTelefono" Text='<%# Eval("Numero") %>' Visible="False" />
-                                        <asp:Label runat="server" ID="lblIdUsuario" Text='<%# Eval("IdUsuario") %>' Visible="False" />
-                                        <asp:Label runat="server" Text="Codigo de confirmacion" class="col-sm-3 control-label" />
-                                        <div class="col-sm-2">
-                                            <asp:TextBox runat="server" CssClass="form-control obligatorio" ID="txtCodigo" onkeypress="return ValidaCampo(this,2)" MaxLength="5" />
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <asp:TextBox runat="server" CssClass="form-control" Text='<%# Eval("Numero") %>' ID="txtNumeroEdit" ReadOnly="True" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
-                                        </div>
-                                        <asp:Button runat="server" Text="Cambiar Numero" CssClass="btn btn-sm btn-primary" ID="btnChangeNumber" CommandArgument="0" OnClick="btnChangeNumber_OnClick" />
-                                        <asp:Button runat="server" Text="Enviar Codigo" CssClass="btn btn-sm btn-primary" ID="btnSendNotification" OnClick="btnSendNotification_OnClick" />
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>--%>
-
-                            <%--<div class="form-inline">--%>
 
                             <div class="form-group">
                                 <asp:TextBox ID="txtIdPregunta" runat="server" CssClass="form-control" Visible="False" />
@@ -179,31 +137,7 @@
                                 <div class="col-sm-7">
                                     <asp:TextBox ID="txtRespuesta" runat="server" CssClass="form-control" Style="text-transform: none"></asp:TextBox>
                                 </div>
-                                <%--<asp:Button ID="btnAddPregunta" runat="server" CssClass="btn btn-sm btn-success" Text="Agregar" OnClick="btnAddPregunta_OnClick" />--%>
                             </div>
-                            <%-- </div>--%>
-
-                            <asp:Repeater runat="server" ID="rptPreguntas" Visible="false">
-                                <HeaderTemplate>
-                                    <div class="row">
-                                        <div class="col-xs-6 col-sm-3">Pregunta</div>
-                                        <div class="col-xs-6 col-sm-3">Respuesta</div>
-                                    </div>
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    <div class="row">
-                                        <div class="margen-arriba">
-                                            <div class="col-xs-6 col-md-3">
-                                                <asp:Label runat="server" ID="lblPregunta" Text='<%# Eval("Pregunta") %>'></asp:Label>
-                                            </div>
-                                            <div class="col-xs-5 col-md-3">
-                                                <asp:Label runat="server" ID="lblRespuesta"><%# Eval("Respuesta") %></asp:Label>
-                                            </div>
-                                            <asp:LinkButton runat="server" Text="Editar" OnClick="OnClick" CommandArgument='<%# Eval("Id") %>' />
-                                        </div>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:Repeater>
                         </div>
                     </div>
                     <div class="center-content-div">

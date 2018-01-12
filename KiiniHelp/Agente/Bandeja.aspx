@@ -106,19 +106,18 @@
                                                 <HeaderStyle Width="30px"></HeaderStyle>
                                             </tc:GridClientSelectColumn>
 
-                                            <tc:GridImageColumn DataImageUrlFields="ImagenSla" FilterCheckListEnableLoadOnDemand="True" HeaderText="SLA" SortExpression="ImagenSla" ShowFilterIcon="False" AllowFiltering="False" UniqueName="Sla" ImageWidth="30px">
-                                         
+                                            <tc:GridImageColumn DataImageUrlFields="ImagenSla" FilterCheckListEnableLoadOnDemand="True" HeaderText="SLA" SortExpression="ImagenSla" ShowFilterIcon="False" AllowFiltering="False" UniqueName="Sla" ImageWidth="23px">
                                                 <HeaderStyle Width="60px"></HeaderStyle>
                                             </tc:GridImageColumn>
 
-                                            <tc:GridImageColumn DataImageUrlFields="ImagenPrioridad" FilterCheckListEnableLoadOnDemand="True" HeaderText="Pri" SortExpression="ImagenPrioridad" AutoPostBackOnFilter="True" ShowFilterIcon="False" AllowFiltering="False" UniqueName="ImagenPrioridad" ImageWidth="30px">
+                                            <tc:GridImageColumn DataImageUrlFields="ImagenPrioridad" FilterCheckListEnableLoadOnDemand="True" HeaderText="Pri" SortExpression="ImagenPrioridad" AutoPostBackOnFilter="True" ShowFilterIcon="False" AllowFiltering="False" UniqueName="ImagenPrioridad" ImageWidth="23px">
                                                 <HeaderStyle Width="60px"></HeaderStyle>
                                             </tc:GridImageColumn>
 
                                             <tc:GridTemplateColumn UniqueName="Vip" HeaderText="VIP" FilterCheckListEnableLoadOnDemand="True" ShowFilterIcon="False" AllowFiltering="False">
                                                 <HeaderStyle Width="60px"></HeaderStyle>
                                                 <ItemTemplate>
-                                                    <asp:Image runat="server" ImageUrl="~/assets/images/icons/vip.png" Width="30px" Visible='<%# Eval("Vip") %>' />
+                                                    <asp:Image runat="server" ImageUrl="~/assets/images/icons/vip.png" Width="23px" Visible='<%# Eval("Vip") %>' />
                                                 </ItemTemplate>
                                             </tc:GridTemplateColumn>
 

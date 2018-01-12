@@ -38,8 +38,21 @@ namespace KiiniHelp.UserControls.Altas
             set
             {
                 hfEsAlta.Value = value.ToString();
+                lbltitulo.Text = value ? "Nuevo Horario" : "Editar Horario";            
             }
         }
+
+
+        //public bool Alta
+        //{
+        //    get { return Convert.ToBoolean(ViewState["Alta"].ToString()); }
+        //    set
+        //    {
+        //        ViewState["Alta"] = value.ToString();
+        //        //ddlTipoUsuario.Enabled = value;
+        //        //ddlTipoGrupo.Enabled = value;
+                
+        //}
 
         public int IdHorario
         {

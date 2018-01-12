@@ -147,7 +147,7 @@
         text-align: center;
         vertical-align: middle;
         background-color: #fff;
-        border: 1px solid #ccc;
+        border: 2px solid #ecf0f1;
     }
 
     .no-border {
@@ -155,7 +155,7 @@
     }
 
     .highlighted {
-        background-color: #40babd;
+       background-color: #3FA9F5;
     }
 
     .transparente {
@@ -176,7 +176,7 @@
     }
 
     .footerLabel {
-        transform: rotate(-90deg);
+        transform: rotate(-80deg);
         background: transparent;
         border: none !important;
         width: 1px;
@@ -198,21 +198,20 @@
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
             <h6 class="modal-title" id="modal-new-ticket-label">
-                Nuevo Horario</h6>
-            <hr class="bordercolor"/>
+                <asp:Label runat="server" ID="lbltitulo" />
+            </h6>
         </div>
         <div class="modal-body">
-
             <div class="row">
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div class="row center-block">
-                            <div class="row center-block center-content-div centered">
-                                <div class="form-group margin-top-10">
-                                    Ingresa el nombre para el nuevo Horario<br />
+                            <div class="row"> <%--center-block center-content-div centered--%>
+                                <div class="form-group col-sm-10 margin-top-10">
+                                    Ingresa el nombre para el Horario<br />
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-sm-6 col-lg-offset-3">
+                                    <div class="col-sm-8">
                                         <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control col-sm-3" MaxLength="50" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
                                 </div>
@@ -224,12 +223,12 @@
                 <br />
                 <label>Selecciona las horas laborales por cada día de la semana.</label>
                  <br />
-                <div class="bg-grey">
+                <div>
                     <asp:UpdatePanel runat="server" ID="upTableHorario" UpdateMode="Conditional">
                         <ContentTemplate>
 
                             
-                            <table class="table table-responsive" id="our_table" style="background: transparent">
+                            <table class="table table-responsive disabled" id="our_table" style="background: transparent">
                                 <tbody>
                                     <tr id="row1">
                                         <td class="headertd">Lun</td>
@@ -477,7 +476,7 @@
                 </ContentTemplate>
             </asp:UpdatePanel>--%>
             <br />
-            <div class="row text-right">
+            <div class="row text-right" style="padding-bottom: 20px;">
                 <asp:Button runat="server" ID="btnAgregar" Text="Guardar" CssClass="btn btn-primary" OnClick="btnAceptar_OnClick" />
             </div>
         </div>

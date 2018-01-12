@@ -11,10 +11,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelarCatalogo_OnClick" Text='&times'></asp:LinkButton>
-                    <h6 class="text-center">
-                        <asp:Label runat="server" ID="lblTitleCatalogo" Font-Bold="true" />
-                        <hr />
+                    <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelarCatalogo_OnClick" Text='&times'/>
+                    <h6 class="text-left">
+                        <asp:Label runat="server" class="modal-title" ID="lblTitleCatalogo"/>                        
                     </h6>
                 </div>
                 <div class="modal-body">
