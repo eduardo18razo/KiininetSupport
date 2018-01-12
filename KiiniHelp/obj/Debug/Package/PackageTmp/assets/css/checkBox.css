@@ -1,0 +1,139 @@
+﻿/*input[type='checkbox'] {
+    max-height: 0;
+    max-width: 0;
+    opacity: 1;
+}
+
+    input[type='checkbox'] + label {
+        display: block;
+        position: relative;
+        box-shadow: inset 0 0 0px 1px #d5d5d5;
+        text-indent: -5000px;
+        height: 30px;
+        width: 50px;
+        border-radius: 15px;
+    }
+
+        input[type='checkbox'] + label:before {
+            content: "";
+            position: absolute;
+            display: block;
+            height: 30px;
+            width: 30px;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            background: #3aa7aa;
+            background: rgba(58, 167, 170, 1);
+            -moz-transition: .25s ease-in-out;
+            -webkit-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+        }
+
+input[type='checkbox'] + label:after {
+            content: "";
+            position: absolute;
+            display: block;
+            height: 30px;
+            width: 30px;
+            top: 0;
+            left: 0px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: inset 0 0 0 1px #000000, 0 2px 4px #000000;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .2), 0 2px 4px rgba(0, 0, 0, .2);
+            -moz-transition: .25s ease-in-out;
+            -webkit-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+        }
+
+input[type='checkbox']:checked + label:before {
+        width: 50px;
+        background: #3aa7aa;
+        background: rgba(58, 167, 170, 1);
+    }
+
+input[type='checkbox']:checked + label:after {
+        left: 20px;
+        box-shadow: inset 0 0 0 1px #3aa7aa, 0 2px 4px #000000;
+        box-shadow: inset 0 0 0 1px rgba(58, 167, 170, 1), 0 2px 4px rgba(0, 0, 0, .2);
+    }*/
+
+
+.chkIphone input[type='checkbox'] {
+	/*max-height: 0;
+	max-width: 0;*/
+	/*opacity: 1;*/
+	/*padding-left: 0;
+	padding-right: 0;*/
+	display: none;  
+}
+
+    .chkIphone input[type='checkbox'] + label {
+        display: inline-block;
+        position: relative;
+        box-shadow: inset 0 0 0px 1px #d5d5d5;
+        text-indent: -5000px;
+        height: 15px;
+        width: 100%;
+        border-radius: 15px;
+        padding-left: 0;
+        padding-right: 0;
+        /*padding-top: 15px;*/
+    }
+
+        .chkIphone input[type='checkbox'] + label:before {
+            content: "";
+            position: absolute;
+            display: block;
+            height: 15px;
+            width: 15px;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+            background: #dbdbdb;
+            /*background: rgba(58, 167, 170, 1);*/
+            -moz-transition: .25s ease-in-out;
+            -webkit-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+            
+        padding-left: 0;
+        padding-right: 0;
+        }
+
+.chkIphone input[type='checkbox'] + label:after {
+            content: "";
+            position: absolute;
+            display: block;
+            height: 15px;
+            width: 15px;
+            top: 0;
+            left: 0px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: inset 0 0 0 1px #000000, 0 2px 4px #000000;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .2), 0 2px 4px rgba(0, 0, 0, .2);
+            -moz-transition: .25s ease-in-out;
+            -webkit-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+            
+        padding-left: 0;
+        padding-right: 0;
+        }
+
+.chkIphone input[type='checkbox']:checked + label:before {
+        width: 100%;
+        /*background: #3aa7aa;*/
+        background: #3FA9F5;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+.chkIphone input[type='checkbox']:checked + label:after {
+        left: 68%; /*30px*/
+		/*right: 2px;*/
+        /*box-shadow: inset 0 0 0 1px #dbdbdb , 0 2px 4px #000000;*/ 
+        /*box-shadow: inset 0 0 0 1px rgba(58, 167, 170, 1), 0 2px 4px rgba(0, 0, 0, .2);*/
+        padding-left: 0;
+        padding-right: 0;
+    }

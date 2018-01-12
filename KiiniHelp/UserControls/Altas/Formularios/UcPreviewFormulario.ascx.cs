@@ -322,7 +322,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             HtmlGenericControl createDivGrupoFechas = new HtmlGenericControl("DIV");
                             createDivGrupoFechas.Attributes["class"] = "form-group";
 
-                            Label lblDe = new Label { Text = "De:", CssClass = "" };
+                            Label lblDe = new Label { Text = "De: ", CssClass = "" };
                             lblDe.Attributes["for"] = "FECHAINICIO";
                             createDivGrupoFechas.Controls.Add(lblDe);
 
@@ -344,7 +344,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             createDivGrupoFechas.Controls.Add(txtFechaInicio);
 
 
-                            Label lblHasta = new Label { Text = "De:", CssClass = "" };
+                            Label lblHasta = new Label { Text = "  A: ", CssClass = "" };
                             lblHasta.Attributes["for"] = "FECHAFIN";
                             createDivGrupoFechas.Controls.Add(lblHasta);
                             TextBox txtFechaFin = new TextBox

@@ -19,3 +19,24 @@ C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniMaster\bin\KinniNet.Data.pdb
 C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
 C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniMaster\obj\Debug\KiiniMaster.dll
 C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KiiniMaster\obj\Debug\KiiniMaster.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniMaster.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniMaster.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniMaster.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.Web.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Core.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EASendMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.Web.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KiiniNet.Services.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Core.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.pdb
