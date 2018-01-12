@@ -1,8 +1,0 @@
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\bin\Debug\KinniNet.Data.dll.config
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\bin\Debug\KinniNet.Data.dll
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\bin\Debug\KinniNet.Data.pdb
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\bin\Debug\KiiniNet.Entities.dll
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\bin\Debug\KiiniNet.Entities.pdb
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\obj\Debug\KinniNet.Data.csprojResolveAssemblyReference.cache
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\obj\Debug\KinniNet.Data.dll
-C:\Users\Janeth\Documents\TFS\Desarrollo Janet\KinniNet.Data\obj\Debug\KinniNet.Data.pdb

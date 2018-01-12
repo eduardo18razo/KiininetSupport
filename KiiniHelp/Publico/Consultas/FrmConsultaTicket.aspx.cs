@@ -166,7 +166,7 @@ namespace KiiniHelp.Publico.Consultas
                 ucCambiarEstatusTicket.IdTicket = Convert.ToInt32(lblticket.Text);
                 ucCambiarEstatusTicket.IdEstatusActual = int.Parse(hfEstatusActual.Value);
                 ucCambiarEstatusTicket.IdGrupo = 0;
-                ucCambiarEstatusTicket.IdUsuario = Session["UserData"] != null ? ((Usuario)Session["UserData"]).Id : new ServiceSecurityClient().GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.Cliente).Id;
+                ucCambiarEstatusTicket.IdUsuario = int.Parse(hfIdUsuarioTicket.Value);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalEstatusCambio\");", true);
             }
             catch (Exception ex)

@@ -54,8 +54,9 @@ namespace KiiniHelp.UserControls.Altas.Catalogo
                 txtDescripcionCatalogo.Text = puesto.DescripcionLarga;
                 hfIdCatalogo.Value = value.ToString();
                 rbtnManual.Checked = !puesto.Archivo;
-                afuArchivo.Enabled = false;
-                rbtnHojas.Enabled = false;
+                rbtnArchivo.Checked = puesto.Archivo;
+                divManual.Visible = !puesto.Archivo;
+                divArchivo.Visible = puesto.Archivo;
                 if (!puesto.Archivo)
                 {
                     Session["registrosCatalogos"] = _servicioCatalogo.ObtenerRegistrosSistemaCatalogo(value, false, true);
@@ -252,26 +253,31 @@ namespace KiiniHelp.UserControls.Altas.Catalogo
 
         protected void btnLeerArchivo_OnClick(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
+                Console.Write("Entro a leer");
                 hfFileName.Value = Session["ArchivoCarga"].ToString();
                 if (hfFileName.Value.Trim() == string.Empty)
                     throw new Exception("Seleccione un archivo");
+                Console.Write("Si tiene archivo");
                 var path = BusinessVariables.Directorios.RepositorioTemporal;
+                Console.Write(path);
                 rbtnHojas.DataSource = BusinessFile.ExcelManager.ObtenerHojasExcel(path + afuArchivo.FileName);
                 rbtnHojas.DataTextField = "TABLE_NAME";
                 rbtnHojas.DataValueField = "TABLE_NAME";
                 rbtnHojas.DataBind();
-            //}
-            //catch (Exception ex)
-            //{
-            //    if (_lstError == null)
-            //    {
-            //        _lstError = new List<string>();
-            //    }
-            //    _lstError.Add(ex.Message);
-            //    Alerta = _lstError;
-            //}
+                Console.Write("termino");
+            }
+            catch (Exception ex)
+            {
+                Console.Write("Error");
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
         }
 
         protected void btnGuardar_OnClick(object sender, EventArgs e)
@@ -394,9 +400,9 @@ namespace KiiniHelp.UserControls.Altas.Catalogo
                     ((LinkButton)control.FindControl("btnAgregarRegistro")).Enabled = rbtnManual.Checked;
                 }
                 //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "disableUpload", "document.getElementById('" + afuArchivo.ClientID +"').disabled = "+ (!rbtnArchivo.Checked).ToString().ToLower() + ";", true);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "disableUpload", "var elms = document.getElementById('ContentPlaceHolder1_ucConsultaCatalogos_ucAltaCatalogos_afuArchivo').getElementsByTagName(\"*\");" + "for (var i = 0; i < elms.length; i++) " + "{" + "elms[i].disabled  = " + (!rbtnArchivo.Checked).ToString().ToLower() + "" + "};", true);
-                btnLeerArchivo.Enabled = rbtnArchivo.Checked;
-                rbtnHojas.Enabled = rbtnArchivo.Checked;
+                divManual.Visible = rbtnManual.Checked;
+                divArchivo.Visible = rbtnArchivo.Checked;
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "disableUpload", "var elms = document.getElementById('ContentPlaceHolder1_ucConsultaCatalogos_ucAltaCatalogos_afuArchivo').getElementsByTagName(\"*\");" + "for (var i = 0; i < elms.length; i++) " + "{" + "elms[i].disabled  = " + (!rbtnArchivo.Checked).ToString().ToLower() + "" + "};", true);
             }
             catch (Exception ex)
             {

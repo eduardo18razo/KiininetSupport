@@ -78,7 +78,7 @@ namespace KinniNet.Core.Sistema
             return result;
         }
 
-        public bool ExisteMascara(string nombreTabla)
+        public bool ExisteMascara(string nombreTabla, bool returnThrow)
         {
             bool result;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -88,7 +88,7 @@ namespace KinniNet.Core.Sistema
                 var pResult = new SqlParameter { ParameterName = "@OUTER", Direction = ParameterDirection.Output, SqlDbType = SqlDbType.Int };
                 db.ExecuteStoreCommand("exec ExisteTablaCatalogo @TABLENAME, @OUTER output", pTableName, pResult);
                 result = (int)pResult.Value == 1;
-                if (result)
+                if (result && returnThrow)
                     throw new Exception("Ya Existe");
 
             }
@@ -183,7 +183,7 @@ namespace KinniNet.Core.Sistema
                 catalogo.Archivo = false;
                 catalogo.Habilitado = true;
 
-                ExisteMascara(catalogo.Tabla);
+                ExisteMascara(catalogo.Tabla, true);
                 CreaEstructuraBaseDatos(catalogo.Tabla);
                 db.Catalogos.AddObject(catalogo);
                 db.SaveChanges();
@@ -517,6 +517,7 @@ namespace KinniNet.Core.Sistema
             string tabla = null;
             try
             {
+                string connection = (((System.Data.EntityClient.EntityConnection) (db.Connection)).StoreConnection).ConnectionString;
                 catalogo.Descripcion = catalogo.Descripcion.Trim();
                 catalogo.Tabla = (BusinessVariables.ParametrosCatalogo.PrefijoTabla + catalogo.Descripcion).Replace(" ", string.Empty).ToUpper();
                 catalogo.EsMascaraCaptura = esMascara;
@@ -524,15 +525,14 @@ namespace KinniNet.Core.Sistema
                 catalogo.Archivo = true;
                 catalogo.Habilitado = true;
                 tabla = catalogo.Tabla;
-                ExisteMascara(tabla);
+                ExisteMascara(tabla, true);
                 DataSet dtExcel = BusinessFile.ExcelManager.LeerHojaExcel(archivo, hoja);
                 string sqltable = CreateSqlTableFromDataTable(catalogo.Tabla, dtExcel.Tables["tablaPaso"]);
                 db.ExecuteStoreCommand(sqltable);
-                string val2 = ConfigurationManager.AppSettings["valCatalogo2"];
-                string val3 = ConfigurationManager.AppSettings["valCatalogo3"];
-                SqlConnection sqlConn = new SqlConnection(string.Format("Server={0};Database={1};User Id = {2};Password = {3};", db.Connection.DataSource, (((System.Data.EntityClient.EntityConnection)(db.Connection)).StoreConnection).Database, val2, val3));
+                SqlConnection sqlConn = new SqlConnection(connection);
                 sqlConn.Open();
                 SqlCommand cmd = new SqlCommand(string.Format("select * from {0}", catalogo.Tabla), sqlConn);
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.TableMappings.Add("Table", catalogo.Tabla);
                 DataSet ds = new DataSet();
@@ -557,7 +557,7 @@ namespace KinniNet.Core.Sistema
             catch (Exception ex)
             {
                 if (tabla == null) throw new Exception(ex.Message);
-                if (ExisteMascara(tabla))
+                if (ExisteMascara(tabla, false))
                     EliminarObjetoBaseDeDatos(tabla, BusinessVariables.EnumTipoObjeto.Tabla);
                 throw new Exception(ex.Message);
             }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Usuarios.Master"  AutoEventWireup="true" CodeBehind="FrmAltaInfConsulta.aspx.cs" Inherits="KiiniHelp.Users.Administracion.InformaciondeConsulta.FrmAltaInfConsulta" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Usuarios.Master"  AutoEventWireup="true" ValidateRequest="false" CodeBehind="FrmAltaInfConsulta.aspx.cs" Inherits="KiiniHelp.Users.Administracion.InformaciondeConsulta.FrmAltaInfConsulta" %>
 
 <%@ Register Src="~/UserControls/Altas/UcAltaInformacionConsulta.ascx" TagPrefix="uc1" TagName="UcAltaInformacionConsulta" %>
 
