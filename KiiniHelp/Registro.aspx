@@ -95,8 +95,7 @@
                             <ContentTemplate>
                                 <hr />
                                 <p class="h4">
-                                    <strong>Te llegará un correo electrónico, favor de confirmar tu registro.
-                                        <asp:Label runat="server" ID="lblNoTicket" /></strong><br>
+                                    <strong>En breve recibirás un correo electrónico para confirmar tu registro.</strong><br>
                                 </p>
                                 <p class="h4">
                                     <asp:Button runat="server" Text="Aceptar" ID="btnAceptar" OnClick="btnCerrarExito_OnClick" CssClass="btn btn-primary" />
