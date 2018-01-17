@@ -59,7 +59,7 @@
                                                 <asp:TextBox runat="server" ID="txtPregunta" CssClass="form-control" Text='<%# Eval("Pregunta") %>' MaxLength="50" onkeydown="return (event.keyCode!=13);" />
                                             </div>
                                             <div class="col-xs-5 col-md-2">
-                                                <asp:TextBox runat="server" ID="txtPonderacion" CssClass="form-control" Text='<%# Eval("Ponderacion") %>' MaxLength="6" onkeydown="return (event.keyCode!=13);" OnTextChanged="txtPonderacion_OnTextChanged" />
+                                                <asp:TextBox runat="server" ID="txtPonderacion" CssClass="form-control" Text='<%# Decimal.ToInt32(decimal.Parse(Eval("Ponderacion").ToString())) %>' MaxLength="6" onkeypress="return ValidaCampo(this,2)" onkeydown="return (event.keyCode!=13);" OnTextChanged="txtPonderacion_OnTextChanged" />
                                             </div>
                                             <asp:LinkButton runat="server" ID="btnSubir" CssClass="fa fa-angle-double-up fa-20x" CommandArgument='<%# Eval("Id") %>' CommandName='<%# Container.ItemIndex %>' OnClick="btnSubir_OnClick" /><br />
                                             <asp:LinkButton runat="server" ID="btnBajar" CssClass="fa fa-angle-double-down fa-20x" CommandArgument='<%# Eval("Id") %>' CommandName='<%# Container.ItemIndex %>' OnClick="btnBajar_OnClick" />

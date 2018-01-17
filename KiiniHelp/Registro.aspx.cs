@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace KiiniHelp
 {
-    public partial class Registro : System.Web.UI.Page
+    public partial class Registro : Page
     {
 
         private List<string> _lstError = new List<string>();
@@ -72,11 +70,28 @@ namespace KiiniHelp
         {
             try
             {
-                lblconfirmar.Visible = true;
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptOpen", "MostrarPopup(\"#modalRegistroExito\");", true);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        protected void btnCerrarExito_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Default.aspx");
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
     }

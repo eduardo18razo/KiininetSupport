@@ -189,7 +189,7 @@ namespace KinniNet.Core.Operacion
                     String body = NamedFormat.Format(correo.Contenido, usuario);
                     foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
                     {
-                        BusinessCorreo.SendMail(correoUsuario.Correo, correo.TipoCorreo.Descripcion, body);
+                        BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
                     }
                 }
             }
@@ -302,7 +302,7 @@ namespace KinniNet.Core.Operacion
                         String body = NamedFormat.Format(correo.Contenido, usuario);
                         foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
                         {
-                            BusinessCorreo.SendMail(correoUsuario.Correo, correo.TipoCorreo.Descripcion, body);
+                            BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
                         }
                     }
                 }
