@@ -45,7 +45,6 @@ namespace KiiniHelp.UserControls.Consultas
                     lstcatalogos = lstcatalogos.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
                 tblResults.DataSource = lstcatalogos;
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -62,8 +61,6 @@ namespace KiiniHelp.UserControls.Consultas
             }
             ucAltaCatalogos.OnAceptarModal += AltaCatalogoOnAceptarModal;
             ucAltaCatalogos.OnCancelarModal += AltaCatalogoOnCancelarModal;
-            //ucCargaCatalgo.OnAceptarModal += ucCargaCatalgo_OnAceptarModal;
-            //ucCargaCatalgo.OnCancelarModal += UcCargaCatalgoOnOnCancelarModal;
         }
 
         void ucCargaCatalgo_OnAceptarModal()
@@ -178,7 +175,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 ucAltaCatalogos.EsAlta = false;
-                ucAltaCatalogos.IdCatalogo = int.Parse(((ImageButton) sender).CommandArgument);
+                ucAltaCatalogos.IdCatalogo = int.Parse(((LinkButton) sender).CommandArgument);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaCatalogo\");", true);
             }
             catch (Exception ex)

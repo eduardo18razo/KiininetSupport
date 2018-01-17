@@ -36,7 +36,6 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 tblResults.DataSource = _servicioHorarios.ObtenerHorarioConsulta(txtFiltro.Text.Trim());
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {

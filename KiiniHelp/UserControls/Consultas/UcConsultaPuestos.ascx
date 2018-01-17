@@ -9,7 +9,6 @@
                 <li class="breadcrumb-item">Administración</li>
                 <li class="breadcrumb-item active">Puestos</li>
             </ol>
-
             <!--MÓDULO-->
             <section class="module">
                 <div class="row">
@@ -20,7 +19,8 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Puestos" /></h3>
                             </div>
                             <p>
-                               Los puestos representan las tareas y deberes específicos de un usuario dentro de la organización. Puedes crear puestos para facilitar la administración de los usuarios y sus eventos.
+                                Los puestos representan las tareas y deberes específicos de un usuario dentro de la organización. Puedes crear puestos para facilitar la administración de los usuarios y sus eventos.
+                           
                             </p>
                         </div>
                     </div>
@@ -91,59 +91,15 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
-                                                        <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />
+                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-
-                                <%--<asp:Repeater runat="server" ID="rptResultados">
-                                    <HeaderTemplate>
-                                        <table class="table table-striped display" id="tblResults">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 20%">TU</th>
-                                                    <th style="width: 50%">Puesto</th>
-                                                    <th style="width: 15%">Activo</th>
-                                                    <th style="width: 15%">Editar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                                <div style="min-height: 30px;">
-                                                    <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
-                                                        <%# Eval("TipoUsuario.Abreviacion") %></button>
-                                                </div>
-                                            </td>
-                                            <td><%# Eval("Descripcion")%></td>
-                                            <td id="colHabilitado">
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                            <td id="colEditar">
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
-                                                    <li>
-                                                        <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        </tbody>
-                                            </table>
-                                    </FooterTemplate>
-                                </asp:Repeater>--%>
                             </div>
                         </div>
                     </div>

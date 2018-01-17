@@ -1,5 +1,3 @@
-C:\Users\Janeth\Documents\git\KiiniHelp\obj\Debug\KiiniHelp.csprojResolveAssemblyReference.cache
-C:\Users\Janeth\Documents\git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniHelp.dll.config
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniHelp.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniHelp.pdb
@@ -12,5 +10,7 @@ C:\Users\Janeth\Documents\git\KiiniHelp\bin\Telerik.Web.UI.Skins.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniNet.Entities.pdb
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KinniNet.Business.Utils.pdb
+C:\Users\Janeth\Documents\git\KiiniHelp\obj\Debug\KiiniHelp.csprojResolveAssemblyReference.cache
+C:\Users\Janeth\Documents\git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Janeth\Documents\git\KiiniHelp\obj\Debug\KiiniHelp.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\obj\Debug\KiiniHelp.pdb

@@ -541,12 +541,10 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
         private void HabilitaDetalle(bool habilitado)
         {
-            //divAvatar.Visible = habilitado || EditarDetalle;   
             divUltimoAcceso.Visible = habilitado || EditarDetalle;
             btnEditar.Visible = habilitado || EditarDetalle; 
 
             divBtnGuardar.Visible = !habilitado && !EditarDetalle;
-            //divTipousuario.Visible = !habilitado && !EditarDetalle;
             txtNombre.ReadOnly = habilitado;
             txtAp.ReadOnly = habilitado;
             txtAm.ReadOnly = habilitado;
@@ -813,8 +811,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                             .EsMoral)
                     {
                         divPuesto.Visible = true;
-                        //btnModalOrganizacion.Text = "Organización";
-                        //btnModalUbicacion.Text = "Ubicación";
                         btnModalOrganizacion.Text = "Modificar";
                         btnModalUbicacion.Text = "Modificar";
                     }
@@ -1202,7 +1198,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                //UcUbicacion.AlertaUbicacion = _lstError;
             }
         }
 
@@ -1353,37 +1348,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     }
                 }
 
-                //foreach (RepeaterItem itemRol in rptRoles.Items)
-                //{
-                //    Label lblIdrol = (Label)itemRol.FindControl("lblIdRol");
-                //    if (lblIdrol != null)
-                //    {
-                //        if (idrol == int.Parse(lblIdrol.Text))
-                //        {
-                //            Repeater rptGrupos = (Repeater)itemRol.FindControl("rptGrupos");
-                //            if (rptGrupos != null)
-                //            {
-                //                if (rptGrupos.Items.Count <= 0)
-                //                {
-
-                //                    EliminarRol(idrol);
-                //                    break;
-                //                }
-                //                else
-                //                {
-                //                    Repeater rptSubgrupos = (Repeater)rptGrupos.FindControl("rptSubGrupos");
-                //                    if (rptSubgrupos != null)
-                //                    {
-                //                        if (rptSubgrupos.Items.Count <= 0)
-                //                        {
-                //                            EliminarRol(idrol);
-                //                        }
-                //                    }
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
+               
             }
             catch (Exception ex)
             {

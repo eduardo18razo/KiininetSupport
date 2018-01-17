@@ -38,8 +38,6 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                //if (lstTipoUsuario.Count >= 2)
-                //    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
             }
             catch (Exception e)
@@ -60,7 +58,6 @@ namespace KiiniHelp.UserControls.Consultas
                     ptos = ptos.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
                 tblResults.DataSource = ptos;
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -84,7 +81,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];    jgb
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
@@ -162,11 +158,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //{
-                //    LimpiarPuestos();
-                //    return;
-                //}
                 LlenaPuestosConsulta();
             }
             catch (Exception ex)
@@ -183,8 +174,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //Button btn = (Button)sender;
-                ImageButton btn = (ImageButton)sender;
+                LinkButton btn = (LinkButton)sender;
                 ucAltaPuesto.EsAlta = false;
                 ucAltaPuesto.IdPuesto = int.Parse(btn.CommandArgument);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaPuesto\");", true);
@@ -232,7 +222,6 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-
         protected void OnCheckedChanged(object sender, EventArgs e)
         {
             try

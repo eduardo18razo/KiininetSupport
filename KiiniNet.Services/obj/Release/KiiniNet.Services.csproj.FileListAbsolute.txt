@@ -86,3 +86,4 @@ C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EAGetMail40
 C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EASendMail40.dll
 C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EPPlus.dll
 C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EPPlus.xml
+C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Release\KiiniNet.Services.csprojResolveAssemblyReference.cache

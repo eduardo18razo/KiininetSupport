@@ -99,10 +99,12 @@
     <Content Include="assets\css\elegant-icons.css" />
     <Content Include="assets\css\elusive-icons.css" />
     <Content Include="assets\css\font-awesome.css" />
+    <Content Include="assets\css\font.css" />
     <Content Include="assets\css\menuStyle.css" />
     <Content Include="assets\css\pe-7-icons-helper.css" />
     <Content Include="assets\css\pe-7-icons.css" />
     <Content Include="assets\css\styles.css" />
+    <Content Include="assets\css\sumoselect.css" />
     <Content Include="assets\fonts\elusiveicons-webfont.svg" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
@@ -172,7 +174,6 @@
     <Content Include="assets\tmp\chosen.css" />
     <Content Include="assets\tmp\chosen.jquery.js" />
     <Content Include="assets\js\jquery.sumoselect.min.js" />
-    <Content Include="assets\css\sumoselect.css" />
     <Content Include="assets\tmp\editor\langs\es.min.js" />
     <Content Include="assets\tmp\editor\plugins\base64\trumbowyg.base64.js" />
     <Content Include="assets\tmp\editor\plugins\base64\trumbowyg.base64.min.js" />
@@ -218,7 +219,6 @@
     <Content Include="Downloads\FrmPreviewImage.aspx" />
     <Content Include="FrmRecuperar.aspx" />
     <Content Include="Identificar.aspx" />
-    <Content Include="assets\css\font.css" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Sistema.Canal.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.DiaFestivoDefault.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.HorarioDefault.datasource" />
