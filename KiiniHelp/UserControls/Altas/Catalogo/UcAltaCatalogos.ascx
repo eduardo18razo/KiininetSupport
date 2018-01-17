@@ -7,12 +7,9 @@
         <asp:HiddenField runat="server" ID="hfIdCatalogo" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server" Text='&times;' />
-            <h2 class="modal-title" id="modal-new-ticket-label">
-                <asp:Label runat="server" ID="lblBrandingModal" /></h2>
-            <p class="text-center">
-                <asp:Label runat="server" ID="lblOperacion"></asp:Label>
-            </p>
-            <hr class="bordercolor" />
+            <h6 class="modal-title" id="modal-new-ticket-label">
+                <asp:Label runat="server" ID="lblBrandingModal" /></h6>
+
         </div>
 
         <div class="modal-body">
@@ -20,12 +17,14 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="module-inner">
+                            <asp:Label runat="server" Text="Nombre del Catálogo"></asp:Label>
                             <div class="form-group">
-                                <asp:TextBox runat="server" ID="txtNombreCatalogo" placeholder="Nombre del Catálogo" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtNombreCatalogo" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                             </div>
 
+                            <asp:Label runat="server" Text="Descripción del Catálogo"></asp:Label>
                             <div class="form-group">
-                                <asp:TextBox runat="server" ID="txtDescripcionCatalogo" placeholder="Nombre del Catálogo" TextMode="MultiLine" Rows="3" MaxLength="250" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtDescripcionCatalogo" TextMode="MultiLine" Rows="3" MaxLength="250" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
@@ -33,7 +32,7 @@
                             </div>
 
 
-                            <div class="form-group" runat="server" ID="divManual" Visible="False">
+                            <div class="form-group" runat="server" id="divManual" visible="False">
                                 <asp:Label runat="server" Text="Opción de campo" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <asp:Repeater runat="server" ID="rptRegistros">
@@ -69,7 +68,7 @@
                             <div class="form-group">
                                 <asp:RadioButton runat="server" Text="Agregar campos desde archivo" AutoPostBack="True" GroupName="TipoCatalogo" ID="rbtnArchivo" OnCheckedChanged="rbtnTipoCatalogo_OnCheckedChanged" />
                             </div>
-                            <div runat="server" ID="divArchivo" Visible="False">
+                            <div runat="server" id="divArchivo" visible="False">
                                 <div class="form-group">
                                     <asp:HiddenField runat="server" ID="hfFileName" />
                                     <ajax:AsyncFileUpload ID="afuArchivo" runat="server" UploaderStyle="Traditional" OnUploadedComplete="afuArchivo_OnUploadedComplete" PersistFile="True" />

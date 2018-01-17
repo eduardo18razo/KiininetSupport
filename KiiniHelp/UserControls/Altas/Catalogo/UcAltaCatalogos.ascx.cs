@@ -35,11 +35,11 @@ namespace KiiniHelp.UserControls.Altas.Catalogo
                 if (value)
                 {
                     LimpiarCampos();
-                    lblOperacion.Text = "Agregar Catálogo";
+                    lblBrandingModal.Text = "Agregar Catálogo";
                 }
                 else
                 {
-                    lblOperacion.Text = "Actualizar Catálogo";
+                    lblBrandingModal.Text = "Actualizar Catálogo";
                 }
             }
         }
