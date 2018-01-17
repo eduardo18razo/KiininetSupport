@@ -257,7 +257,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                ucAltaUbicaciones.IdUbicacion = int.Parse(((ImageButton)sender).CommandArgument);
+                ucAltaUbicaciones.IdUbicacion = int.Parse(((LinkButton)sender).CommandArgument);
                 ucAltaUbicaciones.EsSeleccion = false;
                 ucAltaUbicaciones.EsAlta = false;
                 ucAltaUbicaciones.Title = "Editar Ubicación";

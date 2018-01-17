@@ -42,9 +42,9 @@ Categoría > Consulta, Servicio o Problema > Nivel 1 > Nivel 2 > Nivel 3 > Nivel
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-md-6 text-center">
+                        <div class="col-lg-6 col-md-6 text-right">
                             <div class="module-inner">
-                                <div class="form-group">
+                                <div class="form-group espacio15">
                                     <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-download" Text="  Descargar reporte" ID="btnDownload" OnClick="btnDownload_OnClick" />
                                     <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Nuevo" OnClick="btnNew_OnClick" />
                                 </div>
@@ -89,62 +89,16 @@ Categoría > Consulta, Servicio o Problema > Nivel 1 > Nivel 2 > Nivel 3 > Nivel
 
                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
-                                                        <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" Visible='<%# !(bool)Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />
+                                                        <asp:LinkButton runat="server" Visible='<%# !(bool)Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" > 
+                                                            <asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" />  </asp:LinkButton>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-
-
-
-                               <%-- <asp:Repeater runat="server" ID="rptResultados">
-                                    <HeaderTemplate>
-                                        <table class="table table-striped display" id="tblResults">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="70%">Descripción</asp:Label></th>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="15%">Habilitado</asp:Label></th>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="15%" Text="Editar"></asp:Label></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                                <div style="min-height: 30px;">
-                                                    <%# Eval("Descripcion")%>
-                                                </div>
-                                            </td>
-                                            <td id="colHabilitado">
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                            <td id="colEditar">
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
-                                                    <li>
-                                                        <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" Visible='<%# !(bool)Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        </tbody>
-                                            </table>
-                                    </FooterTemplate>
-                                </asp:Repeater>--%>
-                            
                             </div>
                         </div>
                     </div>

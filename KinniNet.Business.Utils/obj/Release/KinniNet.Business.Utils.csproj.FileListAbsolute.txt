@@ -53,3 +53,5 @@ C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business.Utils\obj\Release\KinniN
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business.Utils\obj\Release\KinniNet.Business.Utils.csproj.ResolveComReference.cache
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business.Utils\obj\Release\KinniNet.Business.Utils.dll
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business.Utils\obj\Release\KinniNet.Business.Utils.pdb
+C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Release\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Release\KinniNet.Business.Utils.csproj.ResolveComReference.cache

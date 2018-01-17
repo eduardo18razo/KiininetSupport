@@ -63,13 +63,6 @@ namespace KiiniHelp.UserControls.Consultas
                     tblResults.DataSource = lst;
                     tblResults.DataBind();
                 }
-                //else
-                //{
-                //    tblResults.DataSource = null;
-                //}
-
-               
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -81,14 +74,10 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
                     LlenaCombos();
-                    //List<CatalogoGenerico> lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(1, true, false).Where(w => w.Id != 0).ToList();
-                    //tblResults.DataSource = lst;
-                    //tblResults.DataBind();
                 }
                 
                 ucRegistroCatalogo.OnTerminarModal += AltaRegistroCatalogoOnTerminarModal;
@@ -186,7 +175,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 ucRegistroCatalogo.EsAlta = false;
                 ucRegistroCatalogo.IdCatalogo = int.Parse(ddlCatalogos.SelectedValue);
-                ucRegistroCatalogo.IdRegistro = int.Parse(((ImageButton)sender).CommandArgument);
+                ucRegistroCatalogo.IdRegistro = int.Parse(((LinkButton)sender).CommandArgument);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaRegistro\");", true);
             }
             catch (Exception ex)

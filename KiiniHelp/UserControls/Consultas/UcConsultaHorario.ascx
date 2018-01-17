@@ -97,13 +97,9 @@
 
                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="20%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
-                                                        <asp:LinkButton runat="server" Visible='<%# !(bool) Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>'  OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
-
-                                                       <%-- <asp:ImageButton runat="server" Visible='<%# !(bool) Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />--%>
-                                                       <%-- <asp:Label runat="server" Text="|" Visible='<%# !(bool) Eval("Sistema") %>' />
-                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' OnClick="btnClonar_OnClick"></asp:LinkButton>--%>
+                                                        <asp:LinkButton runat="server" Visible='<%# !(bool) Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>'  OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>                                                       
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
@@ -111,10 +107,8 @@
 
                                          <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
                                                     <li>
-                                                      <%--  <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" Visible='<%# !(bool) Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />
-                                                        <asp:Label runat="server" Text="|" Visible='<%# !(bool) Eval("Sistema") %>' />--%>
                                                         <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' OnClick="btnClonar_OnClick"></asp:LinkButton>
                                                     </li>
                                                 </ul>
@@ -122,55 +116,6 @@
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-
-
-                               <%-- <asp:Repeater runat="server" ID="rptResultados">
-                                    <HeaderTemplate>
-                                        <table class="table table-striped display" id="tblResults">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="25%">Nombre</asp:Label></th>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="15%">Creación</asp:Label></th>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="20%" Style="display: inline;">Últ. Edición</asp:Label></th>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="15%">Activo</asp:Label></th>
-                                                    <th>
-                                                        <asp:Label runat="server" Width="25%" Text="Editar | Clonar" Style="display: inline;"></asp:Label></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td style="height: 46px;"><%# Eval("Descripcion")%></td>
-                                            <td><%# Eval("FechaAlta")%></td>
-                                            <td><%# Eval("FechaModificacion")%></td>
-                                            <td id="colHabilitado">
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Visible='<%# !(bool) Eval("Sistema") %>' Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                            <td id="colEditar">
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
-                                                    <li>
-                                                        <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" Visible='<%# !(bool) Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />
-                                                        <asp:Label runat="server" Text="|" Visible='<%# !(bool) Eval("Sistema") %>' />
-                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' OnClick="btnClonar_OnClick"></asp:LinkButton>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        </tbody>
-                                            </table>
-                                    </FooterTemplate>
-                                </asp:Repeater>--%>
 
                             </div>
                         </div>

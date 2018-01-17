@@ -70,7 +70,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                Response.Redirect("~/Users/Administracion/InformaciondeConsulta/FrmAltaInfConsulta.aspx?IdInformacionConsulta=" + ((LinkButton)sender).CommandArgument);
+                Response.Redirect("~/Users/Administracion/InformaciondeConsulta/FrmAltaInfConsulta.aspx?IdInformacionConsulta=" + ((LinkButton)sender).CommandArgument);               
             }
             catch (Exception ex)
             {

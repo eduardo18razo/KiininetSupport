@@ -39,13 +39,13 @@
                                 <div class="search-box form-inline margin-bottom-lg">
                                     <label class="sr-only" for="txtFiltro">Buscar</label>
                                     <div class="form-group ">
-                                        <asp:TextBox runat="server" ID="txtFiltroDecripcion" CssClass="form-control help_search_form col-lg-9 col-md-9" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" placeholder="Busca con una palabra clave..." Style="margin-right: 10px;" />
+                                        <asp:TextBox runat="server" ID="txtFiltroDecripcion" CssClass="form-control help_search_form col-lg-9 col-md-9" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" placeholder="Busca con una palabra clave..."/>
                                         <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon col-lg-2 col-md-2" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                                                                        
                         <div class="col-lg-3 col-md-3">
                             <div class="form-group separador-vertical-derecho">
                                 <div class="form-inline">
@@ -57,27 +57,24 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 text-center">
-                            <asp:LinkButton CssClass="btn btn-success" Style="margin-top: 10px;" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
-                                <i class="fa fa-plus">
-                                     </i>Nuevo</asp:LinkButton>
+                        <div class="col-lg-4 col-md-4 text-right">
+
+                             <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary">
+                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
+
+                            <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
+                                <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
                         </div>
 
                     </div>
                 </div>
             </section>
-            <!--/MÓDULO-->
-            <%-- <asp:Label runat="server" Text="Organizaciones" ID="lblTitleOrganizacion" /></h3>--%>
+          
             <div id="masonry" class="row">
                 <div class="module-wrapper masonry-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <section class="module module-headings">
                         <div class="module-inner">
-                            <%--<div class="module-heading">--%>
-                            <%-- <ul class="actions list-inline">
-                                    <li><a class="collapse-module" data-toggle="collapse" href="#content-1" aria-expanded="false" aria-controls="content-1">
-                                        <span aria-hidden="true" class="icon arrow_carrot-up"></span></a></li>
-                                </ul>--%>
-                            <%-- </div>--%>
+                          
                             <div class="module-content collapse in" id="content-1">
                                 <div class="module-content-inner no-padding-bottom">
                                     <div class="table-responsive">
@@ -88,7 +85,6 @@
                                             <Columns>
                                                 <asp:TemplateField HeaderText="TU" HeaderStyle-Width="2%">
                                                     <ItemTemplate>
-                                                        <%--<asp:Label runat="server" Text='<%# Eval("TipoUsuario.Abreviacion") %>' CssClass="btn btn-default-alt btn-square-usuario" BorderStyle=""/>--%>
                                                         <div style="min-height: 30px;">
                                                             <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
                                                                 <%# Eval("TipoUsuario.Abreviacion") %></button>
@@ -141,7 +137,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="2%">
                                                     <ItemTemplate>
-                                                        <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                        <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                             <li>
                                                                 <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' Visible='<%# (bool) Eval("Habilitado") %>' OnClick="btnEditar_OnClick" />
                                                             </li>

@@ -31,7 +31,7 @@ namespace KiiniHelp
         {
             try
             {
-                lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
+                //lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
                 Alerta = new List<string>();
                 if (Request.Params["confirmacionalta"] != null)
                 {

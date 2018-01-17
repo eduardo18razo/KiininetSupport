@@ -8,14 +8,14 @@
             <asp:HiddenField runat="server" ID="hfIdSeleccion" />
             <asp:HiddenField runat="server" ClientIDMode="Inherit" ID="hfModal" />
             <asp:HiddenField runat="server" ClientIDMode="Inherit" ID="hfId" />
-                                   
+
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
                 <li class="breadcrumb-item">Administración</li>
                 <li class="breadcrumb-item active">Ubicaciones</li>
             </ol>
-            
+
             <section class="module">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
@@ -26,9 +26,10 @@
                             </div>
                             <p>
                                 Las ubicaciones representan el lugar físico donde comúnmente se localiza un usuario. Estas se construyen en forma de árbol, se incluye la dirección y pueden contener desde uno hasta siete niveles de detalle. Puedes crear ubicaciones para facilitar la localización y administración de los usuarios y sus eventos. 
+                           
                             </p>
                         </div>
-                    </div>                   
+                    </div>
                 </div>
 
                 <div class="row">
@@ -90,7 +91,7 @@
                                                         <div style="min-height: 30px;">
                                                             <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
                                                                 <%# Eval("TipoUsuario.Abreviacion") %></button>
-                                                        </div>                                                        
+                                                        </div>
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -140,9 +141,9 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="2%">
                                                     <ItemTemplate>
-                                                        <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                        <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                             <li>
-                                                                <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" Visible='<%# int.Parse(Eval("IdNivelUbicacion").ToString()) != 1 && (bool) Eval("Habilitado") %>' />
+                                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" Visible='<%# int.Parse(Eval("IdNivelUbicacion").ToString()) != 1 && (bool) Eval("Habilitado") %>' ><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
                                                             </li>
                                                         </ul>
                                                     </ItemTemplate>
@@ -150,73 +151,6 @@
                                             </Columns>
                                         </asp:GridView>
 
-
-                                      <%--  <asp:Repeater runat="server" ID="rptResultados" OnItemCreated="rptResultados_OnItemCreated">
-                                            <HeaderTemplate>
-                                                <table class="table table-striped display" id="tblResults">
-                                                    <thead>
-                                                        <tr>
-                                                            <th style="width: 3%">
-                                                                <asp:Label runat="server" ID="Label1" CssClass="text-center">TU</asp:Label></th>
-                                                            <th style="width: 12%">
-                                                                <asp:Label runat="server" ID="lblNivel1">Nivel 1</asp:Label></th>
-                                                            <th style="width: 12%">
-                                                                <asp:Label runat="server" ID="lblNivel2">Nivel 2</asp:Label></th>
-                                                            <th style="width: 12%">
-                                                                <asp:Label runat="server" ID="lblNivel3">Nivel 3</asp:Label></th>
-                                                            <th style="width: 12%">
-                                                                <asp:Label runat="server" ID="lblNivel4">Nivel 4</asp:Label></th>
-                                                            <th style="width: 12%">
-                                                                <asp:Label runat="server" ID="lblNivel5">Nivel 5</asp:Label></th>
-                                                            <th style="width: 12%">
-                                                                <asp:Label runat="server" ID="lblNivel6">Nivel 6</asp:Label></th>
-                                                            <th style="width: 12%">
-                                                                <asp:Label runat="server" ID="lblNivel7">Nivel 7</asp:Label></th>
-                                                            <th style="width: 8%">
-                                                                <asp:Label runat="server">Activo</asp:Label></th>
-                                                            <th style="width: 5%">
-                                                                <asp:Label runat="server">Editar</asp:Label></th>
-                                                            </tr>
-                                                    </thead>
-                                                    <tbody>
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-                                                <tr>
-                                                    <td>
-                                                        <div style="min-height: 30px;">
-                                                        <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
-                                                            <%# Eval("TipoUsuario.Abreviacion") %></button>
-                                                            </div>
-                                                    </td>
-                                                    <td><%# Eval("Pais.Descripcion")%></td>
-                                                    <td><%# Eval("Campus.Descripcion")%></td>
-                                                    <td><%# Eval("Torre.Descripcion")%></td>
-                                                    <td><%# Eval("Piso.Descripcion")%></td>
-                                                    <td><%# Eval("Zona.Descripcion")%></td>
-                                                    <td><%# Eval("SubZona.Descripcion")%></td>
-                                                    <td><%# Eval("SiteRack.Descripcion")%></td>
-                                                    <td id="colHabilitado">
-                                                        <ul class="list list-unstyled" id="hiddenEnabled">
-                                                            <li>
-                                                                <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# int.Parse(Eval("IdNivelUbicacion").ToString()) != 1 %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td id="colEditar">
-                                                        <ul class="list list-unstyled hidden" id="hiddenEdit">
-                                                            <li>
-                                                                <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" Visible='<%# int.Parse(Eval("IdNivelUbicacion").ToString()) != 1 && (bool) Eval("Habilitado") %>' />
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                </tbody>
-                                            </table>
-                                            </FooterTemplate>
-                                        </asp:Repeater>--%>
-                                       
                                     </div>
                                 </div>
                             </div>

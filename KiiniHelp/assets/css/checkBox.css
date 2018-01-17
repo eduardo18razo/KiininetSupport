@@ -124,7 +124,7 @@ input[type='checkbox']:checked + label:after {
 .chkIphone input[type='checkbox']:checked + label:before {
         width: 100%;
         /*background: #3aa7aa;*/
-        background: #3FA9F5;
+        background: #3FA9F5; /*fondo checkbox*/
         padding-left: 0;
         padding-right: 0;
     }

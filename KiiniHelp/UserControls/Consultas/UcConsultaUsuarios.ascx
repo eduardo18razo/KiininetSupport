@@ -22,6 +22,7 @@
                             </div>
                             <p>
                                 Los usuarios son las personas que tienen un registro en tu cuenta. Aquí se incluyen los usuarios finales que son los solicitantes de eventos (clientes, proveedores y empleados) así como los operadores que son las personas designadas a resolverlos.
+                           
                             </p>
                         </div>
                     </div>
@@ -62,10 +63,10 @@
                                 <div class="module-content-inner no-padding-bottom">
                                     <div class="table-responsive">
 
-                                        <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" 
+                                        <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false"
                                             CssClass="table table-striped display" Width="99%"
                                             OnPageIndexChanging="gvPaginacion_PageIndexChanging"
-                                            BorderStyle="None" PagerSettings-Mode="Numeric" 
+                                            BorderStyle="None" PagerSettings-Mode="Numeric"
                                             PageSize="25" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                             PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                             <Columns>
@@ -112,9 +113,9 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="15%">
                                                     <ItemTemplate>
-                                                        <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                        <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                             <li>
-                                                                <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" />                                                              
+                                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
                                                             </li>
                                                         </ul>
                                                     </ItemTemplate>

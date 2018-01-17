@@ -79,11 +79,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 int? idTipoUsuario = null;
                 int? idTipoGrupo = null;
-                //if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //{
-                //    LimpiarGrupos();
-                //    return;
-                //}
+               
                 if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
@@ -94,11 +90,9 @@ namespace KiiniHelp.UserControls.Consultas
                 List<GrupoUsuario> gpos = _servicioGrupoUsuario.ObtenerGruposUsuarioAll(idTipoUsuario, idTipoGrupo);
                 if (filtro != string.Empty)
                     gpos = gpos.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
-                //gpos = gpos.Where(w => w.Descripcion.ToUpper().Contains(filtro)).ToList();
 
                 tblResults.DataSource = gpos;
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -121,7 +115,6 @@ namespace KiiniHelp.UserControls.Consultas
                     ddlLlenar.DataSource = null;
                     ddlLlenar.DataBind();
                 }
-
                 ddlLlenar.Enabled = ddlLlenar.DataSource != null;
 
             }
@@ -277,8 +270,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //ucAltaGrupoUsuario.GrupoUsuario = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(((Button)sender).CommandArgument));
-                ucAltaGrupoUsuario.GrupoUsuario = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(((ImageButton)sender).CommandArgument));
+                ucAltaGrupoUsuario.GrupoUsuario = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(((LinkButton)sender).CommandArgument));
                 ucAltaGrupoUsuario.Alta = false;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaGrupoUsuarios\");", true);
             }

@@ -90,3 +90,4 @@ C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\bin\Release\EPPlus.xml
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\obj\Release\KinniNet.Core.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\obj\Release\KinniNet.Core.dll
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\obj\Release\KinniNet.Core.pdb
+C:\Users\Janeth\Documents\git\KinniNet.Business\obj\Release\KinniNet.Core.csprojResolveAssemblyReference.cache

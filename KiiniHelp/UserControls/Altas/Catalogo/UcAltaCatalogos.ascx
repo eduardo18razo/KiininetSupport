@@ -7,9 +7,8 @@
         <asp:HiddenField runat="server" ID="hfIdCatalogo" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server" Text='&times;' />
-
             <h6 class="modal-title" id="modal-new-ticket-label">
-                <asp:Label runat="server" ID="lblOperacion"/></h6>
+                <asp:Label runat="server" ID="lblBrandingModal" /></h6>
 
         </div>
 
@@ -18,12 +17,14 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="module-inner">
+                            <asp:Label runat="server" Text="Nombre del Catálogo"></asp:Label>
                             <div class="form-group">
-                                <asp:TextBox runat="server" ID="txtNombreCatalogo" placeholder="Nombre del Catálogo" MaxLength="50" onkeydown="return (event.keyCode!=13);"  CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtNombreCatalogo" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                             </div>
 
+                            <asp:Label runat="server" Text="Descripción del Catálogo"></asp:Label>
                             <div class="form-group">
-                                <asp:TextBox runat="server" ID="txtDescripcionCatalogo" placeholder="Nombre del Catálogo" TextMode="MultiLine" Rows="3" MaxLength="250" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox runat="server" ID="txtDescripcionCatalogo" TextMode="MultiLine" Rows="3" MaxLength="250" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
@@ -50,7 +51,7 @@
                                                 <div class="col-lg-10 col-md-10 col-sm-10">
                                                     <asp:TextBox runat="server" ID="txtRegistroNew" CssClass="form-control" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
                                                 </div>
-                                                <asp:LinkButton runat="server" CssClass="fa fa-plus-circle" style="padding-top: 5px; padding-left: 5px;" ID="btnAgregarRegistro" OnClick="btnAgregarRegistro_OnClick" CommandArgument='<%# Container.ItemIndex %>' />
+                                                <asp:LinkButton runat="server" CssClass="fa fa-plus-circle" ID="btnAgregarRegistro" OnClick="btnAgregarRegistro_OnClick" CommandArgument='<%# Container.ItemIndex %>' />
                                             </div>
                                         </FooterTemplate>
                                     </asp:Repeater>

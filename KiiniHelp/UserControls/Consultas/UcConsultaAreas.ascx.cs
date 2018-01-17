@@ -39,7 +39,6 @@ namespace KiiniHelp.UserControls.Consultas
                     areas = areas.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
                 tblResults.DataSource = areas;
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -51,7 +50,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 Alerta = new List<string>();
                 ucAltaArea.OnAceptarModal += AltaAreaOnAceptarModal;
                 ucAltaArea.OnCancelarModal += AltaAreaOnCancelarModal;
@@ -109,7 +107,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 ucAltaArea.EsAlta = false;
-                Area area = _servicioAreas.ObtenerAreaById(int.Parse(((ImageButton)sender).CommandArgument));
+                Area area = _servicioAreas.ObtenerAreaById(int.Parse(((LinkButton)sender).CommandArgument));
                 if (area == null) return;
                 ucAltaArea.IdArea = area.Id;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaArea\");", true);
