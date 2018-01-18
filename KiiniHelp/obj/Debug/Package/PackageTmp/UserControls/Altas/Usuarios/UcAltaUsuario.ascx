@@ -5,46 +5,6 @@
 <%@ Register Src="~/UserControls/Altas/Ubicaciones/UcAltaUbicaciones.ascx" TagPrefix="uc" TagName="UcAltaUbicaciones" %>
 <%@ Register Src="~/UserControls/Seleccion/UcRolGrupo.ascx" TagPrefix="uc" TagName="UcRolGrupo" %>
 
-
-<%--<style>
-    .texto-normal {
-        text-transform: none;
-    }
-    .tag {
-        font-size: 12px;
-        padding: .3em .4em .4em;
-        margin: 0 .1em;
-        background-color: transparent;
-        border-color: #e6e7ea;
-        color: #a2a6af;
-    }
-
-        .tag a {
-            color: #bbb;
-            cursor: pointer;
-            opacity: 0.8;
-        }
-
-            .tag a:hover {
-                opacity: 1.0;
-            }
-
-        .tag .remove {
-            vertical-align: bottom;
-            top: 0;
-            color: #6e6e6e;
-        }
-
-        .tag a {
-            margin: 0 0 0 .3em;
-        }
-
-            .tag a .glyphicon-white {
-                margin-bottom: 2px;
-                color: #83868c;
-            }
-</style>--%>
-
 <script type="text/javascript">
     function UploadFile(fileUpload) {
         if (fileUpload.value != '') {
@@ -109,7 +69,7 @@
                                             <asp:Image CssClass="img-rounded img-responsive" Style="padding-top: 25px;" ImageUrl="~/assets/images/profiles/profile-square-1.png" ID="imgPerfil" alt="imgPerfil" runat="server" />
 
                                             <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer; max-height: 165px; max-width: 165px;">
-                                                <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer" />
+                                                <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer; height: 56px" />
                                                 <asp:LinkButton runat="server" Text="Editar" Style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-primary" />
                                             </asp:Panel>
                                         </figure>
@@ -126,7 +86,8 @@
                                 <div class="col-lg-11 col-md-11">
                                     <div class="row" runat="server" id="divTipousuario">
                                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="padding-left: 20px">
-                                            <label>Tipo de usuario</label> <%--runat="server" Text="" Style="padding-top: 10px;" />--%>
+                                            <label>Tipo de usuario</label>
+                                            <%--runat="server" Text="" Style="padding-top: 10px;" />--%>
                                             <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" AutoPostBack="true" Enabled="false" />
                                         </div>
                                     </div>
@@ -184,9 +145,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
 
                                 </div>
                             </div>
@@ -451,7 +409,6 @@
                                                                                         </ItemTemplate>
                                                                                     </asp:Repeater>
                                                                                     <asp:LinkButton runat="server" class="remove el el-remove-circle" ID="btnRemoveRol" OnClick="btnRemoveRol_OnClick" Visible='<%# Eval("SubGrupos") == null %>' CommandName='<%# Eval("IdTipoGrupo") %>' CommandArgument='<%# Eval("IdGrupo") %>' />
-                                                                                    <%--remove glyphicon glyphicon-remove-sign glyphicon-white--%>
                                                                                 </div>
                                                                             </div>
                                                                         </span>
@@ -478,13 +435,12 @@
                         <div class="row" style="width: 100%; text-align: center">
                             <br />
                             <asp:Button runat="server" Text="Cancelar" ID="btnCancelarEdicion" CssClass="btn btn-default margin-left" Style="margin-right: 45px" OnClick="btnCancelarEdicion_OnClick" />
-                            <asp:Button runat="server" Text="Guardar" ID="btnGuardar" CssClass="btn btn-success margin-left" OnClick="btnGuardar_OnClick" />
+                            <asp:Button runat="server" Text="Guardar" ID="btnGuardar" CssClass="btn btn-primary margin-left" OnClick="btnGuardar_OnClick" />
                         </div>
                     </div>
                     <br />
                 </section>
 
-                <%--</div>--%>
             </ContentTemplate>
         </asp:UpdatePanel>
         <%--PUESTOS--%>

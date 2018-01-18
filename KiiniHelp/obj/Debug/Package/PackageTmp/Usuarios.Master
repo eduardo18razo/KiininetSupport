@@ -10,7 +10,6 @@
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
-    <%-- <link rel="stylesheet" href="assets/css/pe-7-icons.css" />--%>
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
@@ -23,22 +22,13 @@
     <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
-    <%--<style>
-        body {
-            font-size: 12px;
-        }
-        p
-        .btn {
-            font-size: 12px;
-        }
-    </style>--%>
+   
     <script type="text/javascript">
         var win;
 
         function MostrarPopup(modalName) {
 
             $(modalName).on('shown.bs.modal', function () {
-                //$('.modal-backdrop').remove();
                 $(this).find('[autofocus]').focus();
             });
             $(modalName).modal({ backdrop: 'static', keyboard: false });
@@ -151,28 +141,15 @@
         }
 
         function hidden(tablename) {
-            //alert('hola');
             debugger;
             $(tablename + ' tr').on('mouseover', function () {
-                //$(this).find('#colHabilitado').find('#hiddenEnabled').removeClass("hidden");
-                $(this).find('#hiddenEdit').removeClass("hidden");
+                $(this).find('#hiddenEditar').removeClass("hidden");
+                $(this).find('#hiddenClonar').removeClass("hidden");
             }).on('mouseout', function () {
-                //$(this).find('#colHabilitado').find('#hiddenEnabled').addClass("hidden");
-                $(this).find('#hiddenEdit').addClass("hidden");
+                $(this).find('#hiddenEditar').addClass("hidden");
+                $(this).find('#hiddenClonar').addClass("hidden");
             });
         }
-
-        //function hidden() {
-        //    //alert('hola');
-        //    $('#tblResults tr').on('mouseover', function () {
-        //        //$(this).find('#colHabilitado').find('#hiddenEnabled').removeClass("hidden");
-        //        $(this).find('#colEditar').find('#hiddenEdit').removeClass("hidden");
-        //    }).on('mouseout', function () {
-        //        //$(this).find('#colHabilitado').find('#hiddenEnabled').addClass("hidden");
-        //        $(this).find('#colEditar').find('#hiddenEdit').addClass("hidden");
-        //    });
-        //}
-
 
         function search(evt) {
             if (evt.charCode == 13) {
@@ -262,20 +239,6 @@
                             </div>
 
                             <div>
-                                <%--<div class="item item-notifications separador-vertical-derecho">
-                                    <div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button">
-                                        <span class="sr-only">Tickets</span>
-                                        <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
-                                    </div>
-                                    <ul class="dropdown-menu wdropdown-ticket" role="menu" aria-labelledby="dropdownMenu-user">
-                                        <li><span class="arrow"></span><a role="menuitem" data-toggle="modal" data-target="#modal-new-ticket"><span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket</a></li>
-                                        <li>
-                                            <asp:HyperLink role="menuitem" NavigateUrl="~/Publico/Consultas/FrmConsultaTicket.aspx" runat="server">
-                                            <span class="pe-icon pe-7s-look icon"></span>Consultar ticket
-                                            </asp:HyperLink>
-                                        </li>
-                                    </ul>
-                                </div>--%>
 
                                 <div class="item item-notifications separador-vertical-derecho">
                                     <i id="side-panel-toggle" class="side-panel-toggle panel-hide icon fa fa-users icon" data-toggle="tooltip" data-placement="bottom" title="Roles">
@@ -634,9 +597,6 @@
                     </div>
                     <div class="scroller" id="scroller" style="padding-left: 30px">
                         <div style="margin-top: 0; height: 100%;">
-                            <%--<asp:LinkButton runat="server" CssClass="close" ID="lnkBtnCerrar" OnClick="lnkBtnCerrar_OnClick" Visible="False">
-                        <span class="glyphicon glyphicon-remove"></span>
-                            </asp:LinkButton>--%>
 
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
@@ -735,8 +695,6 @@
 
                     var elementId = document.getElementById("<%= this.FindControl("hfCargaInicial").ClientID %>");
                     if (elementId.value === "False") {
-                        //$('#modalRol').modal({ backdrop: 'static', keyboard: false });
-                        //$('#modalRol').modal({ show: true });
                         $('#side-panel-toggle').click();
                     }
                 });

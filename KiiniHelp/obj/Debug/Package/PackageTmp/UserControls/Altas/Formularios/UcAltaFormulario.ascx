@@ -10,7 +10,8 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-7 col-sm-7">
                             <div class="module-inner">
-                                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control no-border" placeholder="Título del Formulario" MaxLength="50" Style="text-transform: none" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                                <asp:Label runat="server" ID="lblIdTipoCampoMascara" Text="Título del Formulario" Visible="True" />
+                                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control no-border"  MaxLength="50" Style="text-transform: none" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                 <asp:CheckBox runat="server" ID="chkClaveRegistro" CssClass="form-control" Text="Clave de Registro" Visible="False" Checked="True" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                             </div>
                         </div>
@@ -166,7 +167,8 @@
                                         <br />
                                         <hr />
                                         <div class="form-group">
-                                            <asp:Label runat="server" Text="Agregar opciones manualmente:" Font-Bold="true"/> <%--CssClass="padding-20-bottom"--%> 
+                                            <asp:Label runat="server" Text="Agregar opciones manualmente:" Font-Bold="true" />
+                                            <%--CssClass="padding-20-bottom"--%>
                                         </div>
 
                                         <uc1:UcAltaCatalogo runat="server" ID="ucAltaCatalogo" />

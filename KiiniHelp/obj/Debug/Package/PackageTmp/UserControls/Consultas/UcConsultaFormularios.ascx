@@ -94,17 +94,17 @@
 
                                         <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
+                                               <%-- <ul class="list list-unstyled">
+                                                    <li>--%>
                                                         <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
+                                                  <%--  </li>
+                                                </ul>--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                        
                                          <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
                                                         <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
                                                       <%--  | 
@@ -116,7 +116,7 @@
 
                                          <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="5%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
                                                     <li>
                                                        <%-- <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
                                                         | --%>
