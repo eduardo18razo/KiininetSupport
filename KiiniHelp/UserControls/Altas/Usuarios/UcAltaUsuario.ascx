@@ -69,7 +69,7 @@
                                             <asp:Image CssClass="img-rounded img-responsive" Style="padding-top: 25px;" ImageUrl="~/assets/images/profiles/profile-square-1.png" ID="imgPerfil" alt="imgPerfil" runat="server" />
 
                                             <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer; max-height: 165px; max-width: 165px;">
-                                                <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer" />
+                                                <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer; height: 56px" />
                                                 <asp:LinkButton runat="server" Text="Editar" Style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-primary" />
                                             </asp:Panel>
                                         </figure>

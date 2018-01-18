@@ -7,7 +7,6 @@
     function SetTable() {
         var esalta = (document.getElementById("<%= FindControl("hfEsAlta").ClientID %>").value == 'True');
         if (esalta) {
-
             var isMouseDown = false,
                 isHighlighted;
             $("#our_table tbody td")
@@ -16,7 +15,7 @@
                     $(this).toggleClass("highlighted");
                     isHighlighted = $(this).hasClass("highlighted");
                     getSelectedHora();
-                    return false; // prevent text selection
+                    return false; 
                 })
                 .mouseover(function() {
                     if (isMouseDown) {
@@ -455,26 +454,6 @@
                     <hr />
                 </div>
             </div>
-            <%--<asp:UpdatePanel runat="server">
-                <ContentTemplate>
-                    <asp:Repeater runat="server" ID="rptHorarios">
-                        <HeaderTemplate>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <div class="row form-control" style="margin-top: 5px; height: 48px">
-                                <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
-                                <asp:Label runat="server" ID="lblIdHorario" Text='<%# Eval("IdHorario") %>' Visible="False" />
-                                <asp:Label runat="server" ID="lblDia" Text='<%# Eval("Dia") %>' Visible="False" />
-                                <asp:Label runat="server" Text='<%# (int)Eval("Dia") == 1 ? "Lunes" : (int)Eval("Dia") == 2 ? "MARTES" : (int)Eval("Dia") == 3 ? "MIERCOLES" : (int)Eval("Dia") == 4 ? "JUEVES" : (int)Eval("Dia") == 5 ? "VIERNES" : (int)Eval("Dia") == 6 ? "SABADO" : "DOMINGO"%>' CssClass="col-sm-4" />
-                                <asp:Label runat="server" ID="lblHoraInicio" Text='<%# Eval("HoraInicio") %>' CssClass="col-sm-2" />
-                                <asp:Label runat="server" Text=" - " CssClass="col-sm-1"></asp:Label>
-                                <asp:Label runat="server" ID="lblHoraFin" Text='<%# Eval("HoraFin") %>' CssClass="col-sm-2" />
-                                <asp:Button runat="server" class="btn btn-danger col-sm-2 glyphicon-remove" CommandArgument='<%# Eval("Dia") %>' CommandName='<%# Eval("HoraInicio") %>' Text="Eliminar" ID="btnEliminar" OnClick="btnEliminar_OnClick" />
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </ContentTemplate>
-            </asp:UpdatePanel>--%>
             <br />
             <div class="row text-right" style="padding-bottom: 20px;">
                 <asp:Button runat="server" ID="btnAgregar" Text="Guardar" CssClass="btn btn-primary" OnClick="btnAceptar_OnClick" />
