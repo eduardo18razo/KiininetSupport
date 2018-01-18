@@ -45,7 +45,7 @@
       <HintPath>..\packages\EASendMail.7.3.1.2\lib\net40\EASendMail40.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
-      <HintPath>..\..\Compartido\EPPlus.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
