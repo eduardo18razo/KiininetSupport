@@ -73,5 +73,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<HelperArbolAcceso> ObtenerArbolesAccesoTerminalByIdUsuario(int idUsuario, bool insertarSeleccion);
+
+        [OperationContract]
+        List<HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo);
     }
 }

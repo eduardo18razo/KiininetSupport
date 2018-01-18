@@ -43,27 +43,27 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Office.Interop.Excel" version="12.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" />
+      <assemblyIdentity name="Microsoft.Office.Interop.Excel" version="15.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Office.Interop.PowerPoint" version="12.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" />
+      <assemblyIdentity name="Microsoft.Office.Interop.PowerPoint" version="15.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Office.Interop.Word" version="12.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" />
+      <assemblyIdentity name="Microsoft.Office.Interop.Word" version="15.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Vbe.Interop" version="12.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" />
+      <assemblyIdentity name="Microsoft.Vbe.Interop" version="15.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="office" version="12.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" />
+      <assemblyIdentity name="office" version="15.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -108,14 +108,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KiiniNet.Entities.dll" size="245248">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KiiniNet.Entities.dll" size="251392">
       <assemblyIdentity name="KiiniNet.Entities" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>USbFGlYh1kXn1Gdy+IFxzhLoWGc=</dsig:DigestValue>
+        <dsig:DigestValue>ytd/ET0INMM7k2jhkgsLlsdW/sI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -127,53 +127,53 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>FvwuVLIzXdwwrsi3Yfn1EEAqotc=</dsig:DigestValue>
+        <dsig:DigestValue>C/9B9Ky1tAep1CpsTEP9pDVcSc0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Business.Utils.dll" size="49152">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Business.Utils.dll" size="48640">
       <assemblyIdentity name="KinniNet.Business.Utils" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>DNeN3XtXNAVVjNSE6Q3ihpjkW5w=</dsig:DigestValue>
+        <dsig:DigestValue>mjge4e4AF3j+opJVJmics9NLbbs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Core.dll" size="1174016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Core.dll" size="1170432">
       <assemblyIdentity name="KinniNet.Core" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>LFOQjOHFtRL5nwvaIRbVv2IN2Lg=</dsig:DigestValue>
+        <dsig:DigestValue>Qa35t6S04ddhqy0xO9jI6QAbM7E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Data.dll" size="692736">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Data.dll" size="704512">
       <assemblyIdentity name="KinniNet.Data" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>unbQQr1FWYc5oa1QY0hBf4EdGwU=</dsig:DigestValue>
+        <dsig:DigestValue>ejOWnQ3dRlXS1Wm+TpCgdIGHVGc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="KiiniNet.Services.Windows.exe.config" size="3375">
+  <file name="KiiniNet.Services.Windows.exe.config" size="3332">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>1gj/1UP5vLKvFiI6YY9A0VA4u8c=</dsig:DigestValue>
+      <dsig:DigestValue>jb6SxANQ6n+SS9LYpMkhbujJxJw=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

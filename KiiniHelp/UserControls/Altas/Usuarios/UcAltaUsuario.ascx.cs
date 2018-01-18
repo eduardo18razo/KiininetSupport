@@ -64,7 +64,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
         public int IdUsuario
         {
-            get { return Convert.ToInt32(hfIdUsuario.Value); }
+            get { return hfIdUsuario.Value.Trim() == string.Empty ? 0 : Convert.ToInt32(hfIdUsuario.Value); }
             set
             {
                 hfIdUsuario.Value = value.ToString();
@@ -462,7 +462,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             List<TextBox> lstCorreos = rptCorreos.Items.Cast<RepeaterItem>().Select(item => (TextBox)item.FindControl("txtCorreo")).Where(w => w.Text != string.Empty).ToList();
             foreach (TextBox correo in lstCorreos)
             {
-                if (!BusinessCorreo.IsValid(correo.Text.Trim()))
+                if (!BusinessCorreo.IsValid(correo.Text.Trim()) || correo.Text.Trim().Contains(" "))
                 {
                     sb.Add(string.Format("Correo {0} con formato invalido", correo.Text.Trim()));
                 }
@@ -541,15 +541,17 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
         private void HabilitaDetalle(bool habilitado)
         {
-            //divAvatar.Visible = habilitado || EditarDetalle;   
+            divUltimoAcceso.Visible = habilitado || EditarDetalle;
+            btnEditar.Visible = habilitado || EditarDetalle; 
+
             divBtnGuardar.Visible = !habilitado && !EditarDetalle;
-            divTipousuario.Visible = !habilitado && !EditarDetalle;
             txtNombre.ReadOnly = habilitado;
             txtAp.ReadOnly = habilitado;
             txtAm.ReadOnly = habilitado;
             txtUserName.ReadOnly = true;
             ddlPuesto.Enabled = !habilitado && !EditarDetalle;
             btnAddPuesto.Visible = !habilitado && !EditarDetalle;
+            btnCambiarImagen.Visible = !habilitado && !EditarDetalle;
             chkVip.Enabled = !habilitado;
             chkDirectoriActivo.Enabled = !habilitado;
             chkPersonaFisica.Enabled = !habilitado;
@@ -654,8 +656,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";}";  
                 FileUpload1.Attributes["onchange"] = "UploadFile(this)";
 
                 ucAltaPuesto.OnTerminarModal += UcAltaPuestoOnOnAceptarModal;
@@ -683,7 +683,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     if (Request.QueryString["IdUsuario"] != null && Request.QueryString["Detail"] == null)
                     {
                         IdUsuario = int.Parse(Request.QueryString["IdUsuario"]);
-                        lblTitle.Text = "EDITAR USUARIO";
+                        lblTitle.Text = "Editar Usuario";
                         EsDetalle = false;
                         Alta = false;
                     }
@@ -695,7 +695,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     }
                     else
                     {
-                        lblTitle.Text = "ALTA DE USUARIO";
+                        lblTitle.Text = "Alta De Usuario";
                         EsDetalle = false;
                         Alta = true;
                     }
@@ -811,8 +811,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                             .EsMoral)
                     {
                         divPuesto.Visible = true;
-                        //btnModalOrganizacion.Text = "Organización";
-                        //btnModalUbicacion.Text = "Ubicación";
                         btnModalOrganizacion.Text = "Modificar";
                         btnModalUbicacion.Text = "Modificar";
                     }
@@ -1048,6 +1046,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 int idTipoUsuario = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
                 ucAltaOrganizaciones.EsSeleccion = true;
                 ucAltaOrganizaciones.EsAlta = true;
+                ucAltaOrganizaciones.Title = "Selecciona Organización";
                 ucAltaOrganizaciones.IdTipoUsuario = idTipoUsuario;
 
                 if (rptOrganizacion.Items.Count > 0)
@@ -1199,7 +1198,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                //UcUbicacion.AlertaUbicacion = _lstError;
             }
         }
 
@@ -1350,37 +1348,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     }
                 }
 
-                //foreach (RepeaterItem itemRol in rptRoles.Items)
-                //{
-                //    Label lblIdrol = (Label)itemRol.FindControl("lblIdRol");
-                //    if (lblIdrol != null)
-                //    {
-                //        if (idrol == int.Parse(lblIdrol.Text))
-                //        {
-                //            Repeater rptGrupos = (Repeater)itemRol.FindControl("rptGrupos");
-                //            if (rptGrupos != null)
-                //            {
-                //                if (rptGrupos.Items.Count <= 0)
-                //                {
-
-                //                    EliminarRol(idrol);
-                //                    break;
-                //                }
-                //                else
-                //                {
-                //                    Repeater rptSubgrupos = (Repeater)rptGrupos.FindControl("rptSubGrupos");
-                //                    if (rptSubgrupos != null)
-                //                    {
-                //                        if (rptSubgrupos.Items.Count <= 0)
-                //                        {
-                //                            EliminarRol(idrol);
-                //                        }
-                //                    }
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
+               
             }
             catch (Exception ex)
             {
@@ -1538,6 +1506,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     PersonaFisica = chkPersonaFisica.Checked,
                     NombreUsuario = txtUserName.Text.Trim(),
                     Password = ResolveUrl("~/ConfirmacionCuenta.aspx"),
+                    Autoregistro = false,
                     Habilitado = true
                 };
                 List<ParametrosTelefonos> lstParamTelefonos = _servicioParametros.TelefonosObligatorios(Convert.ToInt32(ddlTipoUsuario.SelectedValue));

@@ -21,16 +21,17 @@ namespace KiiniHelp
         void Application_Error(object sender, EventArgs e)
         {
             Exception ex = this.Server.GetLastError();
+            throw new Exception(ex.Message);
+            //if (ex is HttpException)
+            //{
+            //    HttpException httpEx = (HttpException)ex;
 
-            if (ex is HttpException)
-            {
-                HttpException httpEx = (HttpException)ex;
-
-                if (httpEx.GetHttpCode() == 401)
-                {
-                    Response.Redirect("YourPage.aspx");
-                }
-            }
+            //    if (httpEx.GetHttpCode() == 401)
+            //    {
+            //        Response.Redirect("YourPage.aspx");
+            //    }
+            //}
+                    Response.Redirect("~/Test/FrmTest.aspx?Error?");
         }
         //{
             //// Código que se ejecuta cuando se produce un error no controlado

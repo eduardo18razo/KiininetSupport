@@ -14,6 +14,7 @@
       <xs:element name="_x003C_IdEstatusAsignacion_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_IdEstatusTicket_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_IdGrupoAsignado_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdNivelAsignacion_x003E_k__BackingField" nillable="true" type="xs:int" />
       <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_Impacto_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />

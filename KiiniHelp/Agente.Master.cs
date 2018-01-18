@@ -35,9 +35,24 @@ namespace KiiniHelp
         {
             try
             {
-                rptTicketsAbiertos.DataSource = TicketsAbiertos;
+                int totalTickets = TicketsAbiertos.Count;
+
+                if (totalTickets > 6)
+                {
+                    upMasTickets.Visible = true;
+                    rptTicketsAbiertosExtra.DataSource = TicketsAbiertos.Skip(6).ToList();
+                    rptTicketsAbiertosExtra.DataBind();
+                }
+                else
+                {
+                    upMasTickets.Visible = false;
+                }
+
+                rptTicketsAbiertos.DataSource = TicketsAbiertos.Take(6);
                 rptTicketsAbiertos.DataBind();
+
                 upTabsTickets.Update();
+                upMasTickets.Update();
             }
             catch (Exception e)
             {
@@ -55,6 +70,7 @@ namespace KiiniHelp
             set { Session["TicketsAbiertos"] = value; }
         }
 
+
         public void AddNewTicket(int idUsuarioSolicita)
         {
             try
@@ -68,14 +84,15 @@ namespace KiiniHelp
                 throw new Exception(e.Message);
             }
         }
-        public void AddTicketOpen(int idTicket, string titulo)
+        public void AddTicketOpen(int idTicket, string titulo, bool asigna)
         {
             try
             {
                 if (!TicketsAbiertos.Any(a => a.IdTicket == idTicket))
+
                     TicketsAbiertos.Add(new TicketSeleccionado { IdTicket = idTicket, Title = titulo });
                 LlenaTicketsAbiertos();
-                Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket);
+                Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket + "&asigna=" + asigna);
             }
             catch (Exception e)
             {
@@ -210,13 +227,18 @@ namespace KiiniHelp
                 {
                     bool administrador = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
-                    if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Administrador))
+                    if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Agente))
                     {
                         administrador = true;
                     }
                     if (administrador)
                         Session["CargaInicialModal"] = true.ToString();
                     hfCargaInicial.Value = (Session["CargaInicialModal"] ?? "False").ToString();
+                    lblUsuario.Text = usuario.NombreCompleto;
+                    int IdUsuario = usuario.Id;
+
+                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png";
+                    //lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
                     ObtenerAreas();
                     int rolSeleccionado = 0;
                     if (Session["RolSeleccionado"] != null)
@@ -555,7 +577,6 @@ namespace KiiniHelp
                     else
                         Response.Redirect("~/Agente/FrmTicket.aspx?id=" + ((LinkButton)sender).CommandArgument);
                 }
-
             }
             catch (Exception ex)
             {

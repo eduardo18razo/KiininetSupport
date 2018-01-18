@@ -7,13 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using System.Text;
-using System.Threading;
-using KiiniNet.Entities.Operacion.Usuarios;
-using KinniNet.Business.Utils;
+using KiiniNet.Entities.Cat.Sistema;
 using KinniNet.Core.Demonio;
-using KinniNet.Core.Operacion;
-using KinniNet.Data.Help;
+using KinniNet.Core.Sistema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KiiniNet.UnitTest
@@ -99,15 +95,59 @@ namespace KiiniNet.UnitTest
         }
 
         [TestMethod]
+        public void Test()
+        {
+            try
+            {
+                
+                //Parámetros del compilador
+                CompilerParameters objParametros = new CompilerParameters()
+                {
+                    GenerateInMemory = true,
+                    GenerateExecutable = false,
+                    IncludeDebugInformation = false
+                };
+
+                //Clase
+                string strClase =
+                    "using System;" +
+                    "namespace Scientia {" +
+                    "public class Formula {" +
+                    "public int IdPrueba = 5;" +
+                        "public object Ejecutar() {" +
+                            "return IdPrueba" +
+                    ";}}}";
+                //"return " + formula +
+
+                //Compilo todo y ejecuto el método
+                CodeDomProvider objCompiler = CodeDomProvider.CreateProvider("CSharp");
+                //En .NET 1.1 usaba esta linea:
+                //ICodeCompiler ICC = (new CSharpCodeProvider()).CreateCompiler();
+                CompilerResults objResultados = objCompiler.CompileAssemblyFromSource(objParametros, strClase);
+                object objClase = objResultados.CompiledAssembly.CreateInstance("Scientia.Formula", false, BindingFlags.CreateInstance, null, null, null, null);
+                var x = objClase.GetType().InvokeMember("Ejecutar", BindingFlags.InvokeMethod, null, objClase, null);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [TestMethod]
         public void TesConsultas()
         {
             //TODO: Eliminar Comentarios
             try
             {
+                //new BusinessCatalogos().CrearCatalogoExcel(new Catalogos(), false, "file", "hoja");
+                new BusinessTicketMailService().RecibeCorreos();
+                //new BusinessTicketMailService().RecibeCorreos();
+                //new BusinessTicketMailService().EnviaCorreoTicketGenerado(1, "VLF0", "Este es el cuerpo del mensaje <b> Hola</b> <s>sub</s>", "ecerritos@kiininet.com");
                 //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessDemonio().EnvioNotificacion();
                 //new KiiniNet.Services.Windows.ServiceNotificacion();
-                new BusinessDemonio().EnvioNotificacion();
+                //new BusinessDemonio().EnvioNotificacion();
                 //new BusinessDemonio().ActualizaSla();
                 //Usuario datosUsuario = new Usuario();
                 //datosUsuario.IdTipoUsuario = (int) BusinessVariables.EnumTiposUsuario.Cliente;
@@ -172,6 +212,8 @@ namespace KiiniNet.UnitTest
                 throw new Exception(ex.Message);
             }
         }
+
+        
         public List<InfoClass> ObtenerPropiedadesObjeto(object obj)
         {
             List<InfoClass> result;

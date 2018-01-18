@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="x2i2Fg4MMrxBMEw/XZeV/9hz+Q0=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="P0ylLguh3+GrA1vVo5aUGM6DVP8=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="EndPointAdministracion1">
       <properties>
@@ -112,7 +112,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="EndPointAdministracion1" contract="ServiceGrupoUsuario.IServiceGrupoUsuario" bindingType="basicHttpBinding" address="http://localhost:15277/ServiceGrupoUsuario.svc" bindingConfiguration="EndPointAdministracion1">
+    <endpoint name="EndPointAdministracion" contract="ServiceGrupoUsuario.IServiceGrupoUsuario" bindingType="basicHttpBinding" address="http://localhost:15277/ServiceGrupoUsuario.svc" bindingConfiguration="EndPointAdministracion1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:15277/ServiceGrupoUsuario.svc</serializedValue>
@@ -187,7 +187,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>EndPointAdministracion1</serializedValue>
+          <serializedValue>EndPointAdministracion</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

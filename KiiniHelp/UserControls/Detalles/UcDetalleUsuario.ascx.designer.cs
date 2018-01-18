@@ -13,13 +13,13 @@ namespace KiiniHelp.UserControls.Detalles {
     public partial class UcDetalleUsuario {
         
         /// <summary>
-        /// Control lblnombreCompleto.
+        /// Control divUltimoAcceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblnombreCompleto;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUltimoAcceso;
         
         /// <summary>
         /// Control lblFechaUltimoAcceso.
@@ -31,40 +31,31 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblFechaUltimoAcceso;
         
         /// <summary>
-        /// Control txtAp.
+        /// Control btnCerrarModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAp;
+        protected global::System.Web.UI.WebControls.Button btnCerrarModal;
         
         /// <summary>
-        /// Control txtAm.
+        /// Control imgPerfil.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAm;
+        protected global::System.Web.UI.WebControls.Image imgPerfil;
         
         /// <summary>
-        /// Control txtNombre.
+        /// Control lblnombreCompleto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
-        
-        /// <summary>
-        /// Control txtUserName.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserName;
+        protected global::System.Web.UI.WebControls.Label lblnombreCompleto;
         
         /// <summary>
         /// Control divPuesto.
@@ -101,6 +92,15 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkDirectoriActivo;
+        
+        /// <summary>
+        /// Control chkPersonaFisica.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPersonaFisica;
         
         /// <summary>
         /// Control rptTelefonos.
@@ -146,14 +146,5 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::KiiniHelp.UserControls.Detalles.UcDetalleGrupoUsuario UcDetalleGrupoUsuario;
-        
-        /// <summary>
-        /// Control btnCerrarModal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarModal;
     }
 }

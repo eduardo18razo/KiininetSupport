@@ -34,6 +34,9 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerAliasUbicacion", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerAliasUbicacionResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Parametros.AliasUbicacion> ObtenerAliasUbicacion(int idTipoUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionales", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionalesResponse")]
+        KiiniNet.Entities.Parametros.ParametroDatosAdicionales ObtenerDatosAdicionales(int idTipoUsuario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -85,6 +88,10 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Parametros.AliasUbicacion> ObtenerAliasUbicacion(int idTipoUsuario) {
             return base.Channel.ObtenerAliasUbicacion(idTipoUsuario);
+        }
+        
+        public KiiniNet.Entities.Parametros.ParametroDatosAdicionales ObtenerDatosAdicionales(int idTipoUsuario) {
+            return base.Channel.ObtenerDatosAdicionales(idTipoUsuario);
         }
     }
 }

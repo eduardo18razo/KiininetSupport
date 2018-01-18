@@ -84,13 +84,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public void GuardarHit(int idArbol, int idUsuario)
+        public void GuardarHit(int idArbol,int idTipoUsuario, int? idUsuario)
         {
             try
             {
                 using (BusinessInformacionConsulta negocio = new BusinessInformacionConsulta())
                 {
-                    negocio.GuardarHit(idArbol, idUsuario);
+                    negocio.GuardarHit(idArbol, idTipoUsuario, idUsuario);
                 }
             }
             catch (Exception ex)

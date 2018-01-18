@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Web.UI;
 using KiiniHelp.ServiceFrecuencia;
+using KiiniHelp.ServiceSistemaTipoUsuario;
+using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Seleccion
 {
     public partial class UcUserSelect : UserControl
     {
+        private readonly ServiceTipoUsuarioClient _servicioTipoUsuario = new ServiceTipoUsuarioClient();
         private readonly ServiceFrecuenciaClient _servicioFrecuencia = new ServiceFrecuenciaClient();
 
         private void GetData(int idTipoUsuario)
@@ -31,35 +35,41 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                GetData(((Usuario)Session["UserData"]).IdTipoUsuario);
-                lbltipoUsuario.Text = ((Usuario)Session["UserData"]).TipoUsuario.Descripcion;
-
-                ////navCategoria.NavigateUrl = "~/manager/uploadTrainingPlan.aspx?id=" + Request.QueryString["userTipe"];
-                ////switch (((Usuario)Session["UserData"]).IdTipoUsuario)
-                ////{
-                ////    case (int)BusinessVariables.EnumTiposUsuario.Empleado:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.Cliente:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.Proveedor:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.ProveedorInvitado:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.EmpleadoPersonaFisica:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.ClientaPersonaFisica:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.ProveedorPersonaFisica:
-                ////        break;
-                ////    case (int)BusinessVariables.EnumTiposUsuario.NuestraInstitucion:
-                ////        break;
-                ////}
-
-
+                if (!IsPostBack)
+                {
+                    int idtipoUsuario = int.Parse(Request.Params["userTipe"]);
+                    TipoUsuario tipoUsuario = _servicioTipoUsuario.ObtenerTipoUsuarioById(idtipoUsuario);
+                    if (tipoUsuario != null)
+                    {
+                        GetData(tipoUsuario.Id);
+                        lbltipoUsuario.Text = tipoUsuario.Descripcion;
+                    }
+                }
+                //    navCategoria.NavigateUrl = "~/manager/uploadTrainingPlan.aspx?id=" + Request.QueryString["userTipe"];
+                //    switch (((Usuario)Session["UserData"]).IdTipoUsuario)
+                //    {
+                //        case (int)BusinessVariables.EnumTiposUsuario.Empleado:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.Cliente:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.Proveedor:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.ProveedorInvitado:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.EmpleadoPersonaFisica:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.ClientaPersonaFisica:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.ProveedorPersonaFisica:
+                //            break;
+                //        case (int)BusinessVariables.EnumTiposUsuario.NuestraInstitucion:
+                //            break;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -69,12 +79,12 @@ namespace KiiniHelp.UserControls.Seleccion
 
         protected void lbtnTypeUser_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + ((Usuario)Session["UserData"]).IdTipoUsuario);
+            Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + int.Parse(Request.Params["userTipe"]));
         }
 
         protected void lbtnCategoria_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + ((Usuario)Session["UserData"]).IdTipoUsuario);
+            Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + int.Parse(Request.Params["userTipe"]));
         }
     }
 }

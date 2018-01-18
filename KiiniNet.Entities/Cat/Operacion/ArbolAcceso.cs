@@ -41,6 +41,8 @@ namespace KiiniNet.Entities.Cat.Operacion
         [DataMember]
         public bool EsTerminal { get; set; }
         [DataMember]
+        public bool Publico { get; set; }
+        [DataMember]
         public bool Sistema { get; set; }
         [DataMember]
         public bool Habilitado { get; set; }
@@ -48,6 +50,14 @@ namespace KiiniNet.Entities.Cat.Operacion
         public DateTime FechaAlta { get; set; }
         [DataMember]
         public int IdUsuarioAlta { get; set; }
+        [DataMember]
+        public int MeGusta { get; set; }
+        [DataMember]
+        public int NoMeGusta { get; set; }
+        [DataMember]
+        public int Visitas { get; set; }
+        [DataMember]
+        public DateTime FechaVisita { get; set; }
 
         [DataMember]
         public virtual TipoUsuario TipoUsuario { get; set; }

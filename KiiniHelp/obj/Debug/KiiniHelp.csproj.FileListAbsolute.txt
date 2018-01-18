@@ -1,5 +1,3 @@
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.dll.config
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.pdb
@@ -8,8 +6,11 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniNet.Enti
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KinniNet.Business.Utils.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\MSCaptcha.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\Telerik.Web.UI.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\Telerik.Web.UI.Skins.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniNet.Entities.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.pdb

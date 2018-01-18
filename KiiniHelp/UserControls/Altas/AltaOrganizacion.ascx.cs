@@ -313,8 +313,6 @@ namespace KiiniHelp.UserControls.Altas
             {
                 AlertaOrganizacion = new List<string>();
                 AlertaCatalogos = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardarCatalogo.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardarCatalogo, null) + ";}";  
                 if (!IsPostBack)
                 {
                     divTipoUsuario.Visible = !FromModal;
@@ -323,7 +321,6 @@ namespace KiiniHelp.UserControls.Altas
                         LlenaComboOrganizacion(IdTipoUsuario);
                     }
                 }
-                //LlenaCombos();
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceInformacionConsulta;
+using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
@@ -43,12 +44,24 @@ namespace KiiniHelp.UserControls.Preview
             set
             {
                 hfIdArbolAcceso.Value = value.ToString();
-                MuestraPreview(_servicioInformacion.ObtenerInformacionConsultaById(new ServiceArbolAccesoClient().ObtenerArbolAcceso(value).InventarioArbolAcceso.First().InventarioInfConsulta.First().IdInfConsulta));
+                ArbolAcceso arbol = new ServiceArbolAccesoClient().ObtenerArbolAcceso(value);
+                if (arbol != null)
+                {
+                    IdTipoUsuario = arbol.IdTipoUsuario;
+                    MuestraPreview(_servicioInformacion.ObtenerInformacionConsultaById(arbol.InventarioArbolAcceso.First().InventarioInfConsulta.First().IdInfConsulta));
+                }
+
 
             }
         }
 
         public int IdInformacionconsulta
+        {
+            get { return int.Parse(hfIdInformacinConsulta.Value); }
+            set { hfIdInformacinConsulta.Value = value.ToString(); }
+        }
+
+        public int IdTipoUsuario
         {
             get { return int.Parse(hfIdInformacinConsulta.Value); }
             set { hfIdInformacinConsulta.Value = value.ToString(); }
@@ -103,7 +116,7 @@ namespace KiiniHelp.UserControls.Preview
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -117,13 +130,19 @@ namespace KiiniHelp.UserControls.Preview
                 TextPreview.InnerHtml = datos.InformacionConsultaDatos.First().Datos;
                 rptArchivos.DataSource = datos.InformacionConsultaDocumentos;
                 rptArchivos.DataBind();
-                int idUsuario = ((Usuario)Session["UserData"]).Id;
-                InformacionConsultaRate rate = datos.InformacionConsultaRate.SingleOrDefault(s => s.IdUsuario == idUsuario);
-                if (rate != null)
+                int idUsuario = 0;
+                if (Session["UserData"] != null)
                 {
-                    MeGusta = rate.MeGusta;
+                    idUsuario = ((Usuario)Session["UserData"]).Id;
+                    InformacionConsultaRate rate = datos.InformacionConsultaRate.SingleOrDefault(s => s.IdUsuario == idUsuario);
+                    if (rate != null)
+                    {
+                        MeGusta = rate.MeGusta;
+                    }
+                    divEvaluacion.Visible = MuestraEvaluacion;
                 }
-                divEvaluacion.Visible = MuestraEvaluacion;
+                else
+                    divEvaluacion.Visible = false;
             }
             catch (Exception ex)
             {
@@ -138,7 +157,11 @@ namespace KiiniHelp.UserControls.Preview
                 if (IdArbol == 0)
                     throw new Exception("No se puede mostrar esta información.");
                 if (!IsPostBack)
-                    _servicioInformacion.GuardarHit(IdArbol, ((Usuario)Session["UserData"]).Id);
+                    if (Session["UserData"] != null)
+                        _servicioInformacion.GuardarHit(IdArbol, IdTipoUsuario, ((Usuario)Session["UserData"]).Id);
+                    else
+                        _servicioInformacion.GuardarHit(IdArbol, IdTipoUsuario, null);
+
             }
             catch (Exception ex)
             {

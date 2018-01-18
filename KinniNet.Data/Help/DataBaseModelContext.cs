@@ -26,13 +26,13 @@ namespace KinniNet.Data.Help
         private const string ConnectionString = "name=connection";
         private const string ContainerName = "connection";
 
-        public DataBaseModelContext()
-            : base(ConnectionString, ContainerName)
+        public DataBaseModelContext() : base(ConnectionString, ContainerName)
         {
             try
             {
                 //Sistema
                 _parametrosTelefonos = CreateObjectSet<ParametrosTelefonos>();
+                _parametroDatosAdicionales = CreateObjectSet<ParametroDatosAdicionales>();
                 _aliasOrganizacion = CreateObjectSet<AliasOrganizacion>();
                 _aliasUbicacion = CreateObjectSet<AliasUbicacion>();
                 _tipoUsuario = CreateObjectSet<TipoUsuario>();
@@ -111,7 +111,6 @@ namespace KinniNet.Data.Help
                 _mascara = CreateObjectSet<Mascara>();
                 _campoMascara = CreateObjectSet<CampoMascara>();
 
-
                 //Operacion
                 _usuario = CreateObjectSet<Usuario>();
                 _bitacoraAcceso = CreateObjectSet<BitacoraAcceso>();
@@ -143,6 +142,7 @@ namespace KinniNet.Data.Help
                 _slaEstimadoTicket = CreateObjectSet<SlaEstimadoTicket>();
                 _slaEstimadoTicketDetalle = CreateObjectSet<SlaEstimadoTicketDetalle>();
                 _ticket = CreateObjectSet<Ticket>();
+                _ticketCorreo = CreateObjectSet<TicketCorreo>();
                 _ticketGrupoUsuario = CreateObjectSet<TicketGrupoUsuario>();
                 _ticketAsignacion = CreateObjectSet<TicketAsignacion>();
                 _area = CreateObjectSet<Area>();
@@ -167,14 +167,11 @@ namespace KinniNet.Data.Help
                 _frecuencia = CreateObjectSet<Frecuencia>();
                 _mascaraSeleccionCatalogo = CreateObjectSet<MascaraSeleccionCatalogo>();
                 _puesto = CreateObjectSet<Puesto>();
-
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-
-
         }
 
         public DataBaseModelContext(string connectionString)
@@ -229,6 +226,7 @@ namespace KinniNet.Data.Help
         }
 
         private readonly ObjectSet<ParametrosTelefonos> _parametrosTelefonos;
+        private readonly ObjectSet<ParametroDatosAdicionales> _parametroDatosAdicionales;
         private readonly ObjectSet<AliasOrganizacion> _aliasOrganizacion;
         private readonly ObjectSet<AliasUbicacion> _aliasUbicacion;
 
@@ -479,6 +477,14 @@ namespace KinniNet.Data.Help
             }
         }
 
+        public ObjectSet<TicketCorreo> TicketCorreo
+        {
+            get
+            {
+                return _ticketCorreo;
+            }
+        }
+
         public ObjectSet<TicketGrupoUsuario> TicketGrupoUsuario
         {
             get
@@ -673,6 +679,7 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<SlaEstimadoTicket> _slaEstimadoTicket;
         private readonly ObjectSet<SlaEstimadoTicketDetalle> _slaEstimadoTicketDetalle;
         private readonly ObjectSet<Ticket> _ticket;
+        private readonly ObjectSet<TicketCorreo> _ticketCorreo;
         private readonly ObjectSet<TicketGrupoUsuario> _ticketGrupoUsuario;
         private readonly ObjectSet<TicketAsignacion> _ticketAsignacion;
         private readonly ObjectSet<Area> _area;
@@ -1088,6 +1095,13 @@ namespace KinniNet.Data.Help
             get
             {
                 return _parametrosUsuario;
+            }
+        }
+        public ObjectSet<ParametroDatosAdicionales> ParametroDatosAdicionales
+        {
+            get
+            {
+                return _parametroDatosAdicionales;
             }
         }
 

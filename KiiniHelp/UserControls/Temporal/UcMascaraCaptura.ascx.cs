@@ -943,7 +943,7 @@ namespace KiiniHelp.UserControls.Temporal
                 List<HelperCampoMascaraCaptura> capturaMascara = ObtenerCapturaMascara();
                 Usuario user;
                 if (Session["UserData"] == null)
-                    user = _servicioSeguridad.GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
+                    user = _servicioSeguridad.GetUserInvitadoDataAutenticate((int)BusinessVariables.EnumTiposUsuario.Cliente);
                 else
                     user = (Usuario)Session["UserData"];
                 KiiniNet.Entities.Operacion.Tickets.Ticket result = _servicioTicket.CrearTicket(user.Id, user.Id, int.Parse(_serviciosParametros.ObtenerParametrosGenerales().FormularioPortal), capturaMascara, (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);

@@ -96,8 +96,8 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                if (lstTipoUsuario.Count >= 2)
-                    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
+                //if (lstTipoUsuario.Count >= 2)
+                //    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
             }
             catch (Exception e)
@@ -111,7 +111,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 int? idTipoUsuario = null;
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
                 List<Ubicacion> lstUbicaciones = _servicioUbicacion.ObtenerUbicaciones(idTipoUsuario, null, null, null, null, null, null, null);
@@ -227,19 +227,19 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 txtFiltroDecripcion.Text = string.Empty;
+                //if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                //{
+                //    LimpiarUbicaciones();
+                //    return;
+                //}
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                {
-                    LimpiarUbicaciones();
-                    return;
-                }
-                if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexTodos)
                 {
                     LlenaUbicaciones();
                 }
-                else if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                else if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
-                    if (IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor)
-                        LlenaUbicaciones();
+                    if (IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado)
+                        LlenaUbicaciones(); 
                 }
             }
             catch (Exception ex)
@@ -257,7 +257,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                ucAltaUbicaciones.IdUbicacion = int.Parse(((ImageButton)sender).CommandArgument);
+                ucAltaUbicaciones.IdUbicacion = int.Parse(((LinkButton)sender).CommandArgument);
                 ucAltaUbicaciones.EsSeleccion = false;
                 ucAltaUbicaciones.EsAlta = false;
                 ucAltaUbicaciones.Title = "Editar Ubicación";
@@ -299,7 +299,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     if (e.Item.ItemType == ListItemType.Header)
                     {
                         List<AliasUbicacion> alias = _servicioParametros.ObtenerAliasUbicacion(IdTipoUsuario);

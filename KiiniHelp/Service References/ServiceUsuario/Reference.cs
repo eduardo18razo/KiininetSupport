@@ -31,7 +31,10 @@ namespace KiiniHelp.ServiceUsuario {
         KiiniNet.Entities.Operacion.Usuarios.Usuario ObtenerDetalleUsuario(int idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupo", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAgente", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAgenteResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAtencion", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAtencionResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion);
@@ -46,7 +49,7 @@ namespace KiiniHelp.ServiceUsuario {
         byte[] ObtenerFoto(int idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/HabilitarUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/HabilitarUsuarioResponse")]
-        void HabilitarUsuario(int idUsuario, bool habilitado);
+        void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerAtendedoresEncuesta", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerAtendedoresEncuestaResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAtendedoresEncuesta(int idUsuario, System.Collections.Generic.List<System.Nullable<int>> encuestas);
@@ -86,6 +89,9 @@ namespace KiiniHelp.ServiceUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuarioResponse")]
         KiiniNet.Entities.Helper.HelperUsuario ObtenerDatosTicketUsuario(int idUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo", ReplyAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse")]
+        KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -135,8 +141,12 @@ namespace KiiniHelp.ServiceUsuario {
             return base.Channel.ObtenerDetalleUsuario(idUsuario);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel) {
-            return base.Channel.ObtenerUsuariosByGrupo(idGrupo, idNivel);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo) {
+            return base.Channel.ObtenerUsuariosByGrupo(idGrupo);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel) {
+            return base.Channel.ObtenerUsuariosByGrupoAgente(idGrupo, idNivel);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion) {
@@ -155,8 +165,8 @@ namespace KiiniHelp.ServiceUsuario {
             return base.Channel.ObtenerFoto(idUsuario);
         }
         
-        public void HabilitarUsuario(int idUsuario, bool habilitado) {
-            base.Channel.HabilitarUsuario(idUsuario, habilitado);
+        public void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl) {
+            base.Channel.HabilitarUsuario(idUsuario, habilitado, tmpurl);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAtendedoresEncuesta(int idUsuario, System.Collections.Generic.List<System.Nullable<int>> encuestas) {
@@ -209,6 +219,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public KiiniNet.Entities.Helper.HelperUsuario ObtenerDatosTicketUsuario(int idUsuario) {
             return base.Channel.ObtenerDatosTicketUsuario(idUsuario);
+        }
+        
+        public KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo) {
+            return base.Channel.GetUsuarioByCorreo(correo);
         }
     }
 }

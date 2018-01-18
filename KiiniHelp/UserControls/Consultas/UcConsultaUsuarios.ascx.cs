@@ -35,8 +35,6 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                if (lstTipoUsuario.Count >= 2)
-                    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
             }
             catch (Exception e)
@@ -52,7 +50,7 @@ namespace KiiniHelp.UserControls.Consultas
                 int? idTipoUsuario = null;
 
                 LimpiarUsuarios();
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
                 }
@@ -62,7 +60,6 @@ namespace KiiniHelp.UserControls.Consultas
                     lstUsuarios = lstUsuarios.Where(w => w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.Nombre.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.NombreCompleto.ToLower().Contains(txtFiltro.Text.ToLower().Trim())).ToList();
                 tblResults.DataSource = lstUsuarios;
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception ex)
             {
@@ -77,15 +74,10 @@ namespace KiiniHelp.UserControls.Consultas
                 UcDetalleUsuario1.FromModal = true;
                 UcDetalleUsuario1.OnCancelarModal += UcDetalleUsuario1OnOnCancelarModal;
 
-                //ucAltaUsuarioMoral.OnAceptarModal += UcAltaUsuarioMoral_OnAceptarModal;
-                //ucAltaUsuarioMoral.OnCancelarModal += UcAltaUsuarioMoral_OnCancelarModal;
-
-                //ucAltaUsuarioFisico.OnAceptarModal += UcAltaUsuarioFisico_OnAceptarModal;
-                //ucAltaUsuarioFisico.OnCancelarModal += UcAltaUsuarioFisico_OnCancelarModal;
-
                 if (!IsPostBack)
                 {
                     LlenaCombos();
+                    LlenaUsuarios();
                 }
             }
             catch (Exception ex)
@@ -179,22 +171,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                // TODO: eDICION DE USUARIO
-                Response.Redirect("~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Consulta=true&IdUsuario=" + ((ImageButton)sender).CommandArgument);
-                //Usuario user = _servicioUsuarios.ObtenerDetalleUsuario(int.Parse(hfId.Value));
-                //if (user == null) return;
-                ////if (user.TipoUsuario.EsMoral)
-                ////{
-                //ucAltaUsuarioMoral.IdUsuario = user.Id;
-                //ucAltaUsuarioMoral.Alta = false;
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalPersonaMoral\");", true);
-                ////}
-                ////else
-                ////{
-                ////    ucAltaUsuarioFisico.IdUsuario = user.Id;
-                ////    ucAltaUsuarioFisico.Alta = false;
-                ////    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalPersonaFisica\");", true);
-                ////}
+                Response.Redirect("~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Consulta=true&IdUsuario=" + ((LinkButton)sender).CommandArgument);
             }
             catch (Exception ex)
             {
@@ -211,22 +188,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //TODO: ALTA USUARIO
                 Response.Redirect("~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Consulta=true");
-                ////if (_servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(int.Parse(ddlTipoUsuario.SelectedValue)).EsMoral)
-                ////{
-                //    ucAltaUsuarioMoral.Alta = true;
-                //    ucAltaUsuarioMoral.IdTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
-                //    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalPersonaMoral\");", true);
-                ////}
-                ////else
-                ////{
-                ////    ucAltaUsuarioFisico.Alta = true;
-                ////    ucAltaUsuarioFisico.IdTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
-                ////    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalPersonaFisica\");", true);
-                ////}
-
-
             }
             catch (Exception ex)
             {
@@ -290,7 +252,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                _servicioUsuarios.HabilitarUsuario(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
+                _servicioUsuarios.HabilitarUsuario(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked, ResolveUrl("~/ConfirmacionCuenta.aspx"));
                 LlenaUsuarios();
             }
             catch (Exception ex)

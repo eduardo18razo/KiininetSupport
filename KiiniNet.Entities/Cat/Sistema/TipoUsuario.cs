@@ -107,6 +107,10 @@ namespace KiiniNet.Entities.Cat.Sistema
         public virtual List<RolMenu> RolMenu { get; set; }
         [DataMember]
         public virtual List<ParametrosUsuario> ParametrosUsuario { get; set; }
+        [DataMember]
+        public virtual List<ParametroDatosAdicionales> ParametroDatosAdicionales { get; set; }
 
+        [DataMember]
+        public virtual List<HitConsulta> HitConsulta { get; set; }
     }
 }

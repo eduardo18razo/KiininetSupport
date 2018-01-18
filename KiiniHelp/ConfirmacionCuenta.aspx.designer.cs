@@ -58,24 +58,6 @@ namespace KiiniHelp {
         protected global::System.Web.UI.Timer tmpSendNotificacion;
         
         /// <summary>
-        /// Control panelAlertaGeneral.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelAlertaGeneral;
-        
-        /// <summary>
-        /// Control rptErrorGeneral.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptErrorGeneral;
-        
-        /// <summary>
         /// Control txtContrasena.
         /// </summary>
         /// <remarks>
@@ -146,15 +128,6 @@ namespace KiiniHelp {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRespuesta;
-        
-        /// <summary>
-        /// Control rptPreguntas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPreguntas;
         
         /// <summary>
         /// Control btnAceptar.

@@ -50,8 +50,8 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                if (lstTipoUsuario.Count >= 2)
-                    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
+                //if (lstTipoUsuario.Count >= 2)
+                //    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
             }
             catch (Exception e)
@@ -73,19 +73,14 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-
         private void LlenaGrupos()
         {
             try
             {
                 int? idTipoUsuario = null;
                 int? idTipoGrupo = null;
-                if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                {
-                    LimpiarGrupos();
-                    return;
-                }
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+               
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
                 if (ddlTipoGrupo.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
@@ -95,11 +90,9 @@ namespace KiiniHelp.UserControls.Consultas
                 List<GrupoUsuario> gpos = _servicioGrupoUsuario.ObtenerGruposUsuarioAll(idTipoUsuario, idTipoGrupo);
                 if (filtro != string.Empty)
                     gpos = gpos.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
-                //gpos = gpos.Where(w => w.Descripcion.ToUpper().Contains(filtro)).ToList();
 
                 tblResults.DataSource = gpos;
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -122,7 +115,6 @@ namespace KiiniHelp.UserControls.Consultas
                     ddlLlenar.DataSource = null;
                     ddlLlenar.DataBind();
                 }
-
                 ddlLlenar.Enabled = ddlLlenar.DataSource != null;
 
             }
@@ -142,9 +134,50 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     LlenaCombos();
                 }
+                
+                LlenaGrupos();
+
                 ucAltaGrupoUsuario.FromOpcion = false;
                 ucAltaGrupoUsuario.OnAceptarModal += UcAltaGrupoUsuarioOnOnAceptarModal;
                 ucAltaGrupoUsuario.OnCancelarModal += UcAltaGrupoUsuarioOnOnCancelarModal;
+
+                ucDetalleGrupoUsuarios.OnCancelarModal += ucDetalleGrupo_OnCancelarModal;
+                ucDetalleGrupoOpciones.OnCancelarModal += ucDetalleGrupoOpciones_OnCancelarModal;
+
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        void ucDetalleGrupoOpciones_OnCancelarModal()
+        {
+            try
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalDetalleGrupoOpciones\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        void ucDetalleGrupo_OnCancelarModal()
+        {
+            try
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalDetalleGrupoUsuario\");", true);
             }
             catch (Exception ex)
             {
@@ -198,7 +231,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 Metodos.LimpiarCombo(ddlTipoGrupo);
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     Metodos.LimpiarCombo(ddlTipoGrupo);
                     FiltraCombo(ddlTipoUsuario, ddlTipoGrupo, _servicioTipoGrupo.ObtenerTiposGruposByTipoUsuario(int.Parse(ddlTipoUsuario.SelectedValue), true));
@@ -237,8 +270,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //ucAltaGrupoUsuario.GrupoUsuario = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(((Button)sender).CommandArgument));
-                ucAltaGrupoUsuario.GrupoUsuario = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(((ImageButton)sender).CommandArgument));
+                ucAltaGrupoUsuario.GrupoUsuario = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(((LinkButton)sender).CommandArgument));
                 ucAltaGrupoUsuario.Alta = false;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaGrupoUsuarios\");", true);
             }
@@ -354,7 +386,42 @@ namespace KiiniHelp.UserControls.Consultas
             LlenaGrupos();
         }
 
-        #endregion 
+        #endregion
 
+        protected void lnkBtnDetalleUsuario_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ucDetalleGrupoUsuarios.IdGrupo = int.Parse(((LinkButton)sender).CommandArgument);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalDetalleGrupoUsuario\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void lnkBtnDetalleOpciones_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ucDetalleGrupoOpciones.IdGrupo = int.Parse(((LinkButton)sender).CommandArgument);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalDetalleGrupoOpciones\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

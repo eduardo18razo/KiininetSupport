@@ -80,7 +80,7 @@ namespace KiiniHelp.UserControls.Altas
                 ViewState["Alta"] = value.ToString();
                 ddlTipoUsuario.Enabled = value;
                 ddlTipoGrupo.Enabled = value;
-                lbltitulo.Text = value ? "Nuevo Gupo" : "Editar Gupo";
+                lbltitulo.Text = value ? "Nuevo Grupo" : "Editar Grupo";
             }
         }
 
@@ -191,8 +191,6 @@ namespace KiiniHelp.UserControls.Altas
                 Session.Remove("HorariosSubRoles");
                 Session.Remove("DiasSubRoles");
                 Session.Remove("DiasFestivos");
-
-
             }
             catch (Exception ex)
             {
@@ -205,8 +203,6 @@ namespace KiiniHelp.UserControls.Altas
             try
             {
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnGuardar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnGuardar, null) + ";}";  
                 if (!IsPostBack)
                 {
                     Metodos.LlenaComboCatalogo(ddlTipoUsuario, _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true));

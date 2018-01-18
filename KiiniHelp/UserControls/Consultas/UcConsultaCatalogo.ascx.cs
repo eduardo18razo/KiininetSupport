@@ -42,7 +42,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                List<Catalogos> lstCatalogosConsultas = _servicioCatalogos.ObtenerCatalogosMascaraCaptura(true).Where(w => !w.Sistema).ToList();
+                List<Catalogos> lstCatalogosConsultas = _servicioCatalogos.ObtenerCatalogosMascaraCaptura(true).Where(w => !w.Sistema && !w.Archivo).ToList();
                 Metodos.LlenaComboCatalogo(ddlCatalogos, lstCatalogosConsultas);
 
             }
@@ -61,14 +61,8 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     List<CatalogoGenerico> lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(int.Parse(ddlCatalogos.SelectedValue), true, false).Where(w => w.Id != 0).ToList();
                     tblResults.DataSource = lst;
+                    tblResults.DataBind();
                 }
-                else
-                {
-                    tblResults.DataSource = null;
-                }
-
-                tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -80,12 +74,12 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
                     LlenaCombos();
                 }
+                
                 ucRegistroCatalogo.OnTerminarModal += AltaRegistroCatalogoOnTerminarModal;
                 ucRegistroCatalogo.OnCancelarModal += AltaRegistroCatalogoOnCancelarModal;
             }
@@ -181,7 +175,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 ucRegistroCatalogo.EsAlta = false;
                 ucRegistroCatalogo.IdCatalogo = int.Parse(ddlCatalogos.SelectedValue);
-                ucRegistroCatalogo.IdRegistro = int.Parse(((ImageButton)sender).CommandArgument);
+                ucRegistroCatalogo.IdRegistro = int.Parse(((LinkButton)sender).CommandArgument);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaRegistro\");", true);
             }
             catch (Exception ex)

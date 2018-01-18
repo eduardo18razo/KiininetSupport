@@ -42,6 +42,8 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         [DataMember]
         public bool PersonaFisica { get; set; }
         [DataMember]
+        public bool Autoregistro { get; set; }
+        [DataMember]
         public bool Habilitado { get; set; }
         [DataMember]
         public bool Activo { get; set; }
@@ -138,7 +140,7 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         public bool Administrador { get; set; }
         [DataMember]
         public bool Supervisor { get; set; }
-        public string NombreCompleto { get { return ApellidoPaterno + " " + ApellidoMaterno + " " + Nombre; } }
+        public string NombreCompleto { get { return Nombre + " " + ApellidoPaterno + " " + ApellidoMaterno; } }
         [DataMember]
         public string OrganizacionCompleta { get; set; }
         [DataMember]

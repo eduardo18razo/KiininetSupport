@@ -53,13 +53,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, List<string> archivos, bool privado)
+        public void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, List<string> archivos, bool privado, bool enviaCorreo)
         {
             try
             {
                 using (BusinessAtencionTicket negocio = new BusinessAtencionTicket())
                 {
-                    negocio.AgregarComentarioConversacionTicket(idTicket, idUsuario, mensaje, sistema, archivos, privado);
+                    negocio.AgregarComentarioConversacionTicket(idTicket, idUsuario, mensaje, sistema, archivos, privado, enviaCorreo);
                 }
             }
             catch (Exception ex)

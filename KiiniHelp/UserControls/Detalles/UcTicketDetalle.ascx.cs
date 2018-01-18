@@ -8,6 +8,7 @@ using KiiniHelp.ServiceTicket;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using KiiniHelp.ServiceUsuario;
 
 namespace KiiniHelp.UserControls.Detalles
 {
@@ -39,6 +40,12 @@ namespace KiiniHelp.UserControls.Detalles
         {
             get { return int.Parse(hfTicketActivo.Value); }
             set { hfTicketActivo.Value = value.ToString(); }
+        }
+
+        private bool Asigna
+        {
+            get { return bool.Parse(hfAsigna.Value); }
+            set { hfAsigna.Value = value.ToString(); }
         }
 
         public int IdEstatusAsignacion
@@ -76,6 +83,12 @@ namespace KiiniHelp.UserControls.Detalles
             set { hfNivelAsignacion.Value = value.ToString(); }
         }
 
+        private int IdUsuarioLevanto
+        {
+            get { return int.Parse(hfUsuarioLevanto.Value); }
+            set { hfUsuarioLevanto.Value = value.ToString(); }
+        }
+
         private List<HelperConversacionDetalle> ConversacionTicketActivo
         {
             get { return (List<HelperConversacionDetalle>)Session["ConversacionTicketActivo"]; }
@@ -104,7 +117,7 @@ namespace KiiniHelp.UserControls.Detalles
                 throw new Exception(e.Message);
             }
         }
-        public void LlenaTicket(int idTicket)
+        public void LlenaTicket(int idTicket, bool asigna)
         {
             try
             {
@@ -112,6 +125,7 @@ namespace KiiniHelp.UserControls.Detalles
                 //HelperTicketDetalle ticket = _servicioTicket.ObtenerTicket(idTicket, ((Usuario)Session["UserData"]).Id);
                 if (ticket != null)
                 {
+                    Asigna = asigna;
                     IdTicket = ticket.IdTicket;
                     EsPropietario = ticket.EsPropietario;
                     IdEstatusAsignacion = ticket.IdEstatusAsignacion;
@@ -120,20 +134,26 @@ namespace KiiniHelp.UserControls.Detalles
 
                     lblNoticket.Text = ticket.IdTicket.ToString();
                     lblTituloTicket.Text = ticket.Tipificacion;
-                    lblNombreCorreo.Text = string.Format("{0} {1}", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
+                    //string.Format("{0} {1}", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket)
+                    //imgUsuarioTicket.ImageUrl = "~/DisplayImages.ashx?id=" + ticket.UsuarioLevanto.IdUsuario;
+
+                    lblNombreCorreo.Text = string.Format("{0} &#60;{1}&#62;", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
+                    lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto.ToString();
                     lblFechaAlta.Text = ticket.FechaLevanto;
+                    lblFecha.Text = ticket.FechaLevanto;
                     imgPrioridad.ImageUrl = "~/assets/images/icons/" + ticket.Impacto;
                     imgSLA.ImageUrl = ticket.DentroSla ? "~/assets/images/icons/SLA_verde.png" : "~/assets/images/icons/SLA_rojo.png";
                     lblTiempoRestanteSLa.Text = "Diferencia";
                     divEstatus.Style.Add("background-color", ticket.ColorEstatus);
                     lblEstatus.Text = ticket.DescripcionEstatusTicket;
                     IdNivelAsignacion = ticket.IdNivelAsignacion.HasValue ? (int)ticket.IdNivelAsignacion : 0;
+                    IdUsuarioLevanto = ticket.UsuarioLevanto.IdUsuario;
 
                     LlenaDatosUsuario(ticket.UsuarioLevanto);
                     ConversacionTicketActivo = ticket.Conversaciones;
                     LlenaConversacion(0);
                     UcDetalleMascaraCaptura.IdTicket = idTicket;
-                    btnAsignar.Enabled = ticket.EsPropietario;
+                    btnAsignar.Enabled = asigna;
                     btnCambiaEstatus.Enabled = ticket.EsPropietario;
                     btnSendPublic.Enabled = ticket.EsPropietario;
                 }
@@ -144,21 +164,29 @@ namespace KiiniHelp.UserControls.Detalles
                 throw new Exception(e.Message);
             }
         }
+
+        //Usuario usuario = ((Usuario)Session["UserData"]);
+        //private void LlenaDatosUsuario(HelperUsuario usuario)
         private void LlenaDatosUsuario(HelperUsuario usuario)
         {
             try
             {
                 if (usuario != null)
                 {
+
                     lblNombreDetalle.Text = usuario.NombreCompleto;
                     lblTipoUsuarioDetalle.Text = usuario.TipoUsuarioDescripcion.Substring(0, 1);
+
                     imgVip.Visible = usuario.Vip;
                     lblFechaUltimaconexion.Text = usuario.FechaUltimoLogin;
-                    ddlTicketUsuario.DataSource = usuario.TicketsAbiertos;
-                    ddlTicketUsuario.DataTextField = "Tipificacion";
-                    ddlTicketUsuario.DataValueField = "IdTicket";
-                    ddlTicketUsuario.DataBind();
 
+                    rddConcentradoTicketsUsuario.DataSource = usuario.TicketsAbiertos;
+                    rddConcentradoTicketsUsuario.DataBind();
+
+                    //ddlTicketUsuario.DataSource = usuario.TicketsAbiertos;
+                    //ddlTicketUsuario.DataTextField = "Tipificacion"; //"IdTicket" +
+                    //ddlTicketUsuario.DataValueField = "IdTicket";
+                    //ddlTicketUsuario.DataBind();
                     lblPuesto.Text = usuario.Puesto;
                     // usuario.FirstOrDefault(s => s.Obligatorio) != null ? usuario.CorreoUsuario.First(s => s.Obligatorio).Correo : string.Empty;
                     //TODO: Cambia a correo principal
@@ -170,7 +198,19 @@ namespace KiiniHelp.UserControls.Detalles
                     lblUbicacion.Text = usuario.Ubicacion;
                     lblFechaAltaDetalle.Text = usuario.Creado;
                     lblfechaUltimaActualizacion.Text = usuario.UltimaActualizacion;
+                    imgProfileNewComment.ImageUrl = ((Usuario)Session["UserData"]).Foto != null ? "~/DisplayImages.ashx?id=" + ((Usuario)Session["UserData"]).Id : "~/assets/images/profiles/profile-1.png";
+                    byte[] foto = new ServiceUsuariosClient().ObtenerFoto(usuario.IdUsuario);
+                    if (foto != null)
+                    {
 
+                        imgUsuarioTicket.ImageUrl = "~/DisplayImages.ashx?id=" + usuario.IdUsuario;
+                        imgUsuarioDetalle.ImageUrl = "~/DisplayImages.ashx?id=" + usuario.IdUsuario;
+                    }
+                    else
+                    {
+                        imgUsuarioTicket.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
+                        imgUsuarioDetalle.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
+                    }
                 }
             }
             catch (Exception e)
@@ -190,9 +230,9 @@ namespace KiiniHelp.UserControls.Detalles
                 ucCambiarEstatusAsignacion.OnCancelarModal += UcCambiarEstatusAsignacionOnCancelarModal;
                 if (!IsPostBack)
                 {
-                    if (Request.QueryString["id"] != null)
+                    if (Request.QueryString["id"] != null && Request.QueryString["asigna"] != null)
                     {
-                        LlenaTicket(int.Parse(Request.QueryString["id"]));
+                        LlenaTicket(int.Parse(Request.QueryString["id"]), bool.Parse(Request.QueryString["asigna"]));
                     }
                 }
                 else
@@ -214,7 +254,7 @@ namespace KiiniHelp.UserControls.Detalles
             try
             {
 
-                LlenaTicket(IdTicket);
+                LlenaTicket(IdTicket, Asigna);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalEstatusCambio\");", true);
                 if (!UcCambiarEstatusTicket.CerroTicket)
                 {
@@ -376,8 +416,8 @@ namespace KiiniHelp.UserControls.Detalles
             {
                 if (txtConversacion.Text == string.Empty)
                     throw new Exception("Ingrese un comentario.");
-                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, ((Usuario)Session["UserData"]).Id, txtConversacion.Text, false, null, rbtnPrivate.Checked);
-                LlenaTicket(IdTicket);
+                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, ((Usuario)Session["UserData"]).Id, txtConversacion.Text, false, null, rbtnPrivate.Checked, !rbtnPrivate.Checked);
+                LlenaTicket(IdTicket, Asigna);
                 if (rbtnConversacionPublico.Checked)
                     LlenaConversacion(1);
                 else if (rbtnConversacionPrivado.Checked)
@@ -444,5 +484,63 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
+
+        protected void rptConversaciones_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        {
+            try
+            {
+
+                if (e.Item.ItemType == System.Web.UI.WebControls.ListItemType.Item || e.Item.ItemType == System.Web.UI.WebControls.ListItemType.AlternatingItem)
+                {
+                    System.Web.UI.WebControls.Image img = (System.Web.UI.WebControls.Image)e.Item.FindControl("imgAgente");
+                    if (img != null)
+                    {
+                        byte[] foto = new ServiceUsuariosClient().ObtenerFoto(((HelperConversacionDetalle)e.Item.DataItem).IdUsuario);
+                        if (foto != null)
+                            img.ImageUrl = "~/DisplayImages.ashx?id=" + ((HelperConversacionDetalle)e.Item.DataItem).IdUsuario;
+                        else
+
+                            img.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void rptConcentradoTicketsUsuario_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.ItemType == System.Web.UI.WebControls.ListItemType.Item || e.Item.ItemType == System.Web.UI.WebControls.ListItemType.AlternatingItem)
+                {
+                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblEstatusTicketConcentrado");
+                    if (lbl != null)
+                    {
+                        HelperticketEnAtencion tickets = _servicioAtencionTicket.ObtenerTicketEnAtencion(((HelperTicketsUsuario)e.Item.DataItem).IdTicket, IdUsuarioLevanto);
+                        lbl.Style.Add("color", tickets.ColorEstatus);
+                        lbl.Text = tickets.DescripcionEstatusTicket;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
     }
 }

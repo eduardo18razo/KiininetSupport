@@ -49,6 +49,8 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         {
             get
             {
+                if (ddlTipoUsuario.SelectedIndex < BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    return 0;
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     throw new Exception("Seleccione quien puede ver el contenido.");
                 return int.Parse(ddlTipoUsuario.SelectedValue);
@@ -63,6 +65,8 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         {
             get
             {
+                if (ddlArea.SelectedIndex < BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    return 0;
                 if (ddlArea.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     throw new Exception("Seleccione una categoria.");
                 return int.Parse(ddlArea.SelectedValue);
@@ -281,35 +285,40 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             }
         }
 
-        private void LimpiarPantalla()
+        public void LimpiarPantalla()
         {
             try
             {
                 //Step 1
+                ddlNivel1_OnSelectedIndexChanged(ddlNivel1, null);
                 ddlTipoUsuario.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
                 txtDescripcionNivel.Text = string.Empty;
                 LlenaCombos();
                 chkEvaluacion.Checked = true;
                 chkNivelHabilitado.Checked = true;
+                btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);
 
                 //Step 2
                 txtDescripcionArea.Text = string.Empty;
-                ddlArea_OnSelectedIndexChanged(ddlArea, null);
                 txtDescripcionN1.Text = string.Empty;
                 txtDescripcionN2.Text = string.Empty;
                 txtDescripcionN3.Text = string.Empty;
                 txtDescripcionN4.Text = string.Empty;
                 txtDescripcionN5.Text = string.Empty;
                 txtDescripcionN6.Text = string.Empty;
+                divNivel2.Visible = false;
+                divNivel3.Visible = false;
+                divNivel4.Visible = false;
+                divNivel5.Visible = false;
+                divNivel6.Visible = false;
+                ////Step 3
+                //Metodos.LimpiarCombo(ddlGrupoAcceso);
+                //Metodos.LimpiarCombo(ddlDuenoServicio);
+                //Metodos.LimpiarCombo(ddlGrupoResponsableMantenimiento);
+                //Metodos.LimpiarListBox(lstGrupoEspecialConsulta);
 
-                //Step 3
-                Metodos.LimpiarCombo(ddlGrupoAcceso);
-                Metodos.LimpiarCombo(ddlDuenoServicio);
-                Metodos.LimpiarCombo(ddlGrupoResponsableMantenimiento);
-                Metodos.LimpiarListBox(lstGrupoEspecialConsulta);
-
-                //txtDescripcionN7.Text = string.Empty;
-                btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);
+                ////txtDescripcionN7.Text = string.Empty;
+                //btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);
             }
             catch (Exception e)
             {
@@ -322,8 +331,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             {
                 _mp = (UsuariosMaster)Page.Master;
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnSaveAll.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnSaveAll, null) + ";}";  
                 if (!IsPostBack)
                 {
                     LlenaCombos();
@@ -935,6 +942,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     IdTipoArbolAcceso = TipoArbol,
                     Evaluacion = chkEvaluacion.Checked,
                     EsTerminal = true,
+                    Publico = chkPublico.Checked,
                     Habilitado = chkNivelHabilitado.Checked,
                     Sistema = false,
                     IdUsuarioAlta = ((Usuario)Session["UserData"]).Id

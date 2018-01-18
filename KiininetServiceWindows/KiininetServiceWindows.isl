@@ -3983,12 +3983,15 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PatchSequence</td><td>1.0.0</td></row>
 		<row><td>SaveAsSchema</td><td/></row>
 		<row><td>SccEnabled</td><td>0</td></row>
-		<row><td>SccPath</td><td>$/Desarrollo Merge/KiininetServiceWindows</td></row>
+		<row><td>SccPath</td><td>$/Desarrollo eduardo/KiininetServiceWindows</td></row>
 		<row><td>SchemaVersion</td><td>776</td></row>
 		<row><td>Type</td><td>MSIE</td></row>
+<<<<<<< HEAD
 		<row><td>VSSccAuxPath</td><td>https://kiininettfs.visualstudio.com</td></row>
 		<row><td>VSSccLocalPath</td><td>.</td></row>
 		<row><td>VSSccProvider</td><td>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</td></row>
+=======
+>>>>>>> Janeth_Garcia
 	</table>
 
 	<table name="InstallUISequence">

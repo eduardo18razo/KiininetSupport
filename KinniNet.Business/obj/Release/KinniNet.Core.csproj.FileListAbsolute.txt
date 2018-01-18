@@ -90,3 +90,17 @@ C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\bin\Release\EPPlus.xml
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\obj\Release\KinniNet.Core.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\obj\Release\KinniNet.Core.dll
 C:\Users\Eduardo Cerritos\Desktop\TFS\KinniNet.Business\obj\Release\KinniNet.Core.pdb
+C:\Users\Janeth\Documents\git\KinniNet.Business\obj\Release\KinniNet.Core.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KinniNet.Core.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KinniNet.Core.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Release\EPPlus.xml
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Release\KinniNet.Core.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Release\KinniNet.Core.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Release\KinniNet.Core.pdb

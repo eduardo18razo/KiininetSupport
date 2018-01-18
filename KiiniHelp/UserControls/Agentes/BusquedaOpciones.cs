@@ -21,7 +21,7 @@ namespace KiiniHelp.UserControls.Agentes
             {
                 result = _servicioArbol.ObtenerOpcionesPermitidas(idUsuarioSolicita, idUsuarioLevanta, idArea, insertarSeleccion);
                 if (result != null && keys != null && keys.Trim() != string.Empty)
-                    result = result.Where(w => w.Descripcion.ToLower().Contains(keys.ToLower().Trim())).ToList();
+                    result = result.Where(w => w.DescripcionTipificacion.ToLower().Contains(keys.ToLower().Trim())).ToList();
                 if (result == null)
                     result = new List<HelperArbolAcceso>();
             }

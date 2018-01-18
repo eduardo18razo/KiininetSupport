@@ -102,6 +102,11 @@ namespace KiiniHelp.ServiceArbolAcceso {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuario", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByIdUsuarioRes" +
             "ponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperArbolAcceso> ObtenerArbolesAccesoTerminalByIdUsuario(int idUsuario, bool insertarSeleccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByGrupoUsuario" +
+            "", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByGrupoUsuario" +
+            "Response")]
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -241,6 +246,10 @@ namespace KiiniHelp.ServiceArbolAcceso {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperArbolAcceso> ObtenerArbolesAccesoTerminalByIdUsuario(int idUsuario, bool insertarSeleccion) {
             return base.Channel.ObtenerArbolesAccesoTerminalByIdUsuario(idUsuario, insertarSeleccion);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo) {
+            return base.Channel.ObtenerArbolesAccesoTerminalByGrupoUsuario(idGrupo);
         }
     }
 }

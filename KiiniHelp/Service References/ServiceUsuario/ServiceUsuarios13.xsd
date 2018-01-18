@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
   <xs:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
   <xs:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
   <xs:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
@@ -20,11 +21,12 @@
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="InventarioArbolAcceso" nillable="true" type="q1:ArrayOfInventarioArbolAcceso" />
       <xs:element minOccurs="0" name="NoCampos" type="xs:int" />
       <xs:element minOccurs="0" name="NombreTabla" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ParametroDatosAdicionales" nillable="true" type="q2:ArrayOfParametroDatosAdicionales" />
       <xs:element minOccurs="0" name="Random" type="xs:boolean" />
       <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q2:ArrayOfTicket" />
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioAlta" nillable="true" type="q3:Usuario" />
-      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioModifico" nillable="true" type="q4:Usuario" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q3:ArrayOfTicket" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioAlta" nillable="true" type="q4:Usuario" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioModifico" nillable="true" type="q5:Usuario" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -38,7 +40,7 @@
   <xs:element name="ArrayOfCampoMascara" nillable="true" type="tns:ArrayOfCampoMascara" />
   <xs:complexType name="CampoMascara">
     <xs:sequence>
-      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="Catalogos" nillable="true" type="q5:Catalogos" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="Catalogos" nillable="true" type="q6:Catalogos" />
       <xs:element minOccurs="0" name="CheckBox" type="xs:boolean" />
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EsArchivo" type="xs:boolean" />
@@ -76,7 +78,7 @@
       <xs:element minOccurs="0" name="IdTicket" type="xs:int" />
       <xs:element minOccurs="0" name="NombreCampoMascara" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Seleccionado" type="xs:boolean" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q6:Ticket" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q7:Ticket" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />

@@ -36,7 +36,6 @@ namespace KiiniHelp.UserControls.Consultas
 
                 tblResults.DataSource = _servicioEncuestas.Consulta(descripcion);
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -51,7 +50,7 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    
+                    LlenaEncuestas();
                 }
                 ucAltaEncuesta.OnAceptarModal += AltaEncuestaOnAceptarModal;
                 ucAltaEncuesta.OnCancelarModal += AltaEncuestaOnCancelarModal;
@@ -143,7 +142,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                ucAltaEncuesta.IdEncuesta = int.Parse(((ImageButton)sender).CommandArgument);
+                ucAltaEncuesta.IdEncuesta = int.Parse(((LinkButton)sender).CommandArgument);
                 ucAltaEncuesta.Alta = false;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaEncuesta\");", true);
             }

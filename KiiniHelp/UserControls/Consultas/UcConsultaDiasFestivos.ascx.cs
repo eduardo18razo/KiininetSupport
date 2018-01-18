@@ -36,7 +36,6 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 tblResults.DataSource = _servicioDiasFestivos.ObtenerDiasFeriadosConsulta(txtFiltro.Text.Trim());
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -53,6 +52,9 @@ namespace KiiniHelp.UserControls.Consultas
                 {
 
                 }
+
+                LlenaFeriadosConsulta();
+
                 ucAltaDiasFestivos.OnAceptarModal += AltaHorarioOnAceptarModal;
                 ucAltaDiasFestivos.OnCancelarModal += AltaHorarioOnCancelarModal;
             }
@@ -84,7 +86,6 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-
         private void AltaHorarioOnAceptarModal()
         {
             try
@@ -102,7 +103,6 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-
 
         protected void btnNew_OnClick(object sender, EventArgs e)
         {
@@ -196,7 +196,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 ucAltaDiasFestivos.EsAlta = false;
-                ucAltaDiasFestivos.IdGrupoEditar = int.Parse(((ImageButton)sender).CommandArgument);
+                ucAltaDiasFestivos.IdGrupoEditar = int.Parse(((LinkButton)sender).CommandArgument);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaHorario\");", true);
             }
             catch (Exception ex)

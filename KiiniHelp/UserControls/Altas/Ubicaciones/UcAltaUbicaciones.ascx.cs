@@ -57,12 +57,18 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     ddlTipoUsuario.Enabled = true;
                     btnSeleccionarModal.Visible = true;
                     btnGuardarCatalogo.Visible = true;
+
+                    seleccionar.Visible = true;
+                    btnGuardar.Visible = false;
                 }
                 else
                 {
                     ddlTipoUsuario.Enabled = false;
                     btnSeleccionarModal.Visible = false;
                     btnGuardarCatalogo.Visible = false;
+
+                    lblAccion.Text = "Editar";
+                    btnGuardar.Visible = true;
                 }
             }
         }
@@ -75,6 +81,11 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 btnSeleccionarModal.Visible = value;
                 btnGuardarCatalogo.Visible = value;
                 ddlTipoUsuario.Enabled = !value;
+
+                divNombre.Visible = true;
+                seleccionar.Visible = false;
+                btnGuardar.Visible = false;
+
             }
         }
 
@@ -122,7 +133,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             txtNoExt.Text = org.Campus.Domicilio.First().NoExt;
                             txtNoInt.Text = org.Campus.Domicilio.First().NoInt;
                         }
-                        //TODO: SetAliasModal() Campus actualizar
                         SetAliasModal();
                         dataCampus.Visible = true;
                         btnStatusNivel1.CssClass = "btn btn-success btn-square";
@@ -661,7 +671,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
         {
             try
             {
-                dataCampus.Visible = false;
                 txtDescripcionCatalogo.Text = string.Empty;
                 btnGuardarCatalogo.Visible = true;
             }
@@ -716,7 +725,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 divCapturaDescripcion.Visible = true;
                 divNombre.Visible = true;
 
-                dataCampus.Visible = false;
+                //dataCampus.Visible = false;
                 txtDescripcionCatalogo.Text = string.Empty;
                 txtCp.Text = string.Empty;
                 Metodos.LimpiarCombo(ddlColonia);
@@ -937,7 +946,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     divCapturaDescripcion.Visible = int.Parse(btnSeleccionarModal.CommandArgument) > 1;
                     divNombre.Visible = int.Parse(btnSeleccionarModal.CommandArgument) > 1;
 
-            }
+                }
             }
             catch (Exception ex)
             {
@@ -1088,6 +1097,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             try
             {
                 Ubicacion ubicacion;
+                #region Es Nivel 2
                 if (hfCatalogo.Value == "2")
                 {
                     if (Convert.ToBoolean(hfAlta.Value))
@@ -1122,6 +1132,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             LlenaComboDinamico(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerCampus(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel1.Value), true));
                         }
                         _mp.AlertaSucces();
+                        ddlNivelSeleccionModal.SelectedIndex = ddlNivelSeleccionModal.Items.IndexOf(ddlNivelSeleccionModal.Items.FindByText(txtDescripcionCatalogo.Text.Trim()));
+
                     }
                     else
                     {
@@ -1142,12 +1154,16 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     }
                     LimpiaCatalogoAltaCampus();
                 }
+
+                #endregion
+
+                #region No es Nivel 2
                 else
                 {
-                    if (!Metodos.ValidaCapturaCatalogo(txtDescripcionCatalogo.Text)) return;
+                    if (!Metodos.ValidaCapturaCatalogo(txtDescripcionCatalogo.Text)) return; // Valida nombre de nivel
+
                     if (Convert.ToBoolean(hfAlta.Value))
                     {
-
                         int idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
                         ubicacion = new Ubicacion
                         {
@@ -1226,6 +1242,9 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         _mp.AlertaSucces();
                         ddlNivelSeleccionModal.SelectedIndex = ddlNivelSeleccionModal.Items.IndexOf(ddlNivelSeleccionModal.Items.FindByText(txtDescripcionCatalogo.Text.Trim()));
                     }
+
+
+
                     else
                     {
                         ubicacion = (Ubicacion)Session["UbicacionSeleccionada"];
@@ -1266,7 +1285,11 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         }
                         _mp.AlertaSucces(BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.Actualizacion));
                     }
+
+                    dataCampus.Visible = false;
                 }
+                #endregion
+
                 LimpiaCatalogoNivel();
                 if (OnAceptarModal != null)
                     OnAceptarModal();
@@ -1518,6 +1541,27 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                         break;
                 }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Guardar();
+                LimpiaCatalogo();
+                if (OnTerminarModal != null)
+                    OnTerminarModal();
             }
             catch (Exception ex)
             {

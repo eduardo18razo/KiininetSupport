@@ -39,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EAGetMail40">
-      <HintPath>..\packages\EAGetMail.4.6.3.2\lib\net40\EAGetMail40.dll</HintPath>
+      <HintPath>..\..\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\EAGetMail40.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail40">
-      <HintPath>..\packages\EASendMail.7.3.1.2\lib\net40\EASendMail40.dll</HintPath>
+      <HintPath>..\..\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\EASendMail40.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
-      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\EPPlus.dll</HintPath>
+      <HintPath>..\..\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

@@ -36,7 +36,6 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 tblResults.DataSource = _servicioHorarios.ObtenerHorarioConsulta(txtFiltro.Text.Trim());
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -53,6 +52,9 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     
                 }
+
+                LlenaHorariosConsulta();
+
                 ucAltaHorario.OnAceptarModal += AltaHorarioOnAceptarModal;
                 ucAltaHorario.OnCancelarModal += AltaHorarioOnCancelarModal;
             }
@@ -148,7 +150,7 @@ namespace KiiniHelp.UserControls.Consultas
                     lstcatalogos = lstcatalogos.Where(w => w.Descripcion.Contains(filtro)).ToList();
 
                 Response.Clear();
-                string ultimaEdicion = "Últ. edición";
+                string ultimaEdicion = "Últ. Edición";
                 MemoryStream ms =
                     new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstcatalogos.Select(
                                 s => new
@@ -193,13 +195,12 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-
+       
         protected void btnEditar_OnClick(object sender, EventArgs e)
         {
             try
             {
-                //ucAltaHorario.IdHorario = int.Parse(((LinkButton)sender).CommandArgument);
-                ucAltaHorario.IdHorario = int.Parse(((ImageButton)sender).CommandArgument);
+                ucAltaHorario.IdHorario = int.Parse(((LinkButton)sender).CommandArgument);
                 ucAltaHorario.EsAlta = false;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaHorario\");", true);
             }

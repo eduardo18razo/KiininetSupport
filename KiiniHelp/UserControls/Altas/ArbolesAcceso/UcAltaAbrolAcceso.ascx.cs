@@ -20,6 +20,19 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
+
+        public void Cancelar()
+        {
+            try
+            {
+                UcAltaConsulta.LimpiarPantalla();
+                UcAltaServicio.LimpiarPantalla();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         private List<string> Alerta
         {
             set
@@ -286,24 +299,24 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         //{
         //    try
         //    {
-        //        AsociarGrupoUsuario.AsignacionAutomatica = true;
-        //        UcAltaInformacionConsulta.EsAlta = true;
-        //        UcAltaSla.FromModal = true;
+                //AsociarGrupoUsuario.AsignacionAutomatica = true;
+                //UcAltaInformacionConsulta.EsAlta = true;
+                //UcAltaSla.FromModal = true;
 
-        //        UcAltaInformacionConsulta.OnAceptarModal += UcAltaInformacionConsulta_OnAceptarModal;
-        //        UcAltaInformacionConsulta.OnCancelarModal += UcAltaInformacionConsulta_OnCancelarModal;
+                //UcAltaInformacionConsulta.OnAceptarModal += UcAltaInformacionConsulta_OnAceptarModal;
+                //UcAltaInformacionConsulta.OnCancelarModal += UcAltaInformacionConsulta_OnCancelarModal;
 
-        //        UcAltaMascaraAcceso.OnAceptarModal += UcAltaMascaraAcceso_OnAceptarModal;
-        //        UcAltaMascaraAcceso.OnCancelarModal += UcAltaMascaraAcceso_OnCancelarModal;
+                //UcAltaMascaraAcceso.OnAceptarModal += UcAltaMascaraAcceso_OnAceptarModal;
+                //UcAltaMascaraAcceso.OnCancelarModal += UcAltaMascaraAcceso_OnCancelarModal;
 
-        //        UcAltaSla.OnAceptarModal += UcSla_OnAceptarModal;
-        //        UcAltaSla.OnCancelarModal += UcSla_OnCancelarModal;
+                //UcAltaSla.OnAceptarModal += UcSla_OnAceptarModal;
+                //UcAltaSla.OnCancelarModal += UcSla_OnCancelarModal;
 
-        //        UcImpactoUrgencia.OnAceptarModal += UcImpactoUrgencia_OnAceptarModal;
-        //        UcImpactoUrgencia.OnCancelarModal += UcImpactoUrgenciaOnOnCancelarModal;
+                //UcImpactoUrgencia.OnAceptarModal += UcImpactoUrgencia_OnAceptarModal;
+                //UcImpactoUrgencia.OnCancelarModal += UcImpactoUrgenciaOnOnCancelarModal;
 
-        //        ucAltaTiempoEstimado.OnAceptarModal += AltaTiempoEstimadoOnOnAceptarModal;
-        //        ucAltaTiempoEstimado.OnCancelarModal += AltaTiempoEstimadoOnOnCancelarModal;
+                //ucAltaTiempoEstimado.OnAceptarModal += AltaTiempoEstimadoOnOnAceptarModal;
+                //ucAltaTiempoEstimado.OnCancelarModal += AltaTiempoEstimadoOnOnCancelarModal;
         //    }
         //    catch (Exception ex)
         //    {

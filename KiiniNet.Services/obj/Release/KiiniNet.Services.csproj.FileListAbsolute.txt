@@ -86,3 +86,22 @@ C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EAGetMail40
 C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EASendMail40.dll
 C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EPPlus.dll
 C:\Users\Eduardo Cerritos\Desktop\Repo\KiiniNet.Services\bin\Release\EPPlus.xml
+C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Release\KiiniNet.Services.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KiiniNet.Services.dll.config
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KiiniNet.Services.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KiiniNet.Services.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KiiniNet.Entities.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KinniNet.Business.Utils.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KinniNet.Core.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\EASendMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KinniNet.Data.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KiiniNet.Entities.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KinniNet.Core.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\EPPlus.xml
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Release\KinniNet.Data.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Release\KiiniNet.Services.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Release\KiiniNet.Services.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Release\KiiniNet.Services.pdb

@@ -38,6 +38,7 @@ namespace KiiniHelp.UserControls.Altas
             set
             {
                 hfEsAlta.Value = value.ToString();
+                lbltitulo.Text = value ? "Nuevo Horario" : "Editar Horario";            
             }
         }
 
@@ -178,8 +179,6 @@ namespace KiiniHelp.UserControls.Altas
             {
 
                 Alerta = new List<string>();
-                //TODO: Se elimina para bloque de boton al click
-                //btnAgregar.OnClientClick = "this.disabled = document.getElementById('form1').checkValidity(); if(document.getElementById('form1').checkValidity()){ " + Page.ClientScript.GetPostBackEventReference(btnAgregar, null) + ";}";  
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptHorario", "SetTable();", true);
                 if (!IsPostBack)
                 {

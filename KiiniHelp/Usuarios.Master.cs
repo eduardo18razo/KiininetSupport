@@ -143,6 +143,8 @@ namespace KiiniHelp
                     //btnSwitchRol.Visible = !administrador;
                     lblUsuario.Text = usuario.NombreCompleto;
                     lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
+                    int IdUsuario = usuario.Id;
+                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png"; 
                     ObtenerAreas();
                     int rolSeleccionado = 0;
                     if (Session["RolSeleccionado"] != null)
@@ -382,10 +384,8 @@ namespace KiiniHelp
                     rptMenu.DataBind();
                     Session["CargaInicialModal"] = "True";
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalRol\");", true);
-                    //TODO: Tickets redirect
                     if (areaSeleccionada == (int)BusinessVariables.EnumRoles.Agente)
                         Response.Redirect("~/Agente/Bandeja.aspx");
-                    //Response.Redirect("~/Agente/FrmBandejaTickets.aspx");
                     Response.Redirect("~/Users/DashBoard.aspx");
                 }
                 catch (Exception ex)

@@ -94,6 +94,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
+        /// Control divUltimoAcceso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUltimoAcceso;
+        
+        /// <summary>
         /// Control lblFechaUltimoAcceso.
         /// </summary>
         /// <remarks>
@@ -193,6 +202,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
         
         /// <summary>
+        /// Control txtNombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        
+        /// <summary>
         /// Control txtAp.
         /// </summary>
         /// <remarks>
@@ -209,15 +227,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAm;
-        
-        /// <summary>
-        /// Control txtNombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
         
         /// <summary>
         /// Control txtUserName.
@@ -319,15 +328,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.LinkButton btnAddCorreo;
         
         /// <summary>
-        /// Control rptOrganizacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptOrganizacion;
-        
-        /// <summary>
         /// Control btnModalOrganizacion.
         /// </summary>
         /// <remarks>
@@ -337,13 +337,13 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.Button btnModalOrganizacion;
         
         /// <summary>
-        /// Control rptUbicacion.
+        /// Control rptOrganizacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptUbicacion;
+        protected global::System.Web.UI.WebControls.Repeater rptOrganizacion;
         
         /// <summary>
         /// Control btnModalUbicacion.
@@ -355,13 +355,13 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.Button btnModalUbicacion;
         
         /// <summary>
-        /// Control rptRoles.
+        /// Control rptUbicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptRoles;
+        protected global::System.Web.UI.WebControls.Repeater rptUbicacion;
         
         /// <summary>
         /// Control btnModalRoles.
@@ -371,6 +371,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModalRoles;
+        
+        /// <summary>
+        /// Control rptRoles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptRoles;
         
         /// <summary>
         /// Control divBtnGuardar.

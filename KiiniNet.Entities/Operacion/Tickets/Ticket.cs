@@ -117,6 +117,8 @@ namespace KiiniNet.Entities.Operacion.Tickets
 
         [DataMember]
         public virtual List<MascaraSeleccionCatalogo> MascaraSeleccionCatalogo { get; set; }
+        [DataMember]
+        public virtual List<TicketCorreo> TicketCorreo { get; set; }
 
     }
 }

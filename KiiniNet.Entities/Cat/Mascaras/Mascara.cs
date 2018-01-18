@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Operacion.Tickets;
+using KiiniNet.Entities.Parametros;
 
 namespace KiiniNet.Entities.Cat.Mascaras
 {
@@ -46,5 +47,7 @@ namespace KiiniNet.Entities.Cat.Mascaras
         public virtual Entities.Operacion.Usuarios.Usuario UsuarioAlta { get; set; }
         [DataMember]
         public virtual Entities.Operacion.Usuarios.Usuario UsuarioModifico { get; set; }
+        [DataMember]
+        public virtual List<ParametroDatosAdicionales> ParametroDatosAdicionales { get; set; }
     }
 }

@@ -100,7 +100,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IServicePoliticas/HabilitarEstatusTicketSubRolGeneralResponse" message="tns:IServicePoliticas_HabilitarEstatusTicketSubRolGeneral_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IServicePoliticas" type="tns:IServicePoliticas">
+  <wsdl:binding name="EndPointSeguridad" type="tns:IServicePoliticas">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ObtenerEstatusAsignacionSubRolGeneralDefault">
       <soap:operation soapAction="http://tempuri.org/IServicePoliticas/ObtenerEstatusAsignacionSubRolGeneralDefault" style="document" />
@@ -176,7 +176,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServicePoliticas">
-    <wsdl:port name="BasicHttpBinding_IServicePoliticas" binding="tns:BasicHttpBinding_IServicePoliticas">
+    <wsdl:port name="EndPointSeguridad" binding="tns:EndPointSeguridad">
       <soap:address location="http://localhost:15277/Sistema/ServicePoliticas.svc" />
     </wsdl:port>
   </wsdl:service>

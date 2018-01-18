@@ -17,7 +17,7 @@ namespace KiiniNet.Services.Operacion.Interface
         void CambiarAsignacionTicket(int idTicket, int idEstatusAsignacion, int idUsuarioAsignado, int idNivelAsignado, int idUsuarioAsigna, string comentario);
 
         [OperationContract]
-        void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, List<string> archivos, bool privado);
+        void AgregarComentarioConversacionTicket(int idTicket, int idUsuario, string mensaje, bool sistema, List<string> archivos, bool privado, bool enviaCorreo);
         
         [OperationContract]
         void MarcarAsignacionLeida(int idAsignacion);

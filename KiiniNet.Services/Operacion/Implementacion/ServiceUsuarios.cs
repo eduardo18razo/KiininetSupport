@@ -84,13 +84,28 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<Usuario> ObtenerUsuariosByGrupo(int idGrupo, int idNivel)
+        public List<HelperDetalleUsuarioGrupo> ObtenerUsuariosByGrupo(int idGrupo)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    return negocio.ObtenerUsuariosByGrupo(idGrupo, idNivel);
+                    return negocio.ObtenerUsuariosByGrupo(idGrupo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Usuario> ObtenerUsuariosByGrupoAgente(int idGrupo, int idNivel)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    return negocio.ObtenerUsuariosByGrupoAgente(idGrupo, idNivel);
                 }
             }
             catch (Exception ex)
@@ -159,13 +174,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public void HabilitarUsuario(int idUsuario, bool habilitado)
+        public void HabilitarUsuario(int idUsuario, bool habilitado, string tmpurl)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    negocio.HabilitarUsuario(idUsuario, habilitado);
+                    negocio.HabilitarUsuario(idUsuario, habilitado, tmpurl);
                 }
             }
             catch (Exception ex)
@@ -361,6 +376,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
                     return negocio.ObtenerDatosTicketUsuario(idUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public Usuario GetUsuarioByCorreo(string correo)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    return negocio.GetUsuarioByCorreo(correo);
                 }
             }
             catch (Exception ex)

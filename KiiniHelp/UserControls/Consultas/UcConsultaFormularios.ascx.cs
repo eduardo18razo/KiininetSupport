@@ -48,8 +48,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                
-                
+                LlenaMascaras();                
             }
             catch (Exception ex)
             {
@@ -153,7 +152,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                Response.Redirect("~/Users/Administracion/Formularios/FrmEdicionFormulario.aspx?Alta=false&idFormulario=" + ((ImageButton)sender).CommandArgument);
+                Response.Redirect("~/Users/Administracion/Formularios/FrmEdicionFormulario.aspx?Alta=false&idFormulario=" + ((LinkButton)sender).CommandArgument);
                 //AltaInformacionConsulta.GrupoUsuario = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(Convert.ToInt32(hfId.Value));
                 //ucAltaGrupoUsuario.Alta = false;
                 //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAltaGrupoUsuarios\");", true);

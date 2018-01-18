@@ -26,7 +26,7 @@ namespace KiiniNet.Entities.Helper
         public int Id { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaHora { get; set; }
-
+        public int IdUsuario { get; set; }
         public string Comentario { get; set; }
         public bool Privado { get; set; }
         public List<HelperConversacionArchivo> Archivo { get; set; }

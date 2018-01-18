@@ -33,6 +33,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="idGrupo" type="xs:int" />
         <xs:element minOccurs="0" name="idEstatusActual" type="xs:int" />
         <xs:element minOccurs="0" name="esPropietario" type="xs:boolean" />
         <xs:element minOccurs="0" name="insertarSeleccion" type="xs:boolean" />
@@ -50,6 +51,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="idGrupo" type="xs:int" />
         <xs:element minOccurs="0" name="idSubRol" type="xs:int" />
         <xs:element minOccurs="0" name="estatusAsignacionActual" type="xs:int" />
         <xs:element minOccurs="0" name="esPropietario" type="xs:boolean" />
@@ -68,6 +70,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="idGrupo" type="xs:int" />
         <xs:element minOccurs="0" name="idSubRol" type="xs:int" />
         <xs:element minOccurs="0" name="estatusAsignacionActual" type="xs:int" />
         <xs:element minOccurs="0" name="estatusAsignar" type="xs:int" />
