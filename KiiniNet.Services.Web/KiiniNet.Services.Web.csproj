@@ -98,8 +98,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\Eduardo Cerritos.pubxml" />
-    <None Include="Properties\PublishProfiles\ServiciosKiiniNet.pubxml" />
+    <None Include="Properties\PublishProfiles\Janet.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

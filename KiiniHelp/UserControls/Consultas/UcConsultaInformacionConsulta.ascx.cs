@@ -38,7 +38,6 @@ namespace KiiniHelp.UserControls.Consultas
                 string filtro = txtFiltro.Text;
                 tblResults.DataSource = _servicioInformacionConsulta.ObtenerConsulta(filtro);
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
