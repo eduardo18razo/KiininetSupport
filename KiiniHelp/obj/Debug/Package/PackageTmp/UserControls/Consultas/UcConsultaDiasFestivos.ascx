@@ -95,17 +95,26 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="25%">
+                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="20%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEdit">
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
-                                                        <asp:ImageButton runat="server" ImageUrl="~/assets/images/icons/editar.png" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"></asp:ImageButton>
-                                                        | 
+                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>'  OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>                                                       
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="15%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
+                                                    <li>
                                                         <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' OnClick="btnClonar_OnClick"></asp:LinkButton>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
                                     </Columns>
                                 </asp:GridView>                                                    
 

@@ -20,6 +20,13 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.fa-15x {
+    font-size: 15px;
+    padding-left: 5px;
+    padding-top: 3px;
+}
+
 .fa-20x {
     font-size: 20px
 }

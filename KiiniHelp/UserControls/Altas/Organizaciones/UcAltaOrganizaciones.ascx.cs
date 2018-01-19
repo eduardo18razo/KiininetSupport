@@ -1090,6 +1090,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                             LlenaComboDinamico(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerJefaturas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
                             break;
                     }
+
                     _mp.AlertaSucces(BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.Actualizacion));
                 }
 
@@ -1355,6 +1356,9 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
             try
             {
                 Guardar();
+                LimpiaCatalogo();
+                if (OnTerminarModal != null)
+                    OnTerminarModal();
             }
             catch (Exception ex)
             {
