@@ -93,6 +93,7 @@
     <Content Include="assets\carouselImage\slide-5.jpg" />
     <Content Include="assets\css\bootstrap-markdown.css" />
     <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\cambiosdiseno.css" />
     <Content Include="assets\css\checkBox.css" />
     <Content Include="assets\css\controls.css" />
     <Content Include="assets\css\divs.css" />
@@ -4126,7 +4127,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
