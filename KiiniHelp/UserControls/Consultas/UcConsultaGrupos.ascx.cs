@@ -10,6 +10,7 @@ using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
 using KinniNet.Business.Utils;
+using System.IO;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -79,7 +80,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 int? idTipoUsuario = null;
                 int? idTipoGrupo = null;
-               
+
                 if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
@@ -134,7 +135,7 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     LlenaCombos();
                 }
-                
+
                 LlenaGrupos();
 
                 ucAltaGrupoUsuario.FromOpcion = false;
@@ -423,5 +424,53 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
+
+
+        protected void btnDownload_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                int? idTipoUsuario = null;
+                int? idTipoGrupo = null;
+
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
+
+                if (ddlTipoGrupo.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    idTipoGrupo = int.Parse(ddlTipoGrupo.SelectedValue);
+
+                string filtro = txtFiltro.Text.ToLower().Trim();
+                List<GrupoUsuario> gpos = _servicioGrupoUsuario.ObtenerGruposUsuarioAll(idTipoUsuario, idTipoGrupo);
+                if (filtro != string.Empty)
+                    gpos = gpos.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
+                Response.Clear();
+
+                MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(gpos.Select(
+                                s => new
+                                {
+                                    TipoUsuario = s.TipoUsuario.Descripcion,
+                                    Rol = s.TipoGrupo.Descripcion,
+                                    Grupo = s.Descripcion,
+                                    Supervisor = s.TieneSupervisor ? "Si" : "No",
+                                    Activo = s.Habilitado ? "Si" : "No"
+                                })
+                                .ToList()).GetAsByteArray());
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;  filename=Grupos.xlsx");
+                Response.Buffer = true;
+                ms.WriteTo(Response.OutputStream);
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+       
     }
 }

@@ -37,6 +37,10 @@
             z-index: 1000;
             background: #ffffff;
         }
+        .alineacolumna{
+            padding-left:0;
+            margin-left:0;
+        }
     </style>
     <script>
 
@@ -71,6 +75,7 @@
         //    }
         //    return true;
         //}
+        
     </script>
 </head>
 <body class="preload" style="background: #fff">
@@ -104,6 +109,13 @@
                     oControl.disabled = true;
                 }
             </script>
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="row"><asp:Label runat="server" Text="prueba" CssClass="control-label"></asp:Label> </div>
+                    <div class="row"><asp:TextBox runat="server" CssClass="form-control alineacolumna"></asp:TextBox></div>
+
+                </div>
+            </div>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <uc1:UcDetalleArbolAcceso runat="server" id="ucDetalleArbolAcceso" />

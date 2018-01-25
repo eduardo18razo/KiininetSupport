@@ -1452,6 +1452,9 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep7.Visible = false;
                         break;
                     case 2:
+                        divNombre.Visible = true;
+                        dataCampus.Visible = true;
+                        divCapturaDescripcion.Visible = true;
                         divStep3.Visible = false;
                         divStep4.Visible = false;
                         divStep5.Visible = false;

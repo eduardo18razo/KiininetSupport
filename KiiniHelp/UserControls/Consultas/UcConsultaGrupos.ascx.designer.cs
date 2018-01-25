@@ -13,13 +13,13 @@ namespace KiiniHelp.UserControls.Consultas {
     public partial class UcConsultaGrupos {
         
         /// <summary>
-        /// Control lblSeccion.
+        /// Control lblOrganización.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSeccion;
+        protected global::System.Web.UI.WebControls.Label lblOrganización;
         
         /// <summary>
         /// Control txtFiltro.
@@ -47,6 +47,15 @@ namespace KiiniHelp.UserControls.Consultas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoGrupo;
+        
+        /// <summary>
+        /// Control btnDownload.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDownload;
         
         /// <summary>
         /// Control btnNew.

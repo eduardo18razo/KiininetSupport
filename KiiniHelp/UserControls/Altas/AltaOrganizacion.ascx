@@ -6,7 +6,7 @@
                 <asp:HiddenField runat="server" ID="hfTipoUsuario" />
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        Organizacion
+                        Organización
                     </div>
                     <div class="panel-body">
                         <div class="form-group" runat="server" id="divTipoUsuario">

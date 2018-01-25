@@ -175,7 +175,6 @@
     <Content Include="assets\tmp\chosen.css" />
     <Content Include="assets\tmp\chosen.jquery.js" />
     <Content Include="assets\js\jquery.sumoselect.min.js" />
-    <Content Include="assets\css\sumoselect.css" />
     <Content Include="assets\tmp\editor\langs\es.min.js" />
     <Content Include="assets\tmp\editor\plugins\base64\trumbowyg.base64.js" />
     <Content Include="assets\tmp\editor\plugins\base64\trumbowyg.base64.min.js" />
@@ -221,7 +220,6 @@
     <Content Include="Downloads\FrmPreviewImage.aspx" />
     <Content Include="FrmRecuperar.aspx" />
     <Content Include="Identificar.aspx" />
-    <Content Include="assets\css\font.css" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Sistema.Canal.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.DiaFestivoDefault.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.HorarioDefault.datasource" />
@@ -4127,7 +4125,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

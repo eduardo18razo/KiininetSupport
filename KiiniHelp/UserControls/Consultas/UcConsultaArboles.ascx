@@ -17,8 +17,8 @@
 
             <section class="module">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="module-inner">
+                    <div class="module-inner">
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
                                     <asp:Label runat="server" ID="lblSeccion" Text="Configuración de Menú" /></h3>
@@ -27,59 +27,69 @@
                                 Texto para Configuración de Menú
                             </p>
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="module-inner separador-vertical-derecho">
-                        <div class="col-lg-5 col-md-5 col-xs-12">
-                            Consulta Opciones de Menú:<br />
-                            <div class="search-box form-inline margin-bottom-lg">
-                                <label class="sr-only" for="txtFiltro">Buscar</label>
+
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <div class="form col-lg-5">
                                 <div class="form-group">
-                                    <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control help_search_form" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" placeholder="Busca con una palabra clave..." />
-                                    <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"> <i class="fa fa-search"></i> </asp:LinkButton>
+                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Opciones de Menú:</label>
+                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
+                                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
+                                        <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-5 col-md-5 separador-vertical-derecho">
-                            ... o Consulta por Categoría y Tipo de Usuario<br />
-                            <asp:DropDownList runat="server" ID="ddlArea" CssClass="form-control" Style="width: 200px; display: inline-block" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged" AutoPostBack="true" autocompletemode="SuggestAppend" casesensitive="false" />
-                            <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" Style="width: 160px; display: inline-block; margin-left: 20px" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" AutoPostBack="true" />
-                        </div>
-
-                        <div class="col-lg-2 col-md-2 text-center">
-                            <div class="module-inner">
-                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Nuevo" OnClick="btnNew_OnClick" />
+                            <div class="form col-xs-4 col-sm-4 col-md-4 col-lg-4 separador-vertical-derecho">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o Consulta por Categoría y Tipo de Usuario</label>
+                                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7  no-padding-left no-margin-left">
+                                        <asp:DropDownList runat="server" ID="ddlArea" CssClass="form-control no-padding-left no-margin-left" Width="220px" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged" />
+                                    </div>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5  no-padding-left no-margin-left">
+                                        <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" Style="width: 120px;" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" />
+                                    </div>
+                                </div>
                             </div>
+
+
+                            <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
+                                <div class="form-group margin-top-btn-consulta">
+
+                                    <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
+                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
+
+                                    <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
+                                <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                </div>
             </section>
 
-            <div id="masonry" class="row">
-                <div class="module-wrapper masonry-item col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="masonry" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                <div class="module-wrapper masonry-item col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                     <section class="module module-headings">
                         <div class="module-inner">
-                            <div class="module-heading">
-                                <ul class="actions list-inline">
-                                    <li><a class="collapse-module" data-toggle="collapse" href="#content-1" aria-expanded="false" aria-controls="content-1"><span aria-hidden="true" class="icon arrow_carrot-up"></span></a></li>
-                                </ul>
-                            </div>
+
                             <div class="module-content collapse in" id="content-1">
                                 <div class="module-content-inner no-padding-bottom">
                                     <div class="table-responsive">
 
-                                         <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" 
-                                            CssClass="table table-striped display" Width="99%"
-                                            OnPageIndexChanging="gvPaginacion_PageIndexChanging"
-                                            BorderStyle="None" PagerSettings-Mode="Numeric" 
-                                            PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
-                                            PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
+                                        <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
+                                            OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
+                                            BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                            PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                             <Columns>
-                                                <asp:TemplateField HeaderText="TU" ControlStyle-Width="5%">
+                                                <asp:TemplateField HeaderText="TU" HeaderStyle-Width="25px">
                                                     <ItemTemplate>
-                                                        <div style="min-height: 30px;">
+                                                        <div class="altoFijo">
                                                             <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
                                                                 <%# Eval("TipoUsuario.Abreviacion") %></button>
                                                         </div>
@@ -87,37 +97,37 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Título" HeaderStyle-Width="25%">
                                                     <ItemTemplate>
-                                                        <label><%# Eval("Tipificacion")%></label>
+                                                        <label runat="server" class="ocultaTexto" title=''><%# Eval("Tipificacion")%></label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Categoría" HeaderStyle-Width="20%">
                                                     <ItemTemplate>
-                                                        <label><%# Eval("Area.Descripcion")%></label>
+                                                        <label runat="server" class="ocultaTexto" title=''><%# Eval("Area.Descripcion")%></label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Tipificación" HeaderStyle-Width="20%">
                                                     <ItemTemplate>
-                                                        <label><%# Eval("TipoArbolAcceso.Descripcion")%></label>
+                                                        <label runat="server" class="ocultaTexto" title=''><%# Eval("TipoArbolAcceso.Descripcion")%></label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                
-                                                <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="15%">
+
+                                                <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="5%">
                                                     <ItemTemplate>
-                                                        <label><%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %></label>
+                                                        <label runat="server" class="ocultaTexto" title=''><%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %></label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                
-                                                <asp:TemplateField HeaderText="Nivel" HeaderStyle-Width="10%">
+
+                                                <asp:TemplateField HeaderText="Nivel" HeaderStyle-Width="5%">
                                                     <ItemTemplate>
-                                                        <label><%# Eval("Nivel") %></label>
+                                                        <label runat="server" class="ocultaTexto" title=''><%# Eval("Nivel") %></label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                
-                                                <asp:TemplateField HeaderText="Detalle" HeaderStyle-Width="15%">
+
+                                                <asp:TemplateField HeaderText="Detalle" HeaderStyle-Width="5%">
                                                     <ItemTemplate>
                                                         <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
                                                     </ItemTemplate>
@@ -132,67 +142,11 @@
                                                         </ul>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                               
+
                                             </Columns>
                                         </asp:GridView>
 
-                                       <%-- <asp:Repeater runat="server" ID="rptResultados">
-                                            <HeaderTemplate>
-                                                <table class="table table-striped display" id="tblResults">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>
-                                                                <asp:Label runat="server">Tipo Usuario</asp:Label></th>
-                                                            <th>
-                                                                <asp:Label runat="server">Titulo</asp:Label></th>
-                                                            <th>
-                                                                <asp:Label runat="server">Categoría</asp:Label></th>
-                                                            <th>
-                                                                <asp:Label runat="server">Tipificación</asp:Label></th>
-                                                            <th>
-                                                                <asp:Label runat="server">Tipo</asp:Label></th>
-                                                            <th>
-                                                                <asp:Label runat="server">Nivel</asp:Label></th>
-                                                            <th>
-                                                                <asp:Label runat="server">Activo</asp:Label></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-                                                <tr id='<%# Eval("Id")%>'>
-                                                    <td>
-                                                        <div style="min-height: 30px;">
-                                                            <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
-                                                                <%# Eval("TipoUsuario.Abreviacion") %></button>
-                                                        </div>
-                                                    </td>
-                                                    <td><%# Eval("Tipificacion")%></td>
-                                                    <td><%# Eval("Area.Descripcion")%></td>
-                                                    <td><%# Eval("TipoArbolAcceso.Descripcion")%></td>
-                                                    <td><%# (bool)Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN"%></td>
-                                                    <td><%# Eval("Nivel")%></td>
-                                                    <td id="colHabilitado">
-                                                        <ul class="list list-unstyled " id="hiddenEnabled">
-                                                            <li>
-                                                                <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool) Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                    <td id="colEditar">
-                                                        <ul class="list list-unstyled hidden" id="hiddenEdit">
-                                                            <li>
-                                                            </li>
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                </tbody>
-                                            </table>
-                                            </FooterTemplate>
-                                        </asp:Repeater>--%>
+
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +166,13 @@
 
             </script>
         </ContentTemplate>
+
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnDownload" />
+        </Triggers>
+
     </asp:UpdatePanel>
+
     <div class="modal fade" id="modalAtaOpcion" tabindex="-1" role="dialog" aria-labelledby="basicModal">
         <asp:UpdatePanel ID="upAltaArea" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
@@ -224,7 +184,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-    
+
     <%--MODAL DETALLE GRUPO OPCIONES--%>
     <div class="modal fade" id="modalDetalleOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
