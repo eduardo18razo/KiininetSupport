@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaUbicacion.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaUbicacion" %>
 <asp:UpdatePanel ID="upUbicacion" runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+       <%-- <div class="modal-dialog modal-lg">
+            <div class="modal-content">--%>
                 <asp:HiddenField runat="server" ID="hfTipoUsuario" />
                 <div class="modal-header" id="panelAlertaUbicacion" runat="server" visible="false">
                     <div class="alert alert-danger" role="alert">
@@ -25,10 +25,10 @@
                         </asp:Repeater>
                     </div>
                 </div>
-                <div class="panel panel-primary">
+              <%--  <div class="panel panel-primary">
                     <div class="panel-heading">
                         Organizacion
-                    </div>
+                    </div>--%>
                     <div class="panel-body">
                         <div class="form-group" runat="server" id="divTipoUsuario">
                             <div class="col-sm-offset-1">
@@ -89,9 +89,9 @@
                         <asp:Button ID="btnAceptar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptar_OnClick" />
                         <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_OnClick" />
                     </div>
-                </div>
-            </div>
-        </div>
+               <%-- </div>--%>
+            <%--</div>
+        </div>--%>
     </ContentTemplate>
 </asp:UpdatePanel>
 
