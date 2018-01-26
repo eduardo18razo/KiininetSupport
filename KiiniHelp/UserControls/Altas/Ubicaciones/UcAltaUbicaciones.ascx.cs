@@ -154,6 +154,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             _servicioUbicacion.ObtenerTorres(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel2.Value), true));
                         ddlNivelSeleccionModal.SelectedValue = org.IdTorre.ToString();
                         txtDescripcionCatalogo.Text = org.Torre.Descripcion;
+                        divNombre.Visible = EsAlta || EsSeleccion;
                         dataCampus.Visible = false;
                         btnStatusNivel1.CssClass = "btn btn-success btn-square";
                         btnStatusNivel2.CssClass = "btn btn-success btn-square";
@@ -347,6 +348,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacion.Text = lblAliasNivel2.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel2.Text;
 
+                        divNombre.Visible = true;
+
                         break;
                     case 2:
                         divStep1.Visible = true;
@@ -370,6 +373,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         lblOperacion.Text = lblAliasNivel3.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
+                        divNombre.Visible = true;
+                        dataCampus.Visible = false;
                         break;
                     case 3:
                         divStep1.Visible = true;
@@ -398,6 +403,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         lblOperacion.Text = lblAliasNivel4.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel4.Text;
+                        divNombre.Visible = true;
+                        dataCampus.Visible = false;
                         break;
                     case 4:
                         divStep1.Visible = true;
@@ -429,6 +436,9 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         lblOperacion.Text = lblAliasNivel5.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel5.Text;
+
+                        divNombre.Visible = true;
+                        dataCampus.Visible = false;
                         break;
                     case 5:
                         divStep1.Visible = true;
@@ -464,6 +474,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         lblOperacion.Text = lblAliasNivel6.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
+                        divNombre.Visible = true;
+                        dataCampus.Visible = false;
                         break;
                     case 6:
 
@@ -504,6 +516,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         lblOperacion.Text = lblAliasNivel7.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel7.Text;
+
+                        divNombre.Visible = true;
+                        dataCampus.Visible = false;
+
                         break;
                     case 7:
                         divStep1.Visible = true;
@@ -541,6 +557,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerSiteRacks(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
                         lblOperacion.Text = lblAliasNivel7.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel7.Text;
+
+                        divNombre.Visible = true;
+                        dataCampus.Visible = false;
+
                         break;
                 }
             }
@@ -764,8 +784,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             }
         }
 
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -828,7 +846,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 if (EsAlta)
                 {
                     divCapturaDescripcion.Visible = false;
-                    divNombre.Visible = false;
+                    divNombre.Visible = false;  //Revisar
                 }
             }
             catch (Exception ex)
@@ -841,7 +859,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 Alerta = _lstError;
             }
         }
-
 
         protected void btnSeleccionarModal_OnClick(object sender, EventArgs e)
         {
@@ -856,6 +873,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     case 1:
                         btnStatusNivel1.CssClass = "btn btn-success btn-square";
                         lblStepNivel1.Text = ddlNivelSeleccionModal.SelectedItem.Text;
+                        divNombre.Visible = false;
                         hfNivel1.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerCampus(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel1.Value), true));
                         succNivel1.Visible = true;
@@ -956,7 +974,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             catch (Exception ex)
             {
                 divCapturaDescripcion.Visible = false;
-                divNombre.Visible = false;
+                divNombre.Visible = EsAlta || EsSeleccion;
                 switch (int.Parse(btnSeleccionarModal.CommandArgument))
                 {
                     case 1:
@@ -1418,7 +1436,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 else if (!EsAlta && !EsSeleccion)
                 {
                     Guardar();
-                    //btnGuardarCatalogo_OnClick(btnGuardarCatalogo, null);
                 }
                 LimpiaCatalogo();
                 if (OnTerminarModal != null)
@@ -1557,7 +1574,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 Alerta = _lstError;
             }
         }
-
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {

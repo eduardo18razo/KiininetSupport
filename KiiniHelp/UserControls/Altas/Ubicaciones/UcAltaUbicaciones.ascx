@@ -43,7 +43,6 @@
                                 </label>
                                 <br />
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary btn-square" ID="btnStatusNivel1" CommandArgument="1" OnClick="btnStatusNivel1_OnClick">
-                                    <%--<asp:Image ImageUrl="~/assets/images/step1.png" Width="20" Height="20" alt="" runat="server" />&nbsp;--%>
                                     <asp:Label runat="server" ID="lblStepNivel1" />
                                 </asp:LinkButton>
                             </div>
@@ -57,7 +56,6 @@
                                 </label>
                                 <br />
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary btn-square" ID="btnStatusNivel2" CommandArgument="2" OnClick="btnStatusNivel1_OnClick">
-                                    <%--<asp:Image ImageUrl="~/assets/images/step2.png" Width="20" Height="20" alt="" runat="server" />&nbsp;--%>
                                     <asp:Label runat="server" ID="lblStepNivel2" />
                                 </asp:LinkButton>
                             </div>
@@ -71,7 +69,6 @@
                                 </label>
                                 <br />
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary btn-square" ID="btnStatusNivel3" CommandArgument="3" OnClick="btnStatusNivel1_OnClick">
-                                    <%--<asp:Image ImageUrl="~/assets/images/step3.png" Width="20" Height="20" alt="" runat="server" />&nbsp;--%>
                                     <asp:Label runat="server" ID="lblStepNivel3" />
                                 </asp:LinkButton>
                             </div>
@@ -85,7 +82,6 @@
                                 </label>
                                 <br />
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary btn-square" ID="btnStatusNivel4" CommandArgument="4" OnClick="btnStatusNivel1_OnClick">
-                                    <%--<asp:Image ImageUrl="~/assets/images/step4.png" Width="20" Height="20" alt="" runat="server" />&nbsp;--%>
                                     <asp:Label runat="server" ID="lblStepNivel4" />
                                 </asp:LinkButton>
                             </div>
@@ -99,7 +95,6 @@
                                 </label>
                                 <br />
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary btn-square" ID="btnStatusNivel5" CommandArgument="5" OnClick="btnStatusNivel1_OnClick">
-                                    <%--<asp:Image ImageUrl="~/assets/images/step5.png" Width="20" Height="20" alt="" runat="server" />&nbsp;--%>
                                     <asp:Label runat="server" ID="lblStepNivel5" />
                                 </asp:LinkButton>
                             </div>
@@ -113,7 +108,6 @@
                                 </label>
                                 <br />
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary btn-square" ID="btnStatusNivel6" CommandArgument="6" OnClick="btnStatusNivel1_OnClick">
-                                    <%--<asp:Image ImageUrl="~/assets/images/step6.png" Width="20" Height="20" alt="" runat="server" />&nbsp;--%>
                                     <asp:Label runat="server" ID="lblStepNivel6" />
                                 </asp:LinkButton>
                             </div>
@@ -127,7 +121,6 @@
                                 </label>
                                 <br />
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary btn-square" ID="btnStatusNivel7" CommandArgument="7" OnClick="btnStatusNivel1_OnClick">
-                                    <%--<asp:Image ImageUrl="~/assets/images/step7.png" Width="20" Height="20" alt="" runat="server" />&nbsp;--%>
                                     <asp:Label runat="server" ID="lblStepNivel7" />
                                 </asp:LinkButton>
                             </div>
@@ -192,7 +185,6 @@
                                                 <div class="form-group margin-top">
                                                     Colonia*<br />
                                                     <asp:DropDownList runat="server" ID="ddlColonia" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlColonia_OnSelectedIndexChanged" />
-                                                    <%--<asp:TextBox runat="server" CssClass="form-control" ID="txtColonia" onkeydown="return (event.keyCode!=13);"></asp:TextBox>--%>
                                                 </div>
 
                                                 <!--MUNICIPIO-->
@@ -227,7 +219,6 @@
                                             </div>
 
                                             <div class="form-group margin-top" runat="server" id="divCapturaDescripcion">
-                                                <%-- --%>
                                                 <asp:CheckBox runat="server" ID="chkHabilitado" Checked="True" Visible="False" />
                                                 <div class="text-right">
                                                     <asp:LinkButton runat="server" ID="btnGuardarCatalogo" OnClick="btnGuardarCatalogo_OnClick" class="fa fa-plus-circle" />
@@ -246,7 +237,5 @@
                         <!--/CONTAINER DERECHA-->
                     </div>
                 </div>
-            <%--</div>
-        </div>--%>
     </ContentTemplate>
 </asp:UpdatePanel>

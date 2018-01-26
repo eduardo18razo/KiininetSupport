@@ -72,84 +72,81 @@
             </section>
 
 
-             <div id="masonry" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                <div class="module-wrapper masonry-item col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                    <section class="module module-headings">
-                        <div class="module-inner">
 
-                            <div class="module-content collapse in" id="content-1">
-                                <div class="module-content-inner no-padding-bottom">
-                                    <div class="table-responsive">
+            <section class="module module-headings">
+                <div class="module-inner">
 
-                                        <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
-                                            OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
-                                            BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
-                                            PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="TU" HeaderStyle-Width="25px">
-                                                    <ItemTemplate>
-                                                        <div class="altoFijo">
-                                                            <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
-                                                                <%# Eval("TipoUsuario.Abreviacion") %></button>
-                                                        </div>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="10%">
-                                                    <ItemTemplate>
-                                                        <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>'><%# Eval("TipoGrupo.Descripcion")%></label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                    <div class="module-content collapse in" id="content-1">
+                        <div class="module-content-inner no-padding-bottom">
+                            <div class="table-responsive">
 
-                                                <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="30%">
-                                                    <ItemTemplate>
-                                                         <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
+                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
+                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="TU" HeaderStyle-Width="25px">
+                                            <ItemTemplate>
+                                                <div class="altoFijo">
+                                                    <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
+                                                        <%# Eval("TipoUsuario.Abreviacion") %></button>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>'><%# Eval("TipoGrupo.Descripcion")%></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="20%">
-                                                    <ItemTemplate>
-                                                        <label><%# (bool) Eval("TieneSupervisor") ? "SI" : "NO" %></label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="30%">
+                                            <ItemTemplate>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="7%">
-                                                    <ItemTemplate>
-                                                        <ul class="list list-unstyled" id="hiddenEnabled">
-                                                            <li>
-                                                                <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                            </li>
-                                                        </ul>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="7%">
-                                                    <ItemTemplate>
-                                                        <ul class="list list-unstyled hidden" id="hiddenEditar">
-                                                            <li>
-                                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
-                                                            </li>
-                                                        </ul>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="8%">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="8%">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
+                                        <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="20%">
+                                            <ItemTemplate>
+                                                <label><%# (bool) Eval("TieneSupervisor") ? "SI" : "NO" %></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
-                                   </div>
-                                </div>
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="7%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled" id="hiddenEnabled">
+                                                    <li>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="7%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
+                                                    <li>
+                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="8%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="8%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
-            </div>
+            </section>
 
 
 
