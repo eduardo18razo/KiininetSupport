@@ -6,8 +6,8 @@
         <asp:HiddenField runat="server" ID="hfAlta" />
         <asp:HiddenField runat="server" ID="hfEsSeleccion" />
         <asp:HiddenField runat="server" ID="hfUbicacionSeleccionada" />
-        <div class="modal-dialog">
-            <div class="modal-content">
+      <%--  <div class="modal-dialog">
+            <div class="modal-content">--%>
                 <div class="modal-header">
                     <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelarCatalogo_OnClick" Text='&times'></asp:LinkButton>
                     <h6 class="text-left">
@@ -26,7 +26,6 @@
                             </div>
                         </div>
                     </div>
-                    <%--<hr />--%>
                     <!--CONTAINER IZQUIERDA-->
                     <div class="row" runat="server" id="divData" visible="False">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -247,7 +246,7 @@
                         <!--/CONTAINER DERECHA-->
                     </div>
                 </div>
-            </div>
-        </div>
+            <%--</div>
+        </div>--%>
     </ContentTemplate>
 </asp:UpdatePanel>

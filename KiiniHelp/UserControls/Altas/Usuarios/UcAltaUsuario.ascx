@@ -460,7 +460,12 @@
         <div class="modal fade" id="modalOrganizacion" data-backdrop-limit="1" tabindex="-1" role="dialog" aria-labelledby="upload-avatar-title" aria-hidden="true" style="overflow: hidden;">
             <asp:UpdatePanel ID="upOrganizacion" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <uc:UcAltaOrganizaciones runat="server" ID="ucAltaOrganizaciones" />
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <uc:UcAltaOrganizaciones runat="server" ID="ucAltaOrganizaciones" />
+                        </div>
+                    </div>
+
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
@@ -470,7 +475,11 @@
 
             <asp:UpdatePanel ID="upUbicacion" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <uc:UcAltaUbicaciones runat="server" ID="ucAltaUbicaciones" />
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <uc:UcAltaUbicaciones runat="server" ID="ucAltaUbicaciones" />
+                        </div>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
@@ -479,7 +488,11 @@
         <div class="modal fade" id="modalRoles" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="overflow: hidden;">
             <asp:UpdatePanel ID="upRoles" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <uc:UcRolGrupo runat="server" ID="ucRolGrupo" />
+                    <%--<div class="modal-dialog">
+                        <div class="modal-content">--%>
+                            <uc:UcRolGrupo runat="server" ID="ucRolGrupo" />
+                       <%-- </div>
+                    </div>--%>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

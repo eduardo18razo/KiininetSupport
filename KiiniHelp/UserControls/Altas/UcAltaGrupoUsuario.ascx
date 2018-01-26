@@ -28,13 +28,11 @@
             </h6>
             <asp:Label runat="server" Text="Alta Grupo de Usuario" ID="lblTitle" Visible="False"></asp:Label>
         </div>
-        <%-- <hr />--%>
+
         <div class="modal-body">
             <div class="row">
                 <div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <%-- <asp:UpdatePanel runat="server" ID="upData" UpdateMode="Conditional">
-                            <ContentTemplate>--%>
                         <div class="form-group">
                             <label>Selecciona el tipo de usuario</label>
                             <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" />

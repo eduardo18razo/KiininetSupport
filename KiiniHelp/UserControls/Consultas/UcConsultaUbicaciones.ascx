@@ -164,7 +164,7 @@
 
             </script>
         </ContentTemplate>
-        		<Triggers>
+        <Triggers>
             <asp:PostBackTrigger ControlID="btnDownload" />
         </Triggers>
     </asp:UpdatePanel>
@@ -173,7 +173,11 @@
     <div class="modal fade" id="editCatalogoUbicacion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upCatlogos" runat="server">
             <ContentTemplate>
-                <uc1:UcAltaUbicaciones runat="server" ID="ucAltaUbicaciones" />
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <uc1:UcAltaUbicaciones runat="server" ID="ucAltaUbicaciones" />
+                    </div>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
