@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
             </section>
@@ -112,17 +112,22 @@
                             </div>
                         </div>
                     </section>
-                    <script type="text/javascript">
-                        $(function () {
+
+
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                $(function () {
+                    hidden('#' + "<%=tblResults.ClientID %>");
+                        });
+                        var prm = Sys.WebForms.PageRequestManager.getInstance();
+
+                        prm.add_endRequest(function () {
                             hidden('#' + "<%=tblResults.ClientID %>");
                 });
-                var prm = Sys.WebForms.PageRequestManager.getInstance();
 
-                prm.add_endRequest(function () {
-                    hidden('#' + "<%=tblResults.ClientID %>");
-                });
-
-                    </script>
+            </script>
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnDownload" />

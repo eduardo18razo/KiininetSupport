@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            
+
                             <div class="form col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Organizaciones:</label>
@@ -95,9 +95,9 @@
                                                         <label runat="server" class="ocultaTexto" title='<%# Eval("Holding.Descripcion")%>'><%# Eval("Holding.Descripcion")%> </label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Nivel 2" HeaderStyle-Width="13%" >
+                                                <asp:TemplateField HeaderText="Nivel 2" HeaderStyle-Width="13%">
                                                     <ItemTemplate>
-                                                            <label runat="server" class="ocultaTexto" title='<%# Eval("Compania.Descripcion")%>'><%# Eval("Compania.Descripcion")%> </label>
+                                                        <label runat="server" class="ocultaTexto" title='<%# Eval("Compania.Descripcion")%>'><%# Eval("Compania.Descripcion")%> </label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Nivel 3" HeaderStyle-Width="13%">
@@ -178,7 +178,11 @@
     <div class="modal fade" id="editCatalogoOrganizacion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upCatlogos" runat="server">
             <ContentTemplate>
-                <uc1:UcAltaOrganizaciones runat="server" ID="ucAltaOrganizaciones" />
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <uc1:UcAltaOrganizaciones runat="server" ID="ucAltaOrganizaciones" />
+                    </div>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

@@ -4608,7 +4608,7 @@ ul.sortable {
     overflow: hidden;
     background: #ecf0f1;
     padding: 15px 15px 10px 25px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     font-weight: bold;
 }
 
