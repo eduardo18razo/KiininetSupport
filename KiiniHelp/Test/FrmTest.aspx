@@ -100,6 +100,9 @@
             </script>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
+                    <tc:RadHtmlChart runat="server" ID="graficaBack">
+                        
+                    </tc:RadHtmlChart>
                     <tc:RadHtmlChart runat="server" ID="rcTest" Height="250px" Width="1200px" Transitions="false">
                         <PlotArea>
                             <XAxis>
