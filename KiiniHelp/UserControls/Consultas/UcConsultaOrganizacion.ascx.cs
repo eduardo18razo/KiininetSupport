@@ -13,7 +13,6 @@ using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using Page = System.Web.UI.Page;
-using System.IO;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -55,7 +54,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             set { hfModalName.Value = value; }
         }
-        public List<string> Alerta
+        public List<string> AlertaOrganizacion
         {
             set
             {
@@ -88,6 +87,21 @@ namespace KiiniHelp.UserControls.Consultas
                 hfIdSeleccion.Value = value.ToString();
             }
         }
+        private void PopulatePager(int recordCount, int currentPage)
+        {
+            double dblPageCount = (double)(recordCount / Convert.ToDecimal(PageSize));
+            int pageCount = (int)Math.Ceiling(dblPageCount);
+            List<ListItem> pages = new List<ListItem>();
+            if (pageCount > 0)
+            {
+                for (int i = 1; i <= pageCount; i++)
+                {
+                    pages.Add(new ListItem(i.ToString(), i.ToString(), i != currentPage));
+                }
+            }
+            rptPager.DataSource = pages;
+            rptPager.DataBind();
+        }
         protected void Page_Changed(object sender, EventArgs e)
         {
             int pageIndex = int.Parse((sender as LinkButton).CommandArgument);
@@ -114,18 +128,23 @@ namespace KiiniHelp.UserControls.Consultas
         private void LlenaOrganizaciones()
         {
             try
-            {
-
+            {        
+               
                 int? idTipoUsuario = null;
                 if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
+                //List<Organizacion> lstOrganizaciones = _servicioOrganizacion.ObtenerOrganizaciones(idTipoUsuario, null, null, null, null, null, null, null);
                 List<Organizacion> lstOrganizaciones = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
-
+             
                 if (Modal)
                     lstOrganizaciones = lstOrganizaciones.Where(w => w.Habilitado == Modal).ToList();
+                //rptResultados.DataSource = lstOrganizaciones;
+                //rptResultados.DataBind();
 
                 tblResults.DataSource = lstOrganizaciones;
                 tblResults.DataBind();
+
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -151,8 +170,8 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                // lblBranding.Text = WebConfigurationManager.AppSettings["Brand"]; Etiqueta nombre organización
-                Alerta = new List<string>();
+               // lblBranding.Text = WebConfigurationManager.AppSettings["Brand"]; Etiqueta nombre organización
+                AlertaOrganizacion = new List<string>();
                 ucAltaOrganizaciones.OnAceptarModal += UcAltaOrganizacionesOnOnAceptarModal;
                 ucAltaOrganizaciones.OnCancelarModal += UcAltaOrganizacionesOnOnCancelarModal;
                 ucAltaOrganizaciones.OnTerminarModal += UcAltaOrganizacionesOnTerminarModal;
@@ -169,7 +188,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
 
@@ -186,7 +205,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
 
@@ -204,7 +223,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
 
@@ -222,7 +241,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
 
@@ -246,7 +265,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
         protected void btnEditar_OnClick(object sender, EventArgs e)
@@ -255,7 +274,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 //ucAltaOrganizaciones.IdOrganizacion = int.Parse(((Button)sender).CommandArgument);
                 ucAltaOrganizaciones.IdOrganizacion = int.Parse(((ImageButton)sender).CommandArgument);
-                ucAltaOrganizaciones.EsSeleccion = false;
+                ucAltaOrganizaciones.EsSeleccion = false; 
                 ucAltaOrganizaciones.EsAlta = false;
                 ucAltaOrganizaciones.Title = "Editar Organización";
                 ucAltaOrganizaciones.SetOrganizacionActualizar();
@@ -268,7 +287,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
         protected void btnNew_OnClick(object sender, EventArgs e)
@@ -287,7 +306,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
         protected void btnCerrar_Click(object sender, EventArgs e)
@@ -319,7 +338,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
         protected void btnBuscar_OnClick(object sender, EventArgs e)
@@ -344,7 +363,7 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
         }
         protected void OnCheckedChanged(object sender, EventArgs e)
@@ -360,57 +379,15 @@ namespace KiiniHelp.UserControls.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
-                Alerta = _lstError;
+                AlertaOrganizacion = _lstError;
             }
             finally { LlenaOrganizaciones(); }
         }
-        protected void btnDownload_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                int? idTipoUsuario = null;
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
-                List<Organizacion> lstOrganizaciones = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
 
-                if (Modal)
-                    lstOrganizaciones = lstOrganizaciones.Where(w => w.Habilitado == Modal).ToList();
-                Response.Clear();
-                MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstOrganizaciones.Select(
-                                s => new
-                                {
-                                    TipoUsuario = s.TipoUsuario.Descripcion,
-                                    Holding = s.Holding.Descripcion,
-                                    Compania =        s.Compania       != null ? s.Compania     .Descripcion : "",
-                                    Direccion =       s.Direccion      != null ? s.Direccion    .Descripcion : "",
-                                    SubDireccion =    s.SubDireccion   != null ? s.SubDireccion .Descripcion : "",
-                                    Gerencia =        s.Gerencia       != null ? s.Gerencia     .Descripcion : "",
-                                    SubGerencia =     s.SubGerencia    != null ? s.SubGerencia  .Descripcion : "",
-                                    Jefatura =        s.Jefatura       != null ? s.Jefatura     .Descripcion : "",
-                                    Sistema =            s.Sistema ? "Si" : "No",
-                                    Habilitado =         s.Habilitado ? "Si" : "No"
-                                })
-                                .ToList()).GetAsByteArray());
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;  filename=Organizaciones.xlsx");
-                Response.Buffer = true;
-                ms.WriteTo(Response.OutputStream);
-                Response.End();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             tblResults.PageIndex = e.NewPageIndex;
-            LlenaOrganizaciones();
+            LlenaOrganizaciones();  
         }
     }
 }

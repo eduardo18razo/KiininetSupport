@@ -31,15 +31,6 @@ namespace KiiniHelp.UserControls.Consultas {
         protected global::System.Web.UI.WebControls.TextBox txtFiltro;
         
         /// <summary>
-        /// Control btnBuscar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBuscar;
-        
-        /// <summary>
         /// Control ddlTipoUsuario.
         /// </summary>
         /// <remarks>
@@ -47,24 +38,6 @@ namespace KiiniHelp.UserControls.Consultas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
-        
-        /// <summary>
-        /// Control btnDownload.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDownload;
-        
-        /// <summary>
-        /// Control btnNuevo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnNuevo;
         
         /// <summary>
         /// Control tblResults.

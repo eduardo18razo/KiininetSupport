@@ -9,7 +9,6 @@ using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
-using System.IO;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -56,7 +55,7 @@ namespace KiiniHelp.UserControls.Consultas
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
                 }
                 List<Usuario> lstUsuarios = _servicioUsuarios.ObtenerUsuarios(idTipoUsuario);
-
+                
                 if (txtFiltro.Text.Trim() != string.Empty)
                     lstUsuarios = lstUsuarios.Where(w => w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.Nombre.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.NombreCompleto.ToLower().Contains(txtFiltro.Text.ToLower().Trim())).ToList();
                 tblResults.DataSource = lstUsuarios;
@@ -267,54 +266,6 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        protected void btnDownload_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-
-                int? idTipoUsuario = null;
-
-                LimpiarUsuarios();
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                {
-                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
-                }
-                List<Usuario> lstUsuarios = _servicioUsuarios.ObtenerUsuarios(idTipoUsuario);
-                Response.Clear();
-
-
-                MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstUsuarios.Select(
-                                s => new
-                                {
-                                    TipoUsuario = s.TipoUsuario.Descripcion,
-                                    Nombre = s.NombreCompleto,
-                                    Usuario = s.NombreUsuario,
-                                    ultimaEdición =  s.FechaActualizacion == null ? "" : s.FechaActualizacion.Value.ToShortDateString().ToString(),                                    
-                                    Verificado = s.Activo ? "Si" : "No",
-                                    Activo = s.Habilitado ? "Si" : "No"
-                                })
-                                .ToList()).GetAsByteArray());
-
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;  filename=Usuarios.xlsx");
-                Response.Buffer = true;
-                ms.WriteTo(Response.OutputStream);
-                Response.End();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-
-
-
         #region Paginador
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -322,7 +273,7 @@ namespace KiiniHelp.UserControls.Consultas
             LlenaUsuarios();
         }
 
-        #endregion
-
+        #endregion 
+        
     }
 }

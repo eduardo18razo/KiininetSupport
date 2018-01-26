@@ -181,19 +181,17 @@ namespace KiiniHelp.UserControls.Consultas
                 string filtro = txtFiltro.Text.Trim().ToUpper();
                 List<Area> lstAreas = _servicioAreas.ObtenerAreaConsulta(filtro);
                 Response.Clear();
-
                 MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstAreas.Select(
                                 s => new
                                 {
                                     Nombre = s.Descripcion,
                                     Creación = s.FechaAlta.ToShortDateString().ToString(),
-                                    ultimaEdición = s.FechaModificacion == null ? "" : s.FechaModificacion.Value.ToShortDateString().ToString(),
+                                    ultimaEdicion = s.FechaModificacion == null ? "" : s.FechaModificacion.Value.ToShortDateString().ToString(),
                                     Habilitado = s.Habilitado ? "Si" : "No"
                                 })
                                 .ToList()).GetAsByteArray());
-
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;  filename=Categorías.xlsx");
+                Response.AddHeader("content-disposition", "attachment;  filename=Cátegorias.xlsx");
                 Response.Buffer = true;
                 ms.WriteTo(Response.OutputStream);
                 Response.End();

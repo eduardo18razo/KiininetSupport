@@ -9,7 +9,6 @@ using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Operacion;
 using KinniNet.Business.Utils;
-using System.IO;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -62,7 +61,7 @@ namespace KiiniHelp.UserControls.Consultas
                 if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
                 string filtro = txtFiltro.Text.ToLower().Trim();
-                List<ArbolAcceso> lstArboles = _servicioArbolAcceso.ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null).Where(w => w.EsTerminal).ToList();
+                List<ArbolAcceso> lstArboles = _servicioArbolAcceso.ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null).Where(w=>w.EsTerminal).ToList();
                 if (filtro != string.Empty)
                     lstArboles = lstArboles.Where(w => w.Tipificacion.ToLower().Contains(filtro)).ToList();
 
@@ -249,53 +248,5 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-
-        protected void btnDownload_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                int? idArea = null;
-                int? idTipoUsuario = null;
-
-                if (ddlArea.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    idArea = int.Parse(ddlArea.SelectedValue);
-
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
-                string filtro = txtFiltro.Text.ToLower().Trim();
-                List<ArbolAcceso> lstArboles = _servicioArbolAcceso.ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null).Where(w => w.EsTerminal).ToList();
-                if (filtro != string.Empty)
-                    lstArboles = lstArboles.Where(w => w.Tipificacion.ToLower().Contains(filtro)).ToList();
-                Response.Clear();
-
-                MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstArboles.Select(
-                                s => new
-                                {
-                                    TipoUsuario = s.TipoUsuario.Descripcion,
-                                    Título = s.Tipificacion,
-                                    Categoría = s.Area.Descripcion,
-                                    Tipificación = s.TipoArbolAcceso.Descripcion,
-                                    Tipo = s.EsTerminal ? "Opción" : "Sección",
-                                    Nivel = s.Nivel
-                                })
-                                .ToList()).GetAsByteArray());
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;  filename=ConfiguraciónMenu.xlsx");
-                Response.Buffer = true;
-                ms.WriteTo(Response.OutputStream);
-                Response.End();
-
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
     }
 }
