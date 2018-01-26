@@ -2,13 +2,19 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using System.Web.UI.DataVisualization.Charting;
 using KiiniNet.Entities.Cat.Sistema;
+using KiiniNet.Entities.Operacion.Dashboard;
+using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
+using KinniNet.Core.Operacion;
 using KinniNet.Core.Sistema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -99,7 +105,15 @@ namespace KiiniNet.UnitTest
         {
             try
             {
-                
+                DataTable dt = new DataTable("dt");
+                dt.Columns.Add(new DataColumn("Ocupado"));
+                dt.Columns.Add(new DataColumn("Libre"));
+                dt.Rows.Add(350, 1000);
+                BusinessGraficosDasboard.Pastel.GeneraGraficoBarraApilada(new Chart(), dt) ;
+                DirectoryInfo dInfo = new DirectoryInfo(@"C:\Users\Eduardo Cerritos\Desktop\Repositorio\");
+                var z = BusinessFile.DirectorySize(dInfo, true);
+                var y = BusinessFile.DirectoryFilesCount(dInfo, true);
+                DashboardAdministrador variable = new BusinessDashboards().GetDashboardAdministrador();
                 //Parámetros del compilador
                 CompilerParameters objParametros = new CompilerParameters()
                 {

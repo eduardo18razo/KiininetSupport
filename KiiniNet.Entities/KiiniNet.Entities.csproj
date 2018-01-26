@@ -121,6 +121,8 @@
     <Compile Include="Helper\HelperTicketsUsuario.cs" />
     <Compile Include="Helper\HelperUsuario.cs" />
     <Compile Include="Operacion\Area.cs" />
+    <Compile Include="Operacion\Dashboard\DashboardAdministrador.cs" />
+    <Compile Include="Operacion\Dashboard\GraficoConteo.cs" />
     <Compile Include="Operacion\Frecuencia.cs" />
     <Compile Include="Operacion\HitConsulta.cs" />
     <Compile Include="Operacion\HitGrupoUsuario.cs" />
@@ -194,7 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

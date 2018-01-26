@@ -1,12 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrmTest.aspx.cs" ValidateRequest="false" Inherits="KiiniHelp.Test.FrmTest" Culture="Auto" UICulture="Auto" %>
 
-<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=16.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
-<%@ Register Src="~/UserControls/Detalles/UcDetalleGrupoUsuarios.ascx" TagPrefix="uc1" TagName="UcDetalleGrupo" %>
-<%@ Register TagPrefix="uc1" Namespace="KiiniHelp.UserControls.Detalles" Assembly="KiiniHelp" %>
-<%@ Register Src="~/UserControls/Detalles/UcDetalleArbolAcceso.ascx" TagPrefix="uc1" TagName="UcDetalleArbolAcceso" %>
-
-
-
+<%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -106,9 +100,67 @@
             </script>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <uc1:UcDetalleArbolAcceso runat="server" id="ucDetalleArbolAcceso" />
+                    <tc:RadHtmlChart runat="server" ID="rcTest" Height="250px" Width="1200px" Transitions="false">
+                        <PlotArea>
+                            <XAxis>
+                                <MajorGridLines Width="0"></MajorGridLines>
+                                <MinorGridLines Width="0"></MinorGridLines>
+                            </XAxis>
+                            <YAxis>
+                                <MajorGridLines Width="0"></MajorGridLines>
+                                <MinorGridLines Width="0"></MinorGridLines>
+                            </YAxis>
+                            <Series>
+                                <tc:BarSeries Name="Ocupado" DataFieldY="Ocupado" Stacked="true" StackType="Normal">
+                                    <LabelsAppearance Visible="true" Position="Center" DataFormatString="{0} MB"></LabelsAppearance>
+                                </tc:BarSeries>
+                                <tc:BarSeries Name="Libre" DataFieldY="Libre">
+                                    <LabelsAppearance Visible="true" Position="Center" DataFormatString="{0} MB"></LabelsAppearance>
+                                </tc:BarSeries>
+                            </Series>
+                            <XAxis DataLabelsField="Titulo"></XAxis>
+                        </PlotArea>
+                        <ChartTitle Text="Stacked Bar Series"></ChartTitle>
+                    </tc:RadHtmlChart>
+
+
+
+
+
+                    <asp:Chart ID="cGraficoEspacio" runat="server" Height="300px" Width="400px" Visible="True" BorderlineColor="Blue">
+                        <Series>
+                            <asp:Series Name="Ocupado" Label="Ocupado"></asp:Series>
+                            <asp:Series Name="Libre" Label="Libre"></asp:Series>
+                        </Series>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1" BorderWidth="0" BorderColor="Blue">
+                                <AxisX IsMarginVisible="False" LineDashStyle="DashDotDot" IsMarksNextToAxis="True">
+                                    <LabelStyle Enabled="False"></LabelStyle>
+                                    <MajorTickMark LineColor="Blue" LineWidth="50" LineDashStyle="NotSet" Enabled="False"></MajorTickMark>
+                                    <MinorTickMark LineColor="Yellow" LineDashStyle="NotSet"></MinorTickMark>
+                                </AxisX>
+                                <AxisX2>
+                                    <MajorGrid LineColor="Red" LineDashStyle="NotSet"></MajorGrid>
+                                </AxisX2>
+                            </asp:ChartArea>
+
+                        </ChartAreas>
+                    </asp:Chart>
+
+                    <asp:Chart ID="Chart1" runat="server" Height="300px" Width="400px" Visible="True">
+                        <Titles>
+                            <asp:Title ShadowOffset="3" Name="Items" />
+                        </Titles>
+                        <Legends>
+                            <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
+                        </Legends>
+                        <ChartAreas>
+                            <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
+                        </ChartAreas>
+                    </asp:Chart>
+                    <%--<uc1:UcDetalleArbolAcceso runat="server" id="ucDetalleArbolAcceso" />--%>
                     <%--<uc1:UcDetalleGrupoUsuarios runat="server" id="ucDetalleGrupoUsuarios" />--%>
-                   <%-- <div class="form-horizontal col-lg-6 col-lg-offset-3">
+                    <%-- <div class="form-horizontal col-lg-6 col-lg-offset-3">
                         <div class="form-group">
                             <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" required />
                             <ajax:MaskedEditExtender ID="MaskedEditExtender2" runat="server"

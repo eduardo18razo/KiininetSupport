@@ -4565,6 +4565,7 @@ ul.sortable {
 .modal-body {
     padding: 0px 30px;
     height: auto;
+    max-height: 450px;
     padding-bottom: 0px;
     overflow-y: auto;
 }

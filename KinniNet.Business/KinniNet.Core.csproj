@@ -61,6 +61,7 @@
     <Compile Include="Operacion\BusinessConsultas.cs" />
     <Compile Include="Demonio\BusinessDemonio.cs" />
     <Compile Include="Operacion\BusinessArea.cs" />
+    <Compile Include="Operacion\BusinessDashboards.cs" />
     <Compile Include="Operacion\BusinessFrecuencia.cs" />
     <Compile Include="Operacion\BusinessNota.cs" />
     <Compile Include="Operacion\BusinessPuesto.cs" />

@@ -181,13 +181,44 @@ namespace KiiniHelp.Test
         }
         private void Doing()
         {
-            
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                ucDetalleArbolAcceso.IdArbolAcceso = 7;
+        //    cGraficoEspacio.Series[0].Points.Add(new DataPoint(0, 200));
+        //    cGraficoEspacio.Series[1].Points.Add(new DataPoint(0, 1000));
+
+            //// October Data
+            //cGraficoEspacio.Series[1].Points.Add(new DataPoint(0, 20));
+            //cGraficoEspacio.Series[1].Points.Add(new DataPoint(1, 16));
+
+            //// April Data
+            //cGraficoEspacio.Series[2].Points.Add(new DataPoint(0, 15));
+            //cGraficoEspacio.Series[2].Points.Add(new DataPoint(1, 18));
+
+            //foreach (Series cs in cGraficoEspacio.Series)
+            //    cs.ChartType = SeriesChartType.StackedBar100;
+
+            DataTable dt = new DataTable("dt");
+            dt.Columns.Add("Ocupado", typeof(double));
+            dt.Columns.Add("Libre", typeof(double));
+            dt.Columns.Add("Titulo", typeof(string));
+
+            dt.Rows.Add(123.5 , 900.5, "Almacenado");
+            
+            List<Object> dataSource = new List<object>();
+            dataSource.Add(new { Ocupado = 350, Libre = 700, Titulo = "Almacenado" });
+
+            rcTest.DataSource = dt;
+            rcTest.DataBind();
+
+
+            
+
+
+            //BusinessGraficosDasboard.Pastel.GeneraGraficoBarraApilada(cGraficoEspacio, dt);
+            //ucDetalleArbolAcceso.IdArbolAcceso = 7;
         }
 
         //protected void Submit(object sender, EventArgs e)
@@ -432,10 +463,10 @@ namespace KiiniHelp.Test
             }
         }
 
-        
+
         private void MakeParetoChart(Chart chart, string srcSeriesName, string destSeriesName)
         {
-            
+
             // get name of the ChartAre of the source series
 
             string strChartArea = chart.Series[srcSeriesName].ChartArea;
@@ -623,7 +654,7 @@ namespace KiiniHelp.Test
         //}
         protected void OnClick(object sender, EventArgs e)
         {
-            
+
             //Session["PreviewDataConsulta"] = ObtenerInformacionCapturada();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('/Publico/Consultas/FrmPreviewConsulta.aspx','_blank');", true);
         }
@@ -673,7 +704,7 @@ namespace KiiniHelp.Test
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }

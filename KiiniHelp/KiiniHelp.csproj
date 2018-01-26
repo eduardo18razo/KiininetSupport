@@ -261,6 +261,14 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.EstatusAsignacionSubRolGeneral1.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneral.datasource" />
     <Content Include="Registro.aspx" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAdministrador.datasource" />
+    <None Include="Service References\ServiceDashboard\ServiceDashboards.disco" />
+    <None Include="Service References\ServiceDashboard\configuration91.svcinfo" />
+    <None Include="Service References\ServiceDashboard\configuration.svcinfo" />
+    <None Include="Service References\ServiceDashboard\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="UserControls\Agentes\UcAsignacionUsuario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
@@ -305,6 +313,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceAtencionTicket\SetviceAtencionTicket3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceDashboard\ServiceDashboards.wsdl" />
+    <None Include="Service References\ServiceDashboard\ServiceDashboards.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceDashboard\ServiceDashboards1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceDashboard\ServiceDashboards2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDiasHorario\ServiceDiasHorario.wsdl" />
@@ -2655,6 +2673,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ServiceDashboard\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ServiceDiasHorario\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4065,6 +4088,7 @@
     <WCFMetadataStorage Include="Service References\ServiceArea\" />
     <WCFMetadataStorage Include="Service References\ServiceAtencionTicket\" />
     <WCFMetadataStorage Include="Service References\ServiceConsultas\" />
+    <WCFMetadataStorage Include="Service References\ServiceDashboard\" />
     <WCFMetadataStorage Include="Service References\ServiceDiasHorario\" />
     <WCFMetadataStorage Include="Service References\ServiceEncuesta\" />
     <WCFMetadataStorage Include="Service References\ServiceFrecuencia\" />
@@ -4126,7 +4150,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

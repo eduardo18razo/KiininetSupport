@@ -19,6 +19,8 @@ namespace KinniNet.Business.Utils
                 public decimal Total { get; set; }
                 public decimal Acumulado { get; set; }
             }
+
+            
             public static void GenerarGrafica(Chart grafico, DataTable dts, string stack)
             {
                 List<ParetoArry> lstPareto = (dts.Rows.Cast<DataRow>().Select(dataRow => new ParetoArry { Id = int.Parse(dataRow[0].ToString()), Descripcion = dataRow[1].ToString() })).ToList();
@@ -80,7 +82,7 @@ namespace KinniNet.Business.Utils
                 {
                     grafico.Series[stack].Points.Add(new DataPoint
                     {
-                        PostBackValue = dt.Rows[point][0].ToString() +",#VALY," + dt.Rows[point][0].ToString().ToString(),
+                        PostBackValue = dt.Rows[point][0].ToString() + ",#VALY," + dt.Rows[point][0].ToString().ToString(),
                         LabelPostBackValue = "label",
                         LegendPostBackValue = "legendVALX",
                         AxisLabel = dt.Rows[point][1].ToString(),
@@ -351,6 +353,8 @@ namespace KinniNet.Business.Utils
             }
         }
 
+        
+
         public static class Geografico
         {
             private static string[] DtToArray(DataTable dt)
@@ -412,6 +416,84 @@ namespace KinniNet.Business.Utils
                     throw new Exception(ex.Message);
                 }
                 return result;
+            }
+        }
+    }
+
+    public static class BusinessGraficosDasboard
+    {
+        public static class Administrador
+        {
+            public static void GeneraGraficoPastel(Chart grafico, DataTable dt)
+            {
+                string[] x = new string[dt.Rows.Count];
+                int[] y = new int[dt.Rows.Count];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    x[i] = dt.Rows[i][1].ToString();
+                    y[i] = Convert.ToInt32(dt.Rows[i][2]);
+                }
+                grafico.Series[0].Points.DataBindXY(x, y);
+                grafico.Series[0].ChartType = SeriesChartType.Pie;
+                grafico.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
+                grafico.Legends[0].Enabled = true;
+
+                grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
+                grafico.ChartAreas["ChartArea1"].AxisY.Enabled = AxisEnabled.False;
+                grafico.ChartAreas[0].AxisX.Enabled = AxisEnabled.Auto;
+                grafico.ChartAreas["ChartArea1"].AxisY.Enabled = AxisEnabled.Auto;
+                grafico.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
+
+            }
+
+            public static void GeneraGraficoBarraApilada(Chart grafico, DataTable dt)
+            {
+                try
+                {
+                    int[] x = new int[dt.Rows.Count];
+                    double[] y = new double[dt.Rows.Count];
+                    for (int r = 0; r < dt.Rows.Count; r++)
+                    {
+                        for (int c = 0; c < dt.Columns.Count; c++)
+                        {
+                            grafico.Series.Add(dt.Columns[c].ColumnName);
+                            x[r] = 0;
+                            y[r] = double.Parse(dt.Rows[r][c].ToString());
+                            grafico.Series[c].Points.DataBindXY(x, y);
+                        }
+                    }
+                    foreach (Series cs in grafico.Series)
+                        cs.ChartType = SeriesChartType.StackedBar;
+                    grafico.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
+                    grafico.Legends[0].Enabled = true;
+
+                    foreach (Series serie in grafico.Series)
+                    {
+                        serie.Font = new Font("Tahoma", 8, FontStyle.Bold);
+                        foreach (DataPoint dp in serie.Points)
+                        {
+                            dp.PostBackValue = "#VALX,#VALY," + dt.Rows[0];
+                            dp.LabelPostBackValue = "label";
+                            dp.LegendPostBackValue = "legendVALX";
+                        }
+                    }
+                    grafico.ChartAreas["ChartArea1"].AxisX.MajorTickMark.LineColor = Color.Red;
+                    grafico.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
+
+                    grafico.ChartAreas["ChartArea1"].AxisY.Enabled = AxisEnabled.True;
+                    grafico.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.Silver;
+                    grafico.ChartAreas["ChartArea1"].AxisY.Enabled = AxisEnabled.Auto;
+                    grafico.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 0;
+                    grafico.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineDashStyle = ChartDashStyle.DashDotDot;
+                    grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.Auto;
+                    grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
             }
         }
     }

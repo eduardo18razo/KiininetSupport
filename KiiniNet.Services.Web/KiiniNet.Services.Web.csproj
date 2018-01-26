@@ -48,6 +48,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ServiceDashboards.svc" />
     <Content Include="ServiceFrecuencia.svc" />
     <Content Include="ServiceNota.svc" />
     <Content Include="ServiceDiasHorario.svc" />
