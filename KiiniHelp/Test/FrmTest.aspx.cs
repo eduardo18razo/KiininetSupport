@@ -14,6 +14,7 @@ using AjaxControlToolkit;
 using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KinniNet.Business.Utils;
+using Telerik.Web.UI;
 using Font = System.Drawing.Font;
 using Menu = KiiniNet.Entities.Cat.Sistema.Menu;
 
@@ -182,6 +183,59 @@ namespace KiiniHelp.Test
         private void Doing()
         {
 
+        }
+
+        private void GeneraGraficaTelerik(DataTable dt )
+        {
+            try
+            {
+                graficaBack.Width = Unit.Pixel(680);
+                graficaBack.Height = Unit.Pixel(400);
+                graficaBack.Legend.Appearance.Position = Telerik.Web.UI.HtmlChart.ChartLegendPosition.Bottom;
+
+
+                foreach (DataColumn column in dt.Columns)
+                {
+                    ScatterSeries serie = new ScatterSeries();
+                }
+                
+
+                graficaBack.PlotArea.XAxis.TitleAppearance.Text = "Volts";
+                graficaBack.PlotArea.YAxis.TitleAppearance.Text = "mA";
+
+                ScatterLineSeries theoreticalData = new ScatterLineSeries();
+                theoreticalData.Name = "Theoretical Data";
+                theoreticalData.LabelsAppearance.Visible = false;
+                theoreticalData.TooltipsAppearance.Color = System.Drawing.Color.White;
+                theoreticalData.TooltipsAppearance.DataFormatString = "{0} Volts, {1} mA";
+
+                ScatterSeries experimentalData = new ScatterSeries();
+                experimentalData.Name = "Experimental Data";
+                experimentalData.LabelsAppearance.Visible = false;
+                experimentalData.TooltipsAppearance.DataFormatString = "{0} Volts, {1} mA";
+                experimentalData.TooltipsAppearance.Color = System.Drawing.Color.White;
+
+                foreach (DataRow row in GetChartData().Rows)
+                {
+                    decimal? currentVolts = (decimal?)row["Volts"];
+                    if (!(row["mATheoretical"] is DBNull))
+                    {
+                        decimal? currentMATheoretical = (decimal?)row["mATheoretical"];
+                        ScatterSeriesItem theoreticalItem = new ScatterSeriesItem(currentVolts, currentMATheoretical);
+                        theoreticalData.SeriesItems.Add(theoreticalItem);
+                    }
+                    decimal? currentMAExperimental = (decimal?)row["mAExperimental"];
+                    ScatterSeriesItem experimentalItem = new ScatterSeriesItem(currentVolts, currentMAExperimental);
+                    experimentalData.SeriesItems.Add(experimentalItem);
+                }
+                scatterChart.PlotArea.Series.Add(theoreticalData);
+                scatterChart.PlotArea.Series.Add(experimentalData);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
