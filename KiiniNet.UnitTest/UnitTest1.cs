@@ -109,7 +109,7 @@ namespace KiiniNet.UnitTest
                 dt.Columns.Add(new DataColumn("Ocupado"));
                 dt.Columns.Add(new DataColumn("Libre"));
                 dt.Rows.Add(350, 1000);
-                BusinessGraficosDasboard.Pastel.GeneraGraficoBarraApilada(new Chart(), dt) ;
+                BusinessGraficosDasboard.Administrador.GeneraGraficoBarraApilada(new Chart(), dt) ;
                 DirectoryInfo dInfo = new DirectoryInfo(@"C:\Users\Eduardo Cerritos\Desktop\Repositorio\");
                 var z = BusinessFile.DirectorySize(dInfo, true);
                 var y = BusinessFile.DirectoryFilesCount(dInfo, true);

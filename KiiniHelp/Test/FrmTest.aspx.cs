@@ -215,21 +215,21 @@ namespace KiiniHelp.Test
                 experimentalData.TooltipsAppearance.DataFormatString = "{0} Volts, {1} mA";
                 experimentalData.TooltipsAppearance.Color = System.Drawing.Color.White;
 
-                foreach (DataRow row in GetChartData().Rows)
-                {
-                    decimal? currentVolts = (decimal?)row["Volts"];
-                    if (!(row["mATheoretical"] is DBNull))
-                    {
-                        decimal? currentMATheoretical = (decimal?)row["mATheoretical"];
-                        ScatterSeriesItem theoreticalItem = new ScatterSeriesItem(currentVolts, currentMATheoretical);
-                        theoreticalData.SeriesItems.Add(theoreticalItem);
-                    }
-                    decimal? currentMAExperimental = (decimal?)row["mAExperimental"];
-                    ScatterSeriesItem experimentalItem = new ScatterSeriesItem(currentVolts, currentMAExperimental);
-                    experimentalData.SeriesItems.Add(experimentalItem);
-                }
-                scatterChart.PlotArea.Series.Add(theoreticalData);
-                scatterChart.PlotArea.Series.Add(experimentalData);
+                //foreach (DataRow row in GetChartData().Rows)
+                //{
+                //    decimal? currentVolts = (decimal?)row["Volts"];
+                //    if (!(row["mATheoretical"] is DBNull))
+                //    {   
+                //        decimal? currentMATheoretical = (decimal?)row["mATheoretical"];
+                //        ScatterSeriesItem theoreticalItem = new ScatterSeriesItem(currentVolts, currentMATheoretical);
+                //        theoreticalData.SeriesItems.Add(theoreticalItem);
+                //    }
+                //    decimal? currentMAExperimental = (decimal?)row["mAExperimental"];
+                //    ScatterSeriesItem experimentalItem = new ScatterSeriesItem(currentVolts, currentMAExperimental);
+                //    experimentalData.SeriesItems.Add(experimentalItem);
+                //}
+                //scatterChart.PlotArea.Series.Add(theoreticalData);
+                //scatterChart.PlotArea.Series.Add(experimentalData);
             }
             catch (Exception)
             {
