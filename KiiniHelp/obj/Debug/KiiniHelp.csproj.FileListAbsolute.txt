@@ -25,3 +25,7 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHe
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.pdb
+C:\Users\Janeth\Documents\git\KiiniHelp\bin\Microsoft.Office.Interop.Word.dll
+C:\Users\Janeth\Documents\git\KiiniHelp\bin\Microsoft.Office.Interop.Excel.dll
+C:\Users\Janeth\Documents\git\KiiniHelp\bin\Microsoft.Office.Interop.PowerPoint.dll
+C:\Users\Janeth\Documents\git\KiiniHelp\bin\office.dll

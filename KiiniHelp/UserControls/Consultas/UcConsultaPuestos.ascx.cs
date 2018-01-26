@@ -10,6 +10,7 @@ using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
 using KinniNet.Business.Utils;
+using System.IO;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -228,6 +229,42 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 _servicioPuestos.Habilitar(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
                 LlenaPuestosConsulta();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void btnDownload_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                int? idTipoUsuario = null;
+                string filtro = txtFiltro.Text.ToLower().Trim();
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
+                List<Puesto> ptos = _servicioPuestos.ObtenerPuestoConsulta(idTipoUsuario);
+                if (filtro != string.Empty)
+                    ptos = ptos.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
+                Response.Clear();
+                MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(ptos.Select(
+                                s => new
+                                {
+                                    Nombre = s.Descripcion,
+                                    Habilitado = s.Habilitado ? "Si" : "No"
+                                })
+                                .ToList()).GetAsByteArray());
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;  filename=Puestos.xlsx");
+                Response.Buffer = true;
+                ms.WriteTo(Response.OutputStream);
+                Response.End();
             }
             catch (Exception ex)
             {
