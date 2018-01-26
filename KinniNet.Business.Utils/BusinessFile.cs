@@ -16,6 +16,26 @@ namespace KinniNet.Business.Utils
 {
     public static class BusinessFile
     {
+        public static long DirectorySize(DirectoryInfo dInfo, bool includeSubDir)
+        {
+            long totalSize;
+            if (includeSubDir)
+                totalSize = dInfo.EnumerateFiles("*.*", SearchOption.AllDirectories).Sum(file => file.Length);
+            else
+                totalSize = dInfo.EnumerateFiles("*.*", SearchOption.TopDirectoryOnly).Sum(file => file.Length);
+            return totalSize;
+        }
+
+        public static long DirectoryFilesCount(DirectoryInfo dInfo, bool includeSubDir)
+        {
+            long totalSize;
+            if (includeSubDir)
+                totalSize = Directory.GetFiles(dInfo.FullName, "*.*", SearchOption.AllDirectories).Length;
+            else
+                totalSize = Directory.GetFiles(dInfo.FullName, "*.*", SearchOption.TopDirectoryOnly).Length;
+            return totalSize;
+        }
+
         public static string ConvertirTamaño(string fileSize)
         {
             string result = null;
@@ -504,11 +524,11 @@ namespace KinniNet.Business.Utils
                         celdaFinHeader = ws.Cells[1, i + 1].Address;
                     }
 
-            //        var mi = typeof(T)
-            //.GetProperties()
-            //.Select(pi => (MemberInfo)pi)
-            //.ToArray();
-                    
+                    //        var mi = typeof(T)
+                    //.GetProperties()
+                    //.Select(pi => (MemberInfo)pi)
+                    //.ToArray();
+
                     //populate our Data
                     if (query.Any())
                     {

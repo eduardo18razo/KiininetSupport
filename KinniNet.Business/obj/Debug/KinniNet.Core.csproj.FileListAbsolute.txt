@@ -25,7 +25,3 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Debug\KinniNet.Core.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Debug\KinniNet.Core.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Debug\KinniNet.Core.pdb
-C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\Microsoft.Office.Interop.Word.dll
-C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\Microsoft.Office.Interop.Excel.dll
-C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
-C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\office.dll

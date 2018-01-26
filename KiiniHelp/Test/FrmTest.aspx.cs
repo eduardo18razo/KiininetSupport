@@ -14,6 +14,9 @@ using AjaxControlToolkit;
 using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KinniNet.Business.Utils;
+using Telerik.Web.UI;
+using Telerik.Web.UI.HtmlChart;
+using AxisType = System.Web.UI.DataVisualization.Charting.AxisType;
 using Font = System.Drawing.Font;
 using Menu = KiiniNet.Entities.Cat.Sistema.Menu;
 
@@ -181,13 +184,109 @@ namespace KiiniHelp.Test
         }
         private void Doing()
         {
-            
+
         }
+
+        private void GeneraGraficaStackedAdministrador(RadHtmlChart grafico, DataTable dt)
+        {
+            grafico.Width = Unit.Percentage(100);
+            grafico.Height = Unit.Pixel(250);
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+
+
+            for (int c = 0; c < dt.Columns.Count; c++)
+            {
+                BarSeries serie = new BarSeries();
+                serie.Stacked = true;
+                serie.LabelsAppearance.Position = BarColumnLabelsPosition.Center;
+                serie.LabelsAppearance.DataFormatString = "{0} MB";
+                serie.TooltipsAppearance.DataFormatString = "{0} MB";
+                serie.DataFieldY = dt.Columns[c].ColumnName;
+                grafico.PlotArea.Series.Add(serie);
+            }
+            grafico.PlotArea.XAxis.DataLabelsField = dt.Columns[dt.Columns.Count - 1].ColumnName;
+            grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
+            grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
+            grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
+            grafico.PlotArea.YAxis.MinorGridLines.Width = 0;
+            grafico.DataSource = dt;
+            grafico.DataBind();
+        }
+
+
+        private void GeneraGraficaPieTickets(RadHtmlChart grafico, DataTable dt)
+        {
+            grafico.Width = Unit.Percentage(50);
+            grafico.Height = Unit.Pixel(250);
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+
+
+
+
+            PieSeries pieSerie = new PieSeries();
+            pieSerie.DataFieldY = "Total";
+            pieSerie.NameField = "Canal";
+            pieSerie.ExplodeField = "IsExploded";
+            pieSerie.LabelsAppearance.Visible = true;
+            pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
+
+            grafico.PlotArea.Series.Add(pieSerie);
+            grafico.DataSource = dt;
+            grafico.DataBind();
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                ucDetalleArbolAcceso.IdArbolAcceso = 7;
+            DataTable dtTicketsCanal = new DataTable("dt");
+            dtTicketsCanal.Columns.Add("Id", typeof(int));
+            dtTicketsCanal.Columns.Add("Canal", typeof(string));
+            dtTicketsCanal.Columns.Add("Total", typeof(double));
+            dtTicketsCanal.Rows.Add(1, "Portal", 7);
+            dtTicketsCanal.Rows.Add(2, "Correo", 11);
+            dtTicketsCanal.Rows.Add(3, "Chat", 8);
+            dtTicketsCanal.Rows.Add(6, "Telefono", 7);
+            GeneraGraficaPieTickets(rhcTickets, dtTicketsCanal);
+
+            //Stacket chart bar Espacio utilizado
+            DataTable dtAlmacenado = new DataTable("dt");
+            dtAlmacenado.Columns.Add("Ocupado", typeof(double));
+            dtAlmacenado.Columns.Add("Libre", typeof(double));
+            dtAlmacenado.Columns.Add("Titulo", typeof(string));
+            dtAlmacenado.Rows.Add(123.5, 900.5, "Almacenado");
+
+            GeneraGraficaStackedAdministrador(rhcEspacio, dtAlmacenado);
+
+
+            //    cGraficoEspacio.Series[0].Points.Add(new DataPoint(0, 200));
+            //    cGraficoEspacio.Series[1].Points.Add(new DataPoint(0, 1000));
+
+            //// October Data
+            //cGraficoEspacio.Series[1].Points.Add(new DataPoint(0, 20));
+            //cGraficoEspacio.Series[1].Points.Add(new DataPoint(1, 16));
+
+            //// April Data
+            //cGraficoEspacio.Series[2].Points.Add(new DataPoint(0, 15));
+            //cGraficoEspacio.Series[2].Points.Add(new DataPoint(1, 18));
+
+            //foreach (Series cs in cGraficoEspacio.Series)
+            //    cs.ChartType = SeriesChartType.StackedBar100;
+
+
+
+            //List<Object> dataSource = new List<object>();
+            //dataSource.Add(new { Ocupado = 350, Libre = 700, Titulo = "Almacenado" });
+
+            //rcTest.DataSource = dt;
+            //rcTest.DataBind();
+
+
+
+
+
+
+            //BusinessGraficosDasboard.Pastel.GeneraGraficoBarraApilada(cGraficoEspacio, dt);
+            //ucDetalleArbolAcceso.IdArbolAcceso = 7;
         }
 
         //protected void Submit(object sender, EventArgs e)
@@ -432,10 +531,10 @@ namespace KiiniHelp.Test
             }
         }
 
-        
+
         private void MakeParetoChart(Chart chart, string srcSeriesName, string destSeriesName)
         {
-            
+
             // get name of the ChartAre of the source series
 
             string strChartArea = chart.Series[srcSeriesName].ChartArea;
@@ -623,7 +722,7 @@ namespace KiiniHelp.Test
         //}
         protected void OnClick(object sender, EventArgs e)
         {
-            
+
             //Session["PreviewDataConsulta"] = ObtenerInformacionCapturada();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('/Publico/Consultas/FrmPreviewConsulta.aspx','_blank');", true);
         }
@@ -673,7 +772,7 @@ namespace KiiniHelp.Test
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }

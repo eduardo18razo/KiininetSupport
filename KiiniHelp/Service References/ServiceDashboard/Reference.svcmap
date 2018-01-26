@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="411a8faa-43c9-4146-b9a7-2d38c042695b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceDashboards.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceDashboards.xsd" MetadataType="Schema" ID="45db265a-534f-4d89-be7a-01fb6521c274" SourceId="1" SourceUrl="http://localhost:15277/ServiceDashboards.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceDashboards1.xsd" MetadataType="Schema" ID="43bd265d-8410-47a1-9ef7-0fff0739396a" SourceId="1" SourceUrl="http://localhost:15277/ServiceDashboards.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceDashboards.disco" MetadataType="Disco" ID="97a78d6f-9fce-4904-ad2d-d9cc8c877719" SourceId="1" SourceUrl="http://localhost:15277/ServiceDashboards.svc?disco" />
+    <MetadataFile FileName="ServiceDashboards2.xsd" MetadataType="Schema" ID="8ee5f25a-be4d-49a6-b4f4-b95c46d6efc0" SourceId="1" SourceUrl="http://localhost:15277/ServiceDashboards.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceDashboards.wsdl" MetadataType="Wsdl" ID="49b163b3-346f-4d17-a654-d6d3fe277281" SourceId="1" SourceUrl="http://localhost:15277/ServiceDashboards.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

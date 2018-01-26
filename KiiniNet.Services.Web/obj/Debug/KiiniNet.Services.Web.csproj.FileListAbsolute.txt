@@ -38,7 +38,3 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\K
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\Microsoft.Office.Interop.Word.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\Microsoft.Office.Interop.Excel.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\Microsoft.Office.Interop.PowerPoint.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\office.dll

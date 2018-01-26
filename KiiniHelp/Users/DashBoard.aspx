@@ -28,7 +28,7 @@
                                             <br />
                                             <asp:Label runat="server" ID="Label1" Text="Actual"></asp:Label>
                                             <br />
-                                            <asp:Label runat="server" ID="lblTicketsAcumulados" CssClass="h4">210</asp:Label>
+                                            <asp:Label runat="server" ID="lblUsuariosRegistrados" CssClass="h4">210</asp:Label>
                                         </div>
                                     </div>
 
@@ -38,7 +38,7 @@
                                             <br />
                                             <asp:Label runat="server" ID="Label2" Text="Actual"></asp:Label>
                                             <br />
-                                            <asp:Label runat="server" ID="Label3" CssClass="h4">98%</asp:Label>
+                                            <asp:Label runat="server" ID="lblUsuariosActivos" CssClass="h4">98%</asp:Label>
                                         </div>
                                     </div>
 
@@ -48,7 +48,7 @@
                                             <br />
                                             <asp:Label runat="server" ID="Label4" Text="Histórico"></asp:Label>
                                             <br />
-                                            <asp:Label runat="server" ID="Label5" CssClass="h4">1,520</asp:Label>
+                                            <asp:Label runat="server" ID="lblTicketsCreados" CssClass="h4">1,520</asp:Label>
                                         </div>
                                     </div>
 
@@ -58,7 +58,7 @@
                                             <br />
                                             <asp:Label runat="server" ID="Label6" Text="Actual"></asp:Label>
                                             <br />
-                                            <asp:Label runat="server" ID="Label7" CssClass="h4">10</asp:Label>
+                                            <asp:Label runat="server" ID="lblOperadoresAcumulados" CssClass="h4">10</asp:Label>
                                         </div>
                                     </div>
 
@@ -70,18 +70,22 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
                                         <section class="module">
-                                            <div class="row">
+                                            <div class="row center-content-div">
+                                                
                                                 <div class="form-group margin-left-5">
                                                     <label class="col-lg-12 col-md-12 col-sm-12 text-center">Tickets Creados por Canal</label>
                                                 </div>
 
-                                                <asp:Chart ID="cGrafico" runat="server" Width="400px" Height="300px" Visible="true">
+                                                <asp:Chart ID="cGraficoTicketsCanal" runat="server" Height="300px" Width="400px" Visible="True">
                                                     <Titles>
                                                         <asp:Title ShadowOffset="3" Name="Items" />
                                                     </Titles>
                                                     <Legends>
-                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" Title="Titulo" />
+                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
                                                     </Legends>
+                                                    <Series>
+                                                        <asp:Series Name="Default" />
+                                                    </Series>
                                                     <ChartAreas>
                                                         <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
                                                     </ChartAreas>
@@ -93,17 +97,20 @@
 
                                     <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
                                         <section class="module">
-                                            <div class="row">
+                                            <div class="row center-content-div">
                                                 <div class="form-group margin-right-5">
                                                     <label class="col-lg-12 col-md-12 col-sm-12 text-center">Usuarios Registrados</label>
                                                 </div>
-                                                 <asp:Chart ID="Chart2" runat="server" Width="400px" Height="300px" Visible="true">
+                                                <asp:Chart ID="cGraficoUsuarios" runat="server" Height="300px" Width="400px" Visible="True">
                                                     <Titles>
                                                         <asp:Title ShadowOffset="3" Name="Items" />
                                                     </Titles>
                                                     <Legends>
-                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" Title="Titulo" />
+                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
                                                     </Legends>
+                                                    <Series>
+                                                        <asp:Series Name="Default" />
+                                                    </Series>
                                                     <ChartAreas>
                                                         <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
                                                     </ChartAreas>
@@ -117,16 +124,20 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
                                         <section class="module">
-                                            <div class="row">
+                                            <div class="row center-content-div">
                                                 <div class="form-group margin-right-5">
                                                     <label class="col-lg-12 col-md-12 col-sm-12 text-center">Almacenamiento</label>
                                                 </div>
-                                                 <asp:Chart ID="Chart3" runat="server" Width="400px" Height="300px" Visible="true">
+                                                <div class="row">
+                                                    <asp:label runat="server" CssClass="col-lg-6" ID="lblEspacio"></asp:label>
+                                                    <asp:label runat="server" CssClass="col-lg-6" ID="lblArchivos"></asp:label>
+                                                </div>
+                                                <asp:Chart ID="cGraficoEspacio" runat="server" Height="300px" Width="400px" Visible="True">
                                                     <Titles>
                                                         <asp:Title ShadowOffset="3" Name="Items" />
                                                     </Titles>
                                                     <Legends>
-                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" Title="Titulo" />
+                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
                                                     </Legends>
                                                     <ChartAreas>
                                                         <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
@@ -144,31 +155,34 @@
 
                                                 <div class="module-inner col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group margin-top-10 margin-bottom-10">
-                                                        <asp:Label runat="server" Text="Organización" />
+                                                        <asp:Label runat="server" Text="Categorias" />
                                                     </div>
                                                     <div class="form-group margin-top-10 margin-bottom-10">
-                                                        <asp:Label runat="server" Text="Ubicación" />
+                                                        <asp:Label runat="server" Text="Articulos" />
                                                     </div>
                                                     <div class="form-group margin-top-10 margin-bottom-10">
-                                                        <asp:Label runat="server" Text="Puestos" />
+                                                        <asp:Label runat="server" Text="Formularios" />
+                                                    </div>
+                                                    <div class="form-group margin-top-10 margin-bottom-10">
+                                                        <asp:Label runat="server" Text="Catalogos" />
                                                     </div>
                                                 </div>
-
 
                                                 <div class="module-inner col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group margin-top-10 margin-bottom-10">
-                                                        <asp:Label runat="server" Text="164" />
+                                                        <asp:Label runat="server" Text="164" ID="lblCategorias" />
                                                     </div>
                                                     <div class="form-group margin-top-10 margin-bottom-10">
-                                                        <asp:Label runat="server" Text="110" />
+                                                        <asp:Label runat="server" Text="110" ID="lblArticulos" />
                                                     </div>
                                                     <div class="form-group margin-top-10 margin-bottom-10">
-                                                        <asp:Label runat="server" Text="57" />
+                                                        <asp:Label runat="server" Text="57" ID="lblFormularios" />
+                                                    </div>
+                                                    <div class="form-group margin-top-10 margin-bottom-10">
+                                                        <asp:Label runat="server" Text="57" ID="lblCatalogos" />
                                                     </div>
 
                                                 </div>
-
-
                                             </div>
                                         </section>
                                     </div>
@@ -186,66 +200,20 @@
 
                                                 <div class="row">
                                                     <div class="module-inner">
-                                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Administrador" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Dueño" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Editor de la Información" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Agente" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Agente Especial" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Consulta" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Operación" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Soporte Sistemas" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="Editor de Catálogo" />
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="1" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="0" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="1" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="9" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="1" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="0" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="0" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="0" />
-                                                            </div>
-                                                            <div class="form-group margin-top-10 margin-bottom-10">
-                                                                <asp:Label runat="server" Text="0" />
-                                                            </div>
-                                                        </div>
+                                                        <asp:Repeater runat="server" ID="rptOperadorRol">
+                                                            <ItemTemplate>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                    <div class="form-group margin-top-10 margin-bottom-10">
+                                                                        <asp:Label runat="server" Text='<%# Eval("Descripcion")%>' />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                    <div class="form-group margin-top-10 margin-bottom-10">
+                                                                        <asp:Label runat="server" Text='<%# Eval("Total")%>' />
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
                                                     </div>
                                                 </div>
                                             </div>
@@ -276,13 +244,13 @@
 
                                                     <div class="module-inner col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group margin-top-10 margin-bottom-10">
-                                                            <asp:Label runat="server" Text="164" />
+                                                            <asp:Label runat="server" Text="164" ID="lblOrganizaciones" />
                                                         </div>
                                                         <div class="form-group margin-top-10 margin-bottom-10">
-                                                            <asp:Label runat="server" Text="110" />
+                                                            <asp:Label runat="server" Text="110" ID="lblUbicaciones" />
                                                         </div>
                                                         <div class="form-group margin-top-10 margin-bottom-10">
-                                                            <asp:Label runat="server" Text="57" />
+                                                            <asp:Label runat="server" Text="57" ID="lblPuestos" />
                                                         </div>
 
                                                     </div>
@@ -307,13 +275,13 @@
 
                                                     <div class="module-inner col-lg-6 col-md-6 col-sm-6">
                                                         <div class="form-group margin-top-10 margin-bottom-10">
-                                                            <asp:Label runat="server" Text="164" />
+                                                            <asp:Label runat="server" Text="164" ID="lblGrupos" />
                                                         </div>
                                                         <div class="form-group margin-top-10 margin-bottom-10">
-                                                            <asp:Label runat="server" Text="110" />
+                                                            <asp:Label runat="server" Text="110" ID="lblHorarios" />
                                                         </div>
                                                         <div class="form-group margin-top-10 margin-bottom-10">
-                                                            <asp:Label runat="server" Text="57" />
+                                                            <asp:Label runat="server" Text="57" ID="lblFeriados" />
                                                         </div>
 
                                                     </div>

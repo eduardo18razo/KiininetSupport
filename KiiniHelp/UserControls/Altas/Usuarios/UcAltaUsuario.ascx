@@ -488,11 +488,7 @@
         <div class="modal fade" id="modalRoles" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="overflow: hidden;">
             <asp:UpdatePanel ID="upRoles" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <%--<div class="modal-dialog">
-                        <div class="modal-content">--%>
-                            <uc:UcRolGrupo runat="server" ID="ucRolGrupo" />
-                       <%-- </div>
-                    </div>--%>
+                    <uc:UcRolGrupo runat="server" ID="ucRolGrupo" />
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
