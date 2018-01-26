@@ -464,7 +464,7 @@ namespace KinniNet.Business.Utils
                     }
                     foreach (Series cs in grafico.Series)
                         cs.ChartType = SeriesChartType.StackedBar;
-                    grafico.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
+
                     grafico.Legends[0].Enabled = true;
 
                     foreach (Series serie in grafico.Series)
