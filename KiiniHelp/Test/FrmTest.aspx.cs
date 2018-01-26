@@ -15,6 +15,8 @@ using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KinniNet.Business.Utils;
 using Telerik.Web.UI;
+using Telerik.Web.UI.HtmlChart;
+using AxisType = System.Web.UI.DataVisualization.Charting.AxisType;
 using Font = System.Drawing.Font;
 using Menu = KiiniNet.Entities.Cat.Sistema.Menu;
 
@@ -185,63 +187,79 @@ namespace KiiniHelp.Test
 
         }
 
-        private void GeneraGraficaTelerik(DataTable dt )
+        private void GeneraGraficaStackedAdministrador(RadHtmlChart grafico, DataTable dt)
         {
-            try
+            grafico.Width = Unit.Percentage(100);
+            grafico.Height = Unit.Pixel(250);
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+
+
+            for (int c = 0; c < dt.Columns.Count; c++)
             {
-                graficaBack.Width = Unit.Pixel(680);
-                graficaBack.Height = Unit.Pixel(400);
-                graficaBack.Legend.Appearance.Position = Telerik.Web.UI.HtmlChart.ChartLegendPosition.Bottom;
-
-
-                foreach (DataColumn column in dt.Columns)
-                {
-                    ScatterSeries serie = new ScatterSeries();
-                }
-                
-
-                graficaBack.PlotArea.XAxis.TitleAppearance.Text = "Volts";
-                graficaBack.PlotArea.YAxis.TitleAppearance.Text = "mA";
-
-                ScatterLineSeries theoreticalData = new ScatterLineSeries();
-                theoreticalData.Name = "Theoretical Data";
-                theoreticalData.LabelsAppearance.Visible = false;
-                theoreticalData.TooltipsAppearance.Color = System.Drawing.Color.White;
-                theoreticalData.TooltipsAppearance.DataFormatString = "{0} Volts, {1} mA";
-
-                ScatterSeries experimentalData = new ScatterSeries();
-                experimentalData.Name = "Experimental Data";
-                experimentalData.LabelsAppearance.Visible = false;
-                experimentalData.TooltipsAppearance.DataFormatString = "{0} Volts, {1} mA";
-                experimentalData.TooltipsAppearance.Color = System.Drawing.Color.White;
-
-                //foreach (DataRow row in GetChartData().Rows)
-                //{
-                //    decimal? currentVolts = (decimal?)row["Volts"];
-                //    if (!(row["mATheoretical"] is DBNull))
-                //    {   
-                //        decimal? currentMATheoretical = (decimal?)row["mATheoretical"];
-                //        ScatterSeriesItem theoreticalItem = new ScatterSeriesItem(currentVolts, currentMATheoretical);
-                //        theoreticalData.SeriesItems.Add(theoreticalItem);
-                //    }
-                //    decimal? currentMAExperimental = (decimal?)row["mAExperimental"];
-                //    ScatterSeriesItem experimentalItem = new ScatterSeriesItem(currentVolts, currentMAExperimental);
-                //    experimentalData.SeriesItems.Add(experimentalItem);
-                //}
-                //scatterChart.PlotArea.Series.Add(theoreticalData);
-                //scatterChart.PlotArea.Series.Add(experimentalData);
+                BarSeries serie = new BarSeries();
+                serie.Stacked = true;
+                serie.LabelsAppearance.Position = BarColumnLabelsPosition.Center;
+                serie.LabelsAppearance.DataFormatString = "{0} MB";
+                serie.TooltipsAppearance.DataFormatString = "{0} MB";
+                serie.DataFieldY = dt.Columns[c].ColumnName;
+                grafico.PlotArea.Series.Add(serie);
             }
-            catch (Exception)
-            {
-                
-                throw;
-            }
+            grafico.PlotArea.XAxis.DataLabelsField = dt.Columns[dt.Columns.Count - 1].ColumnName;
+            grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
+            grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
+            grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
+            grafico.PlotArea.YAxis.MinorGridLines.Width = 0;
+            grafico.DataSource = dt;
+            grafico.DataBind();
         }
+
+
+        private void GeneraGraficaPieTickets(RadHtmlChart grafico, DataTable dt)
+        {
+            grafico.Width = Unit.Percentage(50);
+            grafico.Height = Unit.Pixel(250);
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+
+
+
+
+            PieSeries pieSerie = new PieSeries();
+            pieSerie.DataFieldY = "Total";
+            pieSerie.NameField = "Canal";
+            pieSerie.ExplodeField = "IsExploded";
+            pieSerie.LabelsAppearance.Visible = true;
+            pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
+
+            grafico.PlotArea.Series.Add(pieSerie);
+            grafico.DataSource = dt;
+            grafico.DataBind();
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-        //    cGraficoEspacio.Series[0].Points.Add(new DataPoint(0, 200));
-        //    cGraficoEspacio.Series[1].Points.Add(new DataPoint(0, 1000));
+            DataTable dtTicketsCanal = new DataTable("dt");
+            dtTicketsCanal.Columns.Add("Id", typeof(int));
+            dtTicketsCanal.Columns.Add("Canal", typeof(string));
+            dtTicketsCanal.Columns.Add("Total", typeof(double));
+            dtTicketsCanal.Rows.Add(1, "Portal", 7);
+            dtTicketsCanal.Rows.Add(2, "Correo", 11);
+            dtTicketsCanal.Rows.Add(3, "Chat", 8);
+            dtTicketsCanal.Rows.Add(6, "Telefono", 7);
+            GeneraGraficaPieTickets(rhcTickets, dtTicketsCanal);
+
+            //Stacket chart bar Espacio utilizado
+            DataTable dtAlmacenado = new DataTable("dt");
+            dtAlmacenado.Columns.Add("Ocupado", typeof(double));
+            dtAlmacenado.Columns.Add("Libre", typeof(double));
+            dtAlmacenado.Columns.Add("Titulo", typeof(string));
+            dtAlmacenado.Rows.Add(123.5, 900.5, "Almacenado");
+
+            GeneraGraficaStackedAdministrador(rhcEspacio, dtAlmacenado);
+
+
+            //    cGraficoEspacio.Series[0].Points.Add(new DataPoint(0, 200));
+            //    cGraficoEspacio.Series[1].Points.Add(new DataPoint(0, 1000));
 
             //// October Data
             //cGraficoEspacio.Series[1].Points.Add(new DataPoint(0, 20));
@@ -254,21 +272,17 @@ namespace KiiniHelp.Test
             //foreach (Series cs in cGraficoEspacio.Series)
             //    cs.ChartType = SeriesChartType.StackedBar100;
 
-            DataTable dt = new DataTable("dt");
-            dt.Columns.Add("Ocupado", typeof(double));
-            dt.Columns.Add("Libre", typeof(double));
-            dt.Columns.Add("Titulo", typeof(string));
-
-            dt.Rows.Add(123.5 , 900.5, "Almacenado");
-            
-            List<Object> dataSource = new List<object>();
-            dataSource.Add(new { Ocupado = 350, Libre = 700, Titulo = "Almacenado" });
-
-            rcTest.DataSource = dt;
-            rcTest.DataBind();
 
 
-            
+            //List<Object> dataSource = new List<object>();
+            //dataSource.Add(new { Ocupado = 350, Libre = 700, Titulo = "Almacenado" });
+
+            //rcTest.DataSource = dt;
+            //rcTest.DataBind();
+
+
+
+
 
 
             //BusinessGraficosDasboard.Pastel.GeneraGraficoBarraApilada(cGraficoEspacio, dt);

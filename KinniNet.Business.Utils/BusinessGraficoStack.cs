@@ -435,7 +435,7 @@ namespace KinniNet.Business.Utils
                 }
                 grafico.Series[0].Points.DataBindXY(x, y);
                 grafico.Series[0].ChartType = SeriesChartType.Pie;
-                grafico.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
+                grafico.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
                 grafico.Legends[0].Enabled = true;
 
                 grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;

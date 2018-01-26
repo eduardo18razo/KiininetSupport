@@ -100,10 +100,11 @@
             </script>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    <tc:RadHtmlChart runat="server" ID="graficaBack">
-                        
+                    <tc:RadHtmlChart runat="server" ID="rhcTickets">
                     </tc:RadHtmlChart>
-                    <tc:RadHtmlChart runat="server" ID="rcTest" Height="250px" Width="1200px" Transitions="false">
+                    <tc:RadHtmlChart runat="server" ID="rhcEspacio">
+                    </tc:RadHtmlChart>
+                    <tc:RadHtmlChart runat="server" ID="rcTest" Height="250px" Width="100%" Transitions="True">
                         <PlotArea>
                             <XAxis>
                                 <MajorGridLines Width="0"></MajorGridLines>
@@ -116,9 +117,11 @@
                             <Series>
                                 <tc:BarSeries Name="Ocupado" DataFieldY="Ocupado" Stacked="true" StackType="Normal">
                                     <LabelsAppearance Visible="true" Position="Center" DataFormatString="{0} MB"></LabelsAppearance>
+                                    <TooltipsAppearance DataFormatString="{0} MB"></TooltipsAppearance>
                                 </tc:BarSeries>
                                 <tc:BarSeries Name="Libre" DataFieldY="Libre">
                                     <LabelsAppearance Visible="true" Position="Center" DataFormatString="{0} MB"></LabelsAppearance>
+                                    <TooltipsAppearance DataFormatString="{0} MB"></TooltipsAppearance>
                                 </tc:BarSeries>
                             </Series>
                             <XAxis DataLabelsField="Titulo"></XAxis>
