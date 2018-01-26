@@ -9,6 +9,7 @@
                 <asp:Label runat="server" ID="lblOperacion" Font-Bold="true" />
             </h6>
         </div>
+
         <div class="modal-body">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -19,14 +20,11 @@
                     </div>
                 </div>
             </div>
-            <%-- <hr />--%>
 
             <div class="row">
                 <div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div>
-                           <%-- <h3 class="text-left">Editar Puesto</h3>
-                            <hr>--%>
                             <div class="form-group margin-top">
                                 Escribe el nombre del puesto<br />
                                 <asp:TextBox runat="server" ID="txtDescripcionPuesto" CssClass="form-control" onkeydown="return (event.keyCode!=13);" MaxLength="50" />

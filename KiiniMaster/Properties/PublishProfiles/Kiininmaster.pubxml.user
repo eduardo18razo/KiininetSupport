@@ -5,260 +5,260 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\Eduardo Cerritos\Documents\KiiniNet\KiiniMaster</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Eduardo Cerritos\Documents\KiiniNet\Eduardo\KiiniMaster</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="assets/css/bootstrap-markdown.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/bootstrap.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/checkBox.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/controls.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/divs.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/elegant-icons.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/font-awesome.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/font.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/menuStyle.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/pe-7-icons-helper.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/pe-7-icons.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/styles.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/sumoselect.css">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.eot">
-      <publishTime>11/07/2017 10:15:18</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.svg">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.ttf">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.woff">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.woff2">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/FontAwesome.otf">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.eot">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.svg">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.woff">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.eot">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.svg">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.ttf">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.woff">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-stroked41d.eot">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/bootstrap-markdown.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/bootstrap-notify.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/bootstrap-notify.min.js">
-      <publishTime>11/07/2017 10:15:19</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/bootstrap.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/imagesloaded.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/jquery.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/jquery.sumoselect.min.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/main.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/markdown-js.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/masonry.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/modernizr.custom.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/Notificaciones.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/pmenu.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/to-markdown.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/js/validation.js">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="bin/EAGetMail40.dll">
-      <publishTime>08/22/2017 16:52:58</publishTime>
+      <publishTime>01/18/2018 12:07:12</publishTime>
     </File>
     <File Include="bin/EASendMail40.dll">
-      <publishTime>01/18/2018 12:56:44</publishTime>
+      <publishTime>01/18/2018 12:07:12</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
-      <publishTime>12/07/2017 18:30:48</publishTime>
+      <publishTime>01/18/2018 12:07:12</publishTime>
     </File>
     <File Include="bin/KiiniMaster.dll">
-      <publishTime>01/18/2018 15:59:02</publishTime>
+      <publishTime>01/26/2018 14:56:11</publishTime>
     </File>
     <File Include="bin/KiiniMaster.pdb">
-      <publishTime>01/18/2018 15:59:02</publishTime>
+      <publishTime>01/26/2018 14:56:11</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>01/18/2018 15:55:25</publishTime>
+      <publishTime>01/26/2018 14:43:58</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>01/18/2018 15:55:25</publishTime>
+      <publishTime>01/26/2018 14:43:58</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.dll">
-      <publishTime>01/18/2018 15:55:31</publishTime>
+      <publishTime>01/26/2018 14:49:37</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.pdb">
-      <publishTime>01/18/2018 15:55:31</publishTime>
+      <publishTime>01/26/2018 14:49:37</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.dll">
-      <publishTime>01/18/2018 15:57:31</publishTime>
+      <publishTime>01/26/2018 14:49:37</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.pdb">
-      <publishTime>01/18/2018 15:57:31</publishTime>
+      <publishTime>01/26/2018 14:49:37</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>01/18/2018 15:55:27</publishTime>
+      <publishTime>01/26/2018 14:44:58</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>01/18/2018 15:55:27</publishTime>
+      <publishTime>01/26/2018 14:44:58</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.dll">
-      <publishTime>01/18/2018 15:55:31</publishTime>
+      <publishTime>01/26/2018 14:49:36</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.pdb">
-      <publishTime>01/18/2018 15:55:31</publishTime>
+      <publishTime>01/26/2018 14:49:36</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.dll">
-      <publishTime>01/18/2018 15:55:28</publishTime>
+      <publishTime>01/26/2018 14:45:13</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.pdb">
-      <publishTime>01/18/2018 15:55:28</publishTime>
+      <publishTime>01/26/2018 14:45:13</publishTime>
     </File>
     <File Include="Configuracion/Politicas/FrmPoliticasAsignacionDefault.aspx">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Configuracion/Politicas/FrmPoliticasAsignacionGrupo.aspx">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Configuracion/Politicas/FrmPoliticasEscalacionPermitida.aspx">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Configuracion/Politicas/FrmPoliticasEstatusTicketDefault.aspx">
-      <publishTime>01/05/2018 11:32:32</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Configuracion/Politicas/FrmPoliticasEstatusTicketGrupo.aspx">
-      <publishTime>01/05/2018 11:32:33</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>11/07/2017 10:15:18</publishTime>
+      <publishTime>12/13/2017 13:33:16</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>01/05/2018 11:32:33</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/05/2018 11:32:33</publishTime>
+      <publishTime>12/13/2017 13:33:16</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Sistema.EstatusAsignacion.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Sistema.EstatusTicket.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Sistema.Rol.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Sistema.SubRol.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Usuario.DiaFestivoSubGrupo.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Usuario.GrupoUsuario.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Usuario.HorarioSubGrupo.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Operacion.Usuarios.UsuarioGrupo.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.EstatusAsignacionSubRolGeneral.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.EstatusAsignacionSubRolGeneralDefault.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneral.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneralDefault.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.SubRolEscalacionPermitida.datasource">
-      <publishTime>01/05/2018 11:31:50</publishTime>
+      <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>01/05/2018 11:32:33</publishTime>
+      <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/18/2018 15:16:52</publishTime>
+      <publishTime>01/26/2018 14:56:11</publishTime>
     </File>
   </ItemGroup>
 </Project>
