@@ -49,14 +49,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Downloads\DotNet4\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="MSCaptcha">
-      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\MSCaptcha.dll</HintPath>
+      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -70,16 +70,15 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Web.UI, Version=2017.2.711.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.dll</HintPath>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.Skins.dll</HintPath>
+      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
     <Reference Include="Winthusiasm.HtmlEditor, Version=1.9.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll</HintPath>
+      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -101,10 +100,12 @@
     <Content Include="assets\css\elegant-icons.css" />
     <Content Include="assets\css\elusive-icons.css" />
     <Content Include="assets\css\font-awesome.css" />
+    <Content Include="assets\css\font.css" />
     <Content Include="assets\css\menuStyle.css" />
     <Content Include="assets\css\pe-7-icons-helper.css" />
     <Content Include="assets\css\pe-7-icons.css" />
     <Content Include="assets\css\styles.css" />
+    <Content Include="assets\css\sumoselect.css" />
     <Content Include="assets\fonts\elusiveicons-webfont.svg" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />

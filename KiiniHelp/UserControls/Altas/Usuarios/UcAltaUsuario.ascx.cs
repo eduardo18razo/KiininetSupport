@@ -792,6 +792,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     ucAltaUbicaciones.EsSeleccion = true;
                     ucAltaUbicaciones.EsAlta = true;
                     ucAltaUbicaciones.IdTipoUsuario = idTipoUsuario;
+                    ucAltaUbicaciones.Title = "Establecer Ubicación";
 
 
                     Session["TelefonosUsuario"] = _servicioParametros.ObtenerTelefonosParametrosIdTipoUsuario(idTipoUsuario, false);

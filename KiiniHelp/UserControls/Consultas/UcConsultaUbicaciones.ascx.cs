@@ -13,6 +13,7 @@ using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
+using System.IO;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -29,28 +30,6 @@ namespace KiiniHelp.UserControls.Consultas
 
         private List<string> _lstError = new List<string>();
 
-        //#region Variables paginador
-
-        //readonly PagedDataSource _pgsource = new PagedDataSource();
-        //int _firstIndex, _lastIndex;
-        //private int _pageSize = 10;
-        //private int CurrentPage
-        //{
-        //    get
-        //    {
-        //        if (ViewState["CurrentPage"] == null)
-        //        {
-        //            return 0;
-        //        }
-        //        return ((int)ViewState["CurrentPage"]);
-        //    }
-        //    set
-        //    {
-        //        ViewState["CurrentPage"] = value;
-        //    }
-        //}
-
-        //#endregion
 
         private string AlertaSucces
         {
@@ -90,14 +69,12 @@ namespace KiiniHelp.UserControls.Consultas
                 }
             }
         }
-        
+
         private void LlenaCombos()
         {
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                //if (lstTipoUsuario.Count >= 2)
-                //    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
             }
             catch (Exception e)
@@ -115,14 +92,8 @@ namespace KiiniHelp.UserControls.Consultas
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
                 List<Ubicacion> lstUbicaciones = _servicioUbicacion.ObtenerUbicaciones(idTipoUsuario, null, null, null, null, null, null, null);
-                //if (Modal)
-                //    lstUbicaciones = lstUbicaciones.Where(w => w.Habilitado == Modal).ToList();
                 tblResults.DataSource = lstUbicaciones;
                 tblResults.DataBind();
-
-                //rptResultados.DataSource = lstUbicaciones;
-                //rptResultados.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -147,7 +118,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 Alerta = new List<string>();
                 ucAltaUbicaciones.OnAceptarModal += UcAltaUbicacionesOnOnAceptarModal;
                 ucAltaUbicaciones.OnCancelarModal += UcAltaUbicacionesOnOnCancelarModal;
@@ -155,7 +125,7 @@ namespace KiiniHelp.UserControls.Consultas
                 if (!IsPostBack)
                 {
                     LlenaCombos();
-                    LlenaUbicaciones();                    
+                    LlenaUbicaciones();
                 }
             }
             catch (Exception ex)
@@ -168,7 +138,7 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-        
+
         private void UcAltaUbicacionesOnOnAceptarModal()
         {
             try
@@ -239,7 +209,7 @@ namespace KiiniHelp.UserControls.Consultas
                 else if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     if (IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado)
-                        LlenaUbicaciones(); 
+                        LlenaUbicaciones();
                 }
             }
             catch (Exception ex)
@@ -252,7 +222,7 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-        
+
         protected void btnEditar_OnClick(object sender, EventArgs e)
         {
             try
@@ -294,7 +264,7 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-        
+
         protected void rptResultados_OnItemCreated(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -364,6 +334,49 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
             finally { LlenaUbicaciones(); }
+        }
+
+        protected void btnDownload_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                int? idTipoUsuario = null;
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
+
+                List<Ubicacion> lstUbicaciones = _servicioUbicacion.ObtenerUbicaciones(idTipoUsuario, null, null, null, null, null, null, null);
+
+                Response.Clear();
+                MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstUbicaciones.Select(
+                                s => new
+                                {
+                                    TipoUsuario = s.TipoUsuario.Descripcion,
+                                    Pais = s.Pais.Descripcion,
+                                    Campus = s.Campus != null ? s.Campus.Descripcion : "",
+                                    Torre = s.Torre != null ? s.Torre.Descripcion : "",
+                                    Piso = s.Piso != null ? s.Piso.Descripcion : "",
+                                    Zona = s.Zona != null ? s.Zona.Descripcion : "",
+                                    SubZona = s.SubZona != null ? s.SubZona.Descripcion : "",
+                                    SiteRack = s.SiteRack != null ? s.SiteRack.Descripcion : "",
+                                    Sistema = s.Sistema ? "Si" : "No",
+                                    Habilitado = s.Habilitado ? "Si" : "No"
+                                })
+                                .ToList()).GetAsByteArray());
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;  filename=Ubicaciones.xlsx");
+                Response.Buffer = true;
+                ms.WriteTo(Response.OutputStream);
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
         }
 
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
