@@ -84,7 +84,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 btnSeleccionarModal.Visible = value;
                 pnlAlta.Visible = value;                                 
                 ddlTipoUsuario.Enabled = !value;
-
+                lblAccion.Text = "Crear Nuevo";    
                 //Modificación para editar
                 seleccionar.Visible = false;
                 btnGuardar.Visible = false;
@@ -111,7 +111,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         LlenaCombosModal();
                         ddlNivelSeleccionModal.SelectedValue = org.IdHolding.ToString();
                         txtDescripcionCatalogo.Text = org.Holding.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-seleccione btn-square";
                         lblStepNivel1.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         lblOperacion.Text = lblAliasNivel1.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel1.Text;
@@ -126,8 +126,8 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                                 int.Parse(hfNivel1.Value), true));
                         ddlNivelSeleccionModal.SelectedValue = org.IdCompania.ToString();
                         txtDescripcionCatalogo.Text = org.Compania.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Holding.Descripcion;
                         divStep2.Visible = true;
@@ -146,9 +146,9 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                                 int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel2.Value), true));
                         ddlNivelSeleccionModal.SelectedValue = org.IdDireccion.ToString();
                         txtDescripcionCatalogo.Text = org.Direccion.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Holding.Descripcion;
                         divStep2.Visible = true;
@@ -170,10 +170,10 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                                 int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel3.Value), true));
                         ddlNivelSeleccionModal.SelectedValue = org.IdSubDireccion.ToString();
                         txtDescripcionCatalogo.Text = org.SubDireccion.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Holding.Descripcion;
                         divStep2.Visible = true;
@@ -198,11 +198,11 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                                 int.Parse(hfNivel4.Value), true));
                         ddlNivelSeleccionModal.SelectedValue = org.IdGerencia.ToString();
                         txtDescripcionCatalogo.Text = org.Gerencia.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Holding.Descripcion;
                         divStep2.Visible = true;
@@ -230,12 +230,12 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                                 int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel5.Value), true));
                         ddlNivelSeleccionModal.SelectedValue = org.IdSubGerencia.ToString();
                         txtDescripcionCatalogo.Text = org.SubGerencia.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
                         lblStepNivel1.Text = org.Holding.Descripcion;
                         divStep2.Visible = true;
                         lblStepNivel2.Text = org.Compania.Descripcion;
@@ -264,13 +264,13 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                                 int.Parse(hfNivel6.Value), true));
                         ddlNivelSeleccionModal.SelectedValue = org.IdJefatura.ToString();
                         txtDescripcionCatalogo.Text = org.Jefatura.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         lblStepNivel1.Text = org.Holding.Descripcion;
                         divStep2.Visible = true;
                         lblStepNivel2.Text = org.Compania.Descripcion;
@@ -327,8 +327,8 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         hfNivel1.Value = org.IdHolding.ToString();
                         hfNivel2.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerCompañias(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel1.Value), true));
@@ -350,9 +350,9 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         hfNivel2.Value = org.IdCompania.ToString();
                         hfNivel3.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerDirecciones(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel2.Value), true));
@@ -376,10 +376,10 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         hfNivel3.Value = org.IdDireccion.ToString();
                         hfNivel4.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
 
@@ -407,11 +407,11 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         hfNivel4.Value = org.IdSubDireccion.ToString();
                         hfNivel5.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerGerencias(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel4.Value), true));
@@ -441,12 +441,12 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         hfNivel5.Value = org.IdGerencia.ToString();
                         hfNivel6.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerSubGerencias(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel5.Value), true));
@@ -480,13 +480,13 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         hfNivel6.Value = org.IdSubGerencia.ToString();
                         hfNivel7.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerJefaturas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
@@ -519,13 +519,13 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         hfNivel6.Value = org.IdSubGerencia.ToString();
                         hfNivel7.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerJefaturas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
                         lblOperacion.Text = lblAliasNivel7.Text;
@@ -650,13 +650,13 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 lblStepNivel5.Text = "...";
                 lblStepNivel6.Text = "...";
                 lblStepNivel7.Text = "...";
-                btnStatusNivel1.CssClass = "btn btn-primary btn-square";
-                btnStatusNivel2.CssClass = "btn btn-primary btn-square";
-                btnStatusNivel3.CssClass = "btn btn-primary btn-square";
-                btnStatusNivel4.CssClass = "btn btn-primary btn-square";
-                btnStatusNivel5.CssClass = "btn btn-primary btn-square";
-                btnStatusNivel6.CssClass = "btn btn-primary btn-square";
-                btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                btnStatusNivel1.CssClass = "btn btn-seleccione btn-square";
+                btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
+                btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
+                btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
+                btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
+                btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
+                btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                 btnSeleccionarModal.Visible = true;
                 pnlAlta.Visible = true;
                 btnGuardarCatalogo.Visible = true;
@@ -677,9 +677,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
             try
             {
                 Metodos.LlenaComboCatalogo(ddl, source);
-                //if (ddl.Items.Count != 2) return;
-                //ddl.SelectedIndex = 1;
-                //ddlHolding_OnSelectedIndexChanged(ddlHolding, null);
             }
             catch (Exception ex)
             {
@@ -715,7 +712,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                 Metodos.LimpiarCombo(ddlNivelSeleccionModal);
                 SetAliasModal();
-                btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                btnStatusNivel1.CssClass = "btn btn-seleccione btn-square";
                 divStep2.Visible = false;
                 divStep3.Visible = false;
                 divStep4.Visible = false;
@@ -733,13 +730,11 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Operador || level > 1)
                 {
                     pnlAlta.Visible = true;
-                    //pnlAlta.Enabled = true;
                     LlenaComboDinamico(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerHoldings(int.Parse(ddlTipoUsuario.SelectedValue), true));
                 }
                 else
                 {
                     pnlAlta.Visible = false;
-                    //pnlAlta.Enabled = false;
                     LlenaComboDinamico(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerHoldings(int.Parse(ddlTipoUsuario.SelectedValue), true));
                 }
                 if (EsAlta || EsSeleccion)
@@ -770,7 +765,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 switch (int.Parse(btnSeleccionarModal.CommandArgument))
                 {
                     case 1:
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
                         lblStepNivel1.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel1.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerCompañias(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel1.Value), true));
@@ -781,12 +776,12 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel2.Text;
                         divStep2.Visible = true;
                         lblStepNivel2.Text = "...";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
                         pnlAlta.Visible = true;
                         //pnlAlta.Enabled = true;
                         break;
                     case 2:
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
                         lblStepNivel2.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel2.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerDirecciones(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel2.Value), true));
@@ -797,10 +792,10 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
                         divStep3.Visible = true;
                         lblStepNivel3.Text = "...";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 3:
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
                         lblStepNivel3.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel3.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerSubDirecciones(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel3.Value), true));
@@ -811,10 +806,10 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel4.Text;
                         divStep4.Visible = true;
                         lblStepNivel4.Text = "...";
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 4:
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
                         lblStepNivel4.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel4.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerGerencias(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel4.Value), true));
@@ -825,10 +820,10 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel5.Text;
                         divStep5.Visible = true;
                         lblStepNivel5.Text = "...";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 5:
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
                         lblStepNivel5.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel5.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerSubGerencias(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel5.Value), true));
@@ -839,10 +834,10 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
                         divStep6.Visible = true;
                         lblStepNivel6.Text = "...";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 6:
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
                         lblStepNivel6.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel6.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerJefaturas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
@@ -852,10 +847,10 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacion.Text = lblAliasNivel7.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel7.Text;
                         divStep7.Visible = true;
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 7:
-                        btnStatusNivel7.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                         lblStepNivel7.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel7.Value = ddlNivelSeleccionModal.SelectedValue;
                         succNivel7.Visible = true;
@@ -1135,6 +1130,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
+        /*Modificado Estilos pasos*/
         protected void btnTerminar_OnClick(object sender, EventArgs e)
         {
             try
@@ -1145,13 +1141,13 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                     {
                         case 1:
                             throw new Exception("Seleccione una ubicacion de nivel 2");
-                            if (btnStatusNivel1.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel1.CssClass == "btn btn-primary btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), null, null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 1);
                             }
                             break;
                         case 2:
-                            if (btnStatusNivel2.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel2.CssClass == "btn btn-primary btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 2);
                             }
@@ -1162,7 +1158,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                             }
                             break;
                         case 3:
-                            if (btnStatusNivel3.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel3.CssClass == "btn btn-primary btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 3);
                             }
@@ -1172,7 +1168,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                             }
                             break;
                         case 4:
-                            if (btnStatusNivel4.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel4.CssClass == "btn btn-primary btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 4);
                             }
@@ -1182,7 +1178,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                             }
                             break;
                         case 5:
-                            if (btnStatusNivel5.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel5.CssClass == "btn btn-primary btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), int.Parse(hfNivel5.Value), null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 5);
                             }
@@ -1192,7 +1188,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                             }
                             break;
                         case 6:
-                            if (btnStatusNivel6.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel6.CssClass == "btn btn-primary btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), int.Parse(hfNivel5.Value), int.Parse(hfNivel6.Value), null).SingleOrDefault(s => s.IdNivelOrganizacion == 6);
                             }
@@ -1202,7 +1198,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                             }
                             break;
                         case 7:
-                            if (btnStatusNivel7.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel7.CssClass == "btn btn-primary btn-square")
                             {
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), int.Parse(hfNivel5.Value), int.Parse(hfNivel6.Value), int.Parse(hfNivel7.Value)).SingleOrDefault(s => s.IdNivelOrganizacion == 7);
                             }
@@ -1232,6 +1228,8 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
+
+        /*Modificado Estilos pasos*/
         protected void btnStatusNivel1_OnClick(object sender, EventArgs e)
         {
             try
@@ -1269,7 +1267,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel2.Text;
                         divStep2.Visible = true;
                         lblStepNivel2.Text = "...";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 3:
                         divStep4.Visible = false;
@@ -1285,7 +1283,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
                         divStep3.Visible = true;
                         lblStepNivel3.Text = "...";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
 
                         break;
                     case 4:
@@ -1302,7 +1300,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         divStep4.Visible = true;
                         lblStepNivel4.Text = "...";
 
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 5:
                         divStep6.Visible = false;
@@ -1316,7 +1314,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel5.Text;
                         divStep5.Visible = true;
                         lblStepNivel5.Text = "...";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 6:
                         divStep7.Visible = false;
@@ -1329,14 +1327,14 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
                         divStep6.Visible = true;
                         lblStepNivel6.Text = "...";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
 
                         break;
                     case 7:
-                        btnStatusNivel7.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                         succNivel7.Visible = true;
                         lblStepNivel7.Text = "...";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         break;
                 }
             }

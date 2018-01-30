@@ -1,21 +1,3 @@
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Services.dll.config
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Services.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Services.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Entities.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Business.Utils.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Core.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EPPlus.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EAGetMail40.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EASendMail40.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Data.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Entities.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Business.Utils.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Core.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EPPlus.xml
-C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Data.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Debug\KiiniNet.Services.csprojResolveAssemblyReference.cache
-C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Debug\KiiniNet.Services.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Debug\KiiniNet.Services.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\KiiniNet.Services.dll.config
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\KiiniNet.Services.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\KiiniNet.Services.pdb
@@ -34,3 +16,21 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug\KiiniNet.Services.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug\KiiniNet.Services.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug\KiiniNet.Services.pdb
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Services.dll.config
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Services.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Services.pdb
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Entities.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Business.Utils.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Core.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EPPlus.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EAGetMail40.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EASendMail40.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Data.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KiiniNet.Entities.pdb
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Core.pdb
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\EPPlus.xml
+C:\Users\Janeth\Documents\git\KiiniNet.Services\bin\Debug\KinniNet.Data.pdb
+C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Debug\KiiniNet.Services.csprojResolveAssemblyReference.cache
+C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Debug\KiiniNet.Services.dll
+C:\Users\Janeth\Documents\git\KiiniNet.Services\obj\Debug\KiiniNet.Services.pdb

@@ -71,14 +71,12 @@
                 </div>
             </section>
 
-
-
             <section class="module module-headings">
                 <div class="module-inner">
-
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
+                                <asp:CheckBox runat="server" AutoPostBack="true" Width="30px" Text="nuevo" ID="chkHabilitado" OnCheckedChanged="chkHabilitado_CheckedChanged" />
 
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
                                     OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
@@ -95,7 +93,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="10%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>'><%# Eval("TipoGrupo.Descripcion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>' ><%# Eval("TipoGrupo.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -105,7 +103,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="20%">
+                                        <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="5%">
                                             <ItemTemplate>
                                                 <label><%# (bool) Eval("TieneSupervisor") ? "SI" : "NO" %></label>
                                             </ItemTemplate>
@@ -115,11 +113,15 @@
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' ID="chkHabilitado" OnCheckedChanged="chkHabilitado_CheckedChanged" />
+                                                        <%--OnCheckedChanged="OnCheckedChanged"--%>
+                                                        
+                                                        
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="7%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
@@ -147,8 +149,9 @@
                     </div>
                 </div>
             </section>
-
-
+            <asp:CheckBox runat="server" OnCheckedChanged="chknuevo_CheckedChanged" Text="prueba" AutoPostBack="true" />
+            
+            <%--OnCheckedChanged="OnCheckedChanged"--%>
 
             <script type="text/javascript">
                 $(function () {
@@ -159,7 +162,6 @@
                 prm.add_endRequest(function () {
                     hidden('#' + "<%=tblResults.ClientID %>");
                 });
-
             </script>
         </ContentTemplate>
 

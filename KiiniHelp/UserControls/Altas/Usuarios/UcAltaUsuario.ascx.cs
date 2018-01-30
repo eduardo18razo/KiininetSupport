@@ -16,7 +16,6 @@ using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 
 namespace KiiniHelp.UserControls.Altas.Usuarios
 {
@@ -42,6 +41,10 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 ddlTipoUsuario.Enabled = value;
                 hfAlta.Value = value.ToString();
                 hfGeneraUsuario.Value = value.ToString();
+
+                btnCambiarImagen.Visible = false;
+                FileUpload1.Enabled = false;
+
                 if (!value)
                 {
                     btnModalOrganizacion.CssClass = "btn btn-primary";
@@ -272,7 +275,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
                     ddlTipoUsuario.SelectedValue = user.IdTipoUsuario.ToString();
                     ddlTipoUsuario_OnSelectedIndexChanged(ddlTipoUsuario, null);
-                    imgPerfil.ImageUrl = user.Foto != null ? "~/DisplayImages.ashx?id=" + user.Id : "~/assets/images/profiles/profile-square-1.png";
+                    imgPerfil.ImageUrl = user.Foto != null ? "~/DisplayImages.ashx?id=" + user.Id : "~/assets/images/profiles/profile-1.png";
                     lblFechaUltimoAcceso.Text = user.FechaUltimoAccesoExito;
                     txtAp.Text = user.ApellidoPaterno;
                     txtAm.Text = user.ApellidoMaterno;
@@ -551,7 +554,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             txtUserName.ReadOnly = true;
             ddlPuesto.Enabled = !habilitado && !EditarDetalle;
             btnAddPuesto.Visible = !habilitado && !EditarDetalle;
-            btnCambiarImagen.Visible = !habilitado && !EditarDetalle;
+            FileUpload1.Enabled = habilitado || !EditarDetalle;
+            btnCambiarImagen.Visible = !Alta && !EditarDetalle;
             chkVip.Enabled = !habilitado;
             chkDirectoriActivo.Enabled = !habilitado;
             chkPersonaFisica.Enabled = !habilitado;
@@ -639,6 +643,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 Alta = false;
                 HabilitaDetalle(EsDetalle);
                 btnEditar.Visible = false;
+                FileUpload1.Enabled = true;
+                btnCambiarImagen.Visible = true;
             }
             catch (Exception ex)
             {

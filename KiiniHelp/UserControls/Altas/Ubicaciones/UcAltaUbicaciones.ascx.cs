@@ -89,7 +89,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             }
         }
 
-        public void SetUbicacionActualizar()
+        public void SetUbicacionActualizar() //Estilos actualizados
         {
             try
             {
@@ -104,13 +104,14 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 ddlNivelSeleccionModal.Visible = EsAlta || EsSeleccion;
                 switch (org.IdNivelUbicacion)
                 {
+
                     case 1:
                         ddlNivelSeleccionModal.Enabled = !EsAlta || !EsSeleccion;
                         hfNivel1.Value = org.IdPais.ToString();
                         LlenaCombosModal();
                         ddlNivelSeleccionModal.SelectedValue = org.IdPais.ToString();
                         txtDescripcionCatalogo.Text = org.Pais.Descripcion;
-                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-seleccione btn-square";
                         lblStepNivel1.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         lblOperacion.Text = lblAliasNivel1.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel1.Text;
@@ -135,8 +136,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         }
                         SetAliasModal();
                         dataCampus.Visible = true;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Pais.Descripcion;
                         divStep2.Visible = true;
@@ -156,9 +157,9 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         txtDescripcionCatalogo.Text = org.Torre.Descripcion;
                         divNombre.Visible = EsAlta || EsSeleccion;
                         dataCampus.Visible = false;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Pais.Descripcion;
                         divStep2.Visible = true;
@@ -181,10 +182,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         ddlNivelSeleccionModal.SelectedValue = org.IdPiso.ToString();
                         txtDescripcionCatalogo.Text = org.Piso.Descripcion;
                         dataCampus.Visible = false;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Pais.Descripcion;
                         divStep2.Visible = true;
@@ -210,11 +211,11 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         ddlNivelSeleccionModal.SelectedValue = org.IdZona.ToString();
                         txtDescripcionCatalogo.Text = org.Zona.Descripcion;
                         dataCampus.Visible = false;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
 
                         lblStepNivel1.Text = org.Pais.Descripcion;
                         divStep2.Visible = true;
@@ -241,12 +242,12 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         ddlNivelSeleccionModal.SelectedValue = org.IdSubZona.ToString();
                         txtDescripcionCatalogo.Text = org.SubZona.Descripcion;
                         dataCampus.Visible = false;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
                         lblStepNivel1.Text = org.Pais.Descripcion;
                         divStep2.Visible = true;
                         lblStepNivel2.Text = org.Campus.Descripcion;
@@ -275,13 +276,13 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         ddlNivelSeleccionModal.SelectedValue = org.IdSiteRack.ToString();
                         txtDescripcionCatalogo.Text = org.SiteRack.Descripcion;
                         dataCampus.Visible = false;
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         lblStepNivel1.Text = org.Pais.Descripcion;
                         divStep2.Visible = true;
                         lblStepNivel2.Text = org.Campus.Descripcion;
@@ -309,7 +310,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             }
         }
 
-        public void SetUbicacionSeleccion()
+        public void SetUbicacionSeleccion() //Estilos actualizados
         {
             try
             {
@@ -339,8 +340,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         hfNivel1.Value = org.IdPais.ToString();
                         hfNivel2.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerCampus(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel1.Value), true));
@@ -364,9 +365,9 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         hfNivel2.Value = org.IdCampus.ToString();
                         hfNivel3.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerTorres(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel2.Value), true));
@@ -392,10 +393,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         hfNivel3.Value = org.IdTorre.ToString();
                         hfNivel4.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
 
@@ -425,11 +426,11 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         hfNivel4.Value = org.IdPiso.ToString();
                         hfNivel5.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerZonas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel4.Value), true));
@@ -462,12 +463,12 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         hfNivel5.Value = org.IdZona.ToString();
                         hfNivel6.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerSubZonas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel5.Value), true));
@@ -503,13 +504,13 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         hfNivel6.Value = org.IdSubZona.ToString();
                         hfNivel7.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         btnSeleccionarModal.CommandArgument = (int.Parse(btnSeleccionarModal.CommandArgument) + 1).ToString();
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerSiteRacks(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
@@ -546,13 +547,13 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         hfNivel6.Value = org.IdSubZona.ToString();
                         hfNivel7.Value = string.Empty;
 
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerSiteRacks(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
                         lblOperacion.Text = lblAliasNivel7.Text;
@@ -813,7 +814,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                 Metodos.LimpiarCombo(ddlNivelSeleccionModal);
                 SetAliasModal();
-                btnStatusNivel1.CssClass = "btn btn-primary btn-square";
+                btnStatusNivel1.CssClass = "btn btn-seleccione btn-square";
                 divStep2.Visible = false;
                 divStep3.Visible = false;
                 divStep4.Visible = false;
@@ -860,7 +861,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             }
         }
 
-        protected void btnSeleccionarModal_OnClick(object sender, EventArgs e)
+        protected void btnSeleccionarModal_OnClick(object sender, EventArgs e) //Estilos actualizados
         {
             try
             {
@@ -871,7 +872,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 switch (int.Parse(btnSeleccionarModal.CommandArgument))
                 {
                     case 1:
-                        btnStatusNivel1.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel1.CssClass = "btn btn-primary btn-square";
                         lblStepNivel1.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         divNombre.Visible = false;
                         hfNivel1.Value = ddlNivelSeleccionModal.SelectedValue;
@@ -884,10 +885,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep2.Visible = true;
                         dataCampus.Visible = true;
                         lblStepNivel2.Text = "...";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 2:
-                        btnStatusNivel2.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
                         lblStepNivel2.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel2.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerTorres(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel2.Value), true));
@@ -898,10 +899,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
                         divStep3.Visible = true;
                         lblStepNivel3.Text = "...";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 3:
-                        btnStatusNivel3.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
                         lblStepNivel3.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel3.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerPisos(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel3.Value), true));
@@ -912,10 +913,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel4.Text;
                         divStep4.Visible = true;
                         lblStepNivel4.Text = "...";
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 4:
-                        btnStatusNivel4.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
                         lblStepNivel4.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel4.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerZonas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel4.Value), true));
@@ -926,10 +927,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel5.Text;
                         divStep5.Visible = true;
                         lblStepNivel5.Text = "...";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 5:
-                        btnStatusNivel5.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
                         lblStepNivel5.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel5.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerSubZonas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel5.Value), true));
@@ -940,10 +941,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
                         divStep6.Visible = true;
                         lblStepNivel6.Text = "...";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 6:
-                        btnStatusNivel6.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
                         lblStepNivel6.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel6.Value = ddlNivelSeleccionModal.SelectedValue;
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerSiteRacks(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel6.Value), true));
@@ -954,10 +955,10 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel7.Text;
                         divStep7.Visible = true;
                         lblStepNivel7.Text = "...";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 7:
-                        btnStatusNivel7.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                         lblStepNivel7.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel7.Value = ddlNivelSeleccionModal.SelectedValue;
                         succNivel7.Visible = true;
@@ -1355,7 +1356,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 Alerta = _lstError;
             }
         }
-        protected void btnTerminar_OnClick(object sender, EventArgs e)
+        protected void btnTerminar_OnClick(object sender, EventArgs e) //Estilos actualizados
         {
             try
             {
@@ -1365,13 +1366,13 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     {
                         case 1:
                             throw new Exception("Selecciones una ubicacion de nivel 2");
-                            if (btnStatusNivel1.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel1.CssClass == "btn btn-primary btn-square")
                             {
                                 UbicacionSeleccionada = _servicioUbicacion.ObtenerUbicaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), null, null, null, null, null, null).SingleOrDefault(s => s.IdNivelUbicacion == 1);
                             }
                             break;
                         case 2:
-                            if (btnStatusNivel2.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel2.CssClass == "btn btn-primary btn-square")
                             {
                                 UbicacionSeleccionada = _servicioUbicacion.ObtenerUbicaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), null, null, null, null, null).SingleOrDefault(s => s.IdNivelUbicacion == 2);
                             }
@@ -1382,7 +1383,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             }
                             break;
                         case 3:
-                            if (btnStatusNivel3.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel3.CssClass == "btn btn-primary btn-square")
                             {
                                 UbicacionSeleccionada = _servicioUbicacion.ObtenerUbicaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), null, null, null, null).SingleOrDefault(s => s.IdNivelUbicacion == 3);
                             }
@@ -1392,7 +1393,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             }
                             break;
                         case 4:
-                            if (btnStatusNivel4.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel4.CssClass == "btn btn-primary btn-square")
                             {
                                 UbicacionSeleccionada = _servicioUbicacion.ObtenerUbicaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), null, null, null).SingleOrDefault(s => s.IdNivelUbicacion == 4);
                             }
@@ -1402,7 +1403,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             }
                             break;
                         case 5:
-                            if (btnStatusNivel5.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel5.CssClass == "btn btn-primary btn-square")
                             {
                                 UbicacionSeleccionada = _servicioUbicacion.ObtenerUbicaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), int.Parse(hfNivel5.Value), null, null).SingleOrDefault(s => s.IdNivelUbicacion == 5);
                             }
@@ -1412,7 +1413,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             }
                             break;
                         case 6:
-                            if (btnStatusNivel6.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel6.CssClass == "btn btn-primary btn-square")
                             {
                                 UbicacionSeleccionada = _servicioUbicacion.ObtenerUbicaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), int.Parse(hfNivel5.Value), int.Parse(hfNivel6.Value), null).SingleOrDefault(s => s.IdNivelUbicacion == 6);
                             }
@@ -1422,7 +1423,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                             }
                             break;
                         case 7:
-                            if (btnStatusNivel7.CssClass == "btn btn-success btn-square")
+                            if (btnStatusNivel7.CssClass == "btn btn-primary btn-square")
                             {
                                 UbicacionSeleccionada = _servicioUbicacion.ObtenerUbicaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), int.Parse(hfNivel3.Value), int.Parse(hfNivel4.Value), int.Parse(hfNivel5.Value), int.Parse(hfNivel6.Value), int.Parse(hfNivel7.Value)).SingleOrDefault(s => s.IdNivelUbicacion == 7);
                             }
@@ -1489,7 +1490,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep2.Visible = true;
                         dataCampus.Visible = true;
                         lblStepNivel2.Text = "...";
-                        btnStatusNivel2.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 3:
                         divStep4.Visible = false;
@@ -1506,7 +1507,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
                         divStep3.Visible = true;
                         lblStepNivel3.Text = "...";
-                        btnStatusNivel3.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel3.CssClass = "btn btn-seleccione btn-square";
 
                         break;
                     case 4:
@@ -1524,7 +1525,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep4.Visible = true;
                         lblStepNivel4.Text = "...";
 
-                        btnStatusNivel4.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel4.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 5:
                         divStep6.Visible = false;
@@ -1539,7 +1540,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel5.Text;
                         divStep5.Visible = true;
                         lblStepNivel5.Text = "...";
-                        btnStatusNivel5.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel5.CssClass = "btn btn-seleccione btn-square";
                         break;
                     case 6:
                         divStep7.Visible = false;
@@ -1553,14 +1554,14 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
                         divStep6.Visible = true;
                         lblStepNivel6.Text = "...";
-                        btnStatusNivel6.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel6.CssClass = "btn btn-seleccione btn-square";
 
                         break;
                     case 7:
-                        btnStatusNivel7.CssClass = "btn btn-success btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                         succNivel7.Visible = true;
                         lblStepNivel7.Text = "...";
-                        btnStatusNivel7.CssClass = "btn btn-primary btn-square";
+                        btnStatusNivel7.CssClass = "btn btn-seleccione btn-square";
                         break;
                 }
             }

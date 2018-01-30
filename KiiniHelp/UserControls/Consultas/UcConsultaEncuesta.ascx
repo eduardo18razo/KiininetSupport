@@ -63,7 +63,6 @@
 
             <section class="module module-headings">
                 <div class="module-inner">
-
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
@@ -76,7 +75,7 @@
                                         <asp:TemplateField HeaderText="Títulos" HeaderStyle-Width="30%" ItemStyle-CssClass="altoFijo">
                                             <ItemTemplate>
                                                 <div>
-                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Titulo")%>'><%# Eval("Titulo")%></label>
+                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Titulo")%>'> <%# Eval("Titulo")%> </label>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -103,7 +102,7 @@
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged"/>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
@@ -150,6 +149,7 @@
                 });
 
             </script>
+
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnDownload" />

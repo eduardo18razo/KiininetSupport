@@ -147,49 +147,49 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/18/2018 12:56:44</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
-      <publishTime>12/07/2017 18:30:48</publishTime>
+      <publishTime>07/12/2017 18:30:48</publishTime>
     </File>
     <File Include="bin/KiiniMaster.dll">
-      <publishTime>01/26/2018 15:17:55</publishTime>
+      <publishTime>01/29/2018 11:04:17</publishTime>
     </File>
     <File Include="bin/KiiniMaster.pdb">
-      <publishTime>01/26/2018 15:17:55</publishTime>
+      <publishTime>01/29/2018 11:04:17</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>01/26/2018 15:11:18</publishTime>
+      <publishTime>01/29/2018 09:34:21</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>01/26/2018 15:11:18</publishTime>
+      <publishTime>01/29/2018 09:34:21</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.dll">
-      <publishTime>01/26/2018 15:11:24</publishTime>
+      <publishTime>01/29/2018 09:34:30</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.pdb">
-      <publishTime>01/26/2018 15:11:24</publishTime>
+      <publishTime>01/29/2018 09:34:30</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.dll">
-      <publishTime>01/26/2018 15:11:25</publishTime>
+      <publishTime>01/29/2018 09:34:31</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.pdb">
-      <publishTime>01/26/2018 15:11:25</publishTime>
+      <publishTime>01/29/2018 09:34:31</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>01/26/2018 15:11:21</publishTime>
+      <publishTime>01/29/2018 09:34:24</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>01/26/2018 15:11:21</publishTime>
+      <publishTime>01/29/2018 09:34:24</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.dll">
-      <publishTime>01/26/2018 15:11:24</publishTime>
+      <publishTime>01/29/2018 09:34:29</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.pdb">
-      <publishTime>01/26/2018 15:11:24</publishTime>
+      <publishTime>01/29/2018 09:34:29</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.dll">
-      <publishTime>01/26/2018 15:11:21</publishTime>
+      <publishTime>01/29/2018 09:34:26</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.pdb">
-      <publishTime>01/26/2018 15:11:21</publishTime>
+      <publishTime>01/29/2018 09:34:26</publishTime>
     </File>
     <File Include="Configuracion/Politicas/FrmPoliticasAsignacionDefault.aspx">
       <publishTime>01/05/2018 11:32:32</publishTime>
