@@ -294,6 +294,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 ddlTipoUsuario.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
                 txtDescripcionNivel.Text = string.Empty;
                 LlenaCombos();
+                chkPublico.Checked = false;
                 chkEvaluacion.Checked = true;
                 chkNivelHabilitado.Checked = true;
                 btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);

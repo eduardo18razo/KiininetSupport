@@ -210,17 +210,17 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     if (result.Descripcion.ToUpper() == "ALTO")
                     {
                         lblImpacto.Style.Add("color", "red");
-                        imgImpacto.ImageUrl = "~/assets/images/icons/prioridadalta.png";
+                        //imgImpacto.ImageUrl = "~/assets/images/icons/prioridadalta.png";
                     }
                     if (result.Descripcion.ToUpper() == "MEDIO")
                     {
-                        lblImpacto.Style.Add("color", "blue");
-                        imgImpacto.ImageUrl = "~/assets/images/icons/prioridadmedia.png";
+                        //lblImpacto.Style.Add("color", "blue");
+                        //imgImpacto.ImageUrl = "~/assets/images/icons/prioridadmedia.png";
                     }
                     if (result.Descripcion.ToUpper() == "BAJO")
                     {
-                        lblImpacto.Style.Add("color", "yellow");
-                        imgImpacto.ImageUrl = "~/assets/images/icons/prioridadbaja.png";
+                        //lblImpacto.Style.Add("color", "yellow");
+                        //imgImpacto.ImageUrl = "~/assets/images/icons/prioridadbaja.png";
                     }
 
 
@@ -483,6 +483,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 ddlNivel1_OnSelectedIndexChanged(ddlNivel1, null);
                 txtDescripcionNivel.Text = string.Empty;
                 LlenaCombos();
+                chkPublico.Checked = false;
                 chkNivelHabilitado.Checked = true;
                 btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);
 
@@ -528,18 +529,28 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 txtTiempoNotificacionDueno.Text = string.Empty;
                 chkNotificacionDueno.Checked = false;
                 chkNotificacionDueno_OnCheckedChanged(chkNotificacionDueno, null);
+                chkVencimientoDueño.Checked = false;
 
                 txtTiempoNotificacionMtto.Text = string.Empty;
                 ddlNotificacionGrupoMtto.SelectedIndex = ddlNotificacionGrupoMtto.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionGrupoMtto.SelectedIndex;
                 ddlCanalMtto.SelectedIndex = ddlCanalMtto.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalMtto.SelectedIndex;
                 chkNotificacionMtto.Checked = false;
                 chkNotificacionMtto_OnCheckedChanged(chkNotificacionMtto, null);
+                chkVencimientoMtto.Checked = false;
 
                 txtTiempoNotificacionDev.Text = string.Empty;
                 ddlNotificacionGrupoDev.SelectedIndex = ddlNotificacionGrupoDev.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionGrupoDev.SelectedIndex;
                 ddlCanalDev.SelectedIndex = ddlCanalDev.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalDev.SelectedIndex;
                 chkNotificacionDesarrollo.Checked = false;
                 chkNotificacionDesarrollo_OnCheckedChanged(chkNotificacionDesarrollo, null);
+                chkVencimientoDev.Checked = false;
+
+                txtTiempoNotificacionOperacion.Text = String.Empty;
+                ddlNotificacionGrupoOperacion.SelectedIndex = ddlNotificacionGrupoOperacion.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionGrupoOperacion.SelectedIndex;
+                ddlCanalOperacion.SelectedIndex = ddlCanalOperacion.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalOperacion.SelectedIndex;
+                chkNotificacionOperacion.Checked = false;
+                chkNotificacionOperacion_OnCheckedChanged(chkNotificacionOperacion, null);
+                chkVencimientoOperacion.Checked = false;
 
                 //txtTiempoNotificacionConsulta.Text = string.Empty;
                 //ddlNotificacionGrupoConsulta.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
@@ -737,7 +748,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         //Metodos.LlenaListBoxCatalogo(lstGrupoEspecialConsultaServicios, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ConsultasEspeciales, (int)BusinessVariables.EnumTiposUsuario.Operador, false));
                         Metodos.LlenaComboCatalogo(ddlGrupoDuenoServicio, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
                         Metodos.LlenaListBoxCatalogo(lstGruposAu, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AgenteUniversal, (int)BusinessVariables.EnumTiposUsuario.Operador, false).Where(s => s.Habilitado));
-                        imgImpacto.ImageUrl = "";
+                        //imgImpacto.ImageUrl = "";
                         btnPreview.Visible = false;
                         btnSaveAll.Visible = false;
                         btnSiguiente.Visible = true;

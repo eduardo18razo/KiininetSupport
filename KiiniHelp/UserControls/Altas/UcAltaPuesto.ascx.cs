@@ -40,6 +40,7 @@ namespace KiiniHelp.UserControls.Altas
             {
                 hfEsAlta.Value = value.ToString();
                 lblOperacion.Text = value ? "Nuevo Puesto" : "Editar Puesto";
+                ddlTipoUsuario.Enabled = value;
             }
         }
         public int IdTipoUsuario
@@ -48,6 +49,8 @@ namespace KiiniHelp.UserControls.Altas
             set
             {
                 ddlTipoUsuario.SelectedValue = value.ToString();
+                if (value > BusinessVariables.ComboBoxCatalogo.IndexSeleccione && EsAlta)
+                    ddlTipoUsuario.Enabled = false;
             }
         }
         public int IdPuesto

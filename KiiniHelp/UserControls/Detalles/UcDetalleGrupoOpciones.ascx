@@ -48,7 +48,7 @@
                                             CssClass="table table-striped display" Width="99%"
                                             OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                             BorderStyle="None" PagerSettings-Mode="Numeric"
-                                            PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                            PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                             PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="TU" ControlStyle-Width="5%">

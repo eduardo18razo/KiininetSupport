@@ -50,10 +50,8 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-
+                    LlenaFeriadosConsulta();
                 }
-
-                LlenaFeriadosConsulta();
 
                 ucAltaDiasFestivos.OnAceptarModal += AltaHorarioOnAceptarModal;
                 ucAltaDiasFestivos.OnCancelarModal += AltaHorarioOnCancelarModal;

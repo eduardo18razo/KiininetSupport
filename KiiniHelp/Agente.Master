@@ -334,7 +334,7 @@
                                             <div class="row">
                                                 <div class="form-inline">
                                                     <div class="col-lg-10 col-md-10 col-sm-10">
-                                                        <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("IdTicket") %>' OnClick="lbtnTabTicket_OnClick">
+                                                        <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
                                                             <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>'></asp:Label>
                                                             <asp:Label runat="server" Text=" "></asp:Label>
                                                             <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />
@@ -374,7 +374,7 @@
                                                                     <div class="row">
                                                                         <div class="form-inline">
                                                                             <div class="col-lg-10 col-md-10 col-sm-10">
-                                                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
+                                                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
                                                                                     <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>' />
                                                                                     <asp:Label runat="server" Text=" "></asp:Label>
                                                                                     <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />

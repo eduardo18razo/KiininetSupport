@@ -79,7 +79,6 @@ input[type='checkbox']:checked + label:after {
         border-radius: 15px;
         padding-left: 0;
         padding-right: 0;
-        /*padding-top: 15px;*/
     }
 
         .chkIphone input[type='checkbox'] + label:before {
@@ -123,17 +122,13 @@ input[type='checkbox']:checked + label:after {
 
 .chkIphone input[type='checkbox']:checked + label:before {
         width: 100%;
-        /*background: #3aa7aa;*/
         background: #3FA9F5; /*fondo checkbox*/
         padding-left: 0;
         padding-right: 0;
     }
 
 .chkIphone input[type='checkbox']:checked + label:after {
-        left: 68%; /*30px*/
-		/*right: 2px;*/
-        /*box-shadow: inset 0 0 0 1px #dbdbdb , 0 2px 4px #000000;*/ 
-        /*box-shadow: inset 0 0 0 1px rgba(58, 167, 170, 1), 0 2px 4px rgba(0, 0, 0, .2);*/
+        left: 50%; /*30px*/		
         padding-left: 0;
         padding-right: 0;
     }

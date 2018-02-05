@@ -27,10 +27,9 @@
                                 <asp:TextBox runat="server" ID="txtDescripcionCatalogo" TextMode="MultiLine" Rows="3" MaxLength="250" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                             </div>
 
-                            <div class="form-group">
+                            <div class="row form-group">
                                 <asp:RadioButton runat="server" Text="Agregar registros manualmente" AutoPostBack="True" GroupName="TipoCatalogo" ID="rbtnManual" OnCheckedChanged="rbtnTipoCatalogo_OnCheckedChanged" />
                             </div>
-
 
                             <div class="form-group" runat="server" ID="divManual" Visible="False">
                                 <asp:Label runat="server" Text="Opción de campo" CssClass="col-lg-4 col-md-4 col-sm-4" style="padding-top: 12px;"/>
@@ -58,13 +57,14 @@
 
                                 </div>
                             </div>
+                        
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="module-inner">
-                            <div class="form-group">
+                            <div class="row form-group padding-10-bottom">
                                 <asp:RadioButton runat="server" Text="Agregar campos desde archivo" AutoPostBack="True" GroupName="TipoCatalogo" ID="rbtnArchivo" OnCheckedChanged="rbtnTipoCatalogo_OnCheckedChanged" />
                             </div>
                             <div runat="server" ID="divArchivo" Visible="False">

@@ -9,23 +9,22 @@
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
             <h6 class="modal-title" id="modal-new-ticket-label">Nuevo Día Feriado</h6>
-            <%--<hr class="bordercolor" />--%>
         </div>
 
         <div class="modal-body">
             <div class="row">
                 <div class="row">
-                    <div class="form-group col-sm-12 margin-top">
-                        Nombre del Nuevo grupo de Dias Feriados<br />
-                        <div class="col-sm-8">
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-12 col-md-12 col-lg-12 no-padding-left">Nombre del Nuevo grupo de Dias Feriados</label><br />
+                        <div class="col-sm-8 no-padding-left">
                             <asp:TextBox runat="server" ID="txtDescripcionDias" MaxLength="50" class="form-control col-sm-3" onkeydown="return (event.keyCode!=13);" />
                         </div>
                     </div>
-                   
+
                     <br />
                     <hr />
                     <div class="col-sm-12">
-                         <hr />
+                        <hr />
                         Agrega los dias feriados correspondientes a este catálogo:
                     </div>
                 </div>
@@ -37,7 +36,7 @@
                                 <div class="col-lg-7 col-md-7">
                                     <asp:DropDownList runat="server" ID="ddlDiasFeriados" CssClass="form-control" />
                                 </div>
-                                <asp:Button runat="server" CssClass="btn btn-primary" Style="margin-top: 5px; margin-left: 5px;" Text="Seleccionar" ID="btnSeleccionar" OnClick="btnSeleccionar_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-primary margin-top-6 margin-left-5" Height="29px" Text="Seleccionar" ID="btnSeleccionar" OnClick="btnSeleccionar_OnClick" />
                             </div>
                             <div class="form-group">
                                 <asp:Label runat="server" Text="Agregar un Día Feriado" CssClass="control-label col-lg-12 col-md-12" />
@@ -53,7 +52,7 @@
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-calendar " Visible="False"></asp:LinkButton>
                             </div>
                             <div class="form-group">
-                                <asp:LinkButton runat="server" ID="btnAddDiaDescanso" class="fa fa-plus-circle" Style="margin-top: 5px; margin-left: 5px;" OnClick="btnAddDiaDescanso_OnClick"></asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="btnAddDiaDescanso" class="fa fa-plus-circle margin-left-5" Style="margin-top: 7px;" OnClick="btnAddDiaDescanso_OnClick"></asp:LinkButton>
                             </div>
                             <div class="clearfix"></div>
                         </ContentTemplate>
@@ -65,19 +64,21 @@
                     <HeaderTemplate>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <div class="row form-control" style="margin-top: 20px;">
+                        <div class="row form-control margin-left-3 margin-top-5">
                             <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
-                            <asp:Label runat="server" Text='<%# Eval("Fecha", "{0:d}") %>' ID="lblFecha" CssClass="col-lg-2 col-md-2 col-sm-2" Style="padding-left: 0" />
+                            <asp:Label runat="server" Text='<%# Eval("Fecha", "{0:d}") %>' ID="lblFecha" CssClass="col-lg-2 col-md-2 col-sm-2" />
                             <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" CssClass="col-lg-6 col-md-6 col-sm-6" />
-                            <asp:LinkButton runat="server" Text="Editar" ID="lnkBtnEditar" class="btn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lnkBtnEditar_OnClick"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</asp:LinkButton>
-                            <asp:Label runat="server" Text="|" ID="lblSeparador"></asp:Label>
-                            <asp:LinkButton runat="server" Text="Borrar" ID="lbkBtnBorrar" class="btn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lbkBtnBorrar_OnClick"><i class="fa fa-times" aria-hidden="true"></i>Borrar</asp:LinkButton>
+                            <div class="col-lg-4 col-md-4 col-sm-4 text-center">
+                                <asp:LinkButton runat="server" Text="Editar" ID="lnkBtnEditar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lnkBtnEditar_OnClick"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</asp:LinkButton>
+                                <asp:Label runat="server" Text="|" ID="lblSeparador"></asp:Label>
+                                <asp:LinkButton runat="server" Text="Borrar" ID="lbkBtnBorrar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lbkBtnBorrar_OnClick"><i class="fa fa-times" aria-hidden="true"></i>Borrar</asp:LinkButton>
+                            </div>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
                 <div class="clearfix"></div>
                 <br />
-                <div class="row text-right padding-20-bottom"> <%--style="padding-bottom: 20px;"--%>
+                <div class="row text-right padding-20-bottom">
                     <asp:Button runat="server" CssClass="btn btn-primary" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
                 </div>
             </div>

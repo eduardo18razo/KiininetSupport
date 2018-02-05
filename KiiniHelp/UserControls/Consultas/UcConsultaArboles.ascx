@@ -3,7 +3,6 @@
 <%@ Register Src="~/UserControls/Altas/ArbolesAcceso/UcAltaAbrolAcceso.ascx" TagPrefix="uc1" TagName="UcAltaAbrolAcceso" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleArbolAcceso.ascx" TagPrefix="uc1" TagName="UcDetalleArbolAcceso" %>
 
-
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server" style="height: 100%">
         <ContentTemplate>
@@ -94,35 +93,35 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Título" HeaderStyle-Width="25%">
+                                        <asp:TemplateField HeaderText="Título" HeaderStyle-Width="30%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("Tipificacion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Tipificacion")%>'><%# Eval("Tipificacion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Categoría" HeaderStyle-Width="20%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("Area.Descripcion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Area.Descripcion")%>'><%# Eval("Area.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Tipificación" HeaderStyle-Width="20%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("TipoArbolAcceso.Descripcion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TipoArbolAcceso.Descripcion")%>'><%# Eval("TipoArbolAcceso.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="12%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %>'><%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Nivel" HeaderStyle-Width="5%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("Nivel") %></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Nivel") %>'><%# Eval("Nivel") %></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -174,7 +173,7 @@
     <div class="modal fade" id="modalAtaOpcion" tabindex="-1" role="dialog" aria-labelledby="basicModal">
         <asp:UpdatePanel ID="upAltaArea" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <<div class="modal-dialog" style="height: 250px;">
+                <<div class="modal-dialog" style="width: 650px;">
                     <div class="modal-content">
                         <uc1:UcAltaAbrolAcceso runat="server" ID="UcAltaAbrolAcceso" />
                     </div>

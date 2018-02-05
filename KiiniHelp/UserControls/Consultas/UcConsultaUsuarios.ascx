@@ -76,7 +76,7 @@
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="TU" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="TU" HeaderStyle-Width="25px">
                                             <ItemTemplate>
                                                 <div class="altoFijo">
                                                     <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
@@ -84,7 +84,7 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Nombre Completo" HeaderStyle-Width="25%">
+                                        <asp:TemplateField HeaderText="Nombre Completo" HeaderStyle-Width="32%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("NombreCompleto")%>'><%# Eval("NombreCompleto")%></label>
                                             </ItemTemplate>

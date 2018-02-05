@@ -76,7 +76,6 @@
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
-                                <asp:CheckBox runat="server" AutoPostBack="true" Width="30px" Text="nuevo" ID="chkHabilitado" OnCheckedChanged="chkHabilitado_CheckedChanged" />
 
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
                                     OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
@@ -91,38 +90,35 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="15%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>' ><%# Eval("TipoGrupo.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="30%">
+                                        <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="32%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="10%">
                                             <ItemTemplate>
                                                 <label><%# (bool) Eval("TieneSupervisor") ? "SI" : "NO" %></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="7%">
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="10%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' ID="chkHabilitado" OnCheckedChanged="chkHabilitado_CheckedChanged" />
-                                                        <%--OnCheckedChanged="OnCheckedChanged"--%>
-                                                        
-                                                        
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' ID="chkHabilitado" OnCheckedChanged="OnCheckedChanged" />
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="7%">
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="10%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -131,12 +127,12 @@
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="8%">
+                                        <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="10%">
                                             <ItemTemplate>
                                                 <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="8%">
+                                        <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="10%">
                                             <ItemTemplate>
                                                 <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
@@ -149,10 +145,7 @@
                     </div>
                 </div>
             </section>
-            <asp:CheckBox runat="server" OnCheckedChanged="chknuevo_CheckedChanged" Text="prueba" AutoPostBack="true" />
-            
-            <%--OnCheckedChanged="OnCheckedChanged"--%>
-
+           
             <script type="text/javascript">
                 $(function () {
                     hidden('#' + "<%=tblResults.ClientID %>");

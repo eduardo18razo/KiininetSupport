@@ -22,7 +22,6 @@
                             </div>
                             <p>
                                 Texto para Encuestas
-                           
                             </p>
                         </div>
 

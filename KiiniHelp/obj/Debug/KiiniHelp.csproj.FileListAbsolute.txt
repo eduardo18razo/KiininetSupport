@@ -1,3 +1,4 @@
+C:\Users\Janeth\Documents\git\KiiniHelp\bin\Telerik.Web.UI.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniHelp.dll.config
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniHelp.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniHelp.pdb
@@ -5,7 +6,6 @@ C:\Users\Janeth\Documents\git\KiiniHelp\bin\AjaxControlToolkit.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniNet.Entities.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KinniNet.Business.Utils.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\MSCaptcha.dll
-C:\Users\Janeth\Documents\git\KiiniHelp\bin\Telerik.Web.UI.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\Telerik.Web.UI.Skins.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll
 C:\Users\Janeth\Documents\git\KiiniHelp\bin\KiiniNet.Entities.pdb

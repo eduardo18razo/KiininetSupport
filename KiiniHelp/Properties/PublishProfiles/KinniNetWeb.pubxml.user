@@ -9,58 +9,58 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="Agente.Master">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>02/01/2018 20:01:13</publishTime>
     </File>
     <File Include="Agente/Bandeja.aspx">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>02/02/2018 12:43:47</publishTime>
     </File>
     <File Include="Agente/DashBoardAgente.aspx">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="Agente/FrmAgenteNuevoTicket.aspx">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="Agente/FrmTicket.aspx">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="assets/carouselImage/slide-1.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:34</publishTime>
     </File>
     <File Include="assets/carouselImage/slide-2.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/carouselImage/slide-3.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/carouselImage/slide-4.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/carouselImage/slide-5.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/css/bootstrap-markdown.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/16/2018 11:13:52</publishTime>
     </File>
     <File Include="assets/css/bootstrap.css">
-      <publishTime>01/26/2018 14:47:02</publishTime>
+      <publishTime>01/23/2018 17:28:24</publishTime>
     </File>
     <File Include="assets/css/cambiosdiseno.css">
       <publishTime>01/26/2018 14:45:09</publishTime>
     </File>
     <File Include="assets/css/checkBox.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/02/2018 12:37:14</publishTime>
     </File>
     <File Include="assets/css/controls.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/16/2018 11:13:52</publishTime>
     </File>
     <File Include="assets/css/divs.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/16/2018 11:13:52</publishTime>
     </File>
     <File Include="assets/css/elegant-icons.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/16/2018 11:13:52</publishTime>
     </File>
     <File Include="assets/css/elusive-icons.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/css/font-awesome.css">
       <publishTime>01/25/2018 13:53:05</publishTime>
@@ -69,265 +69,265 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/26/2018 14:45:09</publishTime>
     </File>
     <File Include="assets/css/menuStyle.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/css/pe-7-icons-helper.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/16/2018 11:13:52</publishTime>
     </File>
     <File Include="assets/css/pe-7-icons.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/16/2018 11:13:52</publishTime>
     </File>
     <File Include="assets/css/styles.css">
-      <publishTime>01/29/2018 11:19:31</publishTime>
+      <publishTime>02/01/2018 21:28:54</publishTime>
     </File>
     <File Include="assets/css/sumoselect.css">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/23/2018 16:12:46</publishTime>
     </File>
     <File Include="assets/fonts/elusiveicons-webfont.eot">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/fonts/elusiveicons-webfont.svg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/fonts/elusiveicons-webfont.ttf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/fonts/elusiveicons-webfont.woff">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.eot">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.svg">
       <publishTime>01/05/2018 11:32:15</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.ttf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.woff">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/fontawesome-webfont.woff2">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/FontAwesome.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.eot">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.svg">
       <publishTime>01/05/2018 11:32:15</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.woff">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/glyphicons-halflings-regular.woff2">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Black Italic.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Black.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Bold Italic.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Bold.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Extrabold Italic.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Extrabold.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Light Italic.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Light.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Regular Italic.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Semibold Italic.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Semibold.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Thin Italic.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Mark Simonson - Proxima Nova Thin.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/MarkSimonson-Proxima-Nova-Regular.otf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.eot">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.svg">
       <publishTime>01/05/2018 11:32:15</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.ttf">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-strokebb1d.woff">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:35</publishTime>
     </File>
     <File Include="assets/fonts/Pe-icon-7-stroked41d.eot">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/carousels/slide-1.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/carousels/slide-2.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/carousels/slide-3.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/carousels/slide-4.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/carousels/slide-5.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/construccion.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/attachment.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/controls/calendario.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/cascade.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/checkbox.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/decimal.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/dropdown.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/entero.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/expregular.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/radiobutton.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/switch.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/textomultilinea.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/controls/textosimple.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/dontlike_S1.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/icons/editar.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/icons/new_org.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/icons/ojo.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/icons/prioridadalta.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/icons/prioridadbaja.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/icons/prioridadmedia.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/icons/Roles.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/icons/SLA_amarillo.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/icons/SLA_rojo.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/icons/SLA_verde.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/icons/vip.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/like_S1.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/logo-icon.svg">
       <publishTime>01/05/2018 11:32:15</publishTime>
     </File>
     <File Include="assets/images/logoBlanco.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/profiles/perfil.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/profiles/profile-1.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/profiles/profile-square-1.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/profiles/usr-gen-2.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/profiles/usr-gen.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/step1.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/step2.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/step3.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/step4.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/step5.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/step6.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/step7.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:36</publishTime>
     </File>
     <File Include="assets/images/users_icon/usuario_1.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/users_icon/usuario_2.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/images/users_icon/usuario_3.jpg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="assets/js/bootstrap-markdown.js">
       <publishTime>01/05/2018 11:32:15</publishTime>
@@ -336,7 +336,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:15</publishTime>
     </File>
     <File Include="assets/js/bootstrap-notify.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:37</publishTime>
     </File>
     <File Include="assets/js/bootstrap.js">
       <publishTime>01/05/2018 11:32:15</publishTime>
@@ -348,7 +348,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:15</publishTime>
     </File>
     <File Include="assets/js/jquery.sumoselect.min.js">
-      <publishTime>01/05/2018 11:32:15</publishTime>
+      <publishTime>02/01/2018 16:49:43</publishTime>
     </File>
     <File Include="assets/js/main.js">
       <publishTime>01/05/2018 11:32:15</publishTime>
@@ -387,19 +387,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/base64/trumbowyg.base64.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:37</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/cleanpaste/trumbowyg.cleanpaste.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/cleanpaste/trumbowyg.cleanpaste.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:37</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/colors/trumbowyg.colors.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/colors/trumbowyg.colors.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:37</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/colors/ui/sass/trumbowyg.colors.scss">
       <publishTime>01/05/2018 11:32:16</publishTime>
@@ -414,49 +414,49 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/emoji/trumbowyg.emoji.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:37</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/insertaudio/trumbowyg.insertaudio.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/insertaudio/trumbowyg.insertaudio.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/noembed/trumbowyg.noembed.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/noembed/trumbowyg.noembed.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/pasteimage/trumbowyg.pasteimage.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/pasteimage/trumbowyg.pasteimage.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:37</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/preformatted/trumbowyg.preformatted.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/preformatted/trumbowyg.preformatted.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/table/trumbowyg.table.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/table/trumbowyg.table.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/template/trumbowyg.template.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/template/trumbowyg.template.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/upload/trumbowyg.upload.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/plugins/upload/trumbowyg.upload.min.js">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="assets/tmp/editor/trumbowyg.js">
       <publishTime>01/05/2018 11:32:16</publishTime>
@@ -465,7 +465,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="assets/tmp/editor/ui/icons.svg">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="assets/tmp/editor/ui/sass/trumbowyg.scss">
       <publishTime>01/05/2018 11:32:16</publishTime>
@@ -483,40 +483,40 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="bin/AjaxControlToolkit.dll">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>08/22/2017 16:51:56</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>12/07/2017 18:30:48</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>01/29/2018 10:34:46</publishTime>
+      <publishTime>02/02/2018 13:02:54</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>01/29/2018 10:34:46</publishTime>
+      <publishTime>02/02/2018 13:02:54</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>01/29/2018 09:34:21</publishTime>
+      <publishTime>01/29/2018 15:49:15</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>01/29/2018 09:34:21</publishTime>
+      <publishTime>01/29/2018 15:49:15</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>01/29/2018 09:34:24</publishTime>
+      <publishTime>01/29/2018 15:49:17</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>01/29/2018 09:34:24</publishTime>
+      <publishTime>01/29/2018 15:49:17</publishTime>
     </File>
     <File Include="bin/MSCaptcha.dll">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>10/10/2017 12:15:04</publishTime>
     </File>
     <File Include="bin/Telerik.Web.UI.dll">
-      <publishTime>01/26/2018 11:32:00</publishTime>
+      <publishTime>07/10/2017 19:27:36</publishTime>
     </File>
     <File Include="bin/Telerik.Web.UI.Skins.dll">
-      <publishTime>01/26/2018 11:32:00</publishTime>
+      <publishTime>07/10/2017 19:27:36</publishTime>
     </File>
     <File Include="bin/Winthusiasm.HtmlEditor.dll">
-      <publishTime>01/26/2018 11:32:00</publishTime>
+      <publishTime>05/22/2017 12:37:28</publishTime>
     </File>
     <File Include="ConfirmacionCuenta.aspx">
       <publishTime>01/26/2018 11:31:58</publishTime>
@@ -546,76 +546,76 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:16</publishTime>
     </File>
     <File Include="Identificar.aspx">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="Images/accent.png">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/backgroud.jpg">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/bullet.png">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/error.jpg">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/heroAccent.png">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/loading.gif">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/logoKiininet.jpg">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/minus.png">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/orderedList0.png">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/orderedList1.png">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:39</publishTime>
     </File>
     <File Include="Images/orderedList2.png">
-      <publishTime>01/26/2018 11:31:58</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/orderedList3.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/orderedList4.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:39</publishTime>
     </File>
     <File Include="Images/orderedList5.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/orderedList6.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:39</publishTime>
     </File>
     <File Include="Images/orderedList7.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/orderedList8.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/orderedList9.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/plus.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:38</publishTime>
     </File>
     <File Include="Images/select-arrow.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:39</publishTime>
     </File>
     <File Include="Images/vmenu/off.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:39</publishTime>
     </File>
     <File Include="Images/vmenu/on.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:39</publishTime>
     </File>
     <File Include="Images/vmenu/zakladka.png">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>11/07/2017 10:14:39</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>01/05/2018 11:32:21</publishTime>
@@ -909,7 +909,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:22</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo.datasource">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Helper.HelperEncuesta.datasource">
       <publishTime>01/05/2018 11:32:22</publishTime>
@@ -1002,7 +1002,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:22</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.ParametrosGenerales.datasource">
       <publishTime>01/05/2018 11:32:22</publishTime>
@@ -1017,7 +1017,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:22</publishTime>
     </File>
     <File Include="Public.Master">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/26/2018 11:31:58</publishTime>
     </File>
     <File Include="Publico/Consultas/FrmConsultaTicket.aspx">
       <publishTime>01/05/2018 11:32:22</publishTime>
@@ -1032,7 +1032,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:22</publishTime>
     </File>
     <File Include="Publico/FrmServiceArea.aspx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="Publico/FrmTicketPublico.aspx">
       <publishTime>01/05/2018 11:32:22</publishTime>
@@ -1041,55 +1041,55 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:22</publishTime>
     </File>
     <File Include="Registro.aspx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="Test/FrmTest.aspx">
       <publishTime>01/26/2018 14:47:02</publishTime>
     </File>
     <File Include="UserControls/Agentes/UcAsignacionUsuario.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="UserControls/Agentes/UcBusquedaFormulario.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/01/2018 20:12:31</publishTime>
     </File>
     <File Include="UserControls/Agentes/UcBusquedaUsuario.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="UserControls/Altas/AltaArea.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="UserControls/Altas/AltaOrganizacion.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/26/2018 11:31:58</publishTime>
     </File>
     <File Include="UserControls/Altas/AltaTiempoEstimado.ascx">
       <publishTime>01/05/2018 11:32:28</publishTime>
     </File>
     <File Include="UserControls/Altas/ArbolesAcceso/UcAltaAbrolAcceso.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="UserControls/Altas/ArbolesAcceso/UcAltaConsulta.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/02/2018 12:29:02</publishTime>
     </File>
     <File Include="UserControls/Altas/ArbolesAcceso/UcAltaServicio.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/02/2018 12:33:42</publishTime>
     </File>
     <File Include="UserControls/Altas/Catalogo/UcAltaCatalogos.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/01/2018 15:27:37</publishTime>
     </File>
     <File Include="UserControls/Altas/Encuestas/UcAltaEncuesta.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="UserControls/Altas/Encuestas/UcPreviewEncuesta.ascx">
       <publishTime>01/05/2018 11:32:28</publishTime>
     </File>
     <File Include="UserControls/Altas/Formularios/UcAltaFormulario.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/01/2018 11:48:15</publishTime>
     </File>
     <File Include="UserControls/Altas/Formularios/UcFormulario.ascx">
       <publishTime>01/05/2018 11:32:28</publishTime>
     </File>
     <File Include="UserControls/Altas/Formularios/UcPreviewFormulario.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="UserControls/Altas/Organizaciones/UcAltaOrganizaciones.ascx">
       <publishTime>01/29/2018 11:00:11</publishTime>
@@ -1104,19 +1104,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:29</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaCatalogo.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/31/2018 18:10:01</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaDiasFestivos.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/30/2018 20:42:37</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaGrupoUsuario.ascx">
-      <publishTime>01/26/2018 14:45:09</publishTime>
+      <publishTime>01/31/2018 12:45:24</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaHorario.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/30/2018 16:43:02</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaInformacionConsulta.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/31/2018 12:27:10</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaNivelArbol.ascx">
       <publishTime>01/05/2018 11:32:29</publishTime>
@@ -1146,19 +1146,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:29</publishTime>
     </File>
     <File Include="UserControls/Altas/Usuarios/UcAltaUsuario.ascx">
-      <publishTime>01/26/2018 15:14:43</publishTime>
+      <publishTime>01/29/2018 16:06:04</publishTime>
     </File>
     <File Include="UserControls/Altas/Usuarios/UcAltaUsuarioRapida.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:38</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaArboles.ascx">
-      <publishTime>01/26/2018 14:45:09</publishTime>
+      <publishTime>02/01/2018 15:06:59</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaAreas.ascx">
       <publishTime>01/26/2018 14:45:09</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaCatalogo.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaCatalogos.ascx">
       <publishTime>01/26/2018 14:45:09</publishTime>
@@ -1167,7 +1167,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/26/2018 14:45:09</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaEncuesta.ascx">
-      <publishTime>01/26/2018 14:45:09</publishTime>
+      <publishTime>01/30/2018 09:41:40</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaEncuestaPendiente.ascx">
       <publishTime>01/05/2018 11:32:29</publishTime>
@@ -1176,7 +1176,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/26/2018 14:45:09</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaGrupos.ascx">
-      <publishTime>01/26/2018 14:45:09</publishTime>
+      <publishTime>01/30/2018 13:28:50</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaHorario.ascx">
       <publishTime>01/26/2018 14:45:09</publishTime>
@@ -1185,7 +1185,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/26/2018 14:45:09</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaMisTickets.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaNotasOpcion.ascx">
       <publishTime>01/05/2018 11:32:29</publishTime>
@@ -1197,7 +1197,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/26/2018 14:45:09</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaPuestos.ascx">
-      <publishTime>01/26/2018 14:45:09</publishTime>
+      <publishTime>02/01/2018 19:07:03</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaTicketUsuario.ascx">
       <publishTime>01/05/2018 11:32:29</publishTime>
@@ -1209,10 +1209,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:30</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaUsuarios.ascx">
-      <publishTime>01/26/2018 14:45:09</publishTime>
+      <publishTime>01/30/2018 14:59:56</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleArbolAcceso.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleGeograficoHit.ascx">
       <publishTime>01/05/2018 11:32:30</publishTime>
@@ -1221,13 +1221,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:30</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleGrupoOpciones.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/01/2018 19:06:29</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleGrupoUsuario.ascx">
       <publishTime>01/05/2018 11:32:30</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleGrupoUsuarios.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>02/01/2018 19:06:38</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleMascaraCaptura.ascx">
       <publishTime>01/05/2018 11:32:30</publishTime>
@@ -1242,13 +1242,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:30</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcDetalleUsuario.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcMensajeValidacion.ascx">
       <publishTime>01/05/2018 11:32:30</publishTime>
     </File>
     <File Include="UserControls/Detalles/UcTicketDetalle.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/31/2018 16:10:27</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroAtendedores.ascx">
       <publishTime>01/05/2018 11:32:30</publishTime>
@@ -1362,7 +1362,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="UserControls/Operacion/UcRegistroCatalogo.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="UserControls/Preview/UcPreviewConsulta.ascx">
       <publishTime>01/05/2018 11:32:31</publishTime>
@@ -1371,7 +1371,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="UserControls/Preview/UcVisorConsultainformacion.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="UserControls/Seleccion/AsociarGrupoUsuario.ascx">
       <publishTime>01/05/2018 11:32:31</publishTime>
@@ -1401,7 +1401,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="UserControls/Temporal/UcTicketPortal.ascx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="UserControls/UcLogCopia.ascx">
       <publishTime>01/05/2018 11:32:31</publishTime>
@@ -1416,7 +1416,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="Users/Administracion/ArbolesAcceso/FrmDetalleOpcion.aspx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="Users/Administracion/ArbolesAcceso/FrmPreviewAltaOpcionConsulta.aspx">
       <publishTime>01/05/2018 11:32:31</publishTime>
@@ -1446,22 +1446,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="Users/Administracion/Formularios/FrmEdicionFormulario.aspx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="Users/Administracion/Formularios/FrmPreviewFormulario.aspx">
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="Users/Administracion/Grupos/FrmConsultaGrupos.aspx">
-      <publishTime>01/05/2018 11:32:31</publishTime>
+      <publishTime>01/29/2018 17:17:12</publishTime>
     </File>
     <File Include="Users/Administracion/Horarios/FrmConsultaHorarios.aspx">
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="Users/Administracion/InformaciondeConsulta/FrmAltaInfConsulta.aspx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="Users/Administracion/InformaciondeConsulta/FrmConsultaInformacion.aspx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="Users/Administracion/Notas/FrmConsultaNotasOpcion.aspx">
       <publishTime>01/05/2018 11:32:31</publishTime>
@@ -1485,7 +1485,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:31</publishTime>
     </File>
     <File Include="Users/Administracion/Usuarios/FrmEdicionUsuario.aspx">
-      <publishTime>01/05/2018 11:32:31</publishTime>
+      <publishTime>01/29/2018 15:18:09</publishTime>
     </File>
     <File Include="Users/Administracion/Usuarios/FrmUsuarios.aspx">
       <publishTime>01/05/2018 11:32:31</publishTime>
@@ -1536,7 +1536,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:32</publishTime>
     </File>
     <File Include="Users/Graficos/FrmGraficaTickets.aspx">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/18/2018 12:56:39</publishTime>
     </File>
     <File Include="Users/Operacion/FrmLevantaTicketAgente.aspx">
       <publishTime>01/05/2018 11:32:32</publishTime>
@@ -1551,10 +1551,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/05/2018 11:32:32</publishTime>
     </File>
     <File Include="Usuarios.Master">
-      <publishTime>01/26/2018 11:31:59</publishTime>
+      <publishTime>01/26/2018 11:31:58</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/26/2018 15:17:32</publishTime>
+      <publishTime>02/02/2018 11:45:01</publishTime>
     </File>
     <File Include="Xml/Notificaciones.xml">
       <publishTime>01/05/2018 11:32:32</publishTime>

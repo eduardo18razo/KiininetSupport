@@ -7,21 +7,23 @@
         <asp:HiddenField runat="server" ID="hfRandom" />
         <asp:HiddenField runat="server" ID="hfPreview" />
         <br>
-        <h3 class="h6">
+        <%--  <h3 class="h6">
             <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink>
-            / Captura formulario </h3>
-        <hr />
-        <asp:HiddenField runat="server" ID="hfTicketGenerado"/>  
-        <asp:HiddenField runat="server" ID="hfRandomGenerado"/> 
-        <section class="module">
+            / Captura formulario </h3>--%>
+        <%--<hr />--%>
+        <asp:HiddenField runat="server" ID="hfTicketGenerado" />
+        <asp:HiddenField runat="server" ID="hfRandomGenerado" />
+        <section class="module no-border">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <div class="module-inner">
-                        <asp:Label runat="server" ID="lblDescripcionMascara" class="col-lg-10 col-md-10 col-sm-10" />
-                        <asp:Button type="button" class="btn btn-default" runat="server" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick"/>
-                        <asp:Button type="button" class="btn btn-primary" runat="server" Text="Crear ticket" ID="btnGuardar"  OnClick="btnGuardar_OnClick"/>
+                    <div class="module-inner no-padding-top">
+                        <asp:Label runat="server" ID="lblDescripcionMascara" class="col-lg-12 col-md-12 col-sm-12" />
+                        <div class="text-right">
+                            <asp:Button type="button" class="btn btn-default" runat="server" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
+                            <asp:Button type="button" class="btn btn-primary" runat="server" Text="Crear ticket" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
+                        </div>
                         <br />
-                        <hr />
+                        <%--<hr />--%>
                         <div runat="server" id="divControles">
                         </div>
                     </div>
@@ -36,9 +38,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                <h3 class="modal-title" id="myModalLabel">
-                   <img class="img-responsive margin-left" src="assets/images/icons/ok.png" alt="" /><br> 
-                    Tu ticket se creo con éxito</h3>
+                
+                <h6 class="modal-title" id="myModalLabel">                
+                <asp:Label runat="server"  Text="Tu ticket se creo con éxito"/>
+            </h6>
+                
+                
+               <%-- <h3 class="modal-title" id="myModalLabel">
+                    <img class="img-responsive margin-left" src="assets/images/icons/ok.png" alt="" /><br>
+                    Tu ticket se creo con éxito</h3>--%>
             </div>
             <div class="modal-body">
                 <asp:UpdatePanel runat="server">
@@ -46,14 +54,17 @@
                         <hr />
                         <p class="h4">
                             <strong>Tu no. de ticket:
-                                        <asp:Label runat="server" ID="lblNoTicket" /></strong><br>
+                                       
+                                <asp:Label runat="server" ID="lblNoTicket" /></strong><br>
                         </p>
                         <p class="h4">
                             <strong>Clave de registro:
-                                    <asp:Label runat="server" ID="lblRandom" /></strong>
+                                   
+                                <asp:Label runat="server" ID="lblRandom" /></strong>
                         </p>
                         <hr />
                         En breve recibirás un correo con los datos de tu ticket para que puedas dar seguimiento.
+                   
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

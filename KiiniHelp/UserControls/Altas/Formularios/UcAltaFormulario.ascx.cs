@@ -108,7 +108,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 imgTitleImage.ImageUrl = "~/assets/images/controls/" + tipoCampo.Image;
                 lblTitleAgregarCampo.Text = "" + tipoCampo.Descripcion.Trim();
                 divValorMaximo.Visible = false;
-                lblDescripcion.Text = tipoCampo.DescripcionTexto;
+                //lblDescripcion.Text = tipoCampo.DescripcionTexto;
 
                 txtLongitudMinima.Visible = tipoCampo.LongitudMinima;
                 divLongitudMinima.Visible = tipoCampo.LongitudMinima;
@@ -687,7 +687,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     throw new Exception("Debe especificar un nombre.");
                 Mascara nuevaMascara = ((Mascara)Session["MascaraAlta"]);
                 if (((Mascara)Session["MascaraAlta"]).CampoMascara != null && ((Mascara)Session["MascaraAlta"]).CampoMascara.Count <= 0)
-                    throw new Exception("Debe al menos un campo.");
+                    throw new Exception("Debe agregar al menos un campo.");
                 if (!((Mascara)Session["MascaraAlta"]).CampoMascara.Any(a=>a.Requerido))
                     throw new Exception("Debe al menos un campo obligatorio.");
                 nuevaMascara.Descripcion = txtNombre.Text.Trim();
@@ -722,8 +722,8 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 if (txtNombre.Text.Trim() == string.Empty)
                     throw new Exception("Debe especificar un nombre.");
                 Mascara nuevaMascara = ((Mascara)Session["MascaraAlta"]);
-                if (((Mascara)Session["MascaraAlta"]).CampoMascara.Count <= 0)
-                    throw new Exception("Debe al menos un campo.");
+                if (nuevaMascara.CampoMascara == null || nuevaMascara.CampoMascara.Count <= 0)
+                    throw new Exception("Debe agregar al menos un campo.");
                 nuevaMascara.Descripcion = txtNombre.Text.Trim();
                 nuevaMascara.Random = chkClaveRegistro.Checked;
                 nuevaMascara.IdUsuarioAlta = ((Usuario)Session["UserData"]).Id;

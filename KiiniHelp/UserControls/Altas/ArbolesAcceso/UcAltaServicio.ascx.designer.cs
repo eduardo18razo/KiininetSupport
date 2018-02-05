@@ -643,15 +643,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImpacto;
         
         /// <summary>
-        /// Control imgImpacto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgImpacto;
-        
-        /// <summary>
         /// Control lblImpacto.
         /// </summary>
         /// <remarks>

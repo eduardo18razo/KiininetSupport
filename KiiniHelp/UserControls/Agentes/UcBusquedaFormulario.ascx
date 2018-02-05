@@ -6,19 +6,23 @@
         width: 100% !important;
     }
 
+        .RadSearchBox .rsbSearchContext {
+            width: 200px;
+        }
+
     .RadAutoCompleteBoxPopup {
         background: red !important;
         width: 100% !important;
     }
 
     .racSlide {
-        background: red !important;
+        /*background: red !important;*/
         width: 100% !important;
     }
 
     .contextDropDown {
-        background: green !important;
-        width: 100% !important;
+        /*background: green !important;*/
+        width: 200px !important;
     }
 </style>
 <div style="height: 100%;">
@@ -26,22 +30,22 @@
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfIdUsuarioSolicito" />
             <asp:HiddenField runat="server" ID="hfAreaSeleccionada" Value="0" />
-           <%-- <section class="module">--%>
-                <div class="row">
+            <%-- <section class="module">--%>
+            <div class="row">
+                <div class="module-inner">
                     <div class="col-lg-12 col-md-9 col-sm-9">
-                        <div class="module-inner">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <tc:RadSearchBox runat="server" DataTextField="Descripcion" OnSearch="txtBusquedaFormulario_OnSearch" DataValueField="Id" EnableAutoComplete="True" ShowSearchButton="True" ID="txtBusquedaFormulario" DataSourceID="SourceOpciones"
-                                        OnDataSourceSelect="txtBusquedaFormulario_OnDataSourceSelect" Width="90%">
-                                        <SearchContext DataSourceID="SourceAreasSearch" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False" />
-                                    </tc:RadSearchBox>
-                                </div>  
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <tc:RadSearchBox runat="server" DataTextField="DescripcionTipificacion" OnSearch="txtBusquedaFormulario_OnSearch" DataValueField="Id" EnableAutoComplete="True" ShowSearchButton="True" ID="txtBusquedaFormulario" DataSourceID="SourceOpciones"
+                                    OnDataSourceSelect="txtBusquedaFormulario_OnDataSourceSelect" Width="90%">
+                                    <SearchContext DataSourceID="SourceAreasSearch" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False" />
+                                </tc:RadSearchBox>
                             </div>
                         </div>
                     </div>
                 </div>
-           <%-- </section>--%>
+            </div>
+            <%-- </section>--%>
 
             <asp:ObjectDataSource runat="server" ID="SourceOpciones" TypeName="KiiniHelp.UserControls.Agentes.BusquedaOpciones" SelectMethod="GetOptions">
                 <SelectParameters>

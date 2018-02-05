@@ -11,11 +11,15 @@
 <asp:HiddenField runat="server" ID="hfEsAlta" Value="true" />
 <asp:HiddenField runat="server" ID="hfIdInformacionConsulta" />
 <asp:HiddenField runat="server" ID="hfValueText" />
-<br>
-<h3 class="h6">
-    <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink>
-    / Editor de contenido / Nuevo artículo </h3>
-<hr />
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
+    <li class="breadcrumb-item">Help Center</li>
+    <li class="breadcrumb-item">Artículos</li>
+    <li class="breadcrumb-item active">Nuevo</li>
+</ol>
+
 <asp:UpdatePanel runat="server" ID="upAltaInformacionConsulta" UpdateMode="Conditional">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfComentario" />
@@ -23,26 +27,27 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8">
                     <div class="module-inner">
-                        <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" placeholder="Título del Artículo" MaxLength="50" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+
+                        <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Título del Artículo</label>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left no-padding-right">
+                            <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control no-padding-left no-margin-left" MaxLength="50" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                        </div>
+
                     </div>
-                    <hr />
+
                 </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="module-inner">
-                        <asp:Button runat="server" CssClass="btn btn-default col-lg-3 col-md-3" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary col-lg-4 col-md-4 margin-left-5" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-success col-lg-3 col-md-3 margin-left-5" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
+                <div class="col-lg-4 col-md-6 margin-top-btn-consulta no-padding-top">
+                    <div class="module-inner text-center">
+                        <asp:Button runat="server" CssClass="btn btn-default" Height="29px" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
+                        <asp:Button runat="server" CssClass="btn btn-primary margin-left-5" Height="29px" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
+                        <asp:Button runat="server" CssClass="btn btn-success margin-left-5" Height="29px" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-8">
                     <div class="module-inner">
-                        <%--<asp:UpdatePanel runat="server" UpdateMode="Conditional">
-                            <ContentTemplate>--%>
                         <ctrlExterno:HtmlEditor runat="Server" ID="txtEditor" Height="350px" ToggleMode="ToggleButton" ColorScheme="VisualStudio" />
-                        <%--</ContentTemplate>
-                        </asp:UpdatePanel>--%>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">

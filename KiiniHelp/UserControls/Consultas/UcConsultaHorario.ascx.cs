@@ -50,10 +50,8 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    
+                    LlenaHorariosConsulta();
                 }
-
-                LlenaHorariosConsulta();
 
                 ucAltaHorario.OnAceptarModal += AltaHorarioOnAceptarModal;
                 ucAltaHorario.OnCancelarModal += AltaHorarioOnCancelarModal;
