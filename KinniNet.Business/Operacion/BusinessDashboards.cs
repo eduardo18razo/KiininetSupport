@@ -47,9 +47,9 @@ namespace KinniNet.Core.Operacion
                 results.Operadores = db.Usuario.Count(c => c.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador && c.Habilitado && c.Activo);
 
                 DataTable dtTickets = new DataTable("dt");
-                dtTickets.Columns.Add(new DataColumn("Id"));
-                dtTickets.Columns.Add(new DataColumn("Descripcion"));
-                dtTickets.Columns.Add(new DataColumn("Total"));
+                dtTickets.Columns.Add(new DataColumn("Id", typeof(int)));
+                dtTickets.Columns.Add(new DataColumn("Descripcion", typeof(string)));
+                dtTickets.Columns.Add(new DataColumn("Total", typeof(decimal)));
                 foreach (GraficoConteo datos in db.Ticket.Join(db.Canal, ticket => ticket.IdCanal, canal => canal.Id, (ticket, canals) => new { ticket, canals }).GroupBy(g => g.canals).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }).ToList())
                 {
                     dtTickets.Rows.Add(datos.Id, datos.Descripcion, datos.Total);
@@ -58,9 +58,9 @@ namespace KinniNet.Core.Operacion
 
 
                 DataTable dtUsuarios = new DataTable("dt");
-                dtUsuarios.Columns.Add(new DataColumn("Id"));
-                dtUsuarios.Columns.Add(new DataColumn("Descripcion"));
-                dtUsuarios.Columns.Add(new DataColumn("Total"));
+                dtUsuarios.Columns.Add(new DataColumn("Id", typeof(int)));
+                dtUsuarios.Columns.Add(new DataColumn("Descripcion", typeof(string)));
+                dtUsuarios.Columns.Add(new DataColumn("Total", typeof(decimal)));
                 foreach (GraficoConteo datos in db.Usuario.Join(db.TipoUsuario, users => users.IdTipoUsuario, tipoUsuario => tipoUsuario.Id, (users, tipoUsuario) => new { users, tipoUsuario }).Where(w => userFilters.Contains(w.users.IdTipoUsuario)).GroupBy(g => g.tipoUsuario).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }).ToList())
                 {
                     dtUsuarios.Rows.Add(datos.Id, datos.Descripcion, datos.Total);
@@ -68,8 +68,8 @@ namespace KinniNet.Core.Operacion
                 results.GraficoUsuariosRegistrados = dtUsuarios;
 
                 DataTable dtAlmacenamiento = new DataTable("dt");
-                dtAlmacenamiento.Columns.Add(new DataColumn("Ocupado"));
-                dtAlmacenamiento.Columns.Add(new DataColumn("Libre"));
+                dtAlmacenamiento.Columns.Add(new DataColumn("Ocupado", typeof(double)));
+                dtAlmacenamiento.Columns.Add(new DataColumn("Libre", typeof(double)));
 
 
                 long maxSize = 1024;
@@ -90,9 +90,9 @@ namespace KinniNet.Core.Operacion
                 double sizeOfDirMb = sizeOfDirKb / 1024;
                 double sizeOfDirGb = sizeOfDirMb / 1024;
                 double totalSize = Math.Round(double.Parse((ds.Tables[0].Rows[0][3].ToString())) + sizeOfDirMb, 2);
-                if (totalSize > 1024)
-                    totalSize = totalSize / 1024;
-                dtAlmacenamiento.Rows.Add(totalSize, maxSize - totalSize);
+                //if (totalSize > 1024)
+                //    totalSize = totalSize / 1024;
+                dtAlmacenamiento.Rows.Add(Math.Round(totalSize, 0, MidpointRounding.ToEven), Math.Round(maxSize - totalSize, 0, MidpointRounding.ToEven));
                 results.TotalArchivos = Directory.GetFiles(dInfo.FullName, "*.*", SearchOption.AllDirectories).Length;
                 results.GraficoAlmacenamiento = dtAlmacenamiento;
 
