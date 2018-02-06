@@ -157,7 +157,7 @@
             <header class="header">
                 <div class="branding ">
                     <h1 class="logo text-center">
-                        <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
+                        <asp:HyperLink NavigateUrl="~/Agente/DashBoardAgente.aspx" runat="server">
                             <asp:Image class="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
                             <asp:Label runat="server" ID="lblBranding" Visible="false" />
                         </asp:HyperLink>

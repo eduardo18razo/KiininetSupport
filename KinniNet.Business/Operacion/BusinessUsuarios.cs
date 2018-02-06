@@ -595,7 +595,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.Usuario.Single(w => w.Id == idUsuario).Foto;
-               // result = db.Usuario.Single(w => w.Id == idUsuario).Foto != null ? db.Usuario.Single(w => w.Id == idUsuario).Foto : new byte[0];
+                // result = db.Usuario.Single(w => w.Id == idUsuario).Foto != null ? db.Usuario.Single(w => w.Id == idUsuario).Foto : new byte[0];
             }
             catch (Exception ex)
             {
@@ -660,6 +660,38 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
+        }
+
+        public List<Usuario> ObtenerAgentes(bool insertarSeleccion)
+        {
+            List<Usuario> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<int> idsUsuarios = (from u in db.Usuario
+                                         join ug in db.UsuarioGrupo on u.Id equals ug.IdUsuario
+                                         where u.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador
+                                         && ug.IdRol == (int)BusinessVariables.EnumRoles.Agente && u.Habilitado
+                                         select u.Id).Distinct().ToList();
+                result = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).OrderBy(o => o.ApellidoPaterno).ThenBy(tb => tb.ApellidoMaterno).ThenBy(tb => tb.Nombre).ToList();
+                if (insertarSeleccion)
+                    result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
+                        new Usuario
+                        {
+                            Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione,
+                            Nombre = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione
+                        });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
         }
 
         public List<Usuario> ObtenerUsuarios(int? idTipoUsuario)

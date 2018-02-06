@@ -21,6 +21,28 @@ namespace KinniNet.Core.Operacion
     {
         private readonly bool _proxy;
 
+        public void ActualizaSla()
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                var y = db.Ticket.Where(w => w.DentroSla && w.FechaTermino == null);
+                foreach (Ticket ticket in y)
+                {
+                    ticket.DentroSla = DateTime.Now <= ticket.FechaHoraFinProceso;
+                }
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+        }
+
         public void Dispose()
         {
 
@@ -551,8 +573,8 @@ namespace KinniNet.Core.Operacion
                         hticket.Impacto = ticket.Impacto.Descripcion;
                         hticket.TipoTicketDescripcion = ticket.TipoArbolAcceso.Descripcion;
                         hticket.TipoTicketAbreviacion = ticket.TipoArbolAcceso.Abreviacion;
-                        hticket.UsuarioSolicito = ticket.UsuarioLevanto;
-                        hticket.Vip = ticket.UsuarioLevanto.Vip;
+                        hticket.UsuarioSolicito = ticket.UsuarioSolicito;
+                        hticket.Vip = ticket.UsuarioSolicito.Vip;
                         hticket.Canal = ticket.Canal.Descripcion;
                         hticket.DentroSla = ticket.DentroSla;
                         hticket.RecienCerrado = ticket.FechaTermino == null ? false : ((TimeSpan)(DateTime.Now - ticket.FechaTermino)).Hours <= 36 ? true : false;
@@ -572,6 +594,7 @@ namespace KinniNet.Core.Operacion
             List<HelperTickets> result = null;
             try
             {
+                ActualizaSla();
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 List<Ticket> lstTickets = new List<Ticket>();
 

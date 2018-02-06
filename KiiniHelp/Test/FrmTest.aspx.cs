@@ -238,24 +238,27 @@ namespace KiiniHelp.Test
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataTable dtTicketsCanal = new DataTable("dt");
-            dtTicketsCanal.Columns.Add("Id", typeof(int));
-            dtTicketsCanal.Columns.Add("Canal", typeof(string));
-            dtTicketsCanal.Columns.Add("Total", typeof(double));
-            dtTicketsCanal.Rows.Add(1, "Portal", 7);
-            dtTicketsCanal.Rows.Add(2, "Correo", 11);
-            dtTicketsCanal.Rows.Add(3, "Chat", 8);
-            dtTicketsCanal.Rows.Add(6, "Telefono", 7);
-            GeneraGraficaPieTickets(rhcTickets, dtTicketsCanal);
+            //DataTable dtTicketsCanal = new DataTable("dt");
+            //dtTicketsCanal.Columns.Add("Id", typeof(int));
+            //dtTicketsCanal.Columns.Add("Canal", typeof(string));
+            //dtTicketsCanal.Columns.Add("Total", typeof(double));
+            //dtTicketsCanal.Rows.Add(1, "Portal", 7);
+            //dtTicketsCanal.Rows.Add(2, "Correo", 11);
+            //dtTicketsCanal.Rows.Add(3, "Chat", 8);
+            //dtTicketsCanal.Rows.Add(6, "Telefono", 7);
+            //GeneraGraficaPieTickets(rhcTickets, dtTicketsCanal);
 
-            //Stacket chart bar Espacio utilizado
-            DataTable dtAlmacenado = new DataTable("dt");
-            dtAlmacenado.Columns.Add("Ocupado", typeof(double));
-            dtAlmacenado.Columns.Add("Libre", typeof(double));
-            dtAlmacenado.Columns.Add("Titulo", typeof(string));
-            dtAlmacenado.Rows.Add(123.5, 900.5, "Almacenado");
+            ////Stacket chart bar Espacio utilizado
+            //DataTable dtAlmacenado = new DataTable("dt");
+            //dtAlmacenado.Columns.Add("Ocupado", typeof(double));
+            //dtAlmacenado.Columns.Add("Libre", typeof(double));
+            //dtAlmacenado.Columns.Add("Titulo", typeof(string));
+            //dtAlmacenado.Rows.Add(123.5, 900.5, "Almacenado");
 
-            GeneraGraficaStackedAdministrador(rhcEspacio, dtAlmacenado);
+            //GeneraGraficaStackedAdministrador(rhcEspacio, dtAlmacenado);
+
+          
+
 
 
             //    cGraficoEspacio.Series[0].Points.Add(new DataPoint(0, 200));

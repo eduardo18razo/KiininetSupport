@@ -175,8 +175,6 @@ namespace KiiniHelp.UserControls.Consultas
             LlenaInformacionConsulta();
         }
 
-        #endregion 
-
-
+        #endregion
     }
 }

@@ -78,9 +78,9 @@ namespace KinniNet.Business.Utils
         }
         public static class EnumImpacto
         {
-            public const string Alto = "ALTO";
-            public const string Medio = "MEDIO";
-            public const string Bajo = "BAJO";
+            public const string Alto = "Alto";
+            public const string Medio = "Medio";
+            public const string Bajo = "Bajo";
         }
         public static class EnumeradoresKiiniNet
         {

@@ -8,5 +8,8 @@ namespace KiiniNet.Services.Operacion.Interface
     {
         [OperationContract]
         DashboardAdministrador GetDashboardAdministrador();
+
+        [OperationContract]
+        DashboardAgente GetDashboardAgente(int? idGrupo, int? idUsuario);
     }
 }

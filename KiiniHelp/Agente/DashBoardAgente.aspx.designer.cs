@@ -85,12 +85,183 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.Label lblTicketsReabiertos7dias;
         
         /// <summary>
-        /// Control Chart3.
+        /// Control lblTiempoPromedioPrimeraRespuestaActual.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart3;
+        protected global::System.Web.UI.WebControls.Label lblTiempoPromedioPrimeraRespuestaActual;
+        
+        /// <summary>
+        /// Control lblTiempoPromedioResolucionActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTiempoPromedioResolucionActual;
+        
+        /// <summary>
+        /// Control lblResolucionAlPrimerContactoPromedioActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResolucionAlPrimerContactoPromedioActual;
+        
+        /// <summary>
+        /// Control lblIntervencionesAgenteActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIntervencionesAgenteActual;
+        
+        /// <summary>
+        /// Control lblClientesUnicosAtendidosActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClientesUnicosAtendidosActual;
+        
+        /// <summary>
+        /// Control lblTiempoPromedioPrimeraRespuestaPorcentaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTiempoPromedioPrimeraRespuestaPorcentaje;
+        
+        /// <summary>
+        /// Control lblTiempoPromedioResolucionPorcentaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTiempoPromedioResolucionPorcentaje;
+        
+        /// <summary>
+        /// Control lblResolucionAlPrimerContactoPromedioPorcentaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResolucionAlPrimerContactoPromedioPorcentaje;
+        
+        /// <summary>
+        /// Control lblIntervencionesAgentePorcentaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIntervencionesAgentePorcentaje;
+        
+        /// <summary>
+        /// Control lblClientesUnicosAtendidosPorcentaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClientesUnicosAtendidosPorcentaje;
+        
+        /// <summary>
+        /// Control lblTiempoPromedioPrimeraRespuestaAnterior.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTiempoPromedioPrimeraRespuestaAnterior;
+        
+        /// <summary>
+        /// Control lblTiempoPromedioResolucionAnterior.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTiempoPromedioResolucionAnterior;
+        
+        /// <summary>
+        /// Control lblResolucionAlPrimerContactoPromedioAnterior.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResolucionAlPrimerContactoPromedioAnterior;
+        
+        /// <summary>
+        /// Control lblIntervencionesAgenteAnterior.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIntervencionesAgenteAnterior;
+        
+        /// <summary>
+        /// Control lblClientesUnicosAtendidosAnterior.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblClientesUnicosAtendidosAnterior;
+        
+        /// <summary>
+        /// Control rhcTicketsAbiertos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsAbiertos;
+        
+        /// <summary>
+        /// Control rhcTicketsPrioridad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsPrioridad;
+        
+        /// <summary>
+        /// Control rhcTicketsCanal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsCanal;
+        
+        /// <summary>
+        /// Control rhcTicketsCreadosAbiertos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsCreadosAbiertos;
+        
+        /// <summary>
+        /// Control rptMetricasGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptMetricasGrupo;
     }
 }

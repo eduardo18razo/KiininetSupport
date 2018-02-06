@@ -145,6 +145,7 @@ namespace KinniNet.Data.Help
                 _ticketCorreo = CreateObjectSet<TicketCorreo>();
                 _ticketGrupoUsuario = CreateObjectSet<TicketGrupoUsuario>();
                 _ticketAsignacion = CreateObjectSet<TicketAsignacion>();
+                _ticketEstatus = CreateObjectSet<TicketEstatus>();
                 _area = CreateObjectSet<Area>();
                 _estatusTicketSubRolGeneral = CreateObjectSet<EstatusTicketSubRolGeneral>();
                 _estatusAsignacionSubRolGeneral = CreateObjectSet<EstatusAsignacionSubRolGeneral>();
@@ -540,6 +541,13 @@ namespace KinniNet.Data.Help
                 return _ticketAsignacion;
             }
         }
+        public ObjectSet<TicketEstatus> TicketEstatus
+        {
+            get
+            {
+                return _ticketEstatus;
+            }
+        }
 
         public ObjectSet<HorarioSubGrupo> HorarioSubGrupo
         {
@@ -682,6 +690,7 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<TicketCorreo> _ticketCorreo;
         private readonly ObjectSet<TicketGrupoUsuario> _ticketGrupoUsuario;
         private readonly ObjectSet<TicketAsignacion> _ticketAsignacion;
+        private readonly ObjectSet<TicketEstatus> _ticketEstatus;
         private readonly ObjectSet<Area> _area;
         private readonly ObjectSet<EstatusTicketSubRolGeneral> _estatusTicketSubRolGeneral;
         private readonly ObjectSet<EstatusAsignacionSubRolGeneral> _estatusAsignacionSubRolGeneral;

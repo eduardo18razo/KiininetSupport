@@ -23,7 +23,6 @@ namespace KiiniNet.Entities.Operacion.Dashboard
         public int Organizacion { get; set; }
         public int Ubicacion { get; set; }
         public int Puestos { get; set; }
-
         public int Grupos { get; set; }
         public int Horarios { get; set; }
         public int Feriados { get; set; }

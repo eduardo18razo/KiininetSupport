@@ -54,6 +54,24 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
+        public List<Usuario> ObtenerAgentes(bool insertarSeleccion)
+        {
+
+            {
+                try
+                {
+                    using (BusinessUsuarios negocio = new BusinessUsuarios())
+                    {
+                        return negocio.ObtenerAgentes(insertarSeleccion);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         public List<Usuario> ObtenerUsuarios(int? idTipoUsuario)
         {
             try

@@ -122,7 +122,9 @@
     <Compile Include="Helper\HelperUsuario.cs" />
     <Compile Include="Operacion\Area.cs" />
     <Compile Include="Operacion\Dashboard\DashboardAdministrador.cs" />
+    <Compile Include="Operacion\Dashboard\DashboardAgente.cs" />
     <Compile Include="Operacion\Dashboard\GraficoConteo.cs" />
+    <Compile Include="Operacion\Dashboard\HelperMetricas.cs" />
     <Compile Include="Operacion\Frecuencia.cs" />
     <Compile Include="Operacion\HitConsulta.cs" />
     <Compile Include="Operacion\HitGrupoUsuario.cs" />

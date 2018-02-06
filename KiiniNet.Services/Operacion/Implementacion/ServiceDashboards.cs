@@ -21,5 +21,19 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+        public DashboardAgente GetDashboardAgente(int? idGrupo, int? idUsuario)
+        {
+            try
+            {
+                using (BusinessDashboards negocio = new BusinessDashboards())
+                {
+                    return negocio.GetDashboardAgente(idGrupo, idUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -59,6 +59,7 @@
       <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
@@ -263,6 +264,7 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneral.datasource" />
     <Content Include="Registro.aspx" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAdministrador.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAgente.datasource" />
     <None Include="Service References\ServiceDashboard\ServiceDashboards.disco" />
     <None Include="Service References\ServiceDashboard\configuration91.svcinfo" />
     <None Include="Service References\ServiceDashboard\configuration.svcinfo" />
@@ -324,6 +326,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDashboard\ServiceDashboards2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceDashboard\ServiceDashboards3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDiasHorario\ServiceDiasHorario.wsdl" />

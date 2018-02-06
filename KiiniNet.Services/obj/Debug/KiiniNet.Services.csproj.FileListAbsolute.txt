@@ -29,7 +29,6 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\KiiniNet.Entities.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\KinniNet.Business.Utils.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\KinniNet.Core.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\EPPlus.xml
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\KinniNet.Data.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug\KiiniNet.Services.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug\KiiniNet.Services.dll

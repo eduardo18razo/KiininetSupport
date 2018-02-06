@@ -17,6 +17,9 @@ namespace KiiniHelp.ServiceDashboard {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDashboards/GetDashboardAdministrador", ReplyAction="http://tempuri.org/IServiceDashboards/GetDashboardAdministradorResponse")]
         KiiniNet.Entities.Operacion.Dashboard.DashboardAdministrador GetDashboardAdministrador();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDashboards/GetDashboardAgente", ReplyAction="http://tempuri.org/IServiceDashboards/GetDashboardAgenteResponse")]
+        KiiniNet.Entities.Operacion.Dashboard.DashboardAgente GetDashboardAgente(System.Nullable<int> idGrupo, System.Nullable<int> idUsuario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -48,6 +51,10 @@ namespace KiiniHelp.ServiceDashboard {
         
         public KiiniNet.Entities.Operacion.Dashboard.DashboardAdministrador GetDashboardAdministrador() {
             return base.Channel.GetDashboardAdministrador();
+        }
+        
+        public KiiniNet.Entities.Operacion.Dashboard.DashboardAgente GetDashboardAgente(System.Nullable<int> idGrupo, System.Nullable<int> idUsuario) {
+            return base.Channel.GetDashboardAgente(idGrupo, idUsuario);
         }
     }
 }

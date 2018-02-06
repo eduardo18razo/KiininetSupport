@@ -487,7 +487,6 @@ namespace KinniNet.Business.Utils
                     grafico.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineDashStyle = ChartDashStyle.DashDotDot;
                     grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.Auto;
                     grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
-
                 }
                 catch (Exception ex)
                 {

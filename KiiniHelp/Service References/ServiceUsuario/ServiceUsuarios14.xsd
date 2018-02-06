@@ -9,15 +9,15 @@
   <xs:element name="ArrayOfHelperDetalleUsuarioGrupo" nillable="true" type="tns:ArrayOfHelperDetalleUsuarioGrupo" />
   <xs:complexType name="HelperDetalleUsuarioGrupo">
     <xs:sequence>
-      <xs:element name="_x003C_Activo_x003E_k__BackingField" type="xs:boolean" />
-      <xs:element name="_x003C_CuartoNivel_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Activo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CuartoNivel_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_IdUsuario_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_NombreCompleto_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_NombreUsuarioCompleto_x003E_k__BackingField" nillable="true" type="xs:string" />
-      <xs:element name="_x003C_PrimerNivel_x003E_k__BackingField" type="xs:boolean" />
-      <xs:element name="_x003C_SegundoNivel_x003E_k__BackingField" type="xs:boolean" />
-      <xs:element name="_x003C_Supervisor_x003E_k__BackingField" type="xs:boolean" />
-      <xs:element name="_x003C_TercerNivel_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_PrimerNivel_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_SegundoNivel_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Supervisor_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TercerNivel_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperDetalleUsuarioGrupo" nillable="true" type="tns:HelperDetalleUsuarioGrupo" />
