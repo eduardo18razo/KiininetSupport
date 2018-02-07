@@ -40,7 +40,8 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
+                Usuario usr = ((Usuario)Session["UserData"]);
+                ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true).Where(w => usr.UsuarioGrupo.Select(s => s.IdGrupoUsuario).Contains(w.Id));
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
@@ -59,7 +60,7 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                int? idGrupo = ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione ? (int?) null : int.Parse(ddlGrupo.SelectedValue);
+                int? idGrupo = ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione ? (int?)null : int.Parse(ddlGrupo.SelectedValue);
                 int? idUsuario = ddlAgente.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione ? (int?)null : int.Parse(ddlAgente.SelectedValue);
 
                 DashboardAgente datos = _servicioDashBoard.GetDashboardAgente(idGrupo, idUsuario);
@@ -158,7 +159,7 @@ namespace KiiniHelp.Agente
                 rhcTicketsCreadosAbiertos.PlotArea.YAxis.TitleAppearance.RotationAngle = 0;
                 rhcTicketsCreadosAbiertos.PlotArea.YAxis.TitleAppearance.Position = AxisTitlePosition.Center;
                 rhcTicketsCreadosAbiertos.PlotArea.YAxis.TitleAppearance.Text = string.Empty;
-                
+
             }
             catch (Exception ex)
             {
@@ -222,13 +223,30 @@ namespace KiiniHelp.Agente
                 Metodos.LimpiarCombo(ddlAgente);
                 if (ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
-                    CargaDatosDashboard();
-                    return;
+                    ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                    ddlAgente.DataTextField = "NombreCompleto";
+                    ddlAgente.DataValueField = "Id";
+                    ddlAgente.DataBind();
                 }
-                ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(int.Parse(ddlGrupo.SelectedValue), true);
-                ddlAgente.DataTextField = "NombreCompleto";
-                ddlAgente.DataValueField = "Id";
-                ddlAgente.DataBind();
+                else
+                {
+                    int idGrupo = int.Parse(ddlGrupo.SelectedValue);
+
+                    ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(idGrupo, true);
+                    ddlAgente.DataTextField = "NombreCompleto";
+                    ddlAgente.DataValueField = "Id";
+                    ddlAgente.DataBind();
+                    Usuario usr = ((Usuario)Session["UserData"]);
+                    if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == idGrupo && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor))
+                    {
+                        ddlAgente.Enabled = true;
+                    }
+                    else
+                    {
+                        ddlAgente.SelectedValue = usr.Id.ToString();
+                        ddlAgente.Enabled = false;
+                    }
+                }
                 CargaDatosDashboard();
             }
             catch (Exception ex)
