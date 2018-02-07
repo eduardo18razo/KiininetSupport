@@ -8,6 +8,7 @@ using KiiniHelp.Funciones;
 using KiiniHelp.ServiceDashboard;
 using KiiniHelp.ServiceGrupoUsuario;
 using KiiniHelp.ServiceUsuario;
+using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Operacion.Dashboard;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
@@ -41,7 +42,7 @@ namespace KiiniHelp.Agente
             try
             {
                 Usuario usr = ((Usuario)Session["UserData"]);
-                ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true).Where(w => usr.UsuarioGrupo.Select(s => s.IdGrupoUsuario).Contains(w.Id));
+                ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
@@ -230,21 +231,39 @@ namespace KiiniHelp.Agente
                 }
                 else
                 {
-                    int idGrupo = int.Parse(ddlGrupo.SelectedValue);
-
-                    ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(idGrupo, true);
-                    ddlAgente.DataTextField = "NombreCompleto";
-                    ddlAgente.DataValueField = "Id";
-                    ddlAgente.DataBind();
-                    Usuario usr = ((Usuario)Session["UserData"]);
-                    if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == idGrupo && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor))
+                    GrupoUsuario gpo = _servicioGrupos.ObtenerGrupoUsuarioById(int.Parse(ddlGrupo.SelectedValue));
+                    if (gpo != null)
                     {
-                        ddlAgente.Enabled = true;
-                    }
-                    else
-                    {
-                        ddlAgente.SelectedValue = usr.Id.ToString();
-                        ddlAgente.Enabled = false;
+                        ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(gpo.Id, true);
+                        ddlAgente.DataTextField = "NombreCompleto";
+                        ddlAgente.DataValueField = "Id";
+                        ddlAgente.DataBind();
+                        Usuario usr = ((Usuario)Session["UserData"]);
+                        switch (gpo.TieneSupervisor)
+                        {
+                            case true:
+                                if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == gpo.Id && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor))
+                                {
+                                    ddlAgente.Enabled = true;
+                                }
+                                else
+                                {
+                                    ddlAgente.SelectedValue = usr.Id.ToString();
+                                    ddlAgente.Enabled = false;
+                                }
+                                break;
+                            case false:
+                                if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == gpo.Id && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel))
+                                {
+                                    ddlAgente.Enabled = true;
+                                }
+                                else
+                                {
+                                    ddlAgente.SelectedValue = usr.Id.ToString();
+                                    ddlAgente.Enabled = false;
+                                }
+                                break;
+                        }
                     }
                 }
                 CargaDatosDashboard();
