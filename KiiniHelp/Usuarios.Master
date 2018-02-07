@@ -1,5 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Usuarios.master.cs" Inherits="KiiniHelp.UsuariosMaster" %>
 
+
+
+
 <%@ Register Src="~/UserControls/Temporal/UcTicketPortal.ascx" TagPrefix="uc1" TagName="UcTicketPortal" %>
 
 <!DOCTYPE html>
@@ -621,9 +624,8 @@
                             <ContentTemplate>
                                 <div class="modal-header">
                                     <asp:LinkButton class="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                                    <h4 class="modal-title" id="modal-new-ticket-label">
-                                        <br />
-                                        Crear Ticket Nuevo</h4>
+                                    <h6 class="modal-title" id="modal-new-ticket-label">
+                                        Crear Ticket Nuevo</h6>
                                 </div>
                                 <div class="modal-body">
                                     <uc1:UcTicketPortal runat="server" ID="ucTicketPortal" />

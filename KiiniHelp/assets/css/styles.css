@@ -1885,7 +1885,7 @@ a.btn {
 }
 
     .btn-guardar:hover {
-        background-color: #d35400;
+        background-color: #3FA9F5;
         color: #FFF;
     }
 
@@ -6133,9 +6133,6 @@ ul.sortable {
     padding-left: 20px !important;
 }
 
-.padding-10-top {
-    padding-top: 10px !important;
-}
 
 .padding-10-right {
     padding-right: 10px !important;
@@ -6153,8 +6150,16 @@ ul.sortable {
     padding-top: 5px !important;
 }
 
+.padding-10-top {
+    padding-top: 10px !important;
+}
+
 .padding-14-top {
     padding-top: 14px !important;
+}
+
+.padding-12-top {
+    padding-top: 12px !important;
 }
 
 .padding-15-top {
@@ -6875,9 +6880,18 @@ input[type="radio"] + label {
     padding-top: 0;
     top: 5px;
     position: absolute;*/
-    margin-left: 5px;
+
+    /*propuesta 2*/
+    
+    /*margin-left: 5px;
     padding-top: 2px;
-    position: absolute;
+    position: absolute;*/
+
+    /*propuesta 3*/
+    display: inline-block;
+    vertical-align: bottom;
+
+
 }
 
 

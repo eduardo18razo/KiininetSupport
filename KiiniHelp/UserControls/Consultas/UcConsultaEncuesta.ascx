@@ -21,7 +21,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Encuestas" /></h3>
                             </div>
                             <p>
-                                Texto para Encuestas
+                                Las encuestas se conforman de un cuestionario diseñado para recopilar datos que serán posteriormente analizados. El tipo de respuesta de las encuestas son: 1) Calificación del 1 al 10, 2) Calificación Pésimo/Malo/Regular/Bueno/Excelente, 3) Si o No, y 4) Net Promoter Score® (NPS).
                             </p>
                         </div>
 
@@ -85,23 +85,23 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="13%">
+                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="14%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta", "{0:d}")%>'><%# Eval("FechaAlta", "{0:d}")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="13%">
+                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="14%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion", "{0:d}")%>'><%# Eval("FechaModificacion", "{0:d}")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
+                                         <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
+                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged"/>
+                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool)Eval("Sistema") %>' ID="btnClonar" OnClick="btnClonar_OnClick"></asp:LinkButton>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
@@ -118,16 +118,15 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
+                                                <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
-                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool)Eval("Sistema") %>' ID="btnClonar" OnClick="btnClonar_OnClick"></asp:LinkButton>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged"/>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
                                     </Columns>
                                 </asp:GridView>
 

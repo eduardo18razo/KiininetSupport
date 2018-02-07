@@ -1458,6 +1458,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 txtTiempoNotificacionDueno.Enabled = chkNotificacionDueno.Checked;
                 ddlNotificacionGrupoDueño.Enabled = chkNotificacionDueno.Checked;
                 ddlCanalDueño.Enabled = chkNotificacionDueno.Checked;
+                chkVencimientoDueño.Enabled = chkNotificacionDueno.Checked;
             }
             catch (Exception ex)
             {
@@ -1477,6 +1478,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 txtTiempoNotificacionMtto.Enabled = chkNotificacionMtto.Checked;
                 ddlNotificacionGrupoMtto.Enabled = chkNotificacionMtto.Checked;
                 ddlCanalMtto.Enabled = chkNotificacionMtto.Checked;
+                chkVencimientoMtto.Enabled = chkNotificacionMtto.Checked;
             }
             catch (Exception ex)
             {
@@ -1496,6 +1498,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 txtTiempoNotificacionDev.Enabled = chkNotificacionDesarrollo.Checked;
                 ddlNotificacionGrupoDev.Enabled = chkNotificacionDesarrollo.Checked;
                 ddlCanalDev.Enabled = chkNotificacionDesarrollo.Checked;
+                chkVencimientoDev.Enabled = chkNotificacionDesarrollo.Checked;
             }
             catch (Exception ex)
             {
@@ -1515,6 +1518,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 txtTiempoNotificacionOperacion.Enabled = chkNotificacionOperacion.Checked;
                 ddlNotificacionGrupoOperacion.Enabled = chkNotificacionOperacion.Checked;
                 ddlCanalOperacion.Enabled = chkNotificacionOperacion.Checked;
+                chkVencimientoOperacion.Enabled = chkNotificacionOperacion.Checked;
             }
             catch (Exception ex)
             {

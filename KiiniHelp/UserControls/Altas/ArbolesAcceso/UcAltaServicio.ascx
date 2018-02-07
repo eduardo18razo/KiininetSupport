@@ -269,7 +269,7 @@
                                                 <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" CssClass="form-control col-md-2" Enabled="False" ID="txtTiempoNotificacionDueno" />
                                                 <asp:DropDownList runat="server" ID="ddlNotificacionGrupoDueño" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
                                                 <asp:DropDownList runat="server" ID="ddlCanalDueño" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoDueño" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                                <asp:CheckBox runat="server" ID="chkVencimientoDueño" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
                                             </div>
                                             <hr />
                                             <div class="form-group">
@@ -277,7 +277,7 @@
                                                 <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-3" Enabled="False" ID="txtTiempoNotificacionMtto" />
                                                 <asp:DropDownList runat="server" ID="ddlNotificacionGrupoMtto" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
                                                 <asp:DropDownList runat="server" ID="ddlCanalMtto" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoMtto" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                                <asp:CheckBox runat="server" ID="chkVencimientoMtto" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
                                             </div>
                                             <hr />
                                             <div class="form-group">
@@ -285,7 +285,7 @@
                                                 <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-4" Enabled="False" ID="txtTiempoNotificacionDev" />
                                                 <asp:DropDownList runat="server" ID="ddlNotificacionGrupoDev" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
                                                 <asp:DropDownList runat="server" ID="ddlCanalDev" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoDev" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                                <asp:CheckBox runat="server" ID="chkVencimientoDev" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
                                             </div>
                                             <hr />
                                             <div class="form-group">
@@ -293,7 +293,7 @@
                                                 <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-5" Enabled="False" ID="txtTiempoNotificacionOperacion" />
                                                 <asp:DropDownList runat="server" ID="ddlNotificacionGrupoOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
                                                 <asp:DropDownList runat="server" ID="ddlCanalOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoOperacion" Checked="False" Text="Despues de vencimiento" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                                <asp:CheckBox runat="server" ID="chkVencimientoOperacion" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
                                             </div>
                                             <hr />
                                         </div>

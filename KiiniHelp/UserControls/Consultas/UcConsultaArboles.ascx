@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item">
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
                 <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item active">Configuración de Menú</li>
+                <li class="breadcrumb-item active">Menú de Navegación</li>
             </ol>
 
             <section class="module">
@@ -20,10 +20,13 @@
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Configuración de Menú" /></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="Menú de Navegación" /></h3>
                             </div>
                             <p>
-                                Texto para Configuración de Menú
+                                El menú de navegación es la secuencia en la que los artículos y los formularios, ya sean clasificados como servicios o problemas, serán acomodados dentro del Help Center. El menú de navegación posee una estructura de árbol:
+                                <br />
+                                Categoría > Nivel 1 > Nivel 2 > Nivel 3 > Nivel 4 > Nivel 5 > Nivel 6 > Nivel 7
+
                             </p>
                         </div>
 
@@ -99,7 +102,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Categoría" HeaderStyle-Width="20%">
+                                        <asp:TemplateField HeaderText="Categoría" HeaderStyle-Width="21%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("Area.Descripcion")%>'><%# Eval("Area.Descripcion")%></label>
                                             </ItemTemplate>
@@ -114,7 +117,7 @@
 
                                         <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="12%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %>'><%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("EsTerminal") ? "Opción" : "Sección" %>'><%# (bool) Eval("EsTerminal") ? "Opción" : "Sección" %></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -127,11 +130,11 @@
 
                                         <asp:TemplateField HeaderText="Detalle" HeaderStyle-Width="5%">
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
+                                                <asp:LinkButton runat="server" Text="Ver" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>

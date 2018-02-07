@@ -26,7 +26,7 @@
         </header>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Carga de Catalogo
+                Carga de Catálogo
             </div>
             <div class="panel-body">
                 <asp:HiddenField runat="server" ID="hfFileName"/>

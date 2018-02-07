@@ -141,9 +141,12 @@ namespace KiiniHelp.UserControls.Detalles
                     lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto.ToString();
                     lblFechaAlta.Text = ticket.FechaLevanto;
                     lblFecha.Text = ticket.FechaLevanto;
-                    imgPrioridad.ImageUrl = "~/assets/images/icons/" + ticket.Impacto;
-                    imgSLA.ImageUrl = ticket.DentroSla ? "~/assets/images/icons/SLA_verde.png" : "~/assets/images/icons/SLA_rojo.png";
-                    lblTiempoRestanteSLa.Text = "Diferencia";
+                    //imgPrioridad.ImageUrl = "~/assets/images/icons/" + ticket.Impacto;
+                    iPrioridad.Visible = ticket.Impacto == "prioridadalta.png";
+                    string colorSla = ticket.DentroSla ? "green" : "red";
+                    iSLA.Style.Add("color", colorSla);
+                    //imgSLA.ImageUrl = ticket.DentroSla ? "~/assets/images/icons/SLA_verde.png" : "~/assets/images/icons/SLA_rojo.png";
+                    //lblTiempoRestanteSLa.Text = "Diferencia";
                     divEstatus.Style.Add("background-color", ticket.ColorEstatus);
                     lblEstatus.Text = ticket.DescripcionEstatusTicket;
                     IdNivelAsignacion = ticket.IdNivelAsignacion.HasValue ? (int)ticket.IdNivelAsignacion : 0;
@@ -177,7 +180,7 @@ namespace KiiniHelp.UserControls.Detalles
                     lblNombreDetalle.Text = usuario.NombreCompleto;
                     lblTipoUsuarioDetalle.Text = usuario.TipoUsuarioDescripcion.Substring(0, 1);
 
-                    imgVip.Visible = usuario.Vip;
+                    iVip.Visible = usuario.Vip;
                     lblFechaUltimaconexion.Text = usuario.FechaUltimoLogin;
 
                     rddConcentradoTicketsUsuario.DataSource = usuario.TicketsAbiertos;

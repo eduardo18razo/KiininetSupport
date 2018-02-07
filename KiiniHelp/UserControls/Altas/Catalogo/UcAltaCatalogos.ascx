@@ -9,14 +9,13 @@
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server" Text='&times;' />
             <h6 class="modal-title" id="modal-new-ticket-label">
                 <asp:Label runat="server" ID="lblBrandingModal" /></h6>
-
         </div>
 
         <div class="modal-body">
             <section class="module no-border" style="border: none">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <div class="module-inner">
+                        <div> <%--class="module-inner"--%>
                             <asp:Label runat="server" Text="Nombre del Catálogo"></asp:Label>
                             <div class="form-group">
                                 <asp:TextBox runat="server" ID="txtNombreCatalogo" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
@@ -31,8 +30,8 @@
                                 <asp:RadioButton runat="server" Text="Agregar registros manualmente" AutoPostBack="True" GroupName="TipoCatalogo" ID="rbtnManual" OnCheckedChanged="rbtnTipoCatalogo_OnCheckedChanged" />
                             </div>
 
-                            <div class="form-group" runat="server" ID="divManual" Visible="False">
-                                <asp:Label runat="server" Text="Opción de campo" CssClass="col-lg-4 col-md-4 col-sm-4" style="padding-top: 12px;"/>
+                            <div class="form-group" runat="server" id="divManual" visible="False">
+                                <asp:Label runat="server" Text="Opción de campo" CssClass="col-lg-4 col-md-4 col-sm-4 no-padding-top margin-top-20" />
                                 <div class="col-lg-8 col-md-8 col-sm-8">
                                     <asp:Repeater runat="server" ID="rptRegistros">
                                         <ItemTemplate>
@@ -41,7 +40,9 @@
                                                 <div class="col-lg-10 col-md-10 col-sm-10">
                                                     <asp:TextBox runat="server" ID="txtDescripcionRegistro" Text='<%# Eval("Descripcion") %>' CssClass="form-control" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
                                                 </div>
-                                                <asp:LinkButton runat="server" Text="Borrar" ID="btnBorrarRegistro" CommandArgument='<%# Container.ItemIndex %>' OnClick="btnBorrarRegistro_OnClick"></asp:LinkButton>
+                                                <div class="col-lg-2 col-md-2 col-sm-2 padding-12-top">
+                                                    <asp:LinkButton runat="server" Text="Borrar" ID="btnBorrarRegistro" CommandArgument='<%# Container.ItemIndex %>' OnClick="btnBorrarRegistro_OnClick"></asp:LinkButton>
+                                                </div>
                                             </div>
 
                                         </ItemTemplate>
@@ -50,24 +51,26 @@
                                                 <div class="col-lg-10 col-md-10 col-sm-10">
                                                     <asp:TextBox runat="server" ID="txtRegistroNew" CssClass="form-control" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
                                                 </div>
-                                                <asp:LinkButton runat="server" CssClass="fa fa-plus-circle" ID="btnAgregarRegistro" OnClick="btnAgregarRegistro_OnClick" CommandArgument='<%# Container.ItemIndex %>' />
+                                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                                    <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-6" ID="btnAgregarRegistro" OnClick="btnAgregarRegistro_OnClick" CommandArgument='<%# Container.ItemIndex %>' />
+                                                </div>
                                             </div>
                                         </FooterTemplate>
                                     </asp:Repeater>
 
                                 </div>
                             </div>
-                        
+
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <div class="module-inner">
+                        <div> <%--class="module-inner"--%>
                             <div class="row form-group padding-10-bottom">
                                 <asp:RadioButton runat="server" Text="Agregar campos desde archivo" AutoPostBack="True" GroupName="TipoCatalogo" ID="rbtnArchivo" OnCheckedChanged="rbtnTipoCatalogo_OnCheckedChanged" />
                             </div>
-                            <div runat="server" ID="divArchivo" Visible="False">
+                            <div runat="server" id="divArchivo" visible="False">
                                 <div class="form-group">
                                     <asp:HiddenField runat="server" ID="hfFileName" />
                                     <ajax:AsyncFileUpload ID="afuArchivo" runat="server" UploaderStyle="Traditional" OnUploadedComplete="afuArchivo_OnUploadedComplete" PersistFile="True" />

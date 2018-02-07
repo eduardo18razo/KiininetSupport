@@ -90,13 +90,14 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="15%">
+
+                                        <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="19%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>' ><%# Eval("TipoGrupo.Descripcion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>'><%# Eval("TipoGrupo.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="32%">
+                                        <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="40%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
                                             </ItemTemplate>
@@ -108,7 +109,29 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" Text="Ver" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" Text="Ver" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
+                                                    <li>
+                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
@@ -118,25 +141,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="10%">
-                                            <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
-                                                    <li>
-                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
-                                                    </li>
-                                                </ul>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="10%">
-                                            <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="10%">
-                                            <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
 
@@ -145,7 +149,7 @@
                     </div>
                 </div>
             </section>
-           
+
             <script type="text/javascript">
                 $(function () {
                     hidden('#' + "<%=tblResults.ClientID %>");

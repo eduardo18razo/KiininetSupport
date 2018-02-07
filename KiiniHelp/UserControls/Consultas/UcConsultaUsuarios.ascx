@@ -21,7 +21,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Usuarios" /></h3>
                             </div>
                             <p>
-                                Las ubicaciones representan el lugar físico donde comúnmente se localiza un usuario. Estas se construyen en forma de árbol, se incluye la dirección y pueden contener desde uno hasta siete niveles de detalle. Puedes crear ubicaciones para facilitar la localización y administración de los usuarios y sus eventos. 
+                                Los usuarios son las personas que tienen un registro en tu cuenta. Aquí se incluyen los usuarios finales que son los solicitantes de eventos (clientes, proveedores y empleados) así como los operadores que son las personas designadas a resolverlos.
                             </p>
                         </div>
 
@@ -84,13 +84,13 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Nombre Completo" HeaderStyle-Width="32%">
+                                        <asp:TemplateField HeaderText="Nombre Completo" HeaderStyle-Width="44%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("NombreCompleto")%>'><%# Eval("NombreCompleto")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Usuario" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Usuario" HeaderStyle-Width="15%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("NombreUsuario")%>'><%# Eval("NombreUsuario")%></label>
                                             </ItemTemplate>
@@ -102,22 +102,13 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Verificado" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Verificado" HeaderStyle-Width="15%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("Activo") ? "SI" : "NO"%>'><%# (bool) Eval("Activo") ? "SI" : "NO"%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="15%">
-                                            <ItemTemplate>
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool) Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="15%">
+                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -126,6 +117,17 @@
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled" id="hiddenEnabled">
+                                                    <li>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool) Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                       
                                     </Columns>
                                 </asp:GridView>
 

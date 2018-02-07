@@ -217,12 +217,12 @@
                 </div>
                 <%--                <br />--%>
 
-              <%--  <h4 class="title text-center" style="z-index: 9; white-space: normal; font-size: 77px; line-height: 60px; font-weight: 1000; letter-spacing: -5px;  text-align: center; border-width: 0px; margin: 0px; min-height: 0px; min-width: 0px; max-height: none; max-width: none; opacity: 1; padding: 30px 20px 20px 20px">
+                <%--  <h4 class="title text-center" style="z-index: 9; white-space: normal; font-size: 77px; line-height: 60px; font-weight: 1000; letter-spacing: -5px;  text-align: center; border-width: 0px; margin: 0px; min-height: 0px; min-width: 0px; max-height: none; max-width: none; opacity: 1; padding: 30px 20px 20px 20px">
                     Para ofrecerte un mejor servicio
                     <br> indicanos que tipo de usuario eres.</h4>--%>
 
                 <h1 class="title text-center">Para ofrecerte un mejor servicio indicanos que tipo de usuario eres.</h1>
-               
+
                 <div id="masonry" class="row">
                     <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <section class="module ">
@@ -309,8 +309,11 @@
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>
                             <div class="modal-header">
-                                <asp:LinkButton class="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                                <h4 class="modal-title" id="modal-new-ticket-label">Crear Ticket Nuevo</h4>
+                                <asp:LinkButton CssClass="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick" Text='&times' />
+                                <h6 id="modal-new-ticket-label" class="modal-title">Crear Ticket Nuevo</h6>
+
+                                <%--   <asp:LinkButton class="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
+                                <h4 class="modal-title" id="modal-new-ticket-label">Crear Ticket Nuevo</h4>--%>
                             </div>
                             <div class="modal-body">
                                 <uc1:UcTicketPortal runat="server" ID="ucTicketPortal" />

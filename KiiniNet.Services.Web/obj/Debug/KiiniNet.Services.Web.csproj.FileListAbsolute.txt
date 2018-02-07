@@ -18,23 +18,3 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\bin\K
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.dll.config
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KiiniNet.Services.Web.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KiiniNet.Services.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KiiniNet.Entities.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KinniNet.Business.Utils.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KinniNet.Core.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\EPPlus.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\EAGetMail40.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\EASendMail40.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KinniNet.Data.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KiiniNet.Services.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KiiniNet.Entities.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KinniNet.Business.Utils.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KinniNet.Core.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\EPPlus.xml
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\bin\KinniNet.Data.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.csprojResolveAssemblyReference.cache
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.dll
-C:\Users\Janeth\Documents\git\KiiniNet.Services.Web\obj\Debug\KiiniNet.Services.Web.pdb

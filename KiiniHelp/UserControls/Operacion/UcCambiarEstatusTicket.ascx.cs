@@ -95,7 +95,7 @@ namespace KiiniHelp.UserControls.Operacion
             try
             {
                 Alerta = new List<string>();
-                lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
+                //lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
                 if (!IsPostBack)
                 {
                     

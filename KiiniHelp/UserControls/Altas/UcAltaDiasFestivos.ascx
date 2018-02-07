@@ -1,4 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaDiasFestivos.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaDiasFestivos" %>
+<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=16.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+
+
+
 
 <asp:UpdatePanel runat="server" ID="updateAltaAreas">
     <ContentTemplate>
@@ -13,6 +17,8 @@
 
         <div class="modal-body">
             <div class="row">
+            <%--    <asp:ScriptManager runat="server">
+                </asp:ScriptManager>--%>
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <label class="col-sm-12 col-md-12 col-lg-12 no-padding-left">Nombre del Nuevo grupo de Dias Feriados</label><br />
@@ -25,7 +31,7 @@
                     <hr />
                     <div class="col-sm-12">
                         <hr />
-                        Agrega los dias feriados correspondientes a este catálogo:
+                        Agrega los días feriados correspondientes a este catálogo:
                     </div>
                 </div>
                 <div>
@@ -47,7 +53,9 @@
                             <div class="form-group">
                                 <asp:Label runat="server" Text="Fecha" CssClass="control-label col-lg-12 col-md-12" />
                                 <div class="col-lg-7 col-md-7">
-                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" type="date" step="1" onkeydown="return (event.keyCode!=13);" />
+                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" step="1" onkeydown="return (event.keyCode!=13);" /> 
+                                    <ajax:CalendarExtender runat="server" id="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" />                         
+
                                 </div>
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-calendar " Visible="False"></asp:LinkButton>
                             </div>
@@ -83,15 +91,7 @@
                 </div>
             </div>
         </div>
-
-
-        <%--<div class="modal-footer">
-            
-            <asp:Button ID="btnAceptar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptar_OnClick" />
-            <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-danger" Text="Limpiar" OnClick="btnLimpiar_OnClick" />
-            <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_OnClick" />
-        </div>
-        --%>
+     
     </ContentTemplate>
 </asp:UpdatePanel>
 
