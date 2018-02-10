@@ -371,7 +371,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
             try
             {
                 Encuesta previewEncuesta = ((Encuesta)Session["Encuesta"]);
-                previewEncuesta.Id = 0;
                 previewEncuesta.IdTipoEncuesta = int.Parse(ddlTipoEncuesta.SelectedValue);
                 previewEncuesta.Titulo = txtTitulo.Text;
                 previewEncuesta.TituloCliente = txtTituloCliente.Text;

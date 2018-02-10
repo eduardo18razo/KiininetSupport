@@ -3,17 +3,6 @@
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script>
-        function handleDragStart(e) {
-            this.style.opacity = '0.4';  // this / e.target is the source node.
-        }
-
-        var cols = document.querySelectorAll('#columns .column');
-        [].forEach.call(cols, function (col) {
-            col.addEventListener('dragstart', handleDragStart, false);
-        });
-
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="full">
@@ -112,7 +101,7 @@
                                 <br />
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6" draggable="true" id="MisMetricas">
+                                    <div class="col-lg-6 col-md-6 col-sm-6" id="MisMetricas">
                                         <section class="module">
                                             <div class="module-inner">
                                                 <div class="row">
@@ -219,7 +208,7 @@
                                         </section>
                                     </div>
 
-                                    <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
                                         <section class="module">
                                             <div class="row center-content-div">
                                                 <div class="form-group margin-left-5">
@@ -234,7 +223,7 @@
 
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
                                         <section class="module">
                                             <div class="row center-content-div">
                                                 <div class="form-group margin-right-5">
@@ -245,7 +234,7 @@
                                             </div>
                                         </section>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
                                         <section class="module">
                                             <div class="row center-content-div">
                                                 <div class="form-group margin-left-5">
@@ -259,7 +248,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
                                         <section class="module">
                                             <div class="row center-content-div">
                                                 <div class="form-group margin-right-5">
@@ -270,7 +259,7 @@
                                             </div>
                                         </section>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
+                                    <div class="col-lg-6 col-md-6 col-sm-6" >
                                         <section class="module">
                                             <div class="row">
                                                 <div class="form-group margin-left-5">

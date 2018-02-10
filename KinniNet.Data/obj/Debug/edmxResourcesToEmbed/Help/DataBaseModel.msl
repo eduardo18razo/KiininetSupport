@@ -1335,20 +1335,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ParametrosGenerales">
-      <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
-        <MappingFragment StoreEntitySet="ParametrosGenerales">
-          <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
-          <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
-          <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
-          <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
-          <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
-          <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
-          <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Catalogos">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.Catalogos">
         <MappingFragment StoreEntitySet="Catalogos">
@@ -1574,6 +1560,21 @@
         <MappingFragment StoreEntitySet="TicketCorreo">
           <ScalarProperty Name="Correo" ColumnName="Correo" />
           <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParametrosGenerales">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
+        <MappingFragment StoreEntitySet="ParametrosGenerales">
+          <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
+          <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
+          <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
+          <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
+          <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
+          <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
+          <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
+          <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

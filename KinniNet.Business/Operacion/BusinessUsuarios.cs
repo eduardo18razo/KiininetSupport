@@ -175,7 +175,7 @@ namespace KinniNet.Core.Operacion
                     }
                     rol.RolTipoUsuario = null;
                 }
-                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor)
+                if (usuario.Autoregistro && (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
                     usuario.Habilitado = false;
                 usuario.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                 if (usuario.Id == 0)
@@ -286,7 +286,7 @@ namespace KinniNet.Core.Operacion
                         rol.RolTipoUsuario = null;
                     }
                 }
-                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor)
+                if (usuario.Autoregistro && (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
                     usuario.Habilitado = false;
                 if (usuario.Id == 0)
                 {
@@ -294,7 +294,7 @@ namespace KinniNet.Core.Operacion
                     db.SaveChanges();
                 }
 
-                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador)
+                if (usuario.Habilitado)
                 {
                     usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
                     if (correo != null)
@@ -861,31 +861,15 @@ namespace KinniNet.Core.Operacion
                 result = new List<Usuario>();
                 foreach (Usuario usuario in qry)
                 {
-                    result.Add(new Usuario
-                    {
-                        Id = usuario.Id,
-                        Nombre = usuario.Nombre,
-                        ApellidoMaterno = usuario.ApellidoMaterno,
-                        ApellidoPaterno = usuario.ApellidoPaterno
-                    });
+                    if (!result.Any(a => a.Id == usuario.Id))
+                        result.Add(new Usuario
+                        {
+                            Id = usuario.Id,
+                            Nombre = usuario.Nombre,
+                            ApellidoMaterno = usuario.ApellidoMaterno,
+                            ApellidoPaterno = usuario.ApellidoPaterno
+                        });
                 }
-                //result = qry.Select(s => new Usuario
-                //    {
-                //        Id = s.Id,
-                //        Nombre = s.Nombre,
-                //        ApellidoMaterno = s.ApellidoMaterno,
-                //        ApellidoPaterno = s.ApellidoPaterno
-                //    }).ToList();
-                //result = (db.Usuario.Join(db.UsuarioGrupo, u => u.Id, ug => ug.IdUsuario, (u, ug) => new { u, ug })
-                //    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo)
-                //    .Select(@t => new Usuario
-                //    {
-                //        Id = @t.u.Id,
-                //        Nombre = @t.u.Nombre,
-                //        ApellidoMaterno = @t.u.ApellidoMaterno,
-                //        ApellidoPaterno = @t.u.ApellidoPaterno
-
-                //    })).Distinct().ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new Usuario

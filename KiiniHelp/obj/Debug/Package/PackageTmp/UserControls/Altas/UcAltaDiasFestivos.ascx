@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaDiasFestivos.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaDiasFestivos" %>
+<%@ Register TagPrefix="ajx" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=16.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 <asp:UpdatePanel runat="server" ID="updateAltaAreas">
     <ContentTemplate>
@@ -48,7 +49,8 @@
                             <div class="form-group">
                                 <asp:Label runat="server" Text="Fecha" CssClass="control-label col-lg-12 col-md-12" />
                                 <div class="col-lg-7 col-md-7">
-                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" type="date" step="1" onkeydown="return (event.keyCode!=13);" />
+                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" onkeydown="return (event.keyCode!=13);" />
+                                    <ajx:CalendarExtender ID="Calendar1" PopupButtonID="imgPopup" runat="server" TargetControlID="txtDate" Format="dd/MM/yyyy"> </ajx:CalendarExtender>   
                                 </div>
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-calendar " Visible="False"></asp:LinkButton>
                             </div>

@@ -63,8 +63,8 @@ namespace KiiniHelp.UserControls.Preview
 
         public int IdTipoUsuario
         {
-            get { return int.Parse(hfIdInformacinConsulta.Value); }
-            set { hfIdInformacinConsulta.Value = value.ToString(); }
+            get { return int.Parse(hfIdTipoUsuario.Value); }
+            set { hfIdTipoUsuario.Value = value.ToString(); }
         }
 
         public bool MuestraEvaluacion

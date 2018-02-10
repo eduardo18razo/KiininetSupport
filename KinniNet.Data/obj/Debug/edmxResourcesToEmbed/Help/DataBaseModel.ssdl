@@ -819,6 +819,7 @@
     <Property Name="TamanoDeArchivo" Type="nvarchar(max)" />
     <Property Name="NumeroArchivo" Type="nvarchar(max)" />
     <Property Name="LevantaTickets" Type="bit" />
+    <Property Name="PeriodoDashboard" Type="int" />
     <Property Name="ValidaUsuario" Type="bit" />
     <Property Name="MensajeValidacion" Type="nvarchar(max)" />
     <Property Name="StrongPassword" Type="bit" />

@@ -100,6 +100,87 @@
             </script>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
+                    <tc:RadHtmlChart runat="server" ID="rchArea">
+                        <PlotArea>
+                            <Series>
+                                <tc:AreaSeries Name="Creados">
+                                    <Appearance>
+                                        <FillStyle BackgroundColor="Blue"></FillStyle>
+                                    </Appearance>
+                                    <LabelsAppearance Position="Above"></LabelsAppearance>
+                                    <LineAppearance Width="1"></LineAppearance>
+                                    <MarkersAppearance MarkersType="Circle" BackgroundColor="White" Size="6" BorderColor="Blue"
+                                        BorderWidth="2"></MarkersAppearance>
+                                    <TooltipsAppearance Color="White"></TooltipsAppearance>
+                                    <SeriesItems>
+                                        <tc:CategorySeriesItem Y="20"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="30"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="40"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="50"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="60"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="70"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="80"></tc:CategorySeriesItem>
+                                    </SeriesItems>
+                                </tc:AreaSeries>
+                                <tc:AreaSeries Name="Resuletos">
+                                    <Appearance>
+                                        <FillStyle BackgroundColor="Red"></FillStyle>
+                                    </Appearance>
+                                    <LabelsAppearance Position="Above"></LabelsAppearance>
+                                    <LineAppearance Width="1"></LineAppearance>
+                                    <MarkersAppearance MarkersType="Circle" BackgroundColor="White" Size="6" BorderColor="Red"
+                                        BorderWidth="2"></MarkersAppearance>
+                                    <TooltipsAppearance Color="White"></TooltipsAppearance>
+                                    <SeriesItems>
+                                        <tc:CategorySeriesItem Y="1"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="10"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="25"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="100"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="10"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="15"></tc:CategorySeriesItem>
+                                        <tc:CategorySeriesItem Y="30"></tc:CategorySeriesItem>
+                                    </SeriesItems>
+                                </tc:AreaSeries>
+                            </Series>
+                            <Appearance>
+                                <FillStyle BackgroundColor="Transparent"></FillStyle>
+                            </Appearance>
+                            <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside" Reversed="false">
+                                <Items>
+                                    <tc:AxisItem LabelText="24/01"></tc:AxisItem>
+                                    <tc:AxisItem LabelText="25/01"></tc:AxisItem>
+                                    <tc:AxisItem LabelText="26/01"></tc:AxisItem>
+                                    <tc:AxisItem LabelText="27/01"></tc:AxisItem>
+                                    <tc:AxisItem LabelText="28/01"></tc:AxisItem>
+                                    <tc:AxisItem LabelText="29/01"></tc:AxisItem>
+                                    <tc:AxisItem LabelText="30/01"></tc:AxisItem>
+                                    
+                                </Items>
+                                <TitleAppearance Position="Center" RotationAngle="0" Text=""></TitleAppearance>
+                                <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1">
+                                </LabelsAppearance>
+                            </XAxis>
+                            <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="4" MajorTickType="Outside"
+                                MaxValue="200" MinorTickType="None" MinValue="0" Reversed="false"
+                                Step="20">
+                                <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1">
+                                </LabelsAppearance>
+                                <TitleAppearance RotationAngle="0" Position="Center" Text=""></TitleAppearance>
+                            </YAxis>
+                        </PlotArea>
+                        <Appearance>
+                            <FillStyle BackgroundColor="Transparent"></FillStyle>
+                        </Appearance>
+                        <ChartTitle Text="Company performance">
+                            <Appearance Align="Center" BackgroundColor="Transparent" Position="Top">
+                            </Appearance>
+                        </ChartTitle>
+                        <Legend>
+                            <Appearance BackgroundColor="Transparent" Position="Bottom">
+                            </Appearance>
+                        </Legend>
+                    </tc:RadHtmlChart>
+
                     <tc:RadHtmlChart runat="server" ID="rhcTickets">
                     </tc:RadHtmlChart>
                     <tc:RadHtmlChart runat="server" ID="rhcEspacio">

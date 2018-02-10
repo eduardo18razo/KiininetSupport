@@ -865,7 +865,6 @@
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
     <EntitySet Name="TipoCampoMascara" EntityType="KiiniNet_v2Model.TipoCampoMascara" />
-    <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
     <EntitySet Name="Catalogos" EntityType="KiiniNet_v2Model.Catalogos" />
     <EntitySet Name="Encuesta" EntityType="KiiniNet_v2Model.Encuesta" />
     <AssociationSet Name="FK_Catalogos_Usuario" Association="KiiniNet_v2Model.FK_Catalogos_Usuario">
@@ -1068,6 +1067,7 @@
       <End Role="Ticket" EntitySet="Ticket" />
       <End Role="TicketCorreo" EntitySet="TicketCorreo" />
     </AssociationSet>
+    <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
   </EntityContainer>
   <EntityType Name="Campus">
     <Key>
@@ -4974,19 +4974,6 @@
     <Property Name="ValorMinimo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CampoMascara" Relationship="KiiniNet_v2Model.FK_tblCampoMascara_tblCatTipoCampoMascara" FromRole="TipoCampoMascara" ToRole="CampoMascara" />
   </EntityType>
-  <EntityType Name="ParametrosGenerales">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="LevantaTickets" Type="Boolean" />
-    <Property Name="ValidaUsuario" Type="Boolean" />
-    <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="StrongPassword" Type="Boolean" />
-    <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="Catalogos">
     <Key>
       <PropertyRef Name="Id" />
@@ -5790,4 +5777,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="ParametrosGenerales">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LevantaTickets" Type="Boolean" />
+    <Property Name="PeriodoDashboard" Type="Int32" />
+    <Property Name="ValidaUsuario" Type="Boolean" />
+    <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StrongPassword" Type="Boolean" />
+    <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

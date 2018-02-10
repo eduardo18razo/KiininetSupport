@@ -219,7 +219,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                         throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
                             }
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             nombreControl = "ddl" + campo.NombreCampo;
                             DropDownList ddl = (DropDownList)divControles.FindControl(nombreControl);
                             if (ddl != null)
@@ -458,7 +458,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             nombreControl = "lstRadio" + campo.NombreCampo;
                             campoTexto = false;
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             nombreControl = "ddl" + campo.NombreCampo;
                             campoTexto = false;
                             break;
@@ -563,7 +563,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                     lstCamposCapturados.Add(campoCapturado);
                                 }
                                 break;
-                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                                 DropDownList ddl = (DropDownList)divControles.FindControl(nombreControl);
                                 if (ddl != null)
                                 {
@@ -713,7 +713,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             createDiv.Controls.Add(lstRadio);
                             _lstControles.Add(lstRadio);
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             lbl.Attributes["for"] = "ddl" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             DropDownList ddlCatalogo = new DropDownList

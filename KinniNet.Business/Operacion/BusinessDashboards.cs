@@ -5,9 +5,12 @@ using System.IO;
 using System.Linq;
 using KiiniNet.Entities.Operacion.Dashboard;
 using KiiniNet.Entities.Operacion.Tickets;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
+using KinniNet.Core.Parametros;
 using KinniNet.Data.Help;
 using System.Data.SqlClient;
+using KiiniNet.Entities.Cat.Sistema;
 
 namespace KinniNet.Core.Operacion
 {
@@ -132,7 +135,11 @@ namespace KinniNet.Core.Operacion
         //TODO: Cambiar por parametro
         private int ObtenerDiasPeriodo()
         {
-            return 13;
+            int result = 7;
+            ParametrosGenerales parameters = new BusinessParametros().ObtenerParametrosGenerales();
+            if (parameters != null)
+                result = parameters.PeriodoDashboard;
+            return result;
         }
 
         public DashboardAgente GetDashboardAgente(int? idGrupo, int? idUsuario)
@@ -425,14 +432,60 @@ namespace KinniNet.Core.Operacion
                 result.GraficoTicketsAbiertos = dtTicketsAbiertos;
 
                 DataTable dtTicketsPrioridad = new DataTable("dt");
-                dtTicketsPrioridad.Columns.Add(new DataColumn("Id", typeof(int)));
                 dtTicketsPrioridad.Columns.Add(new DataColumn("Descripcion", typeof(string)));
-                dtTicketsPrioridad.Columns.Add(new DataColumn("Total", typeof(decimal)));
-
-                foreach (GraficoConteo datos in db.Ticket.Where(w => lstCreatedTicketsCurrent.Contains(w.Id)).Join(db.Impacto, t => t.IdImpacto, i => i.Id, (t, i) => new { i.Id, i.Descripcion }).GroupBy(g => new { g.Id, g.Descripcion }).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }))
+                dtTicketsPrioridad.Columns.Add(new DataColumn("Problemas", typeof(decimal)));
+                dtTicketsPrioridad.Columns.Add(new DataColumn("Servicios", typeof(decimal)));
+                foreach (string impacto in db.Impacto.Select(s => s.Descripcion).Distinct())
                 {
-                    dtTicketsPrioridad.Rows.Add(datos.Id, datos.Descripcion, datos.Total);
+                    dtTicketsPrioridad.Rows.Add(impacto);
                 }
+                foreach (GraficoConteo datos in db.Ticket.Where(w => lstCreatedTicketsCurrent.Contains(w.Id) && w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas)
+                    .Join(db.Impacto, t => t.IdImpacto, i => i.Id, (t, i) => new { i.Id, i.Descripcion }).GroupBy(g => new { g.Id, g.Descripcion })
+                    .Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }))
+                {
+                    foreach (DataRow row in dtTicketsPrioridad.Rows)
+                    {
+                        if (row[0].ToString() == datos.Descripcion)
+                        {
+                            for (int c = 0; c < dtTicketsPrioridad.Columns.Count; c++)
+                            {
+                                if (dtTicketsPrioridad.Columns[c].ColumnName == "Problemas")
+                                {
+                                    row[c] = datos.Total;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                foreach (GraficoConteo datos in db.Ticket.Where(w => lstCreatedTicketsCurrent.Contains(w.Id) && w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio)
+                    .Join(db.Impacto, t => t.IdImpacto, i => i.Id, (t, i) => new { i.Id, i.Descripcion }).GroupBy(g => new { g.Id, g.Descripcion })
+                    .Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }))
+                {
+                    foreach (DataRow row in dtTicketsPrioridad.Rows)
+                    {
+                        if (row[0].ToString() == datos.Descripcion)
+                        {
+                            for (int c = 0; c < dtTicketsPrioridad.Columns.Count; c++)
+                            {
+                                if (dtTicketsPrioridad.Columns[c].ColumnName == "Servicios")
+                                {
+                                    row[c] = datos.Total;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                foreach (DataRow row in dtTicketsPrioridad.Rows)
+                {
+                    for (int c = 0; c < dtTicketsPrioridad.Columns.Count; c++)
+                    {
+                        if (row[c].ToString() == string.Empty)
+                            row[c] = 0;
+                    }
+                }
+
                 result.GraficoTicketsPrioridad = dtTicketsPrioridad;
 
                 DataTable dtTicketsCanal = new DataTable("dt");
@@ -462,7 +515,7 @@ namespace KinniNet.Core.Operacion
                 for (int i = 0; i <= ObtenerDiasPeriodo(); i++)
                 {
                     DateTime fInicio = Convert.ToDateTime(endCurrentDate.AddDays(i).ToShortDateString() + " 00:00:00");
-                    DateTime fFin = Convert.ToDateTime(fInicio.AddDays(i + 1).ToShortDateString());
+                    DateTime fFin = Convert.ToDateTime(fInicio.AddDays(1).ToShortDateString());
                     //Tickets Creados
                     var test = db.Ticket.Where(w => lstCreatedTicketsCurrent.Contains(w.Id) && w.FechaHoraAlta >= fInicio && w.FechaHoraAlta < fFin);
                     foreach (GraficoConteo datos in db.Ticket.Where(w => lstCreatedTicketsCurrent.Contains(w.Id) && w.FechaHoraAlta >= fInicio && w.FechaHoraAlta < fFin).GroupBy(g => new { Descripcion = "Creados" }).Select(s => new GraficoConteo { Descripcion = "Creados", Total = s.Count() }))
@@ -488,7 +541,10 @@ namespace KinniNet.Core.Operacion
                                 for (int c = 0; c < dtTicketsCreadosAbiertos.Columns.Count; c++)
                                 {
                                     if (dtTicketsCreadosAbiertos.Columns[c].ColumnName == fInicio.ToShortDateString())
+                                    {
                                         dtTicketsCreadosAbiertos.Rows[j][c] = datos.Total;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -498,8 +554,11 @@ namespace KinniNet.Core.Operacion
                             for (int c = 0; c < dtTicketsCreadosAbiertos.Columns.Count; c++)
                             {
                                 if (dtTicketsCreadosAbiertos.Columns[c].ColumnName == fInicio.ToShortDateString())
+                                {
                                     dtTicketsCreadosAbiertos.Rows[0][c] = datos.Total;
-                                break;
+                                    break;
+                                }
+
                             }
                         }
                     }
@@ -527,7 +586,10 @@ namespace KinniNet.Core.Operacion
                                 for (int c = 0; c < dtTicketsCreadosAbiertos.Columns.Count; c++)
                                 {
                                     if (dtTicketsCreadosAbiertos.Columns[c].ColumnName == fInicio.ToShortDateString())
+                                    {
                                         dtTicketsCreadosAbiertos.Rows[j][c] = datos.Total;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -537,8 +599,11 @@ namespace KinniNet.Core.Operacion
                             for (int c = 0; c < dtTicketsCreadosAbiertos.Columns.Count; c++)
                             {
                                 if (dtTicketsCreadosAbiertos.Columns[c].ColumnName == fInicio.ToShortDateString())
+                                {
                                     dtTicketsCreadosAbiertos.Rows[0][c] = datos.Total;
-                                break;
+
+                                    break;
+                                }
                             }
                         }
                     }
@@ -571,7 +636,7 @@ namespace KinniNet.Core.Operacion
                     .ToList();
                 foreach (HelperMetricas metricas in metrics)
                 {
-                    metricas.TotalAnterior = db.GrupoUsuario.Join(db.TicketGrupoUsuario, gu => gu.Id, tgu => tgu.IdGrupoUsuario, (gu, tgu) => new { gu, tgu })
+                    metricas.TotalAnterior = lstCreatedTicketsPrevious.Count <= 0 ? 0 : db.GrupoUsuario.Join(db.TicketGrupoUsuario, gu => gu.Id, tgu => tgu.IdGrupoUsuario, (gu, tgu) => new { gu, tgu })
                     .Join(db.Ticket, @t1 => @t1.tgu.IdTicket, t => t.Id, (@t1, t) => new { @t1, t })
                     .Where(@t1 => @t1.@t1.gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && lstCreatedTicketsPrevious.Contains(@t1.t.Id) && @t1.t1.gu.Id == metricas.IdGrupo)
                     .GroupBy(g => new { idticket = g.t.Id, idgrupo = g.t1.gu.Id, g.t1.gu.Descripcion })

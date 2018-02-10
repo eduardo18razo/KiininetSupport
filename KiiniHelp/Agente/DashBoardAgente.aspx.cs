@@ -116,8 +116,7 @@ namespace KiiniHelp.Agente
                 decimal maxvalue = 0;
                 foreach (DataRow row in graficoTicketsCreadosResueltos.Rows)
                 {
-                    AreaSeries serie = new AreaSeries();
-                    serie.Name = row[0].ToString();
+                    AreaSeries serie = new AreaSeries { Name = row[0].ToString() };
                     serie.LabelsAppearance.Position = LineAndScatterLabelsPosition.Above;
                     serie.MarkersAppearance.MarkersType = MarkersType.Cross;
                     serie.MarkersAppearance.BackgroundColor = Color.White;
@@ -160,6 +159,14 @@ namespace KiiniHelp.Agente
                 rhcTicketsCreadosAbiertos.PlotArea.YAxis.TitleAppearance.RotationAngle = 0;
                 rhcTicketsCreadosAbiertos.PlotArea.YAxis.TitleAppearance.Position = AxisTitlePosition.Center;
                 rhcTicketsCreadosAbiertos.PlotArea.YAxis.TitleAppearance.Text = string.Empty;
+                rhcTicketsCreadosAbiertos.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+                rhcTicketsCreadosAbiertos.Legend.Appearance.Orientation = ChartLegendOrientation.Horizontal;
+
+                rhcTicketsCreadosAbiertos.PlotArea.YAxis.MajorGridLines.Width = 1;
+                rhcTicketsCreadosAbiertos.PlotArea.YAxis.MinorGridLines.Width = 0;
+
+                rhcTicketsCreadosAbiertos.PlotArea.XAxis.MajorGridLines.Width = 0;
+                rhcTicketsCreadosAbiertos.PlotArea.XAxis.MinorGridLines.Width = 0;
 
             }
             catch (Exception ex)
@@ -175,7 +182,8 @@ namespace KiiniHelp.Agente
             pieSerie.NameField = "Descripcion";
             pieSerie.LabelsAppearance.Visible = true;
             pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
-
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+            grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Horizontal;
             grafico.PlotArea.Series.Add(pieSerie);
             grafico.DataSource = dt;
             grafico.DataBind();
@@ -183,28 +191,32 @@ namespace KiiniHelp.Agente
         private void GeneraGraficaStackedBar(RadHtmlChart grafico, DataTable dt)
         {
             grafico.PlotArea.Series.Clear();
-            grafico.Width = Unit.Percentage(100);
-            grafico.Height = Unit.Pixel(250);
-            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
-
-
-            for (int c = 0; c < dt.Columns.Count; c++)
+            grafico.PlotArea.XAxis.Items.Clear();
+            decimal maxvalue = 0;
+            foreach (DataRow row in dt.Rows)
             {
-                BarSeries serie = new BarSeries();
-                serie.Stacked = true;
+                BarSeries serie = new BarSeries { Name = row[0].ToString(), Stacked = true };
                 serie.LabelsAppearance.Position = BarColumnLabelsPosition.Center;
-                serie.LabelsAppearance.DataFormatString = "{0}";
-                serie.TooltipsAppearance.DataFormatString = "{0}";
-                serie.DataFieldY = dt.Columns[c].ColumnName;
+                serie.TooltipsAppearance.Color = Color.White;
+                for (int i = 1; i < dt.Columns.Count; i++)
+                {
+                    serie.SeriesItems.Add(decimal.Parse(row[i].ToString()));
+                    maxvalue = maxvalue < decimal.Parse(row[i].ToString()) ? decimal.Parse(row[i].ToString()) : maxvalue;
+                }
                 grafico.PlotArea.Series.Add(serie);
             }
-            grafico.PlotArea.XAxis.DataLabelsField = "Descripcion";
+            for (int i = 1; i < dt.Columns.Count; i++)
+            {
+                grafico.PlotArea.XAxis.Items.Add(dt.Columns[i].ColumnName);
+            }
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+            grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Horizontal;
+
+            grafico.PlotArea.YAxis.MajorGridLines.Width = 1;
+            grafico.PlotArea.YAxis.MinorGridLines.Width = 0;
+
             grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
             grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
-            grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
-            grafico.PlotArea.YAxis.MinorGridLines.Width = 0;
-            grafico.DataSource = dt;
-            grafico.DataBind();
         }
 
 

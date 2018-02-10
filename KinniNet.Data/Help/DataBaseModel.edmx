@@ -824,6 +824,7 @@
           <Property Name="TamanoDeArchivo" Type="nvarchar(max)" />
           <Property Name="NumeroArchivo" Type="nvarchar(max)" />
           <Property Name="LevantaTickets" Type="bit" />
+          <Property Name="PeriodoDashboard" Type="int" />
           <Property Name="ValidaUsuario" Type="bit" />
           <Property Name="MensajeValidacion" Type="nvarchar(max)" />
           <Property Name="StrongPassword" Type="bit" />
@@ -6184,7 +6185,6 @@
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
           <EntitySet Name="TipoCampoMascara" EntityType="KiiniNet_v2Model.TipoCampoMascara" />
-          <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
           <EntitySet Name="Catalogos" EntityType="KiiniNet_v2Model.Catalogos" />
           <EntitySet Name="Encuesta" EntityType="KiiniNet_v2Model.Encuesta" />
           <AssociationSet Name="FK_Catalogos_Usuario" Association="KiiniNet_v2Model.FK_Catalogos_Usuario">
@@ -6387,6 +6387,7 @@
             <End Role="Ticket" EntitySet="Ticket" />
             <End Role="TicketCorreo" EntitySet="TicketCorreo" />
           </AssociationSet>
+          <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
           </EntityContainer>
         <EntityType Name="Campus">
           <Key>
@@ -10293,19 +10294,6 @@
           <Property Name="ValorMinimo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CampoMascara" Relationship="KiiniNet_v2Model.FK_tblCampoMascara_tblCatTipoCampoMascara" FromRole="TipoCampoMascara" ToRole="CampoMascara" />
         </EntityType>
-        <EntityType Name="ParametrosGenerales">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LevantaTickets" Type="Boolean" />
-          <Property Name="ValidaUsuario" Type="Boolean" />
-          <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StrongPassword" Type="Boolean" />
-          <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Catalogos">
           <Key>
             <PropertyRef Name="Id" />
@@ -11109,6 +11097,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ParametrosGenerales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LevantaTickets" Type="Boolean" />
+          <Property Name="PeriodoDashboard" Type="Int32" />
+          <Property Name="ValidaUsuario" Type="Boolean" />
+          <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StrongPassword" Type="Boolean" />
+          <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12449,20 +12451,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ParametrosGenerales">
-            <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
-              <MappingFragment StoreEntitySet="ParametrosGenerales">
-                <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
-                <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
-                <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
-                <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
-                <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
-                <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
-                <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Catalogos">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.Catalogos">
               <MappingFragment StoreEntitySet="Catalogos">
@@ -12688,6 +12676,21 @@
               <MappingFragment StoreEntitySet="TicketCorreo">
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParametrosGenerales">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
+              <MappingFragment StoreEntitySet="ParametrosGenerales">
+                <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
+                <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
+                <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
+                <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
+                <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
+                <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
+                <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
+                <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

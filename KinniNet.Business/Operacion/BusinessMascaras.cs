@@ -109,7 +109,7 @@ namespace KinniNet.Core.Operacion
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
                             queryCamposTabla += String.Format("[{0}] {1} {2},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, campoMascara.Requerido ? "NOT NULL" : "NULL");
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             queryCamposTabla += String.Format("[{0}] {1} {2},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, campoMascara.Requerido ? "NOT NULL" : "NULL");
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
@@ -213,7 +213,7 @@ namespace KinniNet.Core.Operacion
                             queryCampos += String.Format("[{0}],\n", campoMascara.NombreCampo);
                             queryValues += String.Format("@{0},\n", campoMascara.NombreCampo);
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             queryParametros += String.Format("@{0} {1},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
                             queryCampos += String.Format("[{0}],\n", campoMascara.NombreCampo);
                             queryValues += String.Format("@{0},\n", campoMascara.NombreCampo);
@@ -351,7 +351,7 @@ namespace KinniNet.Core.Operacion
                             queryParametros += String.Format("@{0} {1},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
                             queryCamposValues += String.Format("[{0}] = @{0},\n", campoMascara.NombreCampo);
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             queryParametros += String.Format("@{0} {1},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
                             queryCamposValues += String.Format("[{0}] = @{0},\n", campoMascara.NombreCampo);
                             break;
@@ -739,7 +739,7 @@ namespace KinniNet.Core.Operacion
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
-                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroDecimal:
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:

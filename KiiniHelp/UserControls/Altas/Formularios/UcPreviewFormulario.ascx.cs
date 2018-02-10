@@ -194,7 +194,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             createDiv.Controls.Add(lstRadio);
                             _lstControles.Add(lstRadio);
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             lbl.Attributes["for"] = "ddl" + campo.Descripcion;
                             createDiv.Controls.Add(lbl);
                             DropDownList ddlCatalogo = new DropDownList

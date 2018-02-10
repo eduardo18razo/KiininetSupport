@@ -113,7 +113,7 @@ namespace KiiniHelp.Users.Graficos
                         rptGraficos.DataSource = _servicioConsultas.GraficarConsultaEncuestaPregunta(((Usuario)Session["UserData"]).Id, encuesta.Id, ucFiltroFechasGrafico.RangoFechas, ucFiltroFechasGrafico.TipoPeriodo, encuesta.IdTipoEncuesta);
                         rptGraficos.DataBind();
                         break;
-                    case (int)BusinessVariables.EnumTipoEncuesta.OpcionMultiple:
+                    case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
                         rptGraficos.DataSource = _servicioConsultas.GraficarConsultaEncuestaPregunta(((Usuario)Session["UserData"]).Id, encuesta.Id, ucFiltroFechasGrafico.RangoFechas, ucFiltroFechasGrafico.TipoPeriodo, encuesta.IdTipoEncuesta);
                         rptGraficos.DataBind();
                         break;
