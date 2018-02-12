@@ -489,10 +489,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/18/2018 12:07:12</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>02/08/2018 17:53:35</publishTime>
+      <publishTime>02/09/2018 16:41:53</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>02/08/2018 17:53:35</publishTime>
+      <publishTime>02/09/2018 16:41:53</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
       <publishTime>02/07/2018 11:07:57</publishTime>
@@ -501,10 +501,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/07/2018 11:07:57</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>02/08/2018 17:36:36</publishTime>
+      <publishTime>02/09/2018 16:41:41</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>02/08/2018 17:36:36</publishTime>
+      <publishTime>02/09/2018 16:41:41</publishTime>
     </File>
     <File Include="bin/MSCaptcha.dll">
       <publishTime>11/08/2017 15:25:11</publishTime>
