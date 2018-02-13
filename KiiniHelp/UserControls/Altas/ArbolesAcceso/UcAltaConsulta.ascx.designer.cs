@@ -130,13 +130,13 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
         
         /// <summary>
-        /// Control chkEvaluacion.
+        /// Control chkPublico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkEvaluacion;
+        protected global::System.Web.UI.WebControls.CheckBox chkPublico;
         
         /// <summary>
         /// Control ddlConsultas.
@@ -146,16 +146,16 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlConsultas;
-
+        
         /// <summary>
-        /// Control chkPublico.
+        /// Control chkEvaluacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkPublico;
-
+        protected global::System.Web.UI.WebControls.CheckBox chkEvaluacion;
+        
         /// <summary>
         /// Control chkNivelHabilitado.
         /// </summary>

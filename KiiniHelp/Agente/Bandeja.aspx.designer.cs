@@ -49,24 +49,6 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.Label lblTicketAbiertosHeader;
         
         /// <summary>
-        /// Control ddlGrupo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrupo;
-        
-        /// <summary>
-        /// Control ddlAgente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAgente;
-        
-        /// <summary>
         /// Control btnAutoasignar.
         /// </summary>
         /// <remarks>
@@ -121,6 +103,33 @@ namespace KiiniHelp.Agente {
         protected global::Telerik.Web.UI.RadGrid gvTickets;
         
         /// <summary>
+        /// Control ddlGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGrupo;
+        
+        /// <summary>
+        /// Control ddlAgente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAgente;
+        
+        /// <summary>
+        /// Control btnFiltroTodos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton btnFiltroTodos;
+        
+        /// <summary>
         /// Control btnFiltroAbierto.
         /// </summary>
         /// <remarks>
@@ -164,6 +173,15 @@ namespace KiiniHelp.Agente {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton btnFueraSla;
+        
+        /// <summary>
+        /// Control RadButton1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton1;
         
         /// <summary>
         /// Control UcDetalleTicket.

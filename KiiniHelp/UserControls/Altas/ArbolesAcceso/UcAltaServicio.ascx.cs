@@ -552,12 +552,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 chkNotificacionOperacion_OnCheckedChanged(chkNotificacionOperacion, null);
                 chkVencimientoOperacion.Checked = false;
 
-                //txtTiempoNotificacionConsulta.Text = string.Empty;
-                //ddlNotificacionGrupoConsulta.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
-                //ddlCanalConsulta.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
-                //chkNotificacionConsulta.Checked = false;
-                //chkNotificacionConsulta_OnCheckedChanged(chkNotificacionConsulta, null);
-
                 //Encuestas
                 chkEncuestaActiva.Checked = false;
                 chkEncuestaActiva_OnCheckedChanged(chkEncuestaActiva, null);
@@ -1600,9 +1594,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
 
                         switch (int.Parse(ddlNotificacionGrupoMtto.SelectedValue))
                         {
-                            //case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Meses:
-                            //    dias = decimal.Parse(txtTiempoNotificacionMtto.Text) * 24;
-                            //    break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
                                 dias = decimal.Parse(txtTiempoNotificacionMtto.Text);
                                 break;
@@ -1644,9 +1635,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
 
                     switch (int.Parse(ddlNotificacionGrupoOperacion.SelectedValue))
                     {
-                        //case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Meses:
-                        //    dias = decimal.Parse(txtTiempoNotificacionDev.Text) * 24;
-                        //    break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
                             dias = decimal.Parse(txtTiempoNotificacionOperacion.Text);
                             break;
@@ -1689,9 +1677,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
 
                     switch (int.Parse(ddlNotificacionGrupoDev.SelectedValue))
                     {
-                        //case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Meses:
-                        //    dias = decimal.Parse(txtTiempoNotificacionDev.Text) * 24;
-                        //    break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
                             dias = decimal.Parse(txtTiempoNotificacionDev.Text);
                             break;
@@ -1743,55 +1728,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         });
                     }
                 }
-                //foreach (ListItem item in lstGrupoEspecialConsultaServicios.Items)
-                //{
-                //    if (item.Selected)
-                //    {
-                //        gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(item.Value));
-                //        //if (chkNotificacionConsulta.Checked)
-                //        //{
-                //        //    TiempoInformeArbol tiempoIndorme = new TiempoInformeArbol
-                //        //    {
-                //        //        IdTipoGrupo = gpo.IdTipoGrupo,
-                //        //        IdGrupoUsuario = gpo.Id,
-                //        //        AntesVencimiento = !chkNotificacionConsulta.Checked
-                //        //    };
-                //        //    decimal dias = 0, horas = 0, minutos = 0;
-                //        //    const decimal segundos = 0;
-
-                //        //    switch (int.Parse(ddlNotificacionGrupoConsulta.SelectedValue))
-                //        //    {
-                //        //        //case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Meses:
-                //        //        //    dias = decimal.Parse(txtTiempoNotificacionConsulta.Text) * 24;
-                //        //        //    break;
-                //        //        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
-                //        //            dias = decimal.Parse(txtTiempoNotificacionConsulta.Text);
-                //        //            break;
-                //        //        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
-                //        //            horas = decimal.Parse(txtTiempoNotificacionConsulta.Text);
-                //        //            break;
-                //        //        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
-                //        //            minutos = decimal.Parse(txtTiempoNotificacionConsulta.Text);
-                //        //            break;
-                //        //    }
-                //        //    tiempoIndorme.Dias = dias;
-                //        //    tiempoIndorme.Horas = horas;
-                //        //    tiempoIndorme.Minutos = minutos;
-                //        //    tiempoIndorme.Segundos = segundos;
-                //        //    tiempoIndorme.TiempoNotificacion += (((segundos / 60) / 60) / 8) + (minutos / 60) / 8 + horas / 8 + dias;
-                //        //    tiempoIndorme.IdTipoNotificacion = int.Parse(ddlNotificacionGrupoConsulta.SelectedValue);
-                //        //}
-
-                //        arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                //        {
-                //            IdGrupoUsuario = gpo.Id,
-                //            IdRol = (int)BusinessVariables.EnumRoles.ConsultasEspeciales,
-                //            IdSubGrupoUsuario = null
-                //        });
-                //    }
-                //}
-
-
 
                 gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoDuenoServicio.SelectedValue));
 
@@ -1808,9 +1744,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
 
                     switch (int.Parse(ddlNotificacionGrupoDueño.SelectedValue))
                     {
-                        //case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Meses:
-                        //    dias = decimal.Parse(txtTiempoNotificacionDueno.Text) * 24;
-                        //    break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
                             dias = decimal.Parse(txtTiempoNotificacionDueno.Text);
                             break;
@@ -1837,17 +1770,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeCategoría,
                     IdSubGrupoUsuario = null
                 });
-
-                //gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoAgenteUniversal.SelectedValue));
-                //foreach (SubGrupoUsuario subGrupoUsuario in gpo.SubGrupoUsuario)
-                //{
-                //    arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                //    {
-                //        IdGrupoUsuario = subGrupoUsuario.IdGrupoUsuario,
-                //        IdRol = (int)BusinessVariables.EnumRoles.AgenteUniversal,
-                //        IdSubGrupoUsuario = subGrupoUsuario.Id
-                //    });
-                //}
 
                 arbol.InventarioArbolAcceso.First().Descripcion = txtDescripcionNivel.Text.Trim();
                 switch (int.Parse(Catalogo))
@@ -1939,8 +1861,11 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 }
                 LimpiarPantalla();
                 _mp.AlertaSucces();
-                if (OnAceptarModal != null)
-                    OnAceptarModal();
+                //if (OnAceptarModal != null)
+                //    OnAceptarModal();
+
+                if (OnTerminarModal != null)
+                    OnTerminarModal();
 
             }
             catch (Exception ex)

@@ -138,6 +138,7 @@
                                         <div class="col-lg-3 col-md-3 col-sm-5">
                                             <asp:TextBox runat="server" ID="txtLongitudMinima" type="number" min="1" max="99" CssClass="form-control" Style="text-transform: none" Height="29px" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                         </div>
+                                        <asp:Label runat="server" ID="lblDescripcion" CssClass="col-lg-12 col-md-12 col-sm-12 no-padding-left padding-10-top" />
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +160,7 @@
                                     <div class="form-group">
                                          <hr />
                                         <div class="row form-inline margin margin-top-10">
-                                            <asp:Label runat="server" Text="Selecciona el catálogo que contiene las opciones que se mostrarán" Font-Bold="true" />
+                                            <asp:Label runat="server" Text="Selecciona el catálogo que contiene las opciones que se mostrarán" />
                                             <br />
                                             <br />
                                             <div class="form-group col-lg-12 col-md-12 col-sm-12">
@@ -174,7 +175,7 @@
                                         </div>
                                         <hr />
                                         <div class="row form-group margin-top-10">
-                                            <asp:Label runat="server" Text="Agregar opciones manualmente:" Font-Bold="true" />
+                                            <asp:Label runat="server" Text="Agregar opciones manualmente:" />
                                         </div>
 
                                         <uc1:UcAltaCatalogo runat="server" ID="ucAltaCatalogo" />

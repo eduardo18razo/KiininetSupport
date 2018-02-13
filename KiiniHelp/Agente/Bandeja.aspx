@@ -26,7 +26,8 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-8 col-sm-8 no-padding-right">
                             <div class="module-inner">
-                                <section class="module">
+
+                                <section class="module" style="height: 670px">
                                     <div class="module-inner">
                                         <div class="row ">
                                             <div class="module-heading col-lg-12 col-md-12 col-sm-12">
@@ -35,61 +36,38 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row ">
-                                            <div class="col-lg-7 col-md-7 col-sm-12 text-left">
+                                        <%--empieza div botones operar ticket--%>
+                                        <div class="row" style="margin-top: 18px">
+                                            <div class="col-lg-10 col-md-10 col-sm-10 no-padding-left">
+                                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
+                                                        <i class="fa fa-long-arrow-down"></i>
+                                                        Asignármelo
+                                                </asp:LinkButton>
 
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <asp:Label runat="server" class="col-sm-9 control-label" Text="Grupo" />
-                                                        <asp:DropDownList runat="server" ID="ddlGrupo" AutoPostBack="True" CssClass="form-control" Width="73%" OnSelectedIndexChanged="ddlGrupo_OnSelectedIndexChanged" />
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <asp:Label runat="server" class="col-sm-9 control-label" Text="Agente" />
-                                                        <asp:DropDownList runat="server" ID="ddlAgente" AutoPostBack="True" CssClass="form-control" Width="73%" OnSelectedIndexChanged="ddlAgente_OnSelectedIndexChanged" />
-                                                    </div>
-                                                </div>
+                                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAsignar" OnClick="btnAsignar_OnClick">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        Asignar
+                                                </asp:LinkButton>
 
+                                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick">
+                                                        <i class="fa fa-long-arrow-right"></i>
+                                                        Cambiar Estatus
+                                                </asp:LinkButton>
+
+                                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnRefresh" OnClick="btnRefresh_OnClick">
+                                                        <i class="fa fa-refresh"></i>
+                                                </asp:LinkButton>
+
+                                                <asp:LinkButton runat="server" CssClass="btn fa fa-long-arrow-right margin-bottom-10" Text="Escalar" ID="btnEscalar" OnClick="btnEscalar_OnClick" Visible="False" />
                                             </div>
-                                            <div class="col-lg-5 col-md-5 col-sm-12 text-right">
+                                            <div class="col-lg-2 col-md-2 col-sm-2 text-right no-padding-right">
                                                 <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="OnClick">
                                             <i class="fa fa-plus"></i>  Nuevo Ticket                                          
                                                 </asp:LinkButton>
                                             </div>
-                                        </div>
 
-
-                                    </div>
-                                </section>
-                                <section class="module" style="height: 670px">
-                                    <div class="module-inner">
-
-                                        <%--empieza div botones operar ticket--%>
-                                        <div class="row" style="margin-top: 18px">
-                                            <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
-                                                        <i class="fa fa-long-arrow-down"></i>
-                                                        Asignármelo
-                                            </asp:LinkButton>
-
-                                            <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAsignar" OnClick="btnAsignar_OnClick">
-                                                        <i class="fa fa-long-arrow-right"></i>
-                                                        Asignar
-                                            </asp:LinkButton>
-
-                                            <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick">
-                                                        <i class="fa fa-long-arrow-right"></i>
-                                                        Cambiar Estatus
-                                            </asp:LinkButton>
-
-                                            <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnRefresh" OnClick="btnRefresh_OnClick">
-                                                        <i class="fa fa-refresh"></i>
-                                            </asp:LinkButton>
-
-                                            <asp:LinkButton runat="server" CssClass="btn fa fa-long-arrow-right margin-bottom-10" Text="Escalar" ID="btnEscalar" OnClick="btnEscalar_OnClick" Visible="False" />
                                         </div>
                                         <%--termina div botones operar ticket--%>
-
 
                                         <tc:RadGrid runat="server" ID="gvTickets" CssClass="table table-striped display margin-top-10"
                                             FilterType="HeaderContext" EnableHeaderContextMenu="true" EnableHeaderContextFilterMenu="true" PagerStyle-AlwaysVisible="true" OnFilterCheckListItemsRequested="gvTickets_OnFilterCheckListItemsRequested"
@@ -107,10 +85,6 @@
                                                         <HeaderStyle Width="30px"></HeaderStyle>
                                                     </tc:GridClientSelectColumn>
 
-                                                    <%-- <tc:GridImageColumn DataImageUrlFields="ImagenSla" FilterCheckListEnableLoadOnDemand="True" HeaderText="SLA" SortExpression="ImagenSla" ShowFilterIcon="False" AllowFiltering="False" UniqueName="Sla" ImageWidth="23px">
-                                                        <HeaderStyle Width="60px"></HeaderStyle>
-                                                    </tc:GridImageColumn>--%>
-
                                                     <tc:GridTemplateColumn UniqueName="Sla" HeaderText="SLA" DataField="DentroSla" FilterCheckListEnableLoadOnDemand="True" SortExpression="Sla" ShowFilterIcon="True" AllowFiltering="True">
                                                         <HeaderStyle Width="60px"></HeaderStyle>
                                                         <ItemTemplate>
@@ -120,16 +94,11 @@
 
 
                                                     <tc:GridTemplateColumn FilterCheckListEnableLoadOnDemand="True" HeaderText="Pri" SortExpression="ImagenPrioridad" AutoPostBackOnFilter="True" ShowFilterIcon="False" AllowFiltering="False" UniqueName="ImagenPrioridad">
-                                                        <HeaderStyle Width="60px"> </HeaderStyle>
-                                                            <itemtemplate>
-                                                            <i runat="server" class="fa fa-exclamation fontRed iconoFont" visible='<%# Eval("Impacto").ToString() == "Alto"%>'></i>                                                                
-                                                                 </itemtemplate>
+                                                        <HeaderStyle Width="60px"></HeaderStyle>
+                                                        <ItemTemplate>
+                                                            <i runat="server" class="fa fa-exclamation fontRed iconoFont" visible='<%# Eval("Impacto").ToString() == "Alto"%>'></i>
+                                                        </ItemTemplate>
                                                     </tc:GridTemplateColumn>
-
-                                                    <%-- <tc:GridImageColumn DataImageUrlFields="ImagenPrioridad" FilterCheckListEnableLoadOnDemand="True" HeaderText="Pri" SortExpression="ImagenPrioridad" AutoPostBackOnFilter="True" ShowFilterIcon="False" AllowFiltering="False" UniqueName="ImagenPrioridad" ImageWidth="23px">
-                                                        <HeaderStyle Width="60px">
-                                                        </HeaderStyle>
-                                                    </tc:GridImageColumn>--%>
 
                                                     <tc:GridTemplateColumn UniqueName="Vip" HeaderText="VIP" FilterCheckListEnableLoadOnDemand="True" ShowFilterIcon="False" AllowFiltering="False">
                                                         <HeaderStyle Width="60px"></HeaderStyle>
@@ -145,10 +114,6 @@
 
                                                             <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "top:0; Border: none !important; Background: " + Eval("UsuarioSolicito.TipoUsuario.Color") + " !important" %>'>
                                                                 <%# Eval("UsuarioSolicito.TipoUsuario.Descripcion").ToString().Substring(0,1) %></button>
-
-                                                            <%--  <div class="btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("UsuarioSolicito.TipoUsuario.Color") + " !important" %>'>
-                                                                <label><%# Eval("UsuarioSolicito.TipoUsuario.Descripcion").ToString().Substring(0,1) %></label>
-                                                            </div>--%>
                                                         </ItemTemplate>
                                                     </tc:GridTemplateColumn>
 
@@ -215,19 +180,48 @@
                                 <div class="module-inner">
 
                                     <div class="module-heading col-lg-12 col-md-12 col-sm-12">
-
                                         <div class="module-title margin-left-15">
                                             <asp:Label runat="server" Text="Filtros" CssClass="TitulosAzul" />
                                         </div>
-                                        <%--<hr />--%>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <asp:Label runat="server" class="col-sm-9 control-label" Text="Grupo" />
+                                            <asp:DropDownList runat="server" ID="ddlGrupo" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlGrupo_OnSelectedIndexChanged" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <asp:Label runat="server" class="col-sm-9 control-label" Text="Agente" />
+                                            <asp:DropDownList runat="server" ID="ddlAgente" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlAgente_OnSelectedIndexChanged" />
+                                        </div>
+                                    </div>
+
+                                    <div class="module-heading col-lg-12 col-md-12 col-sm-12">
+                                        <div class="module-title margin-left-15">
+                                            <asp:Label runat="server" Text="Vistas" CssClass="TitulosAzul" />
+                                        </div>
                                     </div>
 
                                     <div class="row borderbootom padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Abierto" ID="btnFiltroAbierto" EnableEmbeddedSkins="False"
+                                            <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Todos" ID="btnFiltroTodos" EnableEmbeddedSkins="False"
+                                                CommandArgument="Todos" Style="text-align: left" OnClick="btnFiltro_OnClick">
+                                                <ContentTemplate>
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Todos" />
+                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsAbiertos" Style="text-align: right">0</asp:Label>
+                                                </ContentTemplate>
+                                            </tc:RadButton>
+                                        </div>
+                                    </div>
+
+                                    <div class="row borderbootom padding-10-bottom">
+                                        <div class="col-lg-12 no-padding-left verical-center">
+                                            <tc:RadButton runat="server" Text="Abiertos" CssClass="btn col-sm-12 col-md-12 col-lg-12" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" ID="btnFiltroAbierto" EnableEmbeddedSkins="False"
                                                 CommandArgument="Abierto" Style="text-align: left" OnClick="btnFiltro_OnClick">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Abiertos" />
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets abiertos" />
                                                     <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsAbiertos" Style="text-align: right">0</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
@@ -237,7 +231,7 @@
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Tickets Sin Asignar" ID="btnFiltroSinAsignar" CommandArgument="SinAsignar" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Sin Asignar" />
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets sin asignar" />
                                                     <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsSinAsignar" Style="text-align: right">0</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
@@ -245,9 +239,9 @@
                                     </div>
                                     <div class="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="En Espera" ID="btnFiltroEspera" CommandArgument="Espera" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                            <tc:RadButton runat="server" Text="En espera" ID="btnFiltroEspera" CommandArgument="Espera" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Pendientes" />
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets pendientes" />
                                                     <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsEspera" Style="text-align: right">2</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
@@ -258,7 +252,7 @@
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Recien Resuelto" ID="btnFiltroResuelto" CommandArgument="Resuelto" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Recién Resueltos (36hrs)" />
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets recién resueltos (36hrs)" />
                                                     <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsResueltos" Style="text-align: right">0</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
@@ -268,16 +262,27 @@
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Fuera SLA" ID="btnFueraSla" CommandArgument="FueraSla" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
-                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets Fuera de Sla" />
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Tickets fuera de SLA" />
                                                     <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsFueraSla" Style="text-align: right">0</asp:Label>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
                                     </div>
+
+                                    <div class="row borderbootom padding-10-top padding-10-bottom">
+                                        <div class="col-lg-12 no-padding-left verical-center">
+                                            <tc:RadButton runat="server" Text="Recien actualizados" ID="RadButton1" CommandArgument="recienActualizados" CssClass="btn col-sm-12 col-md-12 col-lg-12" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                                <ContentTemplate>
+                                                    <asp:Label class="col-sm-10 col-md-10 col-lg-10 t14" runat="server" Text="Recien actualizados" />
+                                                    <asp:Label class="col-sm-2 col-md-2 col-lg-2 t14" runat="server" ID="lblTicketsFueraSla" Style="text-align: right">0</asp:Label>
+                                                </ContentTemplate>
+                                            </tc:RadButton>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </section>
                         </div>
-
                     </div>
                 </div>
             </ContentTemplate>
@@ -340,9 +345,9 @@
             <ContentTemplate>
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                       <%-- <div class="modal-body">--%>
-                            <uc1:UcAsignacionUsuario runat="server" ID="ucAsignacionUsuario" />
-                       <%-- </div>--%>
+                        <%-- <div class="modal-body">--%>
+                        <uc1:UcAsignacionUsuario runat="server" ID="ucAsignacionUsuario" />
+                        <%-- </div>--%>
                     </div>
                 </div>
             </ContentTemplate>

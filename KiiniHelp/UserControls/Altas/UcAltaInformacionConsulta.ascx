@@ -52,31 +52,33 @@
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="module-inner">
-                        Palabras de Búsqueda<hr />
+                        <asp:Label runat="server" Text="Palabras de Búsqueda"/>
+                        <hr />
                         <div class="form-group">
                             <asp:TextBox runat="server" ID="txtBusqueda" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control" Style="width: 100%" MaxLength="500"></asp:TextBox>
                         </div>
-                        Etiquetas<hr />
+                        <asp:Label runat="server" Text="Etiquetas"/>
+                        <hr />
                         <div class="form-group">
                             <asp:TextBox runat="server" ID="txtTags" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control" Style="width: 100%" MaxLength="500"></asp:TextBox>
                         </div>
-                        Adjuntos<br />
+                        <asp:Label runat="server" Text="Adjuntos"/>
+                        <br />
                         <hr />
                         <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upArchivos">
                             <ContentTemplate>
                                 <div class="form-group">
                                     <asp:Repeater runat="server" ID="rptFiles">
                                         <ItemTemplate>
-                                            <div class="row col-lg-12 col-md-12 col-sm-12">
-                                                <span>
-                                                    <span class="col-lg-10 col-md-10 col-sm-10 fa fa-file-o">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <span class="row">
+                                                    <span class="col-lg-10 col-md-10 col-sm-10"><i class="fa fa-file-o"></i>
                                                         <asp:Label runat="server" ID="lblFile" Text='<%# Eval("NombreArchivo")%>' />
                                                     </span>
+                                                    <asp:LinkButton runat="server" CssClass="col-lg-1 col-md-1 col-sm-1" ID="btnRemoveFile" CommandArgument='<%# Eval("NombreArchivo")%>' OnClick="btnRemoveFile_OnClick" ><i class="fa fa-remove"></i></asp:LinkButton>
 
                                                     <asp:Label runat="server" ID="Label1" CssClass="col-lg-10 col-md-10 col-sm-10" Text='<%# Eval("Tamaño")%>' />
-                                                    <asp:LinkButton runat="server" CssClass="col-lg-1 col-md-1 col-sm-1 fa fa-remove" ID="btnRemoveFile" CommandArgument='<%# Eval("NombreArchivo")%>' OnClick="btnRemoveFile_OnClick" />
-                                                </span>
-                                                <br />
+                                                </span>                                                
                                                 <hr />
                                             </div>
                                         </ItemTemplate>

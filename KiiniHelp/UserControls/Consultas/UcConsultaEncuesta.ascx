@@ -25,9 +25,7 @@
                             </p>
                         </div>
 
-
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
 
                             <div class="form col-lg-6 separador-vertical-derecho">
                                 <div class="form-group">
@@ -41,20 +39,17 @@
                                 </div>
                             </div>
 
-
                             <div class="form col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
                                 <div class="form-group margin-top-btn-consulta">
                                     <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
-                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
+                                 <i class="fa fa-download"></i>Descargar reporte</asp:LinkButton>
 
                                     <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
                                 <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
 
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </section>

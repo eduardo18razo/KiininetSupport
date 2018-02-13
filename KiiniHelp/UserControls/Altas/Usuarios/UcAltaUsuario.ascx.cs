@@ -645,6 +645,12 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 btnEditar.Visible = false;
                 FileUpload1.Enabled = true;
                 btnCambiarImagen.Visible = true;
+
+                //botones organización, ubicación & Roles y grupos
+                btnModalOrganizacion.Visible = true;
+                btnModalUbicacion.Visible = true;
+                btnModalRoles.Visible = true;
+
             }
             catch (Exception ex)
             {
@@ -698,10 +704,14 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         lblTitle.Text = "Mi Perfil";
                         IdUsuario = ((Usuario)Session["UserData"]).Id;
                         EsDetalle = true;
+                        /**/
+                        btnModalOrganizacion.Visible = false;
+                        btnModalUbicacion.Visible = false;
+                        btnModalRoles.Visible = false;
                     }
                     else
                     {
-                        lblTitle.Text = "Alta De Usuario";
+                        lblTitle.Text = "Nuevo Usuario";
                         EsDetalle = false;
                         Alta = true;
                     }
@@ -818,8 +828,9 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                             .EsMoral)
                     {
                         divPuesto.Visible = true;
-                        btnModalOrganizacion.Text = "Modificar";
-                        btnModalUbicacion.Text = "Modificar";
+                        btnModalOrganizacion.Text = "Editar";
+                        btnModalUbicacion.Text = "Editar";
+                        btnModalRoles.Text = "Editar";
                     }
                     else
                     {

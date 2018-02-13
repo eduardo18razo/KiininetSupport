@@ -4,14 +4,16 @@
 */
 
 @font-face {
-    font-family: Proxima Nova RG;
-    src: local('MarkSimonson-Proxima-Nova-Regular'), url('../fonts/MarkSimonson-Proxima-Nova-Regular.otf'), format('otf');
+    font-family: 'Proxima';
+    src: local('MarkSimonson-Proxima-Nova-Regular'), url('MarkSimonson-Proxima-Nova-Regular.otf'), format('opentype'); /*../fonts/MarkSimonson-Proxima-Nova-Regular.otf*/
+    src: url(/)
 }
 
 html {
     font-family: 'Proxima Nova';
     height: 100%;
     background: #F3F4F4;
+    color: #6E6E6E;
 }
 
 .preload * {
@@ -26,7 +28,7 @@ html {
 
 body {
     font-family: 'Proxima Nova';
-    color: #6E6E6E;
+    color: #6E6E6E; /*#494d55*/
     font-size: 12px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -98,8 +100,6 @@ hr {
     margin-bottom: 10px;
     border-top: 1px solid #ededed;
 }
-
-
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -929,7 +929,7 @@ button.close:focus {
     bottom: 0;
     width: 100%;
     min-height: 25px;
-    height: 5%;
+    height: 25px;  /*5%*/
     margin-left: 0;
     padding: 5px;
     border-top: 1px solid #f3f3f3;
@@ -1811,16 +1811,16 @@ a.btn {
 
 
 .btn-default {
-    font-family: Open Sans;
+    font-family: 'Proxima Nova';
     border-color: #454545;
     color: #454545;
 }
 
 .btn-primary {
-    font-family: Open Sans;
+    font-family: 'Proxima Nova' ;  /*Open Sans*/
     background: #3FA9F5;
     border: 1px solid #3FA9F5;
-    color: #FFF;
+    color: #FFF !important;
 }
 
     .btn-primary:hover {
@@ -1975,7 +1975,7 @@ a.btn {
 .btn-seleccione {
     background: #ecf0f1;
     border: 1px solid #e1e6e8;
-    color: #000;
+    color: #6E6E6E; /*#6E6E6E    #494d55*/
     padding-top: 5px;
 }
 
@@ -3590,7 +3590,7 @@ table.dataTable thead th {
 /* Large devices (large desktops, 1200px and up) */
 /* ===== GALERIA DE FORMATOS ===== */
 label {
-    color: #494d55;
+    /*color: #494d55;*/
     padding-right: 10px;
     font-weight: normal !important;
     margin-bottom: 3px;
@@ -4559,6 +4559,7 @@ ul.sortable {
 
 .modal-dialog {
     position: relative;
+    margin-bottom:30px;
 }
 
 .modal button.close {
@@ -6311,15 +6312,12 @@ ul.sortable {
     .dropdown-menu > .active > a,
     .dropdown-menu > .active > a:hover,
     .dropdown-menu > .active > a:focus {
-        color: red;
+        /*color: red;*/
+        color: #6e6e6e;
         text-decoration: none;
         background-color: black;
         outline: 0;
     }
-
-
-
-
 
 /*Clases agregadas*/
 .row {
@@ -6385,10 +6383,6 @@ ul, ol {
     text-overflow: ellipsis;
     padding-right: 20px;
 }
-
-
-
-
 
 
 .TitulosAzul {
@@ -6876,22 +6870,9 @@ a.fa-plus-circle {
 
 input[type="checkbox"] + label,
 input[type="radio"] + label {
-    /*margin-left: 5px;
-    padding-top: 0;
-    top: 5px;
-    position: absolute;*/
-
-    /*propuesta 2*/
-    
-    /*margin-left: 5px;
-    padding-top: 2px;
-    position: absolute;*/
-
     /*propuesta 3*/
     display: inline-block;
     vertical-align: bottom;
-
-
 }
 
 
@@ -6912,6 +6893,7 @@ input[type="radio"] + label {
         position: static !important;
         top: auto !important;
         margin-left: 0px !important;
+        /*color: #FFF;*/
     }
 
 /*Fin Botones de Grupo Usuario*/

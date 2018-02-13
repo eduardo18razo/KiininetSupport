@@ -108,7 +108,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 imgTitleImage.ImageUrl = "~/assets/images/controls/" + tipoCampo.Image;
                 lblTitleAgregarCampo.Text = "" + tipoCampo.Descripcion.Trim();
                 divValorMaximo.Visible = false;
-                //lblDescripcion.Text = tipoCampo.DescripcionTexto;
+                lblDescripcion.Text = tipoCampo.DescripcionTexto;
 
                 txtLongitudMinima.Visible = tipoCampo.LongitudMinima;
                 divLongitudMinima.Visible = tipoCampo.LongitudMinima;

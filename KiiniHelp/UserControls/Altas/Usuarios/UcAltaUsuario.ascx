@@ -231,7 +231,7 @@
                                         <h3 class="module-title">Organización</h3>
                                     </div>
                                     <div class="col-lg-2 col-md-4 col-sm-4 text-right">
-                                        <asp:Button ID="btnModalOrganizacion" CssClass="btn btn-primary" runat="server" Text="Seleccionar" OnClick="btnModalOrganizacion_OnClick" />
+                                        <asp:Button ID="btnModalOrganizacion" CssClass="btn btn-primary" runat="server" Text="Agregar" OnClick="btnModalOrganizacion_OnClick" />
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +300,7 @@
                                         <h3 class="module-title">Ubicación</h3>
                                     </div>
                                     <div class="col-lg-2 col-md-4 text-right">
-                                        <asp:Button CssClass="btn btn-primary" runat="server" ID="btnModalUbicacion" Text="Seleccionar" OnClick="btnModalUbicacion_OnClick" />
+                                        <asp:Button CssClass="btn btn-primary" runat="server" ID="btnModalUbicacion" Text="Agregar" OnClick="btnModalUbicacion_OnClick" />
                                     </div>
                                 </div>
                                 <div class="row">

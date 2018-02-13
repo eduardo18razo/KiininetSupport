@@ -8,21 +8,55 @@
 
         .RadSearchBox .rsbSearchContext {
             width: 200px;
+            height: 30px;
         }
 
     .RadAutoCompleteBoxPopup {
-        background: red !important;
         width: 100% !important;
     }
 
     .racSlide {
-        /*background: red !important;*/
         width: 100% !important;
     }
 
     .contextDropDown {
-        /*background: green !important;*/
+        background: #ecf0f1 !important;
         width: 200px !important;
+    }
+
+    .RadSearchBox .rsbInput{
+        margin: 4px 3px;
+    }
+
+    .RadSearchBox .rsbSCFakeInput {
+        height: 26px;
+        padding-top: 4px;
+    }
+
+    .RadSearchBox .rsbButtonSearch {
+        margin: 0 -2px;
+        width: 22px;
+        height: 26px;
+    }
+
+    .RadSearchBox_Default .rsbLoadingIcon{
+        margin-top: 4px;
+    }
+
+    .RadSearchBox_Default .rsbInner.rsbFocused {
+        border-color: #676767;
+        color: #333;
+        background-color: #fff;
+    }
+
+    .rsbPopup_Default .rsbListItemSelected {
+        color: #333;
+        background-color: #ecf0f1;
+    }
+
+    .rsbPopup_Default .rsbListItemHovered {
+        color: #fff;
+        background-color: #676767;
     }
 </style>
 <div style="height: 100%;">
@@ -37,7 +71,7 @@
                         <div class="form-horizontal">
                             <div class="form-group">
                                 <tc:RadSearchBox runat="server" DataTextField="DescripcionTipificacion" OnSearch="txtBusquedaFormulario_OnSearch" DataValueField="Id" EnableAutoComplete="True" ShowSearchButton="True" ID="txtBusquedaFormulario" DataSourceID="SourceOpciones"
-                                    OnDataSourceSelect="txtBusquedaFormulario_OnDataSourceSelect" Width="90%">
+                                    OnDataSourceSelect="txtBusquedaFormulario_OnDataSourceSelect" Width="90%" DropDownSettings-Height="41px">
                                     <SearchContext DataSourceID="SourceAreasSearch" DataTextField="Descripcion" DataKeyField="Id" DropDownCssClass="contextDropDown" ShowDefaultItem="False" />
                                 </tc:RadSearchBox>
                             </div>

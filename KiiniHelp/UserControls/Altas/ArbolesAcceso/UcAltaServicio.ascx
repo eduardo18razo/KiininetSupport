@@ -71,16 +71,17 @@
                                             <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsuarioNivel_OnSelectedIndexChanged" />
                                         </div>
                                         <div class="form-group">
+                                            <label class="col-lg-2 no-padding-top">Público</label>
+                                            <asp:CheckBox runat="server" ID="chkPublico" CssClass="chkIphone no-margin-bottom" Width="30px" Text="Activo" Checked="False" />
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
                                             Tipificación<br />
                                             <asp:DropDownList runat="server" ID="ddlTipificacion" CssClass="form-control" />
                                         </div>
                                         <div class="form-group">
                                             Formulario<br />
                                             <asp:DropDownList runat="server" ID="ddlFormularios" CssClass="form-control" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 no-padding-top">Publico</label>
-                                            <asp:CheckBox runat="server" ID="chkPublico" CssClass="chkIphone no-margin-bottom" Width="30px" Text="Activo" Checked="False" />
                                         </div>
                                         <div class="form-group">
                                             <label class="col-lg-2  no-padding-top">Activo</label>
@@ -99,52 +100,52 @@
                                         <div class="form-group">
                                             Mostrar en sección
                                         </div>
-
                                         <div class="form-group">
                                             Nivel 1<br />
                                             <asp:DropDownList runat="server" ID="ddlNivel1" CssClass="form-control" OnSelectedIndexChanged="ddlNivel1_OnSelectedIndexChanged" AutoPostBack="True" />
-                                            <asp:TextBox CssClass="form-control margin-top-10" ID="txtDescripcionN1" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                            <label class="margin-top-5">Crear nueva sección</label>
+                                            <asp:TextBox CssClass="form-control" ID="txtDescripcionN1" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
                                             <asp:LinkButton runat="server" ID="btnAgregarNivel1" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="1" />
                                         </div>
                                         <div class="form-group" runat="server" id="divNivel2" visible="False">
                                             Nivel 2<br />
                                             <asp:DropDownList runat="server" ID="ddlNivel2" CssClass="form-control" OnSelectedIndexChanged="ddlNivel2_OnSelectedIndexChanged" AutoPostBack="True" />
-                                            <asp:TextBox CssClass="form-control margin-top-10" ID="txtDescripcionN2" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                            <label class="margin-top-5">Crear nueva sección</label>
+
+                                            <asp:TextBox CssClass="form-control" ID="txtDescripcionN2" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
                                             <asp:LinkButton runat="server" ID="btnAgregarNivel2" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="2" Enabled="False" />
 
                                         </div>
                                         <div class="form-group" runat="server" id="divNivel3" visible="False">
                                             Nivel 3<br />
                                             <asp:DropDownList runat="server" ID="ddlNivel3" CssClass="form-control" OnSelectedIndexChanged="ddlNivel3_OnSelectedIndexChanged" AutoPostBack="True" />
-                                            <asp:TextBox CssClass="form-control margin-top-10" ID="txtDescripcionN3" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                            <label class="margin-top-5">Crear nueva sección</label>
+                                            <asp:TextBox CssClass="form-control" ID="txtDescripcionN3" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
                                             <asp:LinkButton runat="server" ID="btnAgregarNivel3" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="3" Enabled="False" />
 
                                         </div>
                                         <div class="form-group" runat="server" id="divNivel4" visible="False">
                                             Nivel 4<br />
                                             <asp:DropDownList runat="server" ID="ddlNivel4" CssClass="form-control" OnSelectedIndexChanged="ddlNivel4_OnSelectedIndexChanged" AutoPostBack="True" />
-                                            <asp:TextBox CssClass="form-control margin-top-10" ID="txtDescripcionN4" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                                            <label class="margin-top-5">Crear nueva sección</label>
+                                            <asp:TextBox CssClass="form-control" ID="txtDescripcionN4" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                             <asp:LinkButton runat="server" ID="btnAgregarNivel4" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="4" Enabled="False" />
 
                                         </div>
                                         <div class="form-group" runat="server" id="divNivel5" visible="False">
                                             Nivel 5<br />
                                             <asp:DropDownList runat="server" ID="ddlNivel5" CssClass="form-control" OnSelectedIndexChanged="ddlNivel5_OnSelectedIndexChanged" AutoPostBack="True" />
-                                            <asp:TextBox CssClass="form-control margin-top-10" ID="txtDescripcionN5" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                            <label class="margin-top-5">Crear nueva sección</label>
+                                            <asp:TextBox CssClass="form-control" ID="txtDescripcionN5" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
                                             <asp:LinkButton runat="server" ID="btnAgregarNivel5" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="5" Enabled="False" />
                                         </div>
                                         <div class="form-group" runat="server" id="divNivel6" visible="False">
                                             Nivel 6<br />
                                             <asp:DropDownList runat="server" ID="ddlNivel6" CssClass="form-control" OnSelectedIndexChanged="ddlNivel6_OnSelectedIndexChanged" AutoPostBack="True" />
-                                            <asp:TextBox CssClass="form-control margin-top-10" ID="txtDescripcionN6" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
+                                            <label class="margin-top-5">Crear nueva sección</label>
+                                            <asp:TextBox CssClass="form-control" ID="txtDescripcionN6" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" />
                                             <asp:LinkButton runat="server" ID="btnAgregarNivel6" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="6" Enabled="False" />
                                         </div>
-                                        <%--<div class="form-group" runat="server" id="divNivel7" visible="False">
-                                        Nivel 7<br />
-                                        <asp:DropDownList runat="server" ID="ddlNivel7" CssClass="form-control" OnSelectedIndexChanged="ddlNivel7_OnSelectedIndexChanged" AutoPostBack="True" AppendDataBoundItems="True" />
-                                        <asp:TextBox CssClass="form-control" ID="txtDescripcionN7" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
-                                        <asp:LinkButton runat="server" ID="btnAgregarNivel7" CssClass="fa fa-plus-circle" OnClick="btnAgregarNivel_OnClick" CommandArgument="7" Enabled="False" />
-                                    </div>--%>
                                     </div>
                                     <div runat="server" id="divStep3Data" visible="false">
                                         <div class="form-group">
@@ -183,13 +184,21 @@
                                     </div>
                                     <div runat="server" id="divStep4Data" visible="false">
                                         <div class="form-group">
-                                            SLAs
+                                            SLA <br />
+                                            Establece un tiempo de respuesta para este evento. 
                                         </div>
                                         <hr />
                                         <div class="form-group">
-                                            Tiempo total<br />
-                                            <asp:TextBox runat="server" ID="txtTiempoTotal" CssClass="form-control" MaxLength="3" onkeypress="return ValidaCampo(this, 2)" />
-                                            <asp:DropDownList runat="server" ID="ddlTiempoTotal" CssClass="form-control margin-top-10" />
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding">
+                                                Tiempo total<br />
+                                                <asp:TextBox runat="server" ID="txtTiempoTotal" CssClass="form-control" MaxLength="3" onkeypress="return ValidaCampo(this, 2)" />
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding">
+                                                <div class="margin-left-10">
+                                                    Unidad de tiempo<br />
+                                                    <asp:DropDownList runat="server" ID="ddlTiempoTotal" CssClass="form-control" />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group" runat="server" visible="False">
                                             <label class="col-lg-10">Detallado</label>
@@ -232,7 +241,8 @@
                                                 </FooterTemplate>
                                             </asp:Repeater>
                                         </div>
-                                        <hr />
+
+                                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-20" />
                                         <div class="form-group">
                                             <div style="width: 50%; float: left">
                                                 <div class="form-group">
@@ -247,7 +257,7 @@
                                             <div style="width: 50%; float: left">
                                                 <div class="form-group center-content-div margin-top-40" runat="server" id="divImpacto" visible="False">
                                                     Prioridad<br />
-                                                  <%--  <br />
+                                                    <%--  <br />
                                                     <asp:Image runat="server" ID="imgImpacto" Style="width: 50px" />
                                                     <br />--%>
                                                     <br />
@@ -255,48 +265,108 @@
                                                         <asp:Label runat="server" ID="lblImpacto" /></strong>
                                                 </div>
                                             </div>
-                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
                                     <div runat="server" id="divStep5Data" visible="False">
                                         <div class="form-group">
-                                            Notificaciones
+                                            Notificaciones <br />
+                                            Establece el tiempo en el que se recibirán notificaciones sobre este evento.
                                         </div>
+
+
                                         <hr />
-                                        <div class="form-inline">
-                                            <div class="form-group">
-                                                <asp:CheckBox runat="server" ID="chkNotificacionDueno" AutoPostBack="True" OnCheckedChanged="chkNotificacionDueno_OnCheckedChanged" CssClass="col-sm-12 col-md-12 col-lg-12" Text="RESPONSABLE CATEGORÍA" />
-                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" CssClass="form-control col-md-2" Enabled="False" ID="txtTiempoNotificacionDueno" />
-                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoDueño" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:DropDownList runat="server" ID="ddlCanalDueño" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoDueño" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                        <%--Inicio Responsable de categoría--%>
+                                        <div class="form-group">
+                                            <asp:CheckBox runat="server" ID="chkNotificacionDueno" AutoPostBack="True" OnCheckedChanged="chkNotificacionDueno_OnCheckedChanged" CssClass="col-sm-12 col-md-12 col-lg-12" Text="Responsable de categoría" />
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Tiempo total
+                                                <br />
+                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" CssClass="form-control" Enabled="False" ID="txtTiempoNotificacionDueno" />
                                             </div>
-                                            <hr />
-                                            <div class="form-group">
-                                                <asp:CheckBox runat="server" ID="chkNotificacionMtto" AutoPostBack="True" OnCheckedChanged="chkNotificacionMtto_OnCheckedChanged" CssClass="col-md-12" Text="RESPONSABLE DE CONTENIDO." />
-                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-3" Enabled="False" ID="txtTiempoNotificacionMtto" />
-                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoMtto" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:DropDownList runat="server" ID="ddlCanalMtto" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoMtto" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Unidad de tiempo
+                                                <br />
+                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoDueño" CssClass="form-control" Enabled="False" />
                                             </div>
-                                            <hr />
-                                            <div class="form-group">
-                                                <asp:CheckBox runat="server" ID="chkNotificacionDesarrollo" AutoPostBack="True" OnCheckedChanged="chkNotificacionDesarrollo_OnCheckedChanged" CssClass="col-md-12" Text="RESPONSABLE DESARROLLO" />
-                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-4" Enabled="False" ID="txtTiempoNotificacionDev" />
-                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoDev" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:DropDownList runat="server" ID="ddlCanalDev" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoDev" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                Medio<br />
+                                                <asp:DropDownList runat="server" ID="ddlCanalDueño" CssClass="form-control" Enabled="False" />
                                             </div>
-                                            <hr />
-                                            <div class="form-group">
-                                                <asp:CheckBox runat="server" ID="chkNotificacionOperacion" AutoPostBack="True" OnCheckedChanged="chkNotificacionOperacion_OnCheckedChanged" CssClass="col-md-12" Text="Responsable de operacion" />
-                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" Style="width: initial" CssClass="form-control col-md-5" Enabled="False" ID="txtTiempoNotificacionOperacion" />
-                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:DropDownList runat="server" ID="ddlCanalOperacion" CssClass="form-control col-md-3" Enabled="False" Style="margin-left: 5px" />
-                                                <asp:CheckBox runat="server" ID="chkVencimientoOperacion" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
-                                            </div>
-                                            <hr />
+                                            <asp:CheckBox runat="server" ID="chkVencimientoDueño" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
                                         </div>
+                                        <%--Fin Responsable de categoría--%>
+
+                                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" />
+
+                                        <%--Inicio Responsable de contenido--%>
+                                        <div class="form-group">
+                                            <asp:CheckBox runat="server" ID="chkNotificacionMtto" AutoPostBack="True" OnCheckedChanged="chkNotificacionMtto_OnCheckedChanged" CssClass="col-sm-12 col-md-12 col-lg-12" Text="Responsable de contenido." />
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Tiempo total
+                                                <br />
+                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" CssClass="form-control" Enabled="False" ID="txtTiempoNotificacionMtto" />
+                                            </div>
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Unidad de tiempo
+                                                <br />
+                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoMtto" CssClass="form-control" Enabled="False" />
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                Medio<br />
+                                                <asp:DropDownList runat="server" ID="ddlCanalMtto" CssClass="form-control" Enabled="False" />
+                                            </div>
+                                            <asp:CheckBox runat="server" ID="chkVencimientoMtto" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                        </div>
+                                        <%--Fin Responsable de contenido--%>
+
+                                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" />
+
+                                        <%--Inicio Responsable de desarrollo--%>
+                                        <div class="form-group">
+                                            <asp:CheckBox runat="server" ID="chkNotificacionDesarrollo" AutoPostBack="True" OnCheckedChanged="chkNotificacionDesarrollo_OnCheckedChanged" CssClass="col-sm-12 col-md-12 col-lg-12" Text="Responsable de desarrollo" />
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Tiempo total
+                                                <br />
+                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" CssClass="form-control" Enabled="False" ID="txtTiempoNotificacionDev" />
+                                            </div>
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Unidad de tiempo
+                                                <br />
+                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoDev" CssClass="form-control" Enabled="False" />
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                Medio<br />
+                                                <asp:DropDownList runat="server" ID="ddlCanalDev" CssClass="form-control" Enabled="False" />
+                                            </div>
+                                            <asp:CheckBox runat="server" ID="chkVencimientoDev" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                        </div>
+                                        <%--Fin Responsable de desarrollo--%>
+
+                                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" />
+
+                                        <%--Inicio Responsable de operación--%>
+                                        <div class="form-group">
+                                            <asp:CheckBox runat="server" ID="chkNotificacionOperacion" AutoPostBack="True" OnCheckedChanged="chkNotificacionOperacion_OnCheckedChanged" CssClass="col-sm-12 col-md-12 col-lg-12" Text="Responsable de operación" />
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Tiempo total
+                                                <br />
+                                                <asp:TextBox runat="server" Text="0" onkeypress="return ValidaCampo(this, 2)" MaxLength="3" onkeydown="return (event.keyCode!=13);" CssClass="form-control" Enabled="False" ID="txtTiempoNotificacionOperacion" />
+                                            </div>
+                                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                                Unidad de tiempo
+                                                <br />
+                                                <asp:DropDownList runat="server" ID="ddlNotificacionGrupoOperacion" CssClass="form-control" Enabled="False" />
+                                            </div>
+                                            <div class="col-sm-3 col-md-3 col-lg-3">
+                                                Medio<br />
+                                                <asp:DropDownList runat="server" ID="ddlCanalOperacion" CssClass="form-control" Enabled="False" />
+                                            </div>
+                                            <asp:CheckBox runat="server" ID="chkVencimientoOperacion" Checked="False" Text="Despues de vencimiento" Enabled="False" CssClass="col-sm-12 col-md-12 col-lg-12" />
+                                        </div>
+                                        <%--Fin Responsable de operación--%>
+
+                                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" />
+
                                     </div>
                                     <div runat="server" id="divStep6Data" visible="False">
                                         Encuesta<br />

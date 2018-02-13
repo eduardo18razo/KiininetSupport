@@ -52,13 +52,10 @@
 
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </section>
-
 
             <section class="module module-headings">
                 <div class="module-inner">

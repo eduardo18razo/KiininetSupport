@@ -1480,6 +1480,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep5.Visible = false;
                         divStep6.Visible = false;
                         divStep7.Visible = false;
+                        btnGuardarCatalogo.Visible = true;
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerCampus(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel1.Value), true));
                         succNivel1.Visible = true;
@@ -1491,6 +1492,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         dataCampus.Visible = true;
                         lblStepNivel2.Text = "...";
                         btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
+                        //btnGuardarCatalogo.Visible = true;
                         break;
                     case 3:
                         divStep4.Visible = false;
@@ -1498,6 +1500,9 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep6.Visible = false;
                         divStep7.Visible = false;
                         dataCampus.Visible = false;
+                        //btnGuardarCatalogo.Visible = true;
+
+
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerTorres(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel2.Value), true));
                         succNivel2.Visible = true;
@@ -1515,6 +1520,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep6.Visible = false;
                         divStep7.Visible = false;
                         dataCampus.Visible = false;
+                        //btnGuardarCatalogo.Visible = true;
+
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerPisos(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel3.Value), true));
                         succNivel3.Visible = true;
@@ -1531,6 +1538,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divStep6.Visible = false;
                         divStep7.Visible = false;
                         dataCampus.Visible = false;
+                        //btnGuardarCatalogo.Visible = true;
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerZonas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel4.Value), true));
                         succNivel4.Visible = true;
@@ -1545,6 +1553,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     case 6:
                         divStep7.Visible = false;
                         dataCampus.Visible = false;
+                        //btnGuardarCatalogo.Visible = true;
 
                         Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerSubZonas(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel5.Value), true));
                         succNivel5.Visible = true;
@@ -1558,6 +1567,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         break;
                     case 7:
+                        //btnGuardarCatalogo.Visible = true;
+
                         btnStatusNivel7.CssClass = "btn btn-primary btn-square";
                         succNivel7.Visible = true;
                         lblStepNivel7.Text = "...";

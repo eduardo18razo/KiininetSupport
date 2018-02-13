@@ -16,8 +16,6 @@
                 <div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div>
-                          <%--  <h6 class="text-left">Editar Categoría</h6>
-                            <hr />--%>
                             <div class="form-group margin-top">
                                 Escribe el nombre de la Categoría<br />
                                 <asp:TextBox runat="server" ID="txtDescripcionAreas" CssClass="form-control" onkeydown="return (event.keyCode!=13);" autofocus="autofocus" MaxLength="50" />

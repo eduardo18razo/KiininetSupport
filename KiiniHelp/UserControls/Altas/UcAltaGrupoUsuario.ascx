@@ -68,28 +68,41 @@
                                                     <div class="row">
                                                         <div runat="server" id="divSubRoles" visible="False">
                                                             <div class="form-group margin-top-10">
-                                                                Selecciona los niveles de escalación que tendrá este Grupo:<br />
+                                                                Selecciona los niveles del Grupo:<br />
                                                             </div>
                                                             <asp:HiddenField runat="server" ID="hfOperacion" />
+                                                            <div class="row">
+                                                                <div class="form-horizontal">
+                                                                    <div class="col-lg-4 col-md-4 no-padding-left">
+                                                                        Nivel
+                                                                    </div>
+                                                                    <div class="col-lg-4 col-md-4">
+                                                                        Horario
+                                                                    </div>
+                                                                    <div class="col-lg-4 col-md-4">
+                                                                        Días Feriados
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <asp:Repeater runat="server" ID="rptSubRoles" OnItemDataBound="rptSubRoles_OnItemDataBound">
                                                                 <ItemTemplate>
                                                                     <div class="row">
                                                                         <div class="form-horizontal">
-                                                                            <div class="col-lg-4 col-md-4 no-padding-left">
-                                                                                <div class="margin-top-4"> 
-                                                                                    <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
-                                                                                    <asp:CheckBox CssClass="btn btn-primary btn-block hideCheck" Style="padding: 0; cursor: default" runat="server" ID="chkSubRol" value='<%# Eval("Id") %>' Text='<%# Eval("Descripcion") %>' AutoPostBack="True" OnCheckedChanged="OnCheckedChanged" />
-                                                                                </div>
+                                                                            <div class="col-lg-4 col-md-4 no-padding-left margin-top-4">
+                                                                                <%--<div class="">--%>
+                                                                                <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
+                                                                                <asp:CheckBox CssClass="btn btn-seleccione btn-block hideCheck" Style="padding: 0; cursor: default" runat="server" ID="chkSubRol" value='<%# Eval("Id") %>' Text='<%# Eval("Descripcion") %>' AutoPostBack="True" OnCheckedChanged="OnCheckedChanged" />
+                                                                                <%--</div>--%>
                                                                             </div>
                                                                             <div class="col-lg-4 col-md-4">
-                                                                                <div class="margin-top">
-                                                                                    <asp:DropDownList runat="server" ID="ddlHorario" CssClass="form-control" Enabled="False" />
-                                                                                </div>
+                                                                                <%--<div class="margin-top">--%>
+                                                                                <asp:DropDownList runat="server" ID="ddlHorario" CssClass="form-control" Enabled="False" />
+                                                                                <%-- </div>--%>
                                                                             </div>
                                                                             <div class="col-lg-4 col-md-4">
-                                                                                <div class="margin-top">
-                                                                                    <asp:DropDownList runat="server" ID="ddlDiasFeriados" CssClass="form-control" Enabled="False" />
-                                                                                </div>
+                                                                                <%--<div class="margin-top">--%>
+                                                                                <asp:DropDownList runat="server" ID="ddlDiasFeriados" CssClass="form-control" Enabled="False" />
+                                                                                <%--</div>--%>
                                                                             </div>
 
                                                                         </div>

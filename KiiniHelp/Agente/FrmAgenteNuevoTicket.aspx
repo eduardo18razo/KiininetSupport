@@ -45,14 +45,14 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <asp:Image runat="server" ImageUrl="~/assets/images/icons/ojo.png" Width="25px" CssClass="margin-right-15px" />
-                                            <asp:Label runat="server" Text="6 de abril 2017" ID="lblFechaUltimaconexion" />
+                                            <asp:Image runat="server" ImageUrl="~/assets/images/icons/ojo.png" Width="25px" CssClass="margin-right-15" />
+                                            <asp:Label runat="server" Text="6 de abril 2017" ID="lblFechaUltimaconexion"  /> 
                                         </div>
                                     </div>
                                     <hr />
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <span class="col-lg-2 col-md-2 col-sm-2 pe-icon pe-7s-ticket icon" style="font-size: 24px"></span>
+                                            <span class="col-lg-2 col-md-2 col-sm-2 pe-icon pe-7s-ticket icon margin-top-5" style="font-size: 24px"></span>
                                             <div class="col-lg-10 col-md-10 col-sm-10">
                                                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddlTicketUsuario" />
                                             </div>
@@ -70,7 +70,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <strong>
-                                                <asp:Label runat="server" Text="correo electornico principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                                <asp:Label runat="server" Text="Correo electrónico principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
                                             <asp:Label runat="server" ID="lblCorreoPrincipal" CssClass="col-lg-12 col-md-12 col-sm-12" />
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <strong>
-                                                <asp:Label runat="server" Text="telefono principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                                <asp:Label runat="server" Text="Teléfono principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
                                             <asp:Label runat="server" ID="lblTelefonoPrincipal" CssClass="col-lg-12 col-md-12 col-sm-12" />
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <strong>
-                                                <asp:Label runat="server" Text="Ultima Actualizacion" CssClass="col-lg-12 col-md-12 col-sm-12" /></strong>
+                                                <asp:Label runat="server" Text="Última actualización" CssClass="col-lg-12 col-md-12 col-sm-12" /></strong>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <asp:Label runat="server" ID="lblfechaUltimaActualizacion" CssClass="col-lg-12 col-md-12 col-sm-12" />

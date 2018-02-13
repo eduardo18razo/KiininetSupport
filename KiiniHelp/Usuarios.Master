@@ -1,8 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Usuarios.master.cs" Inherits="KiiniHelp.UsuariosMaster" %>
-
-
-
-
 <%@ Register Src="~/UserControls/Temporal/UcTicketPortal.ascx" TagPrefix="uc1" TagName="UcTicketPortal" %>
 
 <!DOCTYPE html>
@@ -598,9 +594,8 @@
                         </nav>
 
                     </div>
-                    <div class="scroller" id="scroller" style="padding-left: 30px">
+                    <div class="scroller" id="scroller">
                         <div style="margin-top: 0; height: 100%;">
-
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>

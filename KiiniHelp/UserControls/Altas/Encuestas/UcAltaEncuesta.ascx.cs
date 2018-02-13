@@ -115,7 +115,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                 if (result > 100)
                     throw new Exception("Recuerda que la ponderación debe sumar 100.");
                 hfTotalPonderacion.Value = result.ToString();
-
             }
             catch (Exception e)
             {
@@ -195,13 +194,12 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
         {
             try
             {
-
                 foreach (RepeaterItem item in rptPreguntas.Items)
                 {
                     if (((TextBox)item.FindControl("txtPregunta")).Text == string.Empty)
                         throw new Exception("Debe especificar una pregunta.");
                     if (((TextBox)item.FindControl("txtPonderacion")).Text == string.Empty)
-                        throw new Exception("Debe especificar ponderacion para la pregunta.");
+                        throw new Exception("Debe especificar ponderación para la pregunta.");
                 }
 
                 Encuesta tmpEncuesta = ((Encuesta)Session["Encuesta"]);
@@ -219,7 +217,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                 tmpEncuesta.EncuestaPregunta.Add(new EncuestaPregunta());
                 Session["Encuesta"] = tmpEncuesta;
                 LlenaPreguntas();
-
             }
             catch (Exception ex)
             {
@@ -353,7 +350,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
             try
             {
                 divPreguntas.Visible = int.Parse(ddlTipoEncuesta.SelectedValue) != (int)BusinessVariables.EnumTipoEncuesta.PromotorScore;
-
             }
             catch (Exception ex)
             {
@@ -395,7 +391,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                             }
                         };
                 }
-                //previewEncuesta.EncuestaPregunta = ObtenerPreguntas();
                 Session["PreviewEncuesta"] = previewEncuesta;
                 string url = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + "/Users/Administracion/Encuestas/FrmPreview.aspx','_blank');", true);
@@ -459,6 +454,7 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                 }
                 else
                 {
+                    lblOperacion.Text = "Editar Encuesta";
                     Encuesta encuestaActualizar = ((Encuesta)Session["Encuesta"]);
                     encuestaActualizar.TipoEncuesta = null;
                     encuestaActualizar.IdTipoEncuesta = int.Parse(ddlTipoEncuesta.SelectedValue);
@@ -505,7 +501,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                 LimpiarEncuesta();
                 if (OnLimpiarModal != null)
                     OnLimpiarModal();
-
             }
             catch (Exception ex)
             {
@@ -525,7 +520,6 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                 LimpiarEncuesta();
                 if (OnCancelarModal != null)
                     OnCancelarModal();
-
             }
             catch (Exception ex)
             {

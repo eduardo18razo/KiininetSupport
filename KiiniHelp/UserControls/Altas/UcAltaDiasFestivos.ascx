@@ -12,16 +12,14 @@
         <asp:HiddenField runat="server" ID="hfEditando" />
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
-            <h6 class="modal-title" id="modal-new-ticket-label">Nuevo Día Feriado</h6>
+            <h6 class="modal-title" id="modal-new-ticket-label">Nuevo día feriado</h6>
         </div>
 
         <div class="modal-body">
             <div class="row">
-            <%--    <asp:ScriptManager runat="server">
-                </asp:ScriptManager>--%>
                 <div class="row">
                     <div class="form-group col-sm-12">
-                        <label class="col-sm-12 col-md-12 col-lg-12 no-padding-left">Nombre del Nuevo grupo de Dias Feriados</label><br />
+                        <label class="col-sm-12 col-md-12 col-lg-12 no-padding-left">Nombre del nuevo grupo de días feriados</label><br />
                         <div class="col-sm-8 no-padding-left">
                             <asp:TextBox runat="server" ID="txtDescripcionDias" MaxLength="50" class="form-control col-sm-3" onkeydown="return (event.keyCode!=13);" />
                         </div>
@@ -31,7 +29,7 @@
                     <hr />
                     <div class="col-sm-12">
                         <hr />
-                        Agrega los días feriados correspondientes a este catálogo:
+                        Selecciona los días feriados que integran el nuevo grupo:
                     </div>
                 </div>
                 <div>
@@ -44,19 +42,35 @@
                                 </div>
                                 <asp:Button runat="server" CssClass="btn btn-primary margin-top-6 margin-left-5" Height="29px" Text="Seleccionar" ID="btnSeleccionar" OnClick="btnSeleccionar_OnClick" />
                             </div>
+                            <br />
+                            <hr />
                             <div class="form-group">
-                                <asp:Label runat="server" Text="Agregar un Día Feriado" CssClass="control-label col-lg-12 col-md-12" />
+                                <asp:Label runat="server" Text="Agrega nuevo un día feriado al grupo:" CssClass="control-label col-lg-12 col-md-12" />
+                                <asp:Label runat="server" Text="Descripción" CssClass="control-label col-lg-12 col-md-12" />
                                 <div class="col-lg-7 col-md-7">
                                     <asp:TextBox ID="txtDescripcionDia" runat="server" MaxLength="50" CssClass="form-control" onkeydown="return (event.keyCode!=13);" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <asp:Label runat="server" Text="Fecha" CssClass="control-label col-lg-12 col-md-12" />
-                                <div class="col-lg-7 col-md-7">
-                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" step="1" onkeydown="return (event.keyCode!=13);" /> 
-                                    <ajax:CalendarExtender runat="server" id="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" />                         
 
+                                <div class="col-lg-7 col-md-7">
+                                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" step="1" onkeydown="return (event.keyCode!=13);" />
+                                    <%--<asp:ImageButton ID="imgPopup" ImageUrl="~/assets/images/icons/Roles.png" runat="server" />--%>
                                 </div>
+
+                                <div class="col-lg-2 col-md-2">
+                                    <i class="fa fa-calendar fa-20x margin-top-6" id="imgPopup2" runat="server"></i>
+                                    <ajax:CalendarExtender runat="server" ID="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" PopupButtonID="imgPopup2"/>
+                                    <%-- --%>
+                                    <ajax:maskededitextender id="MaskedEditExtender1" runat="server"
+                                        targetcontrolid="txtDate" mask="99/99/9999"
+                                        masktype="Date" messagevalidatortip="true"
+                                        onfocuscssclass="MaskedEditFocus"
+                                        clearmaskonlostfocus="false" oninvalidcssclass="MaskedEditError"
+                                        inputdirection="LeftToRight" />
+                                </div>
+
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-calendar " Visible="False"></asp:LinkButton>
                             </div>
                             <div class="form-group">
@@ -68,6 +82,8 @@
                 </div>
 
                 <hr />
+                <asp:Label runat="server" Text="Días seleccionados del nuevo grupo de días feriados" CssClass="control-label col-lg-12 col-md-12" />
+                <br />
                 <asp:Repeater runat="server" ID="rptDias" OnItemDataBound="rptDias_OnItemDataBound">
                     <HeaderTemplate>
                     </HeaderTemplate>
@@ -91,7 +107,7 @@
                 </div>
             </div>
         </div>
-     
+
     </ContentTemplate>
 </asp:UpdatePanel>
 
