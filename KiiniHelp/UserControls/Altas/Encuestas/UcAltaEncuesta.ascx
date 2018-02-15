@@ -9,36 +9,38 @@
         <div class="modal-header">
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnClose_OnClick" runat="server" Text='&times;' />
             <h6 class="modal-title" id="modal-new-ticket-label">
-                <asp:Label runat="server" ID="lblBrandingModal" style="font-weight:bold;" Text="Nueva Encuesta" /></h6>
+                <asp:Label runat="server" ID="lblOperacion" Text="Nueva Encuesta" /></h6>
 
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="col-lg-12 col-md-12" style="margin-top: -5px;">
                     <div class="module-inner">
-                        <div class="title">Tipo de encuesta</div>
+                        <div>Tipo de encuesta</div>
                         <div class="form-group">
                             <asp:DropDownList runat="server" ID="ddlTipoEncuesta" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoEncuesta_OnSelectedIndexChanged" />
-                            <%--<hr class="bordercolor" />--%>
+                        </div>
+                        <div>Título</div>
+                        <div class="form-group">
+                            <asp:TextBox runat="server" ID="txtTitulo" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtTitulo" placeholder="Título de la encuesta" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                            <b>Configuración para el cliente</b>
                         </div>
                         <div class="form-group">
-                            <b>CONFIGURACIÓN PARA EL CLIENTE</b>
-                        </div>
-                        <div class="form-group">
-                            Asigna a esta encuesta que será visible para los clientes. Pueden agregar una breve descripción o instrucciones para facilitar su llenado.
+                            Asigna un nombre a esta encuesta que será visible para los clientes. Puedes agregar una breve descripción o instrucciones para facilitar su llenado.
                        
                         </div>
+                        <div>Título</div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtTituloCliente" placeholder="Titúlo de la encuesta" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtTituloCliente" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div>Descripción</div>
+                        <div class="form-group">
+                            <asp:TextBox runat="server" ID="txtDescripcion" MaxLength="250" onkeydown="return (event.keyCode!=13);" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtDescripcion" placeholder="Descripción" MaxLength="250" onkeydown="return (event.keyCode!=13);" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <b>PREGUNTAS</b>
+                            <b>Preguntas</b>
                         </div>
                         <div class="form-group">
                             Agrega las preguntas y su ponderación. Recuerda que la ponderación debe sumar 100.

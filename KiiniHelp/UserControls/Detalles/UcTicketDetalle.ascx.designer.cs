@@ -121,13 +121,13 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblFechaAlta;
         
         /// <summary>
-        /// Control imgPrioridad.
+        /// Control iPrioridad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgPrioridad;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iPrioridad;
         
         /// <summary>
         /// Control lblDescripcionPrioridad.
@@ -139,22 +139,13 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblDescripcionPrioridad;
         
         /// <summary>
-        /// Control imgSLA.
+        /// Control iSLA.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgSLA;
-        
-        /// <summary>
-        /// Control lblTiempoRestanteSLa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTiempoRestanteSLa;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iSLA;
         
         /// <summary>
         /// Control divEstatus.
@@ -337,13 +328,13 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblTipoUsuarioDetalle;
         
         /// <summary>
-        /// Control imgVip.
+        /// Control iVip.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgVip;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl iVip;
         
         /// <summary>
         /// Control lblFechaUltimaconexion.

@@ -101,14 +101,12 @@
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-        <header class="header">
+        <header class="header" style="background-color: violet;">
             <div class="branding ">
                 <h1 class="logo text-center">
                     <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
                         <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
-                        <%-- <span class="nav-label"><span class="h3"><strong>--%>
                         <asp:Label runat="server" ID="lblBranding" Visible="false" />
-                        <%--   </strong></span></span>--%>
                     </asp:HyperLink>
                 </h1>
             </div>
@@ -152,7 +150,6 @@
                                     <span class="arrow" style="right: 25px"></span>
                                     <div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <%-- <br />--%>
                                             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
                                                     <uc1:UcLogCopia runat="server" ID="UcLogCopia" />
@@ -169,7 +166,7 @@
                 </div>
             </div>
         </header>
-        <div id="content-wrapper" class="content-wrapper">
+        <div id="content-wrapper" class="content-wrapper"> <%--style="background-color: green;"--%>
             <div class="container-fluid">
                 <div class="row" style="margin-top: 50px;">
                     <div class="module-content collapse in centra-carrusel" id="content-1">
@@ -213,16 +210,10 @@
                             </div>
                         </div>
                     </div>
-                    <%--</div>--%>
                 </div>
-                <%--                <br />--%>
-
-              <%--  <h4 class="title text-center" style="z-index: 9; white-space: normal; font-size: 77px; line-height: 60px; font-weight: 1000; letter-spacing: -5px;  text-align: center; border-width: 0px; margin: 0px; min-height: 0px; min-width: 0px; max-height: none; max-width: none; opacity: 1; padding: 30px 20px 20px 20px">
-                    Para ofrecerte un mejor servicio
-                    <br> indicanos que tipo de usuario eres.</h4>--%>
 
                 <h1 class="title text-center">Para ofrecerte un mejor servicio indicanos que tipo de usuario eres.</h1>
-               
+
                 <div id="masonry" class="row">
                     <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <section class="module ">
@@ -265,38 +256,38 @@
                     </div>
                 </div>
                 <hr />
-                <div class="row">
+                <div class="row margin-bottom-10">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <section class="module">
-                            <%--  <div class="module-inner">--%>
-                            <div class="module-content">
-                                <%--<div class="module-content-inner">--%>
-                                <div class="help-section">
-                                    <div>
-                                        <h4 class="text-center title">¿Podemos ayudarte?</h4>
-                                        <div role="form" class="search-box form-inline text-center">
-                                            <label class="sr-only" for="help_search_form">Buscar</label>
-                                            <div class="form-group">
-                                                <asp:TextBox ID="help_search_form" name="search-form" CssClass="form-control help-search-form" onkeydown="return (event.keyCode!=13);" placeholder="Busca con una palabra clave..." runat="server" Width="220px" />
-                                                <asp:LinkButton type="submit" CssClass="btn btn-primary btn-single-icon" runat="server"><i class="fa fa-search"></i></asp:LinkButton>
+                            <div class="module-inner">
+                                <div class="module-content">
+                                    <%--<div class="module-content-inner">--%>
+                                    <div class="help-section">
+                                        <div>
+                                            <h4 class="text-center title">¿Podemos ayudarte?</h4>
+                                            <div role="form" class="search-box form-inline text-center">
+                                                <label class="sr-only" for="help_search_form">Buscar</label>
+                                                <div class="form-group">
+                                                    <asp:TextBox ID="help_search_form" name="search-form" CssClass="form-control help-search-form" onkeydown="return (event.keyCode!=13);" placeholder="Busca con una palabra clave..." runat="server" Width="220px" />
+                                                    <asp:LinkButton type="submit" CssClass="btn btn-primary btn-single-icon" runat="server"><i class="fa fa-search"></i></asp:LinkButton>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div>
+                                            <div class="row text-center"></div>
+                                            <div class="row text-center"></div>
+                                            <div class="row text-center"></div>
+                                        </div>
+                                        <div class="help-lead text-center">
+                                            <h4 class="title">¿Aún necesitas ayuda?</h4>
+                                            <a class="btn btn-primary" data-toggle="modal" data-target="#modal-new-ticket"><i class="fa fa-play-circle"></i>Generar un ticket </a>
+                                        </div>
+                                        <br />
                                     </div>
-                                    <div>
-                                        <div class="row text-center"></div>
-                                        <div class="row text-center"></div>
-                                        <div class="row text-center"></div>
-                                    </div>
-                                    <div class="help-lead text-center">
-                                        <h4 class="title">¿Aún necesitas ayuda?</h4>
-                                        <a class="btn btn-primary" data-toggle="modal" data-target="#modal-new-ticket"><i class="fa fa-play-circle"></i>Generar un ticket </a>
-                                    </div>
-                                    <br />
+                                    <%--  </div>--%>
+                                    <%-- <br />--%>
                                 </div>
-                                <%--  </div>--%>
-                                <%-- <br />--%>
                             </div>
-                            <%-- </div>--%>
                         </section>
                     </div>
                 </div>
@@ -309,8 +300,11 @@
                     <asp:UpdatePanel runat="server">
                         <ContentTemplate>
                             <div class="modal-header">
-                                <asp:LinkButton class="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                                <h4 class="modal-title" id="modal-new-ticket-label">Crear Ticket Nuevo</h4>
+                                <asp:LinkButton CssClass="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick" Text='&times' />
+                                <h6 id="modal-new-ticket-label" class="modal-title">Crear Ticket Nuevo</h6>
+
+                                <%--   <asp:LinkButton class="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
+                                <h4 class="modal-title" id="modal-new-ticket-label">Crear Ticket Nuevo</h4>--%>
                             </div>
                             <div class="modal-body">
                                 <uc1:UcTicketPortal runat="server" ID="ucTicketPortal" />

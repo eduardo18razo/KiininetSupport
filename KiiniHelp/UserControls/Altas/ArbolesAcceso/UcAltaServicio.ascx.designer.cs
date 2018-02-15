@@ -211,6 +211,15 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
         
         /// <summary>
+        /// Control chkPublico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPublico;
+        
+        /// <summary>
         /// Control ddlTipificacion.
         /// </summary>
         /// <remarks>
@@ -227,15 +236,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFormularios;
-        
-        /// <summary>
-        /// Control chkPublico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkPublico;
         
         /// <summary>
         /// Control chkNivelHabilitado.
@@ -641,15 +641,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divImpacto;
-        
-        /// <summary>
-        /// Control imgImpacto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgImpacto;
         
         /// <summary>
         /// Control lblImpacto.

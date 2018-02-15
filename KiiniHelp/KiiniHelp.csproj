@@ -49,14 +49,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Downloads\DotNet4\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="MSCaptcha">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\MSCaptcha.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -72,14 +72,13 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.Web.UI">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Telerik.Web.UI.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Telerik.Web.UI.Skins.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
-    <Reference Include="Winthusiasm.HtmlEditor, Version=1.9.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll</HintPath>
+    <Reference Include="Winthusiasm.HtmlEditor">
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +102,8 @@
     <Content Include="assets\css\font-awesome.css" />
     <Content Include="assets\css\font.css" />
     <Content Include="assets\css\menuStyle.css" />
+    <Content Include="assets\css\modales.css" />
+    <Content Include="assets\css\modales_movil.css" />
     <Content Include="assets\css\pe-7-icons-helper.css" />
     <Content Include="assets\css\pe-7-icons.css" />
     <Content Include="assets\css\styles.css" />
@@ -4156,7 +4157,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

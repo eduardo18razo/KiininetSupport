@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link rel='stylesheet' href="assets/css/font.css" />
+    <link rel='stylesheet' href="assets/css/font.css" /> 
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
@@ -26,10 +26,6 @@
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
 
     <style>
-        /*body {
-            font-size: 13px;
-        }*/
-
         .btn {
             font-size: 12px;
         }
@@ -90,7 +86,6 @@
         function MostrarPopup(modalName) {
 
             $(modalName).on('shown.bs.modal', function () {
-                //$('.modal-backdrop').remove();
                 $(this).find('[autofocus]').focus();
             });
             $(modalName).modal({ backdrop: 'static', keyboard: false });
@@ -334,7 +329,7 @@
                                             <div class="row">
                                                 <div class="form-inline">
                                                     <div class="col-lg-10 col-md-10 col-sm-10">
-                                                        <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("IdTicket") %>' OnClick="lbtnTabTicket_OnClick">
+                                                        <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
                                                             <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>'></asp:Label>
                                                             <asp:Label runat="server" Text=" "></asp:Label>
                                                             <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />
@@ -361,7 +356,6 @@
                                                 <label style="width: 170px; padding: 5px; cursor: pointer;">Más Tickets ...</label>
                                             </div>
                                             <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications2" style="top: 39px;">
-                                                <%--style="margin-top: 0px; padding-top: 0px; padding-bottom: 0px;"--%>
                                                 <span class="arrow"></span>
                                                 <div class="notification-items no-overflow" style="width: 155px;">
                                                     <div class="item media">
@@ -374,7 +368,7 @@
                                                                     <div class="row">
                                                                         <div class="form-inline">
                                                                             <div class="col-lg-10 col-md-10 col-sm-10">
-                                                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
+                                                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
                                                                                     <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>' />
                                                                                     <asp:Label runat="server" Text=" "></asp:Label>
                                                                                     <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />
@@ -402,38 +396,8 @@
                             </div>
                         </div>
 
-
-                        <%--  <div class="item item-notifications" style="margin-right: 10px;">
-                            <div class="dropdown-toggle" id="dropdownMenu-notifications3" style="background-color: bisque; width: 200px;" data-toggle="dropdown" aria-expanded="true" role="button">
-                                <label style="width: 170px; padding: 5px">Más Tickets</label>
-                                <span class="pe-icon pe-7s-angle-down-circle icon" style="font-size: 22px; font-weight: 700; top: 0px;" data-toggle="tooltip" data-placement="bottom" title="Ver más..."></span>
-                            </div>
-                            <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications3">
-                                <span class="arrow"></span>
-                                <div class="notification-items no-overflow">
-                                    <div class="item media">
-                                        <asp:Repeater runat="server" ID="rptConcentradoTicketsUsuario2">
-                                            <ItemTemplate>
-                                                <div class="media-body padding-10-left" style="font-size: 12px">
-                                                    <asp:Label runat="server" Text="Prueba" class="margin-top-10" />
-                                                    <asp:Label runat="server" Text="-" Width="10px" CssClass="text-center" />
-                                                    <asp:Label runat="server" Text="más tickets" />
-                                                </div>
-                                                <div class="meta padding-10-left margin-top-5 borderbootom " style="font-size: 12px">
-                                                    <asp:Label runat="server" ID="lblEstatusTicketConcentrado2" Text="" Width="65px" Style="color: red" />
-                                                    <asp:Label runat="server" Text="Ayer 08-12-2017" CssClass="text-right margin-bottom-10" />
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>--%>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
-
 
             </header>
 
@@ -578,9 +542,6 @@
                     </div>
                     <div class="scroller" id="scroller" style="padding-left: 30px; padding-top: 50px">
                         <div style="margin-top: 0; height: 90%;">
-                            <%--<asp:LinkButton runat="server" CssClass="close" ID="lnkBtnCerrar" OnClick="lnkBtnCerrar_OnClick" Visible="False">
-                        <span class="glyphicon glyphicon-remove"></span>
-                            </asp:LinkButton>--%>
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>

@@ -643,15 +643,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCapturaDescripcion;
         
         /// <summary>
-        /// Control chkHabilitado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkHabilitado;
-        
-        /// <summary>
         /// Control btnGuardarCatalogo.
         /// </summary>
         /// <remarks>
@@ -668,5 +659,14 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
+        
+        /// <summary>
+        /// Control chkHabilitado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkHabilitado;
     }
 }

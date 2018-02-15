@@ -189,7 +189,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             {
                 List<string> errors = new List<string>();
                 if (txtDescripcionNivel.Text.Trim() == string.Empty)
-                    errors.Add("Ingrese titulo para la opción");
+                    errors.Add("Ingrese título para la opción");
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     errors.Add("Seleccione quien puede ver el contenido");
                 if (ddlConsultas.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
@@ -209,7 +209,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             try
             {
                 var valida = IdArea;
-                //valida = IdNivel1;
             }
             catch (Exception e)
             {
@@ -294,6 +293,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 ddlTipoUsuario.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
                 txtDescripcionNivel.Text = string.Empty;
                 LlenaCombos();
+                chkPublico.Checked = false;
                 chkEvaluacion.Checked = true;
                 chkNivelHabilitado.Checked = true;
                 btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);
@@ -311,14 +311,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 divNivel4.Visible = false;
                 divNivel5.Visible = false;
                 divNivel6.Visible = false;
-                ////Step 3
-                //Metodos.LimpiarCombo(ddlGrupoAcceso);
-                //Metodos.LimpiarCombo(ddlDuenoServicio);
-                //Metodos.LimpiarCombo(ddlGrupoResponsableMantenimiento);
-                //Metodos.LimpiarListBox(lstGrupoEspecialConsulta);
-
-                ////txtDescripcionN7.Text = string.Empty;
-                //btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);
             }
             catch (Exception e)
             {
@@ -335,6 +327,8 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 {
                     LlenaCombos();
                 }
+
+
             }
             catch (Exception ex)
             {
@@ -450,7 +444,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         btn.CommandArgument = "3";
                         break;
                 }
-
             }
             catch (Exception ex)
             {
@@ -737,8 +730,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         {
             try
             {
-                //Metodos.LimpiarCombo(ddlNivel7);
-                //divNivel7.Visible = false;
                 if (((DropDownList)sender).SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     return;
                 if (!_servicioArbolAcceso.EsNodoTerminal(IdTipoUsuario, TipoArbol, IdNivel1, IdNivel2, IdNivel3, IdNivel4, IdNivel5, IdNivel6, null))
@@ -749,8 +740,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 }
                 else
                 {
-                    //btnAgregarNivel7.Enabled = false;
-                    //divNivel7.Visible = false;
                     btnSiguiente.Enabled = false;
                     throw new Exception("Para continuar seleccione un nivel no terminal.");
                 }
@@ -764,26 +753,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 Alerta = _lstError;
             }
         }
-        //protected void ddlNivel7_OnSelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (_servicioArbolAcceso.EsNodoTerminal(IdTipoUsuario, TipoArbol, IdNivel1, IdNivel2, IdNivel3, IdNivel4, IdNivel5, IdNivel6, IdNivel7))
-        //        {
-        //            btnSiguiente.Enabled = false;
-        //            throw new Exception("Para continuar seleccione un nivel no terminal.");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (_lstError == null || !_lstError.Any())
-        //        {
-        //            _lstError = new List<string> { ex.Message };
-        //        }
-        //        Alerta = _lstError;
-        //    }
-        //}
-
+        
         protected void btnAgregarNivel_OnClick(object sender, EventArgs e)
         {
             try
@@ -1084,6 +1054,10 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 _mp.AlertaSucces();
                 if (OnAceptarModal != null)
                     OnAceptarModal();
+
+                //agregado
+                if (OnCancelarModal != null)
+                    OnCancelarModal();
             }
             catch (Exception ex)
             {

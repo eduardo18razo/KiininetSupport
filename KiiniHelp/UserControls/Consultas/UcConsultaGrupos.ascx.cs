@@ -51,8 +51,6 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                //if (lstTipoUsuario.Count >= 2)
-                //    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
             }
             catch (Exception e)
@@ -134,9 +132,8 @@ namespace KiiniHelp.UserControls.Consultas
                 if (!IsPostBack)
                 {
                     LlenaCombos();
+                    LlenaGrupos();
                 }
-
-                LlenaGrupos();
 
                 ucAltaGrupoUsuario.FromOpcion = false;
                 ucAltaGrupoUsuario.OnAceptarModal += UcAltaGrupoUsuarioOnOnAceptarModal;
@@ -362,23 +359,8 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        protected void OnCheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _servicioGrupoUsuario.HabilitarGrupo(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
-                LlenaGrupos();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
+
+
 
         #region Paginador
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -425,7 +407,6 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-
         protected void btnDownload_OnClick(object sender, EventArgs e)
         {
             try
@@ -471,6 +452,47 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-       
+
+        protected void OnCheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _servicioGrupoUsuario.HabilitarGrupo(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
+                LlenaGrupos();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void chkHabilitado_CheckedChanged(object sender, EventArgs e)
+        {
+           try
+           {
+               _servicioGrupoUsuario.HabilitarGrupo(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
+               LlenaGrupos();
+           }
+           catch (Exception ex)
+           {
+               if (_lstError == null)
+               {
+                   _lstError = new List<string>();
+               }
+               _lstError.Add(ex.Message);
+               Alerta = _lstError;
+           }
+        }
+
+        protected void chknuevo_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

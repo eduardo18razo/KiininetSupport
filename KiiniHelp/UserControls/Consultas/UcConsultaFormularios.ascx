@@ -22,7 +22,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Formularios" /></h3>
                             </div>
                             <p>
-                                Texto para Formularios
+                                Los formularios se conforman por campos específicos y estructurados que deberán ser capturados por los usuarios para crear un evento.
                             </p>
                         </div>
 
@@ -86,23 +86,23 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="13%">
+                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="14%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta")%>'><%# Eval("FechaAlta")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="13%">
+                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="14%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion")%>'><%# Eval("FechaModificacion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled">
+                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="OnClick"></asp:LinkButton>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
@@ -118,16 +118,15 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
+                                                <ul class="list list-unstyled">
                                                     <li>
-                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' Visible='<%# !(bool) Eval("Sistema") %>' OnClick="OnClick"></asp:LinkButton>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
                                     </Columns>
                                 </asp:GridView>
 

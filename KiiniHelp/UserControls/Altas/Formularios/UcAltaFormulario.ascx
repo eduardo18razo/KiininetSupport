@@ -8,18 +8,22 @@
             <ContentTemplate>
                 <section class="module">
                     <div class="row">
-                        <div class="col-lg-8 col-md-7 col-sm-7">
+                        <div class="col-lg-8 col-md-7">
                             <div class="module-inner">
-                                <asp:Label runat="server" ID="lblIdTipoCampoMascara" Text="Título del Formulario" Visible="True" />
-                                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control no-border"  MaxLength="50" Style="text-transform: none" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
-                                <asp:CheckBox runat="server" ID="chkClaveRegistro" CssClass="form-control" Text="Clave de Registro" Visible="False" Checked="True" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+
+                                <asp:Label runat="server" ID="lblIdTipoCampoMascara" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left" Text="Título del Formulario" Visible="True" />
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left no-padding-right">
+                                    <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control margin-top-5" MaxLength="50" Style="text-transform: none" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                                    <asp:CheckBox runat="server" ID="chkClaveRegistro" CssClass="form-control" Text="Clave de Registro" Visible="False" Checked="True" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                                </div>
+
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-5 col-sm-5">
-                            <div class="module-inner">
-                                <asp:Button runat="server" CssClass="btn btn-default col-lg-3 col-md-3" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-primary col-lg-4 col-md-4 margin-left-5" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-success col-lg-3 col-md-3 margin-left-5" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
+                        <div class="col-lg-4 col-md-5 col-sm-5 margin-top-btn-consulta no-padding-top no-padding-right">
+                            <div class="module-inner text-center">
+                                <asp:Button runat="server" CssClass="btn btn-default altoBtn" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-primary altoBtn margin-left-5" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-success altoBtn margin-left-5" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
                             </div>
                         </div>
                     </div>
@@ -113,7 +117,6 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="module-inner">
                                     <div class="form-group">
-                                        <asp:Label runat="server" ID="lblDescripcion" /><br />
                                         <asp:Label runat="server" Text="Título del campo" /><br />
                                         <asp:TextBox runat="server" ID="txtDescripcionCampo" CssClass="form-control" MaxLength="50" Style="text-transform: none" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
@@ -131,44 +134,48 @@
                             <div class="col-lg-12 col-md-12" runat="server" id="divLongitudMinima" visible="False">
                                 <div class="module-inner">
                                     <div class="form-group">
-                                        <asp:Label runat="server" Text="Longitud mínima" CssClass="col-lg-4 col-md-4 col-sm-4" />
+                                        <asp:Label runat="server" Text="Longitud mínima" CssClass="col-lg-4 col-md-4 col-sm-4 no-padding-left padding-10-top" />
                                         <div class="col-lg-3 col-md-3 col-sm-5">
-                                            <asp:TextBox runat="server" ID="txtLongitudMinima" type="number" min="1" max="99" CssClass="form-control" Style="text-transform: none" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                                            <asp:TextBox runat="server" ID="txtLongitudMinima" type="number" min="1" max="99" CssClass="form-control" Style="text-transform: none" Height="29px" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                         </div>
+                                        <asp:Label runat="server" ID="lblDescripcion" CssClass="col-lg-12 col-md-12 col-sm-12 no-padding-left padding-10-top" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12" runat="server" id="divLongitudMaxima" visible="False">
+                            <div class="row col-lg-12 col-md-12" runat="server" id="divLongitudMaxima" visible="False">
                                 <div class="module-inner">
                                     <div class="form-group">
-                                        <asp:Label runat="server" Text="Longitud máxima" CssClass="col-lg-4 col-md-4 col-sm-4" />
+                                        <asp:Label runat="server" Text="Longitud máxima" CssClass="col-lg-4 col-md-4 col-sm-4 no-padding-left padding-10-top" />
                                         <div class="col-lg-3 col-md-3 col-sm-5">
                                             <asp:TextBox runat="server" ID="txtLongitudMaxima" type="number" min="1" max="1000" CssClass="form-control" Style="text-transform: none" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                           
                             <%-- ***** --%>
-                            <div class="col-lg-12 col-md-12" runat="server" id="divCatalgo" visible="False">
+                            <div class="row col-lg-12 col-md-12 no-padding-right no-padding-left" runat="server" id="divCatalgo" visible="False">
                                 <div class="module-inner">
                                     <div class="form-group">
-                                        <div class="form-inline">
-                                            <asp:Label runat="server" Text="Selecciona el catálogo que contiene las opciones que se mostrarán" Font-Bold="true" />
+                                         <hr />
+                                        <div class="row form-inline margin margin-top-10">
+                                            <asp:Label runat="server" Text="Selecciona el catálogo que contiene las opciones que se mostrarán" />
                                             <br />
                                             <br />
-                                            <div class="form-group">
-                                                Catálogos
-                                                <asp:DropDownList runat="server" ID="ddlCatalogosCampo" CssClass="form-control" />
-                                                <asp:Button runat="server" Text="Seleccionar" CssClass="btn btn-primary" ID="btnSeleccionarCatalogo" OnClick="btnAgregarCampo_OnClick" />
+                                            <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                                <asp:Label runat="server" Text="Catálogos" CssClass="col-lg-3 col-md-3 col-sm-3 no-padding-left padding-10-top" />
+                                                <div class="col-lg-6 col-md-6 col-sm-6 padding-10-left">
+                                                    <asp:DropDownList runat="server" ID="ddlCatalogosCampo" CssClass="form-control" />
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 text-right no-padding-right margin-top-4">
+                                                    <asp:Button runat="server" Text="Seleccionar" CssClass="btn btn-primary altoBtn" ID="btnSeleccionarCatalogo" OnClick="btnAgregarCampo_OnClick" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <br />
                                         <hr />
-                                        <div class="form-group">
-                                            <asp:Label runat="server" Text="Agregar opciones manualmente:" Font-Bold="true" />
-                                            <%--CssClass="padding-20-bottom"--%>
+                                        <div class="row form-group margin-top-10">
+                                            <asp:Label runat="server" Text="Agregar opciones manualmente:" />
                                         </div>
 
                                         <uc1:UcAltaCatalogo runat="server" ID="ucAltaCatalogo" />
@@ -223,9 +230,9 @@
 
                         </div>
                         <div class="row">
-                            <p class="text-right">
-                                <asp:Button ID="btnAgregarCampo" runat="server" CssClass="btn btn-primary margin-top-20" Text="Agregar" OnClick="btnAgregarCampo_OnClick" />
-                                <asp:Button runat="server" CssClass="btn btn-danger margin-top-20" Text="Cancelar" ID="btnLimpiarCampo" OnClick="btnLimpiarCampo_OnClick" Visible="False" />
+                            <p class="text-right margin-right-4">
+                                <asp:Button ID="btnAgregarCampo" runat="server" CssClass="btn btn-primary" Text="Agregar" OnClick="btnAgregarCampo_OnClick" />
+                                <asp:Button runat="server" CssClass="btn btn-danger" Text="Cancelar" ID="btnLimpiarCampo" OnClick="btnLimpiarCampo_OnClick" Visible="False" />
                             </p>
                         </div>
                     </div>

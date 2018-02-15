@@ -829,8 +829,8 @@ namespace KiiniHelp.Agente
                     string dataField = gridDataColumn.GetActiveDataField();
                     switch (dataField)
                     {
-                        case "ImagenSla":
-                            e.ListBox.DataSource = Tickets.Select(s => s.ImagenSla).Distinct().ToList();
+                        case "DentroSla":
+                            e.ListBox.DataSource = Tickets.Select(s => s.DentroSla).Distinct().ToList();
                             e.ListBox.DataBind();
                             break;
                         case "ImagenPrioridad":

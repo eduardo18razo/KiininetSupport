@@ -3,7 +3,6 @@
 <%@ Register Src="~/UserControls/Altas/ArbolesAcceso/UcAltaAbrolAcceso.ascx" TagPrefix="uc1" TagName="UcAltaAbrolAcceso" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleArbolAcceso.ascx" TagPrefix="uc1" TagName="UcDetalleArbolAcceso" %>
 
-
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server" style="height: 100%">
         <ContentTemplate>
@@ -12,7 +11,7 @@
                 <li class="breadcrumb-item">
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
                 <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item active">Configuración de Menú</li>
+                <li class="breadcrumb-item active">Menú de Navegación</li>
             </ol>
 
             <section class="module">
@@ -21,10 +20,13 @@
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Configuración de Menú" /></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="Menú de Navegación" /></h3>
                             </div>
                             <p>
-                                Texto para Configuración de Menú
+                                El menú de navegación es la secuencia en la que los artículos y los formularios, ya sean clasificados como servicios o problemas, serán acomodados dentro del Help Center. El menú de navegación posee una estructura de árbol:
+                                <br />
+                                Categoría > Nivel 1 > Nivel 2 > Nivel 3 > Nivel 4 > Nivel 5 > Nivel 6 > Nivel 7
+
                             </p>
                         </div>
 
@@ -94,45 +96,45 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Título" HeaderStyle-Width="25%">
+                                        <asp:TemplateField HeaderText="Título" HeaderStyle-Width="30%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("Tipificacion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Tipificacion")%>'><%# Eval("Tipificacion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Categoría" HeaderStyle-Width="20%">
+                                        <asp:TemplateField HeaderText="Categoría" HeaderStyle-Width="21%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("Area.Descripcion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Area.Descripcion")%>'><%# Eval("Area.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Tipificación" HeaderStyle-Width="20%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("TipoArbolAcceso.Descripcion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TipoArbolAcceso.Descripcion")%>'><%# Eval("TipoArbolAcceso.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="12%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# (bool) Eval("EsTerminal") ? "OPCIÓN" : "SECCIÓN" %></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("EsTerminal") ? "Opción" : "Sección" %>'><%# (bool) Eval("EsTerminal") ? "Opción" : "Sección" %></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Nivel" HeaderStyle-Width="5%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title=''><%# Eval("Nivel") %></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Nivel") %>'><%# Eval("Nivel") %></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Detalle" HeaderStyle-Width="5%">
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
+                                                <asp:LinkButton runat="server" Text="Ver" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
@@ -174,7 +176,7 @@
     <div class="modal fade" id="modalAtaOpcion" tabindex="-1" role="dialog" aria-labelledby="basicModal">
         <asp:UpdatePanel ID="upAltaArea" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <<div class="modal-dialog" style="height: 250px;">
+                <<div class="modal-dialog" style="width: 650px;">
                     <div class="modal-content">
                         <uc1:UcAltaAbrolAcceso runat="server" ID="UcAltaAbrolAcceso" />
                     </div>

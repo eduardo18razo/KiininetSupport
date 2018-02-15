@@ -5,13 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Kiinisupport</title>
+    <title>Kiininet CPX</title>
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link href="assets/css/elegant-icons.css" rel="stylesheet" />
     <link href="assets/css/bootstrap-markdown.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <link rel="stylesheet" href="assets/css/modales_movil.css" />
+    <link rel="stylesheet" href="assets/css/main_movil.css" />
+
     <script type="text/javascript">
         function SuccsessAlert(title, msg) {
             $.notify({
@@ -109,7 +113,7 @@
         }
     </script>
 </head>
-<body class="layout_no_leftnav">
+<body style="height: 100%;" > <%--class="layout_no_leftnav"--%>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -132,11 +136,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
-                                <h1 class="form-box-heading logo"><span class="highlight">Recuperar Contraseña <%--<asp:Label runat="server" ID="lblBrandingModal" />--%></span> </h1>
-                                <div class="form-box-inner">
+                                <h1 class="form-box-heading2"><span class="highlight">Recuperar Contraseña <%--<asp:Label runat="server" ID="lblBrandingModal" />--%></span> </h1>
+                                <div class="form-box-inner2">
                                     <h2 class="title">¿Olvidaste tu contraseña?</h2>
                                     <div class="row">
-                                        <div class="form-container col-md-6 col-sm-12 col-xs-12">
+                                        <div class="form-container col-md-12 col-sm-12 col-xs-12">
                                             <div data-parsley-validate class="form-horizontal">
                                                 <div class="form-group email" style="top: 15px">
                                                     <div><span>Ingresa tu usuario, correo electrónico o número celular:</span></div>
@@ -149,13 +153,8 @@
                                                 <div class="form-group email" style="top: 15px">
                                                     <asp:Button CssClass="btn btn-primary" Text="Enviar" runat="server" OnClick="btnBuscar_OnClick" />
 
-                                                   <%-- <asp:HyperLink CssClass="signup-link" NavigateUrl="~/Default.aspx" runat="server">   --%>                                                
-                                                             <asp:Button CssClass="btn btn-Default" ID="btnCancelar"  Text="Cancelar" runat="server" />
-                                                       <%--  </asp:HyperLink>--%>
-
-                                                    <%--<p class="alt-path"><a class="signup-link" href="login.html">Regresar a acceder a mi cuenta</a></p>--%>
+                                                    <asp:Button CssClass="btn btn-Default" ID="btnCancelar" Text="Cancelar" runat="server" />
                                                     <p class="alt-path">
-                                                        
                                                     </p>
                                                 </div>
                                             </div>

@@ -40,6 +40,10 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 ddlTipoUsuario.Enabled = value;
                 hfAlta.Value = value.ToString();
                 hfGeneraUsuario.Value = value.ToString();
+
+                btnCambiarImagen.Visible = false;
+                FileUpload1.Enabled = false;
+
                 if (!value)
                 {
                     btnModalOrganizacion.CssClass = "btn btn-primary";
@@ -270,7 +274,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
                     ddlTipoUsuario.SelectedValue = user.IdTipoUsuario.ToString();
                     ddlTipoUsuario_OnSelectedIndexChanged(ddlTipoUsuario, null);
-                    imgPerfil.ImageUrl = user.Foto != null ? "~/DisplayImages.ashx?id=" + user.Id : "~/assets/images/profiles/profile-square-1.png";
+                    imgPerfil.ImageUrl = user.Foto != null ? "~/DisplayImages.ashx?id=" + user.Id : "~/assets/images/profiles/profile-1.png";
                     lblFechaUltimoAcceso.Text = user.FechaUltimoAccesoExito;
                     txtAp.Text = user.ApellidoPaterno;
                     txtAm.Text = user.ApellidoMaterno;
@@ -549,7 +553,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             txtUserName.ReadOnly = true;
             ddlPuesto.Enabled = !habilitado && !EditarDetalle;
             btnAddPuesto.Visible = !habilitado && !EditarDetalle;
-            btnCambiarImagen.Visible = !habilitado && !EditarDetalle;
+            FileUpload1.Enabled = habilitado || !EditarDetalle;
+            btnCambiarImagen.Visible = !Alta && !EditarDetalle;
             chkVip.Enabled = !habilitado;
             chkDirectoriActivo.Enabled = !habilitado;
             chkPersonaFisica.Enabled = !habilitado;
@@ -637,6 +642,14 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 Alta = false;
                 HabilitaDetalle(EsDetalle);
                 btnEditar.Visible = false;
+                FileUpload1.Enabled = true;
+                btnCambiarImagen.Visible = true;
+
+                //botones organización, ubicación & Roles y grupos
+                btnModalOrganizacion.Visible = true;
+                btnModalUbicacion.Visible = true;
+                btnModalRoles.Visible = true;
+
             }
             catch (Exception ex)
             {
@@ -690,10 +703,14 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         lblTitle.Text = "Mi Perfil";
                         IdUsuario = ((Usuario)Session["UserData"]).Id;
                         EsDetalle = true;
+                        /**/
+                        btnModalOrganizacion.Visible = false;
+                        btnModalUbicacion.Visible = false;
+                        btnModalRoles.Visible = false;
                     }
                     else
                     {
-                        lblTitle.Text = "Alta De Usuario";
+                        lblTitle.Text = "Nuevo Usuario";
                         EsDetalle = false;
                         Alta = true;
                     }
@@ -810,8 +827,9 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                             .EsMoral)
                     {
                         divPuesto.Visible = true;
-                        btnModalOrganizacion.Text = "Modificar";
-                        btnModalUbicacion.Text = "Modificar";
+                        btnModalOrganizacion.Text = "Editar";
+                        btnModalUbicacion.Text = "Editar";
+                        btnModalRoles.Text = "Editar";
                     }
                     else
                     {

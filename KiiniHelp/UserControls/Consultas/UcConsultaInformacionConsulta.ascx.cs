@@ -17,7 +17,7 @@ namespace KiiniHelp.UserControls.Consultas
         private readonly ServiceInformacionConsultaClient _servicioInformacionConsulta = new ServiceInformacionConsultaClient();
 
         private List<string> _lstError = new List<string>();
-        
+
         public List<string> Alerta
         {
             set
@@ -30,7 +30,7 @@ namespace KiiniHelp.UserControls.Consultas
                 }
             }
         }
-        
+
         private void LlenaInformacionConsulta()
         {
             try
@@ -49,8 +49,10 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-
-                LlenaInformacionConsulta();
+                if (!IsPostBack)
+                {
+                    LlenaInformacionConsulta();
+                }
                 Alerta = new List<string>();
             }
             catch (Exception ex)
@@ -64,13 +66,13 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        
+
         protected void btnEditar_OnClick(object sender, EventArgs e)
         {
             try
             {
 
-                Response.Redirect("~/Users/Administracion/InformaciondeConsulta/FrmAltaInfConsulta.aspx?IdInformacionConsulta=" + ((LinkButton)sender).CommandArgument);               
+                Response.Redirect("~/Users/Administracion/InformaciondeConsulta/FrmAltaInfConsulta.aspx?IdInformacionConsulta=" + ((LinkButton)sender).CommandArgument);
             }
             catch (Exception ex)
             {
@@ -176,5 +178,7 @@ namespace KiiniHelp.UserControls.Consultas
         }
 
         #endregion
+
+
     }
 }

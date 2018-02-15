@@ -29,6 +29,7 @@ namespace KiiniHelp
             public int IdTicket { get; set; }
             public string Title { get; set; }
             public bool Nuevo { get; set; }
+            public bool Asigna { get; set; }
         }
 
         private void LlenaTicketsAbiertos()
@@ -90,7 +91,7 @@ namespace KiiniHelp
             {
                 if (!TicketsAbiertos.Any(a => a.IdTicket == idTicket))
 
-                    TicketsAbiertos.Add(new TicketSeleccionado { IdTicket = idTicket, Title = titulo });
+                    TicketsAbiertos.Add(new TicketSeleccionado { IdTicket = idTicket, Title = titulo, Asigna = asigna });
                 LlenaTicketsAbiertos();
                 Response.Redirect("~/Agente/FrmTicket.aspx?id=" + idTicket + "&asigna=" + asigna);
             }
@@ -575,7 +576,7 @@ namespace KiiniHelp
                     if (bool.Parse(lnk.CommandName))
                         Response.Redirect("~/Agente/FrmAgenteNuevoTicket.aspx?idUsuarioSolicitante=" + ((LinkButton)sender).CommandArgument);
                     else
-                        Response.Redirect("~/Agente/FrmTicket.aspx?id=" + ((LinkButton)sender).CommandArgument);
+                        Response.Redirect("~/Agente/FrmTicket.aspx?id=" + ((LinkButton)sender).CommandArgument + "&asigna=" + ((LinkButton)sender).Attributes["data-asigna"]);
                 }
             }
             catch (Exception ex)

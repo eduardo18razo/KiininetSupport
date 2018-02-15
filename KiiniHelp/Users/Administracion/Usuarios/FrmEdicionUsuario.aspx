@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Usuarios.Master" AutoEventWireup="true" CodeBehind="FrmEdicionUsuario.aspx.cs" Inherits="KiiniHelp.Users.Administracion.Usuarios.FrmEdicionUsuario" %>
-
 <%@ Register Src="~/UserControls/Altas/Usuarios/UcAltaUsuario.ascx" TagPrefix="uc1" TagName="UcAltaUsuario" %>
 
 

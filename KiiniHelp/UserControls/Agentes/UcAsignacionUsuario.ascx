@@ -5,21 +5,24 @@
 
 
 <style>
-    .RadSearchBox .rsbInner input {
-        width: 90% !important;
-    }
+   
 </style>
 <script>    
 </script>
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
-        <asp:HiddenField runat="server" ID="hfSelected" ClientIDMode="Static" Value="1"/>
+        <asp:HiddenField runat="server" ID="hfSelected" ClientIDMode="Static" Value="1" />
+
+
         <div class="modal-header">
-            <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelar_OnClick" Text='&times' />
-            <div class="modal-title" id="modal-new-ticket-label">
-                <asp:Label runat="server" Text="Asignación de usuario" /></div>
+            <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelar_OnClick" Text='&times;' />
+            <h6 class="modal-title" id="modal-new-ticket-label">
+                <asp:Label runat="server" Text="Asignación de usuario" />
+            </h6>
         </div>
-        <div class="modal-body" style="height:250px">
+
+
+        <div class="modal-body">
             <div class="row" style="padding-left: 15px;">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -30,7 +33,7 @@
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="usuarioRegistrado">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <uc1:UcBusquedaUsuario runat="server" id="ucBusquedaUsuario" />
+                            <uc1:UcBusquedaUsuario runat="server" ID="ucBusquedaUsuario" />
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="nuevoUsuario">
@@ -43,8 +46,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <asp:Button runat="server" ID="btnSeleccionarUsuario" style="margin-right: 16px;" Text="Asignar" CssClass="btn btn-success" OnClick="btnSeleccionarUsuario_OnClick" />
+            <asp:Button runat="server" ID="btnSeleccionarUsuario" Style="margin-right: 16px;" Text="Asignar" CssClass="btn btn-success" OnClick="btnSeleccionarUsuario_OnClick" />
         </div>
-        
+
     </ContentTemplate>
 </asp:UpdatePanel>

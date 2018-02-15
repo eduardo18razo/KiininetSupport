@@ -11,11 +11,15 @@
 <asp:HiddenField runat="server" ID="hfEsAlta" Value="true" />
 <asp:HiddenField runat="server" ID="hfIdInformacionConsulta" />
 <asp:HiddenField runat="server" ID="hfValueText" />
-<br>
-<h3 class="h6">
-    <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink>
-    / Editor de contenido / Nuevo artículo </h3>
-<hr />
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
+    <li class="breadcrumb-item">Help Center</li>
+    <li class="breadcrumb-item">Artículos</li>
+    <li class="breadcrumb-item active">Nuevo</li>
+</ol>
+
 <asp:UpdatePanel runat="server" ID="upAltaInformacionConsulta" UpdateMode="Conditional">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfComentario" />
@@ -23,55 +27,58 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8">
                     <div class="module-inner">
-                        <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control" placeholder="Título del Artículo" MaxLength="50" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+
+                        <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Título del Artículo</label>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left no-padding-right">
+                            <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control no-padding-left no-margin-left" MaxLength="50" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                        </div>
+
                     </div>
-                    <hr />
+
                 </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="module-inner">
-                        <asp:Button runat="server" CssClass="btn btn-default col-lg-3 col-md-3" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary col-lg-4 col-md-4 margin-left-5" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-success col-lg-3 col-md-3 margin-left-5" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
+                <div class="col-lg-4 col-md-6 margin-top-btn-consulta no-padding-top">
+                    <div class="module-inner text-center">
+                        <asp:Button runat="server" CssClass="btn btn-default" Height="29px" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />
+                        <asp:Button runat="server" CssClass="btn btn-primary margin-left-5" Height="29px" Text="Previsualizar" ID="btnPreview" OnClick="btnPreview_OnClick" />
+                        <asp:Button runat="server" CssClass="btn btn-success margin-left-5" Height="29px" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-8">
                     <div class="module-inner">
-                        <%--<asp:UpdatePanel runat="server" UpdateMode="Conditional">
-                            <ContentTemplate>--%>
                         <ctrlExterno:HtmlEditor runat="Server" ID="txtEditor" Height="350px" ToggleMode="ToggleButton" ColorScheme="VisualStudio" />
-                        <%--</ContentTemplate>
-                        </asp:UpdatePanel>--%>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="module-inner">
-                        Palabras de Búsqueda<hr />
+                        <asp:Label runat="server" Text="Palabras de Búsqueda"/>
+                        <hr />
                         <div class="form-group">
                             <asp:TextBox runat="server" ID="txtBusqueda" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control" Style="width: 100%" MaxLength="500"></asp:TextBox>
                         </div>
-                        Etiquetas<hr />
+                        <asp:Label runat="server" Text="Etiquetas"/>
+                        <hr />
                         <div class="form-group">
                             <asp:TextBox runat="server" ID="txtTags" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control" Style="width: 100%" MaxLength="500"></asp:TextBox>
                         </div>
-                        Adjuntos<br />
+                        <asp:Label runat="server" Text="Adjuntos"/>
+                        <br />
                         <hr />
                         <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upArchivos">
                             <ContentTemplate>
                                 <div class="form-group">
                                     <asp:Repeater runat="server" ID="rptFiles">
                                         <ItemTemplate>
-                                            <div class="row col-lg-12 col-md-12 col-sm-12">
-                                                <span>
-                                                    <span class="col-lg-10 col-md-10 col-sm-10 fa fa-file-o">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <span class="row">
+                                                    <span class="col-lg-10 col-md-10 col-sm-10"><i class="fa fa-file-o"></i>
                                                         <asp:Label runat="server" ID="lblFile" Text='<%# Eval("NombreArchivo")%>' />
                                                     </span>
+                                                    <asp:LinkButton runat="server" CssClass="col-lg-1 col-md-1 col-sm-1" ID="btnRemoveFile" CommandArgument='<%# Eval("NombreArchivo")%>' OnClick="btnRemoveFile_OnClick" ><i class="fa fa-remove"></i></asp:LinkButton>
 
                                                     <asp:Label runat="server" ID="Label1" CssClass="col-lg-10 col-md-10 col-sm-10" Text='<%# Eval("Tamaño")%>' />
-                                                    <asp:LinkButton runat="server" CssClass="col-lg-1 col-md-1 col-sm-1 fa fa-remove" ID="btnRemoveFile" CommandArgument='<%# Eval("NombreArchivo")%>' OnClick="btnRemoveFile_OnClick" />
-                                                </span>
-                                                <br />
+                                                </span>                                                
                                                 <hr />
                                             </div>
                                         </ItemTemplate>

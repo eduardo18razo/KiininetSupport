@@ -91,7 +91,7 @@ namespace KiiniHelp.UserControls.Consultas
                 if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
-                List<Ubicacion> lstUbicaciones = _servicioUbicacion.ObtenerUbicaciones(idTipoUsuario, null, null, null, null, null, null, null);
+                List<Ubicacion> lstUbicaciones = _servicioUbicacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
                 tblResults.DataSource = lstUbicaciones;
                 tblResults.DataBind();
             }
@@ -298,13 +298,14 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                int? idTipoUsuario = null;
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
-                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
+                LlenaUbicaciones();
+                //int? idTipoUsuario = null;
+                //if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                //    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
-                tblResults.DataSource = _servicioUbicacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
-                tblResults.DataBind();
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
+                //tblResults.DataSource = _servicioUbicacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
+                //tblResults.DataBind();
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
                 //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "HightSearch(\"tblHeader\", \"" + txtFiltroDecripcion.Text.Trim() + "\");", true);
             }
             catch (Exception ex)

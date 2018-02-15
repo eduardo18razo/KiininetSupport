@@ -1,6 +1,6 @@
 ﻿.span-upload {
     text-decoration-line: underline;
-    color: #40babd;
+    color: #3FA9F5;
     width: 100%;
     cursor: pointer;
 }
@@ -10,7 +10,7 @@
     z-index: 500;
     position: relative;
     z-index: 10;
-    color: #40babd;
+    color: #3FA9F5;
     width: 100%;
     cursor: pointer;
 }

@@ -110,11 +110,6 @@ namespace KiiniHelp.UserControls.Altas
                             CheckBox chk = (CheckBox)item.FindControl("chkSubRol");
                             if (chk != null)
                             {
-                                //Button btnHorarios = (Button)item.FindControl("btnHorarios");
-                                //btnHorarios.CommandName = subGrupo.Id.ToString();
-
-                                //Button btnDias = (Button)item.FindControl("btnDiasDescanso");
-                                //btnDias.CommandName = subGrupo.Id.ToString();
                                 if (subGrupo.IdSubRol == Convert.ToInt32(chk.Attributes["value"]))
                                 {
                                     chk.Checked = subGrupo.IdSubRol == Convert.ToInt32(chk.Attributes["value"]);
@@ -126,9 +121,6 @@ namespace KiiniHelp.UserControls.Altas
                                             ((DropDownList)item.FindControl("ddlHorario")).SelectedValue = subGrupo.HorarioSubGrupo.First(s => s.IdSubGrupoUsuario == subGrupo.Id).IdHorario.ToString();
                                         if (subGrupo.DiaFestivoSubGrupo != null && subGrupo.DiaFestivoSubGrupo.Count > 0)
                                             ((DropDownList)item.FindControl("ddlDiasFeriados")).SelectedValue = subGrupo.DiaFestivoSubGrupo.First(s => s.IdSubGrupoUsuario == subGrupo.Id).IdDiasFeriados.ToString();
-                                        //CargaHorario();
-                                        //ucAltaDiasFestivos.SetDiasFestivosSubRol(_servicioGrupoUsuario.ObtenerDiasByIdSubGrupo(subGrupo.Id), int.Parse(btnDias.CommandArgument));
-                                        //CargaDias();
                                         break;
                                     }
                                 }
@@ -243,6 +235,7 @@ namespace KiiniHelp.UserControls.Altas
             {
                 IdTipoGrupo = int.Parse(ddlTipoGrupo.SelectedValue);
                 divParametros.Visible = false;
+                divSubRoles.Visible = false;
                 lblTitle.Text = "Agregar Grupo ";
                 switch (IdTipoGrupo)
                 {
@@ -480,6 +473,15 @@ namespace KiiniHelp.UserControls.Altas
                         ddlDiasFeriados.DataBind();
                         Button btnHorarios = (Button)chk.DataItemContainer.FindControl("btnHorarios");
                         Button btnDiasDescanso = (Button)chk.DataItemContainer.FindControl("btnDiasDescanso");
+
+                        if (chk.Checked)
+                        {
+                            chk.CssClass = "btn btn-block hideCheck btn-primary";
+                        }
+                        else {
+                            chk.CssClass = "btn btn-block hideCheck btn-seleccione";
+                        }
+
                         if (btnHorarios != null && btnDiasDescanso != null)
                         {
                             if (chk.Checked)
@@ -492,7 +494,6 @@ namespace KiiniHelp.UserControls.Altas
                             {
                                 Metodos.LimpiarCombo(ddlHorario);
                                 Metodos.LimpiarCombo(ddlDiasFeriados);
-                                chk.CssClass = "btn btn-primary";
                                 btnHorarios.CssClass = "col-sm-2 btn btn-sm btn-primary disabled";
                                 btnDiasDescanso.CssClass = "col-sm-2 btn btn-sm btn-primary disabled";
                             }
@@ -525,8 +526,7 @@ namespace KiiniHelp.UserControls.Altas
                             ((CheckBox)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol")).Checked = true;
                             OnCheckedChanged(((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol"), null);
                             ((CheckBox)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol")).Enabled = false;
-                            //((Button)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("btnHorarios")).CssClass = "col-sm-2 btn btn-sm btn-primary";
-                            //((Button)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("btnDiasDescanso")).CssClass = "col-sm-2 btn btn-sm btn-primary";
+                            ((CheckBox)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol")).CssClass = "btn btn-block hideCheck btn-primary";
                         }
                         break;
                     case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido:
@@ -535,8 +535,7 @@ namespace KiiniHelp.UserControls.Altas
                             ((CheckBox)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol")).Checked = true;
                             OnCheckedChanged(((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol"), null);
                             ((CheckBox)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol")).Enabled = false;
-                            //((Button)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("btnHorarios")).CssClass = "col-sm-2 btn btn-sm btn-primary";
-                            //((Button)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("btnDiasDescanso")).CssClass = "col-sm-2 btn-sm btn btn-primary";
+                            ((CheckBox)((Repeater)sender).Controls[e.Item.ItemIndex].FindControl("chkSubRol")).CssClass = "btn btn-block hideCheck btn-primary";
                         }
                         break;
                 }
