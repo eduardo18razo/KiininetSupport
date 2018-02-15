@@ -102,6 +102,8 @@
     <Content Include="assets\css\font-awesome.css" />
     <Content Include="assets\css\font.css" />
     <Content Include="assets\css\menuStyle.css" />
+    <Content Include="assets\css\modales.css" />
+    <Content Include="assets\css\modales_movil.css" />
     <Content Include="assets\css\pe-7-icons-helper.css" />
     <Content Include="assets\css\pe-7-icons.css" />
     <Content Include="assets\css\styles.css" />
@@ -4151,7 +4153,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

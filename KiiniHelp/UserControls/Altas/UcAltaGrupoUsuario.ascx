@@ -61,6 +61,8 @@
                                                     </div>
                                                     <asp:CheckBox runat="server" ID="chkHabilitado" Checked="True" Visible="False" />
                                                     <div class="form-group" runat="server" id="divParametros" visible="False">
+                                                        <label class="margin-top-10">
+                                                        Selecciona los permisos del grupo:</label>
                                                         <asp:RadioButton runat="server" ID="rbtnLevanta" GroupName="gpoContacCenterParamtro" Text="Levanta Tickets" CssClass="col-sm-12" />
                                                         <asp:RadioButton runat="server" ID="rbtnRecado" GroupName="gpoContacCenterParamtro" Text="Levanta Recados" CssClass="col-sm-12" />
                                                     </div>

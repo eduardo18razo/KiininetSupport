@@ -14,6 +14,24 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            UcAltaConsulta.OnCancelarModal += UcAltaConsulta_OnCancelarModal;
+            UcAltaServicio.OnCancelarModal += UcAltaServicio_OnCancelarModal;
+
+        }
+
+        void UcAltaServicio_OnCancelarModal()
+        {
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
+        }
+
+        void UcAltaConsulta_OnCancelarModal()
+        {
+
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
+        }
+
         public void Cancelar()
         {
             try
@@ -38,7 +56,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 }
             }
         }
-       
+
         protected void btnCancelar_OnClick(object sender, EventArgs e)
         {
             try
@@ -55,6 +73,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
             }
-        } 
+        }
     }
 }

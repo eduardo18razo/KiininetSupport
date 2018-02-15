@@ -189,7 +189,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             {
                 List<string> errors = new List<string>();
                 if (txtDescripcionNivel.Text.Trim() == string.Empty)
-                    errors.Add("Ingrese titulo para la opción");
+                    errors.Add("Ingrese título para la opción");
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     errors.Add("Seleccione quien puede ver el contenido");
                 if (ddlConsultas.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
@@ -209,7 +209,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             try
             {
                 var valida = IdArea;
-                //valida = IdNivel1;
             }
             catch (Exception e)
             {
@@ -312,14 +311,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 divNivel4.Visible = false;
                 divNivel5.Visible = false;
                 divNivel6.Visible = false;
-                ////Step 3
-                //Metodos.LimpiarCombo(ddlGrupoAcceso);
-                //Metodos.LimpiarCombo(ddlDuenoServicio);
-                //Metodos.LimpiarCombo(ddlGrupoResponsableMantenimiento);
-                //Metodos.LimpiarListBox(lstGrupoEspecialConsulta);
-
-                ////txtDescripcionN7.Text = string.Empty;
-                //btnPaso_OnClick(new LinkButton { CommandArgument = "1" }, null);
             }
             catch (Exception e)
             {
@@ -336,6 +327,8 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 {
                     LlenaCombos();
                 }
+
+
             }
             catch (Exception ex)
             {
@@ -451,7 +444,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         btn.CommandArgument = "3";
                         break;
                 }
-
             }
             catch (Exception ex)
             {
@@ -1062,6 +1054,10 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 _mp.AlertaSucces();
                 if (OnAceptarModal != null)
                     OnAceptarModal();
+
+                //agregado
+                if (OnCancelarModal != null)
+                    OnCancelarModal();
             }
             catch (Exception ex)
             {

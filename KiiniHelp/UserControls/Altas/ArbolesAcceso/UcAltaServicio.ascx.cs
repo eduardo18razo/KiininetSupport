@@ -1861,11 +1861,9 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 }
                 LimpiarPantalla();
                 _mp.AlertaSucces();
-                //if (OnAceptarModal != null)
-                //    OnAceptarModal();
-
-                if (OnTerminarModal != null)
-                    OnTerminarModal();
+                                
+                if (OnCancelarModal != null)
+                    OnCancelarModal();
 
             }
             catch (Exception ex)

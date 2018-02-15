@@ -27,7 +27,7 @@
                         <div class="col-lg-9 col-md-8 col-sm-8 no-padding-right">
                             <div class="module-inner">
 
-                                <section class="module" style="height: 670px">
+                                <section class="module" > 
                                     <div class="module-inner">
                                         <div class="row ">
                                             <div class="module-heading col-lg-12 col-md-12 col-sm-12">
@@ -176,7 +176,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-4 col-sm-4">
-                            <section class="module" style="min-height: 926px">
+                            <section class="module" > 
                                 <div class="module-inner">
 
                                     <div class="module-heading col-lg-12 col-md-12 col-sm-12">
