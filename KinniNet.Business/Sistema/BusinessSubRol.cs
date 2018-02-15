@@ -134,7 +134,7 @@ namespace KinniNet.Core.Sistema
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 if (nivelActual != null)
                 {
-                    switch (nivelActual +1 )
+                    switch (nivelActual)
                     {
                         case 1:
                             idSubRol = (int)BusinessVariables.EnumSubRoles.Supervisor;
