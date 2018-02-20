@@ -176,7 +176,7 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 AlertaGeneral = new List<string>();
-                lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
+                //lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
             }
             catch (Exception ex)
             {
@@ -247,7 +247,7 @@ namespace KiiniHelp.UserControls.Seleccion
                 else
                 {
                     e.Item.FindControl("divSubGrupos").Visible = false;
-                    chkGrupo.CssClass = "col-lg-4 col-md-4";
+                    chkGrupo.CssClass = "col-lg-4 col-md-4 no-padding-left";
                 }
             }
             catch (Exception ex)

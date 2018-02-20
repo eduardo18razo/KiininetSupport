@@ -45,6 +45,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 btnCambiarImagen.Visible = false;
                 FileUpload1.Enabled = false;
 
+                desbloqueaBotones();
+
                 if (!value)
                 {
                     btnModalOrganizacion.CssClass = "btn btn-primary";
@@ -250,7 +252,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 GruposUsuario = null;
                 rptRoles.DataSource = GruposUsuario;
                 rptRoles.DataBind();
-               
+
             }
             catch (Exception ex)
             {
@@ -432,7 +434,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 TextBox extension = (TextBox)item.FindControl("txtExtension");
                 if (ddlTipoTelefono != null && numero != null && extension != null)
                 {
-                    if(ddlTipoTelefono.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlTipoTelefono.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         sb.Add(string.Format("Debe especificar un tipo de telefono para el numero {0}", numero.Text.Trim()));
                     telefonoUsuario.Add(new TelefonoUsuario
                     {
@@ -470,17 +472,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     sb.Add(string.Format("Correo {0} con formato invalido", correo.Text.Trim()));
                 }
             }
-            //foreach (TextBox txtMail in lstCorreos)
-            //{
-            //    if (!Regex.IsMatch(txtMail.Text.Trim(), sFormato))
-            //    {
-            //        if (Regex.Replace(txtMail.Text.Trim(), sFormato, String.Empty).Length != 0)
-            //        {
-            //            sb.Add(string.Format("Correo {0} con formato invalido", txtMail.Text.Trim()));
-            //        }
-            //    }
-            //}
-
+            
             List<CorreoUsuario> correos = rptCorreos.Items.Cast<RepeaterItem>().Select(item => (TextBox)item.FindControl("txtCorreo")).Where(correo => correo != null & correo.Text.Trim() != string.Empty).Select(correo => new CorreoUsuario { Correo = correo.Text.Trim() }).ToList();
 
             //TODO: Implementar metodo unico
@@ -545,7 +537,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         private void HabilitaDetalle(bool habilitado)
         {
             divUltimoAcceso.Visible = habilitado || EditarDetalle;
-            btnEditar.Visible = habilitado || EditarDetalle; 
+            btnEditar.Visible = habilitado || EditarDetalle;
 
             divBtnGuardar.Visible = !habilitado && !EditarDetalle;
             txtNombre.ReadOnly = habilitado;
@@ -609,6 +601,9 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     }
                 }
             }
+
+
+
             btnModalOrganizacion.Visible = !habilitado && !EditarDetalle;
             btnModalUbicacion.Visible = !habilitado && !EditarDetalle;
             btnModalRoles.Visible = !habilitado && !EditarDetalle;
@@ -650,7 +645,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 btnModalOrganizacion.Visible = true;
                 btnModalUbicacion.Visible = true;
                 btnModalRoles.Visible = true;
-
+                desbloqueaBotones();
             }
             catch (Exception ex)
             {
@@ -704,6 +699,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         lblTitle.Text = "Mi Perfil";
                         IdUsuario = ((Usuario)Session["UserData"]).Id;
                         EsDetalle = true;
+                        Alta = false;
                         /**/
                         btnModalOrganizacion.Visible = false;
                         btnModalUbicacion.Visible = false;
@@ -901,7 +897,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         limite++;
                     }
                 }
-                txtUserName.Text = username.PadRight(35).Substring(0,30).Trim();
+                txtUserName.Text = username.PadRight(35).Substring(0, 30).Trim();
                 if (txtAp.ID == ((TextBox)sender).ID)
                 {
                     txtAm.Focus();
@@ -954,14 +950,14 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             {
                 if (e.Item.ItemType != ListItemType.Header || e.Item.ItemType != ListItemType.Footer)
                 {
-                    DropDownList ddlTipoTelefono = (DropDownList) e.Item.FindControl("ddlTipoTelefono");
+                    DropDownList ddlTipoTelefono = (DropDownList)e.Item.FindControl("ddlTipoTelefono");
                     if (ddlTipoTelefono != null)
                     {
                         ddlTipoTelefono.DataSource = _servicioTipoTelefono.ObtenerTiposTelefono(true);
                         ddlTipoTelefono.DataTextField = "Descripcion";
                         ddlTipoTelefono.DataValueField = "Id";
                         ddlTipoTelefono.DataBind();
-                        if (((TelefonoUsuario) e.Item.DataItem).IdTipoTelefono == 0)
+                        if (((TelefonoUsuario)e.Item.DataItem).IdTipoTelefono == 0)
                         {
                             e.Item.FindControl("divExtension").Visible = false;
                             ddlTipoTelefono.Enabled = true;
@@ -969,10 +965,10 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         else
                         {
                             ddlTipoTelefono.SelectedValue =
-                                ((TelefonoUsuario) e.Item.DataItem).IdTipoTelefono.ToString();
+                                ((TelefonoUsuario)e.Item.DataItem).IdTipoTelefono.ToString();
                             e.Item.FindControl("divExtension").Visible =
-                                ((TelefonoUsuario) e.Item.DataItem).IdTipoTelefono ==
-                                (int) BusinessVariables.EnumTipoTelefono.Oficina;
+                                ((TelefonoUsuario)e.Item.DataItem).IdTipoTelefono ==
+                                (int)BusinessVariables.EnumTipoTelefono.Oficina;
                             ddlTipoTelefono.Enabled = false;
                         }
                     }
@@ -1052,6 +1048,29 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 Alerta = _lstError;
             }
         }
+
+
+        private void bloqueaBotones()
+        {
+            btnAddCorreo.Visible = false;
+            btnAddTelefono.Visible = false;
+            chkVip.Enabled = false;
+            chkDirectoriActivo.Enabled = false;
+            chkPersonaFisica.Enabled = false;
+
+        }
+
+
+        private void desbloqueaBotones()
+        {
+            btnAddCorreo.Visible = true;
+            btnAddTelefono.Visible = true;
+            chkVip.Enabled = true;
+            chkDirectoriActivo.Enabled = true;
+            chkPersonaFisica.Enabled = true;
+
+        }
+
 
         #region Organizacion
 
@@ -1366,7 +1385,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     }
                 }
 
-               
+
             }
             catch (Exception ex)
             {

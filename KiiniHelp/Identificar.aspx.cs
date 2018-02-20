@@ -6,14 +6,17 @@ using System.Web.UI;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Operacion.Usuarios;
+using System.Web.UI.WebControls;
+
 
 namespace KiiniHelp
 {
     public partial class Identificar : Page
     {
+        private bool ValidCaptcha = false;
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
         private List<string> _lstError = new List<string>();
-        
+
         private List<string> Alerta
         {
             set
@@ -31,7 +34,6 @@ namespace KiiniHelp
         {
             try
             {
-                //lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
                 Alerta = new List<string>();
                 if (Request.Params["confirmacionalta"] != null)
                 {
@@ -94,5 +96,37 @@ namespace KiiniHelp
                 Alerta = _lstError;
             }
         }
+
+        protected void OnServerValidate(object source, ServerValidateEventArgs e)
+        {
+            try
+            {
+                if (txtUserName.Text.Trim() == string.Empty || txtCaptcha.Text.Trim() == string.Empty) return;
+                Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
+                e.IsValid = Captcha1.UserValidated;
+                ValidCaptcha = e.IsValid;
+                if (!e.IsValid)
+                {
+                    List<string> sb = new List<string>();
+                    sb.Add("Captcha incorrecto.");
+                    if (sb.Count > 0)
+                    {
+                        _lstError = sb;
+                        throw new Exception("");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                    _lstError.Add(ex.Message);
+                }
+
+                Alerta = _lstError;
+            }
+        }
+
     }
 }

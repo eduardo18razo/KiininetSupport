@@ -62,7 +62,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 hfComandoInsertar.Value = mascara.ComandoInsertar;
                 hfComandoActualizar.Value = mascara.ComandoInsertar;
                 hfRandom.Value = mascara.Random.ToString();
-                lblDescripcionMascara.Text = mascara.Descripcion;
+                lblDescripcionMascara.Text = mascara.Descripcion;                
                 PintaControles(mascara.CampoMascara);
             }
         }

@@ -86,11 +86,9 @@
     <Content Include="Agente\DashBoardAgente.aspx" />
     <Content Include="Agente\FrmAgenteNuevoTicket.aspx" />
     <Content Include="Agente\FrmTicket.aspx" />
-    <Content Include="assets\carouselImage\slide-1.jpg" />
-    <Content Include="assets\carouselImage\slide-2.jpg" />
-    <Content Include="assets\carouselImage\slide-3.jpg" />
-    <Content Include="assets\carouselImage\slide-4.jpg" />
-    <Content Include="assets\carouselImage\slide-5.jpg" />
+    <Content Include="assets\carouselImage\1.jpg" />
+    <Content Include="assets\carouselImage\2.jpg" />
+    <Content Include="assets\carouselImage\3.jpg" />
     <Content Include="assets\css\bootstrap-markdown.css" />
     <Content Include="assets\css\bootstrap.css" />
     <Content Include="assets\css\cambiosdiseno.css" />
@@ -107,11 +105,16 @@
     <Content Include="assets\css\pe-7-icons-helper.css" />
     <Content Include="assets\css\pe-7-icons.css" />
     <Content Include="assets\css\styles.css" />
+    <Content Include="assets\css\styles_movil.css" />
     <Content Include="assets\css\sumoselect.css" />
     <Content Include="assets\fonts\elusiveicons-webfont.svg" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\Pe-icon-7-strokebb1d.svg" />
+    <Content Include="assets\images\backs\bienvenido.jpg" />
+    <Content Include="assets\images\backs\legales.jpg" />
+    <Content Include="assets\images\backs\lost_password.jpg" />
+    <Content Include="assets\images\backs\lost_password_movil.jpg" />
     <Content Include="assets\images\construccion.jpg" />
     <Content Include="assets\images\controls\attachment.png" />
     <Content Include="assets\images\controls\calendario.png" />
@@ -137,6 +140,7 @@
     <Content Include="assets\images\icons\vip.png" />
     <Content Include="assets\images\logo-icon.svg" />
     <Content Include="assets\images\logoBlanco.jpg" />
+    <Content Include="assets\images\logo_kinninet_blanco.png" />
     <Content Include="assets\images\profiles\perfil.png" />
     <Content Include="assets\images\profiles\profile-1.png" />
     <Content Include="assets\images\profiles\profile-square-1.png" />
@@ -265,6 +269,7 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneral.datasource" />
     <Content Include="Registro.aspx" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAdministrador.datasource" />
+    <Content Include="assets\fonts\ProximaNova-Reg.ttf" />
     <None Include="Service References\ServiceDashboard\ServiceDashboards.disco" />
     <None Include="Service References\ServiceDashboard\configuration91.svcinfo" />
     <None Include="Service References\ServiceDashboard\configuration.svcinfo" />
@@ -4153,7 +4158,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
