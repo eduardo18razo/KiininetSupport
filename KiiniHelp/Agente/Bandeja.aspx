@@ -78,7 +78,7 @@
 
                                             <ExportSettings ExportOnlyData="true" IgnorePaging="true"></ExportSettings>
                                             <MasterTableView AutoGenerateColumns="False" TableLayout="Fixed" ShowHeadersWhenNoRecords="True" CommandItemDisplay="None" DataKeyNames="NumeroTicket" NoDetailRecordsText="No hay Registros">
-
+                                                <PagerStyle PagerTextFormat=" {0}{1} de {5} "></PagerStyle>
                                                 <CommandItemSettings ShowAddNewRecordButton="False" ShowRefreshButton="False"></CommandItemSettings>
                                                 <Columns>
                                                     <tc:GridClientSelectColumn UniqueName="chkSelected">
