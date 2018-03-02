@@ -184,7 +184,7 @@
     <div class="modal fade" id="modalDetalleGrupoUsuario" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog" style="width: 50%;">
                     <div class="modal-content">
                         <uc:UcDetalleGrupoUsuarios runat="server" ID="ucDetalleGrupoUsuarios" />
                     </div>
@@ -197,7 +197,7 @@
     <div class="modal fade" id="modalDetalleGrupoOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog" style="width: 70%;">
                     <div class="modal-content">
                         <uc:UcDetalleGrupoOpciones runat="server" ID="ucDetalleGrupoOpciones" />
                     </div>

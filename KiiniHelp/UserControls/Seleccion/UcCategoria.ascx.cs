@@ -52,7 +52,11 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 LinkButton lnkbtn = (LinkButton) sender;
-                Response.Redirect("~/Publico/FrmServiceArea.aspx?idArea=" + lnkbtn.CommandArgument);
+                int tipoUsuario = int.Parse(Request.Params["userType"]);
+                //Response.Redirect("~/Publico/FrmServiceArea.aspx?idArea=" + lnkbtn.CommandArgument);
+
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + tipoUsuario + "&idArea=" + lnkbtn.CommandArgument);
+                
             }
             catch (Exception ex)
             {

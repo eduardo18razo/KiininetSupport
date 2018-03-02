@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Identificar.aspx.cs" Inherits="KiiniHelp.Identificar" %>
+
 <%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
 
 
@@ -6,21 +7,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Kiininet CPX</title>
-    <meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
 
-    <link rel='stylesheet' href="assets/css/font.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.css" />
 
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/styles_movil.css" />
 
     <link rel="stylesheet" href="assets/css/divs.css" />
     <link rel="stylesheet" href="assets/css/checkBox.css" />
 
-
     <link rel="stylesheet" href="assets/css/sumoselect.css" />
-
 
     <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
@@ -143,7 +146,7 @@
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-        <asp:UpdatePanel ID="upGeneral" runat="server">
+        <asp:UpdatePanel ID="upGeneral" runat="server" style="height: 100%">
             <ContentTemplate>
                 <section class="login-section auth-section">
                     <div class="container">
@@ -155,27 +158,29 @@
                                     <div class="row">
                                         <div class="form-container col-md-12 col-sm-12 col-xs-12">
                                             <div data-parsley-validate class="form-horizontal">
-                                                <div class="form-group email">
-                                                    <div><span>Ingresa tu usuario, correo electrónico o número celular:</span></div>
+                                                <div class="form-group email no-margin-bottom">
+                                                    <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa tu usuario, correo electrónico o número celular:</asp:Label>
                                                 </div>
+
                                                 <div class="form-group email">
                                                     <label class="sr-only" for="login-email">Email or username</label>
                                                     <span class="fa fa-user icon"></span>
                                                     <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control login-email" Style="text-transform: none" />
                                                 </div>
 
-
                                                 <div class="form-group">
                                                     <asp:CustomValidator ErrorMessage="" OnServerValidate="OnServerValidate" runat="server" />
-                                                    <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="4" CssClass="col-sm-2"
+                                                    <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="4"
+                                                        CssClass="col-sm-4 margin-bottom-5"
                                                         CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
                                                         FontColor="#D20B0C" NoiseColor="#B1B1B1" />
+
+                                                    <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa el texto de la imagen:</asp:Label>
                                                     <asp:TextBox class="form-control" ID="txtCaptcha" runat="server" Style="text-transform: uppercase"></asp:TextBox>
                                                 </div>
 
-
                                                 <div class="form-group email">
-                                                    <asp:Button CssClass="btn btn-Default" ID="btnCancelar" Text="Cancelar" runat="server" />
+                                                    <asp:Button CssClass="btn btn-default" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
 
                                                     <asp:Button CssClass="btn btn-primary" Text="Continuar" runat="server" OnClick="btnBuscar_OnClick" />
                                                 </div>
@@ -188,6 +193,7 @@
                         <div class="copyright2 center">
                             <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
                             &copy; 2018
+                       
                         </div>
                     </div>
                 </section>

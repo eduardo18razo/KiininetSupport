@@ -4,9 +4,8 @@
 */
 
 @font-face {
-    font-family: 'Proxima Nova';    
+    font-family: 'Proxima Nova';
     src: url('../fonts/ProximaNova-Reg.ttf') format('truetype');
-
     /*url('http://192.168.0.20:1010/Web/assets/fonts/MarkSimonson-Proxima-Nova-Regular.otf') format('opentype');*/
     /*local('MarkSimonson-Proxima-Nova-Regular'),*/
 }
@@ -31,7 +30,7 @@ html {
 
 body {
     font-family: 'Proxima Nova';
-    color: #6E6E6E; 
+    color: #6E6E6E;
     font-size: 12px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -143,14 +142,9 @@ hr {
     margin-bottom: 0px;
 }
 
-.tooltip {
+.tooltip, .popover {
     font-family: 'Proxima Nova';
 }
-
-.popover {
-    font-family: 'Proxima Nova';
-}
-
 
 button.close:focus {
     outline: none;
@@ -1508,6 +1502,10 @@ h6,
     color: #3FA9F5;
 }
 
+    .text-theme > a {
+        color: #3FA9F5 !important;
+    }
+
 .text-success {
     color: #75c181;
 }
@@ -2249,6 +2247,21 @@ a.btn {
         background: #F2B542;
         color: #fff;
     }
+
+
+.btnBandejaCliente {
+    width: 80px;
+    border: 1px solid;
+    color: #fff;
+}
+
+    .btnBandejaCliente:active:hover, .btnBandejaCliente.active:hover,
+    .btnBandejaCliente:active:focus, .btnBandejaCliente.active:focus,
+    .btnBandejaCliente:active.focus, .btnBandejaCliente.active.focus,
+    .btnBandejaCliente:hover {
+        color: #fff;
+    }
+
 
 .open > .dropdown-toggle.btn-default-alt {
     background: #494d55;
@@ -6137,6 +6150,10 @@ ul.sortable {
     padding-left: 15px !important;
 }
 
+.padding-18-left {
+    padding-left: 18px !important;
+}
+
 .padding-20-left {
     padding-left: 20px !important;
 }
@@ -6145,6 +6162,11 @@ ul.sortable {
 .padding-10-right {
     padding-right: 10px !important;
 }
+
+.padding-18-right {
+    padding-right: 18px !important;
+}
+
 
 .padding-31-right {
     padding-right: 31px !important;
@@ -6156,6 +6178,10 @@ ul.sortable {
 
 .padding-5-top {
     padding-top: 5px !important;
+}
+
+.padding-8-top {
+    padding-top: 8px !important;
 }
 
 .padding-10-top {
@@ -6239,6 +6265,10 @@ ul.sortable {
 
 .margin-bottom-15 {
     margin-bottom: 15px;
+}
+
+.margin-bottom-25 {
+    margin-bottom: 25px;
 }
 
 .margin-right-4 {
@@ -6907,7 +6937,7 @@ input[type="radio"] + label {
         /*color: #FFF;*/
     }
 
-.lblChkBold > span > label{
+.lblChkBold > span > label {
     font-weight: bold !important;
 }
 
@@ -6927,4 +6957,15 @@ input[type="radio"] + label {
 
 .fontRed {
     color: red;
+}
+
+.textoTabla {
+    font-family: 'Proxima Nova';
+    color: #6E6E6E;
+    font-weight: bold;
+}
+
+input, input[type="file"] {
+    font-family: 'Proxima Nova' !important;
+    font-size: 12px !important;
 }

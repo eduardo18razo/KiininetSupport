@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.UI;
+using System.Linq;
+using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceFrecuencia;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Sistema;
@@ -17,14 +19,42 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                rpt10Frecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenGeneral(idTipoUsuario);
-                rpt10Frecuentes.DataBind();
-                rptConsultasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenConsulta(idTipoUsuario);
-                rptConsultasFrecuentes.DataBind();
-                rptServiciosFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenServicio(idTipoUsuario);
-                rptServiciosFrecuentes.DataBind();
-                rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario);
-                rptProblemasFrecuentes.DataBind();
+                int idArea = int.Parse(Request.Params["idArea"]);
+
+
+                if (idArea > 0)
+                {
+
+                    rptCatTodos.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, null, null, null, null, null, null, null, null);
+                    rptCatTodos.DataBind();
+
+
+                    rptCatConsultas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null);
+                       // .ObtenerArbolesAccesoTerminalAllTipificacion(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null);
+                    rptCatConsultas.DataBind();
+
+
+                    rptCatServicios.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, null, null, null, null, null, null, null);
+                    rptCatServicios.DataBind();
+
+                    rptCatProblemas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, null, null, null, null, null, null, null);
+                    rptCatProblemas.DataBind();
+                }
+                else
+                {
+                    rpt10Frecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenGeneral(idTipoUsuario);
+                    rpt10Frecuentes.DataBind();
+
+                    rptConsultasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenConsulta(idTipoUsuario);
+                    rptConsultasFrecuentes.DataBind();
+
+                    rptServiciosFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenServicio(idTipoUsuario);
+                    rptServiciosFrecuentes.DataBind();
+
+                    rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario);
+                    rptProblemasFrecuentes.DataBind();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -38,6 +68,8 @@ namespace KiiniHelp.UserControls.Seleccion
                 if (!IsPostBack)
                 {
                     int idtipoUsuario = int.Parse(Request.Params["userTipe"]);
+                   
+
                     TipoUsuario tipoUsuario = _servicioTipoUsuario.ObtenerTipoUsuarioById(idtipoUsuario);
                     if (tipoUsuario != null)
                     {

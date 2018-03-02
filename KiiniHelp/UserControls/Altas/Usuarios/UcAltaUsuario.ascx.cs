@@ -545,9 +545,9 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             txtAm.ReadOnly = habilitado;
             txtUserName.ReadOnly = true;
             ddlPuesto.Enabled = !habilitado && !EditarDetalle;
-            btnAddPuesto.Visible = !habilitado && !EditarDetalle;
-            FileUpload1.Enabled = habilitado || !EditarDetalle;
-            btnCambiarImagen.Visible = !Alta && !EditarDetalle;
+            btnAddPuesto.Visible = !habilitado && !EditarDetalle;            
+            FileUpload1.Enabled = !habilitado && !EditarDetalle && !Alta;
+            btnCambiarImagen.Visible = !habilitado && !EditarDetalle && !Alta;
             chkVip.Enabled = !habilitado;
             chkDirectoriActivo.Enabled = !habilitado;
             chkPersonaFisica.Enabled = !habilitado;

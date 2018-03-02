@@ -1,6 +1,6 @@
-C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\EAGetMail40.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\KinniNet.Core.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\KinniNet.Core.pdb
+C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\EAGetMail40.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\KiiniNet.Entities.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\KinniNet.Business.Utils.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business\bin\Debug\KinniNet.Data.dll

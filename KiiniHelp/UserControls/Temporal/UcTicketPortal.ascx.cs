@@ -363,7 +363,7 @@ namespace KiiniHelp.UserControls.Temporal
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
                     //createDiv.InnerHtml = campo.Descripcion;
-                    Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label" };
+                    Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label proxima12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:

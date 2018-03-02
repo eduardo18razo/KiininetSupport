@@ -17,7 +17,6 @@
             <section class="module">
                 <div class="row">
                     <div class="module-inner">
-
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
