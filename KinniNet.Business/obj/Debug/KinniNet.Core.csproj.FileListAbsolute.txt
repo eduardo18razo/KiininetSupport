@@ -10,3 +10,5 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Debug\KinniNet.Core.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\obj\Debug\KinniNet.Core.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Debug\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Debug\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business\bin\Debug\Telerik.Web.UI.dll

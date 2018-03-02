@@ -164,6 +164,10 @@ namespace KinniNet.Data.Help
                 _notaOpcionUsuario = CreateObjectSet<NotaOpcionUsuario>();
                 _notaOpcionGrupo = CreateObjectSet<NotaOpcionGrupo>();
                 _ticketConversacion = CreateObjectSet<TicketConversacion>();
+                _ticketEvento = CreateObjectSet<TicketEvento>();
+                _ticketEventoAsignacion = CreateObjectSet<TicketEventoAsignacion>();
+                _ticketEventoConversacion = CreateObjectSet<TicketEventoConversacion>();
+                _ticketEventoEstatus = CreateObjectSet<TicketEventoEstatus>();
                 _conversacionArchivo = CreateObjectSet<ConversacionArchivo>();
                 _frecuencia = CreateObjectSet<Frecuencia>();
                 _mascaraSeleccionCatalogo = CreateObjectSet<MascaraSeleccionCatalogo>();
@@ -631,6 +635,35 @@ namespace KinniNet.Data.Help
                 return _ticketConversacion;
             }
         }
+        public ObjectSet<TicketEvento> TicketEvento
+        {
+            get
+            {
+                return _ticketEvento;
+            }
+        }
+        public ObjectSet<TicketEventoAsignacion> TicketEventoAsignacion
+        {
+            get
+            {
+                return _ticketEventoAsignacion;
+            }
+        }
+        public ObjectSet<TicketEventoConversacion> TicketEventoConversacion
+        {
+            get
+            {
+                return _ticketEventoConversacion;
+            }
+        }
+        public ObjectSet<TicketEventoEstatus> TicketEventoEstatus
+        {
+            get
+            {
+                return _ticketEventoEstatus;
+            }
+        }
+
         public ObjectSet<ConversacionArchivo> ConversacionArchivo
         {
             get
@@ -707,6 +740,10 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<NotaOpcionUsuario> _notaOpcionUsuario;
         private readonly ObjectSet<NotaOpcionGrupo> _notaOpcionGrupo;
         private readonly ObjectSet<TicketConversacion> _ticketConversacion;
+        private readonly ObjectSet<TicketEvento> _ticketEvento;
+        private readonly ObjectSet<TicketEventoAsignacion> _ticketEventoAsignacion;
+        private readonly ObjectSet<TicketEventoConversacion> _ticketEventoConversacion;
+        private readonly ObjectSet<TicketEventoEstatus> _ticketEventoEstatus;
         private readonly ObjectSet<ConversacionArchivo> _conversacionArchivo;
         private readonly ObjectSet<Frecuencia> _frecuencia;
         private readonly ObjectSet<MascaraSeleccionCatalogo> _mascaraSeleccionCatalogo;

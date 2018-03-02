@@ -88,5 +88,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         Usuario GetUsuarioByCorreo(string correo);
+
+        [OperationContract]
+        List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles);
     }
 }

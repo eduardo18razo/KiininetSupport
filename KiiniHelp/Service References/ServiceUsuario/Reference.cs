@@ -95,6 +95,9 @@ namespace KiiniHelp.ServiceUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo", ReplyAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse")]
         KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuarioResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, System.Collections.Generic.List<int> lstSubRoles);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -230,6 +233,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo) {
             return base.Channel.GetUsuarioByCorreo(correo);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, System.Collections.Generic.List<int> lstSubRoles) {
+            return base.Channel.ObtenerUsuarioAgenteByGrupoUsuario(idGrupo, lstSubRoles);
         }
     }
 }

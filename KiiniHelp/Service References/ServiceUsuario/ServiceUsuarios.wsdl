@@ -183,6 +183,12 @@
   <wsdl:message name="IServiceUsuarios_GetUsuarioByCorreo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUsuarioByCorreoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioAgenteByGrupoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioAgenteByGrupoUsuarioResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceUsuarios">
     <wsdl:operation name="GuardarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario" message="tns:IServiceUsuarios_GuardarUsuario_InputMessage" />
@@ -291,6 +297,10 @@
     <wsdl:operation name="GetUsuarioByCorreo">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" message="tns:IServiceUsuarios_GetUsuarioByCorreo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse" message="tns:IServiceUsuarios_GetUsuarioByCorreo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuarioResponse" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceUsuarios">
@@ -531,6 +541,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUsuarioByCorreo">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

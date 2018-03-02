@@ -190,6 +190,8 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 List<string> errors = new List<string>();
                 if (txtDescripcionNivel.Text.Trim() == string.Empty)
                     errors.Add("Ingrese título para la opción");
+                if (txtDescripcionNivel.Text.Trim() == string.Empty)
+                    errors.Add("Ingrese descripción para la opción");
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     errors.Add("Seleccione quien puede ver el contenido");
                 if (ddlConsultas.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
@@ -910,6 +912,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     IdArea = IdArea,
                     IdTipoUsuario = IdTipoUsuario,
                     IdTipoArbolAcceso = TipoArbol,
+                    Descripcion = txtDescripcionOpcion.Text,
                     Evaluacion = chkEvaluacion.Checked,
                     EsTerminal = true,
                     Publico = chkPublico.Checked,

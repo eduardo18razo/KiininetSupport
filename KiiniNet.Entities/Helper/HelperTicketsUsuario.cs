@@ -13,5 +13,7 @@ namespace KiiniNet.Entities.Helper
 
         public DateTime FechaCreacion { get; set; }
         public string FechaCreacionFormato { get; set; }
+
+        public bool PuedeVer { get; set; }
     }
 }

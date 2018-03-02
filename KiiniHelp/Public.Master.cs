@@ -45,7 +45,6 @@ namespace KiiniHelp
                 List<Menu> lstMenu = _servicioSeguridad.ObtenerMenuPublico(TipoUsuario, areaSeleccionada, arboles);
                 rptMenu.DataSource = lstMenu;
                 rptMenu.DataBind();
-                //UcLogIn.AutenticarUsuarioPublico(TipoUsuario);
                 divMenuBtn.Visible = lstMenu.Count > 0;
             }
             catch (Exception e)
@@ -81,17 +80,14 @@ namespace KiiniHelp
                             case (int)BusinessVariables.EnumTiposUsuario.Empleado:
                                 areaSeleccionada = 6;
                                 Session["AreaSeleccionada"] = areaSeleccionada;
-                                //UcLogIn.AutenticarUsuarioPublico((int)BusinessVariables.EnumTiposUsuario.Empleado);
                                 break;
                             case (int)BusinessVariables.EnumTiposUsuario.Cliente:
                                 areaSeleccionada = 6;
                                 Session["AreaSeleccionada"] = areaSeleccionada;
-                                //UcLogIn.AutenticarUsuarioPublico((int)BusinessVariables.EnumTiposUsuario.Cliente);
                                 break;
                             case (int)BusinessVariables.EnumTiposUsuario.Proveedor:
                                 areaSeleccionada = 6;
                                 Session["AreaSeleccionada"] = areaSeleccionada;
-                                //UcLogIn.AutenticarUsuarioPublico((int)BusinessVariables.EnumTiposUsuario.Proveedor);
                                 break;
                         }
                     }
@@ -351,7 +347,6 @@ namespace KiiniHelp
                 Session["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico(idUsuario, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();
-                //UcLogIn.AutenticarUsuarioPublico((int)BusinessVariables.EnumTiposUsuario.Empleado);
             }
             catch (Exception)
             {
@@ -367,7 +362,6 @@ namespace KiiniHelp
                 Session["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico((int)BusinessVariables.EnumTiposUsuario.Empleado, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();
-                //UcLogIn.AutenticarUsuarioPublico((int)BusinessVariables.EnumTiposUsuario.Empleado);
             }
             catch (Exception ex)
             {
@@ -388,7 +382,6 @@ namespace KiiniHelp
                 Session["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico((int)BusinessVariables.EnumTiposUsuario.Proveedor, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();
-                //UcLogIn.AutenticarUsuarioPublico((int)BusinessVariables.EnumTiposUsuario.Proveedor);
             }
             catch (Exception ex)
             {

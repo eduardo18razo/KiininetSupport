@@ -37,3 +37,4 @@ C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTestData.
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EPPlus.dll

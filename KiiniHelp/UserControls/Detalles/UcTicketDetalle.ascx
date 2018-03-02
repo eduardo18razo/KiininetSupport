@@ -2,8 +2,6 @@
 
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleMascaraCaptura.ascx" TagPrefix="uc1" TagName="UcDetalleMascaraCaptura" %>
-<%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusTicket.ascx" TagPrefix="uc1" TagName="UcCambiarEstatusTicket" %>
-<%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusAsignacion.ascx" TagPrefix="uc1" TagName="UcCambiarEstatusAsignacion" %>
 
 <style>
     .form-control select {
@@ -45,6 +43,18 @@
         width: 190px;
     }
 </style>
+<script type="text/javascript">
+    function OnClientEntryAdding(sender, args) {
+        var path = args.get_entry().get_fullPath();
+        var s = path.split("/");
+        if (s.length == 1) {
+            args.set_cancel(true);
+        }
+        else {
+            sender.closeDropDown();
+        }
+    }
+</script>
 
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server">
@@ -54,9 +64,15 @@
             <asp:HiddenField runat="server" ID="hfIdEstatusTicket" />
             <asp:HiddenField runat="server" ID="hfEsPropietario" />
             <asp:HiddenField runat="server" ID="hfGrupoAsignado" />
+            <asp:HiddenField runat="server" ID="hfGrupoConSupervisor" Value="false" />
             <asp:HiddenField runat="server" ID="hfNivelAsignacion" />
             <asp:HiddenField runat="server" ID="hfAsigna" />
             <asp:HiddenField runat="server" ID="hfUsuarioLevanto" />
+            <asp:HiddenField runat="server" ID="hfSubRolActual" />
+
+            <asp:HiddenField runat="server" ID="hfIdUsuarioAsignacion" />
+            <asp:HiddenField runat="server" ID="hdIdRolAsignacionPertenece" />
+
 
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-12">
@@ -89,7 +105,6 @@
                                             <asp:Label runat="server" Text="Prioridad" />
                                         </div>
                                         <div class="row">
-                                            <%--<asp:Image runat="server" ID="imgPrioridad" Width="29px" />--%>
                                             <i runat="server" id="iPrioridad" class="fa fa-exclamation fontRed iconoFont margin-top-5"></i>
                                         </div>
                                         <div class="row">
@@ -102,11 +117,6 @@
                                         </div>
                                         <div class="row">
                                             <i runat="server" id="iSLA" class="fa fa-bomb iconoFont margin-top-5"></i>
-                                            <%--class='<%# (bool)Eval("DentroSla") ? "fa fa-bomb fontGreen iconoFont" : "fa fa-bomb fontRed iconoFont" %>'--%>
-                                            <%--<asp:Image runat="server" ID="imgSLA" Width="29px" />--%>
-                                        </div>
-                                        <div class="row">
-                                            <%-- <asp:Label runat="server" ID="lblTiempoRestanteSLa" />--%>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 text-center">
@@ -128,15 +138,32 @@
 
                     <section class="module">
                         <div class="module-inner">
-                            <div class="row padding-10-top padding-10-bottom text-right">
-                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-bottom-10" ID="btnAsignar" OnClick="btnAsignar_OnClick">
-                                        <i class="fa fa-long-arrow-down"></i>Cambiar Asignacion
-                                </asp:LinkButton>
+                            <div class="row col-lg-offset-1 col-md-offset-2 col-sm-offset-12" runat="server" id="divMovimientos">
+                                <div class="form-inline col-lg-offset-1 col-md-offset-2 col-sm-offset-12">
+                                    <div class="form-group col-lg-2 col-md-2 col-sm-2">
+                                        <asp:Label runat="server" Text="Asignación" />
+                                        <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCambiarAsignar" AutoPostBack="True" OnSelectedIndexChanged="ddlCambiarAsignar_OnSelectedIndexChanged" />
+                                        <asp:LinkButton runat="server" ID="lnkBtndeshacer" CssClass="pe-icon pe-7s-lock icon" OnClick="lnkBtndeshacer_OnClick" />
+                                    </div>
+                                    <div class="form-group col-lg-3 col-md-3 col-sm-3" >
+                                        <div class="form-group" runat="server" id="divUsuariosAsignacion" visible="False">
+                                            <asp:Label runat="server" Text="Usuario" />
+                                            <tc:RadDropDownTree runat="server" CssClass="form-control" ID="ddlUsuarioAsignacion" AutoPostBack="True" RenderMode="Lightweight" ExpandNodeOnSingleClick="true" CheckNodeOnClick="False"
+                                                DefaultMessage="-" EnableFiltering="True" OnClientEntryAdding="OnClientEntryAdding" OnEntriesAdded="ddlUsuarioAsignacion_OnEntriesAdded">
+                                                <DropDownSettings Width="350px" CloseDropDownOnSelection="True" />
+                                                <ButtonSettings ShowClear="False" ></ButtonSettings>
+                                                <FilterSettings Filter="Contains" Highlight="Matches" EmptyMessage="Escribir nombre" FilterTemplate="ByContent"></FilterSettings>
+                                            </tc:RadDropDownTree>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-2 col-md-2 col-sm-2 ">
+                                        <asp:Label runat="server" Text="Estatus" />
+                                        <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCambiarEstatus" />
+                                    </div>
+                                </div>
 
-                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-left-10 margin-bottom-10" ID="btnCambiaEstatus" OnClick="btnCambiarEstatus_OnClick">
-                                        <i class="fa fa-long-arrow-right"></i>Cambiar Estatus
-                                </asp:LinkButton>
                             </div>
+
                             <div class="row">
                                 <div class="col-lg-1 col-md-2 col-sm-12">
                                     <asp:Image runat="server" ID="imgProfileNewComment" Style="max-width: 54px; max-height: 54px;" ImageUrl="~/assets/images/profiles/profile-1.png" />
@@ -153,7 +180,7 @@
                                             <asp:TextBox ID="txtConversacion" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control" MaxLength="999" />
                                         </div>
                                         <div class="wrapperResponse col-lg-12 col-md-12 col-sm-12 text-right padding-10-top padding-10-bottom">
-                                            <asp:Button ID="btnSendPublic" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnSendPublic_OnClick" />
+                                            <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnEnviar_OnClick" />
                                         </div>
                                     </div>
                                 </div>
@@ -163,8 +190,9 @@
 
                             <div class="row margin-top-5 padding-10-bottom">
                                 <div class="col-lg-2 col-md-3 col-sm-3" style="border-color: #000000">
-                                    <asp:DropDownList runat="server" CssClass="form-control">
+                                    <asp:DropDownList runat="server" AutoPostBack="True" CssClass="form-control" ID="ddlHistorial" OnSelectedIndexChanged="ddlHistorial_OnSelectedIndexChanged">
                                         <asp:ListItem Text="Historial" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="Eventos" Value="2"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionTodos" Text="Todas" CssClass="selectConver" OnCheckedChanged="rbtnConversacionTodos_OnCheckedChanged" Checked="True" />
@@ -172,7 +200,7 @@
                                 <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionPrivado" Text="Interna" CssClass="selectConver" OnCheckedChanged="rbtnConversacionPrivado_OnCheckedChanged" />
                             </div>
 
-                            <div class="row margin-top-5">
+                            <div class="row margin-top-5" runat="server" id="divHistorial">
                                 <asp:Repeater runat="server" ID="rptConversaciones" OnItemDataBound="rptConversaciones_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="row" style="border-top: 1px solid #f3f3f7; border-bottom: 1px solid #f3f3f7">
@@ -192,6 +220,60 @@
                                                     <asp:Label runat="server" ID="lblMensaje" Text='<%# Eval("Comentario") %>'></asp:Label>
                                                 </div>
 
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+
+                            <div class="row margin-top-5" runat="server" id="divEventos" visible="False">
+                                <asp:Repeater runat="server" ID="rptEventos" OnItemDataBound="rptEventos_OnItemDataBound">
+                                    <ItemTemplate>
+                                        <div class="row" style="border-top: 1px solid #f3f3f7; border-bottom: 1px solid #f3f3f7">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <h4>
+                                                    <asp:Label runat="server" ID="lblNombre" Text='<%# Eval("NombreUsuario") %>'></asp:Label></h4>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <asp:Label runat="server" ID="lblFecha" Text='<%# Eval("FechaHoraEventoFormato") %>'></asp:Label>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <asp:Repeater runat="server" ID="rptMovimientos">
+                                                    <ItemTemplate>
+                                                        <div runat="server" visible='<%# Eval("EsMovimientoConversacion") %>' class="col-lg-11 col-md-10 col-sm-10 ">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <asp:Label runat="server" ID="Label5" Text='<%# Eval("Conversacion") %>'></asp:Label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div runat="server" visible='<%# Eval("EsMovimientoEstatusTicket") %>' class="col-lg-11 col-md-10 col-sm-10 ">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <asp:Label runat="server" Text="Estatus" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' Style="text-decoration: line-through" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <asp:Label runat="server" Text="Usuario asignado" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("NombreCambioEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                        <div runat="server" visible='<%# Eval("EsMovimientoAsignacion") %>' class="col-lg-11 col-md-10 col-sm-10 ">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <asp:Label runat="server" Text="Asignación" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' Style="text-decoration: line-through" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <asp:Label runat="server" Text="Usuario asignado" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("NombreUsuarioAsignado") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <asp:Label runat="server" Text="Comentario" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("Comentarios") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                            </div>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -220,9 +302,7 @@
                             </div>
                         </div>
                     </section>
-
                 </div>
-
                 <div class="col-lg-3 col-md-3 col-sm-12 no-padding-left">
                     <section class="module">
                         <div class="module-inner">
@@ -240,170 +320,158 @@
                                             <asp:Label runat="server" ID="lblTipoUsuarioDetalle" />
                                         </span>
                                         <i id="iVip" runat="server" class="fa fa-star iconoFont"></i>
-                                        <%--<asp:Image runat="server" ImageUrl="~/assets/images/icons/vip.png" Width="25px" ID="imgVip" />--%>
                                     </div>
+                                </div>
                             </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <asp:Image runat="server" ImageUrl="~/assets/images/icons/ojo.png" Width="25px" CssClass="margin-right-15" />
-                                <asp:Label runat="server" Text="6 de abril 2017" ID="lblFechaUltimaconexion" />
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <asp:Image runat="server" ImageUrl="~/assets/images/icons/ojo.png" Width="25px" CssClass="margin-right-15" />
+                                    <asp:Label runat="server" Text="6 de abril 2017" ID="lblFechaUltimaconexion" />
+                                </div>
                             </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <label class="col-lg-2 col-md-2 col-sm-2 pe-icon pe-7s-ticket icon" style="font-size: 24px"></label>
-                                <div class="col-lg-10 col-md-10 col-sm-10">
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <label class="col-lg-2 col-md-2 col-sm-2 pe-icon pe-7s-ticket icon" style="font-size: 24px"></label>
+                                    <div class="col-lg-10 col-md-10 col-sm-10">
 
-                                    <tc:RadDropDownList runat="server" ID="rddConcentradoTicketsUsuario" DataTextField="Tipificacion" DropDownWidth="190px">
+                                        <tc:RadDropDownList runat="server" ID="rddConcentradoTicketsUsuario" DataTextField="Tipificacion" DropDownWidth="190px" AutoPostBack="True" OnSelectedIndexChanged="rddConcentradoTicketsUsuario_OnSelectedIndexChanged">
+                                            <ItemTemplate>
+                                                <div>
+                                                    <div class="margin-top-10" style="font-size: 11px;">
+                                                        <asp:Label runat="server" Text='<%# Eval("IdTicket").ToString().Trim() == "0" ? string.Empty : Eval("IdTicket") %>' ID="lblIdTicket" />
+                                                        <asp:Label runat="server" Text="-" Width="10px" CssClass="text-center" Visible='<%# Eval("IdTicket").ToString().Trim() != "0"%>' />
+                                                        <asp:Label runat="server" Text='<%# Eval("Tipificacion") %>' Font-Bold="true" ID="lblTitulo" />
+                                                    </div>
+                                                    <div class="meta margin-top-5 borderbootom " style="font-size: 11px">
+                                                        <asp:Label runat="server" ID="lblEstatusTicketConcentrado" Text='<%# Eval("DescripcionEstatusTicket") %>' Width="65px" />
+                                                        <asp:Label runat="server" Text='<%#Eval("FechaCreacionFormato") %>' CssClass="text-right margin-bottom-10" />
+                                                        <asp:Label runat="server" ID="lblAcceso" Text='<%#Eval("PuedeVer") %>' Visible="False" />
+                                                        <asp:Label runat="server" ID="lblAsigna" Text='<%#Eval("PuedeVer") %>' Visible="False" />
+                                                    </div>
+                                                </div>
+                                            </ItemTemplate>
+                                        </tc:RadDropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <asp:Label runat="server" Text="Puesto" CssClass="col-lg-12 col-md-12 col-sm-12" Font-Bold="true" /><%--</strong>--%>
+                                    <asp:Label runat="server" ID="lblPuesto" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Correo electrónico principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                    <asp:Label runat="server" ID="lblCorreoPrincipal" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Teléfono principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                    <asp:Label runat="server" ID="lblTelefonoPrincipal" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row" style="display: none">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Facebook" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                    <asp:Label runat="server" ID="lblFacebook" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+
+                            <div class="row" style="display: none">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="twitter" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                    <asp:Label runat="server" ID="lbltwitter" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Organización" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                    <asp:Label runat="server" ID="lblOrganizacion" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Ubicación" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                    <asp:Label runat="server" ID="lblUbicacion" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Etiquetas" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
+                                    <asp:Repeater runat="server" ID="rptEtiquetas">
                                         <ItemTemplate>
-                                            <div>
-                                                <div class="margin-top-10" style="font-size: 11px;">
-                                                    <asp:Label runat="server" Text='<%# Eval("IdTicket") %>' />
-                                                    <asp:Label runat="server" Text="-" Width="10px" CssClass="text-center" />
-                                                    <asp:Label runat="server" Text='<%# Eval("Tipificacion") %>' Font-Bold="true" />
-                                                </div>
-                                                <div class="meta margin-top-5 borderbootom " style="font-size: 11px">
-                                                    <asp:Label runat="server" ID="lblEstatusTicketConcentrado" Text="En espera" Width="65px" />
-                                                    <asp:Label runat="server" Text="Ayer 08-12-2017" CssClass="text-right margin-bottom-10" />
-                                                </div>
-                                            </div>
+                                            <asp:Label runat="server" ID="lblEtiquetas" CssClass="col-lg-12 col-md-12 col-sm-12" />
                                         </ItemTemplate>
-                                    </tc:RadDropDownList>
-                                    <%-- <asp:Repeater runat="server" ID="rptConcentradoTicketsUsuario" OnItemDataBound="rptConcentradoTicketsUsuario_ItemDataBound">
-                                                            <ItemTemplate>
-                                                                <div class="media-body padding-10-left" style="font-size:12px">
-                                                                    <asp:Label runat="server" Text='<%# Eval("IdTicket") %>' class="margin-top-10" />
-                                                                    <asp:Label runat="server" Text="-" Width="10px" CssClass="text-center"/>
-                                                                    <asp:Label runat="server" Text='<%# Eval("Tipificacion") %>' />
-                                                                </div>
-                                                                <div class="meta padding-10-left margin-top-5 borderbootom " style="font-size:12px">
-                                                                    <asp:Label runat="server" ID="lblEstatusTicketConcentrado" Text="" Width="65px" style="color:red"/>
-                                                                    <asp:Label runat="server" Text="Ayer 08-12-2017" CssClass="text-right margin-bottom-10"/>                                                                    
-                                                                </div>
-                                                            </ItemTemplate>
-                                                        </asp:Repeater>--%>
+                                    </asp:Repeater>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Creado" CssClass="col-lg-12 col-md-12 col-sm-12" /></strong>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <asp:Label runat="server" ID="lblFechaAltaDetalle" CssClass="col-lg-12 col-md-12 col-sm-12" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <strong>
+                                        <asp:Label runat="server" Text="Última Actualizacion" CssClass="col-lg-12 col-md-12 col-sm-12" /></strong>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <asp:Label runat="server" ID="lblfechaUltimaActualizacion" CssClass="col-lg-12 col-md-12 col-sm-12" />
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <asp:Label runat="server" Text="Puesto" CssClass="col-lg-12 col-md-12 col-sm-12" Font-Bold="true" /><%--</strong>--%>
-                                <asp:Label runat="server" ID="lblPuesto" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Correo electrónico principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
-                                <asp:Label runat="server" ID="lblCorreoPrincipal" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Teléfono principal" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
-                                <asp:Label runat="server" ID="lblTelefonoPrincipal" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row" style="display: none">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Facebook" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
-                                <asp:Label runat="server" ID="lblFacebook" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
+                    </section>
 
-                        <div class="row" style="display: none">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="twitter" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
-                                <asp:Label runat="server" ID="lbltwitter" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Organización" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
-                                <asp:Label runat="server" ID="lblOrganizacion" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Ubicación" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
-                                <asp:Label runat="server" ID="lblUbicacion" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Etiquetas" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
-                                <asp:Repeater runat="server" ID="rptEtiquetas">
-                                    <ItemTemplate>
-                                        <asp:Label runat="server" ID="lblEtiquetas" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Creado" CssClass="col-lg-12 col-md-12 col-sm-12" /></strong>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <asp:Label runat="server" ID="lblFechaAltaDetalle" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <strong>
-                                    <asp:Label runat="server" Text="Última Actualizacion" CssClass="col-lg-12 col-md-12 col-sm-12" /></strong>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <asp:Label runat="server" ID="lblfechaUltimaActualizacion" CssClass="col-lg-12 col-md-12 col-sm-12" />
-                            </div>
-                        </div>
                 </div>
-                </section>
-               
             </div>
-
-
-            </div>
-           
-            <%--</section>--%>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <div class="modal fade" id="modalAsignacionCambio" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal fade" id="modalComentarioObligado" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <uc1:UcCambiarEstatusAsignacion runat="server" ID="ucCambiarEstatusAsignacion" />
-                    </div>
-                </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </div>
-
-    <div class="modal fade" id="modalEstatusCambio" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <asp:UpdatePanel runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <uc1:UcCambiarEstatusTicket runat="server" ID="UcCambiarEstatusTicket" />
+                        <div class="modal-header">
+                            <asp:LinkButton CssClass="close" runat="server" OnClick="btnCerrarModalComentarios_OnClick" Text='&times' />
+                            <h6 class="modal-title">
+                                <asp:Label runat="server" ID="lblTitleCatalogo" />
+                            </h6>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <asp:Label runat="server" Text="Comentarios" CssClass="col-lg-3 margin-top-9" />
+                                <div class="col-lg-9 no-padding-right">
+                                    <asp:TextBox runat="server" ID="txtComentarioAsignacion" CssClass="form-control" TextMode="MultiLine" Height="100px" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <asp:Button runat="server" ID="btnCerrarComentarios" Text="Aceptar" CssClass="btn btn-guardar" OnClick="btnCerrarComentarios_OnClick" />
+                        </div>
                     </div>
                 </div>
             </ContentTemplate>

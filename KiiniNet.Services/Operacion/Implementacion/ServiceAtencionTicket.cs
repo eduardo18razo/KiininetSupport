@@ -8,13 +8,32 @@ namespace KiiniNet.Services.Operacion.Implementacion
 {
     public class ServiceAtencionTicket : IServiceAtencionTicket
     {
-        public void AutoAsignarTicket(int idTicket, int idUsuario)
+        public void AutoAsignarTicket(int idTicket, int idUsuario, string comentario)
         {
             try
             {
                 using (BusinessAtencionTicket negocio = new BusinessAtencionTicket())
                 {
-                    negocio.AutoAsignarTicket(idTicket, idUsuario);
+                    negocio.AutoAsignarTicket(idTicket, idUsuario, comentario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void GenerarEvento(int idTicket, int idUsuarioGeneraEvento, int? idEstatusTicket, int? idEstatusAsignacion,
+            int? idNivelAsignado, int? idUsuarioAsignado, string mensajeConversacion, bool conversacionPrivada, bool enviaCorreo,
+            bool sistema, List<string> archivos, string comentarioAsignacion, bool esPropietario)
+        {
+            try
+            {
+                using (BusinessAtencionTicket negocio = new BusinessAtencionTicket())
+                {
+                    negocio.GenerarEvento(idTicket, idUsuarioGeneraEvento, idEstatusTicket,  idEstatusAsignacion,
+             idNivelAsignado,  idUsuarioAsignado, mensajeConversacion, conversacionPrivada, enviaCorreo,
+            sistema, archivos, comentarioAsignacion, esPropietario);
                 }
             }
             catch (Exception ex)
@@ -83,7 +102,7 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public HelperticketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario)
+        public HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario)
         {
             try
             {

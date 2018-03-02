@@ -67,6 +67,10 @@
                                             <asp:TextBox runat="server" ID="txtDescripcionNivel" class="form-control" MaxLength="50" onkeydown="return (event.keyCode!=13);" />
                                         </div>
                                         <div class="form-group">
+                                            Escribe una descripción de la opción<br />
+                                            <asp:TextBox runat="server" ID="txtDescripcionOpcion" class="form-control" MaxLength="100" onkeydown="return (event.keyCode!=13);" />
+                                        </div>
+                                        <div class="form-group">
                                             Quien ve el contenido<br />
                                             <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsuarioNivel_OnSelectedIndexChanged" />
                                         </div>

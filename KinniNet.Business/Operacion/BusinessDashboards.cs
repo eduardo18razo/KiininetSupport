@@ -636,15 +636,18 @@ namespace KinniNet.Core.Operacion
                     .ToList();
                 foreach (HelperMetricas metricas in metrics)
                 {
-                    metricas.TotalAnterior = lstCreatedTicketsPrevious.Count <= 0 ? 0 : db.GrupoUsuario.Join(db.TicketGrupoUsuario, gu => gu.Id, tgu => tgu.IdGrupoUsuario, (gu, tgu) => new { gu, tgu })
-                    .Join(db.Ticket, @t1 => @t1.tgu.IdTicket, t => t.Id, (@t1, t) => new { @t1, t })
-                    .Where(@t1 => @t1.@t1.gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && lstCreatedTicketsPrevious.Contains(@t1.t.Id) && @t1.t1.gu.Id == metricas.IdGrupo)
-                    .GroupBy(g => new { idticket = g.t.Id, idgrupo = g.t1.gu.Id, g.t1.gu.Descripcion })
-                    .Select(s => new { IdTicket = s.Key.idticket, IdGrupo = s.Key.idgrupo, DescripcionGrupo = s.Key.Descripcion })
-                    .GroupBy(g => new { g.IdGrupo, g.DescripcionGrupo })
-                    .Select(s => new HelperMetricas { IdGrupo = s.Key.IdGrupo, DescripcionGrupo = s.Key.DescripcionGrupo, TotalActual = s.Count() })
-                    .OrderByDescending(o => o.TotalActual)
-                    .ToList().First().TotalActual;
+                    List<HelperMetricas> metricasAnterior = db.GrupoUsuario.Join(db.TicketGrupoUsuario, gu => gu.Id, tgu => tgu.IdGrupoUsuario,
+                            (gu, tgu) => new { gu, tgu })
+                            .Join(db.Ticket, @t1 => @t1.tgu.IdTicket, t => t.Id, (@t1, t) => new { @t1, t })
+                            .Where(@t1 => @t1.@t1.gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && lstCreatedTicketsPrevious.Contains(@t1.t.Id) && @t1.t1.gu.Id == metricas.IdGrupo)
+                            .GroupBy(g => new { idticket = g.t.Id, idgrupo = g.t1.gu.Id, g.t1.gu.Descripcion })
+                            .Select(s => new { IdTicket = s.Key.idticket, IdGrupo = s.Key.idgrupo, DescripcionGrupo = s.Key.Descripcion })
+                            .GroupBy(g => new { g.IdGrupo, g.DescripcionGrupo })
+                            .Select(s => new HelperMetricas { IdGrupo = s.Key.IdGrupo, DescripcionGrupo = s.Key.DescripcionGrupo, TotalActual = s.Count() })
+                            .OrderByDescending(o => o.TotalActual)
+                            .ToList();
+
+                    metricas.TotalAnterior = lstCreatedTicketsPrevious.Count <= 0 ? 0 : metricasAnterior.Count <= 0 ? 0 : metricasAnterior.First().TotalActual;
                     metricas.TotalPorcentaje = metricas.TotalAnterior == 0 ? 0 : ((metricas.TotalActual - metricas.TotalAnterior) + 100);
 
                     metricas.TotalAbiertosActual = db.Ticket.Count(w => lstCreatedTicketsCurrent.Contains(w.Id) && w.IdEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Abierto);

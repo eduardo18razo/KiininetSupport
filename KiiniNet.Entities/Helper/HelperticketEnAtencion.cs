@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using KiiniNet.Entities.Operacion.Tickets;
 
 namespace KiiniNet.Entities.Helper
 {
     [Serializable]
-    public class HelperticketEnAtencion
+    public class HelperTicketEnAtencion
     {
         public int IdTicket { get; set; }
         public string Tipificacion { get; set; }
@@ -20,10 +21,15 @@ namespace KiiniNet.Entities.Helper
         public int IdEstatusAsignacion { get; set; }
         public string DescripcionEstatusAsignacion { get; set; }
         public bool EsPropietario { get; set; }
+        public bool PuedeAsignar { get; set; }
         public int IdGrupoAsignado { get; set; }
+
+        public bool GrupoConSupervisor { get; set; }
         
         public HelperUsuario UsuarioLevanto { get; set; }
         public List<HelperConversacionDetalle> Conversaciones { get; set; }
+
+        public List<HelperEvento> Eventos { get; set; }
 
     }
 }

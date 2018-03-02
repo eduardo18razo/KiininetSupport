@@ -12,3 +12,4 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Business.Utils\bin\Debug\EPPlus.dll

@@ -121,6 +121,24 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divControles;
         
         /// <summary>
+        /// Control divRegistraUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRegistraUsuario;
+        
+        /// <summary>
+        /// Control ucAltaUsuarioRapida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::KiiniHelp.UserControls.Altas.Usuarios.UcAltaUsuarioRapida ucAltaUsuarioRapida;
+        
+        /// <summary>
         /// Control btnCerrarExito.
         /// </summary>
         /// <remarks>

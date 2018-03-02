@@ -116,10 +116,11 @@
     <Compile Include="Helper\HelperReportesTicket.cs" />
     <Compile Include="Helper\HelperSubGurpoUsuario.cs" />
     <Compile Include="Helper\HelperTicketDetalle.cs" />
-    <Compile Include="Helper\HelperticketEnAtencion.cs" />
+    <Compile Include="Helper\HelperTicketEnAtencion.cs" />
     <Compile Include="Helper\HelperTickets.cs" />
     <Compile Include="Helper\HelperTicketsUsuario.cs" />
     <Compile Include="Helper\HelperUsuario.cs" />
+    <Compile Include="Helper\HelperUsuarioAgente.cs" />
     <Compile Include="Operacion\Area.cs" />
     <Compile Include="Operacion\Dashboard\DashboardAdministrador.cs" />
     <Compile Include="Operacion\Dashboard\DashboardAgente.cs" />
@@ -149,6 +150,10 @@
     <Compile Include="Operacion\Tickets\Ticket.cs" />
     <Compile Include="Operacion\Tickets\TicketConversacion.cs" />
     <Compile Include="Operacion\Tickets\TicketCorreo.cs" />
+    <Compile Include="Operacion\Tickets\TicketEvento.cs" />
+    <Compile Include="Operacion\Tickets\TicketEventoAsignacion.cs" />
+    <Compile Include="Operacion\Tickets\TicketEventoConversacion.cs" />
+    <Compile Include="Operacion\Tickets\TicketEventoEstatus.cs" />
     <Compile Include="Operacion\Tickets\TicketGrupoUsuario.cs" />
     <Compile Include="Operacion\Tickets\TicketAsignacion.cs" />
     <Compile Include="Operacion\Tickets\TicketEstatus.cs" />

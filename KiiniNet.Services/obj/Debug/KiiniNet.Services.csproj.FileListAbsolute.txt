@@ -14,3 +14,4 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug\KiiniNet.Services.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\obj\Debug\KiiniNet.Services.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.Services\bin\Debug\EPPlus.dll

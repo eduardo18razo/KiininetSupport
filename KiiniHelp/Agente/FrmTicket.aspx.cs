@@ -27,13 +27,62 @@ namespace KiiniHelp.Agente
             try
             {
                 _lstError = new List<string>();
+                UcTicketDetalle.OnCargarTicket +=UcTicketDetalle_OnCargarTicket;
+                UcTicketDetalle.OnCierraTicket += UcTicketDetalle_OnCierraTicket;
                 if (!IsPostBack)
                 {
                     AgenteMaster master = Master as AgenteMaster;
                     if (master != null)
                     {
                         master.CambiaTicket = true;
+                        
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        private void UcTicketDetalle_OnCierraTicket(int idTicket, bool redirect)
+        {
+            try
+            {
+                AgenteMaster master = Master as AgenteMaster;
+                if (master != null)
+                {
+                    master.CambiaTicket = true;
+                    master.RemoveTicketOpen(idTicket, redirect);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        private void UcTicketDetalle_OnCargarTicket(int idTicket, string titulo, bool asigna)
+        {
+            try
+            {
+                AgenteMaster master = Master as AgenteMaster;
+                if (master != null)
+                {
+                    master.CambiaTicket = true;
+                    master.AddTicketOpen(idTicket, titulo, asigna);
+
                 }
             }
             catch (Exception ex)

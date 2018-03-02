@@ -823,7 +823,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 List<int> idsUsuarios = (db.Usuario.Join(db.UsuarioGrupo, u => u.Id, ug => ug.IdUsuario, (u, ug) => new { u, ug })
-                    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo && @t.ug.SubGrupoUsuario.IdSubRol == idNivel && @t.u.Habilitado)
+                    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo && @t.ug.SubGrupoUsuario.IdSubRol == idNivel && @t.u.Habilitado && @t.u.Activo)
                     .Select(@t => @t.u.Id)).Distinct().ToList();
                 result = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).ToList();
                 foreach (Usuario usuario in result)
@@ -847,6 +847,50 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
+        public List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles)
+        {
+            List<HelperUsuarioAgente> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                var qry = from u in db.Usuario
+                          join ug in db.UsuarioGrupo on u.Id equals ug.IdUsuario
+                          join sgu in db.SubGrupoUsuario on ug.IdSubGrupoUsuario equals sgu.Id
+                          join sr in db.SubRol on sgu.IdSubRol equals sr.Id
+                          where ug.IdGrupoUsuario == idGrupo && lstSubRoles.Contains(sr.Id) && u.Habilitado && u.Activo
+                          orderby sr.Id, u.Nombre, u.ApellidoPaterno, u.ApellidoMaterno
+                          select new
+                          {
+                              IdSubRol = sr.Id,
+                              DescripcionSubRol = sr.Descripcion,
+                              IdUsuario = u.Id,
+                              Nombre = u.Nombre,
+                              ApellidoPaterno = u.ApellidoPaterno,
+                              ApellidoMaterno = u.ApellidoMaterno
+                          };
+                var padres = from q in qry
+                             select new { q.IdSubRol, q.DescripcionSubRol };
+                result = new List<HelperUsuarioAgente>();
+                result.AddRange(padres.Distinct().Select(s=>new HelperUsuarioAgente{IdUsuario = s.IdSubRol, DescripcionSubRol = s.DescripcionSubRol, NombreUsuario = s.DescripcionSubRol}).ToList());
+                result.AddRange(qry.Distinct().Select(s => new HelperUsuarioAgente
+                {
+                    IdUsuario = s.IdUsuario,
+                    IdSubRol = s.IdSubRol,
+                    DescripcionSubRol = s.DescripcionSubRol,
+                    NombreUsuario = s.Nombre + " " + s.ApellidoPaterno + " " + s.ApellidoMaterno,
+                }).ToList());
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
         public List<Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion)
         {
             List<Usuario> result;

@@ -483,5 +483,18 @@ namespace KiiniHelp
                 throw;
             }
         }
+
+        protected void btnCambiarContraseña_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

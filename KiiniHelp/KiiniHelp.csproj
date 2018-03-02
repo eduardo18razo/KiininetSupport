@@ -266,6 +266,8 @@
     <Content Include="Registro.aspx" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAdministrador.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAgente.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuarioAgente.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperTicketEnAtencion1.datasource" />
     <None Include="Service References\ServiceDashboard\ServiceDashboards.disco" />
     <None Include="Service References\ServiceDashboard\configuration91.svcinfo" />
     <None Include="Service References\ServiceDashboard\configuration.svcinfo" />
@@ -273,6 +275,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Test\FrmTestTelerik.aspx" />
     <Content Include="UserControls\Agentes\UcAsignacionUsuario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
@@ -2719,6 +2722,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Test\FrmTestTelerik.aspx.cs">
+      <DependentUpon>FrmTestTelerik.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\FrmTestTelerik.aspx.designer.cs">
+      <DependentUpon>FrmTestTelerik.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Agentes\BusquedaAgentes.cs" />
     <Compile Include="UserControls\Agentes\BusquedaOpciones.cs" />

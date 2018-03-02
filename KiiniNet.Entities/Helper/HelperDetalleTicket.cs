@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using KiiniNet.Entities.Operacion.Tickets;
 
 namespace KiiniNet.Entities.Helper
 {
@@ -8,6 +9,7 @@ namespace KiiniNet.Entities.Helper
     {
         public int IdTicket { get; set; }
         public int IdTipoUsuarioLevanto { get; set; }
+        public int IdNivelAsignado { get; set; }
         public int IdEstatusTicket { get; set; }
         public string CveRegistro { get; set; }
         public int IdEstatusAsignacion { get; set; }
@@ -54,4 +56,39 @@ namespace KiiniNet.Entities.Helper
         public string Comentarios { get; set; }
         public DateTime FechaMovimiento { get; set; }
     }
+
+    [Serializable]
+    public class HelperEvento
+    {
+        public Int64 IdEvento { get; set; }
+        public int IdUsuarioGenero { get; set; }
+        public string NombreUsuario { get; set; }
+        public DateTime FechaHoraEvento { get; set; }
+        public string FechaHoraEventoFormato { get; set; }
+        public List<HelperMovimientoEvento>  Movimientos { get; set; }
+    }
+
+    [Serializable]
+    public class HelperMovimientoEvento
+    {
+        public Int64 IdMovimiento { get; set; }
+        public bool EsMovimientoEstatusTicket { get; set; }
+        public bool EsMovimientoAsignacion { get; set; }
+        public bool EsMovimientoConversacion { get; set; }
+
+        public int? IdEstatus { get; set; }
+        public string DescripcionEstatus { get; set; }
+
+        public int? IdEstatusAnterior { get; set; }
+        public string DescripcionEstatusAnterior { get; set; }
+
+        public int? IdUsuarioAsigno { get; set; }
+        public string NombreCambioEstatus { get; set; }
+        public int? IdUsuarioAsignado { get; set; }
+        public string NombreUsuarioAsignado { get; set; }
+
+        public string Comentarios { get; set; }
+        public string Conversacion { get; set; }
+    }
+
 }

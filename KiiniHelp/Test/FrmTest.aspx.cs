@@ -13,6 +13,7 @@ using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaCatalogos;
+using KiiniHelp.ServiceUsuario;
 using KinniNet.Business.Utils;
 using Telerik.Web.UI;
 using Telerik.Web.UI.HtmlChart;
@@ -27,6 +28,7 @@ namespace KiiniHelp.Test
 
         private readonly ServiceCatalogosClient _servicioCatalogos = new ServiceCatalogosClient();
         private readonly ServiceAreaClient _servicioArea = new ServiceAreaClient();
+        private readonly ServiceUsuariosClient _servicioUsuario = new ServiceUsuariosClient();
         private List<string> _lstError = new List<string>();
 
         //private void SendMessageAltiria()
@@ -85,7 +87,6 @@ namespace KiiniHelp.Test
                 }
             }
         }
-
         private List<string> Alerta
         {
             set
@@ -98,8 +99,6 @@ namespace KiiniHelp.Test
                 }
             }
         }
-
-
         public int IdCatalogo { get { return 10; } }
         protected void btnGetSelectedValues_Click(object sender, EventArgs e)
         {
@@ -113,7 +112,6 @@ namespace KiiniHelp.Test
             //}
             //Response.Write(selectedValues.ToString());
         }
-
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TextBox1.Text = GridView1.SelectedRow.Cells[2].Text;
@@ -175,18 +173,15 @@ namespace KiiniHelp.Test
         {
             return obj.GetType().GetProperties().ToList();
         }
-
         public class InfoClass
         {
             public string Name { get; set; }
             public string Type { get; set; }
-
         }
         private void Doing()
         {
 
         }
-
         private void GeneraGraficaStackedAdministrador(RadHtmlChart grafico, DataTable dt)
         {
             grafico.Width = Unit.Percentage(100);
@@ -212,8 +207,6 @@ namespace KiiniHelp.Test
             grafico.DataSource = dt;
             grafico.DataBind();
         }
-
-
         private void GeneraGraficaPieTickets(RadHtmlChart grafico, DataTable dt)
         {
             grafico.Width = Unit.Percentage(50);
@@ -234,10 +227,45 @@ namespace KiiniHelp.Test
             grafico.DataSource = dt;
             grafico.DataBind();
         }
+        public DataTable GetData()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("ID");
+            table.Columns.Add("ParentID");
+            table.Columns.Add("Value");
+            table.Columns.Add("Text");
 
+            table.Rows.Add(new String[] { "1", null, "World_Continents", "World Continents" });
+            table.Rows.Add(new String[] { "2", null, "World_Oceans", "World Oceans" });
 
+            table.Rows.Add(new String[] { "3", "1", "Asia", "Asia" });
+            table.Rows.Add(new String[] { "4", "1", "Africa", "Africa" });
+            table.Rows.Add(new String[] { "5", "1", "Australia", "Australia" });
+            table.Rows.Add(new String[] { "6", "1", "Europe", "Europe" });
+            table.Rows.Add(new String[] { "7", "1", "North_America", "North America" });
+            table.Rows.Add(new String[] { "8", "1", "South_America", "South America" });
+
+            table.Rows.Add(new String[] { "9", "2", "Arctic_Ocean", "Arctic Ocean" });
+            table.Rows.Add(new String[] { "10", "2", "Atlantic_Ocean", "Atlantic Ocean" });
+            table.Rows.Add(new String[] { "11", "2", "Indian_Ocean", "Indian Ocean" });
+            table.Rows.Add(new String[] { "12", "2", "Pacific_Ocean", "Pacific Ocean" });
+            table.Rows.Add(new String[] { "13", "2", "South_Ocean", "SouthOcean" });
+
+            return table;
+        } 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (!IsPostBack)
+            {
+                ddlUsuarioAsignacion.DataFieldID = "IdUsuario";
+                ddlUsuarioAsignacion.DataFieldParentID = "IdSubRol";
+                ddlUsuarioAsignacion.DataValueField = "DescripcionSubRol";
+                ddlUsuarioAsignacion.DataTextField = "NombreUsuario";
+                ddlUsuarioAsignacion.DataSource = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(4, new List<int>());
+                ddlUsuarioAsignacion.DataBind();
+            }
+
             //DataTable dtTicketsCanal = new DataTable("dt");
             //dtTicketsCanal.Columns.Add("Id", typeof(int));
             //dtTicketsCanal.Columns.Add("Canal", typeof(string));
@@ -257,7 +285,7 @@ namespace KiiniHelp.Test
 
             //GeneraGraficaStackedAdministrador(rhcEspacio, dtAlmacenado);
 
-          
+
 
 
 
@@ -291,7 +319,6 @@ namespace KiiniHelp.Test
             //BusinessGraficosDasboard.Pastel.GeneraGraficoBarraApilada(cGraficoEspacio, dt);
             //ucDetalleArbolAcceso.IdArbolAcceso = 7;
         }
-
         //protected void Submit(object sender, EventArgs e)
         //{
         //    string message = "";
@@ -304,8 +331,6 @@ namespace KiiniHelp.Test
         //    }
         //    ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "alert('" + message + "');", true);
         //}
-
-
         protected void btnModalImpactoUrgencia_OnClick(object sender, EventArgs e)
         {
             try
@@ -320,7 +345,6 @@ namespace KiiniHelp.Test
             }
 
         }
-
         private void ChartStackOnClick(object sender, ImageMapEventArgs imageMapEventArgs)
         {
             try
@@ -332,12 +356,10 @@ namespace KiiniHelp.Test
                 throw;
             }
         }
-
         protected void btnConsultar_OnClick(object sender, EventArgs e)
         {
 
         }
-
         private void MakeBarChart(Chart grafico, DataTable dt)
         {
             grafico.Series["Ubicacion"].Label = "#VALY{#.##}";
@@ -361,7 +383,6 @@ namespace KiiniHelp.Test
             }
 
         }
-
         public void AfterLoad(DataTable dt)
         {
 
@@ -378,7 +399,6 @@ namespace KiiniHelp.Test
             //Chart1.Series["Pareto"].Color = Color.FromArgb(252, 180, 65);
             //Chart1.Legends[0].Title = "Stack";
         }
-
         protected void rptMenu_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -423,7 +443,6 @@ namespace KiiniHelp.Test
             }
 
         }
-
         protected void rptSubMenu2_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -445,7 +464,6 @@ namespace KiiniHelp.Test
                 Alerta = _lstError;
             }
         }
-
         protected void rptSubMenu3_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -467,7 +485,6 @@ namespace KiiniHelp.Test
                 Alerta = _lstError;
             }
         }
-
         protected void rptSubMenu4_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -489,7 +506,6 @@ namespace KiiniHelp.Test
                 Alerta = _lstError;
             }
         }
-
         protected void rptSubMenu5_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -511,7 +527,6 @@ namespace KiiniHelp.Test
                 Alerta = _lstError;
             }
         }
-
         protected void rptSubMenu6_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -533,8 +548,6 @@ namespace KiiniHelp.Test
                 Alerta = _lstError;
             }
         }
-
-
         private void MakeParetoChart(Chart chart, string srcSeriesName, string destSeriesName)
         {
 
@@ -607,7 +620,6 @@ namespace KiiniHelp.Test
             }
 
         }
-
         //protected void OnClick(object sender, EventArgs e)
         //{
         //    string url = ResolveUrl("~/FrmEncuesta.aspx?IdTicket=3");
@@ -642,7 +654,6 @@ namespace KiiniHelp.Test
 
         //    //var result = firstMonday.AddDays(weekNum * 7 + 0 - 1);
         //}
-
         protected void btnAbrirModal_OnClick(object sender, EventArgs e)
         {
             try
@@ -659,7 +670,6 @@ namespace KiiniHelp.Test
                 throw new Exception(ex.Message);
             }
         }
-
         //private void LlenaArchivosCargados()
         //{
         //    try
@@ -729,7 +739,6 @@ namespace KiiniHelp.Test
             //Session["PreviewDataConsulta"] = ObtenerInformacionCapturada();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('/Publico/Consultas/FrmPreviewConsulta.aspx','_blank');", true);
         }
-
         protected void btnTest_OnClick(object sender, EventArgs e)
         {
             try
@@ -747,7 +756,6 @@ namespace KiiniHelp.Test
                 //Alerta = _lstError;
             }
         }
-
         protected void btnCerrarExito_OnClick(object sender, EventArgs e)
         {
             try
@@ -765,7 +773,6 @@ namespace KiiniHelp.Test
                 Alerta = _lstError;
             }
         }
-
         protected void OnClick1(object sender, EventArgs e)
         {
             try
@@ -776,6 +783,18 @@ namespace KiiniHelp.Test
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+        protected void ddlUsuarioAsignacion_OnEntriesAdded(object sender, DropDownTreeEntriesEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }

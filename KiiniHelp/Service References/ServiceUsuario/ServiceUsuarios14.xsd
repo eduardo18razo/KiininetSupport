@@ -57,4 +57,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperTicketsUsuario" nillable="true" type="tns:HelperTicketsUsuario" />
+  <xs:complexType name="ArrayOfHelperUsuarioAgente">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperUsuarioAgente" nillable="true" type="tns:HelperUsuarioAgente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperUsuarioAgente" nillable="true" type="tns:ArrayOfHelperUsuarioAgente" />
+  <xs:complexType name="HelperUsuarioAgente">
+    <xs:sequence>
+      <xs:element name="_x003C_DescripcionSubRol_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IdSubRol_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdUsuario_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_NombreUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperUsuarioAgente" nillable="true" type="tns:HelperUsuarioAgente" />
 </xs:schema>

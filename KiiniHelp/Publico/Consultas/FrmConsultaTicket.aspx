@@ -95,6 +95,7 @@
                     <%--<hr>--%>
                 </div>
                 <asp:HiddenField runat="server" ID="hfEstatusActual" />
+                <asp:HiddenField runat="server" ID="hfNivelAsignado" />
                 <asp:HiddenField runat="server" ID="hfIdUsuarioTicket" />
                 <div class="clearfix"></div>
                 <!--INICIA COMENTARIOS-->

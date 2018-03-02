@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcFormulario.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.Formularios.UcFormulario" %>
+<%@ Register Src="~/UserControls/Altas/Usuarios/UcAltaUsuarioRapida.ascx" TagPrefix="uc1" TagName="UcAltaUsuarioRapida" %>
 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upMascara">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfIdMascara" />
@@ -7,10 +8,6 @@
         <asp:HiddenField runat="server" ID="hfRandom" />
         <asp:HiddenField runat="server" ID="hfPreview" />
         <br>
-        <%--  <h3 class="h6">
-            <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink>
-            / Captura formulario </h3>--%>
-        <%--<hr />--%>
         <asp:HiddenField runat="server" ID="hfTicketGenerado" />
         <asp:HiddenField runat="server" ID="hfRandomGenerado" />
         <section class="module no-border">
@@ -23,8 +20,12 @@
                             <asp:Button type="button" class="btn btn-primary" runat="server" Text="Crear ticket" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
                         </div>
                         <br />
-                        <%--<hr />--%>
                         <div runat="server" id="divControles">
+                        </div>
+                        <div runat="server" id="divRegistraUsuario">
+                            <div class="margin-bottom-10">
+                                <uc1:ucaltausuariorapida runat="server" id="ucAltaUsuarioRapida" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -38,15 +39,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                
-                <h6 class="modal-title" id="myModalLabel">                
-                <asp:Label runat="server"  Text="Tu ticket se creo con éxito"/>
-            </h6>
-                
-                
-               <%-- <h3 class="modal-title" id="myModalLabel">
-                    <img class="img-responsive margin-left" src="assets/images/icons/ok.png" alt="" /><br>
-                    Tu ticket se creo con éxito</h3>--%>
+
+                <h6 class="modal-title" id="myModalLabel">
+                    <asp:Label runat="server" Text="Tu ticket se creo con éxito" />
+                </h6>
             </div>
             <div class="modal-body">
                 <asp:UpdatePanel runat="server">

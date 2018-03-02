@@ -6,90 +6,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link rel='stylesheet' href="/assets/css/font.css" />
-    <link rel="stylesheet" href="/assets/css/font-awesome.css" />
-    <link rel="stylesheet" href="/assets/css/pe-7-icons.css" />
-    <link rel="stylesheet" href="/assets/css/pe-7-icons.css" />
-    <link rel="stylesheet" href="/assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
-    <link rel="stylesheet" href="/assets/css/menuStyle.css" />
-    <link rel="stylesheet" href="/assets/css/divs.css" />
-    <link rel="stylesheet" href="/assets/css/checkBox.css" />
-    <link rel="stylesheet" href="/assets/tmp/chosen.css" />
-    <link rel="stylesheet" href="/assets/css/sumoselect.css" />
-    <link rel="stylesheet" href="/assets/tmp/editor/ui/trumbowyg.css" />
-    <link rel="stylesheet" href="/assets/tmp/editor/ui/trumbowyg.min.css" />
-    <link rel="stylesheet" href="/assets/css/controls.css" />
-    <link rel="stylesheet" href="/assets/tmp/jquery.tagsinput.min.css" />
-    <style>
-        option:hover {
-            background: #C6C4BD;
+    <script type="text/javascript">
+        function OnClientEntryAdding(sender, args) {
+            var path = args.get_entry().get_fullPath();
+            var s = path.split("/");
+            if (s.length == 1) {
+                args.set_cancel(true);
+            }
+            else {
+                sender.closeDropDown();
+            }
         }
-
-        .styleCalendar {
-            left: 0 !important;
-            z-index: 1000;
-            background: #ffffff;
-        }
-    </style>
-    <script>
-
-
-        //function ShowLanding() {
-        //    var landing = document.getElementById('updateProgress');
-        //    if (landing != undefined) {
-        //        landing.style.display = 'block';
-        //    }
-        //}
-
-        //function HideLanding() {
-        //    var landing = document.getElementById('updateProgress');
-        //    if (landing != undefined) {
-        //        landing.style.display = 'none';
-        //    }
-        //}
-        //function ClientSideClick(myButton) {
-        //    debugger;
-        //    // Client side validation
-        //    if (typeof (Page_ClientValidate) == 'function') {
-        //        if (Page_ClientValidate() == false)
-        //        { return false; }
-        //    }
-
-        //    //make sure the button is not of type "submit" but "button"
-        //    if (myButton.getAttribute('type') == 'submit') {
-        //        // disable the button
-        //        myButton.disabled = true;
-        //        myButton.className = "btn-inactive";
-        //        myButton.value = "processing...";
-        //    }
-        //    return true;
-        //}
     </script>
 </head>
-<body class="preload" style="background: #fff">
+<body>
     <div id="full">
         <form id="form1" runat="server" enctype="multipart/form-data">
             <asp:ScriptManager runat="server" EnableScriptGlobalization="True" EnableScriptLocalization="True">
-                <Scripts>
-                    <asp:ScriptReference Path="~/assets/js/jquery.js" />
-                    <asp:ScriptReference Path="~/assets/js/bootstrap.js" />
-                    <asp:ScriptReference Path="~/assets/js/imagesloaded.js" />
-                    <asp:ScriptReference Path="~/assets/js/masonry.js" />
-                    <asp:ScriptReference Path="~/assets/js/main.js" />
-                    <asp:ScriptReference Path="~/assets/js/modernizr.custom.js" />
-                    <asp:ScriptReference Path="~/assets/js/pmenu.js" />
-                    <asp:ScriptReference Path="~/assets/js/bootstrap-notify.js" />
-                    <asp:ScriptReference Path="~/assets/js/bootstrap-notify.min.js" />
-                    <asp:ScriptReference Path="~/assets/js/Notificaciones.js" />
-                    <asp:ScriptReference Path="~/assets/tmp/chosen.jquery.js" />
-                    <asp:ScriptReference Path="~/assets/tmp/editor/trumbowyg.min.js" />
-                    <asp:ScriptReference Path="~/assets/tmp/editor/plugins/base64/trumbowyg.base64.min.js" />
-                    <asp:ScriptReference Path="~/assets/tmp/editor/plugins/upload/trumbowyg.upload.min.js" />
-                    <asp:ScriptReference Path="~/assets/tmp/jquery.tagsinput.min.js" />
-                    <asp:ScriptReference Path="~/assets/js/jquery.sumoselect.min.js" />
-                    <asp:ScriptReference Path="~/assets/js/validation.js" />
-                </Scripts>
             </asp:ScriptManager>
             <script type="text/javascript">
                 Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
@@ -100,6 +33,17 @@
             </script>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
+                    <tc:RadDropDownTree runat="server" CssClass="form-control" ID="ddlUsuarioAsignacion" AutoPostBack="True" RenderMode="Lightweight" ExpandNodeOnSingleClick="true" CheckNodeOnClick="False"
+                        DefaultMessage="-" OnEntriesAdded="ddlUsuarioAsignacion_OnEntriesAdded" EnableFiltering="True" OnClientEntryAdding="OnClientEntryAdding" sin>
+                        <DropDownSettings Width="350px" CloseDropDownOnSelection="True" />
+                    </tc:RadDropDownTree>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <asp:Button runat="server" Text="texto" />
+
                     <tc:RadHtmlChart runat="server" ID="rchArea">
                         <PlotArea>
                             <Series>
@@ -154,7 +98,7 @@
                                     <tc:AxisItem LabelText="28/01"></tc:AxisItem>
                                     <tc:AxisItem LabelText="29/01"></tc:AxisItem>
                                     <tc:AxisItem LabelText="30/01"></tc:AxisItem>
-                                    
+
                                 </Items>
                                 <TitleAppearance Position="Center" RotationAngle="0" Text=""></TitleAppearance>
                                 <LabelsAppearance DataFormatString="{0}" RotationAngle="0" Skip="0" Step="1">

@@ -7,10 +7,35 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="idTicket" type="xs:int" />
         <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
+        <xs:element minOccurs="0" name="comentario" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AutoAsignarTicketResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerarEvento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTicket" type="xs:int" />
+        <xs:element minOccurs="0" name="idUsuarioGeneraEvento" type="xs:int" />
+        <xs:element minOccurs="0" name="idEstatusTicket" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idEstatusAsignacion" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idNivelAsignado" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idUsuarioAsignado" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="mensajeConversacion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="conversacionPrivada" type="xs:boolean" />
+        <xs:element minOccurs="0" name="enviaCorreo" type="xs:boolean" />
+        <xs:element minOccurs="0" name="sistema" type="xs:boolean" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="archivos" nillable="true" type="q1:ArrayOfstring" />
+        <xs:element minOccurs="0" name="comentarioAsignacion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="esPropietario" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GenerarEventoResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -54,7 +79,7 @@
         <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
         <xs:element minOccurs="0" name="mensaje" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="sistema" type="xs:boolean" />
-        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="archivos" nillable="true" type="q1:ArrayOfstring" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="archivos" nillable="true" type="q2:ArrayOfstring" />
         <xs:element minOccurs="0" name="privado" type="xs:boolean" />
         <xs:element minOccurs="0" name="enviaCorreo" type="xs:boolean" />
       </xs:sequence>
@@ -88,7 +113,7 @@
   <xs:element name="ObtenerTicketEnAtencionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerTicketEnAtencionResult" nillable="true" type="q2:HelperticketEnAtencion" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerTicketEnAtencionResult" nillable="true" type="q3:HelperTicketEnAtencion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
