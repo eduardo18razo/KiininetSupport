@@ -24,6 +24,9 @@ namespace KiiniHelp.ServiceUsuario {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicional", ReplyAction="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicionalResponse")]
         void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentes", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerAgentesResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAgentes(bool insertarSeleccion);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarios", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuarios(System.Nullable<int> idTipoUsuario);
         
@@ -92,6 +95,9 @@ namespace KiiniHelp.ServiceUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo", ReplyAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse")]
         KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuarioResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, System.Collections.Generic.List<int> lstSubRoles);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -131,6 +137,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv) {
             base.Channel.GuardarUsuarioAdicional(nombre, ap, correo, celular, edad, numeroTarjeta, fechavto, cvv);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAgentes(bool insertarSeleccion) {
+            return base.Channel.ObtenerAgentes(insertarSeleccion);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuarios(System.Nullable<int> idTipoUsuario) {
@@ -223,6 +233,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public KiiniNet.Entities.Operacion.Usuarios.Usuario GetUsuarioByCorreo(string correo) {
             return base.Channel.GetUsuarioByCorreo(correo);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, System.Collections.Generic.List<int> lstSubRoles) {
+            return base.Channel.ObtenerUsuarioAgenteByGrupoUsuario(idGrupo, lstSubRoles);
         }
     }
 }

@@ -596,6 +596,7 @@
     <EntitySetMapping Name="ArbolAcceso">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.ArbolAcceso">
         <MappingFragment StoreEntitySet="ArbolAcceso">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="FechaVisita" ColumnName="FechaVisita" />
           <ScalarProperty Name="Visitas" ColumnName="Visitas" />
           <ScalarProperty Name="NoMeGusta" ColumnName="NoMeGusta" />
@@ -1335,20 +1336,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ParametrosGenerales">
-      <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
-        <MappingFragment StoreEntitySet="ParametrosGenerales">
-          <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
-          <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
-          <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
-          <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
-          <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
-          <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
-          <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Catalogos">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.Catalogos">
         <MappingFragment StoreEntitySet="Catalogos">
@@ -1574,6 +1561,61 @@
         <MappingFragment StoreEntitySet="TicketCorreo">
           <ScalarProperty Name="Correo" ColumnName="Correo" />
           <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParametrosGenerales">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
+        <MappingFragment StoreEntitySet="ParametrosGenerales">
+          <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
+          <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
+          <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
+          <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
+          <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
+          <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
+          <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
+          <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketEvento">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEvento">
+        <MappingFragment StoreEntitySet="TicketEvento">
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="IdUsuarioRealizo" ColumnName="IdUsuarioRealizo" />
+          <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketEventoAsignacion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEventoAsignacion">
+        <MappingFragment StoreEntitySet="TicketEventoAsignacion">
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="IdTicketAsignacion" ColumnName="IdTicketAsignacion" />
+          <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketEventoConversacion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEventoConversacion">
+        <MappingFragment StoreEntitySet="TicketEventoConversacion">
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="IdTicketConversacion" ColumnName="IdTicketConversacion" />
+          <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketEventoEstatus">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEventoEstatus">
+        <MappingFragment StoreEntitySet="TicketEventoEstatus">
+          <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+          <ScalarProperty Name="IdTicketEstatus" ColumnName="IdTicketEstatus" />
+          <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -114,6 +114,7 @@ namespace KiiniHelp.Publico.Consultas
                     divDetalle.Visible = true;
                     lblticket.Text = detalle.IdTicket.ToString();
                     hfMuestraEncuesta.Value = detalle.TieneEncuesta.ToString();
+                    hfNivelAsignado.Value = detalle.IdNivelAsignado.ToString();
                     //lblCveRegistro.Text = detalle.CveRegistro;
                     lblFechaActualiza.Text = detalle.AsignacionesDetalle.OrderBy(o => o.FechaMovimiento).First().FechaMovimiento.ToShortDateString();
                     lblestatus.Text = detalle.EstatusActual;
@@ -166,6 +167,7 @@ namespace KiiniHelp.Publico.Consultas
                 ucCambiarEstatusTicket.IdTicket = Convert.ToInt32(lblticket.Text);
                 ucCambiarEstatusTicket.IdEstatusActual = int.Parse(hfEstatusActual.Value);
                 ucCambiarEstatusTicket.IdGrupo = 0;
+                ucCambiarEstatusTicket.IdSubRolActual = null;
                 ucCambiarEstatusTicket.IdUsuario = int.Parse(hfIdUsuarioTicket.Value);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalEstatusCambio\");", true);
             }

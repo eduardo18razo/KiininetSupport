@@ -13,9 +13,12 @@
       <xs:element minOccurs="0" name="Administrador" type="xs:boolean" />
       <xs:element minOccurs="0" name="ApellidoMaterno" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ApellidoPaterno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Autoregistro" type="xs:boolean" />
       <xs:element minOccurs="0" name="BitacoraAcceso" nillable="true" type="tns:ArrayOfBitacoraAcceso" />
       <xs:element minOccurs="0" name="CorreoUsuario" nillable="true" type="tns:ArrayOfCorreoUsuario" />
       <xs:element minOccurs="0" name="DirectorioActivo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="FechaActualizacion" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaAlta" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FechaBloqueo" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="FechaUltimoAccesoExito" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FechaUpdate" nillable="true" type="xs:dateTime" />

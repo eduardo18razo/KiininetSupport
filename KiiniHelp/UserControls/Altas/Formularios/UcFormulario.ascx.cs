@@ -11,6 +11,7 @@ using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceMascaraAcceso;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KiiniHelp.ServiceTicket;
+using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Helper;
@@ -31,6 +32,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         private readonly ServiceMascarasClient _servicioMascaras = new ServiceMascarasClient();
         private readonly ServiceTicketClient _servicioTicket = new ServiceTicketClient();
         private readonly ServiceArbolAccesoClient _servicioArbolAccesoClient = new ServiceArbolAccesoClient();
+        private readonly ServiceUsuariosClient _servicioUsuariosClient = new ServiceUsuariosClient();
         private List<Control> _lstControles;
         private List<string> _lstError = new List<string>();
         private List<string> Alerta
@@ -219,7 +221,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                         throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
                             }
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             nombreControl = "ddl" + campo.NombreCampo;
                             DropDownList ddl = (DropDownList)divControles.FindControl(nombreControl);
                             if (ddl != null)
@@ -458,7 +460,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             nombreControl = "lstRadio" + campo.NombreCampo;
                             campoTexto = false;
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             nombreControl = "ddl" + campo.NombreCampo;
                             campoTexto = false;
                             break;
@@ -563,7 +565,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                     lstCamposCapturados.Add(campoCapturado);
                                 }
                                 break;
-                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                                 DropDownList ddl = (DropDownList)divControles.FindControl(nombreControl);
                                 if (ddl != null)
                                 {
@@ -713,7 +715,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             createDiv.Controls.Add(lstRadio);
                             _lstControles.Add(lstRadio);
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
                             lbl.Attributes["for"] = "ddl" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             DropDownList ddlCatalogo = new DropDownList
@@ -997,10 +999,10 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             try
             {
                 Alerta = new List<string>();
+
                 if (!IsPostBack)
                 {
-
-
+                    divRegistraUsuario.Visible = Session["UserData"] == null;
                 }
             }
             catch (Exception ex)
@@ -1019,22 +1021,28 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             {
 
                 //TODO: Cambiar id arbol por parametro
-                List<HelperCampoMascaraCaptura> capturaMascara = ObtenerCapturaMascara();
-                KiiniNet.Entities.Operacion.Tickets.Ticket result;
-                if (Request.Params["UsuarioSolicita"] != null)
-                    if (int.Parse(Request.Params["UsuarioSolicita"]) != ((Usuario)Session["UserData"]).Id)
-                        result = _servicioTicket.CrearTicket(((Usuario)Session["UserData"]).Id, int.Parse(Request.Params["UsuarioSolicita"]), int.Parse(Request.Params["IdArbol"]), capturaMascara, int.Parse(Request.Params["Canal"]), CampoRandom, true, false);
+                if (divRegistraUsuario.Visible)
+                    ucAltaUsuarioRapida.RegistraUsuario();
+                Usuario user = _servicioUsuariosClient.ObtenerDetalleUsuario(divRegistraUsuario.Visible ? ucAltaUsuarioRapida.IdUsuario : ((Usuario)Session["UserData"]).Id);
+                if (user != null)
+                {
+                    List<HelperCampoMascaraCaptura> capturaMascara = ObtenerCapturaMascara();
+                    KiiniNet.Entities.Operacion.Tickets.Ticket result;
+                    if (Request.Params["UsuarioSolicita"] != null)
+                        if (int.Parse(Request.Params["UsuarioSolicita"]) != ((Usuario)Session["UserData"]).Id)
+                            result = _servicioTicket.CrearTicket(((Usuario)Session["UserData"]).Id, int.Parse(Request.Params["UsuarioSolicita"]), int.Parse(Request.Params["IdArbol"]), capturaMascara, int.Parse(Request.Params["Canal"]), CampoRandom, true, false);
+                        else
+                            result = _servicioTicket.CrearTicket(((Usuario)Session["UserData"]).Id, ((Usuario)Session["UserData"]).Id, ((ArbolAcceso)Session["ArbolAcceso"]).Id, capturaMascara, (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
                     else
-                        result = _servicioTicket.CrearTicket(((Usuario)Session["UserData"]).Id, ((Usuario)Session["UserData"]).Id, ((ArbolAcceso)Session["ArbolAcceso"]).Id, capturaMascara, (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
-                else
-                    result = _servicioTicket.CrearTicket(((Usuario)Session["UserData"]).Id, ((Usuario)Session["UserData"]).Id, ((ArbolAcceso)Session["ArbolAcceso"]).Id, capturaMascara, (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
+                        result = _servicioTicket.CrearTicket(user.Id, user.Id, ((ArbolAcceso)Session["ArbolAcceso"]).Id, capturaMascara, (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
 
-                lblNoTicket.Text = result.Id.ToString();
-                if (CampoRandom)
-                    lblRandom.Text = result.ClaveRegistro;
-                if (Session["Files"] != null)
-                    ConfirmaArchivos(result.Id);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptOpen", "MostrarPopup(\"#modalExitoTicket\");", true);
+                    lblNoTicket.Text = result.Id.ToString();
+                    if (CampoRandom)
+                        lblRandom.Text = result.ClaveRegistro;
+                    if (Session["Files"] != null)
+                        ConfirmaArchivos(result.Id);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptOpen", "MostrarPopup(\"#modalExitoTicket\");", true);
+                }
             }
             catch (Exception ex)
             {
@@ -1067,7 +1075,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             try
             {
-                //ucTicketPortal.Limpiar();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptClose", "CierraPopup(\"#modal-new-ticket\");", true);
             }
             catch (Exception ex)

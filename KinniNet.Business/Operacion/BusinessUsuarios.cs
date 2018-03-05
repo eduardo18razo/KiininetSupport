@@ -175,7 +175,7 @@ namespace KinniNet.Core.Operacion
                     }
                     rol.RolTipoUsuario = null;
                 }
-                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor)
+                if (usuario.Autoregistro && (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
                     usuario.Habilitado = false;
                 usuario.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                 if (usuario.Id == 0)
@@ -286,7 +286,7 @@ namespace KinniNet.Core.Operacion
                         rol.RolTipoUsuario = null;
                     }
                 }
-                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor)
+                if (usuario.Autoregistro && (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
                     usuario.Habilitado = false;
                 if (usuario.Id == 0)
                 {
@@ -294,7 +294,7 @@ namespace KinniNet.Core.Operacion
                     db.SaveChanges();
                 }
 
-                if (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador)
+                if (usuario.Habilitado)
                 {
                     usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
                     if (correo != null)
@@ -595,7 +595,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.Usuario.Single(w => w.Id == idUsuario).Foto;
-               // result = db.Usuario.Single(w => w.Id == idUsuario).Foto != null ? db.Usuario.Single(w => w.Id == idUsuario).Foto : new byte[0];
+                // result = db.Usuario.Single(w => w.Id == idUsuario).Foto != null ? db.Usuario.Single(w => w.Id == idUsuario).Foto : new byte[0];
             }
             catch (Exception ex)
             {
@@ -660,6 +660,38 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
+        }
+
+        public List<Usuario> ObtenerAgentes(bool insertarSeleccion)
+        {
+            List<Usuario> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<int> idsUsuarios = (from u in db.Usuario
+                                         join ug in db.UsuarioGrupo on u.Id equals ug.IdUsuario
+                                         where u.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador
+                                         && ug.IdRol == (int)BusinessVariables.EnumRoles.Agente && u.Habilitado
+                                         select u.Id).Distinct().ToList();
+                result = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).OrderBy(o => o.ApellidoPaterno).ThenBy(tb => tb.ApellidoMaterno).ThenBy(tb => tb.Nombre).ToList();
+                if (insertarSeleccion)
+                    result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
+                        new Usuario
+                        {
+                            Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione,
+                            Nombre = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione
+                        });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
         }
 
         public List<Usuario> ObtenerUsuarios(int? idTipoUsuario)
@@ -791,7 +823,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 List<int> idsUsuarios = (db.Usuario.Join(db.UsuarioGrupo, u => u.Id, ug => ug.IdUsuario, (u, ug) => new { u, ug })
-                    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo && @t.ug.SubGrupoUsuario.IdSubRol == idNivel && @t.u.Habilitado)
+                    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo && @t.ug.SubGrupoUsuario.IdSubRol == idNivel && @t.u.Habilitado && @t.u.Activo)
                     .Select(@t => @t.u.Id)).Distinct().ToList();
                 result = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).ToList();
                 foreach (Usuario usuario in result)
@@ -815,6 +847,50 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
+        public List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles)
+        {
+            List<HelperUsuarioAgente> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                var qry = from u in db.Usuario
+                          join ug in db.UsuarioGrupo on u.Id equals ug.IdUsuario
+                          join sgu in db.SubGrupoUsuario on ug.IdSubGrupoUsuario equals sgu.Id
+                          join sr in db.SubRol on sgu.IdSubRol equals sr.Id
+                          where ug.IdGrupoUsuario == idGrupo && lstSubRoles.Contains(sr.Id) && u.Habilitado && u.Activo
+                          orderby sr.Id, u.Nombre, u.ApellidoPaterno, u.ApellidoMaterno
+                          select new
+                          {
+                              IdSubRol = sr.Id,
+                              DescripcionSubRol = sr.Descripcion,
+                              IdUsuario = u.Id,
+                              Nombre = u.Nombre,
+                              ApellidoPaterno = u.ApellidoPaterno,
+                              ApellidoMaterno = u.ApellidoMaterno
+                          };
+                var padres = from q in qry
+                             select new { q.IdSubRol, q.DescripcionSubRol };
+                result = new List<HelperUsuarioAgente>();
+                result.AddRange(padres.Distinct().Select(s=>new HelperUsuarioAgente{IdUsuario = s.IdSubRol, DescripcionSubRol = s.DescripcionSubRol, NombreUsuario = s.DescripcionSubRol}).ToList());
+                result.AddRange(qry.Distinct().Select(s => new HelperUsuarioAgente
+                {
+                    IdUsuario = s.IdUsuario,
+                    IdSubRol = s.IdSubRol,
+                    DescripcionSubRol = s.DescripcionSubRol,
+                    NombreUsuario = s.Nombre + " " + s.ApellidoPaterno + " " + s.ApellidoMaterno,
+                }).ToList());
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
         public List<Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion)
         {
             List<Usuario> result;
@@ -829,31 +905,15 @@ namespace KinniNet.Core.Operacion
                 result = new List<Usuario>();
                 foreach (Usuario usuario in qry)
                 {
-                    result.Add(new Usuario
-                    {
-                        Id = usuario.Id,
-                        Nombre = usuario.Nombre,
-                        ApellidoMaterno = usuario.ApellidoMaterno,
-                        ApellidoPaterno = usuario.ApellidoPaterno
-                    });
+                    if (!result.Any(a => a.Id == usuario.Id))
+                        result.Add(new Usuario
+                        {
+                            Id = usuario.Id,
+                            Nombre = usuario.Nombre,
+                            ApellidoMaterno = usuario.ApellidoMaterno,
+                            ApellidoPaterno = usuario.ApellidoPaterno
+                        });
                 }
-                //result = qry.Select(s => new Usuario
-                //    {
-                //        Id = s.Id,
-                //        Nombre = s.Nombre,
-                //        ApellidoMaterno = s.ApellidoMaterno,
-                //        ApellidoPaterno = s.ApellidoPaterno
-                //    }).ToList();
-                //result = (db.Usuario.Join(db.UsuarioGrupo, u => u.Id, ug => ug.IdUsuario, (u, ug) => new { u, ug })
-                //    .Where(@t => @t.ug.IdGrupoUsuario == idGrupo)
-                //    .Select(@t => new Usuario
-                //    {
-                //        Id = @t.u.Id,
-                //        Nombre = @t.u.Nombre,
-                //        ApellidoMaterno = @t.u.ApellidoMaterno,
-                //        ApellidoPaterno = @t.u.ApellidoPaterno
-
-                //    })).Distinct().ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new Usuario

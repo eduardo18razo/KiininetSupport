@@ -266,8 +266,8 @@ namespace KiiniHelp.UserControls.Operacion
             try
             {
                 _lstError = new List<string>();
-                ddlEstatus.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
                 txtComentarios.Text = string.Empty;
+                ddlEstatus.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
                 lstSupervisor.ClearSelection();
                 lstUsuariosGrupoNivel1.ClearSelection();
                 lstUsuariosGrupoNivel2.ClearSelection();

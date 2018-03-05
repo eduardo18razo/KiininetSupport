@@ -105,6 +105,7 @@ namespace KiiniNet.UnitTest
         {
             try
             {
+                new BusinessDashboards().GetDashboardAgente(null, null);
                 DataTable dt = new DataTable("dt");
                 dt.Columns.Add(new DataColumn("Ocupado"));
                 dt.Columns.Add(new DataColumn("Libre"));

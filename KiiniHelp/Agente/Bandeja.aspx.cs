@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceAtencionTicket;
 using KiiniHelp.ServiceGrupoUsuario;
+using KiiniHelp.ServiceSistemaEstatus;
 using KiiniHelp.ServiceTicket;
 using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Helper;
@@ -22,7 +23,9 @@ namespace KiiniHelp.Agente
         private readonly ServiceGrupoUsuarioClient _servicioGrupos = new ServiceGrupoUsuarioClient();
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
         private readonly ServiceAtencionTicketClient _servicioAtencionTicket = new ServiceAtencionTicketClient();
+        private readonly ServiceEstatusClient _servicioEstatus = new ServiceEstatusClient();
         private List<string> _lstError = new List<string>();
+
         private List<string> Alerta
         {
             set
@@ -35,7 +38,6 @@ namespace KiiniHelp.Agente
                 }
             }
         }
-
         private List<int> EstatusAbierto
         {
             get
@@ -44,7 +46,9 @@ namespace KiiniHelp.Agente
                 {
                     (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Abierto,
                     (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.ReAbierto,
-                    (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera
+                    (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera,
+                    (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto
+
                 };
                 return result;
             }
@@ -61,7 +65,6 @@ namespace KiiniHelp.Agente
                 return result;
             }
         }
-
         private bool SinAsignar
         {
             get { return bool.Parse(fhFiltroSinAsignar.Value); }
@@ -82,7 +85,6 @@ namespace KiiniHelp.Agente
                 return result;
             }
         }
-
         private List<int> EstatusResuletos
         {
             get
@@ -96,7 +98,6 @@ namespace KiiniHelp.Agente
                 return result;
             }
         }
-
         private bool FueraSla
         {
             get { return bool.Parse(hfFiltroSla.Value); }
@@ -115,14 +116,11 @@ namespace KiiniHelp.Agente
                 return result;
             }
         }
-
         private List<int> EstatusSeleccionado
         {
             get { return (List<int>)Session["EstatusSeleccionado"]; }
             set { Session["EstatusSeleccionado"] = value; }
         }
-
-
         public List<HelperTickets> Tickets
         {
             get
@@ -141,7 +139,6 @@ namespace KiiniHelp.Agente
         }
 
         //public int? filaSeleccionada = 10;
-
         private void ObtieneTotales(List<HelperTickets> lst)
         {
             try
@@ -213,8 +210,6 @@ namespace KiiniHelp.Agente
             }
 
         }
-
-
         private void LlenaCombos()
         {
             try
@@ -231,6 +226,7 @@ namespace KiiniHelp.Agente
                 throw new Exception(e.Message);
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -488,15 +484,23 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                int idTicket = 0;
-                string titulo = null;
                 if (gvTickets.SelectedItems.Count <= 0)
                     throw new Exception("Seleccione un ticket");
                 foreach (GridDataItem item in gvTickets.SelectedItems)
                 {
-                    titulo = item["Tipificacion"].Text;
-                    idTicket = int.Parse(item.GetDataKeyValue("NumeroTicket").ToString());
-                    _servicioAtencionTicket.AutoAsignarTicket(idTicket, ((Usuario)Session["UserData"]).Id);
+                    int idTicket = int.Parse(item.GetDataKeyValue("NumeroTicket").ToString());
+                    int gpoAsignado = int.Parse(item["IdGrupoAsignado"].Text);
+                    int nivelasignacion = int.Parse(item["IdNivelAsignado"].Text);
+                    int estatusTicket = int.Parse(item["IdEstatusTicket"].Text);
+                    bool propietario = bool.Parse(item["EsPropietario"].Text);
+
+                    if (_servicioEstatus.HasComentarioObligatorio(((Usuario)Session["UserData"]).Id, gpoAsignado, nivelasignacion, estatusTicket, (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado, propietario))
+                        if (txtComentarioAsignacion.Text.Trim() == string.Empty)
+                        {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalComentarioObligado\");", true);
+                            return;
+                        }
+                    _servicioAtencionTicket.AutoAsignarTicket(idTicket, ((Usuario)Session["UserData"]).Id, txtComentarioAsignacion.Text.Trim());
                 }
 
                 //AgenteMaster master = Master as AgenteMaster;
@@ -518,7 +522,41 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
-
+        protected void btnCerrarModalComentarios_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalComentarioObligado\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        protected void btnCerrarComentarios_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtComentarioAsignacion.Text.Trim()))
+                    throw new Exception("Debe ingresar un comentario.");
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalComentarioObligado\");", true);
+                btnAutoasignar_OnClick(null, null);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
         protected void btnAsignar_OnClick(object sender, EventArgs e)
         {
             try
@@ -602,10 +640,12 @@ namespace KiiniHelp.Agente
 
                     int idTicket = int.Parse(item.GetDataKeyValue("NumeroTicket").ToString());
                     int estatusTicket = int.Parse(item["IdEstatusTicket"].Text);
+                    int idNivelAsignado = int.Parse(item["IdNivelAsignado"].Text) + 2;
                     hfTicketActivo.Value = idTicket.ToString();
                     UcCambiarEstatusTicket.EsPropietario = true;
                     UcCambiarEstatusTicket.IdTicket = idTicket;
                     UcCambiarEstatusTicket.IdEstatusActual = estatusTicket;
+                    UcCambiarEstatusTicket.IdSubRolActual = idNivelAsignado;
                     UcCambiarEstatusTicket.IdGrupo = Convert.ToInt32(gpoAsignado);
                     UcCambiarEstatusTicket.IdUsuario = ((Usuario)Session["UserData"]).Id;
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalEstatusCambio\");", true);

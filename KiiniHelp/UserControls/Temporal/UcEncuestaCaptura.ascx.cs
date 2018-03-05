@@ -171,7 +171,7 @@ namespace KiiniHelp.UserControls.Temporal
                             }
                         }
                         break;
-                    case (int)BusinessVariables.EnumTipoEncuesta.OpcionMultiple:
+                    case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
                         break;
                 }
 
@@ -283,7 +283,7 @@ namespace KiiniHelp.UserControls.Temporal
                             }
                         }
                         break;
-                    case (int)BusinessVariables.EnumTipoEncuesta.OpcionMultiple:
+                    case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
                         foreach (EncuestaPregunta pregunta in encuesta.EncuestaPregunta)
                         {
                             HtmlGenericControl divControl = (HtmlGenericControl)divControles.FindControl("createDiv" + pregunta.Id);
@@ -404,7 +404,7 @@ namespace KiiniHelp.UserControls.Temporal
                             divControles.Controls.Add(createDiv);
                         }
                         break;
-                    case (int)BusinessVariables.EnumTipoEncuesta.OpcionMultiple:
+                    case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
                         foreach (EncuestaPregunta pregunta in lstControles)
                         {
                             HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + pregunta.Id };

@@ -16,7 +16,10 @@ namespace KiiniHelp.ServiceAtencionTicket {
     public interface IServiceAtencionTicket {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/AutoAsignarTicket", ReplyAction="http://tempuri.org/IServiceAtencionTicket/AutoAsignarTicketResponse")]
-        void AutoAsignarTicket(int idTicket, int idUsuario);
+        void AutoAsignarTicket(int idTicket, int idUsuario, string comentario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/GenerarEvento", ReplyAction="http://tempuri.org/IServiceAtencionTicket/GenerarEventoResponse")]
+        void GenerarEvento(int idTicket, int idUsuarioGeneraEvento, System.Nullable<int> idEstatusTicket, System.Nullable<int> idEstatusAsignacion, System.Nullable<int> idNivelAsignado, System.Nullable<int> idUsuarioAsignado, string mensajeConversacion, bool conversacionPrivada, bool enviaCorreo, bool sistema, System.Collections.Generic.List<string> archivos, string comentarioAsignacion, bool esPropietario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/CambiarEstatus", ReplyAction="http://tempuri.org/IServiceAtencionTicket/CambiarEstatusResponse")]
         void CambiarEstatus(int idTicket, int idEstatus, int idUsuario, string comentario);
@@ -32,7 +35,7 @@ namespace KiiniHelp.ServiceAtencionTicket {
         void MarcarAsignacionLeida(int idAsignacion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/ObtenerTicketEnAtencion", ReplyAction="http://tempuri.org/IServiceAtencionTicket/ObtenerTicketEnAtencionResponse")]
-        KiiniNet.Entities.Helper.HelperticketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario);
+        KiiniNet.Entities.Helper.HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/ObtenerNumeroTicketsEnAtencionNuevos", ReplyAction="http://tempuri.org/IServiceAtencionTicket/ObtenerNumeroTicketsEnAtencionNuevosRes" +
             "ponse")]
@@ -66,8 +69,12 @@ namespace KiiniHelp.ServiceAtencionTicket {
                 base(binding, remoteAddress) {
         }
         
-        public void AutoAsignarTicket(int idTicket, int idUsuario) {
-            base.Channel.AutoAsignarTicket(idTicket, idUsuario);
+        public void AutoAsignarTicket(int idTicket, int idUsuario, string comentario) {
+            base.Channel.AutoAsignarTicket(idTicket, idUsuario, comentario);
+        }
+        
+        public void GenerarEvento(int idTicket, int idUsuarioGeneraEvento, System.Nullable<int> idEstatusTicket, System.Nullable<int> idEstatusAsignacion, System.Nullable<int> idNivelAsignado, System.Nullable<int> idUsuarioAsignado, string mensajeConversacion, bool conversacionPrivada, bool enviaCorreo, bool sistema, System.Collections.Generic.List<string> archivos, string comentarioAsignacion, bool esPropietario) {
+            base.Channel.GenerarEvento(idTicket, idUsuarioGeneraEvento, idEstatusTicket, idEstatusAsignacion, idNivelAsignado, idUsuarioAsignado, mensajeConversacion, conversacionPrivada, enviaCorreo, sistema, archivos, comentarioAsignacion, esPropietario);
         }
         
         public void CambiarEstatus(int idTicket, int idEstatus, int idUsuario, string comentario) {
@@ -86,7 +93,7 @@ namespace KiiniHelp.ServiceAtencionTicket {
             base.Channel.MarcarAsignacionLeida(idAsignacion);
         }
         
-        public KiiniNet.Entities.Helper.HelperticketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario) {
+        public KiiniNet.Entities.Helper.HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario) {
             return base.Channel.ObtenerTicketEnAtencion(idTicket, idUsuario);
         }
         

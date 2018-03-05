@@ -48,6 +48,12 @@ namespace KiiniHelp.UserControls.Operacion
             get { return int.Parse(hfEstatusActual.Value); }
             set { hfEstatusActual.Value = value.ToString(); }
         }
+
+        public int? IdSubRolActual
+        {
+            get { return string.IsNullOrEmpty(hfIdSubRolActual.Value) ? null : (int?)int.Parse(hfIdSubRolActual.Value); }
+            set { hfIdSubRolActual.Value = value.ToString(); }
+        }
         public bool CerroTicket
         {
             get { return Convert.ToBoolean(hfTicketCerrado.Value); }
@@ -64,7 +70,7 @@ namespace KiiniHelp.UserControls.Operacion
         {
             try
             {
-                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusTicketUsuario(IdUsuario, IdGrupo, IdEstatusActual, EsPropietario, true);
+                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusTicketUsuario(IdUsuario, IdGrupo, IdEstatusActual, EsPropietario, IdSubRolActual, true);
                 ddlEstatus.DataTextField = "Descripcion";
                 ddlEstatus.DataValueField = "Id";
                 ddlEstatus.DataBind();

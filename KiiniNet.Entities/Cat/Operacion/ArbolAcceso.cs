@@ -37,6 +37,8 @@ namespace KiiniNet.Entities.Cat.Operacion
         [DataMember]
         public int? IdNivel7 { get; set; }
         [DataMember]
+        public string Descripcion { get; set; }
+        [DataMember]
         public bool Evaluacion { get; set; }
         [DataMember]
         public bool EsTerminal { get; set; }

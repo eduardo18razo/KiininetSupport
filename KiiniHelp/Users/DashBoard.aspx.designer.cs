@@ -85,22 +85,22 @@ namespace KiiniHelp.Users {
         protected global::System.Web.UI.WebControls.Label lblOperadoresAcumulados;
         
         /// <summary>
-        /// Control cGraficoTicketsCanal.
+        /// Control rhcTicketsCanal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart cGraficoTicketsCanal;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsCanal;
         
         /// <summary>
-        /// Control cGraficoUsuarios.
+        /// Control rhcUsuarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart cGraficoUsuarios;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcUsuarios;
         
         /// <summary>
         /// Control lblEspacio.
@@ -121,13 +121,13 @@ namespace KiiniHelp.Users {
         protected global::System.Web.UI.WebControls.Label lblArchivos;
         
         /// <summary>
-        /// Control cGraficoEspacio.
+        /// Control rhcEspacio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart cGraficoEspacio;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcEspacio;
         
         /// <summary>
         /// Control lblCategorias.

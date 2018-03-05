@@ -142,45 +142,17 @@ namespace KiiniHelp.Publico
             }
         }
 
-        public int IdUsuarioSolicita
-        {
-            get
-            {
-                int result;
-                if (hfIdUsuarioSolicita.Value != string.Empty)
-                    result = Convert.ToInt32(hfIdUsuarioSolicita.Value);
-                else
-                    result = (int)Session["hfIdUsuarioSolicita"];
-                return result;
-            }
-            set
-            {
-                if (hfIdUsuarioSolicita != null)
-                {
-                    hfIdUsuarioSolicita.Value = value.ToString();
-                    Session.Remove("hfIdUsuarioSolicita");
-                }
-                else
-                    Session["hfIdUsuarioSolicita"] = value;
-            }
-        }
-
-        public bool EsTercero
-        {
-            get { return IdUsuarioSolicita != ((Usuario)Session["UserData"]).Id; }
-        }
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
             try
             {
-                if (Request.QueryString["IdArbol"] != null && Request.QueryString["UsuarioSolicita"] != null && Request.QueryString["Canal"] != null)
+                if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] != null)
                 {
                     ArbolAcceso arbol = _servicioArbolAcceso.ObtenerArbolAcceso(Convert.ToInt32(Request.QueryString["IdArbol"]));
                     Session["ArbolAcceso"] = arbol;
                     IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
                     IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
-                    IdUsuarioSolicita = int.Parse(Request.QueryString["UsuarioSolicita"]);
                     IdCanal = int.Parse(Request.QueryString["Canal"]);
                 }
                 else if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] != null)
@@ -189,7 +161,6 @@ namespace KiiniHelp.Publico
                     Session["ArbolAcceso"] = arbol;
                     IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
                     IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
-                    IdUsuarioSolicita = ((Usuario)Session["UserData"]).Id;
                     IdCanal = (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal;
                 }
             }

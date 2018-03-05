@@ -18,10 +18,8 @@
             <asp:Label runat="server" ID="lblTicketDescripcion"></asp:Label>
 
             <div class="panel-body">
-                <uc1:UcFormulario runat="server" ID="ucFormulario" />
+                <uc1:UcFormulario runat="server" ID="ucFormulario" />                
             </div>
-            <%--<asp:Button runat="server" ID="btnGuardar" OnClick="btnGuardar_OnClick" Text="Guardar" CssClass="btn btn-lg btn-success" Visible="False" />
-    <asp:Button runat="server" ID="btnCancelar" Text="Cancelar" CssClass="btn btn-lg btn-danger" OnClick="btnCancelar_OnClick" Visible="False" />--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 

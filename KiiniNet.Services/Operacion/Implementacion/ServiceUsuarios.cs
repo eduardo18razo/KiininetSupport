@@ -54,6 +54,24 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
+        public List<Usuario> ObtenerAgentes(bool insertarSeleccion)
+        {
+
+            {
+                try
+                {
+                    using (BusinessUsuarios negocio = new BusinessUsuarios())
+                    {
+                        return negocio.ObtenerAgentes(insertarSeleccion);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         public List<Usuario> ObtenerUsuarios(int? idTipoUsuario)
         {
             try
@@ -391,6 +409,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
                     return negocio.GetUsuarioByCorreo(correo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    return negocio.ObtenerUsuarioAgenteByGrupoUsuario(idGrupo, lstSubRoles);
                 }
             }
             catch (Exception ex)

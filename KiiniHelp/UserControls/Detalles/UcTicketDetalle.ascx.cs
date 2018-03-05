@@ -3,26 +3,41 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.WebControls;
+using KiiniHelp.Funciones;
 using KiiniHelp.ServiceAtencionTicket;
-using KiiniHelp.ServiceTicket;
+using KiiniHelp.ServiceSistemaEstatus;
+using KiiniHelp.ServiceSistemaSubRol;
+using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using KiiniHelp.ServiceUsuario;
+using Telerik.Web.UI;
+using Image = System.Web.UI.WebControls.Image;
 
 namespace KiiniHelp.UserControls.Detalles
 {
+    public delegate void DelegateCargaTicket(int idTicket, string titulo, bool asigna);
+
+    public delegate void DelegateCierraTicket(int idTicket, bool redirect);
     public partial class UcTicketDetalle : UserControl, IControllerModal
     {
+        public event DelegateCargaTicket OnCargarTicket;
+        public event DelegateCierraTicket OnCierraTicket;
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
 
-        private readonly ServiceTicketClient _servicioTicket = new ServiceTicketClient();
         private readonly ServiceAtencionTicketClient _servicioAtencionTicket = new ServiceAtencionTicketClient();
+        private readonly ServiceEstatusClient _servicioEstatus = new ServiceEstatusClient();
+        private readonly ServiceUsuariosClient _servicioUsuario = new ServiceUsuariosClient();
+        private readonly ServiceSubRolClient _servicioSubRol = new ServiceSubRolClient();
         private List<string> _lstError = new List<string>();
 
+        #region Propiedades
         private List<string> Alerta
         {
             set
@@ -77,12 +92,38 @@ namespace KiiniHelp.UserControls.Detalles
             set { hfGrupoAsignado.Value = value.ToString(); }
         }
 
-        private int IdNivelAsignacion
+        private bool GrupoConSupervisor
         {
-            get { return int.Parse(hfNivelAsignacion.Value); }
+            get { return bool.Parse(hfGrupoConSupervisor.Value); }
+            set { hfGrupoConSupervisor.Value = value.ToString(); }
+        }
+
+        private int? IdNivelAsignacion
+        {
+            get
+            {
+                return string.IsNullOrEmpty(hfNivelAsignacion.Value) ? null : (int?)int.Parse(hfNivelAsignacion.Value);
+            }
             set { hfNivelAsignacion.Value = value.ToString(); }
         }
 
+        public int IdSubRolActual
+        {
+            get
+            {
+                return IdNivelAsignacion == null
+                    ? GrupoConSupervisor
+                        ? (int)BusinessVariables.EnumSubRoles.Supervisor
+                        : (int)BusinessVariables.EnumSubRoles.PrimererNivel
+                    : (int)IdNivelAsignacion + 2;
+            }
+        }
+
+        public int? IdNivelParaAsignacion
+        {
+            get { return string.IsNullOrEmpty(hdIdRolAsignacionPertenece.Value) ? null :  (int?)int.Parse(hdIdRolAsignacionPertenece.Value); }
+            set { hdIdRolAsignacionPertenece.Value = value.ToString(); }
+        }
         private int IdUsuarioLevanto
         {
             get { return int.Parse(hfUsuarioLevanto.Value); }
@@ -94,7 +135,88 @@ namespace KiiniHelp.UserControls.Detalles
             get { return (List<HelperConversacionDetalle>)Session["ConversacionTicketActivo"]; }
             set { Session["ConversacionTicketActivo"] = value; }
         }
+        private List<HelperEvento> EventosTicket
+        {
+            get { return (List<HelperEvento>)Session["EventosTicket"]; }
+            set { Session["EventosTicket"] = value; }
+        }
 
+
+
+        private int IdUsuarioAsignacion
+        {
+            get
+            {
+                int result = ((Usuario)Session["UserData"]).Id;
+                if (hfIdUsuarioAsignacion.Value != string.Empty)
+                    result = int.Parse(hfIdUsuarioAsignacion.Value);
+                return result;
+            }
+            set { hfIdUsuarioAsignacion.Value = value.ToString(); }
+        }
+
+
+
+        #endregion Propiedades
+
+        #region Metodos
+        public void LlenaTicket(int idTicket, bool asigna)
+        {
+            try
+            {
+                HelperTicketEnAtencion ticket = _servicioAtencionTicket.ObtenerTicketEnAtencion(idTicket, ((Usuario)Session["UserData"]).Id);
+                if (ticket != null)
+                {
+                    Asigna = ticket.PuedeAsignar;
+                    IdTicket = ticket.IdTicket;
+                    EsPropietario = ticket.EsPropietario;
+                    IdEstatusAsignacion = ticket.IdEstatusAsignacion;
+                    IdEstatusTicket = ticket.IdEstatusTicket;
+                    IdGrupoAsignado = ticket.IdGrupoAsignado;
+                    GrupoConSupervisor = ticket.GrupoConSupervisor;
+                    lblNoticket.Text = ticket.IdTicket.ToString();
+                    lblTituloTicket.Text = ticket.Tipificacion;
+
+                    lblNombreCorreo.Text = string.Format("{0} &#60;{1}&#62;", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
+                    lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto;
+                    lblFechaAlta.Text = ticket.FechaLevanto;
+                    lblFecha.Text = ticket.FechaLevanto;
+                    iPrioridad.Visible = ticket.Impacto == "prioridadalta.png";
+                    string colorSla = ticket.DentroSla ? "green" : "red";
+                    iSLA.Style.Add("color", colorSla);
+                    divEstatus.Style.Add("background-color", ticket.ColorEstatus);
+                    lblEstatus.Text = ticket.DescripcionEstatusTicket;
+                    IdNivelAsignacion = ticket.IdNivelAsignacion;
+                    IdUsuarioLevanto = ticket.UsuarioLevanto.IdUsuario;
+
+                    LlenaDatosUsuario(ticket.UsuarioLevanto);
+                    ConversacionTicketActivo = ticket.Conversaciones;
+                    EventosTicket = ticket.Eventos;
+                    LlenaConversacion(0);
+                    LlenaEventos();
+                    UcDetalleMascaraCaptura.IdTicket = idTicket;
+                    divMovimientos.Visible = asigna;
+                    ddlCambiarAsignar.Enabled = asigna;
+                    ddlCambiarEstatus.Enabled = ticket.EsPropietario;
+                    btnEnviar.Enabled = ticket.EsPropietario || asigna;
+                    if (Asigna)
+                    {
+                        LlenaAsignaciones(((Usuario)Session["UserData"]).Id);
+                        LlenaEstatus(EsPropietario, IdSubRolActual);
+                    }
+                    if (ticket.EsPropietario)
+                    {
+                        LlenaEstatus(EsPropietario, IdSubRolActual);
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         private void LlenaConversacion(int tipoConversacion)
         {
             try
@@ -117,59 +239,19 @@ namespace KiiniHelp.UserControls.Detalles
                 throw new Exception(e.Message);
             }
         }
-        public void LlenaTicket(int idTicket, bool asigna)
+
+        private void LlenaEventos()
         {
             try
             {
-                HelperticketEnAtencion ticket = _servicioAtencionTicket.ObtenerTicketEnAtencion(idTicket, ((Usuario)Session["UserData"]).Id);
-                //HelperTicketDetalle ticket = _servicioTicket.ObtenerTicket(idTicket, ((Usuario)Session["UserData"]).Id);
-                if (ticket != null)
-                {
-                    Asigna = asigna;
-                    IdTicket = ticket.IdTicket;
-                    EsPropietario = ticket.EsPropietario;
-                    IdEstatusAsignacion = ticket.IdEstatusAsignacion;
-                    IdEstatusTicket = ticket.IdEstatusTicket;
-                    IdGrupoAsignado = ticket.IdGrupoAsignado;
-
-                    lblNoticket.Text = ticket.IdTicket.ToString();
-                    lblTituloTicket.Text = ticket.Tipificacion;
-                    //string.Format("{0} {1}", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket)
-                    //imgUsuarioTicket.ImageUrl = "~/DisplayImages.ashx?id=" + ticket.UsuarioLevanto.IdUsuario;
-
-                    lblNombreCorreo.Text = string.Format("{0} &#60;{1}&#62;", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
-                    lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto.ToString();
-                    lblFechaAlta.Text = ticket.FechaLevanto;
-                    lblFecha.Text = ticket.FechaLevanto;
-                    //imgPrioridad.ImageUrl = "~/assets/images/icons/" + ticket.Impacto;
-                    iPrioridad.Visible = ticket.Impacto == "prioridadalta.png";
-                    string colorSla = ticket.DentroSla ? "green" : "red";
-                    iSLA.Style.Add("color", colorSla);
-                    //imgSLA.ImageUrl = ticket.DentroSla ? "~/assets/images/icons/SLA_verde.png" : "~/assets/images/icons/SLA_rojo.png";
-                    //lblTiempoRestanteSLa.Text = "Diferencia";
-                    divEstatus.Style.Add("background-color", ticket.ColorEstatus);
-                    lblEstatus.Text = ticket.DescripcionEstatusTicket;
-                    IdNivelAsignacion = ticket.IdNivelAsignacion.HasValue ? (int)ticket.IdNivelAsignacion : 0;
-                    IdUsuarioLevanto = ticket.UsuarioLevanto.IdUsuario;
-
-                    LlenaDatosUsuario(ticket.UsuarioLevanto);
-                    ConversacionTicketActivo = ticket.Conversaciones;
-                    LlenaConversacion(0);
-                    UcDetalleMascaraCaptura.IdTicket = idTicket;
-                    btnAsignar.Enabled = asigna;
-                    btnCambiaEstatus.Enabled = ticket.EsPropietario;
-                    btnSendPublic.Enabled = ticket.EsPropietario;
-                }
-
+                rptEventos.DataSource = EventosTicket;
+                rptEventos.DataBind();
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
         }
-
-        //Usuario usuario = ((Usuario)Session["UserData"]);
-        //private void LlenaDatosUsuario(HelperUsuario usuario)
         private void LlenaDatosUsuario(HelperUsuario usuario)
         {
             try
@@ -221,16 +303,28 @@ namespace KiiniHelp.UserControls.Detalles
                 throw new Exception(e.Message);
             }
         }
+        void ValidaCaptura()
+        {
+            try
+            {
+                if (ddlCambiarAsignar.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione && divUsuariosAsignacion.Visible)
+                {
+                    if (ddlUsuarioAsignacion.Entries.Count <= 0)
+                        throw new Exception("Debe seleccionar un agente para asignar");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        #endregion Metodos
 
+        #region Eventos
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                UcCambiarEstatusTicket.OnAceptarModal += UcCambiarEstatusTicket_OnAceptarModal;
-                UcCambiarEstatusTicket.OnCancelarModal += UcCambiarEstatusTicketOnCancelarModal;
-
-                ucCambiarEstatusAsignacion.OnAceptarModal += UcCambiarEstatusAsignacion_OnAceptarModal;
-                ucCambiarEstatusAsignacion.OnCancelarModal += UcCambiarEstatusAsignacionOnCancelarModal;
                 if (!IsPostBack)
                 {
                     if (Request.QueryString["id"] != null && Request.QueryString["asigna"] != null)
@@ -252,135 +346,6 @@ namespace KiiniHelp.UserControls.Detalles
             }
         }
 
-        void UcCambiarEstatusTicket_OnAceptarModal()
-        {
-            try
-            {
-
-                LlenaTicket(IdTicket, Asigna);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalEstatusCambio\");", true);
-                if (!UcCambiarEstatusTicket.CerroTicket)
-                {
-                    AgenteMaster master = Parent.Page.Master as AgenteMaster;
-                    if (master != null)
-                    {
-                        master.RemoveTicketOpen(IdTicket);
-                    }
-                }
-                if (UcCambiarEstatusTicket.CerroTicket)
-                {
-                    string url = ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" + (int)BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" + hfTicketActivo.Value);
-                    //string s = "window.open('" + url + "', 'popup_window', 'width=600,height=600,left=300,top=100,resizable=yes');";
-                    //ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");", true);
-                }
-                hfTicketActivo.Value = string.Empty;
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-        void UcCambiarEstatusTicketOnCancelarModal()
-        {
-            try
-            {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalEstatusCambio\");", true);
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-        void UcCambiarEstatusAsignacionOnCancelarModal()
-        {
-            try
-            {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAsignacionCambio\");", true);
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-        void UcCambiarEstatusAsignacion_OnAceptarModal()
-        {
-            try
-            {
-                AgenteMaster master = Parent.Page.Master as AgenteMaster;
-                if (master != null)
-                {
-                    master.RemoveTicketOpen(IdTicket);
-                }
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-        protected void btnAsignar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                ucCambiarEstatusAsignacion.IdNivelEstatusAsignacionActual = IdNivelAsignacion;
-                ucCambiarEstatusAsignacion.IdEstatusAsignacionActual = IdEstatusAsignacion;
-                ucCambiarEstatusAsignacion.EsPropietario = EsPropietario;
-                ucCambiarEstatusAsignacion.IdTicket = IdTicket;
-                ucCambiarEstatusAsignacion.IdGrupo = IdGrupoAsignado;
-                ucCambiarEstatusAsignacion.IdUsuario = ((Usuario)Session["UserData"]).Id;
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAsignacionCambio\");", true);
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-        protected void btnCambiarEstatus_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                UcCambiarEstatusTicket.EsPropietario = EsPropietario;
-                UcCambiarEstatusTicket.IdTicket = IdTicket;
-                UcCambiarEstatusTicket.IdEstatusActual = IdEstatusTicket;
-                UcCambiarEstatusTicket.IdGrupo = IdGrupoAsignado;
-                UcCambiarEstatusTicket.IdUsuario = ((Usuario)Session["UserData"]).Id;
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalEstatusCambio\");", true);
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
         protected void rbtnPublics_OnCheckedChanged(object sender, EventArgs e)
         {
             try
@@ -413,21 +378,27 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
-        protected void btnSendPublic_OnClick(object sender, EventArgs e)
+        protected void rddConcentradoTicketsUsuario_OnSelectedIndexChanged(object sender, DropDownListEventArgs e)
         {
             try
             {
-                if (txtConversacion.Text == string.Empty)
-                    throw new Exception("Ingrese un comentario.");
-                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, ((Usuario)Session["UserData"]).Id, txtConversacion.Text, false, null, rbtnPrivate.Checked, !rbtnPrivate.Checked);
-                LlenaTicket(IdTicket, Asigna);
-                if (rbtnConversacionPublico.Checked)
-                    LlenaConversacion(1);
-                else if (rbtnConversacionPrivado.Checked)
-                {
-                    LlenaConversacion(2);
-                }
-                txtConversacion.Text = string.Empty;
+                if (rddConcentradoTicketsUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    return;
+                Label lblIdTicket = (Label)rddConcentradoTicketsUsuario.Items[rddConcentradoTicketsUsuario.SelectedIndex].FindControl("lblIdTicket");
+                Label lblTitulo = (Label)rddConcentradoTicketsUsuario.Items[rddConcentradoTicketsUsuario.SelectedIndex].FindControl("lblTitulo");
+                Label lblAcceso = (Label)rddConcentradoTicketsUsuario.Items[rddConcentradoTicketsUsuario.SelectedIndex].FindControl("lblAcceso");
+                Label lblAsigna = (Label)rddConcentradoTicketsUsuario.Items[rddConcentradoTicketsUsuario.SelectedIndex].FindControl("lblAsigna");
+                if (bool.Parse(lblAcceso.Text))
+                    if (lblIdTicket != null && lblTitulo != null && lblAsigna != null)
+                    {
+                        int idTicket = int.Parse(lblIdTicket.Text);
+                        string titulo = lblTitulo.Text;
+                        bool asigna = bool.Parse(lblAsigna.Text);
+                        if (idTicket != 0)
+                            if (OnCargarTicket != null)
+                                OnCargarTicket(idTicket, titulo, asigna);
+                    }
+
             }
             catch (Exception ex)
             {
@@ -487,15 +458,14 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
-
-        protected void rptConversaciones_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        protected void rptConversaciones_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
             {
 
-                if (e.Item.ItemType == System.Web.UI.WebControls.ListItemType.Item || e.Item.ItemType == System.Web.UI.WebControls.ListItemType.AlternatingItem)
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
-                    System.Web.UI.WebControls.Image img = (System.Web.UI.WebControls.Image)e.Item.FindControl("imgAgente");
+                    Image img = (Image)e.Item.FindControl("imgAgente");
                     if (img != null)
                     {
                         byte[] foto = new ServiceUsuariosClient().ObtenerFoto(((HelperConversacionDetalle)e.Item.DataItem).IdUsuario);
@@ -518,19 +488,280 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
-
-        protected void rptConcentradoTicketsUsuario_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        protected void btnEnviar_OnClick(object sender, EventArgs e)
         {
             try
             {
-                if (e.Item.ItemType == System.Web.UI.WebControls.ListItemType.Item || e.Item.ItemType == System.Web.UI.WebControls.ListItemType.AlternatingItem)
+                int? idEstatusTicket = null, idEstatusAsignacion = null, idNivelAsignado = null, idUsuarioAsignado = null;
+                string mensajeConversacion = string.Empty;
+                bool conversacionPrivada = false, enviaCorreo = false;
+                const bool sistema = false;
+                string comentarioAsignacion = string.Empty;
+                int idUsuarioGeneraEvento = (((Usuario)Session["UserData"]).Id);
+
+                ValidaCaptura();
+
+                if (ddlCambiarEstatus.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    idEstatusTicket = int.Parse(ddlCambiarEstatus.SelectedValue);
+                if (ddlCambiarAsignar.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    idEstatusAsignacion = int.Parse(ddlCambiarAsignar.SelectedValue);
+
+                if (ddlCambiarAsignar.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (_servicioEstatus.HasComentarioObligatorio(idUsuarioGeneraEvento, IdGrupoAsignado, IdSubRolActual, IdEstatusTicket, (int)idEstatusAsignacion, EsPropietario))
+                        if (txtComentarioAsignacion.Text.Trim() == string.Empty)
+                        {
+
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalComentarioObligado\");", true);
+                            return;
+                        }
+                comentarioAsignacion = txtComentarioAsignacion.Text.Trim();
+                idNivelAsignado = IdNivelParaAsignacion;
+                idUsuarioAsignado = IdUsuarioAsignacion;
+                //if (divUsuariosAsignacion.Visible)
+                //{
+                //    if (_servicioEstatus.HasComentarioObligatorio(idUsuarioGeneraEvento, IdGrupoAsignado, IdSubRolActual, IdEstatusTicket, (int)idEstatusAsignacion, EsPropietario))
+                //        if (txtComentarioAsignacion.Text.Trim() == string.Empty)
+                //        {
+
+                //            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalComentarioObligado\");", true);
+                //            return;
+                //        }
+                //    comentarioAsignacion = txtComentarioAsignacion.Text.Trim();
+                //    idNivelAsignado = IdNivelParaAsignacion;
+                //    idUsuarioAsignado = IdUsuarioAsignacion;
+                //}
+                if (!string.IsNullOrEmpty(txtConversacion.Text.Trim()))
                 {
-                    System.Web.UI.WebControls.Label lbl = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblEstatusTicketConcentrado");
-                    if (lbl != null)
+                    mensajeConversacion = txtConversacion.Text.Trim();
+                    conversacionPrivada = rbtnPrivate.Checked;
+                    enviaCorreo = !rbtnPrivate.Checked;
+                }
+
+                _servicioAtencionTicket.GenerarEvento(IdTicket, idUsuarioGeneraEvento, idEstatusTicket, idEstatusAsignacion, idNivelAsignado, idUsuarioAsignado, mensajeConversacion, conversacionPrivada, enviaCorreo, sistema, null, comentarioAsignacion, EsPropietario);
+
+                if (OnCierraTicket != null)
+                    OnCierraTicket(IdTicket, idEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado || idEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado || idEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto);
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        protected void btnCerrarComentarios_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(txtComentarioAsignacion.Text.Trim()))
+                    throw new Exception("Debe ingresar un comentario.");
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalComentarioObligado\");", true);
+                btnEnviar_OnClick(null, null);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        protected void btnCerrarModalComentarios_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalComentarioObligado\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        #endregion Eventos
+
+        #region Asignacion
+
+        private void LlenaAsignaciones(int idUsuario)
+        {
+            try
+            {
+                Metodos.LimpiarCombo(ddlCambiarAsignar);
+                ddlCambiarAsignar.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(idUsuario, IdGrupoAsignado, IdSubRolActual, IdEstatusAsignacion, EsPropietario, true);
+                ddlCambiarAsignar.DataTextField = "Descripcion";
+                ddlCambiarAsignar.DataValueField = "Id";
+                ddlCambiarAsignar.DataBind();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        private void LLenaUsuarios()
+        {
+            try
+            {
+                List<int> lstSubRoles = ((Usuario)Session["UserData"]).UsuarioGrupo.Where(w => w.SubGrupoUsuario != null && w.IdGrupoUsuario == IdGrupoAsignado).Select(s => s.SubGrupoUsuario).Select(subRol => subRol.IdSubRol).ToList();
+                List<SubRolEscalacionPermitida> lstAsignacionesPermitidas = new List<SubRolEscalacionPermitida>();
+                switch (int.Parse(ddlCambiarAsignar.SelectedValue))
+                {
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Asignado:
+                        foreach (int subRol in lstSubRoles)
+                        {
+                            lstAsignacionesPermitidas.AddRange(_servicioSubRol.ObtenerEscalacion(subRol, int.Parse(ddlCambiarAsignar.SelectedValue), null));
+                        }
+
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.ReAsignado:
+                        lstAsignacionesPermitidas.AddRange(_servicioSubRol.ObtenerEscalacion(IdSubRolActual, int.Parse(ddlCambiarAsignar.SelectedValue), IdNivelAsignacion));
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Escalado:
+                        foreach (int subRol in lstSubRoles)
+                        {
+                            lstAsignacionesPermitidas.AddRange(_servicioSubRol.ObtenerEscalacion(subRol, int.Parse(ddlCambiarAsignar.SelectedValue), IdNivelAsignacion));
+                        }
+                        break;
+                }
+                int idUsuario = ((Usuario)Session["UserData"]).Id;
+                List<int> sbrls = lstAsignacionesPermitidas.Select(s => s.IdSubRolPermitido).Distinct().ToList();
+                List<HelperUsuarioAgente> lstUsuario = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(IdGrupoAsignado, sbrls).Where(w => w.IdUsuario != idUsuario).ToList();
+                ddlUsuarioAsignacion.DataFieldID = "IdUsuario";
+                ddlUsuarioAsignacion.DataFieldParentID = "IdSubRol";
+                ddlUsuarioAsignacion.DataValueField = "IdUsuario";
+                ddlUsuarioAsignacion.DataTextField = "NombreUsuario";
+                ddlUsuarioAsignacion.DataSource = lstUsuario;
+                ddlUsuarioAsignacion.DataBind();
+                divUsuariosAsignacion.Visible = lstUsuario.Any();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        protected void ddlCambiarAsignar_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Metodos.LimpiarCombo(ddlCambiarEstatus);
+                divUsuariosAsignacion.Visible = false;
+                if (ddlCambiarAsignar.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                {
+                    LlenaEstatus(EsPropietario, IdSubRolActual);
+                    return;
+                }
+                if (int.Parse(ddlCambiarAsignar.SelectedValue) !=
+                    (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado)
+                    LLenaUsuarios();
+                else
+                {
+                    LlenaEstatus(true, !IdNivelAsignacion.HasValue ? GrupoConSupervisor ? (int)BusinessVariables.EnumSubRoles.Supervisor : (int)BusinessVariables.EnumSubRoles.PrimererNivel : (int)IdNivelAsignacion);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        protected void ddlUsuarioAsignacion_OnEntriesAdded(object sender, DropDownTreeEntriesEventArgs e)
+        {
+            try
+            {
+                Metodos.LimpiarCombo(ddlCambiarEstatus);
+                if (!divUsuariosAsignacion.Visible)
+                    hfIdUsuarioAsignacion.Value = string.Empty;
+                IdUsuarioAsignacion = int.Parse(ddlUsuarioAsignacion.SelectedValue);
+                int parent = int.Parse(ddlUsuarioAsignacion.EmbeddedTree.SelectedNode.ParentNode.Value);
+                IdNivelParaAsignacion = parent;
+                LlenaEstatus(false, IdNivelParaAsignacion);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        #endregion Asignacion
+
+        #region Estatus
+        private void LlenaEstatus(bool espropietario, int? nivelAsignacion)
+        {
+            try
+            {
+                Metodos.LimpiarCombo(ddlCambiarEstatus);
+                if (nivelAsignacion == null)
+                    return;
+                List<EstatusTicket> lstEstatus = _servicioEstatus.ObtenerEstatusTicketUsuario(IdUsuarioAsignacion, IdGrupoAsignado, IdEstatusTicket, espropietario, nivelAsignacion, true);
+                ddlCambiarEstatus.DataSource = lstEstatus;
+                ddlCambiarEstatus.DataTextField = "Descripcion";
+                ddlCambiarEstatus.DataValueField = "Id";
+                ddlCambiarEstatus.DataBind();
+                ddlCambiarEstatus.Enabled = lstEstatus.Any();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        #endregion Estatus
+
+        protected void ddlHistorial_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlHistorial.SelectedValue == "1")
+                {
+                    divHistorial.Visible = true;
+                    divEventos.Visible = false;
+                }
+                else
+                {
+                    divHistorial.Visible = false;
+                    divEventos.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void rptEventos_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+                    Repeater rptMovimientos = (Repeater)e.Item.FindControl("rptMovimientos");
+                    if (rptMovimientos != null)
                     {
-                        HelperticketEnAtencion tickets = _servicioAtencionTicket.ObtenerTicketEnAtencion(((HelperTicketsUsuario)e.Item.DataItem).IdTicket, IdUsuarioLevanto);
-                        lbl.Style.Add("color", tickets.ColorEstatus);
-                        lbl.Text = tickets.DescripcionEstatusTicket;
+                        rptMovimientos.DataSource = ((HelperEvento)e.Item.DataItem).Movimientos;
+                        rptMovimientos.DataBind();
                     }
                 }
             }
@@ -545,5 +776,22 @@ namespace KiiniHelp.UserControls.Detalles
             }
         }
 
+        protected void lnkBtndeshacer_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ddlCambiarAsignar.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
+                ddlCambiarAsignar_OnSelectedIndexChanged(null, null);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcUserSelect.ascx.cs" Inherits="KiiniHelp.UserControls.Seleccion.UcUserSelect" %>
+
 <div id="full">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>            
@@ -60,7 +61,7 @@
                                                                             <a data-toggle="collapse" class="panel-toggle" href='<%# "#faq_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %>  </a></h4>
                                                                     </div>
                                                                     <div class="panel-collapse  collapse" id='<%# "faq_" + Eval("IdArbol") %>'>
-                                                                        <div class="panel-body">este es item de repetidor</div>
+                                                                        <div class="panel-body"><%# Eval("DescripcionOpcionLarga") %></div>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>

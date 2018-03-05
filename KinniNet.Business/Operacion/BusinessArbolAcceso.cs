@@ -11,6 +11,7 @@ using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
+using Telerik.Web.UI.Gantt;
 
 namespace KinniNet.Core.Operacion
 {
@@ -1154,7 +1155,7 @@ namespace KinniNet.Core.Operacion
                 foreach (TiempoInformeArbol informeArbol in result.TiempoInformeArbol)
                 {
                     db.LoadProperty(informeArbol, "GrupoUsuario");
-                    db.LoadProperty(informeArbol, "TipoNotificacion");   
+                    db.LoadProperty(informeArbol, "TipoNotificacion");
                 }
                 db.LoadProperty(result, "Impacto");
                 if (result.Impacto != null)
@@ -1162,7 +1163,7 @@ namespace KinniNet.Core.Operacion
                     db.LoadProperty(result.Impacto, "Prioridad");
                     db.LoadProperty(result.Impacto, "Urgencia");
                 }
-                    
+
                 foreach (InventarioArbolAcceso inventarioArbol in result.InventarioArbolAcceso)
                 {
                     db.LoadProperty(inventarioArbol, "GrupoUsuarioInventarioArbol");
@@ -1913,10 +1914,10 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 List<ArbolAcceso> qry = (from ac in db.ArbolAcceso
-                                              join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
-                                              join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
-                                              where guia.IdGrupoUsuario == idGrupo && !ac.Sistema && ac.EsTerminal
-                         select ac).ToList();
+                                         join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
+                                         join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
+                                         where guia.IdGrupoUsuario == idGrupo && !ac.Sistema && ac.EsTerminal
+                                         select ac).ToList();
                 if (qry.Any())
                 {
                     result = new List<HelperArbolAcceso>();
@@ -1928,13 +1929,13 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(arbolAcceso, "InventarioArbolAcceso");
                         HelperArbolAcceso add = new HelperArbolAcceso
                         {
-                            
+
                             Id = arbolAcceso.Id,
                             Titulo = arbolAcceso.InventarioArbolAcceso.First().Descripcion,
                             TipoUsuario = arbolAcceso.TipoUsuario.Descripcion,
                             Categoria = arbolAcceso.Area.Descripcion,
                             DescripcionTipificacion = ObtenerTipificacion(arbolAcceso.Id),
-                            Nivel = ObtenerNivel(arbolAcceso.Id), 
+                            Nivel = ObtenerNivel(arbolAcceso.Id),
                             Tipo = arbolAcceso.TipoArbolAcceso.Descripcion,
                             Activo = arbolAcceso.Habilitado ? "Si" : "No"
                         };
@@ -1954,5 +1955,31 @@ namespace KinniNet.Core.Operacion
         }
 
         #endregion Flujo normal
+
+        public void BusquedaGeneral(string filter)
+        {
+            List<Nivel2> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                List<int> arbolesServicioProblema = (db.InventarioArbolAcceso.Where(iaa => iaa.Descripcion.Contains(filter)).Select(iaa => iaa.IdArbolAcceso)).Distinct().ToList();
+                List<int> arbolesConsulta = (from iaa in db.InventarioArbolAcceso
+                                             join iic in db.InventarioInfConsulta on iaa.Id equals iic.IdInventario
+                                             join ic in db.InformacionConsulta on iic.IdInfConsulta equals ic.Id
+                                             join icd in db.InformacionConsultaDatos on ic.Id equals icd.IdInformacionConsulta
+                                             where icd.Tags.Contains(filter)
+                                             select iaa.Id).Distinct().ToList();
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+        }
     }
 }

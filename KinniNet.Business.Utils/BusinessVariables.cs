@@ -78,9 +78,9 @@ namespace KinniNet.Business.Utils
         }
         public static class EnumImpacto
         {
-            public const string Alto = "ALTO";
-            public const string Medio = "MEDIO";
-            public const string Bajo = "BAJO";
+            public const string Alto = "Alto";
+            public const string Medio = "Medio";
+            public const string Bajo = "Bajo";
         }
         public static class EnumeradoresKiiniNet
         {
@@ -100,7 +100,7 @@ namespace KinniNet.Business.Utils
                 Texto = 1,
                 TextoMultiLinea = 2,
                 RadioBoton = 3,
-                ListaDepledable = 4,
+                ListaDespledable = 4,
                 CasillaDeVerificación = 5,
                 NúmeroEntero = 6,
                 NúmeroDecimal = 7,
@@ -287,7 +287,7 @@ namespace KinniNet.Business.Utils
         {
             SiNo = 1,
             Calificacion = 2,
-            OpcionMultiple = 3,
+            CalificacionPesimoMaloRegularBuenoExcelente = 3,
             PromotorScore = 4
         }
 

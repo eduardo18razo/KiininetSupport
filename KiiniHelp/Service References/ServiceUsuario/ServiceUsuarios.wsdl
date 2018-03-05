@@ -39,6 +39,12 @@
   <wsdl:message name="IServiceUsuarios_GuardarUsuarioAdicional_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarUsuarioAdicionalResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentes" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentesResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceUsuarios_ObtenerUsuarios_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerUsuarios" />
   </wsdl:message>
@@ -177,6 +183,12 @@
   <wsdl:message name="IServiceUsuarios_GetUsuarioByCorreo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUsuarioByCorreoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioAgenteByGrupoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioAgenteByGrupoUsuarioResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceUsuarios">
     <wsdl:operation name="GuardarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario" message="tns:IServiceUsuarios_GuardarUsuario_InputMessage" />
@@ -189,6 +201,10 @@
     <wsdl:operation name="GuardarUsuarioAdicional">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicional" message="tns:IServiceUsuarios_GuardarUsuarioAdicional_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicionalResponse" message="tns:IServiceUsuarios_GuardarUsuarioAdicional_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentes" message="tns:IServiceUsuarios_ObtenerAgentes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentesResponse" message="tns:IServiceUsuarios_ObtenerAgentes_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ObtenerUsuarios">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarios" message="tns:IServiceUsuarios_ObtenerUsuarios_InputMessage" />
@@ -282,6 +298,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" message="tns:IServiceUsuarios_GetUsuarioByCorreo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse" message="tns:IServiceUsuarios_GetUsuarioByCorreo_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuarioResponse" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceUsuarios">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -305,6 +325,15 @@
     </wsdl:operation>
     <wsdl:operation name="GuardarUsuarioAdicional">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicional" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentes">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerAgentes" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -512,6 +541,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUsuarioByCorreo">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

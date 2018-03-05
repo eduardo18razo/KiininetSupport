@@ -8,7 +8,12 @@ namespace KiiniNet.Services.Operacion.Interface
     public interface IServiceAtencionTicket
     {
         [OperationContract]
-        void AutoAsignarTicket(int idTicket, int idUsuario);
+        void AutoAsignarTicket(int idTicket, int idUsuario, string comentario);
+
+        [OperationContract]
+        void GenerarEvento(int idTicket, int idUsuarioGeneraEvento, int? idEstatusTicket, int? idEstatusAsignacion,
+            int? idNivelAsignado, int? idUsuarioAsignado, string mensajeConversacion, bool conversacionPrivada,
+            bool enviaCorreo, bool sistema, List<string> archivos, string comentarioAsignacion, bool esPropietario);
 
         [OperationContract]
         void CambiarEstatus(int idTicket, int idEstatus, int idUsuario, string comentario);
@@ -23,7 +28,7 @@ namespace KiiniNet.Services.Operacion.Interface
         void MarcarAsignacionLeida(int idAsignacion);
 
         [OperationContract]
-        HelperticketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario);
+        HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario);
 
         [OperationContract]
         int ObtenerNumeroTicketsEnAtencionNuevos(int idUsuario);

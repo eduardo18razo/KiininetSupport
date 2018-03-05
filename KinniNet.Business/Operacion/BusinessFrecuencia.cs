@@ -43,7 +43,8 @@ namespace KinniNet.Core.Operacion
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
-                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso)
+                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
+                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
                     });
                 }
             }
@@ -82,20 +83,10 @@ namespace KinniNet.Core.Operacion
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
-                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso)
+                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
+                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
                     });
                 }
-
-                //List<Frecuencia> frecuencias = db.Frecuencia.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion).OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
-                //foreach (var frecuencia in frecuencias.Select())
-                //{
-
-                //}
-                //result = frecuencias.Select(frecuencia => new HelperFrecuencia
-                //{
-                //    IdArbol = frecuencia.IdArbolAcceso,
-                //    DescripcionOpcion = bArbol.ObtenerTipificacion(frecuencia.IdArbolAcceso)
-                //}).ToList();
             }
             catch (Exception ex)
             {
@@ -132,15 +123,10 @@ namespace KinniNet.Core.Operacion
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
-                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso)
+                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
+                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
                     });
                 }
-                //List<Frecuencia> frecuencias = db.Frecuencia.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio).OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
-                //result = frecuencias.Select(frecuencia => new HelperFrecuencia
-                //{
-                //    IdArbol = frecuencia.IdArbolAcceso,
-                //    DescripcionOpcion = bArbol.ObtenerTipificacion(frecuencia.IdArbolAcceso)
-                //}).ToList();
             }
             catch (Exception ex)
             {
@@ -177,15 +163,10 @@ namespace KinniNet.Core.Operacion
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
-                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso)
+                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
+                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
                     });
                 }
-                //List<Frecuencia> frecuencias = db.Frecuencia.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas).OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
-                //result = frecuencias.Select(frecuencia => new HelperFrecuencia
-                //{
-                //    IdArbol = frecuencia.IdArbolAcceso,
-                //    DescripcionOpcion = bArbol.ObtenerTipificacion(frecuencia.IdArbolAcceso)
-                //}).ToList();
             }
             catch (Exception ex)
             {

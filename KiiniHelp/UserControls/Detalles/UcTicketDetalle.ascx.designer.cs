@@ -58,6 +58,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.HiddenField hfGrupoAsignado;
         
         /// <summary>
+        /// Control hfGrupoConSupervisor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfGrupoConSupervisor;
+        
+        /// <summary>
         /// Control hfNivelAsignacion.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,33 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfUsuarioLevanto;
+        
+        /// <summary>
+        /// Control hfSubRolActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSubRolActual;
+        
+        /// <summary>
+        /// Control hfIdUsuarioAsignacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdUsuarioAsignacion;
+        
+        /// <summary>
+        /// Control hdIdRolAsignacionPertenece.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdRolAsignacionPertenece;
         
         /// <summary>
         /// Control lblNoticket.
@@ -166,22 +202,58 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblEstatus;
         
         /// <summary>
-        /// Control btnAsignar.
+        /// Control divMovimientos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAsignar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMovimientos;
         
         /// <summary>
-        /// Control btnCambiaEstatus.
+        /// Control ddlCambiarAsignar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCambiaEstatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCambiarAsignar;
+        
+        /// <summary>
+        /// Control lnkBtndeshacer.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtndeshacer;
+        
+        /// <summary>
+        /// Control divUsuariosAsignacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divUsuariosAsignacion;
+        
+        /// <summary>
+        /// Control ddlUsuarioAsignacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownTree ddlUsuarioAsignacion;
+        
+        /// <summary>
+        /// Control ddlCambiarEstatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCambiarEstatus;
         
         /// <summary>
         /// Control imgProfileNewComment.
@@ -220,13 +292,22 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.TextBox txtConversacion;
         
         /// <summary>
-        /// Control btnSendPublic.
+        /// Control btnEnviar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSendPublic;
+        protected global::System.Web.UI.WebControls.Button btnEnviar;
+        
+        /// <summary>
+        /// Control ddlHistorial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlHistorial;
         
         /// <summary>
         /// Control rbtnConversacionTodos.
@@ -256,6 +337,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.RadioButton rbtnConversacionPrivado;
         
         /// <summary>
+        /// Control divHistorial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHistorial;
+        
+        /// <summary>
         /// Control rptConversaciones.
         /// </summary>
         /// <remarks>
@@ -263,6 +353,24 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptConversaciones;
+        
+        /// <summary>
+        /// Control divEventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEventos;
+        
+        /// <summary>
+        /// Control rptEventos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptEventos;
         
         /// <summary>
         /// Control imgUsuarioTicket.
@@ -445,21 +553,30 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblfechaUltimaActualizacion;
         
         /// <summary>
-        /// Control ucCambiarEstatusAsignacion.
+        /// Control lblTitleCatalogo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::KiiniHelp.UserControls.Operacion.UcCambiarEstatusAsignacion ucCambiarEstatusAsignacion;
+        protected global::System.Web.UI.WebControls.Label lblTitleCatalogo;
         
         /// <summary>
-        /// Control UcCambiarEstatusTicket.
+        /// Control txtComentarioAsignacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::KiiniHelp.UserControls.Operacion.UcCambiarEstatusTicket UcCambiarEstatusTicket;
+        protected global::System.Web.UI.WebControls.TextBox txtComentarioAsignacion;
+        
+        /// <summary>
+        /// Control btnCerrarComentarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCerrarComentarios;
     }
 }

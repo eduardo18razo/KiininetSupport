@@ -582,7 +582,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 
                     Catalogos catalogo = null;
                     if (tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton
-                        || tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable
+                        || tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable
                         || tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación)
                         catalogo = new ServiceCatalogosClient().ObtenerCatalogo(int.Parse(ddlCatalogosCampo.SelectedValue));
 
@@ -612,7 +612,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     TipoCampoMascara tipoCampo = _servicioSistemaTipoCampoMascara.TipoCampoMascaraId(Convert.ToInt32(hfTipoCampo.Value));
                     Catalogos catalogo = null;
                     if (tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton
-                        || tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDepledable
+                        || tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable
                         ||
                         tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación)
                         catalogo = new ServiceCatalogosClient().ObtenerCatalogo(int.Parse(ddlCatalogosCampo.SelectedValue));

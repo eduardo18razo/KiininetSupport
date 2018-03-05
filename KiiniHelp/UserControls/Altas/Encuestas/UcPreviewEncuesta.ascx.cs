@@ -135,7 +135,7 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                             divControles.Controls.Add(createDiv);
                         }
                         break;
-                    case (int)BusinessVariables.EnumTipoEncuesta.OpcionMultiple:
+                    case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
                         foreach (EncuestaPregunta pregunta in lstControles)
                         {
                             HtmlGenericControl createDiv = new HtmlGenericControl("DIV") ;

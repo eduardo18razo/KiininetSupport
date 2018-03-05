@@ -313,7 +313,6 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_Mascara_UsuarioAlta" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Mascara" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TipoCampoMascara" Width="1.5" PointX="0.75" PointY="9" />
-        <EntityTypeShape EntityType="KiiniNet_v2Model.ParametrosGenerales" Width="1.5" PointX="3.375" PointY="8.75" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.Catalogos" Width="1.5" PointX="5.375" PointY="9" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Catalogos_Usuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Catalogos_Usuario1" />
@@ -370,6 +369,19 @@
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketCorreo" Width="1.5" PointX="23.125" PointY="74.375" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketCorreo_Ticket" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.ParametrosGenerales" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEvento" Width="1.5" PointX="32.125" PointY="99.875" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoAsignacion" Width="1.5" PointX="31.875" PointY="96.875" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoConversacion" Width="1.5" PointX="32.375" PointY="87.875" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoEstatus" Width="1.5" PointX="34.375" PointY="96.75" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEvento_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketAsignacion" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketConversacion" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEstatus" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEvento_Usuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketEvento" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketEvento" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEvento" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

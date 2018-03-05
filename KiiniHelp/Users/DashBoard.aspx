@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/Usuarios.Master" AutoEventWireup="true" CodeBehind="DashBoard.aspx.cs" Inherits="KiiniHelp.Users.DashBoard" %>
 
+<%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
@@ -71,26 +73,12 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6" draggable="true">
                                         <section class="module">
                                             <div class="row center-content-div">
-                                                
+
                                                 <div class="form-group margin-left-5">
                                                     <label class="col-lg-12 col-md-12 col-sm-12 text-center">Tickets Creados por Canal</label>
                                                 </div>
-
-                                                <asp:Chart ID="cGraficoTicketsCanal" runat="server" Height="300px" Width="400px" Visible="True">
-                                                    <Titles>
-                                                        <asp:Title ShadowOffset="3" Name="Items" />
-                                                    </Titles>
-                                                    <Legends>
-                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
-                                                    </Legends>
-                                                    <Series>
-                                                        <asp:Series Name="Default" />
-                                                    </Series>
-                                                    <ChartAreas>
-                                                        <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
-                                                    </ChartAreas>
-                                                </asp:Chart>
-
+                                                <tc:RadHtmlChart runat="server" ID="rhcTicketsCanal">
+                                                </tc:RadHtmlChart>
                                             </div>
                                         </section>
                                     </div>
@@ -101,20 +89,8 @@
                                                 <div class="form-group margin-right-5">
                                                     <label class="col-lg-12 col-md-12 col-sm-12 text-center">Usuarios Registrados</label>
                                                 </div>
-                                                <asp:Chart ID="cGraficoUsuarios" runat="server" Height="300px" Width="400px" Visible="True">
-                                                    <Titles>
-                                                        <asp:Title ShadowOffset="3" Name="Items" />
-                                                    </Titles>
-                                                    <Legends>
-                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
-                                                    </Legends>
-                                                    <Series>
-                                                        <asp:Series Name="Default" />
-                                                    </Series>
-                                                    <ChartAreas>
-                                                        <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
-                                                    </ChartAreas>
-                                                </asp:Chart>
+                                                <tc:RadHtmlChart runat="server" ID="rhcUsuarios">
+                                                </tc:RadHtmlChart>
                                             </div>
                                         </section>
                                     </div>
@@ -129,20 +105,11 @@
                                                     <label class="col-lg-12 col-md-12 col-sm-12 text-center">Almacenamiento</label>
                                                 </div>
                                                 <div class="row">
-                                                    <asp:label runat="server" CssClass="col-lg-6" ID="lblEspacio"></asp:label>
-                                                    <asp:label runat="server" CssClass="col-lg-6" ID="lblArchivos"></asp:label>
+                                                    <asp:Label runat="server" CssClass="col-lg-6" ID="lblEspacio"></asp:Label>
+                                                    <asp:Label runat="server" CssClass="col-lg-6" ID="lblArchivos"></asp:Label>
                                                 </div>
-                                                <asp:Chart ID="cGraficoEspacio" runat="server" Height="300px" Width="400px" Visible="True">
-                                                    <Titles>
-                                                        <asp:Title ShadowOffset="3" Name="Items" />
-                                                    </Titles>
-                                                    <Legends>
-                                                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
-                                                    </Legends>
-                                                    <ChartAreas>
-                                                        <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
-                                                    </ChartAreas>
-                                                </asp:Chart>
+                                                <tc:RadHtmlChart runat="server" ID="rhcEspacio">
+                                                </tc:RadHtmlChart>
                                             </div>
                                         </section>
                                     </div>

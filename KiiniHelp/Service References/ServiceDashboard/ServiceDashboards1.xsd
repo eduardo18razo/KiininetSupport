@@ -7,8 +7,45 @@
       <xs:element name="_x003C_Categorias_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_Feriados_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_Formularios_x003E_k__BackingField" type="xs:int" />
-      <xs:element name="_x003C_GraficoTicketsCreadosCanal_x003E_k__BackingField" nillable="true" type="tns:ArrayOfGraficoConteo" />
-      <xs:element name="_x003C_GraficoUsuariosRegistrados_x003E_k__BackingField" nillable="true" type="tns:ArrayOfGraficoConteo" />
+      <xs:element name="_x003C_GraficoAlmacenamiento_x003E_k__BackingField" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="_x003C_GraficoTicketsCreadosCanal_x003E_k__BackingField" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="_x003C_GraficoUsuariosRegistrados_x003E_k__BackingField" nillable="true">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:appinfo>
+              <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+            </xs:appinfo>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+            <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="_x003C_Grupos_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_Horarios_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_OperadorRol_x003E_k__BackingField" nillable="true" type="tns:ArrayOfGraficoConteo" />
@@ -16,6 +53,7 @@
       <xs:element name="_x003C_Organizacion_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_Puestos_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_TicketsCreados_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TotalArchivos_x003E_k__BackingField" type="xs:long" />
       <xs:element name="_x003C_Ubicacion_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_UsuariosActivos_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_UsuariosRegistrados_x003E_k__BackingField" type="xs:int" />
@@ -36,4 +74,33 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="GraficoConteo" nillable="true" type="tns:GraficoConteo" />
+  <xs:complexType name="DashboardAgente">
+    <xs:sequence>
+      <xs:element name="_x003C_ClientesAtendidos_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_DiferenciaPromedioRespuestaPorcentaje_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_IntervencionesAgente_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioPrimeraRespuestaActual_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PromedioPrimeraRespuestaAnterior_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PromedioPrimeraRespuestaSegundosActual_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioPrimeraRespuestaSegundosAnterior_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioResolucionPrimercontactoActual_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PromedioResolucionPrimercontactoAnterior_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PromedioResolucionPrimercontactoPorcentaje_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioResolucionPrimercontactoSegundosActual_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioResolucionPrimercontactoSegundosAnterior_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioTiempoResolucionActual_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PromedioTiempoResolucionAnterior_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PromedioTiempoResolucionPorcentaje_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioTiempoResolucionSegundosActual_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_PromedioTiempoResolucionSegundosAnterior_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_TicketsAbiertos_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TicketsCreados_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TicketsResuletosVsCreados_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_TicketsResuletosVsReabiertos_x003E_k__BackingField" type="xs:double" />
+      <xs:element name="_x003C_TicketsResuletos_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TotalTicketsReabiertos_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TotalTickets_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DashboardAgente" nillable="true" type="tns:DashboardAgente" />
 </xs:schema>

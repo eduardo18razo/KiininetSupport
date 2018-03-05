@@ -41,6 +41,7 @@
           <Property Name="IdNivel5" Type="int" />
           <Property Name="IdNivel6" Type="int" />
           <Property Name="IdNivel7" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
           <Property Name="Evaluacion" Type="bit" />
           <Property Name="EsTerminal" Type="bit" Nullable="false" />
           <Property Name="Publico" Type="bit" />
@@ -824,6 +825,7 @@
           <Property Name="TamanoDeArchivo" Type="nvarchar(max)" />
           <Property Name="NumeroArchivo" Type="nvarchar(max)" />
           <Property Name="LevantaTickets" Type="bit" />
+          <Property Name="PeriodoDashboard" Type="int" />
           <Property Name="ValidaUsuario" Type="bit" />
           <Property Name="MensajeValidacion" Type="nvarchar(max)" />
           <Property Name="StrongPassword" Type="bit" />
@@ -1193,6 +1195,42 @@
           <Property Name="IdUsuarioMovimiento" Type="int" Nullable="false" />
           <Property Name="Comentarios" Type="nvarchar(max)" />
           <Property Name="FechaMovimiento" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TicketEvento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTicket" Type="int" Nullable="false" />
+          <Property Name="IdUsuarioRealizo" Type="int" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TicketEventoAsignacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTicketEvento" Type="bigint" Nullable="false" />
+          <Property Name="IdTicketAsignacion" Type="int" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TicketEventoConversacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTicketEvento" Type="bigint" Nullable="false" />
+          <Property Name="IdTicketConversacion" Type="int" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TicketEventoEstatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTicketEvento" Type="bigint" Nullable="false" />
+          <Property Name="IdTicketEstatus" Type="int" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TicketGrupoUsuario">
           <Key>
@@ -3882,6 +3920,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TicketEvento_Ticket">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="TicketEvento" Type="Self.TicketEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEvento">
+              <PropertyRef Name="IdTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEvento_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="TicketEvento" Type="Self.TicketEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEvento">
+              <PropertyRef Name="IdUsuarioRealizo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoAsignacion_TicketAsignacion">
+          <End Role="TicketAsignacion" Type="Self.TicketAsignacion" Multiplicity="1" />
+          <End Role="TicketEventoAsignacion" Type="Self.TicketEventoAsignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketAsignacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoAsignacion">
+              <PropertyRef Name="IdTicketAsignacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoAsignacion_TicketEvento">
+          <End Role="TicketEvento" Type="Self.TicketEvento" Multiplicity="1" />
+          <End Role="TicketEventoAsignacion" Type="Self.TicketEventoAsignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEvento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoAsignacion">
+              <PropertyRef Name="IdTicketEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoConversacion_TicketConversacion">
+          <End Role="TicketConversacion" Type="Self.TicketConversacion" Multiplicity="1" />
+          <End Role="TicketEventoConversacion" Type="Self.TicketEventoConversacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketConversacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoConversacion">
+              <PropertyRef Name="IdTicketConversacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoConversacion_TicketEvento">
+          <End Role="TicketEvento" Type="Self.TicketEvento" Multiplicity="1" />
+          <End Role="TicketEventoConversacion" Type="Self.TicketEventoConversacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEvento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoConversacion">
+              <PropertyRef Name="IdTicketEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoEstatus_TicketEstatus">
+          <End Role="TicketEstatus" Type="Self.TicketEstatus" Multiplicity="1" />
+          <End Role="TicketEventoEstatus" Type="Self.TicketEventoEstatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEstatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoEstatus">
+              <PropertyRef Name="IdTicketEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoEstatus_TicketEvento">
+          <End Role="TicketEvento" Type="Self.TicketEvento" Multiplicity="1" />
+          <End Role="TicketEventoEstatus" Type="Self.TicketEventoEstatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEvento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoEstatus">
+              <PropertyRef Name="IdTicketEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TicketGrupoUsuario_GrupoUsuario">
           <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="1" />
           <End Role="TicketGrupoUsuario" Type="Self.TicketGrupoUsuario" Multiplicity="*" />
@@ -4359,6 +4493,10 @@
           <EntitySet Name="TicketConversacion" EntityType="Self.TicketConversacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketCorreo" EntityType="Self.TicketCorreo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketEstatus" EntityType="Self.TicketEstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketEvento" EntityType="Self.TicketEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketEventoAsignacion" EntityType="Self.TicketEventoAsignacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketEventoConversacion" EntityType="Self.TicketEventoConversacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketEventoEstatus" EntityType="Self.TicketEventoEstatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketGrupoUsuario" EntityType="Self.TicketGrupoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiempoInformeArbol" EntityType="Self.TiempoInformeArbol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoArbolAcceso" EntityType="Self.TipoArbolAcceso" Schema="dbo" store:Type="Tables" />
@@ -5189,6 +5327,38 @@
           <AssociationSet Name="FK_TicketEstatus_Usuario" Association="Self.FK_TicketEstatus_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="TicketEstatus" EntitySet="TicketEstatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEvento_Ticket" Association="Self.FK_TicketEvento_Ticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEvento_Usuario" Association="Self.FK_TicketEvento_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoAsignacion_TicketAsignacion" Association="Self.FK_TicketEventoAsignacion_TicketAsignacion">
+            <End Role="TicketAsignacion" EntitySet="TicketAsignacion" />
+            <End Role="TicketEventoAsignacion" EntitySet="TicketEventoAsignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoAsignacion_TicketEvento" Association="Self.FK_TicketEventoAsignacion_TicketEvento">
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+            <End Role="TicketEventoAsignacion" EntitySet="TicketEventoAsignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoConversacion_TicketConversacion" Association="Self.FK_TicketEventoConversacion_TicketConversacion">
+            <End Role="TicketConversacion" EntitySet="TicketConversacion" />
+            <End Role="TicketEventoConversacion" EntitySet="TicketEventoConversacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoConversacion_TicketEvento" Association="Self.FK_TicketEventoConversacion_TicketEvento">
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+            <End Role="TicketEventoConversacion" EntitySet="TicketEventoConversacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoEstatus_TicketEstatus" Association="Self.FK_TicketEventoEstatus_TicketEstatus">
+            <End Role="TicketEstatus" EntitySet="TicketEstatus" />
+            <End Role="TicketEventoEstatus" EntitySet="TicketEventoEstatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoEstatus_TicketEvento" Association="Self.FK_TicketEventoEstatus_TicketEvento">
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+            <End Role="TicketEventoEstatus" EntitySet="TicketEventoEstatus" />
           </AssociationSet>
           <AssociationSet Name="FK_TicketGrupoUsuario_GrupoUsuario" Association="Self.FK_TicketGrupoUsuario_GrupoUsuario">
             <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
@@ -6184,7 +6354,6 @@
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
           <EntitySet Name="TipoCampoMascara" EntityType="KiiniNet_v2Model.TipoCampoMascara" />
-          <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
           <EntitySet Name="Catalogos" EntityType="KiiniNet_v2Model.Catalogos" />
           <EntitySet Name="Encuesta" EntityType="KiiniNet_v2Model.Encuesta" />
           <AssociationSet Name="FK_Catalogos_Usuario" Association="KiiniNet_v2Model.FK_Catalogos_Usuario">
@@ -6386,6 +6555,43 @@
           <AssociationSet Name="FK_TicketCorreo_Ticket" Association="KiiniNet_v2Model.FK_TicketCorreo_Ticket">
             <End Role="Ticket" EntitySet="Ticket" />
             <End Role="TicketCorreo" EntitySet="TicketCorreo" />
+          </AssociationSet>
+          <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
+          <EntitySet Name="TicketEvento" EntityType="KiiniNet_v2Model.TicketEvento" />
+          <EntitySet Name="TicketEventoAsignacion" EntityType="KiiniNet_v2Model.TicketEventoAsignacion" />
+          <EntitySet Name="TicketEventoConversacion" EntityType="KiiniNet_v2Model.TicketEventoConversacion" />
+          <EntitySet Name="TicketEventoEstatus" EntityType="KiiniNet_v2Model.TicketEventoEstatus" />
+          <AssociationSet Name="FK_TicketEvento_Ticket" Association="KiiniNet_v2Model.FK_TicketEvento_Ticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoAsignacion_TicketAsignacion" Association="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketAsignacion">
+            <End Role="TicketAsignacion" EntitySet="TicketAsignacion" />
+            <End Role="TicketEventoAsignacion" EntitySet="TicketEventoAsignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoConversacion_TicketConversacion" Association="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketConversacion">
+            <End Role="TicketConversacion" EntitySet="TicketConversacion" />
+            <End Role="TicketEventoConversacion" EntitySet="TicketEventoConversacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoEstatus_TicketEstatus" Association="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEstatus">
+            <End Role="TicketEstatus" EntitySet="TicketEstatus" />
+            <End Role="TicketEventoEstatus" EntitySet="TicketEventoEstatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEvento_Usuario" Association="KiiniNet_v2Model.FK_TicketEvento_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoAsignacion_TicketEvento" Association="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketEvento">
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+            <End Role="TicketEventoAsignacion" EntitySet="TicketEventoAsignacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoConversacion_TicketEvento" Association="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketEvento">
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+            <End Role="TicketEventoConversacion" EntitySet="TicketEventoConversacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketEventoEstatus_TicketEvento" Association="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEvento">
+            <End Role="TicketEvento" EntitySet="TicketEvento" />
+            <End Role="TicketEventoEstatus" EntitySet="TicketEventoEstatus" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Campus">
@@ -7614,6 +7820,7 @@
           <NavigationProperty Name="UsuarioAsignado" Relationship="KiiniNet_v2Model.FK_TicketAsignacion_UsuarioAsignado" FromRole="TicketAsignacion" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioAsigno" Relationship="KiiniNet_v2Model.FK_TicketAsignacion_UsuarioAsigno" FromRole="TicketAsignacion" ToRole="Usuario" />
           <Property Name="Visto" Type="Boolean" />
+          <NavigationProperty Name="TicketEventoAsignacion" Relationship="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketAsignacion" FromRole="TicketAsignacion" ToRole="TicketEventoAsignacion" />
         </EntityType>
         <Association Name="FK_TicketAsignacion_EstatusAsignacion">
           <End Type="KiiniNet_v2Model.EstatusAsignacion" Role="EstatusAsignacion" Multiplicity="1" />
@@ -7911,6 +8118,7 @@
           <Property Name="IdUsuarioAlta" Type="Int32" />
           <NavigationProperty Name="Area" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Area" FromRole="ArbolAcceso" ToRole="Area" />
           <NavigationProperty Name="Frecuencia" Relationship="KiiniNet_v2Model.FK_Frecuencia_ArbolAcceso" FromRole="ArbolAcceso" ToRole="Frecuencia" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Evaluacion" Type="Boolean" />
           <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoArbolAcceso" FromRole="ArbolAcceso" ToRole="TipoArbolAcceso" />
           <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_ArbolAcceso" FromRole="ArbolAcceso" ToRole="TiempoInformeArbol" />
@@ -9014,6 +9222,7 @@
           <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_Ticket_TipoArbolAcceso" FromRole="Ticket" ToRole="TipoArbolAcceso" />
           <NavigationProperty Name="NivelTicket" Relationship="KiiniNet_v2Model.FK_Ticket_NivelTicket" FromRole="Ticket" ToRole="NivelTicket" />
           <NavigationProperty Name="TicketCorreo" Relationship="KiiniNet_v2Model.FK_TicketCorreo_Ticket" FromRole="Ticket" ToRole="TicketCorreo" />
+          <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEvento_Ticket" FromRole="Ticket" ToRole="TicketEvento" />
         </EntityType>
         <Association Name="FK_tblTicket_tblArbolAcceso">
           <End Type="KiiniNet_v2Model.ArbolAcceso" Role="ArbolAcceso" Multiplicity="1" />
@@ -9172,6 +9381,7 @@
           <NavigationProperty Name="EstatusTicket" Relationship="KiiniNet_v2Model.FK_TicketEstatus_EstatusTicket" FromRole="TicketEstatus" ToRole="EstatusTicket" />
           <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_TicketEstatus_Ticket" FromRole="TicketEstatus" ToRole="Ticket" />
           <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_TicketEstatus_Usuario" FromRole="TicketEstatus" ToRole="Usuario" />
+          <NavigationProperty Name="TicketEventoEstatus" Relationship="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEstatus" FromRole="TicketEstatus" ToRole="TicketEventoEstatus" />
         </EntityType>
         <Association Name="FK_TicketEstatus_EstatusTicket">
           <End Type="KiiniNet_v2Model.EstatusTicket" Role="EstatusTicket" Multiplicity="1" />
@@ -9511,6 +9721,7 @@
           <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_TicketConversacion_Ticket" FromRole="TicketConversacion" ToRole="Ticket" />
           <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_TicketConversacion_Usuario" FromRole="TicketConversacion" ToRole="Usuario" />
           <Property Name="Privado" Type="Boolean" />
+          <NavigationProperty Name="TicketEventoConversacion" Relationship="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketConversacion" FromRole="TicketConversacion" ToRole="TicketEventoConversacion" />
         </EntityType>
         <Association Name="FK_ConversacionArchivo_TicketConversacion">
           <End Type="KiiniNet_v2Model.TicketConversacion" Role="TicketConversacion" Multiplicity="0..1" />
@@ -9653,6 +9864,7 @@
           <Property Name="FechaAlta" Type="DateTime" Precision="3" />
           <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
           <Property Name="Sistema" Type="Boolean" />
+          <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEvento_Usuario" FromRole="Usuario" ToRole="TicketEvento" />
         </EntityType>
         <Association Name="FK_ArbolAcceso_Usuario">
           <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
@@ -10292,19 +10504,6 @@
           <Property Name="RadioButton" Type="Boolean" />
           <Property Name="ValorMinimo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CampoMascara" Relationship="KiiniNet_v2Model.FK_tblCampoMascara_tblCatTipoCampoMascara" FromRole="TipoCampoMascara" ToRole="CampoMascara" />
-        </EntityType>
-        <EntityType Name="ParametrosGenerales">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LevantaTickets" Type="Boolean" />
-          <Property Name="ValidaUsuario" Type="Boolean" />
-          <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StrongPassword" Type="Boolean" />
-          <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Catalogos">
           <Key>
@@ -11109,6 +11308,163 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ParametrosGenerales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LevantaTickets" Type="Boolean" />
+          <Property Name="PeriodoDashboard" Type="Int32" />
+          <Property Name="ValidaUsuario" Type="Boolean" />
+          <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StrongPassword" Type="Boolean" />
+          <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TicketEvento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTicket" Type="Int32" Nullable="false" />
+          <Property Name="IdUsuarioRealizo" Type="Int32" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_TicketEvento_Ticket" FromRole="TicketEvento" ToRole="Ticket" />
+          <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_TicketEvento_Usuario" FromRole="TicketEvento" ToRole="Usuario" />
+          <NavigationProperty Name="TicketEventoAsignacion" Relationship="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketEvento" FromRole="TicketEvento" ToRole="TicketEventoAsignacion" />
+          <NavigationProperty Name="TicketEventoConversacion" Relationship="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketEvento" FromRole="TicketEvento" ToRole="TicketEventoConversacion" />
+          <NavigationProperty Name="TicketEventoEstatus" Relationship="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEvento" FromRole="TicketEvento" ToRole="TicketEventoEstatus" />
+        </EntityType>
+        <EntityType Name="TicketEventoAsignacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTicketEvento" Type="Int64" Nullable="false" />
+          <Property Name="IdTicketAsignacion" Type="Int32" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TicketAsignacion" Relationship="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketAsignacion" FromRole="TicketEventoAsignacion" ToRole="TicketAsignacion" />
+          <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketEvento" FromRole="TicketEventoAsignacion" ToRole="TicketEvento" />
+        </EntityType>
+        <EntityType Name="TicketEventoConversacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTicketEvento" Type="Int64" Nullable="false" />
+          <Property Name="IdTicketConversacion" Type="Int32" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TicketConversacion" Relationship="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketConversacion" FromRole="TicketEventoConversacion" ToRole="TicketConversacion" />
+          <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketEvento" FromRole="TicketEventoConversacion" ToRole="TicketEvento" />
+        </EntityType>
+        <EntityType Name="TicketEventoEstatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTicketEvento" Type="Int64" Nullable="false" />
+          <Property Name="IdTicketEstatus" Type="Int32" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TicketEstatus" Relationship="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEstatus" FromRole="TicketEventoEstatus" ToRole="TicketEstatus" />
+          <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEvento" FromRole="TicketEventoEstatus" ToRole="TicketEvento" />
+        </EntityType>
+        <Association Name="FK_TicketEvento_Ticket">
+          <End Type="KiiniNet_v2Model.Ticket" Role="Ticket" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEvento" Role="TicketEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEvento">
+              <PropertyRef Name="IdTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoAsignacion_TicketAsignacion">
+          <End Type="KiiniNet_v2Model.TicketAsignacion" Role="TicketAsignacion" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEventoAsignacion" Role="TicketEventoAsignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketAsignacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoAsignacion">
+              <PropertyRef Name="IdTicketAsignacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoConversacion_TicketConversacion">
+          <End Type="KiiniNet_v2Model.TicketConversacion" Role="TicketConversacion" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEventoConversacion" Role="TicketEventoConversacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketConversacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoConversacion">
+              <PropertyRef Name="IdTicketConversacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoEstatus_TicketEstatus">
+          <End Type="KiiniNet_v2Model.TicketEstatus" Role="TicketEstatus" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEventoEstatus" Role="TicketEventoEstatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEstatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoEstatus">
+              <PropertyRef Name="IdTicketEstatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEvento_Usuario">
+          <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEvento" Role="TicketEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEvento">
+              <PropertyRef Name="IdUsuarioRealizo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoAsignacion_TicketEvento">
+          <End Type="KiiniNet_v2Model.TicketEvento" Role="TicketEvento" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEventoAsignacion" Role="TicketEventoAsignacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEvento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoAsignacion">
+              <PropertyRef Name="IdTicketEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoConversacion_TicketEvento">
+          <End Type="KiiniNet_v2Model.TicketEvento" Role="TicketEvento" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEventoConversacion" Role="TicketEventoConversacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEvento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoConversacion">
+              <PropertyRef Name="IdTicketEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketEventoEstatus_TicketEvento">
+          <End Type="KiiniNet_v2Model.TicketEvento" Role="TicketEvento" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketEventoEstatus" Role="TicketEventoEstatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketEvento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketEventoEstatus">
+              <PropertyRef Name="IdTicketEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11710,6 +12066,7 @@
           <EntitySetMapping Name="ArbolAcceso">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.ArbolAcceso">
               <MappingFragment StoreEntitySet="ArbolAcceso">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="FechaVisita" ColumnName="FechaVisita" />
                 <ScalarProperty Name="Visitas" ColumnName="Visitas" />
                 <ScalarProperty Name="NoMeGusta" ColumnName="NoMeGusta" />
@@ -12449,20 +12806,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ParametrosGenerales">
-            <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
-              <MappingFragment StoreEntitySet="ParametrosGenerales">
-                <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
-                <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
-                <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
-                <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
-                <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
-                <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
-                <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Catalogos">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.Catalogos">
               <MappingFragment StoreEntitySet="Catalogos">
@@ -12688,6 +13031,61 @@
               <MappingFragment StoreEntitySet="TicketCorreo">
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParametrosGenerales">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
+              <MappingFragment StoreEntitySet="ParametrosGenerales">
+                <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
+                <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
+                <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
+                <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
+                <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
+                <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
+                <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
+                <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketEvento">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEvento">
+              <MappingFragment StoreEntitySet="TicketEvento">
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="IdUsuarioRealizo" ColumnName="IdUsuarioRealizo" />
+                <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketEventoAsignacion">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEventoAsignacion">
+              <MappingFragment StoreEntitySet="TicketEventoAsignacion">
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="IdTicketAsignacion" ColumnName="IdTicketAsignacion" />
+                <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketEventoConversacion">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEventoConversacion">
+              <MappingFragment StoreEntitySet="TicketEventoConversacion">
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="IdTicketConversacion" ColumnName="IdTicketConversacion" />
+                <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketEventoEstatus">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEventoEstatus">
+              <MappingFragment StoreEntitySet="TicketEventoEstatus">
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="IdTicketEstatus" ColumnName="IdTicketEstatus" />
+                <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

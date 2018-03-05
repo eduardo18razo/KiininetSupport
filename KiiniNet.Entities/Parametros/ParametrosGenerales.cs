@@ -14,6 +14,8 @@ namespace KiiniNet.Entities.Parametros
         [DataMember]
         public bool LevantaTickets { get; set; }
         [DataMember]
+        public int PeriodoDashboard { get; set; }
+        [DataMember]
         public bool ValidaUsuario { get; set; }
         [DataMember]
         public string MensajeValidacion { get; set; }

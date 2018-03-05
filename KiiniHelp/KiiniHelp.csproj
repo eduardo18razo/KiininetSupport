@@ -49,16 +49,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Downloads\DotNet4\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="MSCaptcha">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\MSCaptcha.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\MSCaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
@@ -71,14 +72,13 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.Web.UI">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Telerik.Web.UI.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Telerik.Web.UI.Skins.dll</HintPath>
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
-    <Reference Include="Winthusiasm.HtmlEditor, Version=1.9.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\TFS\Kiininet CEP\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll</HintPath>
+    <Reference Include="Winthusiasm.HtmlEditor">
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -272,7 +272,10 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneral.datasource" />
     <Content Include="Registro.aspx" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAdministrador.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Dashboard.DashboardAgente.datasource" />
     <Content Include="assets\fonts\ProximaNova-Reg.ttf" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuarioAgente.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperTicketEnAtencion1.datasource" />
     <None Include="Service References\ServiceDashboard\ServiceDashboards.disco" />
     <None Include="Service References\ServiceDashboard\configuration91.svcinfo" />
     <None Include="Service References\ServiceDashboard\configuration.svcinfo" />
@@ -280,6 +283,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Test\FrmTestTelerik.aspx" />
     <Content Include="UserControls\Agentes\UcAsignacionUsuario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
@@ -334,6 +338,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDashboard\ServiceDashboards2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceDashboard\ServiceDashboards3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDiasHorario\ServiceDiasHorario.wsdl" />
@@ -2723,6 +2730,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Test\FrmTestTelerik.aspx.cs">
+      <DependentUpon>FrmTestTelerik.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\FrmTestTelerik.aspx.designer.cs">
+      <DependentUpon>FrmTestTelerik.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Agentes\BusquedaAgentes.cs" />
     <Compile Include="UserControls\Agentes\BusquedaOpciones.cs" />

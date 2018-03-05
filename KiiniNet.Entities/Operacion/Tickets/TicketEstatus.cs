@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
@@ -33,5 +34,7 @@ namespace KiiniNet.Entities.Operacion.Tickets
 
         [DataMember]
         public virtual Usuario Usuario { get; set; }
+        [DataMember]
+        public virtual List<TicketEventoEstatus> TicketEventoEstatus { get; set; }
     }
 }

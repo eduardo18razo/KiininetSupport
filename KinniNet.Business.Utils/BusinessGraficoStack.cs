@@ -464,7 +464,7 @@ namespace KinniNet.Business.Utils
                     }
                     foreach (Series cs in grafico.Series)
                         cs.ChartType = SeriesChartType.StackedBar;
-                    grafico.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = false;
+
                     grafico.Legends[0].Enabled = true;
 
                     foreach (Series serie in grafico.Series)
@@ -487,7 +487,6 @@ namespace KinniNet.Business.Utils
                     grafico.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineDashStyle = ChartDashStyle.DashDotDot;
                     grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.Auto;
                     grafico.ChartAreas["ChartArea1"].AxisX.Enabled = AxisEnabled.True;
-
                 }
                 catch (Exception ex)
                 {

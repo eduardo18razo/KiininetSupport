@@ -134,6 +134,8 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         public virtual List<Mascara> MascaraModifico { get; set; }
         [DataMember]
         public virtual List<InformacionConsultaRate> InformacionConsultaRate { get; set; }
+        [DataMember]
+        public virtual List<TicketEvento> TicketEvento { get; set; }
         #endregion Mapeo
 
         [DataMember]

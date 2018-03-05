@@ -72,7 +72,7 @@
                                                         Asignar
                                                 </asp:LinkButton>
 
-                                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick">
+                                                <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick" Visible="False">
                                                         <i class="fa fa-long-arrow-right"></i>
                                                         Cambiar Estatus
                                                 </asp:LinkButton>
@@ -376,6 +376,33 @@
                         <%-- <div class="modal-body">--%>
                         <uc1:UcAsignacionUsuario runat="server" ID="ucAsignacionUsuario" />
                         <%-- </div>--%>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+    <div class="modal fade" id="modalComentarioObligado" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <asp:LinkButton CssClass="close" runat="server" OnClick="btnCerrarModalComentarios_OnClick" Text='&times' />
+                            <h6 class="modal-title">
+                                <asp:Label runat="server" ID="lblTitleCatalogo" />
+                            </h6>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <asp:Label runat="server" Text="Comentarios" CssClass="col-lg-3 margin-top-9" />
+                                <div class="col-lg-9 no-padding-right">
+                                    <asp:TextBox runat="server" ID="txtComentarioAsignacion" CssClass="form-control" TextMode="MultiLine" Height="100px" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <asp:Button runat="server" ID="btnCerrarComentarios" Text="Aceptar" CssClass="btn btn-guardar" OnClick="btnCerrarComentarios_OnClick" />
+                        </div>
                     </div>
                 </div>
             </ContentTemplate>

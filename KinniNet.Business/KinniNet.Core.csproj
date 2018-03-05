@@ -38,8 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EAGetMail40">
-      <HintPath>..\..\TFS\Kiininet CEP\KinniNet.Business.Utils\bin\Debug\EAGetMail40.dll</HintPath>
+    <Reference Include="EAGetMail40, Version=4.6.5.1, Culture=neutral, PublicKeyToken=e10a0812eb29cf94, processorArchitecture=MSIL">
+      <HintPath>..\packages\EAGetMail.4.6.5.1\lib\net40\EAGetMail40.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EASendMail40, Version=7.3.1.2, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
       <HintPath>..\..\Kiininet CEP\KinniNet.Business\bin\Debug\EASendMail40.dll</HintPath>
@@ -52,6 +53,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Demonio\BusinessDemonioSms.cs" />

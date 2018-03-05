@@ -22,7 +22,7 @@ namespace KiiniHelp.ServiceSistemaEstatus {
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacion(bool insertarSeleccion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuario", ReplyAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idGrupo, int idEstatusActual, bool esPropietario, bool insertarSeleccion);
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idGrupo, int idEstatusActual, bool esPropietario, System.Nullable<int> idSubRol, bool insertarSeleccion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuario", ReplyAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuarioResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion);
@@ -66,8 +66,8 @@ namespace KiiniHelp.ServiceSistemaEstatus {
             return base.Channel.ObtenerEstatusAsignacion(insertarSeleccion);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idGrupo, int idEstatusActual, bool esPropietario, bool insertarSeleccion) {
-            return base.Channel.ObtenerEstatusTicketUsuario(idUsuario, idGrupo, idEstatusActual, esPropietario, insertarSeleccion);
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idGrupo, int idEstatusActual, bool esPropietario, System.Nullable<int> idSubRol, bool insertarSeleccion) {
+            return base.Channel.ObtenerEstatusTicketUsuario(idUsuario, idGrupo, idEstatusActual, esPropietario, idSubRol, insertarSeleccion);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion) {

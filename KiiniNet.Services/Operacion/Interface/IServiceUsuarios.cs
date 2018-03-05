@@ -17,6 +17,8 @@ namespace KiiniNet.Services.Operacion.Interface
         [OperationContract]
         void GuardarUsuarioAdicional(string nombre, string ap, string correo, string celular, string edad, string numeroTarjeta, string fechavto, string cvv);
 
+        [OperationContract]
+        List<Usuario> ObtenerAgentes(bool insertarSeleccion);
 
         [OperationContract]
         List<Usuario> ObtenerUsuarios(int? idTipoUsuario);
@@ -86,5 +88,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         Usuario GetUsuarioByCorreo(string correo);
+
+        [OperationContract]
+        List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles);
     }
 }

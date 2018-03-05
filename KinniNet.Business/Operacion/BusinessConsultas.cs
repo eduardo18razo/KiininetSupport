@@ -2254,7 +2254,7 @@ namespace KinniNet.Core.Operacion
                             break;
                         #endregion Calificacion
                         #region Opcional
-                        case (int)BusinessVariables.EnumTipoEncuesta.OpcionMultiple:
+                        case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
                             row = 0;
                             dt.Columns.Add(new DataColumn("Id"));
                             dt.Columns.Add(new DataColumn("Descripcion"));

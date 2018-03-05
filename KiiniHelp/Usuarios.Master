@@ -430,6 +430,11 @@
                                     <span class="pe-icon pe-7s-user icon"></span>Mi perfil
                                     </asp:LinkButton>
                                 </li>
+                                <li>
+                                    <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx" ID="btnCambiarContraseña" OnClick="btnCambiarContraseña_OnClick" runat="server">
+                                    <span class="pe-icon pe-7s-lock icon"></span>Contraseña
+                                    </asp:LinkButton>
+                                </li>
                             </ul>
 
                             <div class="dropdown-toggle" style="padding-top:10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">

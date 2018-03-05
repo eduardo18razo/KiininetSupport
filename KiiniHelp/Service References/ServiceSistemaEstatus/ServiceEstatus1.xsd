@@ -57,6 +57,7 @@
       <xs:element minOccurs="0" name="EsTerminal" type="xs:boolean" />
       <xs:element minOccurs="0" name="Evaluacion" type="xs:boolean" />
       <xs:element minOccurs="0" name="FechaAlta" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaVisita" type="xs:dateTime" />
       <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="Frecuencia" nillable="true" type="q9:ArrayOfFrecuencia" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="HitConsulta" nillable="true" type="q10:ArrayOfHitConsulta" />
@@ -75,6 +76,7 @@
       <xs:element minOccurs="0" name="IdUsuarioAlta" type="xs:int" />
       <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="Impacto" nillable="true" type="q11:Impacto" />
       <xs:element minOccurs="0" name="InventarioArbolAcceso" nillable="true" type="tns:ArrayOfInventarioArbolAcceso" />
+      <xs:element minOccurs="0" name="MeGusta" type="xs:int" />
       <xs:element minOccurs="0" name="Nivel" type="xs:int" />
       <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" minOccurs="0" name="Nivel1" nillable="true" type="q12:Nivel1" />
       <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" minOccurs="0" name="Nivel2" nillable="true" type="q13:Nivel2" />
@@ -83,9 +85,11 @@
       <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" minOccurs="0" name="Nivel5" nillable="true" type="q16:Nivel5" />
       <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" minOccurs="0" name="Nivel6" nillable="true" type="q17:Nivel6" />
       <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" minOccurs="0" name="Nivel7" nillable="true" type="q18:Nivel7" />
+      <xs:element minOccurs="0" name="NoMeGusta" type="xs:int" />
       <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionGrupo" nillable="true" type="q19:ArrayOfNotaOpcionGrupo" />
       <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionUsuario" nillable="true" type="q20:ArrayOfNotaOpcionUsuario" />
       <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="PreTicket" nillable="true" type="q21:ArrayOfPreTicket" />
+      <xs:element minOccurs="0" name="Publico" type="xs:boolean" />
       <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="RespuestaEncuesta" nillable="true" type="q22:ArrayOfRespuestaEncuesta" />
       <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />
       <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q23:ArrayOfTicket" />
@@ -93,6 +97,7 @@
       <xs:element minOccurs="0" name="Tipificacion" nillable="true" type="xs:string" />
       <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoArbolAcceso" nillable="true" type="q25:TipoArbolAcceso" />
       <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q26:TipoUsuario" />
+      <xs:element minOccurs="0" name="Visitas" type="xs:int" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />

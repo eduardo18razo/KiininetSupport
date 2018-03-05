@@ -676,6 +676,8 @@ namespace KinniNet.Core.Operacion
                 List<SubGrupoUsuario> sb = new List<SubGrupoUsuario>();
                 if (grupo != null)
                 {
+                    grupo.Descripcion = gpo.Descripcion.Trim();
+
                     #region Manejo de Horarios
                     if (horarios != null && horarios.Count > 0)
                     {
@@ -759,6 +761,7 @@ namespace KinniNet.Core.Operacion
                     }
 
                     #endregion Manejo de Horarios
+                    grupo.TieneSupervisor = grupo.SubGrupoUsuario.Any(a => a.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor);
                     #region Manejo de politicas
                     List<EstatusTicketSubRolGeneral> lstEliminarPoliticaEstatus = db.EstatusTicketSubRolGeneral.Where(w => w.IdGrupoUsuario == grupo.Id).ToList();
                     List<EstatusAsignacionSubRolGeneral> lstEliminarPoliticaEstatusAsignacion = db.EstatusAsignacionSubRolGeneral.Where(w => w.IdGrupoUsuario == grupo.Id).ToList();
@@ -774,14 +777,11 @@ namespace KinniNet.Core.Operacion
                     grupo.EstatusAsignacionSubRolGeneral = GeneraEstatusAsignacionGrupoDefault(grupo);
                     #endregion Manejo de politicas
 
-
                     if (grupo.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AgenteUniversal)
                     {
                         grupo.LevantaTicket = gpo.LevantaTicket;
                         grupo.RecadoTicket = gpo.RecadoTicket;
                     }
-                    grupo.TieneSupervisor = grupo.SubGrupoUsuario.Any(a => a.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor);
-                    grupo.Descripcion = gpo.Descripcion.Trim();
                 }
                 db.SaveChanges();
 
@@ -881,7 +881,7 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                result.AddRange(from subgpo in grupo.SubGrupoUsuario
+                result.AddRange(from subgpo in grupo.SubGrupoUsuario.OrderBy(o => o.IdSubRol)
                                 where subgpo != null
                                 from statusDefault in db.EstatusAsignacionSubRolGeneralDefault.Where(w => w.IdSubRol == subgpo.IdSubRol && w.TieneSupervisor == grupo.TieneSupervisor)
                                 select new EstatusAsignacionSubRolGeneral

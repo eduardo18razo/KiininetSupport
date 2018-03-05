@@ -202,6 +202,15 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionNivel;
         
         /// <summary>
+        /// Control txtDescripcionOpcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionOpcion;
+        
+        /// <summary>
         /// Control ddlTipoUsuario.
         /// </summary>
         /// <remarks>

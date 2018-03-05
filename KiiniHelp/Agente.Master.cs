@@ -110,7 +110,7 @@ namespace KiiniHelp
             }
             set { hfCambiaTickes.Value = value.ToString(); }
         }
-        public void RemoveTicketOpen(int idTicket)
+        public void RemoveTicketOpen(int idTicket, bool redirectBandeja = false)
         {
             try
             {
@@ -119,7 +119,7 @@ namespace KiiniHelp
                 LlenaTicketsAbiertos();
 
 
-                if (CambiaTicket)
+                if (CambiaTicket && !redirectBandeja)
                 {
                     if (index >= TicketsAbiertos.Count)
                         index = TicketsAbiertos.Count - 1;
@@ -127,6 +127,10 @@ namespace KiiniHelp
                         Response.Redirect("~/Agente/Bandeja.aspx");
                     else
                         Response.Redirect("~/Agente/FrmTicket.aspx?id=" + TicketsAbiertos[index].IdTicket);
+                }
+                else
+                {
+                    Response.Redirect("~/Agente/Bandeja.aspx");
                 }
             }
             catch (Exception e)
@@ -622,6 +626,19 @@ namespace KiiniHelp
                 }
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
+            }
+        }
+
+        protected void btnCambiarContraseña_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx");
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
