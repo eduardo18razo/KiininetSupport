@@ -125,21 +125,21 @@
                                         <div class="col-lg-2 col-md-2 margin-top-30">
                                             <div class="form-inline">
                                                 <label for="chkVip" class="col-lg-9 col-md-9 text-right padding-10-right">VIP</label>
-                                                <asp:CheckBox runat="server" Text="VIP" ID="chkVip" CssClass="chkIphone padding-5-top" Width="30px" />
+                                                <asp:CheckBox runat="server" Text="VIP" ID="chkVip" CssClass="chkIphone padding-5-top" Width="30px" Enabled="false"/>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-2 col-md-2 margin-top-30" >
                                             <div class="form-inline">
                                                 <label for="chkDirectoriActivo" class="col-lg-9 col-md-9 text-right padding-10-right">Directorio activo</label>
-                                                <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" CssClass="chkIphone padding-5-top" Width="30px" />
+                                                <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" CssClass="chkIphone padding-5-top" Width="30px" Enabled="false" />
                                             </div>
                                         </div>
 
                                         <div class="col-lg-2 col-md-2 margin-top-30">
                                             <div class="form-inline">
                                                 <label for="chkPersonaFisica" class="col-lg-9 col-md-9 text-right padding-10-right">Persona Fisica</label>
-                                                <asp:CheckBox runat="server" Text="Persona Fisica" ID="chkPersonaFisica" CssClass="chkIphone padding-5-top" Width="30px" />
+                                                <asp:CheckBox runat="server" Text="Persona Fisica" ID="chkPersonaFisica" CssClass="chkIphone padding-5-top" Width="30px" Enabled="false"/>
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@
                                             </asp:Repeater>
                                         </div>
                                         <div class="col-lg-4 col-md-4">
-                                            <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-9" ID="btnAddTelefono" OnClick="btnAddTelefono_OnClick"></asp:LinkButton>
+                                            <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-9" ID="btnAddTelefono" OnClick="btnAddTelefono_OnClick" Visible="false"></asp:LinkButton>
                                         </div>
                                     </div>
                                     <!--/GRUPO TELÉFONOS DE CONTACTO -->
@@ -210,7 +210,7 @@
                                             </asp:Repeater>
                                         </div>
                                         <div class="col-lg-4 col-md-4">
-                                            <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-9" ID="btnAddCorreo" OnClick="btnAddCorreo_OnClick"></asp:LinkButton>
+                                            <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-9" ID="btnAddCorreo" OnClick="btnAddCorreo_OnClick" Visible="false"></asp:LinkButton>
                                         </div>
                                     </div>
                                     <!--/CORREOS DE CONTACTO -->
@@ -402,11 +402,12 @@
                                                                                             <div style="font-weight: 200; padding-left: 40px;" class="text-left">
                                                                                                 <br />
                                                                                                 <%# Eval("Descripcion") %>
-                                                                                                <asp:LinkButton runat="server" class="remove el el-remove-circle" ID="btnRemoveRolSub" OnClick="btnRemoveRolSub_OnClick" CommandName='<%# Container.ItemIndex %>' CommandArgument='<%# Eval("Id") %>' />
+                                                                                                <asp:LinkButton runat="server" class="remove el el-remove-circle" Visible="true" ID="btnRemoveRolSub" OnClick="btnRemoveRolSub_OnClick" CommandName='<%# Container.ItemIndex %>' CommandArgument='<%# Eval("Id") %>' />
                                                                                             </div>
                                                                                         </ItemTemplate>
                                                                                     </asp:Repeater>
-                                                                                    <asp:LinkButton runat="server" class="remove el el-remove-circle" ID="btnRemoveRol" OnClick="btnRemoveRol_OnClick" Visible='<%# Eval("SubGrupos") == null %>' CommandName='<%# Eval("IdTipoGrupo") %>' CommandArgument='<%# Eval("IdGrupo") %>' />
+                                                                                    <asp:LinkButton runat="server" class="remove el el-remove-circle" ID="btnRemoveRol" Visible='<%# Eval("SubGrupos") == null %>' OnClick="btnRemoveRol_OnClick"  CommandName='<%# Eval("IdTipoGrupo") %>' CommandArgument='<%# Eval("IdGrupo") %>' />
+                                                                                   <%--  --%>
                                                                                 </div>
                                                                             </div>
                                                                         </span>

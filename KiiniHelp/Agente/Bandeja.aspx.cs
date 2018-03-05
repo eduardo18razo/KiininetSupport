@@ -138,6 +138,7 @@ namespace KiiniHelp.Agente
             set { Session["Helpertickets"] = value; }
         }
 
+        //public int? filaSeleccionada = 10;
         private void ObtieneTotales(List<HelperTickets> lst)
         {
             try
@@ -272,7 +273,8 @@ namespace KiiniHelp.Agente
             }
             //gvTickets.Rebind();
         }
-        private void ucAsignacionUsuario_OnCancelarModal()
+
+        void ucAsignacionUsuario_OnCancelarModal()
         {
             try
             {
@@ -288,7 +290,8 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
-        private void UcCambiarEstatusAsignacionOnCancelarModal()
+
+        void UcCambiarEstatusAsignacionOnCancelarModal()
         {
             try
             {
@@ -304,7 +307,8 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
-        private void UcCambiarEstatusAsignacion_OnAceptarModal()
+
+        void UcCambiarEstatusAsignacion_OnAceptarModal()
         {
             try
             {
@@ -321,7 +325,8 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
-        private void UcDetalleUsuario_OnAceptarModal()
+
+        void UcDetalleUsuario_OnAceptarModal()
         {
             try
             {
@@ -337,6 +342,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         private void UcDetalleUsuario1OnOnCancelarModal()
         {
             try
@@ -353,7 +359,8 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
-        private void UcCambiarEstatusTicket_OnAceptarModal()
+
+        void UcCambiarEstatusTicket_OnAceptarModal()
         {
             try
             {
@@ -380,7 +387,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
-        private void UcCambiarEstatusTicketOnCancelarModal()
+        void UcCambiarEstatusTicketOnCancelarModal()
         {
             try
             {
@@ -396,6 +403,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void btnRefresh_OnClick(object sender, EventArgs e)
         {
             try
@@ -412,6 +420,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void OnClick(object sender, EventArgs e)
         {
             try
@@ -428,6 +437,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void ddlGrupo_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -452,6 +462,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void ddlAgente_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -468,6 +479,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void btnAutoasignar_OnClick(object sender, EventArgs e)
         {
             try
@@ -581,6 +593,7 @@ namespace KiiniHelp.Agente
             }
 
         }
+
         protected void btnEscalar_OnClick(object sender, EventArgs e)
         {
             try
@@ -648,10 +661,12 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void gvTickets_OnNeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
             gvTickets.DataSource = Tickets;
         }
+
         protected void btnFiltro_OnClick(object sender, EventArgs e)
         {
             try
@@ -705,25 +720,37 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void gvTickets_OnItemCommand(object sender, GridCommandEventArgs e)
         {
             try
             {
+                GridDataItem row = (GridDataItem)e.Item;
+                int idTicket = int.Parse(row.GetDataKeyValue("NumeroTicket").ToString());
+                string titulo = row["Tipificacion"].Text;
+                bool asigna = bool.Parse(row["puedeasignar"].Text);
+                bool propietaro = bool.Parse(row["EsPropietario"].Text);
                 switch (e.CommandName)
                 {
                     case "RowClick":
-                        GridDataItem row = (GridDataItem)e.Item;
-                        int idTicket = int.Parse(row.GetDataKeyValue("NumeroTicket").ToString());
-                        bool asigna = bool.Parse(row["puedeasignar"].Text);
-                        bool propietaro = bool.Parse(row["EsPropietario"].Text);
-                        btnAutoasignar.Enabled = asigna;
-                        btnAsignar.Enabled = asigna;
-                        btnCambiarEstatus.Enabled = propietaro;
-                        //AgenteMaster master = Master as AgenteMaster;
-                        //if (master != null)
-                        //{
-                        //    master.AddTicketOpen(idTicket, row["Tipificacion"].Text);
-                        //}
+                        bool seleccionado = e.Item.Selected;
+                        int itemIndex = e.Item.ItemIndex;
+
+
+                        if ((seleccionado == false) && (hfFilaSeleccionada.Value.ToString() != itemIndex.ToString()))
+                        {
+                            AgenteMaster master = Master as AgenteMaster;
+                            if (master != null)
+                            {
+                                master.AddTicketOpen(idTicket, titulo, asigna);
+                            }
+                        }
+                        else
+                        {
+                            btnAutoasignar.Enabled = asigna;
+                            btnAsignar.Enabled = asigna;
+                            btnCambiarEstatus.Enabled = propietaro;
+                        }
                         break;
                 }
             }
@@ -737,6 +764,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void gvTickets_OnItemCreated(object sender, GridItemEventArgs e)
         {
             try
@@ -759,6 +787,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void RadComboBox1_OnSelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
         {
             try
@@ -781,6 +810,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void lbntIdticket_OnClick(object sender, EventArgs e)
         {
             try
@@ -798,6 +828,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void btnUsuario_OnClick(object sender, EventArgs e)
         {
             try
@@ -816,6 +847,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void btnTipificacion_OnClick(object sender, EventArgs e)
         {
             try
@@ -837,6 +869,7 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
         protected void gvTickets_OnFilterCheckListItemsRequested(object sender, GridFilterCheckListItemsRequestedEventArgs e)
         {
             try
@@ -904,5 +937,50 @@ namespace KiiniHelp.Agente
                 throw;
             }
         }
+
+        protected void chkSelecciona_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckBox chkSel = (CheckBox)gvTickets.FindControl("chkSelecciona");
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void gvTickets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gvTickets.SelectedItems.Count > 0)
+                {
+                    hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+
+        }
+
+        //protected void gvTickets_SelectedCellChanged(object sender, EventArgs e)
+        //{
+        //    int selected = gvTickets.SelectedCells[0].Column.OrderIndex;
+        //    string text = gvTickets.SelectedCells[0].Text;
+
+        //}
     }
 }

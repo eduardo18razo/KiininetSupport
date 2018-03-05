@@ -21,12 +21,15 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="module-inner">
-                        <asp:Label runat="server" ID="lblDescripcionMascara" class="col-lg-10 col-md-10 col-sm-10" />
-                        <asp:Button type="button" class="btn btn-default" runat="server" Text="Cancelar" ID="btnCancelar" />
-                        <asp:Button type="button" class="btn btn-primary" runat="server" Text="Crear ticket" ID="btnGuardar" />
-                        <br />
+                        <div class="row">
+                            <asp:Label runat="server" ID="lblDescripcionMascara" class="col-lg-10 col-md-10 col-sm-10 TitulosAzul" />
+                            <div class="col-lg-2 col-md-2 col-sm-2 text-right no-padding-right" >
+                                <asp:Button type="button" class="btn btn-default" runat="server" Text="Cancelar" ID="btnCancelar" />
+                                <asp:Button type="button" class="btn btn-success" runat="server" Text="Crear ticket" ID="btnGuardar" />
+                            </div>
+                        </div>
                         <hr />
-                        <div runat="server" id="divControles">
+                        <div runat="server" id="divControles" class="margin-top-40">
                         </div>
                     </div>
                 </div>

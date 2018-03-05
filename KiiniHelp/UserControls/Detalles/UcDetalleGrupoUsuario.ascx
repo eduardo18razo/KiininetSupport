@@ -2,6 +2,7 @@
 
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
+   
         <asp:Repeater runat="server" ID="rptRoles" OnItemDataBound="rptRoles_OnItemDataBound">
             <ItemTemplate>
                 <div class="row col-lg-12 col-md-12">
@@ -28,10 +29,13 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
-                         <hr />
+                        <hr />
                     </div>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+
+
+
     </ContentTemplate>
 </asp:UpdatePanel>

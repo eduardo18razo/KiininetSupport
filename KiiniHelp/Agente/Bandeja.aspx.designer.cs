@@ -94,6 +94,15 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.LinkButton btnEscalar;
         
         /// <summary>
+        /// Control hfFilaSeleccionada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFilaSeleccionada;
+        
+        /// <summary>
         /// Control gvTickets.
         /// </summary>
         /// <remarks>

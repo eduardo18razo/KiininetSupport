@@ -49,6 +49,15 @@ namespace KiiniHelp.UserControls.Seleccion {
         protected global::System.Web.UI.WebControls.Repeater rpt10Frecuentes;
         
         /// <summary>
+        /// Control rptCatTodos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCatTodos;
+        
+        /// <summary>
         /// Control rptConsultasFrecuentes.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace KiiniHelp.UserControls.Seleccion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptConsultasFrecuentes;
+        
+        /// <summary>
+        /// Control rptCatConsultas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCatConsultas;
         
         /// <summary>
         /// Control rptServiciosFrecuentes.
@@ -67,6 +85,15 @@ namespace KiiniHelp.UserControls.Seleccion {
         protected global::System.Web.UI.WebControls.Repeater rptServiciosFrecuentes;
         
         /// <summary>
+        /// Control rptCatServicios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCatServicios;
+        
+        /// <summary>
         /// Control rptProblemasFrecuentes.
         /// </summary>
         /// <remarks>
@@ -74,5 +101,14 @@ namespace KiiniHelp.UserControls.Seleccion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptProblemasFrecuentes;
+        
+        /// <summary>
+        /// Control rptCatProblemas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCatProblemas;
     }
 }

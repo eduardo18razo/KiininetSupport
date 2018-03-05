@@ -40,9 +40,12 @@
 }
 
 .auth-section .form-box .form-box-inner2 {
-        background-image: initial;
-            background-position-x: initial;
-            background-position-y: initial;
+        border-left: 1px solid #eaeaf1;
+    border-right: 1px solid #eaeaf1;
+    border-top: 1px solid #eaeaf1;
+    border-bottom: 2px solid #eaeaf1;
+    background-position: initial;
+    background-image: initial;
             background-size: initial;
             background-repeat-x: initial;
             background-repeat-y: initial;
@@ -53,8 +56,6 @@
         padding-left: 4em;
         padding-right: 4em;
         padding-top: 30px;
-        border: 1px solid #eaeaf1;
-        border-bottom-width: 2px;
         -webkit-border-top-right-radius: 0;
         -webkit-border-bottom-right-radius: 4px;
         -webkit-border-bottom-left-radius: 4px;
@@ -103,7 +104,6 @@
 }
 
 .login-section {
-
     background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
    -webkit-background-size: cover;
    -moz-background-size: cover;

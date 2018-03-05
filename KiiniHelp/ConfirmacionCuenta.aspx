@@ -6,6 +6,8 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Confirmación Cuenta Usuario</title>
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />

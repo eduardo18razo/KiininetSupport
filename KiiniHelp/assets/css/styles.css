@@ -4,10 +4,12 @@
 */
 
 @font-face {
-    font-family: 'Proxima';
-    src: local('MarkSimonson-Proxima-Nova-Regular'), url('MarkSimonson-Proxima-Nova-Regular.otf'), format('opentype'); /*../fonts/MarkSimonson-Proxima-Nova-Regular.otf*/
-    src: url(/)
+    font-family: 'Proxima Nova';
+    src: url('../fonts/ProximaNova-Reg.ttf') format('truetype');
+    /*url('http://192.168.0.20:1010/Web/assets/fonts/MarkSimonson-Proxima-Nova-Regular.otf') format('opentype');*/
+    /*local('MarkSimonson-Proxima-Nova-Regular'),*/
 }
+
 
 html {
     font-family: 'Proxima Nova';
@@ -28,7 +30,7 @@ html {
 
 body {
     font-family: 'Proxima Nova';
-    color: #6E6E6E; /*#494d55*/
+    color: #6E6E6E;
     font-size: 12px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -140,14 +142,9 @@ hr {
     margin-bottom: 0px;
 }
 
-.tooltip {
+.tooltip, .popover {
     font-family: 'Proxima Nova';
 }
-
-.popover {
-    font-family: 'Proxima Nova';
-}
-
 
 button.close:focus {
     outline: none;
@@ -182,7 +179,7 @@ button.close:focus {
 
     .dropdown-menu > li {
         margin-bottom: 0;
-        font-size: 13px;
+        font-size: 12px;
     }
 
         .dropdown-menu > li > a {
@@ -929,7 +926,7 @@ button.close:focus {
     bottom: 0;
     width: 100%;
     min-height: 25px;
-    height: 25px;  /*5%*/
+    height: 25px; /*5%*/
     margin-left: 0;
     padding: 5px;
     border-top: 1px solid #f3f3f3;
@@ -1505,6 +1502,10 @@ h6,
     color: #3FA9F5;
 }
 
+    .text-theme > a {
+        color: #3FA9F5 !important;
+    }
+
 .text-success {
     color: #75c181;
 }
@@ -1817,7 +1818,7 @@ a.btn {
 }
 
 .btn-primary {
-    font-family: 'Proxima Nova' ;  /*Open Sans*/
+    font-family: 'Proxima Nova'; /*Open Sans*/
     background: #3FA9F5;
     border: 1px solid #3FA9F5;
     color: #FFF !important;
@@ -2246,6 +2247,21 @@ a.btn {
         background: #F2B542;
         color: #fff;
     }
+
+
+.btnBandejaCliente {
+    width: 80px;
+    border: 1px solid;
+    color: #fff;
+}
+
+    .btnBandejaCliente:active:hover, .btnBandejaCliente.active:hover,
+    .btnBandejaCliente:active:focus, .btnBandejaCliente.active:focus,
+    .btnBandejaCliente:active.focus, .btnBandejaCliente.active.focus,
+    .btnBandejaCliente:hover {
+        color: #fff;
+    }
+
 
 .open > .dropdown-toggle.btn-default-alt {
     background: #494d55;
@@ -3592,7 +3608,7 @@ table.dataTable thead th {
 label {
     /*color: #494d55;*/
     padding-right: 10px;
-    font-weight: normal !important;
+    font-weight: normal;
     margin-bottom: 3px;
     padding-top: 5px;
 }
@@ -4559,7 +4575,7 @@ ul.sortable {
 
 .modal-dialog {
     position: relative;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
 
 .modal button.close {
@@ -6122,12 +6138,20 @@ ul.sortable {
     padding-left: 1px !important;
 }
 
+.padding-2-left {
+    padding-left: 2px !important;
+}
+
 .padding-10-left {
     padding-left: 10px !important;
 }
 
 .padding-15-left {
     padding-left: 15px !important;
+}
+
+.padding-18-left {
+    padding-left: 18px !important;
 }
 
 .padding-20-left {
@@ -6139,6 +6163,11 @@ ul.sortable {
     padding-right: 10px !important;
 }
 
+.padding-18-right {
+    padding-right: 18px !important;
+}
+
+
 .padding-31-right {
     padding-right: 31px !important;
 }
@@ -6149,6 +6178,10 @@ ul.sortable {
 
 .padding-5-top {
     padding-top: 5px !important;
+}
+
+.padding-8-top {
+    padding-top: 8px !important;
 }
 
 .padding-10-top {
@@ -6232,6 +6265,10 @@ ul.sortable {
 
 .margin-bottom-15 {
     margin-bottom: 15px;
+}
+
+.margin-bottom-25 {
+    margin-bottom: 25px;
 }
 
 .margin-right-4 {
@@ -6386,8 +6423,9 @@ ul, ol {
 
 
 .TitulosAzul {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700 !important;
+    color: #0c223F;
 }
 
 a.fa-plus-circle {
@@ -6797,8 +6835,6 @@ a.fa-plus-circle {
     margin-top: 3px;
 }
 
-
-
 .espacio5 {
     margin-top: 5px;
 }
@@ -6870,9 +6906,14 @@ a.fa-plus-circle {
 
 input[type="checkbox"] + label,
 input[type="radio"] + label {
+    /*propuesta 2*/
+    /*margin-left: 5px;
+    padding-top: 2px;
+    position: absolute;*/
     /*propuesta 3*/
     display: inline-block;
     vertical-align: bottom;
+    margin-left: 5px !important;
 }
 
 
@@ -6896,6 +6937,10 @@ input[type="radio"] + label {
         /*color: #FFF;*/
     }
 
+.lblChkBold > span > label {
+    font-weight: bold !important;
+}
+
 /*Fin Botones de Grupo Usuario*/
 
 .lnkBtn {
@@ -6903,13 +6948,24 @@ input[type="radio"] + label {
 }
 
 .iconoFont {
-    font-size:14px;
+    font-size: 14px;
 }
 
-.fontGreen{
-    color:green;
+.fontGreen {
+    color: green;
 }
 
-.fontRed{
-    color:red;
+.fontRed {
+    color: red;
+}
+
+.textoTabla {
+    font-family: 'Proxima Nova';
+    color: #6E6E6E;
+    font-weight: bold;
+}
+
+input, input[type="file"] {
+    font-family: 'Proxima Nova' !important;
+    font-size: 12px !important;
 }

@@ -78,7 +78,7 @@
                                             <label class="col-lg-2 no-padding-top">Público</label>
                                             <asp:CheckBox runat="server" ID="chkPublico" CssClass="chkIphone no-margin-bottom" Width="30px" Text="Activo" Checked="False" />
                                         </div>
-                                        <br />
+                                        <hr />
                                         <div class="form-group">
                                             Tipificación<br />
                                             <asp:DropDownList runat="server" ID="ddlTipificacion" CssClass="form-control" />

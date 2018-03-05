@@ -47,6 +47,7 @@ namespace KiiniHelp.UserControls.Detalles
                     {
                         lblTipoGrupo.Text = grupo.TipoGrupo.Descripcion;
                         lblNombreGrupo.Text = grupo.Descripcion;
+                        //lblTipoUsuario.Text = grupo.TipoUsuario.Descripcion;
                         LlenaOpciones();
                     }
                 }
@@ -153,7 +154,7 @@ namespace KiiniHelp.UserControls.Detalles
                                 })
                                 .ToList()).GetAsByteArray());
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;  filename=DettalleGrupoOpciones.xlsx");
+                Response.AddHeader("content-disposition", "attachment;  filename=DetalleGrupoOpciones.xlsx");
                 Response.Buffer = true;
                 ms.WriteTo(Response.OutputStream);
                 Response.End();

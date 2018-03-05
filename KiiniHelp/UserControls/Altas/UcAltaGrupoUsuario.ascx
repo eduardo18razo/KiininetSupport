@@ -91,20 +91,14 @@
                                                                     <div class="row">
                                                                         <div class="form-horizontal">
                                                                             <div class="col-lg-4 col-md-4 no-padding-left margin-top-4">
-                                                                                <%--<div class="">--%>
                                                                                 <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
                                                                                 <asp:CheckBox CssClass="btn btn-seleccione btn-block hideCheck" Style="padding: 0; cursor: default" runat="server" ID="chkSubRol" value='<%# Eval("Id") %>' Text='<%# Eval("Descripcion") %>' AutoPostBack="True" OnCheckedChanged="OnCheckedChanged" />
-                                                                                <%--</div>--%>
                                                                             </div>
                                                                             <div class="col-lg-4 col-md-4">
-                                                                                <%--<div class="margin-top">--%>
                                                                                 <asp:DropDownList runat="server" ID="ddlHorario" CssClass="form-control" Enabled="False" />
-                                                                                <%-- </div>--%>
                                                                             </div>
                                                                             <div class="col-lg-4 col-md-4">
-                                                                                <%--<div class="margin-top">--%>
                                                                                 <asp:DropDownList runat="server" ID="ddlDiasFeriados" CssClass="form-control" Enabled="False" />
-                                                                                <%--</div>--%>
                                                                             </div>
 
                                                                         </div>

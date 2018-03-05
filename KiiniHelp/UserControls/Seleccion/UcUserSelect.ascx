@@ -11,7 +11,6 @@
                     <asp:Label runat="server" ID="lbltipoUsuario" /></li>
             </ol>
 
-            <%--<hr />--%>
             <div class="row">
                 <div class="module-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <section class="module module-headings">
@@ -21,7 +20,6 @@
                                 <div class="help-search">
                                     <h4 class="text-center title">Haz una consulta rápida o selecciona una
                                         <asp:LinkButton ID="lbtnCategoria" runat="server" OnClick="lbtnCategoria_OnClick">categoría</asp:LinkButton></h4>
-                                    <%--<br>--%>
                                     <div class="search-box form-inline text-center padding-10-bottom">
                                         <label class="sr-only" for="help_search_form">Buscar</label>
                                         <div class="form-group padding">
@@ -30,7 +28,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <%--                               <hr>--%>
                                 <!--TERMINA BUSCADOR-->
                                 <!--INICIAN TABS-->
                                 <div class="module-content-inner">
@@ -69,6 +66,21 @@
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
+                                                         <asp:Repeater runat="server" ID="rptCatTodos">
+                                                            <ItemTemplate>
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading panel-heading-theme-1">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" class="panel-toggle" href='<%# "#faq5_" + Eval("Id") %>'><i class="fa fa-plus-square"></i><%# Eval("Tipificacion") %> </a></h4>
+                                                                    </div>
+                                                                    <div class="panel-collapse  collapse" id='<%# "faq5_" + Eval("Id") %>'>
+                                                                        <div class="panel-body">
+                                                                            <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>'></asp:Label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
 
                                                     </div>
                                                 </div>
@@ -76,19 +88,37 @@
                                                 <div role="tabpanel" class="tab-pane-2 tab-pane fade" id="cat2">
                                                     <h4 class="subtitle text-center">Consultas más frecuentes</h4>
                                                     <div class="panel-group panel-group-theme-1">
+
                                                         <asp:Repeater runat="server" ID="rptConsultasFrecuentes">
                                                             <ItemTemplate>
                                                                 <div class="panel panel-default">
                                                                     <div class="panel-heading panel-heading-theme-1">
-                                                                        <h4 class="panel-title"><a
-                                                                            data-toggle="collapse" class="panel-toggle" href="#faq2-1"><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %> </a></h4>
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" class="panel-toggle" href='<%# "#faq2_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %> </a></h4>
                                                                     </div>
-                                                                    <div class="panel-collapse  collapse" id="faq2-1">
+                                                                    <div class="panel-collapse  collapse" id='<%# "faq2_" + Eval("IdArbol") %>'>
                                                                         <div class="panel-body">Consulta repetidor </div>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
+
+                                                        <asp:Repeater runat="server" ID="rptCatConsultas">
+                                                            <ItemTemplate>
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading panel-heading-theme-1">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" class="panel-toggle" href='<%# "#faq6_" + Eval("Id") %>'><i class="fa fa-plus-square"></i><%# Eval("Tipificacion") %> </a></h4>
+                                                                    </div>
+                                                                    <div class="panel-collapse  collapse" id='<%# "faq6_" + Eval("Id") %>'>
+                                                                        <div class="panel-body">
+                                                                            <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>'></asp:Label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+
                                                     </div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane-3 tab-pane fade" id="cat3">
@@ -99,14 +129,31 @@
                                                                 <div class="panel panel-default">
                                                                     <div class="panel-heading panel-heading-theme-1">
                                                                         <h4 class="panel-title"><a
-                                                                            data-toggle="collapse" class="panel-toggle" href="#faq3-1"><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %> </a></h4>
+                                                                            data-toggle="collapse" class="panel-toggle" href='<%# "#faq3_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %> </a></h4>
                                                                     </div>
-                                                                    <div class="panel-collapse  collapse" id="faq3-1">
+                                                                    <div class="panel-collapse  collapse" id='<%# "faq3_" + Eval("IdArbol") %>'>
                                                                         <div class="panel-body">Servicio Repetidor</div>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
+
+                                                         <asp:Repeater runat="server" ID="rptCatServicios">
+                                                            <ItemTemplate>
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading panel-heading-theme-1">
+                                                                        <h4 class="panel-title">
+                                                                            <a data-toggle="collapse" class="panel-toggle" href='<%# "#faq6_" + Eval("Id") %>'><i class="fa fa-plus-square"></i><%# Eval("Tipificacion") %> </a></h4>
+                                                                    </div>
+                                                                    <div class="panel-collapse  collapse" id='<%# "faq6_" + Eval("Id") %>'>
+                                                                        <div class="panel-body">
+                                                                            <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>'></asp:Label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+
                                                     </div>
                                                 </div>
 
@@ -118,10 +165,26 @@
                                                                 <div class="panel panel-default">
                                                                     <div class="panel-heading panel-heading-theme-1">
                                                                         <h4 class="panel-title"><a
-                                                                            data-toggle="collapse" class="panel-toggle" href="#faq4-1"><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %>  </a></h4>
+                                                                            data-toggle="collapse" class="panel-toggle" href='<%# "#faq4_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %>  </a></h4>
                                                                     </div>
-                                                                    <div class="panel-collapse  collapse" id="faq4-1">
+                                                                    <div class="panel-collapse  collapse" id='<%# "faq4_" + Eval("IdArbol") %>'>
                                                                         <div class="panel-body">ProblemaRepetidor </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+
+                                                          <asp:Repeater runat="server" ID="rptCatProblemas">
+                                                            <ItemTemplate>
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading panel-heading-theme-1">
+                                                                        <h4 class="panel-title"><a
+                                                                            data-toggle="collapse" class="panel-toggle" href='<%# "#faq4_" + Eval("Id") %>'><i class="fa fa-plus-square"></i><%# Eval("Tipificacion") %>  </a></h4>
+                                                                    </div>
+                                                                    <div class="panel-collapse  collapse" id='<%# "faq4_" + Eval("Id") %>'>
+                                                                         <div class="panel-body">
+                                                                            <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>'></asp:Label>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>

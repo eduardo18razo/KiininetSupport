@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaMisTickets.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaMisTickets" %>
 <%@ Import Namespace="KinniNet.Business.Utils" %>
+
+
 <%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusTicket.ascx" TagPrefix="uc1" TagName="UcCambiarEstatusTicket" %>
 
 <div style="height: 100%;">
@@ -15,44 +17,49 @@
 
             <section class="module">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="module-inner">
+                    <div class="module-inner">
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Mis Tickets"/></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="Mis Tickets" /></h3>
                             </div>
-                            <p>
-                                Texto Mis Tickets
-                            </p>
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="module-inner">
-                        <div class="col-lg-5 col-md-5">
-                            Consulta de Tickets:<br />
-                            <div class="search-box form-inline margin-bottom-lg">
-                                <label class="sr-only" for="txtFiltro">Buscar</label>
+
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            <div class="form col-lg-5">
                                 <div class="form-group">
-                                    <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control help_search_form" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" placeholder="Busca con una palabra clave..." />
-                                    <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
+                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta de Tickets:</label>
+                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
+                                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
+                                        <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3 separador-vertical-derecho">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o consulta por estatus</label>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
+                                        <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control no-padding-left no-margin-left" Width="190px" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                                <div class="form-group margin-top-btn-consulta">
+                                    <%--<asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_Click">
+                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>--%>
+
+                                    <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
+                                <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
+
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 col-md-4 separador-vertical-derecho">
-                            ... o consulta por estatus<br />                           
-                            <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control" Width="190px" AutoPostBack="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />                          
-                        </div>
-
-
-                        <div class="col-lg-3 col-md-3 text-center">
-                            <div class="module-inner">
-                                <asp:LinkButton runat="server" CssClass="btn btn-success fa fa-plus" Text="Nuevo" OnClick="btnNew_OnClick" />
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </section>
@@ -63,16 +70,14 @@
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
 
-                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false"
-                                    CssClass="table table-striped display" Width="99%"
-                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging"
-                                    BorderStyle="None" PagerSettings-Mode="Numeric"
-                                    PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false"  Width="99%"
+                                    CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
+                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Ticket" ControlStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Ticket" HeaderStyle-Width="10%" ItemStyle-CssClass="altoFijo">
                                             <ItemTemplate>
-                                                <div style="min-height: 30px;">
+                                                <div>
                                                     <label><%# Eval("IdTicket")%></label>
                                                 </div>
                                             </ItemTemplate>
@@ -91,7 +96,7 @@
 
                                         <asp:TemplateField HeaderText="Estatus" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <div style='<%# " width: 50%; background-color: " + Eval("Estatusticket.Color") %>' class="text-center">
+                                                <div class="btn btnBandejaCliente" style='<%# "background-color: " + Eval("Estatusticket.Color") %>' >
                                                     <asp:Label runat="server" Text='<%# Eval("Estatusticket.Descripcion")%>'></asp:Label>
                                                 </div>
                                             </ItemTemplate>
@@ -106,7 +111,7 @@
 
                                     </Columns>
                                 </asp:GridView>
-                              
+
                             </div>
                         </div>
                     </div>
@@ -128,3 +133,13 @@
     </asp:UpdatePanel>
 
 </div>
+
+
+
+
+
+
+
+
+
+

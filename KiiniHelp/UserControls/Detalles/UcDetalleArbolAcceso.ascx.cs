@@ -45,7 +45,7 @@ namespace KiiniHelp.UserControls.Detalles
                     {
                         lblTitulo.Text = arbol.InventarioArbolAcceso.First().Descripcion;
                         lblCategoria.Text = arbol.Area.Descripcion;
-                        lblTipoUsuario.Text = arbol.TipoUsuario.Descripcion;
+                        //lblTipoUsuario.Text = arbol.TipoUsuario.Descripcion;
 
                         lblTipoUsuarioOpcion.Text = arbol.TipoUsuario.Descripcion;
                         lblTipificacion.Text = arbol.Tipificacion;
@@ -148,6 +148,11 @@ namespace KiiniHelp.UserControls.Detalles
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
             }
+        }
+
+        protected void btnDownload_OnClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

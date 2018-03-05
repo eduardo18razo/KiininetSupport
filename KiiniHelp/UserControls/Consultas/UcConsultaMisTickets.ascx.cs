@@ -102,29 +102,6 @@ namespace KiiniHelp.UserControls.Consultas
 
         }
 
-        //private void GeneraPaginado(int recordCount, int currentPage)
-        //{
-        //    try
-        //    {
-        //        double dblPageCount = (double)(recordCount / Convert.ToDecimal(PageSize));
-        //        int pageCount = (int)Math.Ceiling(dblPageCount);
-        //        List<ListItem> pages = new List<ListItem>();
-        //        if (pageCount > 0)
-        //        {
-        //            for (int i = 1; i <= pageCount; i++)
-        //            {
-        //                pages.Add(new ListItem(i.ToString(), i.ToString(), i != currentPage));
-        //            }
-        //        }
-        //        rptPager.DataSource = pages;
-        //        rptPager.DataBind();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception(e.Message);
-        //    }
-        //}
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -163,8 +140,6 @@ namespace KiiniHelp.UserControls.Consultas
                     if (bool.Parse(hfMuestraEncuesta.Value))
                     {
                         string url = ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" + (int)BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" + ucCambiarEstatusTicket.IdTicket);
-                        //string s = "window.open('" + url + "', 'popup_window', 'width=600,height=600,left=300,top=100,resizable=yes');";
-                        //ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
                         ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");", true);
                     }
                 }

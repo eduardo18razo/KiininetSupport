@@ -30,7 +30,6 @@
                             </p>
                         </div>
 
-
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
                             <div class="form col-lg-5">
@@ -71,6 +70,7 @@
                             </div>
 
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -189,7 +189,8 @@
     <div class="modal fade" id="modalDetalleOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog">
+                    <%--style="width: 50%;"--%>
                     <div class="modal-content">
                         <uc1:UcDetalleArbolAcceso runat="server" ID="ucDetalleArbolAcceso" />
                     </div>
