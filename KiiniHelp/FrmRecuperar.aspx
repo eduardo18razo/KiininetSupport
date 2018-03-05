@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrmRecuperar.aspx.cs" Inherits="KiiniHelp.FrmRecuperar" %>
+﻿
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrmRecuperar.aspx.cs" Inherits="KiiniHelp.FrmRecuperar" %>
 
 <!DOCTYPE html>
 
@@ -72,7 +73,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
-                            <h1 class="form-box-heading logo text-center"><span class="highlight">SOPORTE <% Response.Write(ConfigurationManager.AppSettings["Brand"]); %></span> </h1>
+                            <h1 class="form-box-heading logo text-center"><span class="highlight">Recuperar contraseña</span> </h1>
                             <div class="form-box-inner">
                                 <h2 class="title text-center">¿Cómo quieres cambiar tu contraseña?</h2>
                                 <div class="row">
@@ -82,8 +83,7 @@
                                         <div data-parsley-validate class="form-horizontal">
                                             <div class="form-horizontal">
                                                 <div><span>Ingresa el código que recibiste:</span></div>
-                                                <br>
-
+                                                <br/>
                                                 <label class="sr-only" for="login-email">Email or username</label>
 
                                                 <asp:TextBox required="required" runat="server" placeholder="Código de verificación" CssClass="form-control login-email" ID="txtCodigo" />
