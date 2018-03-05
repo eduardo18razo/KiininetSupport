@@ -19,3 +19,4 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\KinniNet.Da
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EPPlus.xml
