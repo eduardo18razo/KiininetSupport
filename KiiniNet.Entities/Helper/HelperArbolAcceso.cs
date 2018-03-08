@@ -18,4 +18,18 @@ namespace KiiniNet.Entities.Helper
         public string Activo { get; set; }
         
     }
+    [Serializable]
+    public class HelperBusquedaArbolAcceso
+    {
+        public int Id { get; set; }
+        public string TipoUsuario { get; set; }
+        public string Titulo { get; set; }
+        public string Descripcion { get; set; }
+        public int IdCategoria { get; set; }
+        public string Categoria { get; set; }
+        public int Likes { get; set; }
+        public int TotalLikes { get; set; }
+        public int TotalPage { get; set; }
+
+    }
 }

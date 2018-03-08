@@ -21,4 +21,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperArbolAcceso" nillable="true" type="tns:HelperArbolAcceso" />
+  <xs:complexType name="ArrayOfHelperBusquedaArbolAcceso">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperBusquedaArbolAcceso" nillable="true" type="tns:HelperBusquedaArbolAcceso" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperBusquedaArbolAcceso" nillable="true" type="tns:ArrayOfHelperBusquedaArbolAcceso" />
+  <xs:complexType name="HelperBusquedaArbolAcceso">
+    <xs:sequence>
+      <xs:element name="_x003C_Categoria_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Descripcion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IdCategoria_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Likes_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TipoUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Titulo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TotalLikes_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperBusquedaArbolAcceso" nillable="true" type="tns:HelperBusquedaArbolAcceso" />
 </xs:schema>

@@ -104,6 +104,12 @@ namespace KiiniHelp.Agente
             get { return bool.Parse(hfFiltroSla.Value); }
             set { hfFiltroSla.Value = value.ToString(); }
         }
+
+        private bool Resueltos
+        {
+            get { return bool.Parse(hfResueltos.Value); }
+            set { hfResueltos.Value = value.ToString(); }
+        }
         private List<int> EstatusFueraSla
         {
             get
@@ -146,17 +152,24 @@ namespace KiiniHelp.Agente
             {
                 if (lst == null || lst.Count <= 0) return;
                 lblTicketAbiertosHeader.Text = "Tickets Abiertos (" + lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString() + ")";
-                ((Label)btnFiltroAbierto.FindControl("lblTicketsAbiertos")).Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
 
-                ((Label)btnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
+                ((Label)btnFiltroTodos.FindControl("lblTicketsTodos")).Text = lst.Count().ToString();
+
+                ((Label)btnFiltroAbierto.FindControl("lblTicketsAbiertos")).Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
 
                 const int statusSinAsignar = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                 ((Label)btnFiltroSinAsignar.FindControl("lblTicketsSinAsignar")).Text = lst.Count(w => EstatusSinAsignar.Contains(w.EstatusTicket.Id) && w.EstatusAsignacion.Id == statusSinAsignar).ToString();
+
+
+                ((Label)btnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
 
                 ((Label)btnFiltroResuelto.FindControl("lblTicketsResueltos")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id)).ToString();
 
                 ((Label)btnFueraSla.FindControl("lblTicketsFueraSla")).Text = lst.Count(w => EstatusFueraSla.Contains(w.EstatusTicket.Id) && !w.DentroSla).ToString();
 
+                DateTime fechaInicio = DateTime.Now.AddMinutes(-60);
+
+                ((Label)btnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= fechaInicio).ToString();
             }
             catch (Exception e)
             {
@@ -198,7 +211,8 @@ namespace KiiniHelp.Agente
                         lst = lst.Where(w => w.EstatusAsignacion.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar).ToList();
                     if (FueraSla)
                         lst = lst.Where(w => !w.DentroSla).ToList();
-
+                    if (Resueltos)
+                        lst = lst.Where(w => w.FechaCambioEstatusAsignacion >= DateTime.Now.AddMinutes(-60)).ToList();
                     ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
 
                 }
@@ -751,31 +765,43 @@ namespace KiiniHelp.Agente
                         case "Abierto":
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusAbierto;
                             break;
                         case "Espera":
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusEspera;
                             break;
                         case "SinAsignar":
                             SinAsignar = true;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusSinAsignar;
                             break;
                         case "Resuelto":
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusResuletos;
                             break;
                         case "FueraSla":
                             SinAsignar = false;
                             FueraSla = true;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusFueraSla;
+                            break;
+                        case "recienActualizados":
+                            SinAsignar = false;
+                            FueraSla = false;
+                            Resueltos = true;
+                            EstatusSeleccionado = EstatusResuletos;
                             break;
                         default:
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusAbierto;
                             break;
                     }

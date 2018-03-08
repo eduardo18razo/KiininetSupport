@@ -39,17 +39,30 @@ namespace KiiniHelp.Test
         } 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            //if (!IsPostBack)
+            //{
+            //    string[] cars = new string[] { "Porsche Carrera", "Ferrari F430", "Aston Martin DB9" };
+            //    ddlUsuarioAsignacion.DataSource = cars;
+            //    ddlUsuarioAsignacion.DataBind();
+            //    RadDropDownTree1.DataFieldID = "ID";
+            //    RadDropDownTree1.DataFieldParentID = "ParentID";
+            //    RadDropDownTree1.DataValueField = "Value";
+            //    RadDropDownTree1.DataTextField = "Text";
+            //    RadDropDownTree1.DataSource = GetData();
+            //    RadDropDownTree1.DataBind();
+            //}
+        }
+
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            try
             {
-                string[] cars = new string[] { "Porsche Carrera", "Ferrari F430", "Aston Martin DB9" };
-                ddlUsuarioAsignacion.DataSource = cars;
-                ddlUsuarioAsignacion.DataBind();
-                RadDropDownTree1.DataFieldID = "ID";
-                RadDropDownTree1.DataFieldParentID = "ParentID";
-                RadDropDownTree1.DataValueField = "Value";
-                RadDropDownTree1.DataTextField = "Text";
-                RadDropDownTree1.DataSource = GetData();
-                RadDropDownTree1.DataBind();
+                //var contenido = reContent.Content;
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
     }

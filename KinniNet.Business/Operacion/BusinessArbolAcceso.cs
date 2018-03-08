@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Globalization;
 using System.Linq;
 using KiiniNet.Entities.Cat.Arbol.Nodos;
@@ -11,7 +10,6 @@ using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
-using Telerik.Web.UI.Gantt;
 
 namespace KinniNet.Core.Operacion
 {
@@ -1956,21 +1954,65 @@ namespace KinniNet.Core.Operacion
 
         #endregion Flujo normal
 
-        public void BusquedaGeneral(string filter)
+        public List<HelperBusquedaArbolAcceso> BusquedaGeneral(int? idUsuario, string filter, List<int> tipoUsuario, int page, int pagesize)
         {
-            List<Nivel2> result;
+            List<HelperBusquedaArbolAcceso> result = null;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                List<int> arbolesServicioProblema = (db.InventarioArbolAcceso.Where(iaa => iaa.Descripcion.Contains(filter)).Select(iaa => iaa.IdArbolAcceso)).Distinct().ToList();
-                List<int> arbolesConsulta = (from iaa in db.InventarioArbolAcceso
-                                             join iic in db.InventarioInfConsulta on iaa.Id equals iic.IdInventario
-                                             join ic in db.InformacionConsulta on iic.IdInfConsulta equals ic.Id
-                                             join icd in db.InformacionConsultaDatos on ic.Id equals icd.IdInformacionConsulta
-                                             where icd.Tags.Contains(filter)
-                                             select iaa.Id).Distinct().ToList();
+                var qry = from aa in db.ArbolAcceso
+                          join iaa in db.InventarioArbolAcceso on aa.Id equals iaa.IdArbolAcceso
+                          join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
+                          where aa.EsTerminal && iaa.Descripcion.Contains(filter)
+                          select new { aa, iaa, guia };
+                if (tipoUsuario != null && tipoUsuario.Any())
+                    qry = from q in qry
+                          where tipoUsuario.Contains(q.aa.IdTipoUsuario)
+                          select q;
+                if (idUsuario != null)
+                {
+                    Usuario usuarioSolicita = new BusinessUsuarios().ObtenerDetalleUsuario((int)idUsuario);
+                    List<int> lstGposSolicita = usuarioSolicita.UsuarioGrupo.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.IdGrupoUsuario).ToList();
+                    qry = from q in qry
+                          where lstGposSolicita.Contains(q.guia.IdGrupoUsuario)
+                          select q;
+                }
+                else
+                {
+                    qry = from q in qry
+                          where q.aa.Publico
+                          select q;
+                }
+                var qryIds = from q in qry
+                    select q.aa.Id;
+                List<int> arbolesServicioProblema = (from q in qryIds select q).OrderBy(o => o).Distinct().ToList();
 
-
+                int skip = (page - 1) * pagesize;
+                int totalResults = int.Parse(Math.Ceiling(arbolesServicioProblema.Count() / decimal.Parse(pagesize.ToString())).ToString());
+                
+                if (arbolesServicioProblema.Any())
+                {
+                    result = new List<HelperBusquedaArbolAcceso>();
+                    foreach (ArbolAcceso arbol in db.ArbolAcceso.Where(w => arbolesServicioProblema.Contains(w.Id) && w.EsTerminal).OrderBy(o=>o.Id).Skip(skip).Take(pagesize).Distinct())
+                    {
+                        if (arbol.EsTerminal)
+                        {
+                            db.LoadProperty(arbol, "Area");
+                            db.LoadProperty(arbol, "InventarioArbolAcceso");
+                            HelperBusquedaArbolAcceso addArbol = new HelperBusquedaArbolAcceso
+                            {
+                                Id = arbol.Id,
+                                Titulo = arbol.InventarioArbolAcceso.First().Descripcion,
+                                Descripcion = arbol.Descripcion,
+                                IdCategoria = arbol.IdArea,
+                                Categoria = arbol.Area.Descripcion,
+                                TotalLikes = arbol.MeGusta,
+                                TotalPage = totalResults
+                            };
+                            result.Add(addArbol);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1980,6 +2022,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
+            return result;
         }
     }
 }

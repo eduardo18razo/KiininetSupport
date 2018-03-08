@@ -28,6 +28,7 @@
     <MetadataFile FileName="ServiceArbolAcceso2.xsd" MetadataType="Schema" ID="c3383aef-48e7-451c-9b20-ac4772e1b94d" SourceId="1" SourceUrl="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd4" />
     <MetadataFile FileName="ServiceArbolAcceso3.xsd" MetadataType="Schema" ID="0a132f03-84ee-4998-a62b-174d1f93ca9d" SourceId="1" SourceUrl="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd0" />
     <MetadataFile FileName="ServiceArbolAcceso4.xsd" MetadataType="Schema" ID="1c023d70-42db-4f6e-aeb3-714a23e5c985" SourceId="1" SourceUrl="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceArbolAcceso15.xsd" MetadataType="Schema" ID="9fb2873e-2b5e-464f-a561-2c69233d05e9" SourceId="1" SourceUrl="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd15" />
     <MetadataFile FileName="ServiceArbolAcceso5.xsd" MetadataType="Schema" ID="c0f1edd8-936c-4d80-92bd-f74dcf0378bd" SourceId="1" SourceUrl="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd5" />
     <MetadataFile FileName="ServiceArbolAcceso6.xsd" MetadataType="Schema" ID="780eabff-c9fe-44ad-a458-c36a2fb6bf0b" SourceId="1" SourceUrl="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd1" />
     <MetadataFile FileName="ServiceArbolAcceso7.xsd" MetadataType="Schema" ID="6598efa4-1ba5-40f8-928e-da86ff5957b8" SourceId="1" SourceUrl="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd9" />

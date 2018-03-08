@@ -91,7 +91,8 @@ namespace KiiniHelp
                                 break;
                         }
                     }
-                ObtenerMenuPublico(6, 6 != 0);
+                if (Request.Params["userTipe"] != null)
+                    ObtenerMenuPublico(6, 6 != 0);
             }
             catch (Exception ex)
             {

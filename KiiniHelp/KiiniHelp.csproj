@@ -221,6 +221,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Images\orderedList2.png" />
     <Content Include="Publico\Consultas\FrmPreviewConsulta.aspx" />
+    <Content Include="Publico\FrmBusqueda.aspx" />
     <Content Include="Publico\FrmCategoria.aspx" />
     <Content Include="Publico\FrmConsulta.aspx" />
     <Content Include="Publico\FrmServiceArea.aspx" />
@@ -276,6 +277,10 @@
     <Content Include="assets\fonts\ProximaNova-Reg.ttf" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuarioAgente.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperTicketEnAtencion1.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperBusquedaArbolAcceso.datasource" />
+    <None Include="Service References\ServiceArbolAcceso\ServiceArbolAcceso15.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceDashboard\ServiceDashboards.disco" />
     <None Include="Service References\ServiceDashboard\configuration91.svcinfo" />
     <None Include="Service References\ServiceDashboard\configuration.svcinfo" />
@@ -288,11 +293,13 @@
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
+    <Content Include="UserControls\Consultas\UcBusqueda.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
+    <Content Include="Users\FrmBusqueda.aspx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black Italic.otf" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black.otf" />
@@ -2600,6 +2607,13 @@
     <Compile Include="Publico\Consultas\FrmPreviewConsulta.aspx.designer.cs">
       <DependentUpon>FrmPreviewConsulta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Publico\FrmBusqueda.aspx.cs">
+      <DependentUpon>FrmBusqueda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Publico\FrmBusqueda.aspx.designer.cs">
+      <DependentUpon>FrmBusqueda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Publico\FrmCategoria.aspx.cs">
       <DependentUpon>FrmCategoria.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2893,6 +2907,13 @@
     </Compile>
     <Compile Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx.designer.cs">
       <DependentUpon>UcAltaUsuarioRapida.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultas\UcBusqueda.ascx.cs">
+      <DependentUpon>UcBusqueda.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Consultas\UcBusqueda.ascx.designer.cs">
+      <DependentUpon>UcBusqueda.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Consultas\UcConsultaCatalogos.ascx.cs">
       <DependentUpon>UcConsultaCatalogos.ascx</DependentUpon>
@@ -3243,6 +3264,13 @@
     </Compile>
     <Compile Include="FrmCloseWindow.aspx.designer.cs">
       <DependentUpon>FrmCloseWindow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\FrmBusqueda.aspx.cs">
+      <DependentUpon>FrmBusqueda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\FrmBusqueda.aspx.designer.cs">
+      <DependentUpon>FrmBusqueda.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\General\FrmMisTickets.aspx.cs">
       <DependentUpon>FrmMisTickets.aspx</DependentUpon>

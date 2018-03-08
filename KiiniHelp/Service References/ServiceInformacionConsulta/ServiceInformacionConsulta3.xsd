@@ -57,7 +57,9 @@
       <xs:element minOccurs="0" name="SlaEstimadoTicket" nillable="true" type="tns:SlaEstimadoTicket" />
       <xs:element minOccurs="0" name="TicketAsignacion" nillable="true" type="tns:ArrayOfTicketAsignacion" />
       <xs:element minOccurs="0" name="TicketConversacion" nillable="true" type="tns:ArrayOfTicketConversacion" />
+      <xs:element minOccurs="0" name="TicketCorreo" nillable="true" type="tns:ArrayOfTicketCorreo" />
       <xs:element minOccurs="0" name="TicketEstatus" nillable="true" type="tns:ArrayOfTicketEstatus" />
+      <xs:element minOccurs="0" name="TicketEvento" nillable="true" type="tns:ArrayOfTicketEvento" />
       <xs:element minOccurs="0" name="TicketGrupoUsuario" nillable="true" type="tns:ArrayOfTicketGrupoUsuario" />
       <xs:element minOccurs="0" name="TiempoEspera" nillable="true" type="xs:string" />
       <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoArbolAcceso" nillable="true" type="q12:TipoArbolAcceso" />
@@ -107,22 +109,71 @@
       <xs:element minOccurs="0" name="IdTicket" type="xs:int" />
       <xs:element minOccurs="0" name="IdUsuarioMovimiento" type="xs:int" />
       <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
+      <xs:element minOccurs="0" name="TicketEventoEstatus" nillable="true" type="tns:ArrayOfTicketEventoEstatus" />
       <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="Usuario" nillable="true" type="q21:Usuario" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="TicketEstatus" nillable="true" type="tns:TicketEstatus" />
-  <xs:complexType name="ArrayOfTicketAsignacion">
+  <xs:complexType name="ArrayOfTicketEventoEstatus">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketAsignacion" nillable="true" type="tns:TicketAsignacion" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketEventoEstatus" nillable="true" type="tns:TicketEventoEstatus" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfTicketAsignacion" nillable="true" type="tns:ArrayOfTicketAsignacion" />
+  <xs:element name="ArrayOfTicketEventoEstatus" nillable="true" type="tns:ArrayOfTicketEventoEstatus" />
+  <xs:complexType name="TicketEventoEstatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FechaHora" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IdTicketEstatus" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTicketEvento" type="xs:long" />
+      <xs:element minOccurs="0" name="TicketEstatus" nillable="true" type="tns:TicketEstatus" />
+      <xs:element minOccurs="0" name="TicketEvento" nillable="true" type="tns:TicketEvento" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TicketEventoEstatus" nillable="true" type="tns:TicketEventoEstatus" />
+  <xs:complexType name="TicketEvento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FechaHora" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IdTicket" type="xs:int" />
+      <xs:element minOccurs="0" name="IdUsuarioRealizo" type="xs:int" />
+      <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
+      <xs:element minOccurs="0" name="TicketEventoAsignacion" nillable="true" type="tns:ArrayOfTicketEventoAsignacion" />
+      <xs:element minOccurs="0" name="TicketEventoConversacion" nillable="true" type="tns:ArrayOfTicketEventoConversacion" />
+      <xs:element minOccurs="0" name="TicketEventoEstatus" nillable="true" type="tns:ArrayOfTicketEventoEstatus" />
+      <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="Usuario" nillable="true" type="q22:Usuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TicketEvento" nillable="true" type="tns:TicketEvento" />
+  <xs:complexType name="ArrayOfTicketEventoAsignacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketEventoAsignacion" nillable="true" type="tns:TicketEventoAsignacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTicketEventoAsignacion" nillable="true" type="tns:ArrayOfTicketEventoAsignacion" />
+  <xs:complexType name="TicketEventoAsignacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FechaHora" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IdTicketAsignacion" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTicketEvento" type="xs:long" />
+      <xs:element minOccurs="0" name="TicketAsignacion" nillable="true" type="tns:TicketAsignacion" />
+      <xs:element minOccurs="0" name="TicketEvento" nillable="true" type="tns:TicketEvento" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TicketEventoAsignacion" nillable="true" type="tns:TicketEventoAsignacion" />
   <xs:complexType name="TicketAsignacion">
     <xs:sequence>
       <xs:element minOccurs="0" name="Comentarios" nillable="true" type="xs:string" />
-      <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusAsignacion" nillable="true" type="q22:EstatusAsignacion" />
+      <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusAsignacion" nillable="true" type="q23:EstatusAsignacion" />
       <xs:element minOccurs="0" name="FechaAsignacion" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IdEstatusAsignacion" type="xs:int" />
@@ -130,14 +181,77 @@
       <xs:element minOccurs="0" name="IdUsuarioAsignado" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="IdUsuarioAsigno" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
-      <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioAsignado" nillable="true" type="q23:Usuario" />
-      <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioAsigno" nillable="true" type="q24:Usuario" />
+      <xs:element minOccurs="0" name="TicketEventoAsignacion" nillable="true" type="tns:ArrayOfTicketEventoAsignacion" />
+      <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioAsignado" nillable="true" type="q24:Usuario" />
+      <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioAsigno" nillable="true" type="q25:Usuario" />
       <xs:element minOccurs="0" name="Visto" type="xs:boolean" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="TicketAsignacion" nillable="true" type="tns:TicketAsignacion" />
+  <xs:complexType name="ArrayOfTicketEventoConversacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketEventoConversacion" nillable="true" type="tns:TicketEventoConversacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTicketEventoConversacion" nillable="true" type="tns:ArrayOfTicketEventoConversacion" />
+  <xs:complexType name="TicketEventoConversacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FechaHora" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IdTicketConversacion" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTicketEvento" type="xs:long" />
+      <xs:element minOccurs="0" name="TicketConversacion" nillable="true" type="tns:TicketConversacion" />
+      <xs:element minOccurs="0" name="TicketEvento" nillable="true" type="tns:TicketEvento" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TicketEventoConversacion" nillable="true" type="tns:TicketEventoConversacion" />
+  <xs:complexType name="TicketConversacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConversacionArchivo" nillable="true" type="tns:ArrayOfConversacionArchivo" />
+      <xs:element minOccurs="0" name="FechaGeneracion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaLectura" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTicket" type="xs:int" />
+      <xs:element minOccurs="0" name="IdUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="Leido" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Privado" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
+      <xs:element minOccurs="0" name="TicketEventoConversacion" nillable="true" type="tns:ArrayOfTicketEventoConversacion" />
+      <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="Usuario" nillable="true" type="q26:Usuario" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TicketConversacion" nillable="true" type="tns:TicketConversacion" />
+  <xs:complexType name="ArrayOfConversacionArchivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConversacionArchivo" nillable="true" type="tns:ConversacionArchivo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfConversacionArchivo" nillable="true" type="tns:ArrayOfConversacionArchivo" />
+  <xs:complexType name="ConversacionArchivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Archivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTicketConversacion" type="xs:int" />
+      <xs:element minOccurs="0" name="TicketConversacion" nillable="true" type="tns:TicketConversacion" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ConversacionArchivo" nillable="true" type="tns:ConversacionArchivo" />
+  <xs:complexType name="ArrayOfTicketAsignacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketAsignacion" nillable="true" type="tns:TicketAsignacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTicketAsignacion" nillable="true" type="tns:ArrayOfTicketAsignacion" />
   <xs:complexType name="SlaEstimadoTicket">
     <xs:sequence>
       <xs:element minOccurs="0" name="Dias" nillable="true" type="xs:decimal" />
@@ -191,42 +305,29 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfTicketConversacion" nillable="true" type="tns:ArrayOfTicketConversacion" />
-  <xs:complexType name="TicketConversacion">
+  <xs:complexType name="ArrayOfTicketCorreo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ConversacionArchivo" nillable="true" type="tns:ArrayOfConversacionArchivo" />
-      <xs:element minOccurs="0" name="FechaGeneracion" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="FechaLectura" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketCorreo" nillable="true" type="tns:TicketCorreo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTicketCorreo" nillable="true" type="tns:ArrayOfTicketCorreo" />
+  <xs:complexType name="TicketCorreo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Correo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IdTicket" type="xs:int" />
-      <xs:element minOccurs="0" name="IdUsuario" type="xs:int" />
-      <xs:element minOccurs="0" name="Leido" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Privado" nillable="true" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />
       <xs:element minOccurs="0" name="Ticket" nillable="true" type="tns:Ticket" />
-      <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="Usuario" nillable="true" type="q25:Usuario" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
-  <xs:element name="TicketConversacion" nillable="true" type="tns:TicketConversacion" />
-  <xs:complexType name="ArrayOfConversacionArchivo">
+  <xs:element name="TicketCorreo" nillable="true" type="tns:TicketCorreo" />
+  <xs:complexType name="ArrayOfTicketEvento">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ConversacionArchivo" nillable="true" type="tns:ConversacionArchivo" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicketEvento" nillable="true" type="tns:TicketEvento" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfConversacionArchivo" nillable="true" type="tns:ArrayOfConversacionArchivo" />
-  <xs:complexType name="ConversacionArchivo">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Archivo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="IdTicketConversacion" type="xs:int" />
-      <xs:element minOccurs="0" name="TicketConversacion" nillable="true" type="tns:TicketConversacion" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="ConversacionArchivo" nillable="true" type="tns:ConversacionArchivo" />
+  <xs:element name="ArrayOfTicketEvento" nillable="true" type="tns:ArrayOfTicketEvento" />
   <xs:complexType name="ArrayOfPreTicket">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="PreTicket" nillable="true" type="tns:PreTicket" />
@@ -235,7 +336,7 @@
   <xs:element name="ArrayOfPreTicket" nillable="true" type="tns:ArrayOfPreTicket" />
   <xs:complexType name="PreTicket">
     <xs:sequence>
-      <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q26:ArbolAcceso" />
+      <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ArbolAcceso" nillable="true" type="q27:ArbolAcceso" />
       <xs:element minOccurs="0" name="ClaveRegistro" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FechaHora" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
@@ -243,8 +344,8 @@
       <xs:element minOccurs="0" name="IdUsuarioAtendio" type="xs:int" />
       <xs:element minOccurs="0" name="IdUsuarioSolicito" type="xs:int" />
       <xs:element minOccurs="0" name="Observaciones" nillable="true" type="xs:string" />
-      <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioLevanta" nillable="true" type="q27:Usuario" />
-      <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioSolicito" nillable="true" type="q28:Usuario" />
+      <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioLevanta" nillable="true" type="q28:Usuario" />
+      <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioSolicito" nillable="true" type="q29:Usuario" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />

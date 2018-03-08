@@ -42,7 +42,7 @@ namespace KiiniHelp.ServiceInformacionConsulta {
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.InformacionConsulta> ObtenerConsulta(string descripcion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/RateConsulta", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/RateConsultaResponse")]
-        void RateConsulta(int idConsulta, int idUsuario, bool meGusta);
+        void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/HabilitarInformacion", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/HabilitarInformacionResponse")]
         void HabilitarInformacion(int idInformacion, bool habilitado);
@@ -103,8 +103,8 @@ namespace KiiniHelp.ServiceInformacionConsulta {
             return base.Channel.ObtenerConsulta(descripcion);
         }
         
-        public void RateConsulta(int idConsulta, int idUsuario, bool meGusta) {
-            base.Channel.RateConsulta(idConsulta, idUsuario, meGusta);
+        public void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta) {
+            base.Channel.RateConsulta(idArbol, idConsulta, idUsuario, meGusta);
         }
         
         public void HabilitarInformacion(int idInformacion, bool habilitado) {
