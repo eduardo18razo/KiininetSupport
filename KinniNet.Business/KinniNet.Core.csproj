@@ -42,8 +42,8 @@
       <HintPath>..\packages\EAGetMail.4.6.5.1\lib\net40\EAGetMail40.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EASendMail40, Version=7.3.1.2, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
-      <HintPath>..\..\Kiininet CEP\KinniNet.Business\bin\Debug\EASendMail40.dll</HintPath>
+    <Reference Include="EASendMail40, Version=7.3.1.9, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
+      <HintPath>..\packages\EASendMail.7.3.1.9\lib\net40\EASendMail40.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

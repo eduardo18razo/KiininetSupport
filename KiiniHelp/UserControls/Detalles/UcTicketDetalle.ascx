@@ -145,13 +145,13 @@
                                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCambiarAsignar" AutoPostBack="True" OnSelectedIndexChanged="ddlCambiarAsignar_OnSelectedIndexChanged" />
                                         <asp:LinkButton runat="server" ID="lnkBtndeshacer" CssClass="pe-icon pe-7s-lock icon" OnClick="lnkBtndeshacer_OnClick" />
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-3 col-sm-3" >
+                                    <div class="form-group col-lg-3 col-md-3 col-sm-3">
                                         <div class="form-group" runat="server" id="divUsuariosAsignacion" visible="False">
                                             <asp:Label runat="server" Text="Usuario" />
                                             <tc:RadDropDownTree runat="server" CssClass="form-control" ID="ddlUsuarioAsignacion" AutoPostBack="True" RenderMode="Lightweight" ExpandNodeOnSingleClick="true" CheckNodeOnClick="False"
                                                 DefaultMessage="-" EnableFiltering="True" OnClientEntryAdding="OnClientEntryAdding" OnEntriesAdded="ddlUsuarioAsignacion_OnEntriesAdded">
                                                 <DropDownSettings Width="350px" CloseDropDownOnSelection="True" />
-                                                <ButtonSettings ShowClear="False" ></ButtonSettings>
+                                                <ButtonSettings ShowClear="False"></ButtonSettings>
                                                 <FilterSettings Filter="Contains" Highlight="Matches" EmptyMessage="Escribir nombre" FilterTemplate="ByContent"></FilterSettings>
                                             </tc:RadDropDownTree>
                                         </div>
@@ -195,9 +195,11 @@
                                         <asp:ListItem Text="Eventos" Value="2"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionTodos" Text="Todas" CssClass="selectConver" OnCheckedChanged="rbtnConversacionTodos_OnCheckedChanged" Checked="True" />
-                                <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionPublico" Text="Pública" CssClass="selectConver" OnCheckedChanged="rbtnConversacionPublico_OnCheckedChanged" />
-                                <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionPrivado" Text="Interna" CssClass="selectConver" OnCheckedChanged="rbtnConversacionPrivado_OnCheckedChanged" />
+                                <div runat="server" ID="divtabHistorial">
+                                    <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionTodos" Text="Todas" CssClass="selectConver" OnCheckedChanged="rbtnConversacionTodos_OnCheckedChanged" Checked="True" />
+                                    <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionPublico" Text="Pública" CssClass="selectConver" OnCheckedChanged="rbtnConversacionPublico_OnCheckedChanged" />
+                                    <asp:RadioButton runat="server" GroupName="tipoConversacionPreview" AutoPostBack="True" ID="rbtnConversacionPrivado" Text="Interna" CssClass="selectConver" OnCheckedChanged="rbtnConversacionPrivado_OnCheckedChanged" />
+                                </div>
                             </div>
 
                             <div class="row margin-top-5" runat="server" id="divHistorial">

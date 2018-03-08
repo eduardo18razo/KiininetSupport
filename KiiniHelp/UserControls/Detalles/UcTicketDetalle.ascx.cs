@@ -732,11 +732,13 @@ namespace KiiniHelp.UserControls.Detalles
                 if (ddlHistorial.SelectedValue == "1")
                 {
                     divHistorial.Visible = true;
+                    divtabHistorial.Visible = true;
                     divEventos.Visible = false;
                 }
                 else
                 {
                     divHistorial.Visible = false;
+                    divtabHistorial.Visible = false;
                     divEventos.Visible = true;
                 }
             }

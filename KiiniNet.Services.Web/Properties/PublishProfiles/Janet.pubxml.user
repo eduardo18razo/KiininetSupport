@@ -10,49 +10,49 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/EAGetMail40.dll">
-      <publishTime>03/05/2018 12:00:01</publishTime>
+      <publishTime>03/08/2018 12:40:16</publishTime>
     </File>
     <File Include="bin/EASendMail40.dll">
-      <publishTime>01/18/2018 12:07:12</publishTime>
+      <publishTime>03/08/2018 12:40:23</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
       <publishTime>11/08/2017 15:24:33</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>03/05/2018 12:38:20</publishTime>
+      <publishTime>03/08/2018 11:50:35</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>03/05/2018 12:38:20</publishTime>
+      <publishTime>03/08/2018 11:50:35</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.dll">
-      <publishTime>03/06/2018 13:16:42</publishTime>
+      <publishTime>03/08/2018 12:40:34</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.pdb">
-      <publishTime>03/06/2018 13:16:42</publishTime>
+      <publishTime>03/08/2018 12:40:34</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.dll">
-      <publishTime>03/06/2018 13:16:44</publishTime>
+      <publishTime>03/08/2018 12:40:34</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.pdb">
-      <publishTime>03/06/2018 13:16:44</publishTime>
+      <publishTime>03/08/2018 12:40:34</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>03/05/2018 12:38:24</publishTime>
+      <publishTime>03/08/2018 11:50:38</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>03/05/2018 12:38:24</publishTime>
+      <publishTime>03/08/2018 11:50:38</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.dll">
-      <publishTime>03/06/2018 13:16:36</publishTime>
+      <publishTime>03/08/2018 12:40:33</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.pdb">
-      <publishTime>03/06/2018 13:16:36</publishTime>
+      <publishTime>03/08/2018 12:40:33</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.dll">
-      <publishTime>03/05/2018 12:38:26</publishTime>
+      <publishTime>03/08/2018 11:50:38</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.pdb">
-      <publishTime>03/05/2018 12:38:26</publishTime>
+      <publishTime>03/08/2018 11:50:38</publishTime>
     </File>
     <File Include="ServiceArbolAcceso.svc">
       <publishTime>12/13/2017 13:33:17</publishTime>
@@ -175,7 +175,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:33:17</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/06/2018 13:17:33</publishTime>
+      <publishTime>03/08/2018 12:41:07</publishTime>
     </File>
   </ItemGroup>
 </Project>

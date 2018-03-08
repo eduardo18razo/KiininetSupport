@@ -57,7 +57,7 @@
         }
         function search(evt) {
             if (evt.charCode == 13) {
-                this.__doPostBack(this.name, 'OnKeyPress');
+                this.__doPostBack('Buscador', 'OnKeyPress');
                 evt.preventDefault();
                 return false; // returning false will prevent the event from bubbling up.
             }
@@ -114,7 +114,7 @@
                 </h1>
             </div>
             <div class="topbar bg_w_header">
-                <div class="search-container" runat="server" visible="false">
+                <div class="search-container" runat="server" visible="True">
                     <div id="main-search" style="padding-top: 20px;">
                         <i id="main-search-toggle" class="fa fa-search icon"></i>
                         <div id="main_search_input_wrapper" class="main_search_input_wrapper">

@@ -225,10 +225,9 @@
                                             <asp:Label runat="server" Text="Tickets" CssClass="TitulosAzul" />
                                         </div>
                                     </div>
-
                                     <div class="row borderbootom padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Todos"
+                                            <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right"  ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Todos"
                                                 ID="btnFiltroTodos" EnableEmbeddedSkins="False"
                                                 CommandArgument="Todos" Style="text-align: left" OnClick="btnFiltro_OnClick">
                                                 <ContentTemplate>
@@ -308,7 +307,6 @@
                                             </tc:RadButton>
                                         </div>
                                     </div>
-
                                 </div>
                             </section>
                         </div>
