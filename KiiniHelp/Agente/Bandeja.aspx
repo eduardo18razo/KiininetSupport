@@ -34,7 +34,7 @@
             border-bottom: 2px solid #ddd !important;
         }
 
-
+        
 
     </style>
 </asp:Content>
@@ -45,6 +45,7 @@
                 <asp:HiddenField runat="server" ID="hfTicketActivo" />
                 <asp:HiddenField runat="server" ID="hfFiltroSla" Value="false" />
                 <asp:HiddenField runat="server" ID="fhFiltroSinAsignar" Value="false" />
+                <asp:HiddenField runat="server" ID="hfResueltos" Value="false" />
                 <div>
                     <div class="row">
                         <div class="col-lg-10 col-md-8 col-sm-8 no-padding-right">
@@ -232,7 +233,7 @@
                                                 CommandArgument="Todos" Style="text-align: left" OnClick="btnFiltro_OnClick">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Todos" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsAbiertos" Style="text-align: right">0</asp:Label>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsTodos" Style="text-align: right"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -244,7 +245,7 @@
                                                 CommandArgument="Abierto" Style="text-align: left" OnClick="btnFiltro_OnClick">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Abiertos" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsAbiertos" Style="text-align: right">0</asp:Label>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsAbiertos" Style="text-align: right"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -254,7 +255,7 @@
                                             <tc:RadButton runat="server" Text="Tickets Sin Asignar" ID="btnFiltroSinAsignar" CommandArgument="SinAsignar" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Sin asignar" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsSinAsignar" Style="text-align: right">0</asp:Label>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsSinAsignar" Style="text-align: right"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -264,7 +265,7 @@
                                             <tc:RadButton runat="server" Text="En espera" ID="btnFiltroEspera" CommandArgument="Espera" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Pendientes" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsEspera" Style="text-align: right">2</asp:Label>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsEspera" Style="text-align: right"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -278,7 +279,7 @@
                                                         <asp:Label runat="server" Text="Recién resueltos" /><br />
                                                         <asp:Label runat="server" Text="(36hrs)" />
                                                     </div>
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsResueltos" Style="text-align: right">1000000</asp:Label>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsResueltos" Style="text-align: right"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -288,7 +289,7 @@
                                             <tc:RadButton runat="server" Text="Fuera SLA" ID="btnFueraSla" CommandArgument="FueraSla" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Fuera de SLA" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsFueraSla" Style="text-align: right">0</asp:Label>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsFueraSla" Style="text-align: right"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -296,13 +297,13 @@
 
                                     <div class="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="Recien actualizados" ID="RadButton1" CommandArgument="recienActualizados" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                            <tc:RadButton runat="server" Text="Recien actualizados" ID="btnRecienActualizados" CommandArgument="recienActualizados" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <div class="col-sm-8 col-md-8 col-lg-8 t14">
                                                         <asp:Label runat="server" Text="Recién actualizados" /><br />
                                                         <asp:Label runat="server" Text="(60min)" />
                                                     </div>
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsFueraSla" Style="text-align: right">1000000</asp:Label>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsRecienActualizados" Style="text-align: right"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>

@@ -20,3 +20,24 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\Kiini
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\obj\Debug\KiiniMaster.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniMaster\bin\EPPlus.xml
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniMaster.dll.config
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniMaster.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniMaster.pdb
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniNet.Entities.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniNet.Services.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniNet.Services.Web.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KinniNet.Business.Utils.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KinniNet.Core.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\EPPlus.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\EAGetMail40.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\EASendMail40.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KinniNet.Data.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniNet.Entities.pdb
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniNet.Services.Web.pdb
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KiiniNet.Services.pdb
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KinniNet.Business.Utils.pdb
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KinniNet.Core.pdb
+C:\Users\Janeth\Documents\git\KiiniMaster\bin\KinniNet.Data.pdb
+C:\Users\Janeth\Documents\git\KiiniMaster\obj\Debug\KiiniMaster.csprojResolveAssemblyReference.cache
+C:\Users\Janeth\Documents\git\KiiniMaster\obj\Debug\KiiniMaster.dll
+C:\Users\Janeth\Documents\git\KiiniMaster\obj\Debug\KiiniMaster.pdb

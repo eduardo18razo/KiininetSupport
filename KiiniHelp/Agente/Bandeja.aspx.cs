@@ -13,6 +13,7 @@ using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 using Telerik.Web.UI;
+using KiiniNet.Entities.Cat.Usuario;
 
 namespace KiiniHelp.Agente
 {
@@ -103,6 +104,12 @@ namespace KiiniHelp.Agente
             get { return bool.Parse(hfFiltroSla.Value); }
             set { hfFiltroSla.Value = value.ToString(); }
         }
+
+        private bool Resueltos
+        {
+            get { return bool.Parse(hfResueltos.Value); }
+            set { hfResueltos.Value = value.ToString(); }
+        }
         private List<int> EstatusFueraSla
         {
             get
@@ -145,17 +152,24 @@ namespace KiiniHelp.Agente
             {
                 if (lst == null || lst.Count <= 0) return;
                 lblTicketAbiertosHeader.Text = "Tickets Abiertos (" + lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString() + ")";
-                ((Label)btnFiltroAbierto.FindControl("lblTicketsAbiertos")).Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
 
-                ((Label)btnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
+                ((Label)btnFiltroTodos.FindControl("lblTicketsTodos")).Text = lst.Count().ToString();
+
+                ((Label)btnFiltroAbierto.FindControl("lblTicketsAbiertos")).Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
 
                 const int statusSinAsignar = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                 ((Label)btnFiltroSinAsignar.FindControl("lblTicketsSinAsignar")).Text = lst.Count(w => EstatusSinAsignar.Contains(w.EstatusTicket.Id) && w.EstatusAsignacion.Id == statusSinAsignar).ToString();
+
+
+                ((Label)btnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
 
                 ((Label)btnFiltroResuelto.FindControl("lblTicketsResueltos")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id)).ToString();
 
                 ((Label)btnFueraSla.FindControl("lblTicketsFueraSla")).Text = lst.Count(w => EstatusFueraSla.Contains(w.EstatusTicket.Id) && !w.DentroSla).ToString();
 
+                DateTime fechaInicio = DateTime.Now.AddMinutes(-60);
+
+                ((Label)btnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= fechaInicio).ToString();
             }
             catch (Exception e)
             {
@@ -197,7 +211,8 @@ namespace KiiniHelp.Agente
                         lst = lst.Where(w => w.EstatusAsignacion.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar).ToList();
                     if (FueraSla)
                         lst = lst.Where(w => !w.DentroSla).ToList();
-
+                    if (Resueltos)
+                        lst = lst.Where(w => w.FechaCambioEstatusAsignacion >= DateTime.Now.AddMinutes(-60)).ToList();
                     ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
 
                 }
@@ -214,10 +229,25 @@ namespace KiiniHelp.Agente
         {
             try
             {
+                //ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
+                //ddlGrupo.DataTextField = "Descripcion";
+                //ddlGrupo.DataValueField = "Id";
+                //ddlGrupo.DataBind();
+
+
+                /**/
+                Usuario usr = ((Usuario)Session["UserData"]);
                 ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
+                ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                ddlAgente.DataTextField = "NombreCompleto";
+                ddlAgente.DataValueField = "Id";
+                ddlAgente.DataBind();
+
+
+
 
 
             }
@@ -442,13 +472,64 @@ namespace KiiniHelp.Agente
         {
             try
             {
+                //Metodos.LimpiarCombo(ddlAgente);
+                //if (ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                //    return;
+                //ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(int.Parse(ddlGrupo.SelectedValue), true);
+                //ddlAgente.DataTextField = "NombreCompleto";
+                //ddlAgente.DataValueField = "Id";
+                //ddlAgente.DataBind();
+
+
                 Metodos.LimpiarCombo(ddlAgente);
                 if (ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    return;
-                ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(int.Parse(ddlGrupo.SelectedValue), true);
-                ddlAgente.DataTextField = "NombreCompleto";
-                ddlAgente.DataValueField = "Id";
-                ddlAgente.DataBind();
+                {
+                    ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                    ddlAgente.DataTextField = "NombreCompleto";
+                    ddlAgente.DataValueField = "Id";
+                    ddlAgente.DataBind();
+                }
+                else
+                {
+                    GrupoUsuario gpo = _servicioGrupos.ObtenerGrupoUsuarioById(int.Parse(ddlGrupo.SelectedValue));
+                    if (gpo != null)
+                    {
+                        ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(gpo.Id, true);
+                        ddlAgente.DataTextField = "NombreCompleto";
+                        ddlAgente.DataValueField = "Id";
+                        ddlAgente.DataBind();
+                        Usuario usr = ((Usuario)Session["UserData"]);
+                        switch (gpo.TieneSupervisor)
+                        {
+                            case true:
+                                if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == gpo.Id && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor))
+                                {
+                                    ddlAgente.Enabled = true;
+                                }
+                                else
+                                {
+                                    ddlAgente.SelectedValue = usr.Id.ToString();
+                                    ddlAgente.Enabled = false;
+                                }
+                                break;
+                            case false:
+                                if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == gpo.Id && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel))
+                                {
+                                    ddlAgente.Enabled = true;
+                                }
+                                else
+                                {
+                                    ddlAgente.SelectedValue = usr.Id.ToString();
+                                    ddlAgente.Enabled = false;
+                                }
+                                break;
+                        }
+                    }
+                }
+
+
+
+
                 ObtenerTicketsPage();
 
             }
@@ -467,6 +548,11 @@ namespace KiiniHelp.Agente
         {
             try
             {
+                if (ddlAgente.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                {
+                    ObtenerTicketsPage();
+                    return;
+                }
                 ObtenerTicketsPage();
             }
             catch (Exception ex)
@@ -679,31 +765,43 @@ namespace KiiniHelp.Agente
                         case "Abierto":
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusAbierto;
                             break;
                         case "Espera":
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusEspera;
                             break;
                         case "SinAsignar":
                             SinAsignar = true;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusSinAsignar;
                             break;
                         case "Resuelto":
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusResuletos;
                             break;
                         case "FueraSla":
                             SinAsignar = false;
                             FueraSla = true;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusFueraSla;
+                            break;
+                        case "recienActualizados":
+                            SinAsignar = false;
+                            FueraSla = false;
+                            Resueltos = true;
+                            EstatusSeleccionado = EstatusResuletos;
                             break;
                         default:
                             SinAsignar = false;
                             FueraSla = false;
+                            Resueltos = false;
                             EstatusSeleccionado = EstatusAbierto;
                             break;
                     }

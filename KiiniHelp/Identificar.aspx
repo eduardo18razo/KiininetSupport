@@ -6,12 +6,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Kiininet CPX</title>
-    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
-
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Kiininet CPX</title>
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
 
     <link rel="stylesheet" href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="assets/css/styles_movil.css" />
 
     <link rel="stylesheet" href="assets/css/divs.css" />
-    <link rel="stylesheet" href="assets/css/checkBox.css" />
+   <%-- <link rel="stylesheet" href="assets/css/checkBox.css" />
 
-    <link rel="stylesheet" href="assets/css/sumoselect.css" />
+    <link rel="stylesheet" href="assets/css/sumoselect.css" />--%>
 
     <link rel="stylesheet" href="assets/css/controls.css" />
-    <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
-    <link rel="stylesheet" href="assets/css/elusive-icons.css" />
+    <%--<link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
+    <link rel="stylesheet" href="assets/css/elusive-icons.css" />--%>
 
     <link rel="stylesheet" href="assets/css/modales_movil.css" />
     <link rel="stylesheet" href="assets/css/main_movil.css" />
@@ -152,7 +152,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
-                                <h1 class="form-box-heading2"><span>Recuperar Contraseña </span></h1>
+                                <h1 class="form-box-heading2">
+                                    <span>Recuperar Contraseña </span>
+                                </h1>
                                 <div class="form-box-inner2">
                                     <h2 class="title">¿Olvidaste tu contraseña?</h2>
                                     <div class="row">

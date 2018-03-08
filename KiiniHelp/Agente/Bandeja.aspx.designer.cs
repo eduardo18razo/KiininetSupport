@@ -40,6 +40,15 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.HiddenField fhFiltroSinAsignar;
         
         /// <summary>
+        /// Control hfResueltos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfResueltos;
+        
+        /// <summary>
         /// Control lblTicketAbiertosHeader.
         /// </summary>
         /// <remarks>
@@ -184,13 +193,13 @@ namespace KiiniHelp.Agente {
         protected global::Telerik.Web.UI.RadButton btnFueraSla;
         
         /// <summary>
-        /// Control RadButton1.
+        /// Control btnRecienActualizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton1;
+        protected global::Telerik.Web.UI.RadButton btnRecienActualizados;
         
         /// <summary>
         /// Control UcDetalleTicket.

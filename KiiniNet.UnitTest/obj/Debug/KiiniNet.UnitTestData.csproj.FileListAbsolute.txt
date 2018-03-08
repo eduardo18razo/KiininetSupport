@@ -14,6 +14,9 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTestData.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EAGetMail40.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EPPlus.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EPPlus.xml
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KiiniNet.UnitTest.dll.config
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KiiniNet.UnitTest.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KiiniNet.UnitTest.pdb
@@ -22,20 +25,12 @@ C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KinniNet.Business.Util
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KinniNet.Core.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KinniNet.Data.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\EPPlus.dll
-C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\Microsoft.Office.Interop.Word.dll
-C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\Microsoft.Office.Interop.Excel.dll
-C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
-C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\office.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\EAGetMail40.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\EASendMail40.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KiiniNet.Entities.pdb
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KinniNet.Business.Utils.pdb
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KinniNet.Core.pdb
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\KinniNet.Data.pdb
-C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\bin\Debug\EPPlus.xml
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTestData.csprojResolveAssemblyReference.cache
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.dll
 C:\Users\Janeth\Documents\git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EAGetMail40.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EPPlus.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EPPlus.xml
