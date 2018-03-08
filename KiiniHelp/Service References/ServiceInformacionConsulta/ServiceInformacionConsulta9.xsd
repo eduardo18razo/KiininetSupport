@@ -108,6 +108,7 @@
   <xs:element name="RateConsulta">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="idArbol" type="xs:int" />
         <xs:element minOccurs="0" name="idConsulta" type="xs:int" />
         <xs:element minOccurs="0" name="idUsuario" type="xs:int" />
         <xs:element minOccurs="0" name="meGusta" type="xs:boolean" />

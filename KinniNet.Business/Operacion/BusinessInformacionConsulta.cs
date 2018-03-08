@@ -56,7 +56,7 @@ namespace KinniNet.Core.Operacion
 
         private int ObtenerTipoDocumento(string s)
         {
-            int result = 0;
+            int result;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
@@ -276,7 +276,7 @@ namespace KinniNet.Core.Operacion
                     IdArbolAcceso = idArbol,
                     IdTipoUsuario = idTipoUsuario,
                     IdUsuario = idUsuario.HasValue ? idUsuario : null,
-                    IdUbicacion = idUsuario.HasValue ? new BusinessUbicacion().ObtenerUbicacionUsuario(new BusinessUsuarios().ObtenerUsuario(int.Parse(idUsuario.ToString())).IdUbicacion).Id : (int?) null,
+                    IdUbicacion = idUsuario.HasValue ? new BusinessUbicacion().ObtenerUbicacionUsuario(new BusinessUsuarios().ObtenerUsuario(int.Parse(idUsuario.ToString())).IdUbicacion).Id : (int?)null,
                     IdOrganizacion = idUsuario.HasValue ? new BusinessOrganizacion().ObtenerOrganizacionUsuario(new BusinessUsuarios().ObtenerUsuario(int.Parse(idUsuario.ToString())).IdOrganizacion).Id : (int?)null,
                     HitGrupoUsuario = new List<HitGrupoUsuario>(),
                     FechaHoraAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture)
@@ -315,7 +315,7 @@ namespace KinniNet.Core.Operacion
                 if (hit.Id == 0)
                     db.HitConsulta.AddObject(hit);
                 db.SaveChanges();
-                
+
             }
             catch (Exception ex)
             {
@@ -327,29 +327,51 @@ namespace KinniNet.Core.Operacion
             }
         }
 
-        public void RateConsulta(int idConsulta, int idUsuario, bool meGusta)
+        public void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
                 InformacionConsultaRate rate = db.InformacionConsultaRate.SingleOrDefault(s => s.IdInformacionConsulta == idConsulta && s.IdUsuario == idUsuario);
-                if (rate == null)
+                ArbolAcceso arbol = db.ArbolAcceso.SingleOrDefault(s => s.Id == idArbol);
+                if (arbol != null)
                 {
-                    rate = new InformacionConsultaRate
+                    if (rate == null)
                     {
-                        IdInformacionConsulta = idConsulta,
-                        IdUsuario = idUsuario,
-                        MeGusta = meGusta
-                    };
-                    rate.NoMeGusta = !rate.MeGusta;
-                    rate.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                    db.InformacionConsultaRate.AddObject(rate);
-                }
-                else
-                {
-                    rate.MeGusta = meGusta;
-                    rate.NoMeGusta = !rate.MeGusta;
-                    rate.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                        rate = new InformacionConsultaRate
+                        {
+                            IdInformacionConsulta = idConsulta,
+                            IdUsuario = idUsuario,
+                            MeGusta = meGusta
+                        };
+                        rate.NoMeGusta = !rate.MeGusta;
+                        rate.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),
+                            "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                        db.InformacionConsultaRate.AddObject(rate);
+                        if (meGusta)
+                            arbol.MeGusta++;
+                        else
+                            arbol.MeGusta++;
+                    }
+                    else
+                    {
+                        if (meGusta != rate.MeGusta)
+                        {
+                            rate.MeGusta = meGusta;
+                            rate.NoMeGusta = !rate.MeGusta;
+                            rate.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                            if (meGusta)
+                            {
+                                arbol.MeGusta++;
+                                arbol.NoMeGusta--;
+                            }
+                            else
+                            {
+                                arbol.MeGusta--;
+                                arbol.NoMeGusta++;
+                            }
+                        }
+                    }
                 }
                 db.SaveChanges();
             }

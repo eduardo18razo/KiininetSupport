@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Puestos:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" placeholder="Busca con una palabra clave..." />
+                                        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
                                         <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
@@ -69,7 +69,7 @@
                             <div class="table-responsive">
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
                                     OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="15"
-                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="5" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                     <Columns>
                                         <asp:TemplateField HeaderText="TU" HeaderStyle-Width="25px">
@@ -80,22 +80,13 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Puesto" HeaderStyle-Width="60%">
+                                        <asp:TemplateField HeaderText="Puesto" HeaderStyle-Width="89%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto " title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="15%">
-                                            <ItemTemplate>
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="15%">
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -104,6 +95,18 @@
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled" id="hiddenEnabled">
+                                                    <li>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        
                                     </Columns>
                                 </asp:GridView>
                             </div>

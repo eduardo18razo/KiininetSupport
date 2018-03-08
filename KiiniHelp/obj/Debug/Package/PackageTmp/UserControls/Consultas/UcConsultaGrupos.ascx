@@ -71,11 +71,8 @@
                 </div>
             </section>
 
-
-
             <section class="module module-headings">
                 <div class="module-inner">
-
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
@@ -93,34 +90,38 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="10%">
+
+                                        <asp:TemplateField HeaderText="Rol" HeaderStyle-Width="19%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("TipoGrupo.Descripcion")%>'><%# Eval("TipoGrupo.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="30%">
+                                        <asp:TemplateField HeaderText="Grupo" HeaderStyle-Width="40%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="20%">
+                                        <asp:TemplateField HeaderText="Supervisor" HeaderStyle-Width="10%">
                                             <ItemTemplate>
                                                 <label><%# (bool) Eval("TieneSupervisor") ? "SI" : "NO" %></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="7%">
+                                        <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="10%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
+                                                <asp:LinkButton runat="server" Text="Ver" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="7%">
+
+                                        <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" Text="Ver" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -129,16 +130,17 @@
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Usuarios" HeaderStyle-Width="8%">
+
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleUsuario" OnClick="lnkBtnDetalleUsuario_OnClick"></asp:LinkButton>
+                                                <ul class="list list-unstyled" id="hiddenEnabled">
+                                                    <li>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' ID="chkHabilitado" OnCheckedChanged="OnCheckedChanged" />
+                                                    </li>
+                                                </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Opciones" HeaderStyle-Width="8%">
-                                            <ItemTemplate>
-                                                <asp:LinkButton runat="server" Text="Ir" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+
                                     </Columns>
                                 </asp:GridView>
 
@@ -147,8 +149,6 @@
                     </div>
                 </div>
             </section>
-
-
 
             <script type="text/javascript">
                 $(function () {
@@ -159,7 +159,6 @@
                 prm.add_endRequest(function () {
                     hidden('#' + "<%=tblResults.ClientID %>");
                 });
-
             </script>
         </ContentTemplate>
 
@@ -185,7 +184,7 @@
     <div class="modal fade" id="modalDetalleGrupoUsuario" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog" style="width: 50%;">
                     <div class="modal-content">
                         <uc:UcDetalleGrupoUsuarios runat="server" ID="ucDetalleGrupoUsuarios" />
                     </div>
@@ -198,7 +197,7 @@
     <div class="modal fade" id="modalDetalleGrupoOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog" style="width: 70%;">
                     <div class="modal-content">
                         <uc:UcDetalleGrupoOpciones runat="server" ID="ucDetalleGrupoOpciones" />
                     </div>

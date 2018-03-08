@@ -48,6 +48,19 @@ namespace KiiniHelp
             }
         }
 
+        private void Buscador()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(main_search_input.Text.Trim()))
+                    throw new Exception("Debe espicificar un parametro de busqueda");
+                Response.Redirect("~/Publico/FrmBusqueda.aspx?w=" + main_search_input.Text.Trim());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -56,6 +69,14 @@ namespace KiiniHelp
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
                 if (UcLogCopia.Fail)
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "OpenDropLogin();", true);
+                if (IsPostBack)
+                {
+                    if (Page.Request.Params["__EVENTTARGET"] == "Buscador")
+                    {
+                        string dat = Page.Request.Params["__EVENTARGUMENT"].ToString();
+                        Buscador();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -193,5 +214,5 @@ namespace KiiniHelp
                 Alerta = _lstError;
             }
         }
-    }
+        }
 }

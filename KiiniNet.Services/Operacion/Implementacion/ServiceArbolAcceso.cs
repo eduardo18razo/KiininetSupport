@@ -439,5 +439,20 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<HelperBusquedaArbolAcceso> BusquedaGeneral(int? idUsuario, string filter, List<int> tipoUsuario, int page, int pagesize)
+        {
+            try
+            {
+                using (BusinessArbolAcceso negocio = new BusinessArbolAcceso(true))
+                {
+                    return negocio.BusquedaGeneral(idUsuario, filter, tipoUsuario, page, pagesize);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

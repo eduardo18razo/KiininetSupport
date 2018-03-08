@@ -114,13 +114,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public void RateConsulta(int idConsulta, int idUsuario, bool meGusta)
+        public void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta)
         {
             try
             {
                 using (BusinessInformacionConsulta negocio = new BusinessInformacionConsulta())
                 {
-                    negocio.RateConsulta(idConsulta, idUsuario, meGusta);
+                    negocio.RateConsulta(idArbol, idConsulta, idUsuario, meGusta);
                 }
             }
             catch (Exception ex)

@@ -24,7 +24,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Catálogos" /></h3>
                             </div>
                             <p>
-                                Texto para Catálogos
+                               Un catálogo es un conjunto de campos personalizados que se agregan como opción a los campos de los formularios.
                             </p>
 
                         </div>
@@ -88,29 +88,19 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="15%">
+                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="16%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta", "{0:d}")%>'><%# Eval("FechaAlta", "{0:d}")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="15%">
+                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="16%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion", "{0:d}")%>'><%# Eval("FechaModificacion", "{0:d}")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
-                                            <ItemTemplate>
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
-                                                    <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" Visible='<%# !(bool)Eval("Sistema") %>' data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                    </li>
-                                                </ul>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="5%">
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -121,6 +111,17 @@
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
+                                          <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled" id="hiddenEnabled">
+                                                    <li>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" Visible='<%# !(bool)Eval("Sistema") %>' data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                     </Columns>
                                 </asp:GridView>
 

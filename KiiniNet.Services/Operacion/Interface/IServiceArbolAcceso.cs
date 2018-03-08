@@ -76,5 +76,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo);
+
+        [OperationContract]
+        List<HelperBusquedaArbolAcceso> BusquedaGeneral(int? idUsuario, string filter, List<int> tipoUsuario, int page, int pagesize);
     }
 }

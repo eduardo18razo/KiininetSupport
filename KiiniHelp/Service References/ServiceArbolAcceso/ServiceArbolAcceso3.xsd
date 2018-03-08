@@ -3,6 +3,7 @@
   <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
   <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
   <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceArbolAcceso.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="ObtenerOpcionesPermitidas">
     <xs:complexType>
       <xs:sequence>
@@ -534,6 +535,24 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerArbolesAccesoTerminalByGrupoUsuarioResult" nillable="true" type="q24:ArrayOfHelperArbolAcceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaGeneral">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idUsuario" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="filter" nillable="true" type="xs:string" />
+        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="tipoUsuario" nillable="true" type="q25:ArrayOfint" />
+        <xs:element minOccurs="0" name="page" type="xs:int" />
+        <xs:element minOccurs="0" name="pagesize" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusquedaGeneralResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="BusquedaGeneralResult" nillable="true" type="q26:ArrayOfHelperBusquedaArbolAcceso" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

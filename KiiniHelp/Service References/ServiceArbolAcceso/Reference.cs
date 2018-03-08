@@ -107,6 +107,9 @@ namespace KiiniHelp.ServiceArbolAcceso {
             "", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoTerminalByGrupoUsuario" +
             "Response")]
         System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/BusquedaGeneral", ReplyAction="http://tempuri.org/IServiceArbolAcceso/BusquedaGeneralResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperBusquedaArbolAcceso> BusquedaGeneral(System.Nullable<int> idUsuario, string filter, System.Collections.Generic.List<int> tipoUsuario, int page, int pagesize);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -250,6 +253,10 @@ namespace KiiniHelp.ServiceArbolAcceso {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperArbolAcceso> ObtenerArbolesAccesoTerminalByGrupoUsuario(int idGrupo) {
             return base.Channel.ObtenerArbolesAccesoTerminalByGrupoUsuario(idGrupo);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperBusquedaArbolAcceso> BusquedaGeneral(System.Nullable<int> idUsuario, string filter, System.Collections.Generic.List<int> tipoUsuario, int page, int pagesize) {
+            return base.Channel.BusquedaGeneral(idUsuario, filter, tipoUsuario, page, pagesize);
         }
     }
 }

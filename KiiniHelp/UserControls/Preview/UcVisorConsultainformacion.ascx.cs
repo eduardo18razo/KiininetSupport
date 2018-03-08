@@ -74,10 +74,10 @@ namespace KiiniHelp.UserControls.Preview
         }
         public bool MeGusta
         {
-            get { return bool.Parse(hfEvaluacion.Value); }
+            get { return bool.Parse(hfMeGusta.Value); }
             set
             {
-                hfEvaluacion.Value = value.ToString();
+                hfMeGusta.Value = value.ToString();
                 SetLike();
             }
         }
@@ -200,7 +200,7 @@ namespace KiiniHelp.UserControls.Preview
             try
             {
                 MeGusta = true;
-                _servicioInformacion.RateConsulta(IdInformacionconsulta, ((Usuario)Session["UserData"]).Id, MeGusta);
+                _servicioInformacion.RateConsulta(IdArbol, IdInformacionconsulta, ((Usuario)Session["UserData"]).Id, MeGusta);
             }
             catch (Exception ex)
             {
@@ -218,7 +218,7 @@ namespace KiiniHelp.UserControls.Preview
             try
             {
                 MeGusta = false;
-                _servicioInformacion.RateConsulta(IdInformacionconsulta, ((Usuario)Session["UserData"]).Id, MeGusta);
+                _servicioInformacion.RateConsulta(IdArbol, IdInformacionconsulta, ((Usuario)Session["UserData"]).Id, MeGusta);
             }
             catch (Exception ex)
             {
