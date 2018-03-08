@@ -24,7 +24,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Horarios" Font-Bold="true" /></h3>
                             </div>
                             <p>
-                                Los horarios son las horas laborales específicas para cada día de la semana, se asocian a un usuario o un grupo y se crean reglas de negocio en torno a éstos. 
+                                Los horarios son el conjunto de horas laborales específicas para cada día de la semana, se asocian a un usuario o un grupo y se crean reglas de negocio en torno a éstos. 
                             </p>
                         </div>
 
@@ -73,7 +73,7 @@
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Nombre" HeaderStyle-Width="25%" ItemStyle-CssClass="altoFijo">
+                                        <asp:TemplateField HeaderText="Nombre" HeaderStyle-Width="45%" ItemStyle-CssClass="altoFijo">
                                             <ItemTemplate>
                                                 <div>
                                                     <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
@@ -81,29 +81,30 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="15%">
+                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="22%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta")%>'><%# Eval("FechaAlta")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="20%">
+                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="22%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion")%>'><%# Eval("FechaModificacion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="15%">
+
+                                        <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled" id="hiddenEnabled">
+                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Visible='<%# !(bool) Eval("Sistema") %>' Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
+                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' OnClick="btnClonar_OnClick"></asp:LinkButton>
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -113,15 +114,16 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="10%">
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenClonar">
+                                                <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
-                                                        <asp:LinkButton runat="server" Text="Clonar" CommandArgument='<%# Eval("Id")%>' OnClick="btnClonar_OnClick"></asp:LinkButton>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Visible='<%# !(bool) Eval("Sistema") %>' Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
                                     </Columns>
                                 </asp:GridView>
 

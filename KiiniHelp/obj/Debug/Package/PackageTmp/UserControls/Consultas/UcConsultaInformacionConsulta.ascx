@@ -22,7 +22,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Artículos" /></h3>
                             </div>
                             <p>
-                                Los artículos forman parte de las categorías y son contenidos tales como manuales de ayuda, fichas técnicas, etc.
+                               Los artículos forman parte de las categorías y son contenidos tales como manuales de ayuda, fichas técnicas, etc.
                             </p>
                         </div>
 
@@ -79,7 +79,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Autor" HeaderStyle-Width="20%">
+                                        <asp:TemplateField HeaderText="Autor" HeaderStyle-Width="22%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("UsuarioAlta.NombreCompleto")%>'><%# Eval("UsuarioAlta.NombreCompleto")%></label>
                                             </ItemTemplate>
@@ -97,7 +97,17 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="5%">
+                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
+                                            <ItemTemplate>
+                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
+                                                    <li>
+                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
+                                                    </li>
+                                                </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
@@ -107,15 +117,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="5%">
-                                            <ItemTemplate>
-                                                <ul class="list list-unstyled hidden" id="hiddenEditar">
-                                                    <li>
-                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"><asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> </asp:LinkButton>
-                                                    </li>
-                                                </ul>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
 

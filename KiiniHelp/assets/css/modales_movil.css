@@ -10,9 +10,9 @@
     border: 0px solid #f3f3f3;
     border-bottom-width: 2px;
     background: #fff;
-    margin-bottom:ative;
-    border-radius 10px;
-    position: rel: 4px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+    position: relative;
     background-clip: padding-box;
     /*17-11-2017*/
     margin-right: 8px;
@@ -28,7 +28,7 @@
 }
 
 
-.h22,{
+.h22{
 	font-size: 25px;
   margin-top: 0px;
   margin-bottom: 10px;
@@ -47,8 +47,9 @@
     background-position: initial;
     background-image: initial;
             background-size: initial;
-            background-repeat-x: initial;
-            background-repeat-y: initial;
+            background-repeat: initial;
+            /*background-repeat-x: initial;
+            background-repeat-y: initial;*/
             background-attachment: initial;
             background-origin: initial;
             background-clip: initial;
@@ -104,7 +105,7 @@
 }
 
 .login-section {
-    background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
+    background: url(/assets/images/backs/lost_password_movil.jpg) no-repeat fixed center;
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;

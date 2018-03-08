@@ -13,6 +13,7 @@ using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 using Telerik.Web.UI;
+using KiiniNet.Entities.Cat.Usuario;
 
 namespace KiiniHelp.Agente
 {
@@ -214,10 +215,25 @@ namespace KiiniHelp.Agente
         {
             try
             {
+                //ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
+                //ddlGrupo.DataTextField = "Descripcion";
+                //ddlGrupo.DataValueField = "Id";
+                //ddlGrupo.DataBind();
+
+
+                /**/
+                Usuario usr = ((Usuario)Session["UserData"]);
                 ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
+                ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                ddlAgente.DataTextField = "NombreCompleto";
+                ddlAgente.DataValueField = "Id";
+                ddlAgente.DataBind();
+
+
+
 
 
             }
@@ -442,13 +458,64 @@ namespace KiiniHelp.Agente
         {
             try
             {
+                //Metodos.LimpiarCombo(ddlAgente);
+                //if (ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                //    return;
+                //ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(int.Parse(ddlGrupo.SelectedValue), true);
+                //ddlAgente.DataTextField = "NombreCompleto";
+                //ddlAgente.DataValueField = "Id";
+                //ddlAgente.DataBind();
+
+
                 Metodos.LimpiarCombo(ddlAgente);
                 if (ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    return;
-                ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(int.Parse(ddlGrupo.SelectedValue), true);
-                ddlAgente.DataTextField = "NombreCompleto";
-                ddlAgente.DataValueField = "Id";
-                ddlAgente.DataBind();
+                {
+                    ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                    ddlAgente.DataTextField = "NombreCompleto";
+                    ddlAgente.DataValueField = "Id";
+                    ddlAgente.DataBind();
+                }
+                else
+                {
+                    GrupoUsuario gpo = _servicioGrupos.ObtenerGrupoUsuarioById(int.Parse(ddlGrupo.SelectedValue));
+                    if (gpo != null)
+                    {
+                        ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(gpo.Id, true);
+                        ddlAgente.DataTextField = "NombreCompleto";
+                        ddlAgente.DataValueField = "Id";
+                        ddlAgente.DataBind();
+                        Usuario usr = ((Usuario)Session["UserData"]);
+                        switch (gpo.TieneSupervisor)
+                        {
+                            case true:
+                                if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == gpo.Id && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor))
+                                {
+                                    ddlAgente.Enabled = true;
+                                }
+                                else
+                                {
+                                    ddlAgente.SelectedValue = usr.Id.ToString();
+                                    ddlAgente.Enabled = false;
+                                }
+                                break;
+                            case false:
+                                if (usr.UsuarioGrupo.Any(s => s.IdGrupoUsuario == gpo.Id && s.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel))
+                                {
+                                    ddlAgente.Enabled = true;
+                                }
+                                else
+                                {
+                                    ddlAgente.SelectedValue = usr.Id.ToString();
+                                    ddlAgente.Enabled = false;
+                                }
+                                break;
+                        }
+                    }
+                }
+
+
+
+
                 ObtenerTicketsPage();
 
             }
@@ -467,6 +534,11 @@ namespace KiiniHelp.Agente
         {
             try
             {
+                if (ddlAgente.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                {
+                    ObtenerTicketsPage();
+                    return;
+                }
                 ObtenerTicketsPage();
             }
             catch (Exception ex)
