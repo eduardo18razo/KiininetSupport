@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="assets/css/styles_movil.css" />
 
     <link rel="stylesheet" href="assets/css/divs.css" />
-    <%--<link rel="stylesheet" href="assets/css/elegant-icons.css" />--%>
-
 
     <link rel="stylesheet" href="assets/css/modales_movil.css" />
     <link rel="stylesheet" href="assets/css/main_movil.css" />
@@ -32,7 +30,7 @@
 </head>
 <body style="height: 100%;">
     <%--class="layout_no_leftnav"--%>
-    <form id="form1" runat="server" style="height: 100%">
+    <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
                 <asp:ScriptReference Path="~/assets/js/jquery.js" />
@@ -43,7 +41,7 @@
                 <asp:ScriptReference Path="~/assets/js/validation.js" />
             </Scripts>
         </asp:ScriptManager>
-        <asp:UpdatePanel runat="server">
+        <asp:UpdatePanel runat="server" style="height: 100%">
             <ContentTemplate>
                 <asp:HiddenField runat="server" ID="hfEsLink" Value="false" />
                 <asp:HiddenField runat="server" ID="hfParametrosConfirmados" Value="false" />
@@ -60,7 +58,7 @@
                                     <div class="form-box-inner2">
                                         <h2 class="title">¿Cómo quieres recuperar tu contraseña?</h2>
                                         <div class="row">
-                                            <div class="form-container col-md-12 col-sm-12 col-xs-12 margin-bottom-25">
+                                            <div class="form-container col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
                                                 <%----%>
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-inline text-left" runat="server">
@@ -86,25 +84,26 @@
                     </section>
                 </div>
 
-                <div runat="server" id="divCodigoVerificacion" visible="False">
+                <div runat="server" id="divCodigoVerificacion" visible="False" style="height: 100%">
                     <section class="login-section auth-section">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
-                                    <h1 class="form-box-heading logo text-center"><span class="highlight">Recuperar contraseña</span> </h1>
-                                    <div class="form-box-inner">
-                                        <h2 class="title text-center">¿Cómo quieres cambiar tu contraseña?</h2>
+                                    <h1 class="form-box-heading2">
+                                        <span>Recuperar contraseña</span>
+                                    </h1>
+                                    <div class="form-box-inner2">
+                                        <h2 class="title">Ingresa el código que recibiste:</h2>
                                         <div class="row">
                                             <asp:HiddenField runat="server" ID="hfIdSend" />
                                             <asp:HiddenField runat="server" ID="hfValueSend" />
-                                            <div class="form-container col-md-6 col-sm-12 col-xs-12">
+                                            <div class="form-container col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-horizontal">
-                                                        <div><span>Ingresa el código que recibiste:</span></div>
-                                                        <br />
+
                                                         <label class="sr-only" for="login-email">Email or username</label>
 
-                                                        <asp:TextBox required="required" runat="server" placeholder="Código de verificación" CssClass="form-control login-email" ID="txtCodigo" />
+                                                        <asp:TextBox runat="server" CssClass="form-control login-email margin-bottom-25" ID="txtCodigo" />
 
                                                         <div class="panel-body" runat="server" visible="False">
                                                             <div class="form-horizontal">
@@ -121,12 +120,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <asp:Label runat="server" Text=""></asp:Label>
-                                                    <div style="margin-top: 15px">
-                                                        <asp:Button runat="server" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-block btn-primary" />
-                                                        <p class="alt-path">
+
+                                                    <div class="form-group email">
+                                                        <asp:Button CssClass="btn btn-default" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
+                                                        <asp:Button runat="server" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-primary" />
+                                                        <%--<p class="alt-path">
                                                             <asp:HyperLink CssClass="signup-link" NavigateUrl="~/Default.aspx" runat="server">Regresar al inicio</asp:HyperLink>
-                                                        </p>
+                                                        </p>--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,7 +142,7 @@
                     </section>
                 </div>
 
-                <div runat="server" id="divPreguntas" visible="False">
+                <div runat="server" id="divPreguntas" visible="False" style="height: 100%">
                     <section class="login-section auth-section">
                         <div class="container">
                             <div class="row">
@@ -192,26 +192,26 @@
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
-                                    <h1 class="form-box-heading logo text-center"><span class="highlight">SOPORTE <% Response.Write(ConfigurationManager.AppSettings["Brand"]); %></span> </h1>
-                                    <div class="form-box-inner">
-                                        <h2 class="title text-center">Cambia tu contraseña</h2>
+                                    <h1 class="form-box-heading2">
+                                        <span>Cambia tu contraseña</span>
+                                    </h1>
+                                    <div class="form-box-inner2">
                                         <div class="row">
-                                            <p>Bienvenido, Rubén González Camarena</p>
                                             <div class="form-container col-md-6 col-sm-12 col-xs-12">
-                                                <div data-parsley-validate id="" class="form-horizontal">
-                                                    <div class="form-group password">
+                                                <div data-parsley-validate class="form-horizontal">
+                                                    <%--<div class="form-group password">
                                                         <div><span>Ingresa tu nueva contraseña:</span></div>
-                                                    </div>
+                                                    </div>--%>
                                                     <br>
                                                     <div class="form-group password">
                                                         <label class="sr-only" for="login-password">Password</label>
                                                         <span class="fa fa-lock icon"></span>
-                                                        <asp:TextBox required="required" runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password" Style="text-transform: none" placeholder="Contraseña"></asp:TextBox>
+                                                        <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password" Style="text-transform: none" placeholder="Contraseña"></asp:TextBox>
                                                     </div>
                                                     <div class="form-group password">
                                                         <label class="sr-only" for="login-password">Password</label>
                                                         <span class="fa fa-lock icon"></span>
-                                                        <asp:TextBox required="required" runat="server" ID="txtConfirmar" type="password" CssClass="form-control login-password" Style="text-transform: none" placeholder="Confirma tu contraseña"></asp:TextBox>
+                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control login-password" Style="text-transform: none" placeholder="Confirma tu contraseña"></asp:TextBox>
                                                     </div>
                                                     <div class="form-group password">
                                                         <asp:Button class="btn btn-block btn-primary" runat="server" Text="Cambiar password" OnClick="btncontinuar_OnClick" />

@@ -21,13 +21,7 @@
     <link rel="stylesheet" href="assets/css/styles_movil.css" />
 
     <link rel="stylesheet" href="assets/css/divs.css" />
-   <%-- <link rel="stylesheet" href="assets/css/checkBox.css" />
-
-    <link rel="stylesheet" href="assets/css/sumoselect.css" />--%>
-
     <link rel="stylesheet" href="assets/css/controls.css" />
-    <%--<link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
-    <link rel="stylesheet" href="assets/css/elusive-icons.css" />--%>
 
     <link rel="stylesheet" href="assets/css/modales_movil.css" />
     <link rel="stylesheet" href="assets/css/main_movil.css" />
