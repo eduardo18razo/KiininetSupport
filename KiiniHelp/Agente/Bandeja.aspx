@@ -46,6 +46,7 @@
                 <asp:HiddenField runat="server" ID="hfFiltroSla" Value="false" />
                 <asp:HiddenField runat="server" ID="fhFiltroSinAsignar" Value="false" />
                 <asp:HiddenField runat="server" ID="hfResueltos" Value="false" />
+                <asp:HiddenField runat="server" ID="hfRecienActualizados" Value="false" />
                 <div>
                     <div class="row">
                         <div class="col-lg-10 col-md-8 col-sm-8 no-padding-right">
