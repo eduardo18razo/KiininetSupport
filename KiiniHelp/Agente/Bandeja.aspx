@@ -34,8 +34,6 @@
             border-bottom: 2px solid #ddd !important;
         }
 
-        
-
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -142,7 +140,6 @@
                                                         <HeaderStyle Width="60px"></HeaderStyle>
                                                         <ItemStyle HorizontalAlign="left" VerticalAlign="Middle"></ItemStyle>
                                                         <ItemTemplate>
-
                                                             <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "top:0; Border: none !important; Background: " + Eval("UsuarioSolicito.TipoUsuario.Color") + " !important" %>'>
                                                                 <%# Eval("UsuarioSolicito.TipoUsuario.Descripcion").ToString().Substring(0,1) %></button>
                                                         </ItemTemplate>
@@ -220,13 +217,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="module-heading col-lg-12 col-md-12 col-sm-12">
+                                    <div class="module-heading col-lg-12 col-md-12 col-sm-12" style="background-color:white">
                                         <div class="module-title margin-left-15">
                                             <asp:Label runat="server" Text="Tickets" CssClass="TitulosAzul" />
                                         </div>
                                     </div>
-                                    <div class="row borderbootom padding-10-bottom">
-                                        <div class="col-lg-12 no-padding-left verical-center">
+
+                                    <asp:Panel id="FiltroTodos" runat="server" CssClass="row borderbootom padding-10-bottom">
+                                        <div class="col-lg-12 no-padding-left verical-center" >
                                             <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right"  ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Todos"
                                                 ID="btnFiltroTodos" EnableEmbeddedSkins="False"
                                                 CommandArgument="Todos" Style="text-align: left" OnClick="btnFiltro_OnClick">
@@ -236,9 +234,9 @@
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
-                                    </div>
-
-                                    <div class="row borderbootom padding-10-bottom">
+                                    </asp:Panel>
+                                    <!--Pruebas cambio de estilo violet -->
+                                    <asp:Panel id="FiltroAbiertos" runat="server" CssClass="row borderbootom padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Abiertos" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" ID="btnFiltroAbierto" EnableEmbeddedSkins="False"
                                                 CommandArgument="Abierto" Style="text-align: left" OnClick="btnFiltro_OnClick">
@@ -248,8 +246,9 @@
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
-                                    </div>
-                                    <div class="row borderbootom padding-10-top padding-10-bottom">
+                                    </asp:Panel>
+
+                                    <asp:Panel id="FiltroSinAsignar" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Tickets Sin Asignar" ID="btnFiltroSinAsignar" CommandArgument="SinAsignar" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
@@ -258,8 +257,9 @@
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
-                                    </div>
-                                    <div class="row borderbootom padding-10-top padding-10-bottom">
+                                    </asp:Panel>
+
+                                    <asp:Panel id="FiltroEspera" runat="server" CssClassc="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="En espera" ID="btnFiltroEspera" CommandArgument="Espera" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
@@ -268,9 +268,9 @@
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
 
-                                    <div class="row borderbootom padding-10-top padding-10-bottom">
+                                    <asp:Panel id="FiltroResueltos" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Recien Resuelto" ID="btnFiltroResuelto" CommandArgument="Resuelto" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
@@ -282,8 +282,8 @@
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
-                                    </div>
-                                    <div class="row borderbootom padding-10-top padding-10-bottom">
+                                    </asp:Panel>
+                                    <asp:Panel id="FiltroFueraSLA" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Fuera SLA" ID="btnFueraSla" CommandArgument="FueraSla" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
@@ -292,9 +292,9 @@
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
 
-                                    <div class="row borderbootom padding-10-top padding-10-bottom">
+                                    <asp:Panel id="FiltroRecienActualizados" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
                                             <tc:RadButton runat="server" Text="Recien actualizados" ID="btnRecienActualizados" CommandArgument="recienActualizados" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
@@ -306,7 +306,7 @@
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
                                 </div>
                             </section>
                         </div>
