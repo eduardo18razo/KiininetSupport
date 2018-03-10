@@ -126,7 +126,7 @@ namespace KiiniHelp
                     if (index < 0)
                         Response.Redirect("~/Agente/Bandeja.aspx");
                     else
-                        Response.Redirect("~/Agente/FrmTicket.aspx?id=" + TicketsAbiertos[index].IdTicket);
+                        Response.Redirect("~/Agente/FrmTicket.aspx?id=" + TicketsAbiertos[index].IdTicket + "&asigna=" + TicketsAbiertos[index].Asigna);
                 }
                 else
                 {

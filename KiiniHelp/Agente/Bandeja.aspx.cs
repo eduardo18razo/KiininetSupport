@@ -760,7 +760,19 @@ namespace KiiniHelp.Agente
 
         protected void gvTickets_OnNeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            gvTickets.DataSource = Tickets;
+            try
+            {
+                gvTickets.DataSource = Tickets;
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
         }
 
         protected void btnFiltro_OnClick(object sender, EventArgs e)
@@ -1046,10 +1058,14 @@ namespace KiiniHelp.Agente
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
 
