@@ -641,5 +641,19 @@ namespace KiiniHelp
                 throw;
             }
         }
+
+        //private void Buscador()
+        //{
+        //    try
+        //    {
+        //        if (string.IsNullOrEmpty(main_search_input.Text.Trim()))
+        //            throw new Exception("Debe espicificar un parametro de busqueda");
+        //        Response.Redirect("~/Agente/FrmBusquedaAgente.aspx?w=" + main_search_input.Text.Trim() + "&tu=" + ((Usuario)Session["UserData"]).Id);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
     }
 }
