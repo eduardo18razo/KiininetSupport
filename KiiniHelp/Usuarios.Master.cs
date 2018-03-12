@@ -34,6 +34,12 @@ namespace KiiniHelp
                 }
             }
         }
+
+        private int? RolSeleccionado
+        {
+            get { return string.IsNullOrEmpty(hfAreaSeleccionada.Value.Trim()) ? null : (int?)int.Parse(hfAreaSeleccionada.Value); }
+            set { hfAreaSeleccionada.Value = value.ToString(); }
+        }
         public void AlertaSucces(string value = "")
         {
             value = value.Trim() == string.Empty ? BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.Exito) : value;
@@ -49,9 +55,9 @@ namespace KiiniHelp
             try
             {
                 List<Rol> lstRoles = _servicioSeguridad.ObtenerRolesUsuario(((Usuario)Session["UserData"]).Id);
-                if (lstRoles.Count > 0 && Session["RolSeleccionado"] == null)
+                if (lstRoles.Count > 0 && RolSeleccionado == null)
                 {
-                    Session["RolSeleccionado"] = lstRoles.Any(rol => rol.Id == (int)BusinessVariables.EnumRoles.Agente) ? (int)BusinessVariables.EnumRoles.Agente : lstRoles.First().Id;
+                    RolSeleccionado = lstRoles.Any(rol => rol.Id == (int)BusinessVariables.EnumRoles.Agente) ? (int)BusinessVariables.EnumRoles.Agente : lstRoles.First().Id;
                     Session["CargaInicialModal"] = "True";
                     if (MenuActivo == null)
                         lnkBtnRol_OnClick(new LinkButton
@@ -61,8 +67,8 @@ namespace KiiniHelp
                             Text = lstRoles.Any(rol => rol.Id == (int)BusinessVariables.EnumRoles.Agente) ? BusinessVariables.EnumRoles.Agente.ToString() : lstRoles.First().Descripcion
                         }, null);
                 }
-                if (Session["RolSeleccionado"] != null)
-                    lblAreaSeleccionada.Text = lstRoles.Single(s => s.Id == int.Parse(Session["RolSeleccionado"].ToString())).Descripcion;
+                if (RolSeleccionado != null)
+                    lblAreaSeleccionada.Text = lstRoles.Single(s => s.Id == int.Parse(RolSeleccionado.ToString())).Descripcion;
                 rptRolesPanel.DataSource = lstRoles;
                 rptRolesPanel.DataBind();
                 lblBadgeRoles.Text = lstRoles.Count.ToString();
@@ -115,7 +121,7 @@ namespace KiiniHelp
                 throw new Exception(ex.Message);
             }
         }
-            
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -131,7 +137,7 @@ namespace KiiniHelp
 
                 if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
                     if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
-                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx")); 
+                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx"));
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
@@ -154,8 +160,8 @@ namespace KiiniHelp
                     imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png";
                     ObtenerAreas();
                     int rolSeleccionado = agente ? (int)BusinessVariables.EnumRoles.Agente : 0;
-                    if (Session["RolSeleccionado"] != null)
-                        rolSeleccionado = int.Parse(Session["RolSeleccionado"].ToString());
+                    if (RolSeleccionado != null)
+                        rolSeleccionado = int.Parse(RolSeleccionado.ToString());
                     if (MenuActivo == null)
                         LlenaMenu(usuario.Id, rolSeleccionado, rolSeleccionado != 0);
 
@@ -386,21 +392,27 @@ namespace KiiniHelp
                 try
                 {
                     Usuario usuario = ((Usuario)Session["UserData"]);
-                    Session["RolSeleccionado"] = ((LinkButton)sender).CommandArgument;
+                    RolSeleccionado = int.Parse(((LinkButton)sender).CommandArgument);
                     lblAreaSeleccionada.Text = ((LinkButton)sender).CommandName;
-                    int areaSeleccionada = 0;
-                    if (Session["RolSeleccionado"] != null)
-                        areaSeleccionada = int.Parse(Session["RolSeleccionado"].ToString());
 
-                    LlenaMenu(usuario.Id, areaSeleccionada, areaSeleccionada != 0);
+                    LlenaMenu(usuario.Id, (int)RolSeleccionado, RolSeleccionado != 0);
 
                     rptMenu.DataSource = MenuActivo;
                     rptMenu.DataBind();
                     Session["CargaInicialModal"] = "True";
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalRol\");", true);
-                    if (areaSeleccionada == (int)BusinessVariables.EnumRoles.Agente)
-                        Response.Redirect("~/Agente/DashBoardAgente.aspx");
-                    Response.Redirect("~/Users/DashBoard.aspx");
+                    switch (RolSeleccionado)
+                    {
+                        case (int)BusinessVariables.EnumRoles.Agente:
+                            Response.Redirect("~/Agente/DashBoardAgente.aspx");
+                            break;
+                        case (int)BusinessVariables.EnumRoles.Administrador:
+                            Response.Redirect("~/Users/DashBoard.aspx");
+                            break;
+                        default:
+                            Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                            break;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -512,6 +524,31 @@ namespace KiiniHelp
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        protected void lnkHome_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (RolSeleccionado)
+                {
+                    case (int)BusinessVariables.EnumRoles.Agente:
+                        Response.Redirect("~/Agente/DashBoardAgente.aspx");
+                        break;
+                    case (int)BusinessVariables.EnumRoles.Administrador:
+                        Response.Redirect("~/Users/DashBoard.aspx");
+                        break;
+                    default:
+                        Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                        break;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

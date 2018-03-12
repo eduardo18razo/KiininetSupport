@@ -19,25 +19,20 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                int idArea = int.Parse(Request.Params["idArea"]);
-
-
+                int idArea = Request.Params["idArea"] != null ? int.Parse(Request.Params["idArea"]) : 0;
                 if (idArea > 0)
                 {
 
-                    rptCatTodos.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, null, null, null, null, null, null, null, null);
+                    rptCatTodos.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null);
                     rptCatTodos.DataBind();
 
-
-                    rptCatConsultas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null);
-                       // .ObtenerArbolesAccesoTerminalAllTipificacion(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null);
+                    rptCatConsultas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null);
                     rptCatConsultas.DataBind();
 
-
-                    rptCatServicios.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, null, null, null, null, null, null, null);
+                    rptCatServicios.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, null, null, null, null, null, null, null);
                     rptCatServicios.DataBind();
 
-                    rptCatProblemas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(int.Parse(Request.Params["idArea"]), idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, null, null, null, null, null, null, null);
+                    rptCatProblemas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, null, null, null, null, null, null, null);
                     rptCatProblemas.DataBind();
                 }
                 else
@@ -67,9 +62,15 @@ namespace KiiniHelp.UserControls.Seleccion
             {
                 if (!IsPostBack)
                 {
-                    int idtipoUsuario = int.Parse(Request.Params["userTipe"]);
-                   
-
+                    int idtipoUsuario;
+                    if (Request.Params["userTipe"] != null)
+                    {
+                        idtipoUsuario = int.Parse(Request.Params["userTipe"]);
+                    }
+                    else
+                    {
+                        idtipoUsuario = ((Usuario)Session["UserData"]).IdTipoUsuario;
+                    }
                     TipoUsuario tipoUsuario = _servicioTipoUsuario.ObtenerTipoUsuarioById(idtipoUsuario);
                     if (tipoUsuario != null)
                     {
@@ -77,31 +78,6 @@ namespace KiiniHelp.UserControls.Seleccion
                         lbltipoUsuario.Text = tipoUsuario.Descripcion;
                     }
                 }
-                //    navCategoria.NavigateUrl = "~/manager/uploadTrainingPlan.aspx?id=" + Request.QueryString["userTipe"];
-                //    switch (((Usuario)Session["UserData"]).IdTipoUsuario)
-                //    {
-                //        case (int)BusinessVariables.EnumTiposUsuario.Empleado:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.Cliente:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.Proveedor:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.ProveedorInvitado:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.EmpleadoPersonaFisica:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.ClientaPersonaFisica:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.ProveedorPersonaFisica:
-                //            break;
-                //        case (int)BusinessVariables.EnumTiposUsuario.NuestraInstitucion:
-                //            break;
-                //    }
-                //}
             }
             catch (Exception ex)
             {

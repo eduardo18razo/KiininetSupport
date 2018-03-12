@@ -301,6 +301,7 @@
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
     <Content Include="Users\FrmBusqueda.aspx" />
+    <Content Include="Users\FrmDashboardUser.aspx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black Italic.otf" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black.otf" />
@@ -3280,6 +3281,13 @@
     <Compile Include="Users\FrmBusqueda.aspx.designer.cs">
       <DependentUpon>FrmBusqueda.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Users\FrmDashboardUser.aspx.cs">
+      <DependentUpon>FrmDashboardUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\FrmDashboardUser.aspx.designer.cs">
+      <DependentUpon>FrmDashboardUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\General\FrmMisTickets.aspx.cs">
       <DependentUpon>FrmMisTickets.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4211,7 +4219,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
