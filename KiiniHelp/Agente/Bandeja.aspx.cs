@@ -790,6 +790,13 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusAbierto;
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
+                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
                             break;
                         case "Espera":
                             SinAsignar = false;
@@ -797,6 +804,13 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusEspera;
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
+                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
                             break;
                         case "SinAsignar":
                             SinAsignar = true;
@@ -804,6 +818,13 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusSinAsignar;
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
+                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
                             break;
                         case "Resuelto":
                             SinAsignar = false;
@@ -811,6 +832,13 @@ namespace KiiniHelp.Agente
                             Resueltos = true;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusResuletos;
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
+                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
                             break;
                         case "FueraSla":
                             SinAsignar = false;
@@ -818,6 +846,13 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusFueraSla;
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
+                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
                             break;
                         case "recienActualizados":
                             SinAsignar = false;
@@ -825,6 +860,13 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = true;
                             EstatusSeleccionado = EstatusAbierto;
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
                             break;
                         default:
                             SinAsignar = false;
@@ -832,6 +874,13 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusAbierto;
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
+                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
+                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
                             break;
                     }
                     ObtenerTicketsPage();

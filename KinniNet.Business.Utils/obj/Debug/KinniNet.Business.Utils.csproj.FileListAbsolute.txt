@@ -23,7 +23,6 @@ C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\bin\Debug\Office.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.PowerPoint.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\bin\Debug\Microsoft.Office.Interop.Word.dll
-C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
