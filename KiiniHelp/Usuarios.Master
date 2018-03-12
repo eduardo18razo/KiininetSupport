@@ -222,7 +222,7 @@
                         </div>
                     </div>
 
-                    <div class="search-container" runat="server" visible="false">
+                    <div class="search-container" runat="server" visible="true">
                         <div id="main-search" style="padding-top: 20px;">
                             <i id="main-search-toggle" class="fa fa-search icon"></i>
                             <div id="main_search_input_wrapper" class="main_search_input_wrapper">

@@ -111,6 +111,16 @@
                 landing.style.display = 'none';
             }
         }
+        function search(evt) {
+            if (evt.charCode == 13) {
+                this.__doPostBack('Buscador', 'OnKeyPress');
+                evt.preventDefault();
+                return false; // returning false will prevent the event from bubbling up.
+            }
+            else {
+                return true;
+            }
+        }
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -166,7 +176,18 @@
                         </div>
                     </div>
 
-                    <div runat="server" class="search-container" visible="false">
+                    <div class="search-container" runat="server" visible="true">
+                        <div id="main-search" style="padding-top: 20px;">
+                            <i id="main-search-toggle" class="fa fa-search icon"></i>
+                            <div id="main_search_input_wrapper" class="main_search_input_wrapper">
+                                <asp:UpdatePanel runat="server">
+                                    <ContentTemplate>
+                                        <asp:TextBox type="text" ID="main_search_input" ClientIDMode="Static" class="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
+                                        <span id="clear-search" aria-hidden="true" class="fs1 icon icon_close_alt2 clear-search"></span>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="navbar-tools">

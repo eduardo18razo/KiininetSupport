@@ -16,4 +16,3 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EAGetMail40.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EPPlus.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\EPPlus.xml
