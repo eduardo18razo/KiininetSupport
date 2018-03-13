@@ -93,11 +93,6 @@ namespace KiiniHelp
         {
             try
             {
-                //Public master = Master as Public;
-                //if (master != null)
-                //{
-                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado);
-                //}
                 Session["TipoUsuarioPublico"] = (int)BusinessVariables.EnumTiposUsuario.Empleado;
                 Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Empleado + "&idArea=-1");
             }
@@ -116,11 +111,6 @@ namespace KiiniHelp
         {
             try
             {
-                //Public master = Master as Public;
-                //if (master != null)
-                //{
-                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
-                //}
                 Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idArea=-1");
             }
             catch (Exception ex)
@@ -138,11 +128,6 @@ namespace KiiniHelp
         {
             try
             {
-                //Public master = Master as Public;
-                //if (master != null)
-                //{
-                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado);
-                //}
                 Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Proveedor + "&idArea=-1");
             }
             catch (Exception ex)
@@ -196,11 +181,6 @@ namespace KiiniHelp
         {
             try
             {
-                //Public master = Master as Public;
-                //if (master != null)
-                //{
-                //    master.CargaPerfil((int)BusinessVariables.EnumTiposUsuario.ClienteInvitado);
-                //}
                 Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
             }
             catch (Exception ex)
