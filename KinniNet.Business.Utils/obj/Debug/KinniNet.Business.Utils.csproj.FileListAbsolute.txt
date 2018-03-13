@@ -26,3 +26,4 @@ C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\bin\Debug\Microsoft.Office
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csproj.ResolveComReference.cache
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.dll
 C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.pdb
+C:\Users\Janeth\Documents\git\KinniNet.Business.Utils\obj\Debug\KinniNet.Business.Utils.csprojResolveAssemblyReference.cache

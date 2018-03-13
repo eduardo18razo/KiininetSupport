@@ -1,0 +1,17 @@
+﻿
+.fontCabecera {
+    color: #73879C;
+}
+
+.textoCabecera{
+    font-size: 13px;
+}
+
+.contadores {
+    font-size: 40px;    
+    font-weight: bold;
+}
+
+.separador-vertical-derecho-bold {
+    border-right: 2px solid #ADB2B5;
+}

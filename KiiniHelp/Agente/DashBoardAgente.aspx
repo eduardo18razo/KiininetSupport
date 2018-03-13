@@ -32,7 +32,6 @@
 
                         <hr />
 
-
                         <div class="row">
                             <div class="module-inner">
                                 <div class="row text-center">

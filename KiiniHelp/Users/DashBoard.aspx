@@ -3,7 +3,8 @@
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    <link rel="stylesheet" href="../assets/css/dashboards.css" />
+   
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
@@ -18,19 +19,15 @@
                             <label class="TitulosAzul">Dashboard</label>
                         </div>
                         <hr />
-
-
                         <div class="row">
                             <div class="module-inner">
 
-                                <div class="row text-center">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 bordered">
-                                        <div class="form-group padding-10-top">
-                                            <label class="no-padding-right">Usuarios Registrados</label>
+                                <div class="row "> <%--fontCabecera text-left--%>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <div class="form-group padding-10-top "> <%--separador-vertical-derecho-bold--%>
+                                            <label class="no-padding-right textoCabecera"><%--<i class="fa fa-user margin-right-4"></i>--%>Usuarios Registrados (actual)</label>                                           
                                             <br />
-                                            <asp:Label runat="server" ID="Label1" Text="Actual"></asp:Label>
-                                            <br />
-                                            <asp:Label runat="server" ID="lblUsuariosRegistrados" CssClass="h4">210</asp:Label>
+                                            <asp:Label runat="server" ID="lblUsuariosRegistrados" >210</asp:Label> <%--CssClass="contadores"--%>
                                         </div>
                                     </div>
 

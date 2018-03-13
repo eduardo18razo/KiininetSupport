@@ -56,7 +56,7 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <div class="row">
-                                        <div class="margen-arriba">
+                                        <div>
                                             <div class="col-xs-6 col-md-5">
                                                 <asp:TextBox runat="server" ID="txtPregunta" CssClass="form-control" Text='<%# Eval("Pregunta") %>' MaxLength="50" onkeydown="return (event.keyCode!=13);" />
                                             </div>

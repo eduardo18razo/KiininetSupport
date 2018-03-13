@@ -105,7 +105,7 @@
 }
 
 .login-section {
-    background: url(/assets/images/backs/lost_password_movil.jpg) no-repeat fixed center;
+    background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;
@@ -150,7 +150,7 @@
 
 
 .btn-consulta-tickets {
-    padding-top: 10;
+    padding-top: 10px;
     font-size: 14px;
     font-weight: lighter;
     margin-top: 12px;

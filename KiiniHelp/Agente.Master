@@ -25,63 +25,7 @@
     <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
-
-    <style>
-        .btn {
-            font-size: 12px;
-        }
-
-        .tag {
-            font-size: 14px;
-            margin: 0 .1em;
-            background-color: transparent;
-            border-color: #e6e7ea;
-            color: black;
-            font-weight: normal;
-        }
-
-            .tag a {
-                color: #bbb;
-                cursor: pointer;
-                opacity: 0.6;
-            }
-
-                .tag a:hover {
-                    opacity: 1.0;
-                }
-
-            .tag .remove {
-                vertical-align: bottom;
-                top: 0;
-            }
-
-            .tag a {
-                margin: 0 0 0 .3em;
-            }
-
-                .tag a .glyphicon-white {
-                    margin-bottom: 2px;
-                    color: #3aa7aa;
-                }
-
-        .liTab {
-            width: 155px;
-            padding-left: 15px;
-            padding-top: 5px;
-            border-right: 1px solid #000000;
-            border-right: 1px solid rgba(0, 0, 0, .1);
-            height: 37px;
-        }
-
-        .tab-row {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: 11px;
-            color: black;
-            text-align: left;
-        }
-    </style>
+       
     <script type="text/javascript">
         var win;
         function MostrarPopup(modalName) {
@@ -143,8 +87,8 @@
             </asp:ScriptManager>
             <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
                 <ProgressTemplate>
-                    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
-                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
+                    <div class="progressBar">
+                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." /> <%--Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" --%>
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -160,7 +104,7 @@
                     </h1>
                 </div>
                 <div class="topbar bg_w_header">
-                    <div style="margin-left: 0; float: left; position: relative; display: block;">
+                    <div class="cont-menu-trigger">
                         <div>
                             <span id="trigger" class="menu-trigger"></span>
                         </div>
@@ -187,10 +131,10 @@
                                     </i>
                                 </div>
 
-                                <div class="item item-notifications" style="margin-right: 35px;">
+                                <div class="item item-notifications margin-right-35">
                                     <div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Tickets</span> <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
-                                        <span class="badge badge-circle badge-danger" style="left: 32px;">
+                                        <span class="badge badge-circle badge-danger left32">
                                             <asp:Label runat="server" ID="lblNoTicketsAsignados" /></span>
                                     </div>
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications">
@@ -222,14 +166,12 @@
                                     </div>
                                 </div>
 
-
-
-
-                                <div class="item item-messages dropdown" style="display: none">
-                                    <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Mensajes</span> <span class="pe-icon pe-7s-mail icon" data-toggle="tooltip" data-placement="bottom" title="Messages"></span><span class="badge badge-circle badge-success">5</span> </div>
+                                <div class="item item-messages dropdown ocultar">
+                                    <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Mensajes</span> <span class="pe-icon pe-7s-mail icon" data-toggle="tooltip" data-placement="bottom" title="Messages"></span>
+                                        <span class="badge badge-circle badge-success">5</span> </div>
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-messages">
                                         <span class="arrow"></span>
-                                        <div class="message-items no-overflow" style="height: 420px; overflow-y: auto">
+                                        <div class="message-items no-overflow cont-badge-msg">
                                             <div class="item media">
                                                 <div class="media-left profile">
                                                     <img class="profile" src="/assets/images/profiles/profile-1.png" alt="" />
@@ -289,11 +231,11 @@
                                 </li>
                             </ul>
 
-                            <div class="dropdown-toggle" style="padding-top: 10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
+                            <div class="dropdown-toggle padding-10-top" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
                                 <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt="" ID="imgPerfil" runat="server" />
                                 <i class="fa fa-caret-down"></i>
 
-                                <p class="name" style="display: inline-block; color: #232323;">
+                                <p class="nombreUsuario">
                                     <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
                                     <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
                                     / <strong class="text-theme">
@@ -312,11 +254,11 @@
                     </div>
                 </div>
             </header>
-            <header class="header header-Tabs" style="z-index: 9">
-                <div class="branding " style="background-color: #7C7C7C; height: 40px">
-                    <h1 class="logo text-center" style="padding-top: 0; font-size: 14px; font-weight: lighter; margin-top: 12px; background-color: #7C7C7C; color: #6E6E6E">
+            <header class="header header-Tabs z-Index-9">
+                <div class="branding bandeja">
+                    <h1 class="logo text-center no-padding-top margin-top-12 texto-claro bg-grisOscuro">
                         <asp:HyperLink NavigateUrl="~/Agente/Bandeja.aspx" runat="server"> 
-                             <i class="fa fa-envelope" style="padding-right:5px; font-size:18px;"></i>
+                             <i class="fa fa-envelope padding-5-right iconoFontLg"></i>
                        Bandeja de Tickets </asp:HyperLink>
                     </h1>
                 </div>
@@ -358,12 +300,12 @@
                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upMasTickets" Visible="false">
                                     <ContentTemplate>
                                         <div class="item item-notifications">
-                                            <div class="dropdown-toggle" id="dropdownMenu-notifications2" style="width: 139px; height: 37px;" data-toggle="dropdown" aria-expanded="true" role="button">
-                                                <label style="width: 170px; padding: 5px; cursor: pointer;">Más Tickets ...</label>
+                                            <div class="dropdown-toggle ddtMasTickets" id="dropdownMenu-notifications2" data-toggle="dropdown" aria-expanded="true" role="button">
+                                                <label class="lblMasTickets">Más Tickets ...</label>
                                             </div>
-                                            <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications2" style="top: 39px;">
+                                            <div class="dropdown-menu top39" role="menu" aria-labelledby="dropdownMenu-notifications2">
                                                 <span class="arrow"></span>
-                                                <div class="notification-items no-overflow" style="width: 155px;">
+                                                <div class="notification-items no-overflow widht155">
                                                     <div class="item media">
                                                         <asp:Repeater runat="server" ID="rptTicketsAbiertosExtra">
                                                             <HeaderTemplate>
@@ -407,11 +349,11 @@
 
             </header>
 
-            <div id="content-wrapper" class="content-wrapper" style="padding-top: 0">
-                <div class="container-fluid" style="padding-left: 0">
-                    <div class="divMainMenu" id="divMainMenu" style="margin-top: 65px;">
+            <div id="content-wrapper" class="content-wrapper no-padding-top">
+                <div class="container-fluid no-padding-left">
+                    <div class="divMainMenu margin-top-65" id="divMainMenu">
                         <asp:HiddenField runat="server" ID="hfCargaInicial" Value="False" />
-                        <nav id="pMenu" class="pMenu" style="top: 40px !important">
+                        <nav id="pMenu" class="pMenu top39">
                             <div class="menuLevel">
                                 <h2 class="icon icon-shop">Inicio</h2>
                                 <ul>
@@ -546,8 +488,8 @@
                         </nav>
 
                     </div>
-                    <div class="scroller" id="scroller" style="padding-left: 30px; padding-top: 50px">
-                        <div style="margin-top: 0; height: 90%;">
+                    <div class="scroller padding-30-left padding-50-top" id="scroller">
+                        <div class="no-margin-top heigth90">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
