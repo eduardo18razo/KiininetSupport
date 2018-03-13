@@ -3,7 +3,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceDashboard;
 using KiiniHelp.ServiceGrupoUsuario;
@@ -18,7 +17,7 @@ using Telerik.Web.UI.HtmlChart;
 
 namespace KiiniHelp.Agente
 {
-    public partial class DashBoard : System.Web.UI.Page
+    public partial class DashBoard : Page
     {
         private readonly ServiceDashboardsClient _servicioDashBoard = new ServiceDashboardsClient();
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
@@ -46,14 +45,7 @@ namespace KiiniHelp.Agente
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
-                List<Usuario> lstUsuarios = null;
-                if (usr.Supervisor)
-                    lstUsuarios = _servicioUsuarios.ObtenerAgentes(true);
-                else
-                {
-                    lstUsuarios = new List<Usuario>();
-                    lstUsuarios.Add(usr);
-                }
+                List<Usuario> lstUsuarios = usr.Supervisor ? _servicioUsuarios.ObtenerAgentes(true) : new List<Usuario> {usr};
                 ddlAgente.DataSource = lstUsuarios;
                 ddlAgente.DataTextField = "NombreCompleto";
                 ddlAgente.DataValueField = "Id";
@@ -98,7 +90,7 @@ namespace KiiniHelp.Agente
 
                 lblClientesUnicosAtendidosActual.Text = datos.ClientesAtendidosActual.ToString();
                 lblClientesUnicosAtendidosAnterior.Text = datos.ClientesAtendidosAnterior.ToString();
-                lblClientesUnicosAtendidosPorcentaje.Text = string.Format("{0} %", datos.ClientesAtendidosAnterior.ToString("0.##")); ;
+                lblClientesUnicosAtendidosPorcentaje.Text = string.Format("{0} %", datos.ClientesAtendidosAnterior.ToString("0.##")); 
 
                 GeneraGraficaPie(rhcTicketsAbiertos, datos.GraficoTicketsAbiertos);
                 GeneraGraficaStackedBar(rhcTicketsPrioridad, datos.GraficoTicketsPrioridad);
@@ -185,9 +177,7 @@ namespace KiiniHelp.Agente
         private void GeneraGraficaPie(RadHtmlChart grafico, DataTable dt)
         {
             grafico.PlotArea.Series.Clear();
-            PieSeries pieSerie = new PieSeries();
-            pieSerie.DataFieldY = "Total";
-            pieSerie.NameField = "Descripcion";
+            PieSeries pieSerie = new PieSeries {DataFieldY = "Total", NameField = "Descripcion"};
             pieSerie.LabelsAppearance.Visible = true;
             pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
             grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
