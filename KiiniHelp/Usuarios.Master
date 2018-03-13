@@ -175,6 +175,7 @@
 <body class="preload">
     <div id="full">
         <form runat="server" id="form1" enctype="multipart/form-data" class="bg-blanco">
+            <asp:HiddenField runat="server" ID="hfAreaSeleccionada"/>
             <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
                 <Scripts>
                     <asp:ScriptReference Path="~/assets/js/jquery.js" />

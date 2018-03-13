@@ -178,5 +178,7 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
+
+
     }
 }

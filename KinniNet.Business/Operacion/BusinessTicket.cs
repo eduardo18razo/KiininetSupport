@@ -427,6 +427,7 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(ticket, "Impacto");
                         db.LoadProperty(ticket, "TipoArbolAcceso");
                         db.LoadProperty(ticket, "Canal");
+                        db.LoadProperty(ticket, "TicketEvento");
                         foreach (TicketAsignacion asignacion in ticket.TicketAsignacion)
                         {
 
@@ -461,8 +462,9 @@ namespace KinniNet.Core.Operacion
                         hticket.Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(ticket.IdArbolAcceso);
                         hticket.GrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().GrupoUsuario.Descripcion;
                         hticket.EstatusTicket = ticket.EstatusTicket;
+                        hticket.FechaCambioEstatusTicket = ticket.TicketEstatus.Last().FechaMovimiento;
+                        hticket.FechaUltimoEvento = ticket.TicketEvento.Last().FechaHora;
                         hticket.EstatusAsignacion = ticket.EstatusAsignacion;
-                        hticket.FechaCambioEstatusAsignacion = ticket.TicketAsignacion.Last().FechaAsignacion;
                         hticket.FechaCambioEstatusAsignacion = ticket.TicketAsignacion.Last().FechaAsignacion;
                         hticket.IdUsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.Id : 0;
                         hticket.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
@@ -519,6 +521,7 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(ticket, "TipoArbolAcceso");
                         db.LoadProperty(ticket, "Canal");
                         db.LoadProperty(ticket, "TicketGrupoUsuario");
+                        db.LoadProperty(ticket, "TicketEvento");
                         foreach (TicketGrupoUsuario ticketGrupoUsuario in ticket.TicketGrupoUsuario)
                         {
                             db.LoadProperty(ticketGrupoUsuario, "GrupoUsuario");
@@ -558,6 +561,7 @@ namespace KinniNet.Core.Operacion
                         hticket.NombreUsuario = ticket.UsuarioLevanto.NombreCompleto;
                         hticket.Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(ticket.IdArbolAcceso);
                         hticket.GrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().GrupoUsuario.Descripcion;
+                        hticket.FechaUltimoEvento = ticket.TicketEvento.Last().FechaHora;
                         hticket.EstatusTicket = ticket.EstatusTicket;
                         hticket.EstatusAsignacion = ticket.EstatusAsignacion;
                         hticket.FechaCambioEstatusAsignacion = ticket.TicketAsignacion.Last().FechaAsignacion;

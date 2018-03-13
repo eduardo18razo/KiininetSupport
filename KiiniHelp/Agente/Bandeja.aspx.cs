@@ -110,6 +110,11 @@ namespace KiiniHelp.Agente
             get { return bool.Parse(hfResueltos.Value); }
             set { hfResueltos.Value = value.ToString(); }
         }
+        private bool RecienActualizados
+        {
+            get { return bool.Parse(hfRecienActualizados.Value); }
+            set { hfRecienActualizados.Value = value.ToString(); }
+        }
         private List<int> EstatusFueraSla
         {
             get
@@ -162,13 +167,15 @@ namespace KiiniHelp.Agente
 
                 ((Label)btnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
 
-                ((Label)btnFiltroResuelto.FindControl("lblTicketsResueltos")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id)).ToString();
+                DateTime fechaInicio = DateTime.Now.AddHours(36);
+
+                ((Label)btnFiltroResuelto.FindControl("lblTicketsResueltos")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= fechaInicio).ToString();
 
                 ((Label)btnFueraSla.FindControl("lblTicketsFueraSla")).Text = lst.Count(w => EstatusFueraSla.Contains(w.EstatusTicket.Id) && !w.DentroSla).ToString();
 
-                DateTime fechaInicio = DateTime.Now.AddMinutes(-60);
+                fechaInicio = DateTime.Now.AddMinutes(-60);
 
-                ((Label)btnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= fechaInicio).ToString();
+                ((Label)btnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio).ToString();
             }
             catch (Exception e)
             {
@@ -211,7 +218,10 @@ namespace KiiniHelp.Agente
                     if (FueraSla)
                         lst = lst.Where(w => !w.DentroSla).ToList();
                     if (Resueltos)
-                        lst = lst.Where(w => w.FechaCambioEstatusAsignacion >= DateTime.Now.AddMinutes(-60)).ToList();
+                        lst = lst.Where(w => w.FechaCambioEstatusAsignacion >= DateTime.Now.AddHours(-36)).ToList();
+                    if (RecienActualizados)
+                        lst = lst.Where(w => w.FechaUltimoEvento >= DateTime.Now.AddMinutes(-60)).ToList();
+
                     ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
 
                 }
@@ -715,7 +725,19 @@ namespace KiiniHelp.Agente
 
         protected void gvTickets_OnNeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {
-            gvTickets.DataSource = Tickets;
+            try
+            {
+                gvTickets.DataSource = Tickets;
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
         }
 
         protected void btnFiltro_OnClick(object sender, EventArgs e)
@@ -731,6 +753,7 @@ namespace KiiniHelp.Agente
                             SinAsignar = false;
                             FueraSla = false;
                             Resueltos = false;
+                            RecienActualizados = false;
                             EstatusSeleccionado = EstatusAbierto;
                             FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
@@ -744,6 +767,7 @@ namespace KiiniHelp.Agente
                             SinAsignar = false;
                             FueraSla = false;
                             Resueltos = false;
+                            RecienActualizados = false;
                             EstatusSeleccionado = EstatusEspera;
                             FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
@@ -757,6 +781,7 @@ namespace KiiniHelp.Agente
                             SinAsignar = true;
                             FueraSla = false;
                             Resueltos = false;
+                            RecienActualizados = false;
                             EstatusSeleccionado = EstatusSinAsignar;
                             FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
@@ -769,7 +794,8 @@ namespace KiiniHelp.Agente
                         case "Resuelto":
                             SinAsignar = false;
                             FueraSla = false;
-                            Resueltos = false;
+                            Resueltos = true;
+                            RecienActualizados = false;
                             EstatusSeleccionado = EstatusResuletos;
                             FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
@@ -783,6 +809,7 @@ namespace KiiniHelp.Agente
                             SinAsignar = false;
                             FueraSla = true;
                             Resueltos = false;
+                            RecienActualizados = false;
                             EstatusSeleccionado = EstatusFueraSla;
                             FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
@@ -795,8 +822,9 @@ namespace KiiniHelp.Agente
                         case "recienActualizados":
                             SinAsignar = false;
                             FueraSla = false;
-                            Resueltos = true;
-                            EstatusSeleccionado = EstatusResuletos;
+                            Resueltos = false;
+                            RecienActualizados = true;
+                            EstatusSeleccionado = EstatusAbierto;
                             FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
@@ -809,6 +837,7 @@ namespace KiiniHelp.Agente
                             SinAsignar = false;
                             FueraSla = false;
                             Resueltos = false;
+                            RecienActualizados = false;
                             EstatusSeleccionado = EstatusAbierto;
                             btnFiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
@@ -1043,10 +1072,14 @@ namespace KiiniHelp.Agente
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
 

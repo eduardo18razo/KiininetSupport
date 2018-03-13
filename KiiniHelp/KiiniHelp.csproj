@@ -85,6 +85,7 @@
     <Content Include="Agente\Bandeja.aspx" />
     <Content Include="Agente\DashBoardAgente.aspx" />
     <Content Include="Agente\FrmAgenteNuevoTicket.aspx" />
+    <Content Include="Agente\FrmBusquedaAgente.aspx" />
     <Content Include="Agente\FrmTicket.aspx" />
     <Content Include="assets\carouselImage\1.jpg" />
     <Content Include="assets\carouselImage\2.jpg" />
@@ -300,6 +301,7 @@
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
     <Content Include="Users\FrmBusqueda.aspx" />
+    <Content Include="Users\FrmDashboardUser.aspx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black Italic.otf" />
     <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black.otf" />
@@ -2576,6 +2578,13 @@
     <Compile Include="Agente\FrmAgenteNuevoTicket.aspx.designer.cs">
       <DependentUpon>FrmAgenteNuevoTicket.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Agente\FrmBusquedaAgente.aspx.cs">
+      <DependentUpon>FrmBusquedaAgente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Agente\FrmBusquedaAgente.aspx.designer.cs">
+      <DependentUpon>FrmBusquedaAgente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Agente\FrmTicket.aspx.cs">
       <DependentUpon>FrmTicket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3271,6 +3280,13 @@
     </Compile>
     <Compile Include="Users\FrmBusqueda.aspx.designer.cs">
       <DependentUpon>FrmBusqueda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\FrmDashboardUser.aspx.cs">
+      <DependentUpon>FrmDashboardUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\FrmDashboardUser.aspx.designer.cs">
+      <DependentUpon>FrmDashboardUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\General\FrmMisTickets.aspx.cs">
       <DependentUpon>FrmMisTickets.aspx</DependentUpon>
