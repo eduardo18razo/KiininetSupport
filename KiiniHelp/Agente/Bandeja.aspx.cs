@@ -150,7 +150,6 @@ namespace KiiniHelp.Agente
             set { Session["Helpertickets"] = value; }
         }
 
-        //public int? filaSeleccionada = 10;
         private void ObtieneTotales(List<HelperTickets> lst)
         {
             try
@@ -239,27 +238,16 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                //ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
-                //ddlGrupo.DataTextField = "Descripcion";
-                //ddlGrupo.DataValueField = "Id";
-                //ddlGrupo.DataBind();
-
-
-                /**/
                 Usuario usr = ((Usuario)Session["UserData"]);
                 ddlGrupo.DataSource = _servicioGrupos.ObtenerGruposAtencionByIdUsuario(((Usuario)Session["UserData"]).Id, true);
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
-                ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                List<Usuario> lstUsuarios = usr.Supervisor ? _servicioUsuarios.ObtenerAgentes(true) : new List<Usuario> { usr };
+                ddlAgente.DataSource = lstUsuarios;
                 ddlAgente.DataTextField = "NombreCompleto";
                 ddlAgente.DataValueField = "Id";
                 ddlAgente.DataBind();
-
-
-
-
-
             }
             catch (Exception e)
             {

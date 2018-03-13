@@ -187,7 +187,6 @@
             });
         },
         _openMenu: function (subLevel) {
-            debugger;
             ++this.level;
             $(".divMainMenu").css("width", "85%");
             $(".divMainMenu").css("z-index", "1");
@@ -229,7 +228,6 @@
             this.open = false;
         },
         _closeMenu: function () {
-            debugger;
             var translateVal = this.options.type === 'overlap' ? this.el.offsetWidth + (this.level - 1) * this.options.levelSpacing : this.el.offsetWidth;
             this._setTransform('translate3d(' + translateVal + 'px,0,0)');
             $('#scroller').css({
@@ -245,7 +243,6 @@
             el.style.transform = val;
         },
         _toggleLevels: function () {
-            debugger;
             for (var i = 0, len = this.levels.length; i < len; ++i) {
                 var levelEl = this.levels[i];
                 if (levelEl.getAttribute('data-level') >= this.level + 1) {

@@ -73,7 +73,6 @@ namespace KiiniHelp
                 {
                     if (Page.Request.Params["__EVENTTARGET"] == "Buscador")
                     {
-                        string dat = Page.Request.Params["__EVENTARGUMENT"].ToString();
                         Buscador();
                     }
                 }

@@ -60,10 +60,6 @@ namespace KiiniHelp
                 Usuario userData = _servicioUsuario.ObtenerDetalleUsuario(int.Parse(QueryString.Decrypt(Request.Params["ldata"])));
                 if (rbtnCorreo.Checked)
                 {
-                    //rbtnList.DataSource = userData.CorreoUsuario.ToList();
-                    //rbtnList.DataTextField = "Correo";
-                    //rbtnList.DataValueField = "Id";
-                    //rbtnList.DataBind();
                     if (userData.CorreoUsuario.Count <= 0)
                         throw new Exception("No cuenta con correos registrados contacte a su Administrador.");
                     hfIdSend.Value = userData.CorreoUsuario.ToList().First().Id.ToString();
@@ -74,18 +70,10 @@ namespace KiiniHelp
                 }
                 else if (rbtnSms.Checked)
                 {
-                    foreach (TelefonoUsuario telefonoUsuario in userData.TelefonoUsuario.Where(w => w.Obligatorio))
-                    {
-
-                    }
-                    //rbtnList.DataSource = userData.TelefonoUsuario.Where(w => w.Obligatorio).ToList();
-                    //rbtnList.DataTextField = "Numero";
-                    //rbtnList.DataValueField = "Id";
-                    //rbtnList.DataBind();
-                    if (userData.TelefonoUsuario.Count <= 0)
+                    if (userData.TelefonoUsuario.Count(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Obligatorio) <= 0)
                         throw new Exception("No cuenta con telefonos registrados contacte a su Administrador.");
-                    hfIdSend.Value = userData.TelefonoUsuario.Where(w => w.Obligatorio).ToList().First().Id.ToString();
-                    hfValueSend.Value = userData.TelefonoUsuario.Where(w => w.Obligatorio).ToList().First().Numero;
+                    hfIdSend.Value = userData.TelefonoUsuario.Where(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Obligatorio).ToList().First().Id.ToString();
+                    hfValueSend.Value = userData.TelefonoUsuario.Where(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Obligatorio).ToList().First().Numero;
                     _servicioUsuario.EnviaCodigoVerificacionSms(int.Parse(QueryString.Decrypt(Request.Params["ldata"])), (int)BusinessVariables.EnumTipoLink.Reset, int.Parse(hfIdSend.Value));
                     divCodigoVerificacion.Visible = true;
                 }

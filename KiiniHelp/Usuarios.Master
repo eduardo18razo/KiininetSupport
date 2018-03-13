@@ -48,7 +48,6 @@
             window.open(url, "test", 'type=fullWindow, fullscreen, height=700,width=760');
         };
         function ShowLanding() {
-            debugger;
             var landing = document.getElementById('updateProgress');
             if (landing != undefined) {
                 landing.style.display = 'block';
@@ -56,7 +55,6 @@
         }
 
         function HideLanding() {
-            debugger;
             var landing = document.getElementById('updateProgress');
             if (landing != undefined) {
                 landing.style.display = 'none';
@@ -145,7 +143,6 @@
         }
 
         function hidden(tablename) {
-            debugger;
             $(tablename + ' tr').on('mouseover', function () {
                 $(this).find('#hiddenEditar').removeClass("hidden");
                 $(this).find('#hiddenClonar').removeClass("hidden");
@@ -166,7 +163,6 @@
             }
         }
         function sayHi(e) {
-            debugger;
             e.preventDefault();
         }
     </script>

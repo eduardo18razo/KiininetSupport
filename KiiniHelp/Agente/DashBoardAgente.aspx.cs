@@ -46,7 +46,15 @@ namespace KiiniHelp.Agente
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
-                ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                List<Usuario> lstUsuarios = null;
+                if (usr.Supervisor)
+                    lstUsuarios = _servicioUsuarios.ObtenerAgentes(true);
+                else
+                {
+                    lstUsuarios = new List<Usuario>();
+                    lstUsuarios.Add(usr);
+                }
+                ddlAgente.DataSource = lstUsuarios;
                 ddlAgente.DataTextField = "NombreCompleto";
                 ddlAgente.DataValueField = "Id";
                 ddlAgente.DataBind();
