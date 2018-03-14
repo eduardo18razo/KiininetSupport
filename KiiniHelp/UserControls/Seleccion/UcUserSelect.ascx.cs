@@ -7,6 +7,7 @@ using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using System.Web.UI.WebControls;
 
 namespace KiiniHelp.UserControls.Seleccion
 {
@@ -93,6 +94,11 @@ namespace KiiniHelp.UserControls.Seleccion
         protected void lbtnCategoria_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + int.Parse(Request.Params["userTipe"]));
+        }
+
+        protected void verOpcion_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Publico/FrmConsulta.aspx?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));            
         }
     }
 }

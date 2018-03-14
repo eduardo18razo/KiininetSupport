@@ -214,7 +214,7 @@ namespace KiiniHelp.UserControls.Temporal
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ExpresiónRegular:
                             nombreControl = "txt" + campo.NombreCampo;
                             break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo: /* Adjuntar Archivo*/
                             nombreControl = "fu" + campo.NombreCampo;
                             campoTexto = false;
                             break;
@@ -362,7 +362,6 @@ namespace KiiniHelp.UserControls.Temporal
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
-                    //createDiv.InnerHtml = campo.Descripcion;
                     Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label proxima12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
@@ -378,7 +377,6 @@ namespace KiiniHelp.UserControls.Temporal
                             };
                             txtSimple.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtSimple.Attributes["MaxLength"] = campo.TipoCampoMascara.LongitudMaxima.ToString();
-                            //txtSimple.Attributes["placeholder"] = campo.Descripcion; jgb
                             _lstControles.Add(txtSimple);
                             createDiv.Controls.Add(txtSimple);
                             break;
@@ -394,7 +392,6 @@ namespace KiiniHelp.UserControls.Temporal
                             };
                             txtMultilinea.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMultilinea.Attributes["MaxLength"] = campo.LongitudMaxima.ToString();
-                            //txtMultilinea.Attributes["placeholder"] = campo.Descripcion; jgb
                             _lstControles.Add(txtMultilinea);
                             createDiv.Controls.Add(txtMultilinea);
                             break;
@@ -499,7 +496,6 @@ namespace KiiniHelp.UserControls.Temporal
                                 CssClass = "form-control"
                             };
                             txtDecimal.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtDecimal.Attributes["placeholder"] = campo.Descripcion; jgb
                             txtDecimal.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtDecimal.Attributes["type"] = "number";
                             txtDecimal.Attributes["step"] = "0.01";
@@ -517,7 +513,6 @@ namespace KiiniHelp.UserControls.Temporal
                                 CssClass = "form-control"
                             };
                             txtEntero.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtEntero.Attributes["placeholder"] = campo.NombreCampo; jgb
                             txtEntero.Attributes["type"] = "number";
                             txtEntero.Attributes["step"] = "1";
                             txtEntero.Attributes["min"] = "1";
@@ -540,7 +535,6 @@ namespace KiiniHelp.UserControls.Temporal
                                Format = "dd/MM/yyyy"
                            };
                             txtFecha.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFecha.Attributes["placeholder"] = campo.Descripcion; jgb
                             txtFecha.Attributes["for"] = "FECHA";
                             txtFecha.Attributes["MaxLength"] = "10";
                             createDiv.Controls.Add(ceeFechaOpcion);
@@ -571,7 +565,6 @@ namespace KiiniHelp.UserControls.Temporal
                                Format = "dd/MM/yyyy"
                            };
                             txtFechaInicio.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFechaInicio.Attributes["placeholder"] = campo.Descripcion; jgb
                             txtFechaInicio.Attributes["for"] = "FECHAINICIO";
                             txtFechaInicio.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaInicio);
@@ -593,7 +586,6 @@ namespace KiiniHelp.UserControls.Temporal
                                 Format = "dd/MM/yyyy"
                             };
                             txtFechaFin.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFechaFin.Attributes["placeholder"] = campo.Descripcion; jgb
                             txtFechaFin.Attributes["for"] = "FECHAFIN";
                             txtFechaFin.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaFin);
@@ -622,7 +614,6 @@ namespace KiiniHelp.UserControls.Temporal
                                 Text = campo.Descripcion,
                                 CssClass = "form-control"
                             };
-                            //txtMascara.Attributes["placeholder"] = campo.Descripcion;
                             txtMascara.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMascara.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtMascara.Attributes["for"] = "txt" + campo.Descripcion.Replace(" ", string.Empty);
@@ -685,7 +676,6 @@ namespace KiiniHelp.UserControls.Temporal
                 if (!Directory.Exists(BusinessVariables.Directorios.RepositorioTemporalMascara))
                     Directory.CreateDirectory(BusinessVariables.Directorios.RepositorioTemporalMascara);
                 uploadControl.SaveAs(BusinessVariables.Directorios.RepositorioTemporalMascara + filename);
-                //Session[uploadControl.ID] = filename;
                 lstArchivo.Add(filename);
                 Session["Files"] = lstArchivo;
             }

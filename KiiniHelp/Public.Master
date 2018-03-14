@@ -74,7 +74,6 @@
     </asp:ContentPlaceHolder>
 </head>
 <body class="preload">
-    <%--<div id="full">--%>
     <form runat="server" id="form1" enctype="multipart/form-data" class="bg-grisClaro">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -413,6 +412,5 @@
             }
         </script>
     </form>
-    <%-- </div>--%>
 </body>
 </html>

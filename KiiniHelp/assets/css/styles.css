@@ -47,6 +47,10 @@ body {
     overflow-x: hidden;
 }
 
+input{
+    font-weight: normal;
+}
+
 /* tableta horizontal vertical */
 @media (min-width: 768px) and (max-width: 979px) {
     body {
