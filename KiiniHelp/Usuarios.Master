@@ -205,7 +205,7 @@
             <header class="header">
                 <div class="branding ">
                     <h1 class="logo text-center">
-                        <asp:LinkButton NavigateUrl="~/Users/DashBoard.aspx" runat="server" ID="lnkHome" OnClick="lnkHome_OnClick">
+                        <asp:LinkButton runat="server" ID="lnkHome" OnClick="lnkHome_OnClick">
                             <asp:Image class="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
                             <asp:Label runat="server" ID="lblBranding" Visible="false" />
                         </asp:LinkButton>

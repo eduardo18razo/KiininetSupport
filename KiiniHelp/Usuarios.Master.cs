@@ -540,14 +540,13 @@ namespace KiiniHelp
                         Response.Redirect("~/Users/DashBoard.aspx");
                         break;
                     default:
-                        Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                        Response.Redirect("~/Users/FrmDashboardUser.aspx");
                         break;
                 }
 
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

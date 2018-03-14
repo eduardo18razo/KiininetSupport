@@ -53,6 +53,7 @@
       <xs:element name="_x003C_FechaCreacion_x003E_k__BackingField" type="xs:dateTime" />
       <xs:element name="_x003C_IdEstatusTicket_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_PuedeVer_x003E_k__BackingField" type="xs:boolean" />
       <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

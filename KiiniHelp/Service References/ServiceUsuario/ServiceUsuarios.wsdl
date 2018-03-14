@@ -189,6 +189,12 @@
   <wsdl:message name="IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerUsuarioAgenteByGrupoUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentesPermitidos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentesPermitidos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentesPermitidos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentesPermitidosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceUsuarios">
     <wsdl:operation name="GuardarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario" message="tns:IServiceUsuarios_GuardarUsuario_InputMessage" />
@@ -301,6 +307,10 @@
     <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuarioResponse" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentesPermitidos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidos" message="tns:IServiceUsuarios_ObtenerAgentesPermitidos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidosResponse" message="tns:IServiceUsuarios_ObtenerAgentesPermitidos_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceUsuarios">
@@ -550,6 +560,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentesPermitidos">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
