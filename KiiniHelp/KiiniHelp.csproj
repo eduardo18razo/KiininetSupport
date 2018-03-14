@@ -92,9 +92,9 @@
     <Content Include="assets\carouselImage\3.jpg" />
     <Content Include="assets\css\bootstrap-markdown.css" />
     <Content Include="assets\css\bootstrap.css" />
-    <Content Include="assets\css\cambiosdiseno.css" />
     <Content Include="assets\css\checkBox.css" />
     <Content Include="assets\css\controls.css" />
+    <Content Include="assets\css\dashboards.css" />
     <Content Include="assets\css\divs.css" />
     <Content Include="assets\css\elegant-icons.css" />
     <Content Include="assets\css\elusive-icons.css" />

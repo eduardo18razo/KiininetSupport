@@ -300,7 +300,6 @@ namespace KiiniHelp.Agente
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
             }
-            //gvTickets.Rebind();
         }
 
         void ucAsignacionUsuario_OnCancelarModal()
@@ -398,8 +397,6 @@ namespace KiiniHelp.Agente
                 if (UcCambiarEstatusTicket.CerroTicket)
                 {
                     string url = ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" + (int)BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" + hfTicketActivo.Value);
-                    //string s = "window.open('" + url + "', 'popup_window', 'width=600,height=600,left=300,top=100,resizable=yes');";
-                    //ClientScript.RegisterStartupScript(this.GetType(), "script", s, true);
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");", true);
                 }
                 hfTicketActivo.Value = string.Empty;
@@ -471,15 +468,6 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                //Metodos.LimpiarCombo(ddlAgente);
-                //if (ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //    return;
-                //ddlAgente.DataSource = _servicioUsuarios.ObtenerUsuariosByGrupoAtencion(int.Parse(ddlGrupo.SelectedValue), true);
-                //ddlAgente.DataTextField = "NombreCompleto";
-                //ddlAgente.DataValueField = "Id";
-                //ddlAgente.DataBind();
-
-
                 Metodos.LimpiarCombo(ddlAgente);
                 if (ddlGrupo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
@@ -525,12 +513,7 @@ namespace KiiniHelp.Agente
                         }
                     }
                 }
-
-
-
-
                 ObtenerTicketsPage();
-
             }
             catch (Exception ex)
             {
@@ -587,12 +570,6 @@ namespace KiiniHelp.Agente
                         }
                     _servicioAtencionTicket.AutoAsignarTicket(idTicket, ((Usuario)Session["UserData"]).Id, txtComentarioAsignacion.Text.Trim());
                 }
-
-                //AgenteMaster master = Master as AgenteMaster;
-                //if (master != null && idTicket != 0)
-                //{
-                //    master.AddTicketOpen(idTicket, titulo);
-                //}
 
                 ObtenerTicketsPage();
 
@@ -863,7 +840,7 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusAbierto;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
+                            btnFiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
                             FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
@@ -1145,11 +1122,5 @@ namespace KiiniHelp.Agente
 
         }
 
-        //protected void gvTickets_SelectedCellChanged(object sender, EventArgs e)
-        //{
-        //    int selected = gvTickets.SelectedCells[0].Column.OrderIndex;
-        //    string text = gvTickets.SelectedCells[0].Text;
-
-        //}
     }
 }

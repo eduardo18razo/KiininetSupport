@@ -170,7 +170,7 @@
 </head>
 <body class="preload">
     <div id="full">
-        <form runat="server" id="form1" enctype="multipart/form-data" style="background-color: #FFF">
+        <form runat="server" id="form1" enctype="multipart/form-data" class="bg-blanco">
             <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
                 <Scripts>
                     <asp:ScriptReference Path="~/assets/js/jquery.js" />
@@ -195,8 +195,8 @@
             </asp:ScriptManager>
             <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
                 <ProgressTemplate>
-                    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
-                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
+                    <div class="progressBar">
+                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..."/> 
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -212,14 +212,14 @@
                 </div>
 
                 <div class="topbar bg_w_header">
-                    <div style="margin-left: 0; float: left; position: relative; display: block;">
+                    <div  class="cont-menu-trigger">
                         <div>
                             <span id="trigger" class="menu-trigger"></span>
                         </div>
                     </div>
 
-                    <div class="search-container" runat="server" visible="true">
-                        <div id="main-search" style="padding-top: 20px;">
+                    <div class="search-container" runat="server" visible="false">
+                        <div id="main-search padding-20-top">
                             <i id="main-search-toggle" class="fa fa-search icon"></i>
                             <div id="main_search_input_wrapper" class="main_search_input_wrapper">
                                 <asp:UpdatePanel runat="server">
@@ -286,13 +286,13 @@
                                     <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Mensajes</span>
                                         <span class="pe-icon pe-7s-mail icon" data-toggle="tooltip" data-placement="bottom" title="Messages"></span>
-                                        <span class="badge badge-circle badge-success" style="left: 30px; bottom: 22px;">
+                                        <span class="badge badge-circle badge-success badge-mensajes">
                                             <asp:Label runat="server" ID="lblNoMensajes" />
                                         </span>
                                     </div>
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-messages">
                                         <span class="arrow"></span>
-                                        <div class="message-items no-overflow" style="height: 420px; overflow-y: auto">
+                                        <div class="message-items no-overflow cont-badge-msg">
                                             <div class="item media">
                                                 <div class="media-left profile">
                                                     <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
@@ -329,62 +329,6 @@
                                                 <div class="meta">Ene 6 </div>
                                             </div>
                                             <%--Borrar--%>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <img class="profile" src="assets/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
-                                                <div class="meta">Ene 6 </div>
-                                            </div>
                                         </div>
                                         <div class="dropdown-footer"><a href="#">Ver todos los mensajes</a> </div>
                                     </div>
@@ -433,10 +377,10 @@
                                 </li>
                             </ul>
 
-                            <div class="dropdown-toggle" style="padding-top:10px" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
+                            <div class="dropdown-toggle padding-10-top" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
                                 <asp:Image ImageUrl="~/assets/images/profiles/perfil.png" alt="" ID="imgPerfil" runat="server" />
                                 <i class="fa fa-caret-down"></i>
-                                <p class="name" style="display: inline-block; color: #232323;">
+                                <p class="nombreUsuario">
                                     <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
                                     <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
                                     / <strong class="text-theme">
@@ -459,9 +403,9 @@
                 </div>
             </header>
 
-            <div id="content-wrapper" class="content-wrapper" style="padding-top: 0">
-                <div class="container-fluid" style="padding-left: 0">
-                    <div class="divMainMenu" id="divMainMenu" style="margin-top: 65px;">
+            <div id="content-wrapper" class="content-wrapper no-padding-top">
+                <div class="container-fluid no-padding-left">
+                    <div class="divMainMenu  margin-top-65" id="divMainMenu">
                         <%----%>
                         <asp:HiddenField runat="server" ID="hfCargaInicial" Value="False" />
                         <nav id="pMenu" class="pMenu">
@@ -600,7 +544,7 @@
 
                     </div>
                     <div class="scroller" id="scroller">
-                        <div style="margin-top: 0; height: 100%;">
+                        <div class="no-margin-top heigth100">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -670,7 +614,7 @@
             <div id="side-panel" class="side-panel">
                 <div class="side-panel-inner">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="title text-center"><i class="fa fa-users" style="color: #E4002B"></i>Roles</h4>
+                    <h4 class="title text-center"><i class="fa fa-users fontRedKiininet"></i>Roles</h4>
                     <div class="items-wrapper">
                         <asp:Repeater runat="server" ID="rptRolesPanel">
                             <ItemTemplate>

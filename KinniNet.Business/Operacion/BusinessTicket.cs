@@ -201,28 +201,42 @@ namespace KinniNet.Core.Operacion
                             }));
 
                 ticket.IdEstatusTicket = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Abierto;
-                ticket.TicketEstatus = new List<TicketEstatus>
+                ticket.TicketEvento = new List<TicketEvento>();
+                ticket.TicketEvento.Add(new TicketEvento
                 {
-                    new TicketEstatus
+                    IdUsuarioRealizo = idUsuarioSolicito,
+                    FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                    TicketEventoEstatus = new List<TicketEventoEstatus>()
                     {
-                        IdEstatus = ticket.IdEstatusTicket,
-                        IdUsuarioMovimiento = idUsuario,
-                        FechaMovimiento =
-                            DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),
-                                "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
-                    }
-                };
-                ticket.TicketAsignacion = new List<TicketAsignacion>
-                {
-                    new TicketAsignacion
+                        
+                        new TicketEventoEstatus
+                        {
+                            FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            TicketEstatus = new TicketEstatus
+                            {
+                                IdEstatus = ticket.IdEstatusTicket,
+                                IdUsuarioMovimiento = idUsuario,
+                                FechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+
+                            }
+                        }
+                    },
+                    TicketEventoAsignacion = new List<TicketEventoAsignacion>()
                     {
-                        IdEstatusAsignacion =
-                            (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
-                        FechaAsignacion =
-                            DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),
-                                "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                        new TicketEventoAsignacion
+                        {
+                            FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            TicketAsignacion = new TicketAsignacion
+                            {
+                                IdEstatusAsignacion = (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
+                                FechaAsignacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            }
+                        }
                     }
-                };
+
+                });
+
+
                 DateTime fechaTicket = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd"), "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
                 List<Frecuencia> frecuencias = db.Frecuencia.Where(s => s.IdTipoUsuario == ticket.IdTipoUsuario && s.IdTipoArbolAcceso == ticket.IdTipoArbolAcceso && s.IdArbolAcceso == ticket.IdArbolAcceso && s.Fecha == fechaTicket).ToList();
@@ -561,7 +575,7 @@ namespace KinniNet.Core.Operacion
                         hticket.NombreUsuario = ticket.UsuarioLevanto.NombreCompleto;
                         hticket.Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(ticket.IdArbolAcceso);
                         hticket.GrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().GrupoUsuario.Descripcion;
-                        hticket.FechaUltimoEvento = ticket.TicketEvento.Last().FechaHora;
+                        hticket.FechaUltimoEvento = ticket.TicketEvento != null && ticket.TicketEvento.Count > 0 ? ticket.TicketEvento.Last().FechaHora : (DateTime?) null;
                         hticket.EstatusTicket = ticket.EstatusTicket;
                         hticket.EstatusAsignacion = ticket.EstatusAsignacion;
                         hticket.FechaCambioEstatusAsignacion = ticket.TicketAsignacion.Last().FechaAsignacion;

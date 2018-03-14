@@ -10,9 +10,7 @@
                     <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink></li>
                 <li class="breadcrumb-item">
                     <asp:LinkButton runat="server" ID="lbTipoUsuario" OnClick="lbTipoUsuario_Click">
-                                            
                     </asp:LinkButton>
-                    <%--<a href="service-area.html"><% Response.Write(string.Format("{0}", ((Usuario)Session["UserData"]).IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado ? "Empleado" : ((Usuario)Session["UserData"]).IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.ClienteInvitado ? "Cliente" : "Proveedor")); %></a>--%>
                 </li>
                 <li class="breadcrumb-item active">Categorías</li>
             </ol>

@@ -82,7 +82,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 if (Request.Params["userTipe"] != null)
                     IdTipoUsuario = int.Parse(Request.Params["userTipe"]);
                 else
-                    IdTipoUsuario = (int)BusinessVariables.EnumTiposUsuario.Cliente;
+                    IdTipoUsuario = Session["TipoUsuario"] == null ? (int)BusinessVariables.EnumTiposUsuario.Cliente : int.Parse(Session["TipoUsuario"].ToString());
             }
             catch (Exception ex)
             {
