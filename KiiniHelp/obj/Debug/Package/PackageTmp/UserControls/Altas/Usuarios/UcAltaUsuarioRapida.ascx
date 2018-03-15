@@ -2,7 +2,7 @@
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfIdUsuario" />
-        <asp:HiddenField runat="server" ID="hfIdTipoUsuario" />
+        <asp:HiddenField runat="server" ID="hfIdTipoUsuario" Value="0" />
         <div class="row">
             <div>
                 <div class="row">

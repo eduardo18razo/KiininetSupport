@@ -91,6 +91,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
+                LlenaArboles();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalDetalleOpciones\");", true);
             }
             catch (Exception ex)
@@ -108,7 +109,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-
+                LlenaArboles();
                 UcAltaAbrolAcceso.Cancelar();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
             }

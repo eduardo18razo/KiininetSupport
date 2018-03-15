@@ -5,6 +5,7 @@ using System.Linq;
 using KiiniNet.Entities.Operacion;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
+using Telerik.Web.UI;
 
 namespace KinniNet.Core.Operacion
 {
@@ -255,12 +256,7 @@ namespace KinniNet.Core.Operacion
                 try
                 {
                     db.ContextOptions.ProxyCreationEnabled = _proxy;
-                    //List<int> lstAreas = (from a in db.Area
-                    //                      join aa in db.ArbolAcceso on a.Id equals aa.IdArea
-                    //                      where aa.IdTipoUsuario == idTipoUsuario
-                    //                      select a.Id).Distinct().ToList();
-
-                    result = db.Area.Where(w => w.Habilitado).ToList();
+                    result = db.Area.Where(w=> !w.Sistema && w.Habilitado && db.ArbolAcceso.Where(wa=>wa.IdTipoUsuario == idTipoUsuario && wa.Habilitado).Select(s=>s.IdArea).Contains(w.Id)).ToList();
                     if (insertarSeleccion)
                         result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                             new Area

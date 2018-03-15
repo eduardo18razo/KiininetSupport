@@ -67,7 +67,7 @@ namespace KiiniHelp.Publico.Consultas
                         ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");window.location.replace(\"" + urlHome + "\");", true);
                     }
                 }
-                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
+                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
                 lblticket.Text = string.Empty;
 
             }
@@ -212,7 +212,7 @@ namespace KiiniHelp.Publico.Consultas
         {
             try
             {
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
             }
             catch (Exception)
             {

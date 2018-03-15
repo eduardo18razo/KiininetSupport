@@ -33,7 +33,7 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 lbTipoUsuario.Text = string.Format("{0}", int.Parse(Request.Params["userType"]) == (int)BusinessVariables.EnumTiposUsuario.Empleado ? "Empleado" : int.Parse(Request.Params["userType"]) == (int)BusinessVariables.EnumTiposUsuario.Cliente ? "Cliente" : "Proveedor");
-                rptAreas.DataSource = _servicioArea.ObtenerAreasTipoUsuario(int.Parse(Request.Params["userType"]), false);
+                rptAreas.DataSource = _servicioArea.ObtenerAreasTipoUsuario(int.Parse(Request.Params["userType"]), false).Where(w => !w.Sistema);
                 rptAreas.DataBind();
             }
             catch (Exception ex)
@@ -51,12 +51,12 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                LinkButton lnkbtn = (LinkButton) sender;
+                LinkButton lnkbtn = (LinkButton)sender;
                 int tipoUsuario = int.Parse(Request.Params["userType"]);
                 //Response.Redirect("~/Publico/FrmServiceArea.aspx?idArea=" + lnkbtn.CommandArgument);
 
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + tipoUsuario + "&idArea=" + lnkbtn.CommandArgument);
-                
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario + "&idArea=" + lnkbtn.CommandArgument);
+
             }
             catch (Exception ex)
             {
@@ -74,8 +74,8 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 string tipoUsuario = Request.Params["userType"];
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + tipoUsuario );
-            }           
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario);
+            }
             catch (Exception ex)
             {
                 if (_lstError == null)
@@ -85,6 +85,6 @@ namespace KiiniHelp.UserControls.Seleccion
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
             }
-        }   
+        }
     }
 }

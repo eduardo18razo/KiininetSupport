@@ -56,6 +56,7 @@ namespace KiiniHelp
         {
             try
             {
+                divMenuBtn.Visible = false;
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 UcLogIn.OnAceptarModal += UcLogInOnOnCancelarModal;
                 UcLogIn.OnCancelarModal += UcLogInOnOnCancelarModal;
@@ -71,10 +72,10 @@ namespace KiiniHelp
                 //    ObtenerMenuPublico(6, 6 != 0);
                 //}
                 if (!IsPostBack)
-                    if (Request.Params["userTipe"] != null)
+                    if (Request.Params["userType"] != null)
                     {
                         int areaSeleccionada;
-                        TipoUsuario = int.Parse(Request.Params["userTipe"]);
+                        TipoUsuario = int.Parse(Request.Params["userType"]);
                         switch (TipoUsuario)
                         {
                             case (int)BusinessVariables.EnumTiposUsuario.Empleado:
@@ -91,7 +92,7 @@ namespace KiiniHelp
                                 break;
                         }
                     }
-                if (Request.Params["userTipe"] != null)
+                if (Request.Params["userType"] != null)
                     ObtenerMenuPublico(6, 6 != 0);
             }
             catch (Exception ex)
@@ -470,7 +471,7 @@ namespace KiiniHelp
             try
             {
                 CargaPerfil((int)BusinessVariables.EnumTiposUsuario.Cliente);
-                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userTipe=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
+                Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
             }
             catch (Exception ex)
             {

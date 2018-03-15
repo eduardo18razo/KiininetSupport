@@ -40,6 +40,15 @@ namespace KiiniHelp.UserControls.Seleccion {
         protected global::System.Web.UI.WebControls.TextBox help_search_form;
         
         /// <summary>
+        /// Control lblCategoria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategoria;
+        
+        /// <summary>
         /// Control rpt10Frecuentes.
         /// </summary>
         /// <remarks>

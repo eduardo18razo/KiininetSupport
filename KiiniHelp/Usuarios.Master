@@ -239,7 +239,7 @@
 
                             <div>
 
-                                <div class="item item-notifications separador-vertical-derecho">
+                                <div class="item item-notifications separador-vertical-derecho" runat="server" ID="divRoles">
                                     <i id="side-panel-toggle" class="side-panel-toggle panel-hide icon fa fa-users icon" data-toggle="tooltip" data-placement="bottom" title="Roles">
                                         <span class="badge badge-circle badge-info">
                                             <asp:Label runat="server" ID="lblBadgeRoles"></asp:Label></span>

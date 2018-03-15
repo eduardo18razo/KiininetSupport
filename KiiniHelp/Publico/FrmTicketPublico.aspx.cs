@@ -218,8 +218,8 @@ namespace KiiniHelp.Publico
             try
             {
                 Public master = (Public)Page.Master;
-                if (master != null) 
-                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + master.TipoUsuario);
+                if (master != null)
+                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + master.TipoUsuario);
                 else
                     Response.Redirect("~/Default.aspx");
             }

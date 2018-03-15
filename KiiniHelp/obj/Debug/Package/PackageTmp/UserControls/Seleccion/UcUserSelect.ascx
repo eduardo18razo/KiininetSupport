@@ -2,7 +2,7 @@
 
 <div id="full">
     <asp:UpdatePanel runat="server">
-        <ContentTemplate>            
+        <ContentTemplate>
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
@@ -61,12 +61,14 @@
                                                                             <a data-toggle="collapse" class="panel-toggle" href='<%# "#faq_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %>  </a></h4>
                                                                     </div>
                                                                     <div class="panel-collapse  collapse" id='<%# "faq_" + Eval("IdArbol") %>'>
-                                                                        <div class="panel-body"><%# Eval("DescripcionOpcionLarga") %></div>
+                                                                        <div class="panel-body">
+                                                                            <%# Eval("DescripcionOpcionLarga") %>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
-                                                         <asp:Repeater runat="server" ID="rptCatTodos">
+                                                        <asp:Repeater runat="server" ID="rptCatTodos">
                                                             <ItemTemplate>
                                                                 <div class="panel panel-default">
                                                                     <div class="panel-heading panel-heading-theme-1">
@@ -97,7 +99,8 @@
                                                                             <a data-toggle="collapse" class="panel-toggle" href='<%# "#faq2_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %> </a></h4>
                                                                     </div>
                                                                     <div class="panel-collapse  collapse" id='<%# "faq2_" + Eval("IdArbol") %>'>
-                                                                        <div class="panel-body">Consulta repetidor </div>
+                                                                        <div class="panel-body"><%# Eval("DescripcionOpcionLarga") %></div>
+                                                                       <%-- <asp:LinkButton runat="server" ID="verOpcion" Text="Ver opción" OnClick="verOpcion_Click" CommandArgument='<%# Eval("IdArbol") %>' />--%>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
@@ -112,7 +115,7 @@
                                                                     </div>
                                                                     <div class="panel-collapse  collapse" id='<%# "faq6_" + Eval("Id") %>'>
                                                                         <div class="panel-body">
-                                                                            <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>'></asp:Label>
+                                                                            <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>' />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -132,13 +135,13 @@
                                                                             data-toggle="collapse" class="panel-toggle" href='<%# "#faq3_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %> </a></h4>
                                                                     </div>
                                                                     <div class="panel-collapse  collapse" id='<%# "faq3_" + Eval("IdArbol") %>'>
-                                                                        <div class="panel-body">Servicio Repetidor</div>
+                                                                        <div class="panel-body"><%# Eval("DescripcionOpcionLarga") %></div>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
 
-                                                         <asp:Repeater runat="server" ID="rptCatServicios">
+                                                        <asp:Repeater runat="server" ID="rptCatServicios">
                                                             <ItemTemplate>
                                                                 <div class="panel panel-default">
                                                                     <div class="panel-heading panel-heading-theme-1">
@@ -168,13 +171,13 @@
                                                                             data-toggle="collapse" class="panel-toggle" href='<%# "#faq4_" + Eval("IdArbol") %>'><i class="fa fa-plus-square"></i><%# Eval("DescripcionOpcion") %>  </a></h4>
                                                                     </div>
                                                                     <div class="panel-collapse  collapse" id='<%# "faq4_" + Eval("IdArbol") %>'>
-                                                                        <div class="panel-body">ProblemaRepetidor </div>
+                                                                        <div class="panel-body"><%# Eval("DescripcionOpcionLarga") %></div>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
 
-                                                          <asp:Repeater runat="server" ID="rptCatProblemas">
+                                                        <asp:Repeater runat="server" ID="rptCatProblemas">
                                                             <ItemTemplate>
                                                                 <div class="panel panel-default">
                                                                     <div class="panel-heading panel-heading-theme-1">
@@ -182,7 +185,7 @@
                                                                             data-toggle="collapse" class="panel-toggle" href='<%# "#faq4_" + Eval("Id") %>'><i class="fa fa-plus-square"></i><%# Eval("Tipificacion") %>  </a></h4>
                                                                     </div>
                                                                     <div class="panel-collapse  collapse" id='<%# "faq4_" + Eval("Id") %>'>
-                                                                         <div class="panel-body">
+                                                                        <div class="panel-body">
                                                                             <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>'></asp:Label>
                                                                         </div>
                                                                     </div>

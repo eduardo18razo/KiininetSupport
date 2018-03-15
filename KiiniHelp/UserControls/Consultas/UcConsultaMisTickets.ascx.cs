@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using KiiniHelp.ServiceSeguridad;
 using KiiniHelp.ServiceSistemaEstatus;
 using KiiniHelp.ServiceTicket;
 using KiiniNet.Entities.Helper;
@@ -13,7 +11,7 @@ using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Consultas
 {
-    public partial class UcConsultaMisTickets : System.Web.UI.UserControl
+    public partial class UcConsultaMisTickets : UserControl
     {
         private readonly ServiceTicketClient _servicioTickets = new ServiceTicketClient();
         private readonly ServiceEstatusClient _servicioEstatus = new ServiceEstatusClient();
@@ -53,6 +51,8 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<HelperTickets> lst = _servicioTickets.ObtenerTicketsUsuario(((Usuario)Session["UserData"]).Id, pageIndex, PageSize);
+                tblResults.DataSource = lst;
+                tblResults.DataBind();
                 if (lst != null)
                 {
                     if (ddlEstatus.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
@@ -88,11 +88,6 @@ namespace KiiniHelp.UserControls.Consultas
                         }
 
                     ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
-                    tblResults.DataSource = lst;
-                    tblResults.DataBind();
-                    if (lst.Count == 0 && pageIndex == 1) return;
-                    int recordCount = pageIndex * PageSize;
-                    //GeneraPaginado(recordCount, pageIndex);
                 }
             }
             catch (Exception e)
@@ -106,7 +101,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 Alerta = new List<string>();
                 ucCambiarEstatusTicket.OnAceptarModal += ucCambiarEstatusTicket_OnAceptarModal;
                 if (!IsPostBack)
@@ -156,22 +150,6 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        protected void btnNew_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
 
         protected void btnBuscar_OnClick(object sender, EventArgs e)
         {
@@ -244,7 +222,7 @@ namespace KiiniHelp.UserControls.Consultas
             LlenaEstatus();
         }
 
-        #endregion 
+        #endregion
 
 
     }

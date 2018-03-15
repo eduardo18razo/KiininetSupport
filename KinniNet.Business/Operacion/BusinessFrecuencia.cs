@@ -51,6 +51,24 @@ namespace KinniNet.Core.Operacion
                         DescripcionOpcionLarga = arbol.Descripcion
                     });
                 }
+
+                List<int> arbolesAgregados = new List<int>();
+                int take = 10 - result.Count;
+                if (result.Count < 10)
+                {
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    foreach (ArbolAcceso opcion in opciones)
+                    {
+                        ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
+                        result.Add(new HelperFrecuencia
+                        {
+                            IdArbol = arbol.Id,
+                            IdTipoArbol = arbol.IdTipoArbolAcceso,
+                            DescripcionOpcion = bArbol.ObtenerTipificacion(arbol.Id),
+                            DescripcionOpcionLarga = arbol.Descripcion
+                        });
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -92,6 +110,23 @@ namespace KinniNet.Core.Operacion
                         DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
                         DescripcionOpcionLarga = arbol.Descripcion
                     });
+                }
+                List<int> arbolesAgregados = new List<int>();
+                int take = 10 - result.Count;
+                if (result.Count < 10)
+                {
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    foreach (ArbolAcceso opcion in opciones)
+                    {
+                        ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
+                        result.Add(new HelperFrecuencia
+                        {
+                            IdArbol = arbol.Id,
+                            IdTipoArbol = arbol.IdTipoArbolAcceso,
+                            DescripcionOpcion = bArbol.ObtenerTipificacion(arbol.Id),
+                            DescripcionOpcionLarga = arbol.Descripcion
+                        });
+                    }
                 }
             }
             catch (Exception ex)
@@ -135,6 +170,23 @@ namespace KinniNet.Core.Operacion
                         DescripcionOpcionLarga = arbol.Descripcion
                     });
                 }
+                List<int> arbolesAgregados = new List<int>();
+                int take = 10 - result.Count;
+                if (result.Count < 10)
+                {
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    foreach (ArbolAcceso opcion in opciones)
+                    {
+                        ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
+                        result.Add(new HelperFrecuencia
+                        {
+                            IdArbol = arbol.Id,
+                            IdTipoArbol = arbol.IdTipoArbolAcceso,
+                            DescripcionOpcion = bArbol.ObtenerTipificacion(arbol.Id),
+                            DescripcionOpcionLarga = arbol.Descripcion
+                        });
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -176,6 +228,24 @@ namespace KinniNet.Core.Operacion
                         DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
                         DescripcionOpcionLarga = arbol.Descripcion
                     });
+                }
+
+                List<int> arbolesAgregados = new List<int>();
+                int take = 10 - result.Count;
+                if (result.Count < 10)
+                {
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    foreach (ArbolAcceso opcion in opciones)
+                    {
+                        ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
+                        result.Add(new HelperFrecuencia
+                        {
+                            IdArbol = arbol.Id,
+                            IdTipoArbol = arbol.IdTipoArbolAcceso,
+                            DescripcionOpcion = bArbol.ObtenerTipificacion(arbol.Id),
+                            DescripcionOpcionLarga = arbol.Descripcion
+                        });
+                    }
                 }
             }
             catch (Exception ex)

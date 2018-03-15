@@ -22,14 +22,8 @@
 
     <link rel="stylesheet" href="assets/css/modales_movil.css" />
     <link rel="stylesheet" href="assets/css/main_movil.css" />
-    <style>
-        .radio label {
-            padding-left: 5px;
-        }
-    </style>
 </head>
-<body style="height: 100%;">
-    <%--class="layout_no_leftnav"--%>
+<body class="heigth100">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -41,7 +35,7 @@
                 <asp:ScriptReference Path="~/assets/js/validation.js" />
             </Scripts>
         </asp:ScriptManager>
-        <asp:UpdatePanel runat="server" style="height: 100%">
+        <asp:UpdatePanel runat="server" class="heigth100">
             <ContentTemplate>
                 <asp:HiddenField runat="server" ID="hfEsLink" Value="false" />
                 <asp:HiddenField runat="server" ID="hfParametrosConfirmados" Value="false" />
@@ -68,7 +62,6 @@
                                                         <br />
                                                         <asp:RadioButton runat="server" ID="rbtnPreguntas" Text="Quiero contestar preguntas Reto" GroupName="Options" CssClass="radio" Style="font-weight: normal" OnCheckedChanged="rbtnPreguntas_OnCheckedChanged" AutoPostBack="True" />
                                                         <br />
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,7 +77,7 @@
                     </section>
                 </div>
 
-                <div runat="server" id="divCodigoVerificacion" visible="False" style="height: 100%">
+                <div runat="server" id="divCodigoVerificacion" visible="False" class="heigth100">
                     <section class="login-section auth-section">
                         <div class="container">
                             <div class="row">
@@ -124,9 +117,6 @@
                                                     <div class="form-group email">
                                                         <asp:Button CssClass="btn btn-default" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
                                                         <asp:Button runat="server" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-primary" />
-                                                        <%--<p class="alt-path">
-                                                            <asp:HyperLink CssClass="signup-link" NavigateUrl="~/Default.aspx" runat="server">Regresar al inicio</asp:HyperLink>
-                                                        </p>--%>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,37 +132,37 @@
                     </section>
                 </div>
 
-                <div runat="server" id="divPreguntas" visible="False" style="height: 100%">
+                <div runat="server" id="divPreguntas" visible="False" class="heigth100">
                     <section class="login-section auth-section">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
-                                    <h1 class="form-box-heading logo text-center"><span class="highlight">SOPORTE <% Response.Write(ConfigurationManager.AppSettings["Brand"]); %></span> </h1>
-                                    <div class="form-box-inner">
-                                        <h2 class="title text-center">¿Cómo quieres cambiar tu contraseña?</h2>
+                                    <h1 class="form-box-heading2"><span>Responde tu pregunta secreta</span> </h1>
+                                    <div class="form-box-inner2">                                        
                                         <div class="row">
-                                            <div class="form-container col-md-6 col-sm-12 col-xs-12">
-                                                <div data-parsley-validate id="" class="form-horizontal">
-                                                    <div class="form-horizontal">
+                                            <div class="form-container col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                                                <div data-parsley-validate class="form-horizontal">
+                                                    <div class="form-horizontal margin-bottom-25">
                                                         <asp:Repeater runat="server" ID="rptPreguntas">
                                                             <ItemTemplate>
                                                                 <div class="row">
                                                                     <asp:Label runat="server" Text='<%# Eval("Id") %>' ID="lblId" Visible="False" />
                                                                     <asp:Label runat="server" Text='<%# Eval("IdUsuario") %>' ID="lblIdUsuario" Visible="False" />
-                                                                    <asp:Label runat="server" Text='<%# Eval("Pregunta") %>' class="col-xs-6 col-md-3" ID="lblPregunta" />
-                                                                    <div class="col-sm-9">
-                                                                        <asp:TextBox required="required" runat="server" ID="txtRespuesta" CssClass="form-control obligatorio" Style="text-transform: none" />
+                                                                    <asp:Label runat="server" Text='<%# Eval("Pregunta") %>' class="col-xs-12 col-md-12 text-left" ID="lblPregunta" />
+
+                                                                    <div class="col-sm-12">
+                                                                        <asp:TextBox runat="server" ID="txtRespuesta" CssClass="form-control obligatorio" Style="text-transform: none" />
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
                                                     </div>
-                                                    <div style="margin-top: 15px">
-                                                        <asp:Button runat="server" ID="btnContinuarPreguntas" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-block btn-primary" />
-                                                        <p class="alt-path">
-                                                            <asp:HyperLink CssClass="signup-link" NavigateUrl="~/Default.aspx" runat="server">Regresar al inicio</asp:HyperLink>
-                                                        </p>
+
+                                                    <div class="form-group email">
+                                                        <asp:Button CssClass="btn btn-default" ID="btnCancelar2" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
+                                                        <asp:Button runat="server" ID="btnContinuarPreguntas" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-primary" />
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -187,8 +177,8 @@
                     </section>
                 </div>
 
-                <div runat="server" id="divChangePwd" visible="False">
-                    <section class="login-section auth-section">
+                <div runat="server" id="divChangePwd" visible="False" class="heigth100">
+                    <section class="login-section auth-section ">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
@@ -198,23 +188,22 @@
                                     <div class="form-box-inner2">
                                         <div class="row">
                                             <div class="form-container col-md-6 col-sm-12 col-xs-12">
-                                                <div data-parsley-validate class="form-horizontal">
-                                                    <%--<div class="form-group password">
-                                                        <div><span>Ingresa tu nueva contraseña:</span></div>
-                                                    </div>--%>
+                                                <div data-parsley-validate class="row">
+                                                    <asp:Label runat="server" Text="Ingresa tu nueva contraseña" CssClass="col-lg-12 text-left" />
                                                     <br>
                                                     <div class="form-group password">
                                                         <label class="sr-only" for="login-password">Password</label>
-                                                        <span class="fa fa-lock icon"></span>
-                                                        <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password" Style="text-transform: none" placeholder="Contraseña"></asp:TextBox>
+                                                        <span class="fa fa-lock icon top13"></span>
+                                                        <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password" Style="text-transform: none" />
                                                     </div>
+                                                    <asp:Label runat="server" Text="Confirma tu contraseña" CssClass="col-lg-12 text-left"></asp:Label>
                                                     <div class="form-group password">
                                                         <label class="sr-only" for="login-password">Password</label>
-                                                        <span class="fa fa-lock icon"></span>
-                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control login-password" Style="text-transform: none" placeholder="Confirma tu contraseña"></asp:TextBox>
+                                                        <span class="fa fa-lock icon top31"></span>
+                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control login-password" Style="text-transform: none" />
                                                     </div>
                                                     <div class="form-group password">
-                                                        <asp:Button class="btn btn-block btn-primary" runat="server" Text="Cambiar password" OnClick="btncontinuar_OnClick" />
+                                                        <asp:Button class="btn btn-block btn-primary" runat="server" Text="Cambiar contraseña" OnClick="btncontinuar_OnClick" />
                                                     </div>
                                                 </div>
                                             </div>

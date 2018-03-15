@@ -49,6 +49,15 @@ namespace KiiniHelp {
         protected global::System.Web.UI.UpdateProgress updateProgress;
         
         /// <summary>
+        /// Control lnkHome.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkHome;
+        
+        /// <summary>
         /// Control lblBranding.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace KiiniHelp {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox main_search_input;
+        
+        /// <summary>
+        /// Control divRoles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRoles;
         
         /// <summary>
         /// Control lblBadgeRoles.
