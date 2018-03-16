@@ -225,7 +225,9 @@
     <Content Include="ConfirmacionCuenta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="TerminosyCondiciones.aspx" />
     <Content Include="Images\orderedList2.png" />
+    <Content Include="PoliticasPrivacidad.aspx" />
     <Content Include="Publico\Consultas\FrmPreviewConsulta.aspx" />
     <Content Include="Publico\FrmBusqueda.aspx" />
     <Content Include="Publico\FrmCategoria.aspx" />
@@ -2603,6 +2605,20 @@
     <Compile Include="DisplayImages.ashx.cs">
       <DependentUpon>DisplayImages.ashx</DependentUpon>
     </Compile>
+    <Compile Include="TerminosyCondiciones.aspx.cs">
+      <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TerminosyCondiciones.aspx.designer.cs">
+      <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PoliticasPrivacidad.aspx.cs">
+      <DependentUpon>PoliticasPrivacidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PoliticasPrivacidad.aspx.designer.cs">
+      <DependentUpon>PoliticasPrivacidad.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Publico\Consultas\FrmPreviewConsulta.aspx.cs">
       <DependentUpon>FrmPreviewConsulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4213,7 +4229,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -450,7 +450,8 @@
                                                                                                                                                                                                             <asp:Repeater runat="server" ID="rptSubMenu7">
                                                                                                                                                                                                                 <ItemTemplate>
                                                                                                                                                                                                                     <li>
-                                                                                                                                                                                                                        <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
+                                                                                                                                                                                                                        <asp:HyperLink NavigateUrl='<%#
+                                                                                                                                                                                                                        Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                                                                                                                         <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                                                                                                                                             <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                                                                                                                             <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
@@ -520,9 +521,9 @@
             <footer id="footer" class="site-footer">
                 <div class="copyright">&copy; 2017 Kiininet. Todos los derechos reservados </div>
                 <div class="politicas-Privacidad">
-                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Políticas de Privacidad </asp:HyperLink>
+                    <asp:HyperLink runat="server" NavigateUrl="~/PoliticasPrivacidad.aspx">Políticas de Privacidad </asp:HyperLink>
                     <asp:Label runat="server" Text="  |  "></asp:Label>
-                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx"> Términos y Condiciones</asp:HyperLink>
+                    <asp:HyperLink runat="server" NavigateUrl="~/TerminosyCondiciones.aspx"> Términos y Condiciones</asp:HyperLink>
                 </div>
             </footer>
 

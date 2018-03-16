@@ -11,7 +11,7 @@ namespace KiiniHelp.UserControls.Consultas
 {
     public partial class UcBusqueda : UserControl
     {
-        private const int PageSize = 1;
+        private const int PageSize = 3;
         private readonly ServiceArbolAccesoClient _servicioArbol = new ServiceArbolAccesoClient();
 
         private List<string> _lstError = new List<string>();

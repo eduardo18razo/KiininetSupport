@@ -123,7 +123,6 @@
                             <asp:TextBox ID="main_search_input" ClientIDMode="Static" CssClass="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
                             <span id="clear-search" aria-hidden="true" class="fs1 icon icon_close_alt2 clear-search"></span>
                         </div>
-
                     </div>
                 </div>
                 <div class="navbar-tools">
@@ -354,9 +353,9 @@
         <footer id="footer" class="site-footer">
             <div class="copyright">&copy; 2017 Kiininet. Todos los derechos reservados </div>
             <div class="politicas-Privacidad">
-                <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Políticas de Privacidad </asp:HyperLink>
+                <asp:HyperLink runat="server" NavigateUrl="~/PoliticasPrivacidad.aspx">Políticas de Privacidad </asp:HyperLink>
                 <asp:Label runat="server" Text="  |  "></asp:Label>
-                <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx"> Términos y Condiciones</asp:HyperLink>
+                <asp:HyperLink runat="server" NavigateUrl="~/TerminosyCondiciones.aspx"> Términos y Condiciones</asp:HyperLink>
             </div>
         </footer>
 

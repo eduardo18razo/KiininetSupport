@@ -149,6 +149,10 @@ hr {
     background-color: #FBFBFB;
 }
 
+.bg-grisMedio {
+    background-color: #ededed;
+}
+
 .bg-grisOscuro {
     background-color: #7c7c7c;
 }
@@ -295,10 +299,13 @@ button.close:focus {
     width: 40px;
 }
 
+
+/*Oculta Logo*/
 .mobile:not(.nav-toggled) .header .branding {
-    width: 0;
+    width: 100%;
     top: -2px;
 }
+/*Oculta Logo*/
 
 .header .branding .logo-icon {
     position: relative;
@@ -328,11 +335,11 @@ button.close:focus {
         white-space: nowrap;
         font-family: 'Proxima Nova';
     }
-
+    /*Oculta logo versión móvil*/
 .compact:not(.nav-toggled) .header .branding .logo .nav-label,
 .mobile .header .branding .logo .nav-label,
 .nav-toggled:not(.compact):not(.mobile) .header .branding .logo .nav-label {
-    display: none;
+    /*display: none;*/
 }
 
 .header .topbar {
@@ -7159,7 +7166,17 @@ input, input[type="file"] {
     font-family: 'Proxima Nova' !important;
     font-size: 12px !important;
 }
+/*Inicio Resultados de búsqueda*/
 
+.totalResultados{
+    color: #206CC1;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+/*Fin Resultados de búsqueda*/
 
 /*Encabezado Master Page*/
 
