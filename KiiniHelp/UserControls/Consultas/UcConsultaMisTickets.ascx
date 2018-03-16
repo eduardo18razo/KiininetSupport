@@ -109,22 +109,27 @@
                     </div>
                 </div>
             </section>
-            <div class="modal fade" id="modalEstatusCambio" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <asp:UpdatePanel runat="server">
-                    <ContentTemplate>
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <uc1:UcCambiarEstatusTicket runat="server" ID="ucCambiarEstatusTicket" />
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
-        </ContentTemplate>
 
+
+
+        </ContentTemplate>
     </asp:UpdatePanel>
 
+    <div class="modal fade" id="modalCambiaEstatus" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <asp:UpdatePanel ID="upCambiaestatus" runat="server">
+            <ContentTemplate>
+                <div class="modal-dialog" style="height: 250px;">
+                    <div class="modal-content">
+                        <uc1:UcCambiarEstatusTicket runat="server" ID="ucCambiarEstatusTicket" />
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+
 </div>
+
 
 
 

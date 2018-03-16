@@ -161,18 +161,26 @@ namespace KinniNet.Core.Sistema
 
         public bool HasComentarioObligatorio(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario)
         {
-            bool result;
+            bool result = false;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                idSubRol = idSubRol <= 2 ? 3 : idSubRol;
-                result = (from easg in db.EstatusAsignacionSubRolGeneral
-                          join ea in db.EstatusAsignacion on easg.IdEstatusAsignacionActual equals ea.Id
-                          join ea1 in db.EstatusAsignacion on easg.IdEstatusAsignacionAccion equals ea1.Id
-                          join ug in db.UsuarioGrupo on easg.IdGrupoUsuario equals ug.IdGrupoUsuario
-                          where ug.IdUsuario == idUsuario && easg.IdSubRol == idSubRol && easg.IdGrupoUsuario == idGrupo &&
-                                easg.IdEstatusAsignacionActual == estatusAsignacionActual && easg.IdEstatusAsignacionAccion == estatusAsignar && easg.Propietario == esPropietario
-                          select easg.ComentarioObligado).First();
+                GrupoUsuario gpo = db.GrupoUsuario.SingleOrDefault(s => s.Id == idGrupo);
+                if (gpo != null)
+                {
+                    if (gpo.TieneSupervisor)
+                        idSubRol = idSubRol <= 2 ? (int)BusinessVariables.EnumSubRoles.Supervisor : idSubRol;
+                    else
+                        idSubRol = idSubRol <= 2 ? (int)BusinessVariables.EnumSubRoles.PrimererNivel : idSubRol;
+                    result = (from easg in db.EstatusAsignacionSubRolGeneral
+                              join ea in db.EstatusAsignacion on easg.IdEstatusAsignacionActual equals ea.Id
+                              join ea1 in db.EstatusAsignacion on easg.IdEstatusAsignacionAccion equals ea1.Id
+                              join ug in db.UsuarioGrupo on easg.IdGrupoUsuario equals ug.IdGrupoUsuario
+                              where ug.IdUsuario == idUsuario && easg.IdSubRol == idSubRol && easg.IdGrupoUsuario == idGrupo &&
+                                  easg.IdEstatusAsignacionActual == estatusAsignacionActual &&
+                                  easg.IdEstatusAsignacionAccion == estatusAsignar && easg.Propietario == esPropietario
+                              select easg.ComentarioObligado).First();
+                }
             }
             catch (Exception e)
             {

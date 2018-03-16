@@ -103,6 +103,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 Alerta = new List<string>();
                 ucCambiarEstatusTicket.OnAceptarModal += ucCambiarEstatusTicket_OnAceptarModal;
+                ucCambiarEstatusTicket.OnCancelarModal += ucCambiarEstatusTicket_OnCancelarModal;
                 if (!IsPostBack)
                 {
                     ViewState["Column"] = "DateTime";
@@ -124,11 +125,28 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
+        void ucCambiarEstatusTicket_OnCancelarModal()
+        {
+            try
+            {
+                //ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalCambiaEstatus\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
         void ucCambiarEstatusTicket_OnAceptarModal()
         {
             try
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalEstatusCambio\");", true);
                 if (ucCambiarEstatusTicket.CerroTicket)
                 {
                     if (bool.Parse(hfMuestraEncuesta.Value))
@@ -138,6 +156,7 @@ namespace KiiniHelp.UserControls.Consultas
                     }
                 }
                 ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalCambiaEstatus\");", true);
             }
             catch (Exception ex)
             {
@@ -202,7 +221,7 @@ namespace KiiniHelp.UserControls.Consultas
                 ucCambiarEstatusTicket.IdEstatusActual = int.Parse(btn.CommandName);
                 ucCambiarEstatusTicket.IdGrupo = 0;
                 ucCambiarEstatusTicket.IdUsuario = ((Usuario)Session["UserData"]).Id;
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalEstatusCambio\");", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalCambiaEstatus\");", true);
             }
             catch (Exception ex)
             {
