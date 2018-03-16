@@ -58,6 +58,15 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.HiddenField hfRecienActualizados;
         
         /// <summary>
+        /// Control tmLoadTickets.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.Timer tmLoadTickets;
+        
+        /// <summary>
         /// Control lblTicketAbiertosHeader.
         /// </summary>
         /// <remarks>

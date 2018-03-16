@@ -17,7 +17,6 @@ using KiiniNet.Entities.Cat.Usuario;
 
 namespace KiiniHelp.Agente
 {
-    //File change
     public partial class Bandeja : Page
     {
         private readonly ServiceTicketClient _servicioTickets = new ServiceTicketClient();
@@ -227,6 +226,7 @@ namespace KiiniHelp.Agente
                 }
                 Tickets = lst;
                 gvTickets.Rebind();
+                tmLoadTickets.Enabled = true;
             }
             catch (Exception e)
             {
@@ -1122,5 +1122,23 @@ namespace KiiniHelp.Agente
 
         }
 
+        protected void tmLoadTickets_OnTick(object sender, EventArgs e)
+        {
+            try
+            {
+                tmLoadTickets.Enabled = false;
+                ObtenerTicketsPage();
+
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }
