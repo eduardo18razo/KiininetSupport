@@ -53,10 +53,11 @@ namespace KinniNet.Core.Operacion
                 }
 
                 List<int> arbolesAgregados = new List<int>();
+                arbolesAgregados.AddRange(result.Select(s => s.IdArbol));
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
@@ -89,7 +90,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && !f.ArbolAcceso.Sistema
+                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -112,10 +113,11 @@ namespace KinniNet.Core.Operacion
                     });
                 }
                 List<int> arbolesAgregados = new List<int>();
+                arbolesAgregados.AddRange(result.Select(s => s.IdArbol));
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
@@ -171,10 +173,12 @@ namespace KinniNet.Core.Operacion
                     });
                 }
                 List<int> arbolesAgregados = new List<int>();
+                arbolesAgregados.AddRange(result.Select(s => s.IdArbol));
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio 
+                        && w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
@@ -231,10 +235,11 @@ namespace KinniNet.Core.Operacion
                 }
 
                 List<int> arbolesAgregados = new List<int>();
+                arbolesAgregados.AddRange(result.Select(s => s.IdArbol));
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas && w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);

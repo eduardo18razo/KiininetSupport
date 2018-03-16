@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaMisTickets.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaMisTickets" %>
 <%@ Import Namespace="KinniNet.Business.Utils" %>
 
-
 <%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusTicket.ascx" TagPrefix="uc1" TagName="UcCambiarEstatusTicket" %>
 
 <div style="height: 100%;">
@@ -49,16 +48,6 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                <div class="form-group margin-top-btn-consulta">
-                                    <%--<asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_Click">
-                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>--%>
-
-                                    <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
-                                <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,10 +59,13 @@
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
 
-                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false"  Width="99%"
+                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" ShowHeaderWhenEmpty="True"
                                     CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
+                                    <EmptyDataTemplate>
+                                        <h3>Sin informacion Disponible</h3>
+                                    </EmptyDataTemplate>
                                     <Columns>
                                         <asp:TemplateField HeaderText="Ticket" HeaderStyle-Width="10%" ItemStyle-CssClass="altoFijo">
                                             <ItemTemplate>
@@ -96,7 +88,7 @@
 
                                         <asp:TemplateField HeaderText="Estatus" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <div class="btn btnBandejaCliente" style='<%# "background-color: " + Eval("Estatusticket.Color") %>' >
+                                                <div class="btn btnBandejaCliente" style='<%# "background-color: " + Eval("Estatusticket.Color") %>'>
                                                     <asp:Label runat="server" Text='<%# Eval("Estatusticket.Descripcion")%>'></asp:Label>
                                                 </div>
                                             </ItemTemplate>

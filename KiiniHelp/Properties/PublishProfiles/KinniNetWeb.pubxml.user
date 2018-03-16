@@ -522,10 +522,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/14/2018 11:06:08</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>03/14/2018 17:24:41</publishTime>
+      <publishTime>03/15/2018 12:58:43</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>03/14/2018 17:24:41</publishTime>
+      <publishTime>03/15/2018 12:58:42</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
       <publishTime>03/14/2018 12:21:22</publishTime>
@@ -1242,7 +1242,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/14/2018 11:06:07</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaMisTickets.ascx">
-      <publishTime>03/14/2018 11:06:07</publishTime>
+      <publishTime>03/15/2018 12:55:23</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaNotasOpcion.ascx">
       <publishTime>03/14/2018 11:06:07</publishTime>
@@ -1434,7 +1434,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/14/2018 11:06:07</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcCategoria.ascx">
-      <publishTime>03/14/2018 11:06:26</publishTime>
+      <publishTime>03/15/2018 11:14:29</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcImpactoUrgencia.ascx">
       <publishTime>03/14/2018 11:06:07</publishTime>
@@ -1446,7 +1446,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/14/2018 11:06:07</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcUserSelect.ascx">
-      <publishTime>03/14/2018 11:06:26</publishTime>
+      <publishTime>03/15/2018 11:37:40</publishTime>
     </File>
     <File Include="UserControls/Temporal/UcCatalogoNiveles.ascx">
       <publishTime>03/14/2018 11:06:07</publishTime>
@@ -1614,7 +1614,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/14/2018 11:06:08</publishTime>
     </File>
     <File Include="Usuarios.Master">
-      <publishTime>03/14/2018 11:12:33</publishTime>
+      <publishTime>03/15/2018 12:11:20</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>03/14/2018 17:24:44</publishTime>

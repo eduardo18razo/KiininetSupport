@@ -29,6 +29,12 @@
                                     </div>
                                 </div>
                                 <!--TERMINA BUSCADOR-->
+                                <div class="row">
+                                    <h3>
+                                        <asp:Label runat="server" ID="lblCategoria" Visible="False"></asp:Label>
+                                    </h3>
+                                </div>
+
                                 <!--INICIAN TABS-->
                                 <div class="module-content-inner">
                                     <div class="faq-section text-center margin-bottom-lg">

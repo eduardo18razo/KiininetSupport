@@ -698,7 +698,9 @@ namespace KinniNet.Core.Operacion
                     foreach (GrupoUsuario grupo in gruposPertenece)
                     {
                         bool grupoConSupervisor = grupo.TieneSupervisor;
-                        bool supervisor = db.SubGrupoUsuario.Join(db.UsuarioGrupo, sgu => sgu.Id, ug => ug.IdSubGrupoUsuario, (sgu, ug) => new { sgu, ug }).Any(@t => @t.sgu.IdGrupoUsuario == grupo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor && @t.ug.IdUsuario == idUsuario);
+                        bool supervisor = grupoConSupervisor ?
+                                             db.SubGrupoUsuario.Join(db.UsuarioGrupo, sgu => sgu.Id, ug => ug.IdSubGrupoUsuario, (sgu, ug) => new { sgu, ug }).Any(@t => @t.sgu.IdGrupoUsuario == grupo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor && @t.ug.IdUsuario == idUsuario)
+                                             : db.SubGrupoUsuario.Join(db.UsuarioGrupo, sgu => sgu.Id, ug => ug.IdSubGrupoUsuario, (sgu, ug) => new { sgu, ug }).Any(@t => @t.sgu.IdGrupoUsuario == grupo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel && @t.ug.IdUsuario == idUsuario);
                         var qryAsignacionPermitida = from easrg in db.EstatusAsignacionSubRolGeneral
                                                      join ug in db.UsuarioGrupo on easrg.IdGrupoUsuario equals ug.IdGrupoUsuario
                                                      join gu in db.GrupoUsuario on new { joingpoeasrg = easrg.IdGrupoUsuario, joingpoug = ug.IdGrupoUsuario } equals new { joingpoeasrg = gu.Id, joingpoug = gu.Id }

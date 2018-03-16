@@ -47,8 +47,11 @@ namespace KinniNet.Core.Security
                                join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
                                where u.NombreUsuario == user || tu.Numero == user || cu.Correo == user
                                select u.Id).Distinct().ToList();
-                    if (qry.Count() > 1)
+                    if (qry.Count > 1)
                         throw new Exception("Error al ingresar consulte a su administrador.");
+                    if (qry.Count <= 0)
+                        throw new Exception("Usuario y/o Contraseña incorrectos.");
+
                     int idUsuario = qry[0];
                     Usuario usuario = db.Usuario.SingleOrDefault(s => s.Id == idUsuario && s.Activo && s.Habilitado);
                     result = usuario != null;
