@@ -14,6 +14,7 @@
   <xs:complexType name="ArbolAcceso">
     <xs:sequence>
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="Area" nillable="true" type="q1:Area" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EsTerminal" type="xs:boolean" />
       <xs:element minOccurs="0" name="Evaluacion" type="xs:boolean" />
       <xs:element minOccurs="0" name="FechaAlta" type="xs:dateTime" />

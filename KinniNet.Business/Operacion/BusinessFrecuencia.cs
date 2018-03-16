@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Helper;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
@@ -28,6 +29,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
+                                   where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -40,11 +42,13 @@ namespace KinniNet.Core.Operacion
                 result = new List<HelperFrecuencia>();
                 foreach (var type in frecuencias.Distinct())
                 {
+                    ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso);
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
+                        IdTipoArbol = arbol.IdTipoArbolAcceso,
                         DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
-                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
+                        DescripcionOpcionLarga = arbol.Descripcion
                     });
                 }
             }
@@ -67,7 +71,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion
+                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && !f.ArbolAcceso.Sistema
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -80,11 +84,13 @@ namespace KinniNet.Core.Operacion
                 result = new List<HelperFrecuencia>();
                 foreach (var type in frecuencias.Distinct())
                 {
+                    ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso);
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
+                        IdTipoArbol = arbol.IdTipoArbolAcceso,
                         DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
-                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
+                        DescripcionOpcionLarga = arbol.Descripcion
                     });
                 }
             }
@@ -107,7 +113,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio
+                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -120,11 +126,13 @@ namespace KinniNet.Core.Operacion
                 result = new List<HelperFrecuencia>();
                 foreach (var type in frecuencias.Distinct())
                 {
+                    ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso);
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
+                        IdTipoArbol = arbol.IdTipoArbolAcceso,
                         DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
-                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
+                        DescripcionOpcionLarga = arbol.Descripcion
                     });
                 }
             }
@@ -147,7 +155,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas
+                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -160,11 +168,13 @@ namespace KinniNet.Core.Operacion
                 result = new List<HelperFrecuencia>();
                 foreach (var type in frecuencias.Distinct())
                 {
+                    ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso);
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
+                        IdTipoArbol = arbol.IdTipoArbolAcceso,
                         DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
-                        DescripcionOpcionLarga = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).Descripcion
+                        DescripcionOpcionLarga = arbol.Descripcion
                     });
                 }
             }

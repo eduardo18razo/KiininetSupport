@@ -91,5 +91,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles);
+
+        [OperationContract]
+        List<Usuario> ObtenerAgentesPermitidos(int idUsuarioSolicita, bool insertarSeleccion);
     }
 }

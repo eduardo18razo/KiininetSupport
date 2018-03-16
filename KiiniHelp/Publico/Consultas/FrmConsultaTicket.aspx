@@ -7,7 +7,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script>
         function SetComment(parameters) {
-            debugger;
             var txtEditor = document.getElementById('ContentPlaceHolderPublic_txtEditor_designEditor');
             if (txtEditor != undefined) {
                 var hfComentario = document.getElementById('<%= hfComentario.ClientID%>');

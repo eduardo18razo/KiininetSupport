@@ -69,6 +69,7 @@ namespace KiiniHelp.Modulos
             if (context.Request.Url.OriginalString.Contains("aspx") && context.Request.RawUrl.Contains("?")) //url contiene ".aspx" && "?" ?
             {
                 string query = ExtraerCadena(context.Request.RawUrl);
+                
                 string ruta = ObtenerRutaVirtual();
 
                 if (query.StartsWith(nombreParametro, StringComparison.OrdinalIgnoreCase))

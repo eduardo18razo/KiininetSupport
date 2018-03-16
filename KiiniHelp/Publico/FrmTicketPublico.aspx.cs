@@ -155,7 +155,7 @@ namespace KiiniHelp.Publico
                     IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
                     IdCanal = int.Parse(Request.QueryString["Canal"]);
                 }
-                else if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] != null)
+                else if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] != null)//Revisar validación
                 {
                     ArbolAcceso arbol = _servicioArbolAcceso.ObtenerArbolAcceso(Convert.ToInt32(Request.QueryString["IdArbol"]));
                     Session["ArbolAcceso"] = arbol;

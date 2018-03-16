@@ -130,6 +130,51 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.Label lblClientesUnicosAtendidosActual;
         
         /// <summary>
+        /// Control lblIndicadorTiempoPromedioPrimeraRespuestaActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIndicadorTiempoPromedioPrimeraRespuestaActual;
+        
+        /// <summary>
+        /// Control lblIndicadorTiempoPromedioResolucionActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIndicadorTiempoPromedioResolucionActual;
+        
+        /// <summary>
+        /// Control lblIndicadorResolucionAlPrimerContactoPromedioActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIndicadorResolucionAlPrimerContactoPromedioActual;
+        
+        /// <summary>
+        /// Control lblIndicadorIntervencionesAgenteActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIndicadorIntervencionesAgenteActual;
+        
+        /// <summary>
+        /// Control lblIndicadorClientesUnicosAtendidosActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIndicadorClientesUnicosAtendidosActual;
+        
+        /// <summary>
         /// Control lblTiempoPromedioPrimeraRespuestaPorcentaje.
         /// </summary>
         /// <remarks>

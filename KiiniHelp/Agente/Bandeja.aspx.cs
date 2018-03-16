@@ -243,11 +243,12 @@ namespace KiiniHelp.Agente
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
-                ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+                
+                List<Usuario> lstUsuarios = _servicioUsuarios.ObtenerAgentesPermitidos(usr.Id, true);
+                ddlAgente.DataSource = lstUsuarios;
                 ddlAgente.DataTextField = "NombreCompleto";
                 ddlAgente.DataValueField = "Id";
                 ddlAgente.DataBind();
-
             }
             catch (Exception e)
             {
@@ -839,7 +840,7 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusAbierto;
-                            btnFiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
                             FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";

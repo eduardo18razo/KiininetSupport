@@ -595,7 +595,6 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.Usuario.Single(w => w.Id == idUsuario).Foto;
-                // result = db.Usuario.Single(w => w.Id == idUsuario).Foto != null ? db.Usuario.Single(w => w.Id == idUsuario).Foto : new byte[0];
             }
             catch (Exception ex)
             {
@@ -779,27 +778,6 @@ namespace KinniNet.Core.Operacion
                                 ? "Si" : "No";
                         add.Activo = usuario.Activo ? "Si" : "No";
                         result.Add(add);
-                        //    usuario.OrganizacionFinal = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, true);
-                        //    usuario.OrganizacionCompleta = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, false);
-                        //    usuario.UbicacionFinal = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, true);
-                        //    usuario.UbicacionCompleta = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, false);
-                        //result.Add(new HelperDetalleUsuarioGrupo
-                        //{
-                        //    IdUsuario = usuario.Id,
-                        //    NombreCompleto = usuario.NombreCompleto,
-                        //    NombreUsuarioCompleto = usuario.NombreUsuario,
-                        //    Supervisor = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
-                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor) ? "Si" : "No" : "No",
-                        //    PrimerNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
-                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel) ? "Si" : "No" : "No",
-                        //    SegundoNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
-                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.SegundoNivel) ? "Si" : "No" : "No",
-                        //    TercerNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s=>s.SubGrupoUsuario).Any() ?
-                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.TercerNivel) ? "Si" : "No" : "No",
-                        //    CuartoNivel = usuario.UsuarioGrupo.Where(w => w.IdGrupoUsuario == idGrupo).Select(s => s.SubGrupoUsuario).Any() ? 
-                        //                usuario.UsuarioGrupo.Any(a => a.IdGrupoUsuario == idGrupo && a.SubGrupoUsuario.IdSubRol == (int)BusinessVariables.EnumSubRoles.CuartoNivel) ? "Si" : "No" : "No",
-                        //    Activo = usuario.Activo ? "Si" : "No"
-                        //});
                     }
                 }
 
@@ -829,10 +807,6 @@ namespace KinniNet.Core.Operacion
                 foreach (Usuario usuario in result)
                 {
                     db.LoadProperty(usuario, "TipoUsuario");
-                    //    usuario.OrganizacionFinal = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, true);
-                    //    usuario.OrganizacionCompleta = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, false);
-                    //    usuario.UbicacionFinal = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, true);
-                    //    usuario.UbicacionCompleta = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, false);
                 }
 
             }
@@ -871,7 +845,7 @@ namespace KinniNet.Core.Operacion
                 var padres = from q in qry
                              select new { q.IdSubRol, q.DescripcionSubRol };
                 result = new List<HelperUsuarioAgente>();
-                result.AddRange(padres.Distinct().Select(s=>new HelperUsuarioAgente{IdUsuario = s.IdSubRol, DescripcionSubRol = s.DescripcionSubRol, NombreUsuario = s.DescripcionSubRol}).ToList());
+                result.AddRange(padres.Distinct().Select(s => new HelperUsuarioAgente { IdUsuario = s.IdSubRol, DescripcionSubRol = s.DescripcionSubRol, NombreUsuario = s.DescripcionSubRol }).ToList());
                 result.AddRange(qry.Distinct().Select(s => new HelperUsuarioAgente
                 {
                     IdUsuario = s.IdUsuario,
@@ -1458,16 +1432,6 @@ namespace KinniNet.Core.Operacion
                     idUsuario = db.TelefonoUsuario.First(a => a.Numero == usuario).IdUsuario;
                     result.Add(db.Usuario.First(f => f.Id == idUsuario));
                 }
-                //var qry = from u in db.Usuario
-                //    join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
-                //    join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
-                //    where u.NombreUsuario == usuario || cu.Correo == usuario || tu.Numero == usuario 
-
-                //;
-                //result = db.Usuario.Join(db.CorreoUsuario, u => u.Id, cu => cu.IdUsuario, (u, cu) => new { u, cu })
-                //    .Join(db.TelefonoUsuario, @t => @t.u.Id, tu => tu.IdUsuario, (@t, tu) => new { @t, tu })
-                //    .Where(@t => @t.@t.cu.Correo == usuario || @t.tu.Numero == usuario || @t.@t.u.NombreUsuario == usuario)
-                //    .Select(@t => @t.@t.u).Distinct().ToList();
             }
             catch (Exception ex)
             {
@@ -1564,6 +1528,71 @@ namespace KinniNet.Core.Operacion
                 result = db.Usuario.Join(db.CorreoUsuario, u => u.Id, cu => cu.IdUsuario, (u, cu) => new { u, cu })
                     .Where(@t => @t.cu.Correo == correo & @t.cu.Obligatorio)
                     .Select(@t => @t.u).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<Usuario> ObtenerAgentesPermitidos(int idUsuarioSolicita, bool insertarSeleccion)
+        {
+            List<Usuario> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<int> gposPertenece = (from ug in db.UsuarioGrupo 
+                          where ug.IdUsuario == idUsuarioSolicita && ug.GrupoUsuario.Habilitado
+                          select ug.IdGrupoUsuario).Distinct().ToList();
+                List<int> idsUsuarios = new List<int>();
+                result = new List<Usuario>();
+                foreach (int idGrupo in gposPertenece)
+                {
+                    GrupoUsuario gpo = new BusinessGrupoUsuario().ObtenerGrupoUsuarioById(idGrupo);
+                    if (gpo != null)
+                    {
+                        bool supervisaGrupo;
+                        if (gpo.TieneSupervisor)
+                            supervisaGrupo = db.UsuarioGrupo.Join(db.SubGrupoUsuario, ug => ug.IdSubGrupoUsuario,
+                                    sgu => (int?)sgu.Id, (ug, sgu) => new { ug, sgu })
+                                    .Any(@t => @t.ug.IdGrupoUsuario == gpo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor && @t.ug.IdUsuario == idUsuarioSolicita);
+                        else
+                            supervisaGrupo = db.UsuarioGrupo.Join(db.SubGrupoUsuario, ug => ug.IdSubGrupoUsuario,
+                                    sgu => (int?)sgu.Id, (ug, sgu) => new { ug, sgu })
+                                    .Any(@t => @t.ug.IdGrupoUsuario == gpo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel && @t.ug.IdUsuario == idUsuarioSolicita);
+                        if (supervisaGrupo)
+                        {
+                            idsUsuarios.AddRange(ObtenerUsuariosByGrupoAtencion(idGrupo, false).Select(s=>s.Id));
+                        }
+                            
+                    }
+                }
+                idsUsuarios.Add(idUsuarioSolicita);
+                foreach (Usuario usuario in db.Usuario.Where(w=> idsUsuarios.Contains(w.Id)))
+                {
+                    if (!result.Any(a => a.Id == usuario.Id))
+                        result.Add(new Usuario
+                        {
+                            Id = usuario.Id,
+                            Nombre = usuario.Nombre,
+                            ApellidoMaterno = usuario.ApellidoMaterno,
+                            ApellidoPaterno = usuario.ApellidoPaterno
+                        });
+                }
+                if (insertarSeleccion)
+                    result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
+                        new Usuario
+                        {
+                            Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione,
+                            Nombre = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione
+                        });
+
             }
             catch (Exception ex)
             {

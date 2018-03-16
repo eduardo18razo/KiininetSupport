@@ -22,15 +22,6 @@ namespace KiiniHelp.Users {
         protected global::System.Web.UI.WebControls.Label lblUsuariosRegistrados;
         
         /// <summary>
-        /// Control Label2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
         /// Control lblUsuariosActivos.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace KiiniHelp.Users {
         protected global::System.Web.UI.WebControls.Label lblUsuariosActivos;
         
         /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
         /// Control lblTicketsCreados.
         /// </summary>
         /// <remarks>
@@ -56,15 +38,6 @@ namespace KiiniHelp.Users {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTicketsCreados;
-        
-        /// <summary>
-        /// Control Label6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
         /// Control lblOperadoresAcumulados.

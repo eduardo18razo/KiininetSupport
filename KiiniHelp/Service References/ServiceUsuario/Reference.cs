@@ -98,6 +98,9 @@ namespace KiiniHelp.ServiceUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuarioResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, System.Collections.Generic.List<int> lstSubRoles);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidos", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidosResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAgentesPermitidos(int idUsuarioSolicita, bool insertarSeleccion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -237,6 +240,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, System.Collections.Generic.List<int> lstSubRoles) {
             return base.Channel.ObtenerUsuarioAgenteByGrupoUsuario(idGrupo, lstSubRoles);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerAgentesPermitidos(int idUsuarioSolicita, bool insertarSeleccion) {
+            return base.Channel.ObtenerAgentesPermitidos(idUsuarioSolicita, insertarSeleccion);
         }
     }
 }

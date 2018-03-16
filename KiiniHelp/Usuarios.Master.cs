@@ -37,8 +37,8 @@ namespace KiiniHelp
 
         private int? RolSeleccionado
         {
-            get { return string.IsNullOrEmpty(hfAreaSeleccionada.Value.Trim()) ? null : (int?)int.Parse(hfAreaSeleccionada.Value); }
-            set { hfAreaSeleccionada.Value = value.ToString(); }
+            get { return Session["RolSeleccionado"] == null ? null : string.IsNullOrEmpty(Session["RolSeleccionado"].ToString()) ? null : (int?)int.Parse(Session["RolSeleccionado"].ToString()); }
+            set { Session["RolSeleccionado"] = value.ToString(); }
         }
         public void AlertaSucces(string value = "")
         {
@@ -540,14 +540,13 @@ namespace KiiniHelp
                         Response.Redirect("~/Users/DashBoard.aspx");
                         break;
                     default:
-                        Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                        Response.Redirect("~/Users/FrmDashboardUser.aspx");
                         break;
                 }
 
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

@@ -10,7 +10,8 @@
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+   
+     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
     <link rel="stylesheet" href="assets/css/divs.css" />
@@ -48,7 +49,6 @@
             window.open(url, "test", 'type=fullWindow, fullscreen, height=700,width=760');
         };
         function ShowLanding() {
-            debugger;
             var landing = document.getElementById('updateProgress');
             if (landing != undefined) {
                 landing.style.display = 'block';
@@ -56,7 +56,6 @@
         }
 
         function HideLanding() {
-            debugger;
             var landing = document.getElementById('updateProgress');
             if (landing != undefined) {
                 landing.style.display = 'none';
@@ -145,7 +144,6 @@
         }
 
         function hidden(tablename) {
-            debugger;
             $(tablename + ' tr').on('mouseover', function () {
                 $(this).find('#hiddenEditar').removeClass("hidden");
                 $(this).find('#hiddenClonar').removeClass("hidden");
@@ -166,7 +164,6 @@
             }
         }
         function sayHi(e) {
-            debugger;
             e.preventDefault();
         }
     </script>
@@ -209,10 +206,10 @@
             <header class="header">
                 <div class="branding ">
                     <h1 class="logo text-center">
-                        <asp:HyperLink NavigateUrl="~/Users/DashBoard.aspx" runat="server">
+                        <asp:LinkButton runat="server" ID="lnkHome" OnClick="lnkHome_OnClick">
                             <asp:Image class="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
                             <asp:Label runat="server" ID="lblBranding" Visible="false" />
-                        </asp:HyperLink>
+                        </asp:LinkButton>
                     </h1>
                 </div>
 
@@ -223,7 +220,7 @@
                         </div>
                     </div>
 
-                    <div class="search-container" runat="server" visible="false">
+                    <div class="search-container" runat="server" visible="true">
                         <div id="main-search padding-20-top">
                             <i id="main-search-toggle" class="fa fa-search icon"></i>
                             <div id="main_search_input_wrapper" class="main_search_input_wrapper">

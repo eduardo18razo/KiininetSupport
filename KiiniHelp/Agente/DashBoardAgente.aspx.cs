@@ -3,7 +3,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceDashboard;
 using KiiniHelp.ServiceGrupoUsuario;
@@ -18,7 +17,7 @@ using Telerik.Web.UI.HtmlChart;
 
 namespace KiiniHelp.Agente
 {
-    public partial class DashBoard : System.Web.UI.Page
+    public partial class DashBoard : Page
     {
         private readonly ServiceDashboardsClient _servicioDashBoard = new ServiceDashboardsClient();
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
@@ -46,7 +45,9 @@ namespace KiiniHelp.Agente
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
-                ddlAgente.DataSource = _servicioUsuarios.ObtenerAgentes(true);
+
+                List<Usuario> lstUsuarios = _servicioUsuarios.ObtenerAgentesPermitidos(usr.Id, true);
+                ddlAgente.DataSource = lstUsuarios;
                 ddlAgente.DataTextField = "NombreCompleto";
                 ddlAgente.DataValueField = "Id";
                 ddlAgente.DataBind();
@@ -73,24 +74,36 @@ namespace KiiniHelp.Agente
                 lblTicketsReabiertos7dias.Text = string.Format("{0} %", datos.TicketsResuletosVsReabiertos);
 
                 lblTiempoPromedioPrimeraRespuestaActual.Text = datos.PromedioPrimeraRespuestaActual;
+                lblIndicadorTiempoPromedioPrimeraRespuestaActual.CssClass = datos.DiferenciaPromedioRespuestaPorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
                 lblTiempoPromedioPrimeraRespuestaPorcentaje.Text = string.Format("{0} %", datos.DiferenciaPromedioRespuestaPorcentaje.ToString("0.##"));
+                lblTiempoPromedioPrimeraRespuestaPorcentaje.CssClass = datos.DiferenciaPromedioRespuestaPorcentaje >= 0 ? "fontRed" : "fontGreen";
                 lblTiempoPromedioPrimeraRespuestaAnterior.Text = datos.PromedioPrimeraRespuestaAnterior;
 
                 lblTiempoPromedioResolucionActual.Text = datos.PromedioTiempoResolucionActual;
+                lblIndicadorTiempoPromedioResolucionActual.CssClass = datos.PromedioTiempoResolucionPorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
                 lblTiempoPromedioResolucionPorcentaje.Text = string.Format("{0} %", datos.PromedioTiempoResolucionPorcentaje.ToString("0.##"));
+                lblTiempoPromedioResolucionPorcentaje.CssClass = datos.PromedioTiempoResolucionPorcentaje >= 0 ? "fontRed" : "fontGreen";
+
                 lblTiempoPromedioResolucionAnterior.Text = datos.PromedioTiempoResolucionAnterior;
 
                 lblResolucionAlPrimerContactoPromedioActual.Text = datos.PromedioResolucionPrimercontactoActual;
+                lblIndicadorResolucionAlPrimerContactoPromedioActual.CssClass = datos.PromedioResolucionPrimercontactoPorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
                 lblResolucionAlPrimerContactoPromedioPorcentaje.Text = string.Format("{0} %", datos.PromedioResolucionPrimercontactoPorcentaje.ToString("0.##"));
+                lblResolucionAlPrimerContactoPromedioPorcentaje.CssClass = datos.PromedioResolucionPrimercontactoPorcentaje >= 0 ? "fontRed" : "fontGreen";
                 lblResolucionAlPrimerContactoPromedioAnterior.Text = datos.PromedioResolucionPrimercontactoAnterior;
 
                 lblIntervencionesAgenteActual.Text = datos.PromedioIntervencionesAgenteActual.ToString();
+                lblIndicadorIntervencionesAgenteActual.CssClass = datos.PromedioIntervencionesAgentePorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
                 lblIntervencionesAgentePorcentaje.Text = string.Format("{0} %", datos.PromedioIntervencionesAgentePorcentaje.ToString("0.##"));
+                lblIntervencionesAgentePorcentaje.CssClass = datos.PromedioIntervencionesAgentePorcentaje >= 0 ? "fontRed" : "fontGreen";
                 lblIntervencionesAgenteAnterior.Text = datos.PromedioIntervencionesAgenteAnterior.ToString();
 
                 lblClientesUnicosAtendidosActual.Text = datos.ClientesAtendidosActual.ToString();
+                lblIndicadorClientesUnicosAtendidosActual.CssClass = datos.ClientesAtendidosAnterior >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
+                lblClientesUnicosAtendidosPorcentaje.Text = string.Format("{0} %", datos.ClientesAtendidosAnterior.ToString("0.##"));
+                lblClientesUnicosAtendidosPorcentaje.CssClass = datos.ClientesAtendidosAnterior >= 0 ? "fontRed" : "fontGreen";
                 lblClientesUnicosAtendidosAnterior.Text = datos.ClientesAtendidosAnterior.ToString();
-                lblClientesUnicosAtendidosPorcentaje.Text = string.Format("{0} %", datos.ClientesAtendidosAnterior.ToString("0.##")); ;
+
 
                 GeneraGraficaPie(rhcTicketsAbiertos, datos.GraficoTicketsAbiertos);
                 GeneraGraficaStackedBar(rhcTicketsPrioridad, datos.GraficoTicketsPrioridad);
@@ -177,9 +190,7 @@ namespace KiiniHelp.Agente
         private void GeneraGraficaPie(RadHtmlChart grafico, DataTable dt)
         {
             grafico.PlotArea.Series.Clear();
-            PieSeries pieSerie = new PieSeries();
-            pieSerie.DataFieldY = "Total";
-            pieSerie.NameField = "Descripcion";
+            PieSeries pieSerie = new PieSeries { DataFieldY = "Total", NameField = "Descripcion" };
             pieSerie.LabelsAppearance.Visible = true;
             pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
             grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
