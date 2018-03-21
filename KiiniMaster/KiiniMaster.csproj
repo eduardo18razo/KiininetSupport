@@ -90,6 +90,7 @@
     <Content Include="Configuracion\Politicas\FrmPoliticasEscalacionPermitida.aspx" />
     <Content Include="Configuracion\Politicas\FrmPoliticasEstatusTicketGrupo.aspx" />
     <Content Include="Configuracion\Politicas\FrmPoliticasEstatusTicketDefault.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -417,6 +418,13 @@
     </Compile>
     <Compile Include="Configuracion\Politicas\FrmPoliticasEstatusTicketDefault.aspx.designer.cs">
       <DependentUpon>FrmPoliticasEstatusTicketDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

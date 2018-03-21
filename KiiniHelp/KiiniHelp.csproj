@@ -295,6 +295,7 @@
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
     <Content Include="UserControls\Consultas\UcBusqueda.ascx" />
+    <Content Include="UserControls\Dashboards\UcDashboardHelpCenter.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
@@ -2994,6 +2995,13 @@
     <Compile Include="UserControls\Consultas\UcConsultaUbicacionesFisico.ascx.designer.cs">
       <DependentUpon>UcConsultaUbicacionesFisico.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Dashboards\UcDashboardHelpCenter.ascx.cs">
+      <DependentUpon>UcDashboardHelpCenter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Dashboards\UcDashboardHelpCenter.ascx.designer.cs">
+      <DependentUpon>UcDashboardHelpCenter.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx.cs">
       <DependentUpon>UcDetalleArbolAcceso.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4219,7 +4227,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

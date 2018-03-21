@@ -52,7 +52,6 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
-
         public List<GrupoUsuario> ObtenerGruposAtencionByIdUsuario(int idUsuario, bool insertarSeleccion)
         {
             DataBaseModelContext db = new DataBaseModelContext();
@@ -379,7 +378,6 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
-
         public GrupoUsuario ObtenerGrupoDefaultRol(int idRol, int idTipoUsuario)
         {
             GrupoUsuario result = null;
@@ -407,7 +405,6 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
-
         public List<UsuarioGrupo> ObtenerGruposDeUsuario(int idUsuario)
         {
             List<UsuarioGrupo> result;
@@ -559,7 +556,6 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
-
         public void GuardarGrupoUsuario(GrupoUsuario grupoUsuario)
         {
             DataBaseModelContext db = new DataBaseModelContext();
@@ -890,6 +886,7 @@ namespace KinniNet.Core.Operacion
                                     IdSubRol = statusDefault.IdSubRol,
                                     IdEstatusAsignacionActual = statusDefault.IdEstatusAsignacionActual,
                                     IdEstatusAsignacionAccion = statusDefault.IdEstatusAsignacionAccion,
+                                    ComentarioObligado = statusDefault.ComentarioObligado,
                                     TieneSupervisor = statusDefault.TieneSupervisor,
                                     Propietario = statusDefault.Propietario,
                                     Habilitado = statusDefault.Habilitado

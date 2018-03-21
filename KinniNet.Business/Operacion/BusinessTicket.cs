@@ -425,7 +425,6 @@ namespace KinniNet.Core.Operacion
 
 
                 int totalRegistros = lstTickets.Count;
-                //TODO: Actualizar propiedades faltantes de asignacion
                 if (totalRegistros > 0)
                 {
                     result = new List<HelperTickets>();
@@ -464,7 +463,6 @@ namespace KinniNet.Core.Operacion
                         {
                             db.LoadProperty(grupoinv, "GrupoUsuario");
                         }
-                        string nivelAsignado = string.Empty;
 
                         HelperTickets hticket = new HelperTickets();
                         hticket.IdTicket = ticket.Id;
@@ -517,7 +515,6 @@ namespace KinniNet.Core.Operacion
             try
             {
                 int totalRegistros = lstTickets.Count;
-                //TODO: Actualizar propiedades faltantes de asignacion
                 if (totalRegistros > 0)
                 {
                     result = new List<HelperTickets>();
@@ -564,8 +561,6 @@ namespace KinniNet.Core.Operacion
                             db.LoadProperty(grupoinv, "GrupoUsuario");
                         }
 
-                        string nivelAsignado = string.Empty;
-
                         HelperTickets hticket = new HelperTickets();
                         hticket.IdTicket = ticket.Id;
                         hticket.IdUsuario = ticket.IdUsuarioLevanto;
@@ -586,9 +581,6 @@ namespace KinniNet.Core.Operacion
                         hticket.TieneEncuesta = ticket.IdEncuesta.HasValue;
                         hticket.NivelUsuarioAsignado = ticket.IdNivelTicket != null ? ((BusinessVariables.EnumeradoresKiiniNet.EnumeradorNivelAsignacion)ticket.IdNivelTicket).ToString() : string.Empty;
                         hticket.NivelUsuarioAsignado = ticket.IdNivelTicket != null ? ((BusinessVariables.EnumeradoresKiiniNet.EnumeradorNivelAsignacion)ticket.IdNivelTicket).ToString() : string.Empty;
-                        //ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.UsuarioGrupo.Where(w => w.SubGrupoUsuario != null).Aggregate(nivelAsignado, (current, usuarioAsignado) => current + usuarioAsignado.SubGrupoUsuario.SubRol.Descripcion) : "";
-                        //hticket.NivelUsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.UsuarioGrupo.Where(w => w.SubGrupoUsuario != null).Aggregate(nivelAsignado, (current, usuarioAsignado) => current + usuarioAsignado.SubGrupoUsuario.SubRol.Descripcion) : "";
-                        //hticket.EsPropietario = ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar && supervisor ? true : idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
                         hticket.EsPropietario = ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar ? false : idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
                         hticket.CambiaEstatus = hticket.IdUsuarioAsignado == idUsuario;
                         GrupoUsuario gpoAgenteTicket = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Select(s => s.GrupoUsuario).Distinct().FirstOrDefault();

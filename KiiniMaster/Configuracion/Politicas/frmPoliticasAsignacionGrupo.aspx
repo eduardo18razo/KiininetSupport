@@ -8,8 +8,7 @@
             <ContentTemplate>
                 <br>
                 <h3 class="h6">
-                    <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink>
-                    / Politica de Asignacion Default </h3>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink> / Politica de Asignacion Default </h3>
                 <hr />
                 <section class="module">
                     <div class="row">
@@ -44,28 +43,12 @@
                                     </div>
                                 </div>
                                 <br />
-                               <%-- <div class="form-horizontal col-lg-12">
-                                    <div class="form-group">
-                                        CONSULTA ESTATUS ASIGNACION:<br />
-                                        <div class="search-box form-inline margin-bottom-lg">
-                                            <label class="sr-only" for="txtFiltro">Buscar</label>
-                                            <div class="form-group">
-                                                <asp:TextBox runat="server" ID="txtFiltroDecripcion" CssClass="form-control help_search_form" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" placeholder="Busca con una palabra clave..." />
-                                                <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon fa fa-search" OnClick="btnBuscar_OnClick" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>--%>
-
-
-
-
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section class="module module-headings">
+                <section class="module">
                     <div class="module-inner">
                         <div class="module-content collapse in" id="content-1">
                             <div class="module-content-inner no-padding-bottom">
@@ -114,18 +97,7 @@
                                                 <td><%# Eval("Propietario")%></td>
 
                                                 <td id="colHabilitado">
-                                                    <ul class="list list-unstyled" id="hiddenEnabled">
-                                                        <li>
-                                                            <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                <td id="colEditar">
-                                                    <ul class="list list-unstyled hidden" id="hiddenEdit">
-                                                        <li>
-                                                            <asp:Button runat="server" CssClass="btn btn-sm btn-primary" Text="Editar" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" Visible="false" />
-                                                        </li>
-                                                    </ul>
+                                                    <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
@@ -141,10 +113,5 @@
                 </section>
             </ContentTemplate>
         </asp:UpdatePanel>
-        <script type="text/javascript">
-            $(function () {
-                hidden();
-            });
-        </script>
     </div>
 </asp:Content>
