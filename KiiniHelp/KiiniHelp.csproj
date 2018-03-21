@@ -92,6 +92,7 @@
     <Content Include="assets\carouselImage\3.jpg" />
     <Content Include="assets\css\bootstrap-markdown.css" />
     <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\botones_estatus.css" />
     <Content Include="assets\css\checkBox.css" />
     <Content Include="assets\css\controls.css" />
     <Content Include="assets\css\dashboards.css" />
@@ -4229,7 +4230,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

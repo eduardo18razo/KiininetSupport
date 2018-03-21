@@ -21,7 +21,7 @@
                             <p>
                                 <asp:Label runat="server" ID="lblNumeroResultados" CssClass="totalResultados"  Text="1,25769 resultados para campo búsqueda"/>
                                 <br />
-                                <div class="form col-lg-4">
+                                <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Por tipo:</label>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Por categoria</label>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">

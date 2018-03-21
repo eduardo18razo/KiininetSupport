@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Usuarios.master.cs" Inherits="KiiniHelp.UsuariosMaster" %>
+
 <%@ Register Src="~/UserControls/Temporal/UcTicketPortal.ascx" TagPrefix="uc1" TagName="UcTicketPortal" %>
 
 <!DOCTYPE html>
@@ -10,8 +11,8 @@
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
-   
-     <link rel="stylesheet" href="assets/css/bootstrap.css" />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
     <link rel="stylesheet" href="assets/css/divs.css" />
@@ -23,8 +24,8 @@
     <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
-   
-     <asp:ContentPlaceHolder ID="head" runat="server">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
 
@@ -45,6 +46,7 @@
             $(modalName).modal('hide');
             return true;
         };
+
         function OpenWindow(url) {
             window.open(url, "test", 'type=fullWindow, fullscreen, height=700,width=760');
         };
@@ -167,12 +169,12 @@
             e.preventDefault();
         }
     </script>
-   
+
 </head>
 <body class="preload">
     <div id="full">
         <form runat="server" id="form1" enctype="multipart/form-data" class="bg-blanco">
-            <asp:HiddenField runat="server" ID="hfAreaSeleccionada"/>
+            <asp:HiddenField runat="server" ID="hfAreaSeleccionada" />
             <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
                 <Scripts>
                     <asp:ScriptReference Path="~/assets/js/jquery.js" />
@@ -198,7 +200,7 @@
             <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
                 <ProgressTemplate>
                     <div class="progressBar">
-                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..."/> 
+                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." />
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -214,7 +216,7 @@
                 </div>
 
                 <div class="topbar bg_w_header">
-                    <div  class="cont-menu-trigger">
+                    <div class="cont-menu-trigger">
                         <div>
                             <span id="trigger" class="menu-trigger"></span>
                         </div>
@@ -570,8 +572,7 @@
                             <ContentTemplate>
                                 <div class="modal-header">
                                     <asp:LinkButton class="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                                    <h6 class="modal-title" id="modal-new-ticket-label">
-                                        Crear Ticket Nuevo</h6>
+                                    <h6 class="modal-title" id="modal-new-ticket-label">Crear Ticket Nuevo</h6>
                                 </div>
                                 <div class="modal-body">
                                     <uc1:UcTicketPortal runat="server" ID="ucTicketPortal" />

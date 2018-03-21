@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaMisTickets.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaMisTickets" %>
 <%@ Import Namespace="KinniNet.Business.Utils" %>
 
-
 <%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusTicket.ascx" TagPrefix="uc1" TagName="UcCambiarEstatusTicket" %>
 
 <div style="height: 100%;">
@@ -28,7 +27,7 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-lg-5">
+                            <div class="form col-xs-12 col-sm-12 col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta de Tickets:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -40,22 +39,23 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3 separador-vertical-derecho">
+                            <div class="form col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o consulta por estatus</label>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
-                                        <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control no-padding-left no-margin-left" Width="190px" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />
+                                        <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control no-padding-left no-margin-left" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                            <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
                                 <div class="form-group margin-top-btn-consulta">
                                     <%--<asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_Click">
                                  <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>--%>
 
-                                    <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
-                                <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
+                                    <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
+                                        <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
+                                    </a>
 
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
 
-                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false"  Width="99%"
+                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
                                     CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
@@ -96,7 +96,7 @@
 
                                         <asp:TemplateField HeaderText="Estatus" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <div class="btn btnBandejaCliente" style='<%# "background-color: " + Eval("Estatusticket.Color") %>' >
+                                                <div class="btn btnBandejaCliente" style='<%# "background-color: " + Eval("Estatusticket.Color") %>'>
                                                     <asp:Label runat="server" Text='<%# Eval("Estatusticket.Descripcion")%>'></asp:Label>
                                                 </div>
                                             </ItemTemplate>
@@ -117,6 +117,7 @@
                     </div>
                 </div>
             </section>
+
             <div class="modal fade" id="modalEstatusCambio" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
@@ -128,6 +129,7 @@
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+
         </ContentTemplate>
 
     </asp:UpdatePanel>

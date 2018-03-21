@@ -185,12 +185,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row copyright2 center">
+                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br />
+                                &copy; 2018
+                            </div>
                         </div>
-                        <div class="copyright2 center">
-                            <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
-                            &copy; 2018
-                       
-                        </div>
+
                     </div>
                 </section>
             </ContentTemplate>

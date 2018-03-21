@@ -92,7 +92,6 @@ namespace KiiniHelp.UserControls.Consultas
                     tblResults.DataBind();
                     if (lst.Count == 0 && pageIndex == 1) return;
                     int recordCount = pageIndex * PageSize;
-                    //GeneraPaginado(recordCount, pageIndex);
                 }
             }
             catch (Exception e)
@@ -144,23 +143,6 @@ namespace KiiniHelp.UserControls.Consultas
                     }
                 }
                 ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnNew_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-
             }
             catch (Exception ex)
             {
@@ -236,6 +218,8 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
+
+        
 
         #region Paginador
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)

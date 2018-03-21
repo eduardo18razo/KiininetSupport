@@ -2,8 +2,6 @@
 
 <%@ Register Src="~/UserControls/Altas/Formularios/UcFormulario.ascx" TagPrefix="uc1" TagName="UcFormulario" %>
 
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPublic" runat="server">
@@ -15,7 +13,7 @@
             <asp:HiddenField runat="server" ID="hfIdSla" />
             <asp:HiddenField runat="server" ID="hfIdCanal" />
             <asp:HiddenField runat="server" ID="hfIdUsuarioSolicita" />
-            <asp:Label runat="server" ID="lblTicketDescripcion"></asp:Label>
+            <asp:Label runat="server" ID="lblTicketDescripcion"/>
 
             <div class="panel-body">
                 <uc1:UcFormulario runat="server" ID="ucFormulario" />                

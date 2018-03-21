@@ -36,7 +36,6 @@
                             </div>
                         </div>
 
-                        <%--                        <hr />--%>
                         <div class="row">
                             <div class="module-inner">
                                 <div class="row text-center">
@@ -315,23 +314,24 @@
                                                         <ItemTemplate>
                                                             <div class="row">
                                                                 <label class="col-lg-3"><%# Eval("DescripcionGrupo") %>   </label>
+
+
                                                                 <label class="col-lg-1"><%# Eval("TotalActual") %>        </label>
-                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalPorcentaje") >= 0 ? "col-lg-1 icon-down-dir-fontello fontRed" : "col-lg-1 icon-up-dir-fontello fontGreen"%>' />
-                                                                <%--<%# Eval("TotalAnterior") %>--%>
-                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalPorcentaje") >= 0 ? "col-lg-1 borderright fontRed" : "col-lg-1 borderright fontGreen"%>' Text='<%# Eval("TotalPorcentaje") %>' />
+                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalPorcentaje") == 0 ? "col-lg-1 fa fa-minus" : ((int)Eval("TotalPorcentaje") < 0 ? "col-lg-1 icon-down-dir-fontello fontGreen" : "col-lg-1 icon-up-dir-fontello fontRed")%>' />
+                                                                <%--<label class="col-lg-1"><%# Eval("TotalAnterior")%> </label>--%>
+                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalPorcentaje") == 0 ? "col-lg-1 borderright fa fa-minus" : ((int)Eval("TotalPorcentaje") < 0 ? "col-lg-1 borderright fontGreen" : "col-lg-1 borderright fontRed")%>' Text='<%# (int)Eval("TotalPorcentaje") == 0 ? "" : Eval("TotalPorcentaje") %>' />
+
 
                                                                 <label class="col-lg-1"><%# Eval("TotalAbiertosActual") %>       </label>
-                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalAbiertosPorcentaje") > 0 ? "col-lg-1 icon-down-dir-fontello fontRed" : "col-lg-1 icon-up-dir-fontello fontGreen"%>' />
+                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalAbiertosPorcentaje") == 0 ? "col-lg-1 fa fa-minus" : ((int)Eval("TotalAbiertosPorcentaje") < 0 ? "col-lg-1 icon-down-dir-fontello fontGreen" : "col-lg-1 icon-up-dir-fontello fontRed")%>' />
                                                                 <%--<label class="col-lg-1"><%# Eval("TotalAbiertosAnterior") %>     </label>--%>
-                                                                <%--<label class="col-lg-1 borderright"><%# Eval("TotalAbiertosPorcentaje") %>   </label>--%>
-                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalAbiertosPorcentaje") > 0 ? "col-lg-1 borderright fontRed" : "col-lg-1 borderright fontGreen"%>' Text='<%# Eval("TotalAbiertosPorcentaje") %>' />
+                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalAbiertosPorcentaje") == 0 ? "col-lg-1 borderright fa fa-minus" : ((int)Eval("TotalAbiertosPorcentaje") < 0 ? "col-lg-1 borderright fontGreen" : "col-lg-1 borderright fontRed")%>' Text='<%# (int)Eval("TotalAbiertosPorcentaje") == 0 ? "" : Eval("TotalAbiertosPorcentaje") %>' />
 
 
                                                                 <label class="col-lg-1"><%# Eval("TotalImpactoAltoActual") %>    </label>
-                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalImpactoAltoPorcentaje") >= 0 ? "col-lg-1 icon-down-dir-fontello fontRed" : "col-lg-1 icon-up-dir-fontello fontGreen"%>' />
-                                                                <%--<label class="col-lg-1"><%# Eval("TotalImpactoAltoAnterior") %>  </label>--%>
-                                                                <%--<label class="col-lg-1"><%# Eval("TotalImpactoAltoPorcentaje") %></label>--%>
-                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalImpactoAltoPorcentaje") >= 0 ? "col-lg-1 borderright fontRed" : "col-lg-1 borderright fontGreen"%>' Text='<%# Eval("TotalImpactoAltoPorcentaje") %>' />
+                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalImpactoAltoPorcentaje")  == 0 ? "col-lg-1 fa fa-minus" : ((int)Eval("TotalImpactoAltoPorcentaje") < 0 ? "col-lg-1 icon-down-dir-fontello fontGreen" : "col-lg-1 icon-up-dir-fontello fontRed")%>' />
+                                                               <%-- <label class="col-lg-1"><%# Eval("TotalImpactoAltoAnterior") %>  </label>--%>
+                                                                <asp:Label runat="server" CssClass='<%# (int)Eval("TotalImpactoAltoPorcentaje") == 0 ? "col-lg-1 borderright fa fa-minus" : ((int)Eval("TotalImpactoAltoPorcentaje") < 0 ? "col-lg-1 borderright fontGreen" : "col-lg-1 borderright fontRed")%>' Text='<%# (int)Eval("TotalImpactoAltoPorcentaje") == 0 ? "" : Eval("TotalImpactoAltoPorcentaje") %>' />
 
                                                             </div>
                                                         </ItemTemplate>

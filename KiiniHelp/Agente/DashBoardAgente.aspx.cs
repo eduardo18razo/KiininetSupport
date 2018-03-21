@@ -74,34 +74,33 @@ namespace KiiniHelp.Agente
                 lblTicketsReabiertos7dias.Text = string.Format("{0} %", datos.TicketsResuletosVsReabiertos);
 
                 lblTiempoPromedioPrimeraRespuestaActual.Text = datos.PromedioPrimeraRespuestaActual;
-                lblIndicadorTiempoPromedioPrimeraRespuestaActual.CssClass = datos.DiferenciaPromedioRespuestaPorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
-                lblTiempoPromedioPrimeraRespuestaPorcentaje.Text = string.Format("{0} %", datos.DiferenciaPromedioRespuestaPorcentaje.ToString("0.##"));
-                lblTiempoPromedioPrimeraRespuestaPorcentaje.CssClass = datos.DiferenciaPromedioRespuestaPorcentaje >= 0 ? "fontRed" : "fontGreen";
+                lblIndicadorTiempoPromedioPrimeraRespuestaActual.CssClass = datos.DiferenciaPromedioRespuestaPorcentaje == 0 ? "fa fa-minus" : (datos.DiferenciaPromedioRespuestaPorcentaje < 0 ? "icon-down-dir-fontello fontGreen " : "icon-up-dir-fontello fontRed");
+                lblTiempoPromedioPrimeraRespuestaPorcentaje.Text = datos.DiferenciaPromedioRespuestaPorcentaje == 0 ? "" : string.Format("{0} %", datos.DiferenciaPromedioRespuestaPorcentaje.ToString("0.##"));
+                lblTiempoPromedioPrimeraRespuestaPorcentaje.CssClass = datos.DiferenciaPromedioRespuestaPorcentaje == 0 ? "fa fa-minus margin-right-15" : (datos.DiferenciaPromedioRespuestaPorcentaje < 0 ? "fontGreen" : "fontRed");
                 lblTiempoPromedioPrimeraRespuestaAnterior.Text = datos.PromedioPrimeraRespuestaAnterior;
 
                 lblTiempoPromedioResolucionActual.Text = datos.PromedioTiempoResolucionActual;
-                lblIndicadorTiempoPromedioResolucionActual.CssClass = datos.PromedioTiempoResolucionPorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
-                lblTiempoPromedioResolucionPorcentaje.Text = string.Format("{0} %", datos.PromedioTiempoResolucionPorcentaje.ToString("0.##"));
-                lblTiempoPromedioResolucionPorcentaje.CssClass = datos.PromedioTiempoResolucionPorcentaje >= 0 ? "fontRed" : "fontGreen";
-
+                lblIndicadorTiempoPromedioResolucionActual.CssClass = datos.PromedioTiempoResolucionPorcentaje == 0 ? "fa fa-minus" : (datos.PromedioTiempoResolucionPorcentaje < 0 ? "icon-down-dir-fontello fontGreen" : "icon-up-dir-fontello fontRed");
+                lblTiempoPromedioResolucionPorcentaje.Text = datos.PromedioTiempoResolucionPorcentaje == 0 ? "" : string.Format("{0} %", datos.PromedioTiempoResolucionPorcentaje.ToString("0.##"));
+                lblTiempoPromedioResolucionPorcentaje.CssClass = datos.PromedioTiempoResolucionPorcentaje == 0 ? "fa fa-minus margin-right-15" : (datos.PromedioTiempoResolucionPorcentaje < 0 ? "fontRed" : "fontGreen");
                 lblTiempoPromedioResolucionAnterior.Text = datos.PromedioTiempoResolucionAnterior;
 
                 lblResolucionAlPrimerContactoPromedioActual.Text = datos.PromedioResolucionPrimercontactoActual;
-                lblIndicadorResolucionAlPrimerContactoPromedioActual.CssClass = datos.PromedioResolucionPrimercontactoPorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
-                lblResolucionAlPrimerContactoPromedioPorcentaje.Text = string.Format("{0} %", datos.PromedioResolucionPrimercontactoPorcentaje.ToString("0.##"));
-                lblResolucionAlPrimerContactoPromedioPorcentaje.CssClass = datos.PromedioResolucionPrimercontactoPorcentaje >= 0 ? "fontRed" : "fontGreen";
+                lblIndicadorResolucionAlPrimerContactoPromedioActual.CssClass = datos.PromedioResolucionPrimercontactoPorcentaje == 0 ? "fa fa-minus" : (datos.PromedioResolucionPrimercontactoPorcentaje < 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen");
+                lblResolucionAlPrimerContactoPromedioPorcentaje.Text = datos.PromedioResolucionPrimercontactoPorcentaje == 0 ? "" : string.Format("{0} %", datos.PromedioResolucionPrimercontactoPorcentaje.ToString("0.##"));
+                lblResolucionAlPrimerContactoPromedioPorcentaje.CssClass = datos.PromedioResolucionPrimercontactoPorcentaje == 0 ? "fa fa-minus margin-right-15" : (datos.PromedioResolucionPrimercontactoPorcentaje < 0 ? "fontRed" : "fontGreen");
                 lblResolucionAlPrimerContactoPromedioAnterior.Text = datos.PromedioResolucionPrimercontactoAnterior;
 
                 lblIntervencionesAgenteActual.Text = datos.PromedioIntervencionesAgenteActual.ToString();
-                lblIndicadorIntervencionesAgenteActual.CssClass = datos.PromedioIntervencionesAgentePorcentaje >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
-                lblIntervencionesAgentePorcentaje.Text = string.Format("{0} %", datos.PromedioIntervencionesAgentePorcentaje.ToString("0.##"));
-                lblIntervencionesAgentePorcentaje.CssClass = datos.PromedioIntervencionesAgentePorcentaje >= 0 ? "fontRed" : "fontGreen";
+                lblIndicadorIntervencionesAgenteActual.CssClass = datos.PromedioIntervencionesAgentePorcentaje == 0 ? "fa fa-minus" : (datos.PromedioIntervencionesAgentePorcentaje < 0 ? "icon-down-dir-fontello fontGreen" : "icon-up-dir-fontello fontRed");
+                lblIntervencionesAgentePorcentaje.Text = datos.PromedioIntervencionesAgentePorcentaje == 0 ? "" : string.Format("{0} %", datos.PromedioIntervencionesAgentePorcentaje.ToString("0.##"));
+                lblIntervencionesAgentePorcentaje.CssClass = datos.PromedioIntervencionesAgentePorcentaje == 0 ? "fa fa-minus margin-right-15" : (datos.PromedioIntervencionesAgentePorcentaje < 0 ? "fontGreen" : "fontRed");
                 lblIntervencionesAgenteAnterior.Text = datos.PromedioIntervencionesAgenteAnterior.ToString();
 
                 lblClientesUnicosAtendidosActual.Text = datos.ClientesAtendidosActual.ToString();
-                lblIndicadorClientesUnicosAtendidosActual.CssClass = datos.ClientesAtendidosAnterior >= 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen";
-                lblClientesUnicosAtendidosPorcentaje.Text = string.Format("{0} %", datos.ClientesAtendidosAnterior.ToString("0.##"));
-                lblClientesUnicosAtendidosPorcentaje.CssClass = datos.ClientesAtendidosAnterior >= 0 ? "fontRed" : "fontGreen";
+                lblIndicadorClientesUnicosAtendidosActual.CssClass = datos.ClientesAtendidosAnterior == 0 ? "fa fa-minus" : (datos.ClientesAtendidosAnterior < 0 ? "icon-down-dir-fontello fontRed" : "icon-up-dir-fontello fontGreen");
+                lblClientesUnicosAtendidosPorcentaje.Text = datos.ClientesAtendidosPorcentaje == 0 ? "" : string.Format("{0} %", datos.ClientesAtendidosPorcentaje.ToString("0.##"));
+                lblClientesUnicosAtendidosPorcentaje.CssClass = datos.ClientesAtendidosPorcentaje == 0 ? "fa fa-minus margin-right-15" : (datos.ClientesAtendidosPorcentaje < 0 ? "fontRed" : "fontGreen");
                 lblClientesUnicosAtendidosAnterior.Text = datos.ClientesAtendidosAnterior.ToString();
 
 

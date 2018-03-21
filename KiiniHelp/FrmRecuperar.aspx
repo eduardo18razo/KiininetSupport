@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="copyright2 center">
+                            <div class="row copyright2 center">
                                 <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
                                 &copy; 2018                       
                             </div>
@@ -138,7 +138,7 @@
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
                                     <h1 class="form-box-heading2"><span>Responde tu pregunta secreta</span> </h1>
-                                    <div class="form-box-inner2">                                        
+                                    <div class="form-box-inner2">
                                         <div class="row">
                                             <div class="form-container col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="form-horizontal">
@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="copyright2 center">
+                            <div class="row copyright2 center">
                                 <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
                                 &copy; 2018                       
                             </div>
@@ -219,7 +219,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="copyright2 center">
+                            <div class="row copyright2 center">
                                 <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
                                 &copy; 2018                       
                             </div>
