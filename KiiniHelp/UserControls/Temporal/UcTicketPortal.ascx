@@ -15,7 +15,7 @@
             <div class="margin-bottom-10">
                 <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
             </div>
-            <div class="margin-bottom-10">
+            <div class="margin-bottom-10 text-center">
                 <asp:Button type="button text-left" class="btn btn-primary" runat="server" Text="Crear ticket" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
             </div>
         </div>

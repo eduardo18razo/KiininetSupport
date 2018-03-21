@@ -19,9 +19,9 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Resultados" /></h3>
                             </div>
                             <p>
-                                <asp:Label runat="server" ID="lblNumeroResultados" Text="1,25769 resultados para campo busqueda"></asp:Label>
+                                <asp:Label runat="server" ID="lblNumeroResultados" CssClass="totalResultados"  Text="1,25769 resultados para campo búsqueda"/>
                                 <br />
-                                <div class="form col-lg-5">
+                                <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Por tipo:</label>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3 separador-vertical-derecho">
+                                <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Por categoria</label>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
@@ -53,20 +53,24 @@
                                 <asp:Repeater runat="server" ID="rptResults">
                                     <ItemTemplate>
                                         <div class="row">
-                                            <asp:Label runat="server" ID="lblIdOpcion" Visible="False" Text='<%# Eval("Id") %>'></asp:Label>
-                                            <asp:Label runat="server" ID="lblTitulo" Text='<%#Eval("Titulo") %>'></asp:Label>
-                                            <asp:Image runat="server" ID="imgLike" ImageUrl="~/assets/images/like_S1.png"></asp:Image>
-                                            <asp:Label runat="server" ID="lblLikes" Text='<%#Eval("TotalLikes") %>'></asp:Label>
+                                            <asp:Label runat="server" CssClass="text-theme" ID="lblIdOpcion" Visible="False" Text='<%# Eval("Id") %>' />
+                                            <asp:Label runat="server" CssClass="text-theme" ID="lblTitulo" Text='<%#Eval("Titulo") %>' />
+                                            <i class="text-theme fa fa-thumbs-up"></i>
+                                            <%--<asp:Image runat="server" ID="imgLike" ImageUrl="~/assets/images/like_S1.png"></asp:Image>--%>
+                                            <asp:Label runat="server" CssClass="text-theme" ID="lblLikes" Text='<%#Eval("TotalLikes") %>' />
                                             <br />
-                                            <asp:Label runat="server" ID="lblDescripcion" Text='<%#Eval("Descripcion") %>'></asp:Label>
+                                            <asp:Label runat="server" ID="lblDescripcion" Text='<%#Eval("Descripcion") %>' />
+                                            <br /><br />
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
-                                <asp:Repeater runat="server" ID="rptPager">
-                                    <ItemTemplate>
-                                        <asp:LinkButton runat="server" ID="lnkPage" CommandArgument='<%# Container.DataItem.ToString() %>' Text='<%# Container.DataItem.ToString() %>' OnClick="lnkPage_OnClick"></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:Repeater>
+                                <div class="col-lg-12 bg-grisMedio margin-top-30 text-right">
+                                    <asp:Repeater runat="server" ID="rptPager">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" CssClass="margin-right-4" ID="lnkPage" CommandArgument='<%# Container.DataItem.ToString() %>' Text='<%# Container.DataItem.ToString() %>' OnClick="lnkPage_OnClick"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
                             </div>
                         </div>
                     </div>

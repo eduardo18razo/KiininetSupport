@@ -78,6 +78,7 @@ namespace KiiniHelp.UserControls.Operacion
                 _servicioSeguridad.ChangePassword(((Usuario)Session["UserData"]).Id, txtContrasenaActual.Text.Trim(), txtContrasenaNueva.Text.Trim());
                 if (OnAceptarModal != null)
                     OnAceptarModal();
+                Response.Redirect(ResolveUrl("~/Users/DashBoard.aspx"));//Agregado
             }
             catch (Exception ex)
             {

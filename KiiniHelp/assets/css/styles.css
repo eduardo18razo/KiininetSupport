@@ -47,7 +47,7 @@ body {
     overflow-x: hidden;
 }
 
-input{
+input {
     font-weight: normal;
 }
 
@@ -61,14 +61,14 @@ input{
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
     body {
-        font-size: 20px;
+        font-size: 16px;
     }
 }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
     body {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
@@ -149,6 +149,10 @@ hr {
     background-color: #FBFBFB;
 }
 
+.bg-grisMedio {
+    background-color: #ededed;
+}
+
 .bg-grisOscuro {
     background-color: #7c7c7c;
 }
@@ -191,13 +195,15 @@ button.close:focus {
     cursor: pointer;
 }
 
-.ddtMasTickets{
-    width: 139px; 
+.ddtMasTickets {
+    width: 139px;
     height: 37px;
 }
 
-.lblMasTickets{
-    width: 170px; padding: 5px; cursor: pointer;
+.lblMasTickets {
+    width: 170px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 
@@ -295,10 +301,13 @@ button.close:focus {
     width: 40px;
 }
 
+
+/*Oculta Logo*/
 .mobile:not(.nav-toggled) .header .branding {
-    width: 0;
+    /*width: 100%;*/
     top: -2px;
 }
+/*Oculta Logo*/
 
 .header .branding .logo-icon {
     position: relative;
@@ -328,11 +337,11 @@ button.close:focus {
         white-space: nowrap;
         font-family: 'Proxima Nova';
     }
-
+/*Oculta logo versión móvil*/
 .compact:not(.nav-toggled) .header .branding .logo .nav-label,
 .mobile .header .branding .logo .nav-label,
 .nav-toggled:not(.compact):not(.mobile) .header .branding .logo .nav-label {
-    display: none;
+    /*display: none;*/
 }
 
 .header .topbar {
@@ -3697,9 +3706,17 @@ label {
     color: #a2a6af;
 }
 
+.form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+
 .form-group {
     margin-bottom: 10px;
 }
+
+
 
 .form-group-striped .form-group {
     padding: 15px 0px;
@@ -3761,6 +3778,9 @@ label {
         background-color: #f5f5f5;
         color: #c3c3c3;
     }
+
+
+
 
 .checkbox.disabled label,
 .radio.disabled label,
@@ -4767,9 +4787,9 @@ ul.sortable {
     }
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
-    .modal-body {
+    /*.modal-body {
         padding: 0px;
-    }
+    }*/
 
     .modal-fullscreen .modal-dialog {
         width: 100%;
@@ -5088,7 +5108,7 @@ ul.sortable {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .form-inline .help_search_form {
-        width: 200px;
+        width: 250px;
     }
 }
 
@@ -6461,7 +6481,11 @@ ul.sortable {
     height: 100%;
 }
 
-.widht155{
+.widht100 {
+    width: 100%;
+}
+
+.widht155 {
     width: 155px;
 }
 
@@ -7136,6 +7160,10 @@ input[type="radio"] + label {
     font-size: 18px;
 }
 
+.iconoFontXg {
+    font-size: 26px;
+}
+
 .fontGreen {
     color: green;
 }
@@ -7144,7 +7172,7 @@ input[type="radio"] + label {
     color: red;
 }
 
-fontRedKiininet {
+.fontRedKiininet {
     color: #E4002B;
 }
 
@@ -7159,7 +7187,17 @@ input, input[type="file"] {
     font-family: 'Proxima Nova' !important;
     font-size: 12px !important;
 }
+/*Inicio Resultados de búsqueda*/
 
+.totalResultados {
+    color: #206CC1;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+/*Fin Resultados de búsqueda*/
 
 /*Encabezado Master Page*/
 
@@ -7199,7 +7237,10 @@ input, input[type="file"] {
     z-index: 9999;
 }
 
-
-.ocultar{
+.ocultar {
     display: none !important;
+}
+
+.no-underline {
+    text-decoration: none !important;
 }

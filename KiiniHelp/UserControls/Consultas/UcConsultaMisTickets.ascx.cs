@@ -144,9 +144,6 @@ namespace KiiniHelp.UserControls.Consultas
         }
 
         void ucCambiarEstatusTicket_OnAceptarModal()
-        {
-            try
-            {
                 if (ucCambiarEstatusTicket.CerroTicket)
                 {
                     if (bool.Parse(hfMuestraEncuesta.Value))
@@ -157,18 +154,6 @@ namespace KiiniHelp.UserControls.Consultas
                 }
                 ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalCambiaEstatus\");", true);
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
 
         protected void btnBuscar_OnClick(object sender, EventArgs e)
         {
@@ -233,6 +218,8 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
+
+        
 
         #region Paginador
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)

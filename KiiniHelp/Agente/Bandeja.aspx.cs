@@ -840,7 +840,7 @@ namespace KiiniHelp.Agente
                             Resueltos = false;
                             RecienActualizados = false;
                             EstatusSeleccionado = EstatusAbierto;
-                            btnFiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
+                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
                             FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
                             FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
                             FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";

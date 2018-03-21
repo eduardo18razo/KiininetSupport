@@ -27,7 +27,7 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-lg-5">
+                            <div class="form col-xs-12 col-sm-12 col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta de Tickets:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -39,15 +39,19 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3 separador-vertical-derecho">
+                            <div class="form col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o consulta por estatus</label>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
-                                        <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control no-padding-left no-margin-left" Width="190px" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />
+                                        <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control no-padding-left no-margin-left" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+                                    <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
+                                        <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
+                                    </a>
                         </div>
                     </div>
                 </div>
@@ -126,6 +130,7 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
+
 
 
 </div>

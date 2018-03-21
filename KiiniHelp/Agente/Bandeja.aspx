@@ -169,7 +169,9 @@
                                                     </tc:GridBoundColumn>
                                                     <tc:GridTemplateColumn FilterCheckListEnableLoadOnDemand="True" DataField="UsuarioAsignado" HeaderText="Asignado a" SortExpression="UsuarioAsignado" UniqueName="UsuarioAsignaco" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                         <ItemTemplate>
-                                                            <asp:LinkButton runat="server" Text='<%#Eval("UsuarioAsignado").ToString(). Length > 12 ? Eval("UsuarioAsignado").ToString().Substring(0, 12) : Eval("UsuarioAsignado") %>' ID="btnUsuarioAsignado" OnClick="btnUsuario_OnClick" CommandArgument='<%#Eval("IdUsuarioAsignado") %>' />
+                                                            <asp:label runat="server" Text='<%#Eval("UsuarioAsignado").ToString(). Length > 12 ? Eval("UsuarioAsignado").ToString().Substring(0, 12) : Eval("UsuarioAsignado") %>'/>
+
+                                                            <%--<asp:LinkButton runat="server" Text='<%#Eval("UsuarioAsignado").ToString(). Length > 12 ? Eval("UsuarioAsignado").ToString().Substring(0, 12) : Eval("UsuarioAsignado") %>' ID="btnUsuarioAsignado" OnClick="btnUsuario_OnClick" CommandArgument='<%#Eval("IdUsuarioAsignado") %>' />--%>
                                                         </ItemTemplate>
                                                     </tc:GridTemplateColumn>
                                                     <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" Visible="false" DataField="GrupoAsignado" HeaderText="Grupo" SortExpression="GrupoAsignado" UniqueName="GrupoAsignado" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">

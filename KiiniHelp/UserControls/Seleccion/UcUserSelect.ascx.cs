@@ -103,7 +103,23 @@ namespace KiiniHelp.UserControls.Seleccion
 
         protected void verOpcion_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Publico/FrmConsulta.aspx?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));            
+            int tipoArbol = Convert.ToInt32(((LinkButton)sender).CommandName);
+
+            switch (tipoArbol)
+            {
+                case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
+                    Response.Redirect("~/Publico/FrmConsulta.aspx?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));   
+                    break;
+
+                case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
+                    Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));            
+                    break;
+
+                case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
+                    Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));                                
+                    break;
+            }
+
         }
     }
 }

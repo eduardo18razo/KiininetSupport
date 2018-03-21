@@ -92,6 +92,7 @@
     <Content Include="assets\carouselImage\3.jpg" />
     <Content Include="assets\css\bootstrap-markdown.css" />
     <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\botones_estatus.css" />
     <Content Include="assets\css\checkBox.css" />
     <Content Include="assets\css\controls.css" />
     <Content Include="assets\css\dashboards.css" />
@@ -100,6 +101,11 @@
     <Content Include="assets\css\elusive-icons.css" />
     <Content Include="assets\css\font-awesome.css" />
     <Content Include="assets\css\font.css" />
+    <Content Include="assets\css\fontello-codes.css" />
+    <Content Include="assets\css\fontello-embedded.css" />
+    <Content Include="assets\css\fontello-ie7-codes.css" />
+    <Content Include="assets\css\fontello-ie7.css" />
+    <Content Include="assets\css\fontello.css" />
     <Content Include="assets\css\main_movil.css" />
     <Content Include="assets\css\menuStyle.css" />
     <Content Include="assets\css\modales.css" />
@@ -111,6 +117,7 @@
     <Content Include="assets\css\sumoselect.css" />
     <Content Include="assets\fonts\elusiveicons-webfont.svg" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\fontello.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\Pe-icon-7-strokebb1d.svg" />
     <Content Include="assets\images\backs\bienvenido.jpg" />
@@ -184,7 +191,6 @@
     <Content Include="assets\tmp\chosen.css" />
     <Content Include="assets\tmp\chosen.jquery.js" />
     <Content Include="assets\js\jquery.sumoselect.min.js" />
-    <Content Include="assets\css\sumoselect.css" />
     <Content Include="assets\tmp\editor\langs\es.min.js" />
     <Content Include="assets\tmp\editor\plugins\base64\trumbowyg.base64.js" />
     <Content Include="assets\tmp\editor\plugins\base64\trumbowyg.base64.min.js" />
@@ -220,7 +226,9 @@
     <Content Include="ConfirmacionCuenta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="TerminosyCondiciones.aspx" />
     <Content Include="Images\orderedList2.png" />
+    <Content Include="PoliticasPrivacidad.aspx" />
     <Content Include="Publico\Consultas\FrmPreviewConsulta.aspx" />
     <Content Include="Publico\FrmBusqueda.aspx" />
     <Content Include="Publico\FrmCategoria.aspx" />
@@ -232,7 +240,6 @@
     <Content Include="Downloads\FrmPreviewImage.aspx" />
     <Content Include="FrmRecuperar.aspx" />
     <Content Include="Identificar.aspx" />
-    <Content Include="assets\css\font.css" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Sistema.Canal.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.DiaFestivoDefault.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.HorarioDefault.datasource" />
@@ -279,6 +286,10 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuarioAgente.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperTicketEnAtencion1.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperBusquedaArbolAcceso.datasource" />
+    <Content Include="assets\fonts\fontello.eot" />
+    <Content Include="assets\fonts\fontello.ttf" />
+    <Content Include="assets\fonts\fontello.woff" />
+    <Content Include="assets\fonts\fontello.woff2" />
     <None Include="Service References\ServiceArbolAcceso\ServiceArbolAcceso15.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -304,20 +315,6 @@
     <Content Include="Users\FrmBusqueda.aspx" />
     <Content Include="Users\FrmDashboardUser.aspx" />
     <Content Include="Xml\Notificaciones.xml" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black Italic.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Black.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Bold Italic.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Bold.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Extrabold Italic.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Extrabold.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Light Italic.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Light.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Regular Italic.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Semibold Italic.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Semibold.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Thin Italic.otf" />
-    <Content Include="assets\fonts\Mark Simonson - Proxima Nova Thin.otf" />
-    <Content Include="assets\fonts\MarkSimonson-Proxima-Nova-Regular.otf" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuario.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperDetalleUsuarioGrupo.datasource" />
@@ -2609,6 +2606,20 @@
     </Compile>
     <Compile Include="DisplayImages.ashx.cs">
       <DependentUpon>DisplayImages.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="TerminosyCondiciones.aspx.cs">
+      <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TerminosyCondiciones.aspx.designer.cs">
+      <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PoliticasPrivacidad.aspx.cs">
+      <DependentUpon>PoliticasPrivacidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PoliticasPrivacidad.aspx.designer.cs">
+      <DependentUpon>PoliticasPrivacidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="Publico\Consultas\FrmPreviewConsulta.aspx.cs">
       <DependentUpon>FrmPreviewConsulta.aspx</DependentUpon>
