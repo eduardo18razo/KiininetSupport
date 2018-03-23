@@ -1104,6 +1104,24 @@
       <End Role="TicketEvento" EntitySet="TicketEvento" />
       <End Role="TicketEventoEstatus" EntitySet="TicketEventoEstatus" />
     </AssociationSet>
+    <EntitySet Name="UsuarioNotificacion" EntityType="KiiniNet_v2Model.UsuarioNotificacion" />
+    <AssociationSet Name="FK_UsuarioNotificacion_TicketEvento" Association="KiiniNet_v2Model.FK_UsuarioNotificacion_TicketEvento">
+      <End Role="TicketEvento" EntitySet="TicketEvento" />
+      <End Role="UsuarioNotificacion" EntitySet="UsuarioNotificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioNotificacion_Usuario" Association="KiiniNet_v2Model.FK_UsuarioNotificacion_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioNotificacion" EntitySet="UsuarioNotificacion" />
+    </AssociationSet>
+    <EntitySet Name="CorreoService" EntityType="KiiniNet_v2Model.CorreoService" />
+    <AssociationSet Name="FK_CorreoService_TicketEvento" Association="KiiniNet_v2Model.FK_CorreoService_TicketEvento">
+      <End Role="TicketEvento" EntitySet="TicketEvento" />
+      <End Role="CorreoService" EntitySet="CorreoService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CorreoService_Usuario" Association="KiiniNet_v2Model.FK_CorreoService_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="CorreoService" EntitySet="CorreoService" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Campus">
     <Key>
@@ -3407,6 +3425,7 @@
     <Property Name="IdSubRolPertenece" Type="Int32" />
     <Property Name="IdEstatusTicketActual" Type="Int32" />
     <Property Name="IdEstatusTicketAccion" Type="Int32" />
+    <Property Name="ComentarioObligado" Type="Boolean" />
     <Property Name="TieneSupervisor" Type="Boolean" />
     <Property Name="Propietario" Type="Boolean" />
     <Property Name="LevantaTicket" Type="Boolean" />
@@ -3430,6 +3449,7 @@
     <Property Name="IdSubRolPertenece" Type="Int32" />
     <Property Name="IdEstatusTicketActual" Type="Int32" />
     <Property Name="IdEstatusTicketAccion" Type="Int32" />
+    <Property Name="ComentarioObligado" Type="Boolean" />
     <Property Name="TieneSupervisor" Type="Boolean" />
     <Property Name="Propietario" Type="Boolean" />
     <Property Name="LevantaTicket" Type="Boolean" />
@@ -4376,6 +4396,8 @@
     <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
     <Property Name="Sistema" Type="Boolean" />
     <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEvento_Usuario" FromRole="Usuario" ToRole="TicketEvento" />
+    <NavigationProperty Name="UsuarioNotificacion" Relationship="KiiniNet_v2Model.FK_UsuarioNotificacion_Usuario" FromRole="Usuario" ToRole="UsuarioNotificacion" />
+    <NavigationProperty Name="CorreoService" Relationship="KiiniNet_v2Model.FK_CorreoService_Usuario" FromRole="Usuario" ToRole="CorreoService" />
   </EntityType>
   <Association Name="FK_ArbolAcceso_Usuario">
     <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
@@ -5846,6 +5868,8 @@
     <NavigationProperty Name="TicketEventoAsignacion" Relationship="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketEvento" FromRole="TicketEvento" ToRole="TicketEventoAsignacion" />
     <NavigationProperty Name="TicketEventoConversacion" Relationship="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketEvento" FromRole="TicketEvento" ToRole="TicketEventoConversacion" />
     <NavigationProperty Name="TicketEventoEstatus" Relationship="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEvento" FromRole="TicketEvento" ToRole="TicketEventoEstatus" />
+    <NavigationProperty Name="UsuarioNotificacion" Relationship="KiiniNet_v2Model.FK_UsuarioNotificacion_TicketEvento" FromRole="TicketEvento" ToRole="UsuarioNotificacion" />
+    <NavigationProperty Name="CorreoService" Relationship="KiiniNet_v2Model.FK_CorreoService_TicketEvento" FromRole="TicketEvento" ToRole="CorreoService" />
   </EntityType>
   <EntityType Name="TicketEventoAsignacion">
     <Key>
@@ -5973,6 +5997,81 @@
       </Principal>
       <Dependent Role="TicketEventoEstatus">
         <PropertyRef Name="IdTicketEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UsuarioNotificacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="IdTicketEvento" Type="Int64" />
+    <Property Name="Notificaciones" Type="Int32" />
+    <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_UsuarioNotificacion_TicketEvento" FromRole="UsuarioNotificacion" ToRole="TicketEvento" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_UsuarioNotificacion_Usuario" FromRole="UsuarioNotificacion" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_UsuarioNotificacion_TicketEvento">
+    <End Type="KiiniNet_v2Model.TicketEvento" Role="TicketEvento" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.UsuarioNotificacion" Role="UsuarioNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketEvento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioNotificacion">
+        <PropertyRef Name="IdTicketEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioNotificacion_Usuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.UsuarioNotificacion" Role="UsuarioNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioNotificacion">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CorreoService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="IdTicketEvento" Type="Int64" />
+    <Property Name="Correo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Contenido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FechaSolicitud" Type="DateTime" Precision="3" />
+    <Property Name="FechaEnvio" Type="DateTime" Precision="3" />
+    <Property Name="Enviado" Type="Boolean" />
+    <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_CorreoService_TicketEvento" FromRole="CorreoService" ToRole="TicketEvento" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_CorreoService_Usuario" FromRole="CorreoService" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_CorreoService_TicketEvento">
+    <End Type="KiiniNet_v2Model.TicketEvento" Role="TicketEvento" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.CorreoService" Role="CorreoService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketEvento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CorreoService">
+        <PropertyRef Name="IdTicketEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CorreoService_Usuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.CorreoService" Role="CorreoService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CorreoService">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

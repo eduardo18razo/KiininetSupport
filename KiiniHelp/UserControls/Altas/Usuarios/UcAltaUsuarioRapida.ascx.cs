@@ -79,10 +79,10 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             try
             {
                 Alerta = new List<string>();
-                if (Request.Params["userTipe"] != null)
-                    IdTipoUsuario = int.Parse(Request.Params["userTipe"]);
+                if (Request.Params["userType"] != null)
+                    IdTipoUsuario = int.Parse(Request.Params["userType"]);
                 else
-                    IdTipoUsuario = (int)BusinessVariables.EnumTiposUsuario.Cliente;
+                    IdTipoUsuario = Session["TipoUsuario"] == null ? (int)BusinessVariables.EnumTiposUsuario.Cliente : int.Parse(Session["TipoUsuario"].ToString());
             }
             catch (Exception ex)
             {

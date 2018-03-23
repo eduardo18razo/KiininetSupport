@@ -79,25 +79,36 @@ namespace KiiniHelp.UserControls.Operacion
             set { hfEsPropietario.Value = value.ToString(); }
         }
 
-        private void LLenaEstatus()
+        private void OcultaUsuarios()
         {
             try
             {
-                //List<EstatusAsignacion> lstEstatus = new List<EstatusAsignacion>();
-                //foreach (SubGrupoUsuario subRol in ((Usuario)Session["UserData"]).UsuarioGrupo.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ResponsableDeAtención && w.SubGrupoUsuario != null).Select(s => s.SubGrupoUsuario))
-                //{
-                //    lstEstatus.AddRange(_servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, subRol.IdSubRol, IdEstatusAsignacionActual, EsPropietario, true));
-                //}
-                //lstEstatus = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, 0, IdEstatusAsignacionActual, EsPropietario, true);
-                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdSubRolActual, IdEstatusAsignacionActual, EsPropietario, true);
-                ddlEstatus.DataTextField = "Descripcion";
-                ddlEstatus.DataValueField = "Id";
-                ddlEstatus.DataBind();
                 divUsuariosNivel1.Visible = false;
                 divUsuariosNivel2.Visible = false;
                 divUsuariosNivel3.Visible = false;
                 divUsuariosNivel4.Visible = false;
                 divUsuariosSupervisor.Visible = false;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        private void LLenaEstatus()
+        {
+            try
+            {
+                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdSubRolActual, IdEstatusAsignacionActual, EsPropietario, true);
+                ddlEstatus.DataTextField = "Descripcion";
+                ddlEstatus.DataValueField = "Id";
+                ddlEstatus.DataBind();
+                OcultaUsuarios();
+                //divUsuariosNivel1.Visible = false;
+                //divUsuariosNivel2.Visible = false;
+                //divUsuariosNivel3.Visible = false;
+                //divUsuariosNivel4.Visible = false;
+                //divUsuariosSupervisor.Visible = false;
 
             }
             catch (Exception e)
@@ -210,18 +221,25 @@ namespace KiiniHelp.UserControls.Operacion
             int result = 0;
             try
             {
-                if (lstSupervisor.SelectedItem != null)
-                    result = Convert.ToInt32(lstSupervisor.SelectedValue);
-                if (lstUsuariosGrupoNivel1.SelectedItem != null)
-                    result = Convert.ToInt32(lstUsuariosGrupoNivel1.SelectedValue);
-                if (lstUsuariosGrupoNivel2.SelectedItem != null)
-                    result = Convert.ToInt32(lstUsuariosGrupoNivel2.SelectedValue);
-                if (lstUsuariosGrupoNivel3.SelectedItem != null)
-                    result = Convert.ToInt32(lstUsuariosGrupoNivel3.SelectedValue);
-                if (lstUsuariosGrupoNivel4.SelectedItem != null)
-                    result = Convert.ToInt32(lstUsuariosGrupoNivel4.SelectedValue);
-                if (result == 0 && ddlEstatus.SelectedValue == ((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado).ToString())
+                if (divUsuariosNivel1.Visible == false && divUsuariosNivel2.Visible == false && divUsuariosNivel3.Visible == false && divUsuariosNivel4.Visible == false && divUsuariosSupervisor.Visible == false)
                     result = ((Usuario)Session["UserData"]).Id;
+                else if (divUsuariosNivel1.Visible || divUsuariosNivel2.Visible ||
+                         divUsuariosNivel3.Visible || divUsuariosNivel4.Visible ||
+                         divUsuariosSupervisor.Visible)
+                {
+                    if (lstSupervisor.SelectedItem != null)
+                        result = Convert.ToInt32(lstSupervisor.SelectedValue);
+                    if (lstUsuariosGrupoNivel1.SelectedItem != null)
+                        result = Convert.ToInt32(lstUsuariosGrupoNivel1.SelectedValue);
+                    if (lstUsuariosGrupoNivel2.SelectedItem != null)
+                        result = Convert.ToInt32(lstUsuariosGrupoNivel2.SelectedValue);
+                    if (lstUsuariosGrupoNivel3.SelectedItem != null)
+                        result = Convert.ToInt32(lstUsuariosGrupoNivel3.SelectedValue);
+                    if (lstUsuariosGrupoNivel4.SelectedItem != null)
+                        result = Convert.ToInt32(lstUsuariosGrupoNivel4.SelectedValue);
+                    if (result == 0 && ddlEstatus.SelectedValue == ((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado).ToString())
+                        result = ((Usuario)Session["UserData"]).Id;
+                }
                 else if (result == 0 && ddlEstatus.SelectedValue != ((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado).ToString())
                     throw new Exception("Seleccione un usuario");
             }
@@ -306,6 +324,7 @@ namespace KiiniHelp.UserControls.Operacion
         {
             try
             {
+                OcultaUsuarios();
                 if (ddlEstatus.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione) return;
                 if (int.Parse(ddlEstatus.SelectedValue) != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado)
                     LLenaUsuarios();
@@ -332,10 +351,6 @@ namespace KiiniHelp.UserControls.Operacion
                 if (_servicioEstatus.HasComentarioObligatorio(((Usuario)Session["UserData"]).Id, IdGrupo, IdSubRolActual, IdEstatusAsignacionActual, Convert.ToInt32(ddlEstatus.SelectedValue), EsPropietario))
                     if (txtComentarios.Text.Trim() == string.Empty)
                         throw new Exception("Debe agregar un comentario");
-                //if (((Usuario)Session["UserData"]).UsuarioGrupo.Where(w => w.SubGrupoUsuario != null && w.SubGrupoUsuario.IdSubRol == IdNivelAsignacion()).Select(s => s.SubGrupoUsuario).Where(subRol => ).Any(subRol => txtComentarios.Text.Trim() == string.Empty))
-                //{
-                //    throw new Exception("Debe agregar un comentario");
-                //}
                 if (ddlEstatus.SelectedValue != BusinessVariables.ComboBoxCatalogo.ValueSeleccione.ToString())
                 {
                     _servicioAtencionTicket.CambiarAsignacionTicket(IdTicket, Convert.ToInt32(ddlEstatus.SelectedValue), IdUsuarioSeleccionado(), IdNivelAsignacion(), ((Usuario)Session["UserData"]).Id, txtComentarios.Text);

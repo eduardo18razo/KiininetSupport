@@ -77,7 +77,7 @@ namespace KiiniHelp.UserControls.Temporal
             {
                 base.OnInit(e);
                 _lstControles = new List<Control>();
-
+                ucAltaUsuarioRapida.Visible = Session["UserData"] == null;
                 ArbolAcceso arbol = _servicioArbolAccesoClient.ObtenerArbolAcceso(int.Parse(_serviciosParametros.ObtenerParametrosGenerales().FormularioPortal));
                 if (arbol != null)
                 {
@@ -925,13 +925,15 @@ namespace KiiniHelp.UserControls.Temporal
             try
             {
                 List<HelperCampoMascaraCaptura> capturaMascara = ObtenerCapturaMascara();
-                ucAltaUsuarioRapida.RegistraUsuario();
-                Usuario user = _servicioUsuariosClient.ObtenerDetalleUsuario(ucAltaUsuarioRapida.IdUsuario);
+                if (ucAltaUsuarioRapida.Visible)
+                    ucAltaUsuarioRapida.RegistraUsuario();
+                int idUsuario = ucAltaUsuarioRapida.Visible ? ucAltaUsuarioRapida.IdUsuario : ((Usuario)Session["UserData"]).Id;
+                Usuario user = _servicioUsuariosClient.ObtenerDetalleUsuario(idUsuario);
                 if (user != null)
                 {
                     KiiniNet.Entities.Operacion.Tickets.Ticket result = _servicioTicket.CrearTicket(user.Id, user.Id,
                         int.Parse(_serviciosParametros.ObtenerParametrosGenerales().FormularioPortal), capturaMascara,
-                        (int) BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
+                        (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal, CampoRandom, true, false);
                     hfTicketGenerado.Value = result.Id.ToString();
                     if (CampoRandom)
                         hfRandomGenerado.Value = result.ClaveRegistro;

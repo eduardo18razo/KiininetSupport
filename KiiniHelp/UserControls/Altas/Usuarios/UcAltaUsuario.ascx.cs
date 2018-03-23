@@ -1275,7 +1275,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         {
             try
             {
-                //TODO: AGREGAR SUBGRUPO USUARIO
                 AgregarGrupo(ucRolGrupo.GruposSeleccionados);
                 ucRolGrupo.Limpiar();
                 MostrarGruposSeleccionados();

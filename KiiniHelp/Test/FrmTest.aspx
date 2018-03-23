@@ -34,7 +34,7 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <tc:RadDropDownTree runat="server" CssClass="form-control" ID="ddlUsuarioAsignacion" AutoPostBack="True" RenderMode="Lightweight" ExpandNodeOnSingleClick="true" CheckNodeOnClick="False"
-                        DefaultMessage="-" OnEntriesAdded="ddlUsuarioAsignacion_OnEntriesAdded" EnableFiltering="True" OnClientEntryAdding="OnClientEntryAdding" sin>
+                        DefaultMessage="-" OnEntriesAdded="ddlUsuarioAsignacion_OnEntriesAdded" EnableFiltering="True" OnClientEntryAdding="OnClientEntryAdding" >
                         <DropDownSettings Width="350px" CloseDropDownOnSelection="True" />
                     </tc:RadDropDownTree>
                 </ContentTemplate>

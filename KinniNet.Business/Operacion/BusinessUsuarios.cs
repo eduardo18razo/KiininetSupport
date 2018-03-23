@@ -821,7 +821,7 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles)
+        public List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, int idUsuarioSolicita, List<int> lstSubRoles)
         {
             List<HelperUsuarioAgente> result;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -831,7 +831,7 @@ namespace KinniNet.Core.Operacion
                           join ug in db.UsuarioGrupo on u.Id equals ug.IdUsuario
                           join sgu in db.SubGrupoUsuario on ug.IdSubGrupoUsuario equals sgu.Id
                           join sr in db.SubRol on sgu.IdSubRol equals sr.Id
-                          where ug.IdGrupoUsuario == idGrupo && lstSubRoles.Contains(sr.Id) && u.Habilitado && u.Activo
+                          where ug.IdGrupoUsuario == idGrupo && lstSubRoles.Contains(sr.Id) && u.Habilitado && u.Activo && u.Id != idUsuarioSolicita
                           orderby sr.Id, u.Nombre, u.ApellidoPaterno, u.ApellidoMaterno
                           select new
                           {
@@ -1232,6 +1232,7 @@ namespace KinniNet.Core.Operacion
                 Usuario user = db.Usuario.Single(s => s.Id == idUsuario);
                 if (user != null)
                 {
+                    string psw = SecurityUtils.CreateShaHash(password);
                     Guid linkLlave = Guid.Parse(link);
                     user.UsuarioLinkPassword.Single(s => s.IdTipoLink == (int)BusinessVariables.EnumTipoLink.Confirmacion && s.IdUsuario == idUsuario && s.Link == linkLlave).Activo = false;
                     user.PreguntaReto = new List<PreguntaReto>();
@@ -1241,19 +1242,19 @@ namespace KinniNet.Core.Operacion
                         {
                             IdUsuario = user.Id,
                             Pregunta = reto.Pregunta,
-                            Respuesta = SecurityUtils.CreateShaHash(reto.Respuesta)
+                            Respuesta = psw
                         });
                     }
-                    if (db.ParametrosGenerales.First().StrongPassword)
-                        user.UsuarioPassword = new List<UsuarioPassword>
+
+                    user.UsuarioPassword = new List<UsuarioPassword>
                     {
                         new UsuarioPassword
                         {
                             Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),"yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
-                            Password = SecurityUtils.CreateShaHash(password)
+                            Password = psw
                         }
                     };
-                    user.Password = SecurityUtils.CreateShaHash(password);
+                    user.Password = psw;
                     user.Activo = true;
                     db.SaveChanges();
                     foreach (KeyValuePair<int, string> confirmacion in confirmaciones)
@@ -1547,9 +1548,9 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                List<int> gposPertenece = (from ug in db.UsuarioGrupo 
-                          where ug.IdUsuario == idUsuarioSolicita && ug.GrupoUsuario.Habilitado
-                          select ug.IdGrupoUsuario).Distinct().ToList();
+                List<int> gposPertenece = (from ug in db.UsuarioGrupo
+                                           where ug.IdUsuario == idUsuarioSolicita && ug.GrupoUsuario.Habilitado
+                                           select ug.IdGrupoUsuario).Distinct().ToList();
                 List<int> idsUsuarios = new List<int>();
                 result = new List<Usuario>();
                 foreach (int idGrupo in gposPertenece)
@@ -1568,13 +1569,13 @@ namespace KinniNet.Core.Operacion
                                     .Any(@t => @t.ug.IdGrupoUsuario == gpo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel && @t.ug.IdUsuario == idUsuarioSolicita);
                         if (supervisaGrupo)
                         {
-                            idsUsuarios.AddRange(ObtenerUsuariosByGrupoAtencion(idGrupo, false).Select(s=>s.Id));
+                            idsUsuarios.AddRange(ObtenerUsuariosByGrupoAtencion(idGrupo, false).Select(s => s.Id));
                         }
-                            
+
                     }
                 }
                 idsUsuarios.Add(idUsuarioSolicita);
-                foreach (Usuario usuario in db.Usuario.Where(w=> idsUsuarios.Contains(w.Id)))
+                foreach (Usuario usuario in db.Usuario.Where(w => idsUsuarios.Contains(w.Id)))
                 {
                     if (!result.Any(a => a.Id == usuario.Id))
                         result.Add(new Usuario

@@ -90,7 +90,7 @@ namespace KiiniNet.Services.Operacion.Interface
         Usuario GetUsuarioByCorreo(string correo);
 
         [OperationContract]
-        List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles);
+        List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, int idUsuarioSolicita, List<int> lstSubRoles);
 
         [OperationContract]
         List<Usuario> ObtenerAgentesPermitidos(int idUsuarioSolicita, bool insertarSeleccion);

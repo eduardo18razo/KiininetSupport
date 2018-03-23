@@ -69,6 +69,8 @@ namespace KiiniHelp
                 }
                 if (RolSeleccionado != null)
                     lblAreaSeleccionada.Text = lstRoles.Single(s => s.Id == int.Parse(RolSeleccionado.ToString())).Descripcion;
+                if (lstRoles.Count <= 1)
+                    divRoles.Visible = false;
                 rptRolesPanel.DataSource = lstRoles;
                 rptRolesPanel.DataBind();
                 lblBadgeRoles.Text = lstRoles.Count.ToString();

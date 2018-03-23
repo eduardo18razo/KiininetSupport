@@ -156,6 +156,19 @@
     <Property Name="IdTicketConversacion" Type="int" />
     <Property Name="Archivo" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="CorreoService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="IdTicketEvento" Type="bigint" />
+    <Property Name="Correo" Type="nvarchar" MaxLength="300" />
+    <Property Name="Contenido" Type="nvarchar(max)" />
+    <Property Name="FechaSolicitud" Type="datetime" />
+    <Property Name="FechaEnvio" Type="datetime" />
+    <Property Name="Enviado" Type="bit" />
+  </EntityType>
   <EntityType Name="CorreoUsuario">
     <Key>
       <PropertyRef Name="Id" />
@@ -335,6 +348,7 @@
     <Property Name="IdSubRolPertenece" Type="int" />
     <Property Name="IdEstatusTicketActual" Type="int" />
     <Property Name="IdEstatusTicketAccion" Type="int" />
+    <Property Name="ComentarioObligado" Type="bit" />
     <Property Name="TieneSupervisor" Type="bit" />
     <Property Name="Propietario" Type="bit" />
     <Property Name="LevantaTicket" Type="bit" />
@@ -351,6 +365,7 @@
     <Property Name="IdSubRolPertenece" Type="int" />
     <Property Name="IdEstatusTicketActual" Type="int" />
     <Property Name="IdEstatusTicketAccion" Type="int" />
+    <Property Name="ComentarioObligado" Type="bit" />
     <Property Name="TieneSupervisor" Type="bit" />
     <Property Name="Propietario" Type="bit" />
     <Property Name="LevantaTicket" Type="bit" />
@@ -1465,6 +1480,16 @@
     <Property Name="Codigo" Type="nvarchar(max)" />
     <Property Name="Activo" Type="bit" />
   </EntityType>
+  <EntityType Name="UsuarioNotificacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="IdTicketEvento" Type="bigint" />
+    <Property Name="Notificaciones" Type="int" />
+    <Property Name="FechaActualizacion" Type="datetime" />
+  </EntityType>
   <EntityType Name="UsuarioPassword">
     <Key>
       <PropertyRef Name="Id" />
@@ -1740,6 +1765,30 @@
       </Principal>
       <Dependent Role="ConversacionArchivo">
         <PropertyRef Name="IdTicketConversacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CorreoService_TicketEvento">
+    <End Role="TicketEvento" Type="Self.TicketEvento" Multiplicity="0..1" />
+    <End Role="CorreoService" Type="Self.CorreoService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketEvento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CorreoService">
+        <PropertyRef Name="IdTicketEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CorreoService_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="CorreoService" Type="Self.CorreoService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CorreoService">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4335,6 +4384,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UsuarioNotificacion_TicketEvento">
+    <End Role="TicketEvento" Type="Self.TicketEvento" Multiplicity="0..1" />
+    <End Role="UsuarioNotificacion" Type="Self.UsuarioNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TicketEvento">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioNotificacion">
+        <PropertyRef Name="IdTicketEvento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsuarioNotificacion_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="UsuarioNotificacion" Type="Self.UsuarioNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsuarioNotificacion">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UsuarioPassword_Usuario">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
     <End Role="UsuarioPassword" Type="Self.UsuarioPassword" Multiplicity="*" />
@@ -4396,6 +4469,7 @@
     <EntitySet Name="Colonia" EntityType="Self.Colonia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Compania" EntityType="Self.Compania" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConversacionArchivo" EntityType="Self.ConversacionArchivo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CorreoService" EntityType="Self.CorreoService" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CorreoUsuario" EntityType="Self.CorreoUsuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DiaFeriado" EntityType="Self.DiaFeriado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DiaFestivoDefault" EntityType="Self.DiaFestivoDefault" Schema="dbo" store:Type="Tables" />
@@ -4512,6 +4586,7 @@
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsuarioLinkPassword" EntityType="Self.UsuarioLinkPassword" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsuarioNotificacion" EntityType="Self.UsuarioNotificacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsuarioPassword" EntityType="Self.UsuarioPassword" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Zona" EntityType="Self.Zona" Schema="dbo" store:Type="Tables" />
@@ -4598,6 +4673,14 @@
     <AssociationSet Name="FK_ConversacionArchivo_TicketConversacion" Association="Self.FK_ConversacionArchivo_TicketConversacion">
       <End Role="TicketConversacion" EntitySet="TicketConversacion" />
       <End Role="ConversacionArchivo" EntitySet="ConversacionArchivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CorreoService_TicketEvento" Association="Self.FK_CorreoService_TicketEvento">
+      <End Role="TicketEvento" EntitySet="TicketEvento" />
+      <End Role="CorreoService" EntitySet="CorreoService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CorreoService_Usuario" Association="Self.FK_CorreoService_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="CorreoService" EntitySet="CorreoService" />
     </AssociationSet>
     <AssociationSet Name="FK_CorreoUsuario_Usuario" Association="Self.FK_CorreoUsuario_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
@@ -5462,6 +5545,14 @@
     <AssociationSet Name="FK_UsuarioLinkPassword_Usuario" Association="Self.FK_UsuarioLinkPassword_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="UsuarioLinkPassword" EntitySet="UsuarioLinkPassword" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioNotificacion_TicketEvento" Association="Self.FK_UsuarioNotificacion_TicketEvento">
+      <End Role="TicketEvento" EntitySet="TicketEvento" />
+      <End Role="UsuarioNotificacion" EntitySet="UsuarioNotificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsuarioNotificacion_Usuario" Association="Self.FK_UsuarioNotificacion_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="UsuarioNotificacion" EntitySet="UsuarioNotificacion" />
     </AssociationSet>
     <AssociationSet Name="FK_UsuarioPassword_Usuario" Association="Self.FK_UsuarioPassword_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />

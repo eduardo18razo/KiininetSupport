@@ -19,40 +19,40 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/08/2017 15:24:33</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>03/13/2018 17:03:20</publishTime>
+      <publishTime>03/14/2018 12:21:22</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>03/13/2018 17:03:20</publishTime>
+      <publishTime>03/14/2018 12:21:22</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.dll">
-      <publishTime>03/13/2018 17:21:36</publishTime>
+      <publishTime>03/16/2018 11:37:25</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.pdb">
-      <publishTime>03/13/2018 17:21:36</publishTime>
+      <publishTime>03/16/2018 11:37:25</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.dll">
-      <publishTime>03/13/2018 17:21:36</publishTime>
+      <publishTime>03/16/2018 11:37:26</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.pdb">
-      <publishTime>03/13/2018 17:21:36</publishTime>
+      <publishTime>03/16/2018 11:37:26</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>03/13/2018 17:03:21</publishTime>
+      <publishTime>03/14/2018 12:21:25</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>03/13/2018 17:03:21</publishTime>
+      <publishTime>03/14/2018 12:21:25</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.dll">
-      <publishTime>03/13/2018 17:21:35</publishTime>
+      <publishTime>03/16/2018 11:37:24</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.pdb">
-      <publishTime>03/13/2018 17:21:35</publishTime>
+      <publishTime>03/16/2018 11:37:24</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.dll">
-      <publishTime>03/13/2018 17:03:21</publishTime>
+      <publishTime>03/14/2018 12:21:26</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.pdb">
-      <publishTime>03/13/2018 17:03:21</publishTime>
+      <publishTime>03/14/2018 12:21:25</publishTime>
     </File>
     <File Include="ServiceArbolAcceso.svc">
       <publishTime>12/13/2017 13:33:17</publishTime>
@@ -175,7 +175,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:33:17</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/13/2018 17:30:22</publishTime>
+      <publishTime>03/16/2018 12:40:48</publishTime>
     </File>
   </ItemGroup>
 </Project>

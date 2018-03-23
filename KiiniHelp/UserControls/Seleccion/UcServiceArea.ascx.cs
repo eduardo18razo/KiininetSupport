@@ -57,7 +57,7 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 string tipoUsuario = ((Usuario)Session["UserData"]).IdTipoUsuario.ToString();
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + tipoUsuario);
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario);
             }
 
             catch (Exception ex)

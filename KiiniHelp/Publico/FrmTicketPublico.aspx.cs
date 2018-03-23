@@ -155,7 +155,7 @@ namespace KiiniHelp.Publico
                     IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
                     IdCanal = int.Parse(Request.QueryString["Canal"]);
                 }
-                else if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] != null)//Revisar validación
+                else if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] == null)
                 {
                     ArbolAcceso arbol = _servicioArbolAcceso.ObtenerArbolAcceso(Convert.ToInt32(Request.QueryString["IdArbol"]));
                     Session["ArbolAcceso"] = arbol;
@@ -218,8 +218,8 @@ namespace KiiniHelp.Publico
             try
             {
                 Public master = (Public)Page.Master;
-                if (master != null) 
-                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userTipe=" + master.TipoUsuario);
+                if (master != null)
+                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + master.TipoUsuario);
                 else
                     Response.Redirect("~/Default.aspx");
             }

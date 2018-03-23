@@ -7,7 +7,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:UpdatePanel runat="server">
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <uc1:UcConsultaMisTickets runat="server" id="UcConsultaMisTickets" />
         </ContentTemplate>

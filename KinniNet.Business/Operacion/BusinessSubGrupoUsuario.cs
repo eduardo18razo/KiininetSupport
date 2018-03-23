@@ -46,7 +46,6 @@ namespace KinniNet.Core.Operacion
 
         public List<HelperSubGurpoUsuario> ObtenerSubGruposUsuario(int idGrupoUsuario, bool insertarSeleccion)
         {
-            //TODO: REVISAR  METODO
             List<HelperSubGurpoUsuario> result = new List<HelperSubGurpoUsuario>();
             DataBaseModelContext db = new DataBaseModelContext();
             try
@@ -57,7 +56,6 @@ namespace KinniNet.Core.Operacion
                     where sgu.IdGrupoUsuario == idGrupoUsuario
                     select new {sgu, sr};
                 result = subgpos.Select(s => new HelperSubGurpoUsuario {Id = s.sgu.Id, Descripcion = s.sr.Descripcion}).ToList();
-                //result = db.SubGrupoUsuario.Where(w => w.IdGrupoUsuario == idGrupoUsuario).Select(s => new HelperSubGurpoUsuario { Id = s.Id, Descripcion = "CAMBIAR ESTA DESCRIPCION" }).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new HelperSubGurpoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione });
 

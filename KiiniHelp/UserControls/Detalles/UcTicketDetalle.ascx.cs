@@ -634,7 +634,7 @@ namespace KiiniHelp.UserControls.Detalles
                 }
                 int idUsuario = ((Usuario)Session["UserData"]).Id;
                 List<int> sbrls = lstAsignacionesPermitidas.Select(s => s.IdSubRolPermitido).Distinct().ToList();
-                List<HelperUsuarioAgente> lstUsuario = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(IdGrupoAsignado, sbrls).Where(w => w.IdUsuario != idUsuario).ToList();
+                List<HelperUsuarioAgente> lstUsuario = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(IdGrupoAsignado, idUsuario, sbrls).ToList();
                 ddlUsuarioAsignacion.DataFieldID = "IdUsuario";
                 ddlUsuarioAsignacion.DataFieldParentID = "IdSubRol";
                 ddlUsuarioAsignacion.DataValueField = "IdUsuario";

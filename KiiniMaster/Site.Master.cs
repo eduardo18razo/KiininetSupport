@@ -36,10 +36,10 @@ namespace KiiniMaster
             //    UcLogIn.OnAceptarModal += UcLogInOnOnCancelarModal;
             //    UcLogIn.OnCancelarModal += UcLogInOnOnCancelarModal;
             //    ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
-            //    if (Request.Params["userTipe"] != null)
+            //    if (Request.Params["userType"] != null)
             //    {
             //        int areaSeleccionada;
-            //        int tipoUsuario = int.Parse(Request.Params["userTipe"]);
+            //        int tipoUsuario = int.Parse(Request.Params["userType"]);
             //        switch (tipoUsuario)
             //        {
             //            case (int)BusinessVariables.EnumTiposUsuario.EmpleadoInvitado:

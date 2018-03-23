@@ -122,6 +122,7 @@
     <Compile Include="Helper\HelperUsuario.cs" />
     <Compile Include="Helper\HelperUsuarioAgente.cs" />
     <Compile Include="Operacion\Area.cs" />
+    <Compile Include="Operacion\CorreoService.cs" />
     <Compile Include="Operacion\Dashboard\DashboardAdministrador.cs" />
     <Compile Include="Operacion\Dashboard\DashboardAgente.cs" />
     <Compile Include="Operacion\Dashboard\GraficoConteo.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Operacion\Usuarios\CorreoUsuario.cs" />
     <Compile Include="Cat\Operacion\Organizacion.cs" />
     <Compile Include="Operacion\Usuarios\UsuarioLinkPassword.cs" />
+    <Compile Include="Operacion\Usuarios\UsuarioNotificacion.cs" />
     <Compile Include="Operacion\Usuarios\UsuarioPassword.cs" />
     <Compile Include="Parametros\AliasUbicacion.cs" />
     <Compile Include="Parametros\AliasOrganizacion.cs" />

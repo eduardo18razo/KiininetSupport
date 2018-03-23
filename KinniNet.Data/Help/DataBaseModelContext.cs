@@ -119,6 +119,7 @@ namespace KinniNet.Data.Help
                 _domicilio = CreateObjectSet<Domicilio>();
                 _correoUsuario = CreateObjectSet<CorreoUsuario>();
                 _telefonoUsuario = CreateObjectSet<TelefonoUsuario>();
+                _usuarioNotificacion = CreateObjectSet<UsuarioNotificacion>();
                 _usuarioRol = CreateObjectSet<UsuarioRol>();
                 _usuarioGrupo = CreateObjectSet<UsuarioGrupo>();
                 _usuarioLinkPassword = CreateObjectSet<UsuarioLinkPassword>();
@@ -155,6 +156,7 @@ namespace KinniNet.Data.Help
                 _diaFestivoSubGrupo = CreateObjectSet<DiaFestivoSubGrupo>();
                 _tiempoInformeArbol = CreateObjectSet<TiempoInformeArbol>();
                 _smsService = CreateObjectSet<SmsService>();
+                _correoService = CreateObjectSet<CorreoService>();
                 _preguntaReto = CreateObjectSet<PreguntaReto>();
                 _preTicket = CreateObjectSet<PreTicket>();
                 _horario = CreateObjectSet<Horario>();
@@ -288,6 +290,14 @@ namespace KinniNet.Data.Help
             get
             {
                 return _telefonoUsuario;
+            }
+        }
+
+        public ObjectSet<UsuarioNotificacion> UsuarioNotificacion
+        {
+            get
+            {
+                return _usuarioNotificacion;
             }
         }
 
@@ -576,6 +586,14 @@ namespace KinniNet.Data.Help
             }
         }
 
+        public ObjectSet<CorreoService> CorreoService
+        {
+            get
+            {
+                return _correoService;
+            }
+        }
+
         public ObjectSet<SmsService> SmsService
         {
             get
@@ -695,6 +713,7 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<Domicilio> _domicilio;
         private readonly ObjectSet<CorreoUsuario> _correoUsuario;
         private readonly ObjectSet<TelefonoUsuario> _telefonoUsuario;
+        private readonly ObjectSet<UsuarioNotificacion> _usuarioNotificacion;
         private readonly ObjectSet<UsuarioRol> _usuarioRol;
         private readonly ObjectSet<UsuarioGrupo> _usuarioGrupo;
         private readonly ObjectSet<UsuarioLinkPassword> _usuarioLinkPassword;
@@ -732,6 +751,8 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<HorarioSubGrupo> _horarioSubGrupo;
         private readonly ObjectSet<DiaFestivoSubGrupo> _diaFestivoSubGrupo;
         private readonly ObjectSet<TiempoInformeArbol> _tiempoInformeArbol;
+
+        private readonly ObjectSet<CorreoService> _correoService;
         private readonly ObjectSet<SmsService> _smsService;
         private readonly ObjectSet<PreguntaReto> _preguntaReto;
         private readonly ObjectSet<PreTicket> _preTicket;

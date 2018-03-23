@@ -9,9 +9,9 @@
             <asp:HiddenField runat="server" ID="hfMuestraEncuesta" />
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item active">Mis Tickets</li>
+                <li class="active">Mis Tickets</li>
             </ol>
 
             <section class="module">
@@ -27,7 +27,7 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-xs-12 col-sm-12 col-lg-5">
+                            <div class="col-xs-12 col-sm-12 col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta de Tickets:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o consulta por estatus</label>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
@@ -48,32 +48,28 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
-                                <div class="form-group margin-top-btn-consulta">
-                                    <%--<asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_Click">
-                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>--%>
-
-                                    <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
-                                        <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
-                                    </a>
-
-                                </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center margin-top-btn-consulta">
+                                <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
+                                    <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
 
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
 
-                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
+                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" ShowHeaderWhenEmpty="True"
                                     CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
+                                    <EmptyDataTemplate>
+                                        <h3>Sin informacion Disponible</h3>
+                                    </EmptyDataTemplate>
                                     <Columns>
                                         <asp:TemplateField HeaderText="Ticket" HeaderStyle-Width="10%" ItemStyle-CssClass="altoFijo">
                                             <ItemTemplate>
@@ -118,23 +114,27 @@
                 </div>
             </section>
 
-            <div class="modal fade" id="modalEstatusCambio" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <asp:UpdatePanel runat="server">
-                    <ContentTemplate>
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <uc1:UcCambiarEstatusTicket runat="server" ID="ucCambiarEstatusTicket" />
-                            </div>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-            </div>
+
 
         </ContentTemplate>
-
     </asp:UpdatePanel>
 
+    <div class="modal fade" id="modalCambiaEstatus" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <asp:UpdatePanel ID="upCambiaestatus" runat="server">
+            <ContentTemplate>
+                <div class="modal-dialog" style="height: 250px;">
+                    <div class="modal-content">
+                        <uc1:UcCambiarEstatusTicket runat="server" ID="ucCambiarEstatusTicket" />
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+
+
 </div>
+
 
 
 

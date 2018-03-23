@@ -399,6 +399,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idGrupo" type="xs:int" />
+        <xs:element minOccurs="0" name="idUsuarioSolicita" type="xs:int" />
         <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="lstSubRoles" nillable="true" type="q19:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>

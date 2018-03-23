@@ -262,7 +262,7 @@ namespace KiiniHelp.Test
                 ddlUsuarioAsignacion.DataFieldParentID = "IdSubRol";
                 ddlUsuarioAsignacion.DataValueField = "DescripcionSubRol";
                 ddlUsuarioAsignacion.DataTextField = "NombreUsuario";
-                ddlUsuarioAsignacion.DataSource = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(4, new List<int>());
+                ddlUsuarioAsignacion.DataSource = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(4, 1, new List<int>());
                 ddlUsuarioAsignacion.DataBind();
             }
 

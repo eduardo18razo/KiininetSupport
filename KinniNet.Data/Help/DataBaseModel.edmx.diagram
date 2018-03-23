@@ -382,6 +382,12 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketEvento" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketEvento" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEvento" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.UsuarioNotificacion" Width="1.5" PointX="37.375" PointY="96.625" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_UsuarioNotificacion_TicketEvento" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_UsuarioNotificacion_Usuario" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.CorreoService" Width="1.5" PointX="35.375" PointY="92.375" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_CorreoService_TicketEvento" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_CorreoService_Usuario" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
