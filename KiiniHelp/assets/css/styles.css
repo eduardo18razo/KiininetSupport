@@ -6600,81 +6600,77 @@ ul.sortable {
 }
 
 .heigth22px {
-    height: 22px;
+    height: 22px !important;
 }
 
 .heigth40px {
-    height: 40px;
+    height: 40px !important;
 }
 
 
 .heigth530px {
-    height: 530px;
+    height: 530px !important;
 }
 
 
 .heigth85 {
-    height: 85%;
+    height: 85% !important;
 }
 
 .heigth90 {
-    height: 90%;
+    height: 90% !important;
 }
 
 .heigth100 {
-    height: 100%;
+    height: 100% !important;
 }
 
 .widht25Perc {
-    width: 25%;
+    width: 25% !important;
 }
 
 .widht50Perc {
-    width: 50%;
+    width: 50% !important;
 }
 
 .widht70Perc {
-    width: 70%;
+    width: 70% !important;
 }
 
 .widht75Perc {
-    width: 75%;
+    width: 75% !important;
 }
 
 .widht100 {
-    width: 100%;
+    width: 100% !important;
 }
 
 .widht38px {
-    width: 38px;
+    width: 38px !important;
 }
 
 .widht155 {
-    width: 155px;
+    width: 155px !important;
 }
 
 .widht180 {
-    width: 180px;
-}
-
-.widht250px {
-    width: 250px;
+    width: 180px !important;
 }
 
 .widht450px {
-    width: 450px;
+    width: 450px !important;
 }
 
 .widht650px {
-    width: 650px;
+    width: 650px !important;
 }
 
 .widht800px {
-    width: 800px;
+    width: 800px !important;
 }
 
 .widht1310px {
-    width: 1310px;
+    width: 1310px !important;
 }
 
 .menu85Porc {
