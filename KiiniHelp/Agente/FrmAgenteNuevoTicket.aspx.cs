@@ -68,7 +68,7 @@ namespace KiiniHelp.Agente
         {
             try
             {
-
+                ucFormulario.OnCancelarModal += ucFormulario_OnCancelarModal;
                 if (!IsPostBack)
                 {
                     divFormulario.Visible = Request.Params["idArbol"] != null;
@@ -87,6 +87,25 @@ namespace KiiniHelp.Agente
                 }
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
+            }
+        }
+
+        void ucFormulario_OnCancelarModal()
+        {
+            try
+            {
+                AgenteMaster master = Master as AgenteMaster;
+                if (master != null)
+                {
+                    master.CambiaTicket = true;
+                    master.RemoveTicketOpen(IdUsuarioSolicito, true);
+
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
             }
         }
     }

@@ -999,7 +999,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             try
             {
                 Alerta = new List<string>();
-
+                
                 if (!IsPostBack)
                 {
                     divRegistraUsuario.Visible = Session["UserData"] == null;
@@ -1092,8 +1092,8 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             try
             {
-                if (OnAceptarModal != null)
-                    OnAceptarModal();
+                if (OnCancelarModal != null)
+                    OnCancelarModal();
             }
             catch (Exception ex)
             {

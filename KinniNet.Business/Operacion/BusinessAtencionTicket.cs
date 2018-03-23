@@ -764,10 +764,11 @@ namespace KinniNet.Core.Operacion
             try
             {
                 Ticket ticket = db.Ticket.SingleOrDefault(t => t.Id == idTicket);
-                TicketGrupoUsuario ticketGrupoUsuario = db.TicketGrupoUsuario.SingleOrDefault(s => s.IdTicket == idTicket);
+                int idTicketGrupoUsuario = db.TicketGrupoUsuario.First(s => s.IdTicket == idTicket && s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).IdGrupoUsuario;
+                GrupoUsuario ticketGrupoUsuario = db.GrupoUsuario.SingleOrDefault(s => s.Id == idTicketGrupoUsuario);
                 if (ticket != null && ticketGrupoUsuario != null)
                 {
-                    int idGpoAtencion = ticketGrupoUsuario.IdGrupoUsuario;
+                    int idGpoAtencion = ticketGrupoUsuario.Id;
                     DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                     TicketEvento evento = new TicketEvento
                     {
