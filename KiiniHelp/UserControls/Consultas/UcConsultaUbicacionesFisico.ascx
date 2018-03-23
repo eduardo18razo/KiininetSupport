@@ -69,7 +69,7 @@
             });
         };
     </script>
-    <asp:UpdatePanel runat="server" style="height: 100%" ID="upGeneral">
+    <asp:UpdatePanel runat="server" class="heigth100" ID="upGeneral">
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfModalName" />
             <asp:HiddenField runat="server" ID="hfIdSeleccion" />
@@ -93,10 +93,10 @@
             <div class="modal-header" id="panelAlertaUbicacion" runat="server" visible="false">
                 <div class="alert alert-danger" role="alert">
                     <div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                         </div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <h3>Error</h3>
                         </div>
                         <div class="clearfix clear-fix" />
@@ -240,10 +240,10 @@
                         <div class="modal-header" id="panelAlertaCatalogo" runat="server" visible="false">
                             <div class="alert alert-danger">
                                 <div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                     </div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <h3>Error</h3>
                                     </div>
                                     <div class="clearfix clear-fix" />
@@ -283,7 +283,7 @@
                                 <asp:CheckBox runat="server" ID="chkHabilitado" Checked="True" Visible="False" />
                             </div>
                         </div>
-                        <div class="panel-footer" style="text-align: center">
+                        <div class="panel-footer text-center">
                             <asp:Button ID="btnGuardarCatalogo" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnGuardarCatalogo_OnClick" />
                             <asp:Button ID="btnCancelarCatalogo" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelarCatalogo_OnClick" />
                         </div>
@@ -305,10 +305,10 @@
                         <div class="modal-header" id="panelAlertaCampus" runat="server" visible="false">
                             <div class="alert alert-danger">
                                 <div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                     </div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <h3>Error</h3>
                                     </div>
                                     <div class="clearfix clear-fix" />
@@ -371,7 +371,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer" style="text-align: center">
+                        <div class="panel-footer text-center">
                             <asp:Button ID="btnCrearCampus" runat="server" CssClass="btn btn-success" Text="Aceptar" ValidationGroup="vsData" OnClick="btnCrearCampus_OnClick" />
                             <asp:Button ID="btnCancelarCampus" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelarCampus_OnClick" />
                         </div>

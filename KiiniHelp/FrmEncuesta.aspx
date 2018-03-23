@@ -21,7 +21,7 @@
         }
     </script>
 </head>
-<body style="background: white;">
+<body class="bg-blanco">
     <div id="full">
         <form id="form1" runat="server">
             <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
@@ -33,8 +33,8 @@
             </asp:ScriptManager>
             <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
                 <ProgressTemplate>
-                    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
-                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
+                    <div class="progressBar">
+                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..."/>
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -46,10 +46,10 @@
                     <header>
                         <div class="alert alert-danger" id="panelAlert" runat="server" visible="False">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />

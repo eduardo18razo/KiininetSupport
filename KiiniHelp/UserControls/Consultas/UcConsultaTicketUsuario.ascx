@@ -5,10 +5,10 @@
                 <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
                     <div class="alert alert-danger">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
@@ -33,7 +33,7 @@
                             <asp:Repeater runat="server" ID="rptTickets" >
                                 <HeaderTemplate>
                                     <div style="overflow-y: auto; min-height: 380px;">
-                                        <div class="panel-heading" style="padding-bottom: 9px; margin: 0 0 20px; padding-left: 0">
+                                        <div class="panel-heading padding-9-bottom" style="margin: 0 0 20px; padding-left: 0">
                                             <asp:LinkButton CssClass="col-xs-1" runat="server" Text="Fecha y Hora" CommandName="DateTime" Width="10.6%" />
                                             <asp:Label CssClass="col-xs-1" runat="server" Text="Ticket" Width="8%" />
                                             <asp:Label CssClass="col-xs-2" runat="server" Text="Descripcion" Width="14%" />
@@ -46,7 +46,7 @@
                                         </div>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <div class="panel-body row" style="padding-bottom: 9px; margin: 0 0 20px; padding-left: 0">
+                                    <div class="panel-body row padding-9-bottom" style="margin: 0 0 20px; padding-left: 0">
                                         <%--ID--%>
                                         <asp:Label runat="server" CssClass="col-xs-1" Text='<%#Eval("IdTicket") %>' Visible="False" />
                                         <asp:Label runat="server" CssClass="col-xs-1" Text='<%#Eval("IdUsuario") %>' Visible="False" />

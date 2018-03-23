@@ -14,7 +14,7 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-lg-12 col-md-12" style="margin-top: -5px;">
+                <div class="col-lg-12 col-md-12 margin-top-5m">
                     <div class="module-inner">
                         <div>Tipo de encuesta</div>
                         <div class="form-group">

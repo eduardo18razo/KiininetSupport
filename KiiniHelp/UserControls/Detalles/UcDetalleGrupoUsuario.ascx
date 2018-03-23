@@ -11,9 +11,9 @@
                         <div class="row">
                             <asp:Repeater runat="server" ID="rptGrupos">
                                 <ItemTemplate>
-                                    <div class="form-group col-lg-2 col-md-2 col-sm-2" style="padding: 5px">
+                                    <div class="form-group col-lg-2 col-md-2 col-sm-2 padding-5">
                                         <span class="tag label label-info">
-                                            <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 5px">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 padding-5">
                                                 <span><%# Eval("DescripcionGrupo") %></span>
                                                 <asp:Repeater runat="server" ID="rptSubGrupos">
                                                     <HeaderTemplate>

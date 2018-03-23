@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaUbicaciones.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaUbicaciones" %>
 <%@ Register Src="~/UserControls/Altas/Ubicaciones/UcAltaUbicaciones.ascx" TagPrefix="uc1" TagName="UcAltaUbicaciones" %>
 
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%" ID="upGeneral">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100" ID="upGeneral">
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfModalName" />
             <asp:HiddenField runat="server" ID="hfIdSeleccion" />

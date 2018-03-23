@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaEncuesta.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaEncuesta" %>
 <%@ Register Src="~/UserControls/Altas/Encuestas/UcAltaEncuesta.ascx" TagPrefix="uc1" TagName="UcAltaEncuesta" %>
 
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">

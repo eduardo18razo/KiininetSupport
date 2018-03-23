@@ -56,15 +56,15 @@
                             <EditRowStyle BackColor="#ffffcc" />
                             <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                             <PagerTemplate>
-                                <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-1" style="text-align: right;">
+                                <div class="row margin-left-20">
+                                    <div class="col-lg-1 text-right">
                                         <h5>
                                             <asp:Label ID="MessageLabel" Text="Ir a la pág." runat="server" /></h5>
                                     </div>
-                                    <div class="col-lg-1" style="text-align: left;">
+                                    <div class="col-lg-1 text-left">
                                         <asp:DropDownList ID="PageDropDownList" Width="50px" AutoPostBack="true" runat="server" CssClass="form-control" /></h3>
                                     </div>
-                                    <div class="col-lg-10" style="text-align: right;">
+                                    <div class="col-lg-10 text-right">
                                         <h3>
                                             <asp:Label ID="CurrentPageLabel" runat="server" CssClass="label label-warning" /></h3>
                                     </div>
@@ -91,15 +91,15 @@
                             <EditRowStyle BackColor="#ffffcc" />
                             <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                             <PagerTemplate>
-                                <div class="row" style="margin-top: 20px;">
-                                    <div class="col-lg-1" style="text-align: right;">
+                                <div class="row margin-left-20">
+                                    <div class="col-lg-1 text-right">
                                         <h5>
                                             <asp:Label ID="MessageLabel" Text="Ir a la pág." runat="server" /></h5>
                                     </div>
-                                    <div class="col-lg-1" style="text-align: left;">
+                                    <div class="col-lg-1 text-left">
                                         <asp:DropDownList ID="PageDropDownList" Width="50px" AutoPostBack="true" runat="server" CssClass="form-control" /></h3>
                                     </div>
-                                    <div class="col-lg-10" style="text-align: right;">
+                                    <div class="col-lg-10 text-right">
                                         <h3><asp:Label ID="CurrentPageLabel" runat="server" CssClass="label label-warning" /></h3>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-footer" style="text-align: center">
+            <div class="panel-footer text-center">
                 <%--<asp:Button ID="btnCerrarOrganizacion" runat="server" CssClass="btn btn-success btn-lg" Text="Aceptar" OnClick="btnCerrarOrganizacion_OnClick" />--%>
                 <asp:Button ID="btnCerrar" runat="server" CssClass="btn btn-danger btn-sm" Text="Cerrar" data-dismiss="modal" />
             </div>

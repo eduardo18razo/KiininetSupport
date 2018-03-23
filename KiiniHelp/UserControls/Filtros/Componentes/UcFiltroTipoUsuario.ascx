@@ -4,10 +4,10 @@
         <header class="modal-header" id="panelAlerta" runat="server" visible="false">
             <div class="alert alert-danger">
                 <div>
-                    <div style="float: left">
+                    <div class="float-left">
                         <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                     </div>
-                    <div style="float: left">
+                    <div class="float-left">
                         <h3>Error</h3>
                     </div>
                     <div class="clearfix clear-fix" />
@@ -29,7 +29,7 @@
             <div class="panel-body">
                 <%--ORIGEN--%>
                 <div class="panel panel-primary">
-                    <div style="font-weight: bold"> 
+                    <div class="strong"> 
                         Seleccione
                     </div>
                      <asp:Panel runat="server" ScrollBars="Vertical" Width="100%" Height="140px">
@@ -41,7 +41,7 @@
                                 </div>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <div class="container-fluid" style="margin-top: 2px">
+                                <div class="container-fluid margin-top-2">
                                     <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                     <asp:Label CssClass="col-sm-4" runat="server" ID="lblDescripcion" Text='<%# Eval("Descripcion") %>' />
                                     <asp:Button runat="server" Text="Seleccionar" CssClass="btn btn-primary btn-sm" ID="btnSeleccionar" OnClick="btnSeleccionar_OnClick" />
@@ -53,7 +53,7 @@
                 </div>              
                 <%--SELECCION--%>
                 <div class="panel panel-primary">
-                    <div style="font-weight: bold"> 
+                    <div class="strong"> 
                         Seleccionados
                     </div>
                      <asp:Panel runat="server" ScrollBars="Vertical" Width="100%" Height="140px">
@@ -61,11 +61,11 @@
                         <asp:Repeater runat="server" ID="rptTipoUsuarioSeleccionado">
                             <HeaderTemplate>
                                 <div class="container-fluid">
-                                    <asp:Label CssClass="col-sm-4 text-center" runat="server" Text="Tipo De Usuario" style="font-weight: bold !important" />
+                                    <asp:Label CssClass="col-sm-4 text-center strong" runat="server" Text="Tipo De Usuario"/>
                                 </div>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <div class="container-fluid" style="margin-top: 2px">
+                                <div class="container-fluid margin-top-2">
                                     <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                     <asp:Label CssClass="col-sm-4" runat="server" ID="lblDescripcion" Text='<%# Eval("Descripcion") %>' />
                                     <asp:Button runat="server" Text="Quitar" CssClass="btn btn-danger btn-sm" ID="btnQuitar" OnClick="btnQuitar_OnClick" />

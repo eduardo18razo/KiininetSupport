@@ -9,10 +9,10 @@
                 <header class="modal-header" id="panelAlerta" runat="server" visible="false">
                     <div class="alert alert-danger">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
@@ -39,7 +39,7 @@
                                         Tipo de Grafico
                                     </div>
                                     <div class="panel-body">
-                                        <div style="float: left">
+                                        <div class="float-left">
                                             <asp:RadioButton runat="server" GroupName="gpoTipoGrafico" AutoPostBack="True" ID="rbtnGeografico" Text="Geografico" /><br />
                                             <asp:RadioButton runat="server" GroupName="gpoTipoGrafico" AutoPostBack="True" ID="rbtnTendenciaStack" Text="Tendencia Stack" /><br />
                                             <asp:RadioButton runat="server" GroupName="gpoTipoGrafico" AutoPostBack="True" ID="rbtnTendenciaBarraCompetitiva" Text="Tendencia Barra Comparativa" />
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer" style="text-align: center">
+                            <div class="panel-footer text-center">
                                 <asp:Button runat="server" CssClass="btn btn-success" Text="Generar" ID="btnGenerar" OnClick="btnGenerar_OnClick" />
                                 <asp:Button runat="server" CssClass="btn btn-danger" Text="Limpiar" ID="btnLimpiar" OnClick="btnLimpiar_OnClick" />
                                 <asp:Button runat="server" CssClass="btn btn-danger" Text="Cancelar" ID="btnCancelar" OnClick="btnCancelar_OnClick" />

@@ -2,7 +2,7 @@
 <%@ Register Src="~/UserControls/Altas/AltaArea.ascx" TagPrefix="uc1" TagName="AltaArea" %>
 
 <div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">
@@ -127,7 +127,7 @@
     <div class="modal fade" id="modalAltaArea" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upAltaArea" runat="server">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog widht250px">
                     <div class="modal-content">
                         <uc1:AltaArea runat="server" ID="ucAltaArea" />
                     </div>

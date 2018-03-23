@@ -40,10 +40,9 @@
                 color: #3aa7aa;
             }
 </style>
-<div style="height: 100%;">
+<div class="height100">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <%--<asp:LinkButton CssClass="close" runat="server" OnClick="btnCerrarModal_OnClick" Text='&times' />--%>
 
             <!--GRUPO DATOS GENERALES -->
             <section class="module margin-top-20">
@@ -94,69 +93,38 @@
                                     </h2>
                                 </div>
 
-                                <%-- <div class="form-group col-lg-10 col-md-10 col-sm-10">
-                                    <asp:Label runat="server" Text="Ultimo Acceso" CssClass="col-md-12"></asp:Label>
-                                    <asp:Label runat="server" ID="lblFechaUltimoAcceso" Text="Fecha Ultimo Acceso" CssClass="col-md-12"></asp:Label>
-                                </div>--%>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <%--  </section>
-
-            <section class="module">--%>
 
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <!--TÍTULO DATOS GENERALES-->
                         <div class="module-inner">
-                            <%--<div class="module-heading">
-                                <h3 class="module-title">DATOS GENERALES</h3>
-                            </div>
-                            <br />--%>
-
-                            <!--FILA 1-->
-                            <%--<div class="row">
-                                <div class="col-lg-3 col-md-3">
-                                    <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" placeholder="Apellido paterno" MaxLength="32" />
-                                </div>
-                                <div class="col-lg-3 col-md-3">
-                                    <asp:TextBox ID="txtAm" runat="server" CssClass="form-control" placeholder="Apellido materno" MaxLength="32" />
-                                </div>
-                                <div class="col-lg-3 col-md-3">
-                                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre" MaxLength="32" />
-                                </div>
-                                    <div class="col-lg-3 col-md-3">
-                                    <label>Usuario:</label>
-                                    <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control texto-normal" MaxLength="12" Style="text-transform: none" />
-                                </div>
-                            </div>--%>
-
-                            <!--FILA 2-->
-
-
+                            
                             <div class="row">
                                 <div class="col-lg-3 col-md-3" runat="server" id="divPuesto">
                                     <label>Puesto*</label>
                                     <asp:DropDownList runat="server" ID="ddlPuesto" CssClass="form-control" />
                                 </div>
 
-                                <div class="col-lg-3 col-md-3" style="padding-top: 22px">
+                                <div class="col-lg-3 col-md-3 padding-22-top">
                                     <div class="form-inline">
                                         <label for="chkVip" class="col-lg-9 col-md-9 text-right padding-10-right">VIP</label>
                                         <asp:CheckBox runat="server" Text="VIP" ID="chkVip" CssClass="chkIphone padding-5-top" Width="30px" />
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-md-3" style="padding-top: 22px">
+                                <div class="col-lg-3 col-md-3 padding-22-top">
                                     <div class="form-inline">
                                         <label for="chkDirectoriActivo" class="col-lg-9 col-md-9 text-right padding-10-right">Directorio activo</label>
                                         <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" CssClass="chkIphone padding-5-top" Width="30px" />
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-md-3" style="padding-top: 22px">
+                                <div class="col-lg-3 col-md-3 padding-22-top">
                                     <div class="form-inline">
                                         <label for="chkPersonaFisica" class="col-lg-9 col-md-9 text-right padding-10-right">Persona Fisica</label>
                                         <asp:CheckBox runat="server" Text="Persona Fisica" ID="chkPersonaFisica" CssClass="chkIphone padding-5-top" Width="30px" />

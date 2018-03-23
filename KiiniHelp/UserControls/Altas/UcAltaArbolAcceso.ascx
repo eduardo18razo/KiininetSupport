@@ -27,10 +27,10 @@
                         <div class="modal-header" id="panelAlertaNivel" runat="server" visible="false">
                             <div class="alert alert-danger">
                                 <div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                     </div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <h3>Error</h3>
                                     </div>
                                     <div class="clearfix clear-fix" />
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer" style="text-align: center">
+                        <div class="modal-footer text-center">
                             <asp:Button ID="btnGuardarNivel" runat="server" CssClass="btn btn-lg btn-success" Text="Guardar" OnClick="btnGuardarNivel_OnClick" />
                             <asp:Button ID="btnLimpiarNivel" runat="server" CssClass="btn btn-lg btn-danger" Text="Limpiar" OnClick="btnLimpiarNivel_OnClick" />
                             <asp:Button ID="btnCancelarNivel" runat="server" CssClass="btn btn-lg btn-danger" Text="Cancelar" OnClick="btnCancelarNivel_OnClick" />
@@ -129,7 +129,7 @@
                                             <div class="row ">
                                                 <asp:Label runat="server" ID="lblIndex" Text='<%# Container.ItemIndex %>' Visible="False"></asp:Label>
                                                 <asp:Label runat="server" Text='<%# Eval("TipoInfConsulta.Id") %>' Visible="False" ID="lblIdTipoInformacion"></asp:Label>
-                                                <div class="col-sm-3 control-label" style="width: 180px">
+                                                <div class="col-sm-3 control-label widht180">
                                                     <asp:CheckBox runat="server" Text='<%# Eval("TipoInfConsulta.Descripcion") %>' Checked="False" ID="chkInfoConsulta" OnCheckedChanged="chkInfoConsulta_OnCheckedChanged" AutoPostBack="True" />
                                                 </div>
                                                 <div runat="server" class="col-sm-9 control-label margen-arriba">
@@ -181,10 +181,10 @@
                             <div class="modal-header" id="panelAlertaTicket" runat="server" visible="false">
                                 <div class="alert alert-danger">
                                     <div>
-                                        <div style="float: left">
+                                        <div class="float-left">
                                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                         </div>
-                                        <div style="float: left">
+                                        <div class="float-left">
                                             <h3>Error</h3>
                                         </div>
                                         <div class="clearfix clear-fix" />
@@ -209,10 +209,10 @@
                                     <div class="form-horizontal">
                                         <%--Formulario de Cliente--%>
                                         <div class="form-group">
-                                            <div class="form-inline" style="width: 100%">
-                                                <label class="col-sm-3 control-label" style="width: 180px">Formulario de Cliente</label>
+                                            <div class="form-inline widht100">
+                                                <label class="col-sm-3 control-label widht180">Formulario de Cliente</label>
                                                 <div class="col-sm-4">
-                                                    <asp:DropDownList runat="server" ID="ddlMascaraAcceso" class="form-control" Style="width: 100%" />
+                                                    <asp:DropDownList runat="server" ID="ddlMascaraAcceso" class="form-control widht100"/>
                                                 </div>
                                                 <div class="col-sm-1">
                                                     <asp:Button runat="server" Text="Agregar" CssClass="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalAltaMascara" data-keyboard="false" />
@@ -301,10 +301,10 @@
                             <div class="modal-header" id="Div2" runat="server" visible="false">
                                 <div class="alert alert-danger">
                                     <div>
-                                        <div style="float: left">
+                                        <div class="float-left">
                                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                         </div>
-                                        <div style="float: left">
+                                        <div class="float-left">
                                             <h3>Error</h3>
                                         </div>
                                         <div class="clearfix clear-fix" />
@@ -329,10 +329,10 @@
 
                                         <%--ENCUESTA--%>
                                         <div class="form-group">
-                                            <div class="form-inline" style="width: 100%">
-                                                <label class="col-sm-3 control-label" style="width: 180px">Encuesta</label>
+                                            <div class="form-inline widht100">
+                                                <label class="col-sm-3 control-label widht180">Encuesta</label>
                                                 <div class="col-sm-4">
-                                                    <asp:DropDownList runat="server" ID="ddlEncuesta" class="form-control" Style="width: 100%" />
+                                                    <asp:DropDownList runat="server" ID="ddlEncuesta" class="form-control widht100"/>
                                                 </div>
                                                 <div class="col-sm-1">
                                                     <asp:Button runat="server" Text="Agregar" CssClass="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalAltaEncuesta" data-keyboard="false" />
@@ -369,7 +369,7 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
                     <div class="modal-dialog modal-lg" style="width: 1300px; height: 500px">
-                        <div class="modal-content" style="height: 100%">
+                        <div class="modal-content heigth100">
                             <div class="modal-body">
                                 <uc:UcAltaFormulario runat="server" id="ucAltaFormulario" />
                             </div>

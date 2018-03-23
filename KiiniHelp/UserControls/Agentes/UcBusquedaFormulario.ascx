@@ -59,7 +59,7 @@
         background-color: #676767;
     }
 </style>
-<div style="height: 100%;">
+<div class="heigth100">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfIdUsuarioSolicito" />

@@ -12,10 +12,10 @@
         </div>
 
         <div class="modal-body">
-            <section class="module no-border" style="border: none">
+            <section class="module no-border">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <div> <%--class="module-inner"--%>
+                        <div>
                             <asp:Label runat="server" Text="Nombre del Catálogo"></asp:Label>
                             <div class="form-group">
                                 <asp:TextBox runat="server" ID="txtNombreCatalogo" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>

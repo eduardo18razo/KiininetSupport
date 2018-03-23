@@ -23,7 +23,7 @@
 
 
         <div class="modal-body">
-            <div class="row" style="padding-left: 15px;">
+            <div class="row padding-15-left">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#usuarioRegistrado" aria-controls="home" role="tab" data-toggle="tab" onclick='document.getElementById("hfSelected").value = 1'>Usuario Registrado</a></li>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <asp:Button runat="server" ID="btnSeleccionarUsuario" Style="margin-right: 16px;" Text="Asignar" CssClass="btn btn-success" OnClick="btnSeleccionarUsuario_OnClick" />
+            <asp:Button runat="server" ID="btnSeleccionarUsuario" Text="Asignar" CssClass="btn btn-success margin-right-16" OnClick="btnSeleccionarUsuario_OnClick" />
         </div>
 
     </ContentTemplate>

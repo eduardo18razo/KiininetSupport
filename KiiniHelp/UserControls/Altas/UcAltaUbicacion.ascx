@@ -1,16 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaUbicacion.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaUbicacion" %>
 <asp:UpdatePanel ID="upUbicacion" runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-       <%-- <div class="modal-dialog modal-lg">
-            <div class="modal-content">--%>
                 <asp:HiddenField runat="server" ID="hfTipoUsuario" />
                 <div class="modal-header" id="panelAlertaUbicacion" runat="server" visible="false">
                     <div class="alert alert-danger" role="alert">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
@@ -25,10 +23,6 @@
                         </asp:Repeater>
                     </div>
                 </div>
-              <%--  <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        Organizacion
-                    </div>--%>
                     <div class="panel-body">
                         <div class="form-group" runat="server" id="divTipoUsuario">
                             <div class="col-sm-offset-1">
@@ -85,13 +79,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer" style="text-align: center">
+                    <div class="panel-footer text-center">
                         <asp:Button ID="btnAceptar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptar_OnClick" />
                         <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_OnClick" />
                     </div>
-               <%-- </div>--%>
-            <%--</div>
-        </div>--%>
+               
     </ContentTemplate>
 </asp:UpdatePanel>
 
@@ -104,10 +96,10 @@
                     <div class="modal-header" id="panelAlertaCatalogo" runat="server" visible="false">
                         <div class="alert alert-danger">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />
@@ -146,7 +138,7 @@
                             <asp:CheckBox runat="server" ID="chkHabilitado" Checked="True" Visible="False" />
                         </div>
                     </div>
-                    <div class="panel-footer" style="text-align: center">
+                    <div class="panel-footer text-center">
                         <asp:Button ID="btnGuardarCatalogo" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnGuardarCatalogo_OnClick" />
                         <asp:Button ID="btnCancelarCatalogo" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelarCatalogo_OnClick" />
                     </div>
@@ -168,10 +160,10 @@
                     <div class="modal-header" id="panelAlertaCampus" runat="server" visible="false">
                         <div class="alert alert-danger">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />
@@ -233,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer" style="text-align: center">
+                    <div class="panel-footer text-center">
                         <asp:Button ID="btnCrearCampus" runat="server" CssClass="btn btn-success" Text="Aceptar" ValidationGroup="vsData" OnClick="btnCrearCampus_OnClick" />
                         <asp:Button ID="btnCancelarCampus" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelarCampus_OnClick" />
                     </div>

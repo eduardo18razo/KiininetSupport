@@ -9,10 +9,10 @@
                 <header class="modal-header" id="panelAlerta" runat="server" visible="false">
                     <div class="alert alert-danger">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
@@ -43,7 +43,7 @@
                                     <div class="panel-body">
                                         <asp:Repeater runat="server" ID="rptUbicaciones">
                                             <ItemTemplate>
-                                                <div class="container-fluid" style="margin-top: 2px">
+                                                <div class="container-fluid margin-top-2">
                                                     <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                     <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" AutoPostBack="True" />
                                                     (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)
@@ -58,7 +58,7 @@
                                     <div class="panel-body">
                                         <asp:Repeater runat="server" ID="rptOrganizaciones">
                                             <ItemTemplate>
-                                                <div class="container-fluid" style="margin-top: 2px">
+                                                <div class="container-fluid margin-top-2">
                                                     <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                     <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" AutoPostBack="True" />
                                                     (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)
@@ -73,7 +73,7 @@
                                     <div class="panel-body">
                                         <asp:Repeater runat="server" ID="rptTipicaciones">
                                             <ItemTemplate>
-                                                <div class="container-fluid" style="margin-top: 2px">
+                                                <div class="container-fluid margin-top-2">
                                                     <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                     <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" AutoPostBack="True" />
                                                     (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)

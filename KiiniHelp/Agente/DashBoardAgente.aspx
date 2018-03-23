@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="module-inner">
                                 <div class="row text-center">
-                                    <div class="col-lg-2 col-md-2 col-sm-2 no-padding-right" style="background-color: #EEEEEE">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 no-padding-right bg-grisBandeja">
                                         <div class="form-group padding-10-top">
                                             <strong class="h5">Acumulado</strong>
                                         </div>
@@ -53,7 +53,7 @@
                                 </div>
 
                                 <div class="row text-center">
-                                    <div class="col-lg-2 col-md-2 col-sm-2 separador-vertical-derecho-bold" style="background-color: #EEEEEE">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 separador-vertical-derecho-bold bg-grisBandeja">
                                         <div class="form-group padding-10-top">
                                             <label class="no-padding-right textoCabecera">Tickets Abiertos</label>
                                             <br />

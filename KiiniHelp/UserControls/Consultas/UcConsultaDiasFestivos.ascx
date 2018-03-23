@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaDiasFestivos.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaDiasFestivos" %>
 <%@ Register Src="~/UserControls/Altas/UcAltaDiasFestivos.ascx" TagPrefix="uc" TagName="UcAltaDiasFestivos" %>
 
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfId" />
 

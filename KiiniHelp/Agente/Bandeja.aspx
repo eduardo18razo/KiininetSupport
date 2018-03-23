@@ -37,8 +37,8 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="height: 100%;">
-        <asp:UpdatePanel runat="server" style="height: 100%">
+    <div class="heigth100">
+        <asp:UpdatePanel runat="server" class="heigth100">
             <ContentTemplate>
                 <asp:HiddenField runat="server" ID="hfTicketActivo" />
                 <asp:HiddenField runat="server" ID="hfFiltroSla" Value="false" />
@@ -52,7 +52,7 @@
 
                                 <section class="module">
                                     <div class="module-inner">
-                                        <div class="row ">
+                                        <div class="row">
                                             <div class="module-heading col-lg-12 col-md-12 col-sm-12">
                                                 <div class="module-title">
                                                     <asp:Label runat="server" CssClass="TitulosAzul" ID="lblTicketAbiertosHeader" />
@@ -60,7 +60,7 @@
                                             </div>
                                         </div>
                                         <%--empieza div botones operar ticket--%>
-                                        <div class="row" style="margin-top: 18px">
+                                        <div class="row margin-top-18">
                                             <div class="col-lg-10 col-md-10 col-sm-10 no-padding-left">
                                                 <asp:LinkButton runat="server" CssClass="btn btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
                                                         <i class="fa fa-long-arrow-down"></i>
@@ -173,8 +173,6 @@
                                                     <tc:GridTemplateColumn FilterCheckListEnableLoadOnDemand="True" DataField="UsuarioAsignado" HeaderText="Asignado a" SortExpression="UsuarioAsignado" UniqueName="UsuarioAsignaco" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                         <ItemTemplate>
                                                             <asp:label runat="server" Text='<%#Eval("UsuarioAsignado").ToString(). Length > 12 ? Eval("UsuarioAsignado").ToString().Substring(0, 12) : Eval("UsuarioAsignado") %>'/>
-
-                                                            <%--<asp:LinkButton runat="server" Text='<%#Eval("UsuarioAsignado").ToString(). Length > 12 ? Eval("UsuarioAsignado").ToString().Substring(0, 12) : Eval("UsuarioAsignado") %>' ID="btnUsuarioAsignado" OnClick="btnUsuario_OnClick" CommandArgument='<%#Eval("IdUsuarioAsignado") %>' />--%>
                                                         </ItemTemplate>
                                                     </tc:GridTemplateColumn>
                                                     <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" Visible="false" DataField="GrupoAsignado" HeaderText="Grupo" SortExpression="GrupoAsignado" UniqueName="GrupoAsignado" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
@@ -220,7 +218,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="module-heading col-lg-12 col-md-12 col-sm-12" style="background-color:white">
+                                    <div class="module-heading col-lg-12 col-md-12 col-sm-12 bg-blanco">
                                         <div class="module-title margin-left-15">
                                             <asp:Label runat="server" Text="Tickets" CssClass="TitulosAzul" />
                                         </div>
@@ -228,12 +226,12 @@
 
                                     <asp:Panel id="FiltroTodos" runat="server" CssClass="row borderbootom padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center" >
-                                            <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right"  ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Todos"
+                                            <tc:RadButton runat="server" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right text-left"  ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" Text="Todos"
                                                 ID="btnFiltroTodos" EnableEmbeddedSkins="False"
-                                                CommandArgument="Todos" Style="text-align: left" OnClick="btnFiltro_OnClick">
+                                                CommandArgument="Todos" OnClick="btnFiltro_OnClick">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Todos" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsTodos" Style="text-align: right"/>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14 text-right" runat="server" ID="lblTicketsTodos"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -241,11 +239,11 @@
                                     <!--Pruebas cambio de estilo violet -->
                                     <asp:Panel id="FiltroAbiertos" runat="server" CssClass="row borderbootom padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="Abiertos" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" ID="btnFiltroAbierto" EnableEmbeddedSkins="False"
-                                                CommandArgument="Abierto" Style="text-align: left" OnClick="btnFiltro_OnClick">
+                                            <tc:RadButton runat="server" Text="Abiertos" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right text-left" ButtonType="StandardButton" EnableEmbeddedBaseStylesheet="True" ID="btnFiltroAbierto" EnableEmbeddedSkins="False"
+                                                CommandArgument="Abierto" OnClick="btnFiltro_OnClick">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Abiertos" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsAbiertos" Style="text-align: right"/>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14 text-right" runat="server" ID="lblTicketsAbiertos"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -253,10 +251,10 @@
 
                                     <asp:Panel id="FiltroSinAsignar" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="Tickets Sin Asignar" ID="btnFiltroSinAsignar" CommandArgument="SinAsignar" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                            <tc:RadButton runat="server" Text="Tickets Sin Asignar" ID="btnFiltroSinAsignar" CommandArgument="SinAsignar" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right text-left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Sin asignar" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsSinAsignar" Style="text-align: right"/>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14 text-right" runat="server" ID="lblTicketsSinAsignar"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -264,10 +262,10 @@
 
                                     <asp:Panel id="FiltroEspera" runat="server" CssClassc="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="En espera" ID="btnFiltroEspera" CommandArgument="Espera" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                            <tc:RadButton runat="server" Text="En espera" ID="btnFiltroEspera" CommandArgument="Espera" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right text-left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Pendientes" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsEspera" Style="text-align: right"/>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14 text-right" runat="server" ID="lblTicketsEspera"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -275,23 +273,23 @@
 
                                     <asp:Panel id="FiltroResueltos" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="Recien Resuelto" ID="btnFiltroResuelto" CommandArgument="Resuelto" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                            <tc:RadButton runat="server" Text="Recien Resuelto" ID="btnFiltroResuelto" CommandArgument="Resuelto" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right text-left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <div class="col-sm-8 col-md-8 col-lg-8 t14">
                                                         <asp:Label runat="server" Text="Recién resueltos" /><br />
                                                         <asp:Label runat="server" Text="(36hrs)" />
                                                     </div>
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsResueltos" Style="text-align: right"/>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14 text-right" runat="server" ID="lblTicketsResueltos"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
                                     </asp:Panel>
                                     <asp:Panel id="FiltroFueraSLA" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="Fuera SLA" ID="btnFueraSla" CommandArgument="FueraSla" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                            <tc:RadButton runat="server" Text="Fuera SLA" ID="btnFueraSla" CommandArgument="FueraSla" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right text-left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <asp:Label class="col-sm-8 col-md-8 col-lg-8 t14" runat="server" Text="Fuera de SLA" />
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsFueraSla" Style="text-align: right"/>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14 text-right" runat="server" ID="lblTicketsFueraSla"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -299,13 +297,13 @@
 
                                     <asp:Panel id="FiltroRecienActualizados" runat="server" CssClass="row borderbootom padding-10-top padding-10-bottom">
                                         <div class="col-lg-12 no-padding-left verical-center">
-                                            <tc:RadButton runat="server" Text="Recien actualizados" ID="btnRecienActualizados" CommandArgument="recienActualizados" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right" Style="text-align: left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
+                                            <tc:RadButton runat="server" Text="Recien actualizados" ID="btnRecienActualizados" CommandArgument="recienActualizados" CssClass="btn col-sm-12 col-md-12 col-lg-12 no-padding-left no-padding-right text-left" OnClick="btnFiltro_OnClick" EnableEmbeddedSkins="False">
                                                 <ContentTemplate>
                                                     <div class="col-sm-8 col-md-8 col-lg-8 t14">
                                                         <asp:Label runat="server" Text="Recién actualizados" /><br />
                                                         <asp:Label runat="server" Text="(60min)" />
                                                     </div>
-                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14" runat="server" ID="lblTicketsRecienActualizados" Style="text-align: right"/>
+                                                    <asp:Label class="col-sm-4 col-md-4 col-lg-4 t14 text-right" runat="server" ID="lblTicketsRecienActualizados"/>
                                                 </ContentTemplate>
                                             </tc:RadButton>
                                         </div>
@@ -361,7 +359,6 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <%--style="background-color: #dbdbdb;"--%>
                             <uc1:UcDetalleUsuario runat="server" ID="UcDetalleUsuario" />
                         </div>
                     </div>

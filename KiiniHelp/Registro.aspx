@@ -37,8 +37,8 @@
         </asp:ScriptManager>
         <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
             <ProgressTemplate>
-                <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
-                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
+                <div class="progressBar">
+                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..."/>
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
@@ -55,12 +55,12 @@
                                     <h2 class="title text-center">Regístrate</h2>
                                     <div class="row">
                                         <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                                            <div data-parsley-validate id="" class="form-horizontal">
-                                                <div class="form-group email" style="top: 15px">
+                                            <div data-parsley-validate class="form-horizontal">
+                                                <div class="form-group email top15">
                                                     <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
                                                 </div>
-                                                <div class="form-group email" style="top: 15px">
-                                                    <asp:Button CssClass="btn btn-block btn-primary" Text="Enviar" runat="server" Style="margin-top: 30px" OnClick="btnRegistrar_OnClick" />
+                                                <div class="form-group email top15">
+                                                    <asp:Button CssClass="btn btn-block btn-primary margin-top-30" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
 
 
 

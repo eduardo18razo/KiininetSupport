@@ -5,10 +5,10 @@
         <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
             <div class="alert alert-danger">
                 <div>
-                    <div style="float: left">
+                    <div class="float-left">
                         <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                     </div>
-                    <div style="float: left">
+                    <div class="float-left">
                         <h3>Error</h3>
                     </div>
                     <div class="clearfix clear-fix" />
@@ -32,7 +32,7 @@
                     <asp:HiddenField runat="server" ID="dfIdGrupo" />
                     <asp:Repeater runat="server" ID="rptInformacionConsulta">
                         <ItemTemplate>
-                            <div style="float: left; width: 25%;">
+                            <div class="float-left widht25Perc">
                                 <asp:Button runat="server" Text='<%# Eval("TipoInfConsulta.Descripcion") %>' CommandArgument='<%# Eval("Id") %>' ID="btnInformacion" OnClick="btnInformacion_OnClick" CommandName="0" CssClass="btn btn-primary btn-lg" />
                             </div>
                         </ItemTemplate>
@@ -60,14 +60,14 @@
     <asp:UpdatePanel ID="upMostrarInformacion" runat="server">
         <ContentTemplate>
             <div class="modal-dialog modal-lg" style="width: 90%;">
-                <div class="modal-content" style="width: 100%;">
+                <div class="modal-content widht100">
                     <div class="modal-header" id="panelAlertaModal" runat="server" visible="False">
                         <div class="alert alert-danger">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
-                                </div>
-                                <div style="float: left; margin-left: 20px">
+                                </div> 
+                                <div class="float-left margin-left-20">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer" style="text-align: center">
+                    <div class="modal-footer text-center">
                         <asp:Button ID="btnCerrarModalInfo" runat="server" CssClass="btn btn-lg btn-danger" Text="Cerrar" OnClick="btnCerrarModalInfo_OnClick" />
                     </div>
 

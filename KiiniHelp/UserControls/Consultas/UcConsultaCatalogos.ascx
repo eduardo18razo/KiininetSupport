@@ -2,8 +2,8 @@
 <%@ Register Src="~/UserControls/Altas/UcCargaCatalgo.ascx" TagPrefix="uc1" TagName="UcCargaCatalgo" %>
 <%@ Register Src="~/UserControls/Altas/Catalogo/UcAltaCatalogos.ascx" TagPrefix="uc1" TagName="UcAltaCatalogos" %>
 
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">

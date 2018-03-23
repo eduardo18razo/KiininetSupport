@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaCatalogo.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaCatalogo" %>
 <%@ Register Src="~/UserControls/Operacion/UcRegistroCatalogo.ascx" TagPrefix="uc1" TagName="UcRegistroCatalogo" %>
 
-<div style="height: 100%;">
+<div class="heigth100">
 
-    <asp:UpdatePanel runat="server" style="height: 100%">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">

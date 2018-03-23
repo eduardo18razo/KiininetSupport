@@ -141,6 +141,10 @@ hr {
     max-width: 100%;
 }
 
+.bg-aqua {
+    background-color: #30bbc0;
+}
+
 .bg-blanco {
     background-color: #FFF;
 }
@@ -153,6 +157,10 @@ hr {
     background-color: #ededed;
 }
 
+.bg-grisBandeja {
+    background-color: #EEEEEE;
+}
+
 .bg-grisOscuro {
     background-color: #7c7c7c;
 }
@@ -162,6 +170,15 @@ hr {
     padding: 5px 15px;
 }
 
+.bg-transparent {
+    background: transparent;
+    border: none !important;
+}
+
+.transparente {
+    background: transparent;
+    border: none !important;
+}
 
 .breadcrumb {
     background: none;
@@ -851,7 +868,7 @@ button.close:focus {
 .content-wrapper {
     background: #f9f9fb;
     margin-right: 0;
-    padding-top: 30px;
+    padding-top: 80px; /*30px*/
     height: 97%;
 }
 
@@ -1008,7 +1025,21 @@ footer {
     padding-top: 7px;
 }
 
+.footerHorario {
+    background: transparent;
+    height: 40px;
+    width: 1px;
+    border: none !important;
+}
 
+.footerLabel {
+    transform: rotate(-80deg);
+    background: transparent;
+    border: none !important;
+    width: 1px;
+    position: absolute;
+    margin-top: 8px;
+}
 
 @media (max-width: 767px) {
     .container-fluid {
@@ -1800,7 +1831,7 @@ a.btn {
 }
 
 .btn-lg {
-    font-size: 16px;
+    font-size: 16px !important;
 }
 
 .btn-sm {
@@ -3680,6 +3711,22 @@ table.table thead th.sorting_desc:after {
 table.dataTable thead th {
     border-bottom: 2px solid #eaeaf1;
 }
+
+.headertd {
+    background: transparent;
+    border: none !important;
+}
+
+.tdHorario {
+    height: 25px;
+    width: 20px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 2px solid #ecf0f1;
+}
+
+
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
     .dataTables_wrapper .dataTables_filter input[type="search"] {
@@ -4292,6 +4339,10 @@ textarea {
 
 .chosen-container .chosen-drop {
     border: 1px solid #dadae7;
+}
+
+.highlighted {
+    background-color: #3FA9F5;
 }
 
 .chosen-container .chosen-results li.highlighted {
@@ -6225,6 +6276,11 @@ ul.sortable {
     margin-bottom: 0 !important;
 }
 
+.padding-5 {
+    padding: 5px !important;
+}
+
+
 .padding-10 {
     padding: 10px !important;
 }
@@ -6258,6 +6314,19 @@ ul.sortable {
     padding-left: 30px !important;
 }
 
+.padding-40-left {
+    padding-left: 40px !important;
+}
+
+.padding-65-left {
+    padding-left: 65px !important;
+}
+
+.padding-3-right {
+    padding-right: 3px !important;
+}
+
+
 .padding-5-right {
     padding-right: 5px;
 }
@@ -6271,9 +6340,24 @@ ul.sortable {
     padding-right: 18px !important;
 }
 
+.padding-20-right {
+    padding-right: 20px !important;
+}
 
 .padding-31-right {
     padding-right: 31px !important;
+}
+
+.padding-40-right {
+    padding-right: 40px !important;
+}
+
+.padding-3-bottom {
+    padding-bottom: 3px !important;
+}
+
+.padding-9-bottom {
+    padding-bottom: 9px !important;
 }
 
 .padding-10-bottom {
@@ -6308,6 +6392,10 @@ ul.sortable {
     padding-top: 20px !important;
 }
 
+.padding-22-top {
+    padding-top: 22px !important;
+}
+
 .padding-25-top {
     padding-top: 25px !important;
 }
@@ -6320,8 +6408,20 @@ ul.sortable {
     padding: 20px !important;
 }
 
+.margin-auto{
+    margin: auto;
+}
+
+.margin-top-5m {
+    margin-top: -5px !important;
+}
+
 .margin-top-1 {
     margin-top: 1px;
+}
+
+.margin-top-2 {
+    margin-top: 2px;
 }
 
 
@@ -6342,6 +6442,9 @@ ul.sortable {
     margin-top: 6px !important;
 }
 
+.margin-top-7 {
+    margin-top: 7px !important;
+}
 
 .margin-top-9 {
     margin-top: 9px;
@@ -6359,6 +6462,10 @@ ul.sortable {
     margin-top: 15px !important;
 }
 
+.margin-top-18 {
+    margin-top: 18px !important;
+}
+
 .margin-top-20 {
     margin-top: 20px;
 }
@@ -6373,6 +6480,10 @@ ul.sortable {
 
 .margin-top-65 {
     margin-top: 65px;
+}
+
+.margin-top-100 {
+    margin-top: 100px;
 }
 
 .margin-bottom-5 {
@@ -6403,12 +6514,20 @@ ul.sortable {
     margin-right: 15px;
 }
 
+.margin-right-16 {
+    margin-right: 16px !important;
+}
+
 .margin-right-35 {
     margin-right: 35px;
 }
 
-.margin-left {
-    margin: auto;
+.margin-right-auto {
+    margin-right: auto;
+}
+
+.margin-left-auto {
+    margin-left: auto;
 }
 
 .margin-left-3 {
@@ -6427,6 +6546,14 @@ ul.sortable {
     margin-left: 15px;
 }
 
+.margin-left-20 {
+    margin-left: 20px;
+}
+
+.margin-left-25 {
+    margin-left: 25px;
+}
+
 .margin-top-btn-consulta {
     margin-top: 0;
 }
@@ -6443,6 +6570,10 @@ ul.sortable {
     top: 13px !important;
 }
 
+.top15 {
+    top: 15px !important;
+}
+
 .top31 {
     top: 31px !important;
 }
@@ -6450,6 +6581,14 @@ ul.sortable {
 
 .top39 {
     top: 39px !important;
+}
+
+.right-25 {
+    right: -25px;
+}
+
+.right-45 {
+    right: -45px !important;
 }
 
 .right25 {
@@ -6460,12 +6599,17 @@ ul.sortable {
     right: 48px;
 }
 
-.right-45 {
-    right: -45px;
+.heigth22px {
+    height: 22px;
 }
 
 .heigth40px {
     height: 40px;
+}
+
+
+.heigth530px {
+    height: 530px;
 }
 
 
@@ -6481,12 +6625,56 @@ ul.sortable {
     height: 100%;
 }
 
+.widht25Perc {
+    width: 25%;
+}
+
+.widht50Perc {
+    width: 50%;
+}
+
+.widht70Perc {
+    width: 70%;
+}
+
+.widht75Perc {
+    width: 75%;
+}
+
 .widht100 {
     width: 100%;
 }
 
+.widht38px {
+    width: 38px;
+}
+
 .widht155 {
     width: 155px;
+}
+
+.widht180 {
+    width: 180px;
+}
+
+.widht250px {
+    width: 250px;
+}
+
+.widht450px {
+    width: 450px;
+}
+
+.widht650px {
+    width: 650px;
+}
+
+.widht800px {
+    width: 800px;
+}
+
+.widht1310px {
+    width: 1310px;
 }
 
 .menu85Porc {
@@ -6502,8 +6690,13 @@ ul.sortable {
     }
 }
 
+.overflowY{
+    overflow-y: auto
+}
+
+
 .no-border {
-    border: none;
+    border: none !important;
 }
 
 .no-border-bottom {
@@ -7152,12 +7345,20 @@ input[type="radio"] + label {
     padding: 2px 4px;
 }
 
+.fontXs {
+    font-size: x-small !important;
+}
+
 .iconoFont {
     font-size: 14px;
 }
 
 .iconoFontLg {
     font-size: 18px;
+}
+
+.iconoFont24 {
+    font-size: 24px;
 }
 
 .iconoFontXg {
@@ -7194,7 +7395,6 @@ input, input[type="file"] {
     font-weight: bold;
     font-size: 16px;
 }
-
 
 
 /*Fin Resultados de búsqueda*/
@@ -7243,4 +7443,26 @@ input, input[type="file"] {
 
 .no-underline {
     text-decoration: none !important;
+}
+
+.text-no-transform {
+    text-transform: none;
+}
+
+.text-decoration-line-through {
+    text-decoration: line-through;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.frameGraficas {
+    width: 850px;
+    height: 650px;
+    border: none;
 }

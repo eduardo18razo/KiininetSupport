@@ -251,19 +251,19 @@
                                                         <div runat="server" visible='<%# Eval("EsMovimientoEstatusTicket") %>' class="col-lg-11 col-md-10 col-sm-10 ">
                                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                                 <asp:Label runat="server" Text="Estatus" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
-                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
-                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' Style="text-decoration: line-through" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"/>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' CssClass="col-lg-4 col-md-4 col-sm-4 text-decoration-line-through"/>
                                                             </div>
                                                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                                                <asp:Label runat="server" Text="Usuario asignado" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
-                                                                <asp:Label runat="server" Text='<%# Eval("NombreCambioEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text="Usuario asignado" CssClass="col-lg-4 col-md-4 col-sm-4"/>
+                                                                <asp:Label runat="server" Text='<%# Eval("NombreCambioEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"/>
                                                             </div>
                                                         </div>
                                                         <div runat="server" visible='<%# Eval("EsMovimientoAsignacion") %>' class="col-lg-11 col-md-10 col-sm-10 ">
                                                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                                                <asp:Label runat="server" Text="Asignación" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
-                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
-                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' Style="text-decoration: line-through" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
+                                                                <asp:Label runat="server" Text="Asignación" CssClass="col-lg-4 col-md-4 col-sm-4"/>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' CssClass="col-lg-4 col-md-4 col-sm-4"/>
+                                                                <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' CssClass="col-lg-4 col-md-4 col-sm-4 text-decoration-line-through"/>
                                                             </div>
                                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                                 <asp:Label runat="server" Text="Usuario asignado" CssClass="col-lg-4 col-md-4 col-sm-4"></asp:Label>
@@ -290,10 +290,10 @@
                                     <div class="col-lg-11 col-md-10 col-sm-10">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <h4>
-                                                <asp:Label runat="server" ID="lblNombreU" Text=""></asp:Label></h4>
+                                                <asp:Label runat="server" ID="lblNombreU" Text=""/></h4>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <asp:Label runat="server" ID="lblFecha" Text='<%# Eval("FechaHora") %>'></asp:Label>
+                                            <asp:Label runat="server" ID="lblFecha" Text='<%# Eval("FechaHora") %>'/>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <uc1:UcDetalleMascaraCaptura runat="server" ID="UcDetalleMascaraCaptura" />
@@ -382,7 +382,7 @@
                                 </div>
                             </div>
                             <hr />
-                            <div class="row" style="display: none">
+                            <div class="row ocultar">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <strong>
                                         <asp:Label runat="server" Text="Facebook" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
@@ -390,7 +390,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="display: none">
+                            <div class="row ocultar">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <strong>
                                         <asp:Label runat="server" Text="twitter" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>

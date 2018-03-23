@@ -14,10 +14,10 @@
             <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
                 <div class="alert alert-danger">
                     <div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                         </div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <h3>Error</h3>
                         </div>
                         <div class="clearfix clear-fix" />
@@ -39,15 +39,7 @@
                     <div class="center-content-div">
                         <asp:UpdatePanel runat="server" UpdateMode="Conditional" Visible="True" ID="upGrafica">
                             <ContentTemplate>
-                                <asp:HiddenField runat="server" ID="hfGraficaGenerada" Value="false" />
-                                <%--<asp:Chart ID="Chart1" runat="server">
-                                    <Series>
-                                        <asp:Series Name="Series1"></asp:Series>
-                                    </Series>
-                                    <ChartAreas>
-                                        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                                    </ChartAreas>
-                                </asp:Chart>--%>
+                                <asp:HiddenField runat="server" ID="hfGraficaGenerada" Value="false" />                                
                                 <iframe name="geocharts" runat="server" id="frameGeoCharts" visible="False" style="width: 650px; height: 500px; border: none"></iframe>
                                 <asp:Chart ID="cGrafico" runat="server" Width="700px" Height="500px" Visible="False">
                                     <Titles>
@@ -64,8 +56,7 @@
                         </asp:UpdatePanel>
                     </div>
                 </div>
-                <div class="text-center"> <%--panel-footer --%>
-                   <%-- <asp:Button runat="server" CssClass="btn btn-success" ID="btnGraficar" Text="Graficar" OnClick="btnConsultar_OnClick" />--%>
+                <div class="text-center"> 
                     <asp:Button runat="server" CssClass="btn btn-success hidden" ID="btnDetalleGeografico" Text="Graficar" OnClick="btnDetalleGeografico_OnClick" />
                 </div>
             </div>
@@ -99,11 +90,10 @@
    <div class="modal fade" id="modalDetalleGrafico" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upDetalleGrafico" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog modal-lg" style="width: 1310px">
-                    <div class="modal-content"> <%--style="overflow:scroll"--%>
-                       <%-- <div class="panel panel-primary">--%>
-                            <div class="panel-body" style="overflow: scroll; width: 100%; height: 500px;">
-                            <asp:GridView runat="server" ID="gvResult" CssClass="table table-striped display table-responsive" AutoGenerateColumns="false" > <%--CssClass="table  table-bordered table-hover table-responsive"--%>
+                <div class="modal-dialog modal-lg widht1310px">
+                    <div class="modal-content widht1310px">
+                            <div class="panel-body widht100" style="overflow: scroll; height: 500px;">
+                            <asp:GridView runat="server" ID="gvResult" CssClass="table table-striped display table-responsive" AutoGenerateColumns="false" >
                                     <EmptyDataTemplate>
                                 ¡No hay resultados para mostrar!
                             </EmptyDataTemplate>
@@ -186,13 +176,12 @@
                                 
                                 </asp:GridView>
                             </div>
-                            <div class="text-center">  <%--class="panel-footer"--%>
+                            <div class="text-center">  
                                 <br />
                                 <asp:Button runat="server" CssClass="btn btn-danger" Text="Cerrar" ID="btnCerrar" OnClick="btnCerrar_OnClick" />
                                 <br />
                             </div>
                          <br />
-                        <%--</div>--%>
                     </div>
                 </div>
             </ContentTemplate>

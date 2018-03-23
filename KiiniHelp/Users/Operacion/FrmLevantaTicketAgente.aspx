@@ -20,7 +20,7 @@
                             <div class="row">
                                 <asp:Label runat="server" Text="Correo electrónico, teléfono, nombre de usuario" CssClass="col-lg-2" />
                                 <div class="col-lg-2">
-                                    <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control" Style="text-transform: none" />
+                                    <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control text-no-transform"/>
                                 </div>
                                 <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-primary col-lg-1" OnClick="btnBuscar_OnClick" />
                             </div>
@@ -153,54 +153,4 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
-
-
-    <%--<div class="modal fade" id="modalPreTicket" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-        <asp:UpdatePanel ID="upUser" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
-                <div class="modal-dialog modal-lg" style="width: 1250px; height: 940px; overflow: hidden">
-                    <div class="modal-content">
-                        jiajidajoijdsoijsdaoi
-                    </div>
-                </div>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        <uc1:UcAltaPreticket runat="server" id="ucAltaPreticket" />--%>
-
-
-    <%--<div class="modal fade" id="modalPreTicket" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-            <asp:UpdatePanel ID="upConfirmacion" runat="server">
-                <ContentTemplate>
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    <h1>Generación de Ticket</h1>
-                                </div>
-                                <div class="panel panel-body">
-
-
-
-                                    
-                                    <div class="form-group">
-                                        <asp:Label runat="server" Text="Se ha generado correctamente el ticket No.:" />
-                                        <asp:TextBox runat="server" ID="lblNoTicket" CssClass="form-control" ReadOnly="True" />
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:Label runat="server" Text="Con clave:" ID="lblDescRandom" />
-                                        <asp:TextBox runat="server" ID="lblRandom" CssClass="form-control" ReadOnly="True" />
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <asp:Button runat="server" CssClass="btn btn-danger" ID="btnCerrar" Text="Cerrar" />
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>--%>
-    <%--</div>--%>
 </asp:Content>

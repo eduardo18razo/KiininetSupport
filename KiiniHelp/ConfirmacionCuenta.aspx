@@ -50,16 +50,16 @@
         </asp:ScriptManager>
         <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
             <ProgressTemplate>
-                <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
-                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
+                <div class="progressBar">
+                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..."/>
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
         <asp:UpdatePanel ID="upGeneral" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Timer runat="server" ID="tmpSendNotificacion" OnTick="tmpSendNotificacion_OnTick" Interval="60000" Enabled="False" />
-                <div class="panel panel-primary" style="width: 800px; margin: 0 auto">
-                    <div style="padding: 0px 20px">
+                <div class="panel panel-primary no-margin-top no-margin-bottom margin-left-auto margin-right-auto widht800px">
+                    <div class="no-padding-top no-padding-bottom padding-20-left padding-20-right">
                         <h4 class="h2">Confirma tus Datos</h4>
                         <hr />
                     </div>
@@ -68,13 +68,13 @@
                             <div class="form-group">
                                 <asp:Label runat="server" class="col-sm-4 control-label">Contraseña</asp:Label>
                                 <div class="col-sm-7">
-                                    <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control obligatorio" Style="text-transform: none"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control obligatorio text-no-transform"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <asp:Label runat="server" class="col-sm-4 control-label">Confirma Contraseña</asp:Label>
                                 <div class="col-sm-7">
-                                    <asp:TextBox runat="server" ID="txtConfirmaContrasena" type="password" CssClass="form-control obligatorio" Style="text-transform: none"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtConfirmaContrasena" type="password" CssClass="form-control obligatorio text-no-transform"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-sm-12 text-right">
@@ -86,7 +86,7 @@
                                             <asp:Label runat="server" ID="lblIdUsuario" Text='<%# Eval("IdUsuario") %>' Visible="False" />
                                             <table>
                                                 <tr>
-                                                    <td colspan="3" style="text-align: left; padding-left: 65px; padding-right: 40px">
+                                                    <td colspan="3" class="padding-65-left text-left padding-40-right">
                                                         <br />
                                                         <asp:Label runat="server" Text="Si tu número celular es correcto envía el código para verificar tu cuenta, en caso contrario puedes modificar tu número celular" />
                                                         <br />
@@ -94,15 +94,15 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="col-sm-4" style="padding-bottom: 10px;">
+                                                    <td class="col-sm-4 padding-10-bottom">
                                                         <asp:Label runat="server" ID="Label1" Text="Número Celular" CssClass="control-label" />
                                                     </td>
-                                                    <td class="col-sm-4" style="padding-bottom: 10px;">
+                                                    <td class="col-sm-4 padding-10-bottom">
                                                         <div>
                                                             <asp:TextBox runat="server" CssClass="form-control" Text='<%# Eval("Numero") %>' ID="txtNumeroEdit" ReadOnly="True" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
                                                         </div>
                                                     </td>
-                                                    <td class="col-sm-4" style="padding-bottom: 10px; padding-right: 8.5%">
+                                                    <td class="col-sm-4 padding-10-bottom" style="padding-right: 8.5%">
                                                         <asp:Button runat="server" Text="Cambiar Número" CssClass="btn btn-primary" ID="btnChangeNumber" CommandArgument="0" OnClick="btnChangeNumber_OnClick" Width="130px" />
                                                     </td>
                                                 </tr>
@@ -130,14 +130,14 @@
                                 <asp:TextBox ID="txtIdPregunta" runat="server" CssClass="form-control" Visible="False" />
                                 <asp:Label ID="Label4" runat="server" Text="Ingresa tu pregunta secreta" class="col-sm-4 control-label" />
                                 <div class="col-sm-7">
-                                    <asp:TextBox ID="txtPregunta" runat="server" CssClass="form-control" Style="text-transform: none" />
+                                    <asp:TextBox ID="txtPregunta" runat="server" CssClass="form-control text-no-transform" />
                                 </div>
 
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label5" runat="server" Text="Ingresa la respuesta de tu pregunta secreta" class="col-sm-4 control-label"></asp:Label>
                                 <div class="col-sm-7">
-                                    <asp:TextBox ID="txtRespuesta" runat="server" CssClass="form-control" Style="text-transform: none"></asp:TextBox>
+                                    <asp:TextBox ID="txtRespuesta" runat="server" CssClass="form-control text-no-transform"></asp:TextBox>
                                 </div>
                             </div>
                         </div>

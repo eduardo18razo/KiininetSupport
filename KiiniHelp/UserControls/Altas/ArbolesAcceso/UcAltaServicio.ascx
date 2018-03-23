@@ -225,8 +225,8 @@
                                                         <tbody>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
-                                                    <tr align="center" id='<%# Eval("IdSubRol")%>'>
-                                                        <td style="padding: 0; display: none">
+                                                    <tr align="center" id='<%# Eval("IdSubRol")%>' class="text-center">
+                                                        <td class="no-padding ocultar">
                                                             <asp:Label runat="server" Text='<%# Eval("IdSubRol") %>' ID="lblIdSubRol" /></td>
                                                         <td>
                                                             <asp:Label runat="server" Text='<%# Eval("SubRol.Descripcion") %>' /></td>
@@ -248,7 +248,7 @@
 
                                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding margin-top-20" />
                                         <div class="form-group">
-                                            <div style="width: 50%; float: left">
+                                            <div class="float-left widht50Perc">
                                                 <div class="form-group">
                                                     Gravedad<br />
                                                     <asp:DropDownList runat="server" ID="ddlPrioridad" CssClass="form-control" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlImpacto_OnSelectedIndexChanged" />
@@ -258,12 +258,9 @@
                                                     <asp:DropDownList runat="server" ID="ddlUrgencia" CssClass="form-control" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlUrgencia_OnSelectedIndexChanged" />
                                                 </div>
                                             </div>
-                                            <div style="width: 50%; float: left">
+                                            <div class="float-left widht50Perc">
                                                 <div class="form-group center-content-div margin-top-40" runat="server" id="divImpacto" visible="False">
                                                     Prioridad<br />
-                                                    <%--  <br />
-                                                    <asp:Image runat="server" ID="imgImpacto" Style="width: 50px" />
-                                                    <br />--%>
                                                     <br />
                                                     <strong>
                                                         <asp:Label runat="server" ID="lblImpacto" /></strong>
@@ -377,7 +374,7 @@
                                         <hr />
                                         <label class="col-lg-2">Activo</label>
                                         <asp:CheckBox runat="server" ID="chkEncuestaActiva" CssClass="chkIphone no-margin-bottom" Width="30px" Text="Activo" Checked="False" OnCheckedChanged="chkEncuestaActiva_OnCheckedChanged" AutoPostBack="True" />
-                                        <asp:DropDownList runat="server" ID="ddlEncuesta" CssClass="form-control" Style="width: 100%" Enabled="False" />
+                                        <asp:DropDownList runat="server" ID="ddlEncuesta" CssClass="form-control widht100" Enabled="False" />
                                     </div>
                                 </div>
                             </div>
