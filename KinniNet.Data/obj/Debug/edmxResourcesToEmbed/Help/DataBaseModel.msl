@@ -914,6 +914,7 @@
     <EntitySetMapping Name="EstatusTicketSubRolGeneral">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.EstatusTicketSubRolGeneral">
         <MappingFragment StoreEntitySet="EstatusTicketSubRolGeneral">
+          <ScalarProperty Name="ComentarioObligado" ColumnName="ComentarioObligado" />
           <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
           <ScalarProperty Name="LevantaTicket" ColumnName="LevantaTicket" />
           <ScalarProperty Name="Propietario" ColumnName="Propietario" />
@@ -932,6 +933,7 @@
     <EntitySetMapping Name="EstatusTicketSubRolGeneralDefault">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.EstatusTicketSubRolGeneralDefault">
         <MappingFragment StoreEntitySet="EstatusTicketSubRolGeneralDefault">
+          <ScalarProperty Name="ComentarioObligado" ColumnName="ComentarioObligado" />
           <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
           <ScalarProperty Name="LevantaTicket" ColumnName="LevantaTicket" />
           <ScalarProperty Name="Propietario" ColumnName="Propietario" />
@@ -1616,6 +1618,31 @@
           <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
           <ScalarProperty Name="IdTicketEstatus" ColumnName="IdTicketEstatus" />
           <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioNotificacion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.UsuarioNotificacion">
+        <MappingFragment StoreEntitySet="UsuarioNotificacion">
+          <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+          <ScalarProperty Name="Notificaciones" ColumnName="Notificaciones" />
+          <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CorreoService">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.CorreoService">
+        <MappingFragment StoreEntitySet="CorreoService">
+          <ScalarProperty Name="Enviado" ColumnName="Enviado" />
+          <ScalarProperty Name="FechaEnvio" ColumnName="FechaEnvio" />
+          <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+          <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="IdTicketEvento" ColumnName="IdTicketEvento" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

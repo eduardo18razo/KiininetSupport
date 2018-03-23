@@ -11,6 +11,7 @@ using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
 using KinniNet.Data.Help;
+using Telerik.Web.UI.GridExcelBuilder;
 
 namespace KinniNet.Core.Operacion
 {
@@ -116,7 +117,7 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        private int ObtenerNivelAutoAsignacion(int idUsuario, bool espropietario)
+        private int ObtenerNivelAutoAsignacion(int idUsuario, int idGrupo, bool espropietario)
         {
             int result = (int)BusinessVariables.EnumeradoresKiiniNet.EnumeradorNivelAsignacion.Supervisor;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -132,6 +133,7 @@ namespace KinniNet.Core.Operacion
                                  where ug.IdUsuario == idUsuario && ug.IdRol == (int)BusinessVariables.EnumRoles.Agente && easrg.Propietario == espropietario
                                  && easrg.IdEstatusAsignacionActual == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar
                                  && easrg.IdEstatusAsignacionAccion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado
+                                 && ug.IdGrupoUsuario == idGrupo
                                  && easrg.Habilitado
                                  orderby sr.OrdenAsignacion
                                  select sr).FirstOrDefault();
@@ -161,35 +163,39 @@ namespace KinniNet.Core.Operacion
                 Ticket ticket = db.Ticket.SingleOrDefault(t => t.Id == idTicket);
                 if (ticket != null)
                 {
-                    ticket.IdNivelTicket = ObtenerNivelAutoAsignacion(idUsuario, false) - 2;
-                    ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado;
-                    DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                    TicketEvento evento = new TicketEvento
+                    TicketGrupoUsuario ticketGrupoUsuario = db.TicketGrupoUsuario.FirstOrDefault(f => f.IdTicket == idTicket && f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente);
+                    if (ticketGrupoUsuario != null)
                     {
-                        IdTicket = idTicket,
-                        IdUsuarioRealizo = idUsuario,
-                        FechaHora = fechaMovimiento,
-                        TicketEventoAsignacion = new List<TicketEventoAsignacion>()
-                    };
-                    evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
-                    {
-                        FechaHora = fechaMovimiento,
-                        TicketAsignacion = new TicketAsignacion
-                        {
-                            FechaAsignacion = fechaMovimiento,
-                            IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado,
-                            IdUsuarioAsignado = idUsuario,
-                            IdUsuarioAsigno = idUsuario,
-                            IdTicket = idTicket,
-                            Comentarios = comentario.Trim(),
-                            Visto = false
-                        }
-                    });
+                        int idGpoAtencion = ticketGrupoUsuario.IdGrupoUsuario;
 
-                    db.TicketEvento.AddObject(evento);
-                    ticket.IdNivelTicket = ObtenerNivelAutoAsignacion(idUsuario, false) - 2;
-                    ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado;
-                    db.SaveChanges();
+                        ticket.IdNivelTicket = ObtenerNivelAutoAsignacion(idUsuario, idGpoAtencion, false) - 2;
+                        ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado; DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                        TicketEvento evento = new TicketEvento
+                        {
+                            IdTicket = idTicket,
+                            IdUsuarioRealizo = idUsuario,
+                            FechaHora = fechaMovimiento,
+                            TicketEventoAsignacion = new List<TicketEventoAsignacion>()
+                        };
+                        evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
+                        {
+                            FechaHora = fechaMovimiento,
+                            TicketAsignacion = new TicketAsignacion
+                            {
+                                FechaAsignacion = fechaMovimiento,
+                                IdEstatusAsignacion =
+                                    (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado,
+                                IdUsuarioAsignado = idUsuario,
+                                IdUsuarioAsigno = idUsuario,
+                                IdTicket = idTicket,
+                                Comentarios = comentario.Trim(),
+                                Visto = false
+                            }
+                        });
+
+                        db.TicketEvento.AddObject(evento);
+                        db.SaveChanges();
+                    }
                 }
             }
             catch (Exception ex)
@@ -305,7 +311,7 @@ namespace KinniNet.Core.Operacion
                             ticket.FechaHoraFinProceso = TiempoGeneral(lstHorarioGrupo, ticket.SlaEstimadoTicket.TiempoHoraProceso).AddHours(ts.TotalHours);
                         }
                     }
-                    
+
                     switch (idEstatus)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto:
@@ -368,9 +374,9 @@ namespace KinniNet.Core.Operacion
                             break;
                     }
                     #endregion Estatus
-                    
-                        evento.TicketEventoEstatus.Add(new TicketEventoEstatus { TicketEstatus = cambioEstatus, FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture) });
-                        ticket.IdEstatusTicket = idEstatus;
+
+                    evento.TicketEventoEstatus.Add(new TicketEventoEstatus { TicketEstatus = cambioEstatus, FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture) });
+                    ticket.IdEstatusTicket = idEstatus;
                     if (idEstatusAsignacion != null)
                     {
                         ticket.IdEstatusAsignacion = (int)idEstatusAsignacion;
@@ -758,8 +764,10 @@ namespace KinniNet.Core.Operacion
             try
             {
                 Ticket ticket = db.Ticket.SingleOrDefault(t => t.Id == idTicket);
-                if (ticket != null)
+                TicketGrupoUsuario ticketGrupoUsuario = db.TicketGrupoUsuario.SingleOrDefault(s => s.IdTicket == idTicket);
+                if (ticket != null && ticketGrupoUsuario != null)
                 {
+                    int idGpoAtencion = ticketGrupoUsuario.IdGrupoUsuario;
                     DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                     TicketEvento evento = new TicketEvento
                     {
@@ -781,7 +789,7 @@ namespace KinniNet.Core.Operacion
                     {
 
                         if (idEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado)
-                            idNivelAsignado = ObtenerNivelAutoAsignacion(idUsuarioGeneraEvento, esPropietario);
+                            idNivelAsignado = ObtenerNivelAutoAsignacion(idUsuarioGeneraEvento, idGpoAtencion, esPropietario);
                         else if (idNivelAsignado == null)
                             throw new Exception("Error al actualizar nivel de asignacion.");
                         evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
@@ -801,7 +809,7 @@ namespace KinniNet.Core.Operacion
 
                     }
 
-                    #endregion Asignacion 
+                    #endregion Asignacion
                     #region Estatus
                     if (idEstatusTicket != null)
                     {
@@ -903,7 +911,7 @@ namespace KinniNet.Core.Operacion
                     }
                     #endregion Estatus
 
-                    
+
 
                     #region Conversacion
 

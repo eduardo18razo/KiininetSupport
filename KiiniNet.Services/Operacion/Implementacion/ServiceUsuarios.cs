@@ -417,13 +417,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, List<int> lstSubRoles)
+        public List<HelperUsuarioAgente> ObtenerUsuarioAgenteByGrupoUsuario(int idGrupo, int idUsuarioSolicita, List<int> lstSubRoles)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    return negocio.ObtenerUsuarioAgenteByGrupoUsuario(idGrupo, lstSubRoles);
+                    return negocio.ObtenerUsuarioAgenteByGrupoUsuario(idGrupo, idUsuarioSolicita, lstSubRoles);
                 }
             }
             catch (Exception ex)

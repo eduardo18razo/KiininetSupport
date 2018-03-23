@@ -22,6 +22,8 @@ namespace KiiniNet.Entities.Parametros
         [DataMember]
         public int? IdEstatusTicketAccion { get; set; }
         [DataMember]
+        public bool ComentarioObligado { get; set; }
+        [DataMember]
         public bool? TieneSupervisor { get; set; }
         [DataMember]
         public bool? Propietario { get; set; }

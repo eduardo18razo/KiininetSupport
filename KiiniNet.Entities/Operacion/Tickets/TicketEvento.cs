@@ -26,5 +26,11 @@ namespace KiiniNet.Entities.Operacion.Tickets
         public virtual List<TicketEventoConversacion> TicketEventoConversacion { get; set; }
         [DataMember]
         public virtual List<TicketEventoEstatus> TicketEventoEstatus { get; set; }
+
+        [DataMember]
+        public virtual List<UsuarioNotificacion> UsuarioNotificacion { get; set; }
+        [DataMember]
+        public virtual List<CorreoService> CorreoService { get; set; }
+
     }
 }

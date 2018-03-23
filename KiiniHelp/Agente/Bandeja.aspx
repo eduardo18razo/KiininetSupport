@@ -34,6 +34,14 @@
             border-bottom: 2px solid #ddd !important;
         }
     </style>
+    <script>
+        function seleccion(sender, eventArgs) {
+            debugger;
+            var hfComentario = document.getElementById('<%= hfFilaSeleccionada.ClientID%>');
+               hfComentario.value = true;
+            
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="height: 100%;">
@@ -89,13 +97,12 @@
                                             </div>
 
                                         </div>
-                                        <asp:HiddenField runat="server" ID="hfFilaSeleccionada" />
+                                        <asp:HiddenField runat="server" ID="hfFilaSeleccionada" Value="false"/>
                                         <tc:RadGrid runat="server" ID="gvTickets" CssClass="table table-striped display margin-top-10"
                                             FilterType="HeaderContext" EnableHeaderContextMenu="true" EnableHeaderContextFilterMenu="true"
-                                            PagerStyle-AlwaysVisible="true" OnFilterCheckListItemsRequested="gvTickets_OnFilterCheckListItemsRequested"
+                                            PagerStyle-AlwaysVisible="true" OnFilterCheckListItemsRequested="gvTickets_OnFilterCheckListItemsRequested" 
                                             OnNeedDataSource="gvTickets_OnNeedDataSource" AllowFilteringByColumn="True" OnItemCommand="gvTickets_OnItemCommand"
-                                            OnSelectedIndexChanged="gvTickets_SelectedIndexChanged"
-                                            PageSize="14" PagerStyle-PageButtonCount="10" OnItemCreated="gvTickets_OnItemCreated"
+                                            OnSelectedIndexChanged="gvTickets_SelectedIndexChanged" PageSize="14" PagerStyle-PageButtonCount="10" OnItemCreated="gvTickets_OnItemCreated"
                                             AllowPaging="True" AllowSorting="true" ShowGroupPanel="False" RenderMode="Classic">
                                             <GroupingSettings ShowUnGroupButton="False" CaseSensitive="False" />
 
@@ -103,20 +110,20 @@
                                             <MasterTableView AutoGenerateColumns="False" TableLayout="Fixed" ShowHeadersWhenNoRecords="True" CommandItemDisplay="None"
                                                 DataKeyNames="NumeroTicket" NoDetailRecordsText="No hay Registros" HeaderStyle-CssClass="textoTabla" HeaderStyle-Font-Bold="true"
                                                 HeaderStyle-Font-Names="Proxima Nova" HeaderStyle-ForeColor="#6E6E6E"
-                                                ItemStyle-Font-Names="Proxima Nova" ItemStyle-ForeColor="#6E6E6E"
+                                                ItemStyle-Font-Names="Proxima Nova" ItemStyle-ForeColor="#6E6E6E" 
                                                 AlternatingItemStyle-Font-Names="Proxima Nova" AlternatingItemStyle-ForeColor="#6E6E6E"
                                                 FooterStyle-BackColor="White">
 
                                                 <CommandItemSettings ShowAddNewRecordButton="False" ShowRefreshButton="False"></CommandItemSettings>
                                                 <Columns>
-                                                    <tc:GridClientSelectColumn UniqueName="chkSelected" ColumnGroupName="1">
+                                                    <tc:GridClientSelectColumn UniqueName="chkSelected" ColumnGroupName="1" >
                                                         <HeaderStyle Width="30px"></HeaderStyle>
                                                     </tc:GridClientSelectColumn>
 
                                                     <tc:GridTemplateColumn UniqueName="Sla" HeaderText="" DataField="DentroSla" FilterCheckListEnableLoadOnDemand="True" SortExpression="Sla" ShowFilterIcon="True" AllowFiltering="True">
                                                         <HeaderStyle Width="25px"></HeaderStyle>
                                                         <ItemTemplate>
-                                                            <i class='<%# (bool)Eval("DentroSla") ? "fa fa-bomb fontGreen iconoFont" : "fa fa-bomb fontRed iconoFont" %>'></i>
+                                                            <i class='<%# (bool)Eval("DentroSla") ? "fa fa-bomb fontGreen iconoFont" : "fa fa-bomb fontRed iconoFont" %>' ></i>
                                                         </ItemTemplate>
                                                     </tc:GridTemplateColumn>
 
@@ -153,7 +160,7 @@
                                                     <tc:GridTemplateColumn FilterCheckListEnableLoadOnDemand="True" DataField="UsuarioSolicito.NombreCompleto" HeaderText="Solicitante" SortExpression="UsuarioSolicito.NombreCompleto" UniqueName="Solicitante"
                                                         CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                         <ItemTemplate>
-                                                            <asp:Label runat="server" Text='<%#Eval("UsuarioSolicito.NombreCompleto").ToString(). Length > 12 ? Eval("UsuarioSolicito.NombreCompleto").ToString().Substring(0, 12) : Eval("UsuarioSolicito.NombreCompleto") %>' ID="UsuarioSolicito" />
+                                                            <asp:Label runat="server" CommandName="Save" Text='<%#Eval("UsuarioSolicito.NombreCompleto").ToString(). Length > 12 ? Eval("UsuarioSolicito.NombreCompleto").ToString().Substring(0, 12) : Eval("UsuarioSolicito.NombreCompleto") %>' ID="UsuarioSolicito" />
                                                         </ItemTemplate>
                                                     </tc:GridTemplateColumn>
 
@@ -167,7 +174,7 @@
                                                     </tc:GridBoundColumn>
                                                     <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" DataField="EstatusTicket.Descripcion" HeaderText="Estatus" SortExpression="EstatusTicket.Descripcion" UniqueName="EstatusTicket" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                     </tc:GridBoundColumn>
-                                                    <tc:GridTemplateColumn FilterCheckListEnableLoadOnDemand="True" DataField="UsuarioAsignado" HeaderText="Asignado a" SortExpression="UsuarioAsignado" UniqueName="UsuarioAsignaco" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
+                                                    <tc:GridTemplateColumn  FilterCheckListEnableLoadOnDemand="True" DataField="UsuarioAsignado" HeaderText="Asignado a" SortExpression="UsuarioAsignado" UniqueName="UsuarioAsignaco" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                         <ItemTemplate>
                                                             <asp:label runat="server" Text='<%#Eval("UsuarioAsignado").ToString(). Length > 12 ? Eval("UsuarioAsignado").ToString().Substring(0, 12) : Eval("UsuarioAsignado") %>'/>
 
@@ -184,9 +191,9 @@
                                                     <tc:GridBoundColumn DataField="IdNivelAsignado" HeaderText="IdNivelAsignado" Display="False" UniqueName="IdNivelAsignado"></tc:GridBoundColumn>
                                                 </Columns>
                                             </MasterTableView>
-                                            <ClientSettings EnableAlternatingItems="True" EnableRowHoverStyle="True" EnablePostBackOnRowClick="True">
-                                                <Selecting AllowRowSelect="True" UseClientSelectColumnOnly="true"></Selecting>
-                                                <%--CellSelectionMode="Column"--%>
+                                            <ClientSettings EnableAlternatingItems="True" EnableRowHoverStyle="True" EnablePostBackOnRowClick="True" >
+                                                <Selecting AllowRowSelect="True" UseClientSelectColumnOnly="true" ></Selecting>
+                                                <ClientEvents OnRowClick="seleccion"></ClientEvents>
                                                 <Resizing AllowResizeToFit="True"></Resizing>
                                             </ClientSettings>
                                         </tc:RadGrid>

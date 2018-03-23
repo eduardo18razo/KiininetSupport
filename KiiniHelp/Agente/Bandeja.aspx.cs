@@ -243,7 +243,7 @@ namespace KiiniHelp.Agente
                 ddlGrupo.DataTextField = "Descripcion";
                 ddlGrupo.DataValueField = "Id";
                 ddlGrupo.DataBind();
-                
+
                 List<Usuario> lstUsuarios = _servicioUsuarios.ObtenerAgentesPermitidos(usr.Id, true);
                 ddlAgente.DataSource = lstUsuarios;
                 ddlAgente.DataTextField = "NombreCompleto";
@@ -877,9 +877,7 @@ namespace KiiniHelp.Agente
                     case "RowClick":
                         bool seleccionado = e.Item.Selected;
                         int itemIndex = e.Item.ItemIndex;
-
-
-                        if ((seleccionado == false) && (hfFilaSeleccionada.Value.ToString() != itemIndex.ToString()))
+                        if (bool.Parse(hfFilaSeleccionada.Value))
                         {
                             AgenteMaster master = Master as AgenteMaster;
                             if (master != null)
@@ -893,6 +891,17 @@ namespace KiiniHelp.Agente
                             btnAsignar.Enabled = asigna;
                             btnCambiarEstatus.Enabled = propietaro;
                         }
+                        
+                        //hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
+
+                        //if (!seleccionado && (hfFilaSeleccionada.Value.ToString() != itemIndex.ToString()))
+                        //    {
+                                
+                        //    }
+                        //    else
+                        //    {
+                                
+                        //    }
                         break;
                 }
             }
@@ -1103,22 +1112,22 @@ namespace KiiniHelp.Agente
 
         protected void gvTickets_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (gvTickets.SelectedItems.Count > 0)
-                {
-                    hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
+            //try
+            //{
+            //    if (gvTickets.SelectedItems.Count > 0)
+            //    {
+            //        hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (_lstError == null)
+            //    {
+            //        _lstError = new List<string>();
+            //    }
+            //    _lstError.Add(ex.Message);
+            //    Alerta = _lstError;
+            //}
 
         }
 
@@ -1140,5 +1149,6 @@ namespace KiiniHelp.Agente
                 Alerta = _lstError;
             }
         }
+
     }
 }

@@ -243,18 +243,21 @@ namespace KinniNet.Core.Security
                     Usuario user = db.Usuario.SingleOrDefault(w => w.Id == idUsuario && w.Habilitado);
                     if (user != null)
                     {
-                        ParametrosGenerales parametrosG = db.ParametrosGenerales.First();
-                        if (parametrosG.StrongPassword)
+                        ParametrosGenerales parametrosG = db.ParametrosGenerales.FirstOrDefault();
+                        if (parametrosG != null)
                         {
+                            if (parametrosG.StrongPassword)
+                            {
+
+                            }
                             if (db.ParametroPassword.First().CaducaPassword)
                                 user.FechaUpdate = DateTime.ParseExact(DateTime.Now.AddDays(db.ParametroPassword.First().TiempoCaducidad).ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                             if (db.UsuarioPassword.Any(a => a.IdUsuario == idUsuario && a.Password == hashedNewPdw))
                                 throw new Exception("Contraseña antigua intente con una diferente");
-                        }
-                        if (user.Password != hashedActualPdw)
-                            throw new Exception("Contraseña actual incorrecta");
-                        user.Password = hashedNewPdw;
-                        user.UsuarioPassword = new List<UsuarioPassword>
+                            if (user.Password != hashedActualPdw)
+                                throw new Exception("Contraseña actual incorrecta");
+                            user.Password = hashedNewPdw;
+                            user.UsuarioPassword = new List<UsuarioPassword>
                         {
                             new UsuarioPassword
                             {
@@ -262,8 +265,13 @@ namespace KinniNet.Core.Security
                                 Password = hashedNewPdw
                             }
                         };
-                        db.SaveChanges();
-                        LimpiaPasswordsAntiguos(idUsuario);
+                            db.SaveChanges();
+                            LimpiaPasswordsAntiguos(idUsuario);
+                        }
+                        else
+                            throw new Exception("Error al cambiar contraseña. Consulte a su Administrador");
+
+
                     }
                 }
                 catch (Exception ex)
@@ -425,12 +433,23 @@ namespace KinniNet.Core.Security
 
             public bool CaducaPassword(int idUsuario)
             {
-                bool result;
+                bool result = false;
                 DataBaseModelContext db = new DataBaseModelContext();
                 try
                 {
-                    DateTime? fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                    result = db.Usuario.Any(a => a.FechaUpdate <= fecha && a.Id == idUsuario);
+                    ParametroPassword parametrosPassword = db.ParametroPassword.FirstOrDefault();
+                    if (parametrosPassword != null)
+                    {
+                        DateTime? fecha = DateTime.ParseExact(DateTime.Now.AddDays((parametrosPassword.TiempoCaducidad * -1)).ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                        if (db.UsuarioPassword.Any(a => a.IdUsuario == idUsuario && a.Fecha >= fecha))
+                        {
+                            result = false;
+                        }
+                        else
+                        {
+                            result = true;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {

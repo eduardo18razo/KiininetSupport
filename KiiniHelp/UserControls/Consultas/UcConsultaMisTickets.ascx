@@ -9,9 +9,9 @@
             <asp:HiddenField runat="server" ID="hfMuestraEncuesta" />
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item active">Mis Tickets</li>
+                <li class="active">Mis Tickets</li>
             </ol>
 
             <section class="module">
@@ -27,7 +27,7 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-xs-12 col-sm-12 col-lg-5">
+                            <div class="col-xs-12 col-sm-12 col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta de Tickets:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o consulta por estatus</label>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
                                     <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
                                         <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
                                     </a>
@@ -57,7 +57,7 @@
                 </div>
             </section>
 
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">

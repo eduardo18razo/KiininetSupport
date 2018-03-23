@@ -834,6 +834,7 @@ namespace KinniNet.Core.Operacion
                                         IdSubRolPertenece = statusDefault.IdSubRolPertenece,
                                         IdEstatusTicketActual = statusDefault.IdEstatusTicketActual,
                                         IdEstatusTicketAccion = statusDefault.IdEstatusTicketAccion,
+                                        ComentarioObligado = statusDefault.ComentarioObligado,
                                         TieneSupervisor = statusDefault.TieneSupervisor,
                                         Propietario = statusDefault.Propietario,
                                         LevantaTicket = statusDefault.LevantaTicket,

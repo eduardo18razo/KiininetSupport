@@ -143,17 +143,26 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        void ucCambiarEstatusTicket_OnAceptarModal()
-                if (ucCambiarEstatusTicket.CerroTicket)
+        private void ucCambiarEstatusTicket_OnAceptarModal()
+        {
+            if (ucCambiarEstatusTicket.CerroTicket)
+            {
+                if (bool.Parse(hfMuestraEncuesta.Value))
                 {
-                    if (bool.Parse(hfMuestraEncuesta.Value))
-                    {
-                        string url = ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" + (int)BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" + ucCambiarEstatusTicket.IdTicket);
-                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");", true);
-                    }
+                    string url =
+                        ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" +
+                                   (int) BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" +
+                                   ucCambiarEstatusTicket.IdTicket);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof (Page), "ScriptEncuesta",
+                        "OpenWindow(\"" + url + "\");", true);
                 }
-                ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalCambiaEstatus\");", true);
+            }
+            ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()),
+                (Dictionary<string, string>) ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC",
+                ViewState["Column"].ToString());
+            ScriptManager.RegisterClientScriptBlock(Page, typeof (Page), "Script",
+                "CierraPopup(\"#modalCambiaEstatus\");", true);
+        }
 
         protected void btnBuscar_OnClick(object sender, EventArgs e)
         {
