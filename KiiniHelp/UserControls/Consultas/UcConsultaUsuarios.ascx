@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaUsuarios.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaUsuarios" %>
 <%@ Register TagPrefix="uc1" TagName="UcDetalleUsuario" Src="~/UserControls/Detalles/UcDetalleUsuario.ascx" %>
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">

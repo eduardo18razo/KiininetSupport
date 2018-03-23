@@ -4,7 +4,7 @@
 <%@ Register Src="~/UserControls/Detalles/UcDetalleArbolAcceso.ascx" TagPrefix="uc1" TagName="UcDetalleArbolAcceso" %>
 
 <div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">
@@ -176,7 +176,7 @@
     <div class="modal fade" id="modalAtaOpcion" tabindex="-1" role="dialog" aria-labelledby="basicModal">
         <asp:UpdatePanel ID="upAltaArea" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <<div class="modal-dialog" style="width: 650px;">
+                <div class="modal-dialog widht650px">
                     <div class="modal-content">
                         <uc1:UcAltaAbrolAcceso runat="server" ID="UcAltaAbrolAcceso" />
                     </div>

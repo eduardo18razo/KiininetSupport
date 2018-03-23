@@ -58,7 +58,7 @@
             });
         };
     </script>
-    <asp:UpdatePanel runat="server" style="height: 100%">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
             <div id="contextMenuAreas" class="panel-heading contextMenu">
                 <asp:HiddenField runat="server" ClientIDMode="Inherit" ID="hfId" />
@@ -79,10 +79,10 @@
             <div class="modal-header" id="panelAlertaGeneral" runat="server" visible="false">
                 <div class="alert alert-danger" role="alert">
                     <div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                         </div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <h3>Error</h3>
                         </div>
                         <div class="clearfix clear-fix"></div>

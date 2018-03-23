@@ -10,10 +10,10 @@
                 <header class="modal-header" id="panelAlerta" runat="server" visible="false">
                     <div class="alert alert-danger">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
@@ -43,7 +43,7 @@
                                     </div>
 
                                     <div class="panel-body">
-                                        <div style="float: left">
+                                        <div class="float-left">
                                             <asp:RadioButton runat="server" GroupName="gpoTipoGrafico" AutoPostBack="True" ID="rbtnGeografico" Text="Geografico"  /><br />
                                             <asp:RadioButton runat="server" GroupName="gpoTipoGrafico" AutoPostBack="True" ID="rbtnPareto" Text="Pareto" /><br />
                                             <asp:RadioButton runat="server" GroupName="gpoTipoGrafico" AutoPostBack="True" ID="rbtnTendenciaStack" Text="Tendencia Stack" /><br />
@@ -68,7 +68,7 @@
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <div class="container-fluid" style="margin-top: 2px">
+                                                        <div class="container-fluid margin-top-2">
                                                             <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                             <asp:CheckBox runat="server" Text='<%# Eval("Descripcion") %>' ID="chkUbicacion" OnCheckedChanged="chkUbicacion_OnCheckedChanged" AutoPostBack="True" />
                                                             (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)
@@ -88,7 +88,7 @@
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <div class="container-fluid" style="margin-top: 2px">
+                                                        <div class="container-fluid margin-top-2">
                                                             <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                             <asp:CheckBox runat="server" Text='<%# Eval("Descripcion") %>' ID="chkOrganizacion" OnCheckedChanged="chkOrganizacion_OnCheckedChanged" AutoPostBack="True" />
                                                             (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)
@@ -108,7 +108,7 @@
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <div class="container-fluid" style="margin-top: 2px">
+                                                        <div class="container-fluid margin-top-2">
                                                             <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                             <asp:CheckBox runat="server" Text='<%# Eval("Descripcion") %>' ID="chkTipoTicket" AutoPostBack="True" />
                                                             (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)
@@ -128,7 +128,7 @@
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <div class="container-fluid" style="margin-top: 2px">
+                                                        <div class="container-fluid margin-top-2">
                                                             <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                             <asp:CheckBox runat="server" Text='<%# Eval("Descripcion") %>' ID="chkTipificacion" AutoPostBack="True" />
                                                             (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)
@@ -148,7 +148,7 @@
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <div class="container-fluid" style="margin-top: 2px">
+                                                        <div class="container-fluid margin-top-2">
                                                             <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                             <asp:CheckBox runat="server" Text='<%# Eval("Descripcion") %>' ID="chkEstatusStack" AutoPostBack="True" />
                                                             (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)
@@ -168,7 +168,7 @@
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <div class="container-fluid" style="margin-top: 2px">
+                                                        <div class="container-fluid margin-top-2">
                                                             <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Key") %>' />
                                                             <asp:CheckBox runat="server" Text='<%# Eval("Value") %>' ID="chkSla" AutoPostBack="True" />
 
@@ -189,7 +189,7 @@
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <div class="container-fluid" style="margin-top: 2px">
+                                                        <div class="container-fluid margin-top-2">
                                                             <asp:Label CssClass="col-sm-1" runat="server" Visible="False" ID="lblId" Text='<%# Eval("Id") %>' />
                                                             <asp:CheckBox runat="server" Text='<%# Eval("Descripcion") %>' ID="chkCanal" AutoPostBack="True" />
                                                             (<asp:Label runat="server" Text='<%# Eval("Total") %>'></asp:Label>)

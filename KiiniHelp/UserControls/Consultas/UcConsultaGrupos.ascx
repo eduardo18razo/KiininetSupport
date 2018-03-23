@@ -3,8 +3,8 @@
 <%@ Register Src="~/UserControls/Detalles/UcDetalleGrupoUsuarios.ascx" TagPrefix="uc" TagName="UcDetalleGrupoUsuarios" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleGrupoOpciones.ascx" TagPrefix="uc" TagName="UcDetalleGrupoOpciones" %>
 
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">
@@ -121,7 +121,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -171,7 +171,7 @@
     <div class="modal fade" id="modalAltaGrupoUsuarios" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upAltaGrupo" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog widht250px">
                     <div class="modal-content">
                         <uc:UcAltaGrupoUsuario runat="server" ID="ucAltaGrupoUsuario" />
                     </div>
@@ -184,7 +184,7 @@
     <div class="modal fade" id="modalDetalleGrupoUsuario" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="width: 50%;">
+                <div class="modal-dialog widht50Perc">
                     <div class="modal-content">
                         <uc:UcDetalleGrupoUsuarios runat="server" ID="ucDetalleGrupoUsuarios" />
                     </div>
@@ -197,7 +197,7 @@
     <div class="modal fade" id="modalDetalleGrupoOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog" style="width: 70%;">
+                <div class="modal-dialog widht70Perc">
                     <div class="modal-content">
                         <uc:UcDetalleGrupoOpciones runat="server" ID="ucDetalleGrupoOpciones" />
                     </div>
@@ -215,10 +215,10 @@
                         <div class="modal-header" id="panelAlertaSeleccionRol" runat="server" visible="false">
                             <div class="alert alert-danger">
                                 <div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                     </div>
-                                    <div style="float: left">
+                                    <div class="float-left">
                                         <h3>Error</h3>
                                     </div>
                                     <div class="clearfix clear-fix" />

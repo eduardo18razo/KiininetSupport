@@ -36,7 +36,7 @@
         icon_type: 'class',
         template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert" style="z-index:9999999">' +
             '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-            '<span data-notify="icon" style="font-size: 16px !important" ></span> ' +
+            '<span data-notify="icon" class="btn-lg"></span> ' +
             '<span data-notify="title">{1}</span> ' +
             '<span data-notify="message">{2}</span>' +
             '<div class="progress" data-notify="progressbar">' +
@@ -83,7 +83,7 @@ function ErrorAlert(title, msg) {
         icon_type: 'class',
         template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert" style="z-index:9999999">' +
             '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
-            '<span data-notify="icon" style="font-size: 16px !important"></span> ' +
+            '<span data-notify="icon" class="btn-lg"></span> ' +
             '<span data-notify="title" > {1}</span> ' +
             '<span data-notify="message" > {2}</span>' +
             '<div class="progress" data-notify="progressbar">' +

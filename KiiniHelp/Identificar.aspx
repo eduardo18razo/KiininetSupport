@@ -28,7 +28,7 @@
 
   
 </head>
-<body style="height: 100%;">
+<body class="heigth100">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -40,12 +40,12 @@
         </asp:ScriptManager>
         <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
             <ProgressTemplate>
-                <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; background-color: rgba(0,0,0, .1); opacity: 1.0;">
-                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" />
+                <div class="progressBar">
+                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." />
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-        <asp:UpdatePanel ID="upGeneral" runat="server" style="height: 100%">
+        <asp:UpdatePanel ID="upGeneral" runat="server" class="heigth100">
             <ContentTemplate>
                 <section class="login-section auth-section">
                     <div class="container">
@@ -66,7 +66,7 @@
                                                 <div class="form-group email">
                                                     <label class="sr-only" for="login-email">Email or username</label>
                                                     <span class="fa fa-user icon"></span>
-                                                    <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control login-email" Style="text-transform: none" />
+                                                    <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control login-email text-no-transform"/>
                                                 </div>
 
                                                 <div class="form-group">
@@ -77,7 +77,7 @@
                                                         FontColor="#D20B0C" NoiseColor="#B1B1B1" />
 
                                                     <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa el texto de la imagen:</asp:Label>
-                                                    <asp:TextBox class="form-control" ID="txtCaptcha" runat="server" Style="text-transform: uppercase"></asp:TextBox>
+                                                    <asp:TextBox class="form-control text-uppercase" ID="txtCaptcha" runat="server" />
                                                 </div>
 
                                                 <div class="form-group email">

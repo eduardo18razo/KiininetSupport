@@ -1,16 +1,16 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcCatalogoNiveles.ascx.cs" Inherits="KiiniHelp.UserControls.Temporal.UcCatalogoNiveles" %>
-<div class="modal fade" id="editNivel" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true" style="width: 100%">
+<div class="modal fade widht100" id="editNivel" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <asp:UpdatePanel ID="upNivel" runat="server">
         <ContentTemplate>
-            <div class="modal-dialog modal-lg" style="width: 100%">
-                <div class="modal-content" style="width: 100%">
+            <div class="modal-dialog modal-lg widht100">
+                <div class="modal-content widht100">
                     <div class="modal-header">
                         <div class="alert alert-warning" id="panelAlertaNivel" runat="server" visible="false">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />

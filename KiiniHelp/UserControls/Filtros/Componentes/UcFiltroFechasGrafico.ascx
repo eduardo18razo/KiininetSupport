@@ -4,10 +4,10 @@
         <header class="modal-header" id="panelAlerta" runat="server" visible="false">
             <div class="alert alert-danger">
                 <div>
-                    <div style="float: left">
+                    <div class="float-left">
                         <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                     </div>
-                    <div style="float: left">
+                    <div class="float-left">
                         <h3>Error</h3>
                     </div>
                     <div class="clearfix clear-fix" />
@@ -35,7 +35,7 @@
                 <div class="form-horizontal col-sm-12">
                     <div class="form-group col-sm-10">
                         <asp:Label CssClass="col-sm-3" runat="server" Text="Visualizar: " style="width: 110px" />
-                        <div class="col-sm-8" style="width: 180px">
+                        <div class="col-sm-8 widht180">
                             <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="DropSelect" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
                                 <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="Semanal" Value="2"></asp:ListItem>

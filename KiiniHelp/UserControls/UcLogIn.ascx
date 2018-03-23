@@ -5,10 +5,10 @@
 <header class="" id="pnlAlerta" runat="server" visible="False">
     <div class="alert alert-danger">
         <div>
-            <div style="float: left">
+            <div class="float-left">
                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
             </div>
-            <div style="float: left">
+            <div class="float-left">
                 <h3>Error</h3>
             </div>
             <div class="clearfix clear-fix" />
@@ -30,13 +30,13 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="txtUsuario">Usuario</label>
                 <div class="col-sm-10">
-                    <asp:TextBox class="form-control obligatorio" ID="txtUsuario" placeholder="UserName" runat="server" Style="text-transform: none" autofocus="autofocus"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control obligatorio text-no-transform" ID="txtUsuario" placeholder="UserName" runat="server" autofocus="autofocus"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="txtpwd">Contraseña</label>
                 <div class="col-sm-10">
-                    <asp:TextBox class="form-control obligatorio" ID="txtpwd" placeholder="Enter Password" runat="server" TextMode="Password" Style="text-transform: none"></asp:TextBox>
+                    <asp:TextBox CssClass="form-control obligatorio text-no-transform" ID="txtpwd" placeholder="Enter Password" runat="server" TextMode="Password" />
                 </div>
             </div>
             <div class="form-group">
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div>
-        <div class="panel-footer" style="text-align: center">
+        <div class="panel-footer text-center">
             <asp:Button CssClass="btn btn-success" ID="btnLogin" OnClick="btnLogin_Click" runat="server" Text="Acceder"></asp:Button>
             <asp:Button CssClass="btn btn-danger" ID="btnCacelar" OnClick="btnCacelar_OnClick" runat="server" Text="Cancelar"></asp:Button>
         </div>

@@ -10,10 +10,10 @@
             <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
                 <div class="alert alert-danger">
                     <div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                         </div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <h3>Error</h3>
                         </div>
                         <div class="clearfix clear-fix" />
@@ -154,80 +154,7 @@
                             </asp:TemplateField>                                                                                       
                         </Columns> 
                        </asp:GridView>
-                     </asp:Panel>
-                   <%-- <asp:Panel runat="server" ScrollBars="Both" Width="100%" Height="250px">
-                    <div class="table-responsive">
-                        <asp:Repeater runat="server" ID="rptResultados" >
-                            <HeaderTemplate>
-                                <table class="table table-striped display" id="tblResults"  style="font-size:11px">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 30px">
-                                                <asp:Label runat="server">Tipo Usuario</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Tipificación</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Canal</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">GrupoEspecialConsulta</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">GrupoAtendedor</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">GrupoMantenimiento</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">GrupoDesarrollo</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Organizacion</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Ubicacion</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">ServicioIncidente</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Tipificacion</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Prioridad</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Estatus</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">Sla</asp:Label></th>
-                                            <th>
-                                                <asp:Label runat="server">FechaHora</asp:Label></th>                                          
-                                        </tr>
-                                    </thead>
-                                   
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                 <tbody>
-                                <tr id='<%# Eval("IdTicket")%>'>
-                                    <td>--%>
-                   <%--    <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + Eval("TipoUsuario.Color") + " !important" %>'>
-                   <%# Eval("TipoUsuario.Abreviacion") %></button></td>--%>
-                   <%--   <button type="button" class="btn btn-default-alt btn-square-usuario" style='<%# "Border: none !important; Background: " + "green" + " !important" %>'>
-                                            <%# Eval("TipoUsuario") %></button></td>
-                                    <td><%# Eval("Tipificacion")%></td>
-                                    <td><%# Eval("Canal")%></td>
-                                    <td><%# Eval("GrupoEspecialConsulta")%></td>
-                                    <td><%# Eval("GrupoAtendedor")%></td>
-                                    <td><%# Eval("GrupoMantenimiento")%></td>
-                                    <td><%# Eval("Organizacion")%></td>
-                                    <td><%# Eval("Ubicacion")%></td>
-                                    <td><%# Eval("ServicioIncidente")%></td>
-                                    <td><%# Eval("Tipificacion")%></td>
-                                    <td><%# Eval("Prioridad")%></td>
-                                    <td><%# Eval("Estatus")%></td>
-                                    <td><%# Eval("Sla")%></td>
-                                    <td><%# Eval("FechaHora")%></td>                                   
-                                </tr>
-                                   </tbody>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                               
-                             </table>
-                                           
-                            </FooterTemplate>
-                        </asp:Repeater>
-                    </div>
-                    </asp:Panel>--%>
+                     </asp:Panel>                  
                 </div>
             </div>
 

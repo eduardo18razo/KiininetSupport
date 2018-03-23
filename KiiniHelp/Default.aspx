@@ -109,14 +109,13 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
 
-        <header class="header" style="background-color: white;">
-            <%----%>
+        <header class="header">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-12">
                     <div class="branding">
                         <h1 class="logo text-center">
                             <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
-                                <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" Style="z-index: 9999" />
+                                <asp:Image CssClass="logo-icon z-Index-Top" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server"/>
                                 <asp:Label runat="server" ID="lblBranding" Visible="false" />
                             </asp:HyperLink>
                         </h1>
@@ -125,7 +124,7 @@
                 <div class="topbar bg_w_header col-lg-10 col-md-10 col-sm-12">
                     <div class="col-lg-6 col-md-6 col-sm-6 no-padding-top" runat="server" visible="True">
                         <div class="search-container no-margin-left">
-                            <div id="main-search" style="padding-top: 20px;">
+                            <div id="main-search" class="padding-20-top">
                                 <i id="main-search-toggle" class="fa fa-search icon"></i>
                                 <div id="main_search_input_wrapper" class="main_search_input_wrapper">
                                     <asp:TextBox ID="main_search_input" ClientIDMode="Static" CssClass="main_search_input" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
@@ -141,9 +140,9 @@
                                     <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Tickets</span> <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                     </div>
-                                    <ul class="dropdown-menu wdropdown-ticket" role="menu" aria-labelledby="dropdownMenu-user" style="right: -45px">
+                                    <ul class="dropdown-menu wdropdown-ticket right-45" role="menu" aria-labelledby="dropdownMenu-user">
                                         <li>
-                                            <span class="arrow" style="right: 48px"></span>
+                                            <span class="arrow right48"></span>
                                             <a role="menuitem" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modal-new-ticket">
                                                 <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
                                             </a>
@@ -159,8 +158,8 @@
                                     <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
                                     </div>
-                                    <div class="dropdown-menu wdropdown-login" role="menu" aria-labelledby="dropdownMenu-messages" style="right: -25px">
-                                        <span class="arrow" style="right: 25px"></span>
+                                    <div class="dropdown-menu wdropdown-login right-25" role="menu" aria-labelledby="dropdownMenu-messages">
+                                        <span class="arrow right25"></span>
                                         <div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
@@ -184,8 +183,7 @@
         <div class="row">
             <div id="content-wrapper" class="content-wrapper">
                 <div class="container-fluid">
-                    <div class="row" style="margin-top: 100px;">
-                        <%----%>
+                    <div class="row margin-top-100">
                         <div class="module-content collapse in centra-carrusel" id="content-1">
                             <div class="module-content-inner no-padding-bottom no-padding-top">
                                 <div class="carousel slide" data-ride="carousel" id="carouselPresenter">
@@ -238,8 +236,8 @@
                                     <div class="module-content collapse in" id="content-2">
                                         <div class="module-content-inner">
                                             <asp:LinkButton runat="server" ID="lnkBtnEmpleado" OnClick="lnkBtnEmpleado_OnClick">
-                                            <img class="img-responsive margin-left" src="assets/images/users_icon/usuario_2.jpg" alt="Iconos de usuarios" /></asp:LinkButton>
-                                            <h4 style="text-align: center">EMPLEADO</h4>
+                                            <img class="img-responsive margin-auto" src="assets/images/users_icon/usuario_2.jpg" alt="Iconos de usuarios" /></asp:LinkButton>
+                                            <h4 class="text-center">EMPLEADO</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -251,8 +249,8 @@
                                     <div class="module-content collapse in" id="content-3">
                                         <div class="module-content-inner">
                                             <asp:LinkButton runat="server" ID="lnkBtnCliente" OnClick="lnkBtnCliente_OnClick">
-                                            <img class="img-responsive  margin-left" src="assets/images/users_icon/usuario_1.jpg" alt="Iconos de usuarios" /></asp:LinkButton>
-                                            <h4 style="text-align: center">CLIENTE</h4>
+                                            <img class="img-responsive  margin-auto" src="assets/images/users_icon/usuario_1.jpg" alt="Iconos de usuarios" /></asp:LinkButton>
+                                            <h4 class="text-center">CLIENTE</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -264,8 +262,8 @@
                                     <div class="module-content collapse in" id="content-4">
                                         <div class="module-content-inner">
                                             <asp:LinkButton runat="server" ID="lnkBtnProveedor" OnClick="lnkBtnProveedor_OnClick">
-                                            <img class="img-responsive  margin-left" src="assets/images/users_icon/usuario_3.jpg" alt="Iconos de usuarios" /></asp:LinkButton>
-                                            <h4 style="text-align: center">PROVEEDOR</h4>
+                                            <img class="img-responsive  margin-auto" src="assets/images/users_icon/usuario_3.jpg" alt="Iconos de usuarios" /></asp:LinkButton>
+                                            <h4 class="text-center">PROVEEDOR</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -334,7 +332,6 @@
                     <div class="modal-header">
                         <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
                         <h4 class="modal-title" id="myModalLabel">
-                            <%--<img img-responsive margin-left src="assets/images/icons/ok.png" alt="" /><br>--%>
                             Tu ticket se creo con éxito</h4>
                     </div>
                     <div class="modal-body">

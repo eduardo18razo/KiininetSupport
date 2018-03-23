@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaFormularios.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaFormularios" %>
 
 
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">

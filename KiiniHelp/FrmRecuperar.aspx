@@ -41,7 +41,8 @@
                 <asp:HiddenField runat="server" ID="hfParametrosConfirmados" Value="false" />
                 <asp:HiddenField runat="server" ID="hfValueNotivicacion" Value="false" />
                 <asp:Button runat="server" ID="btncontinuar" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-block btn-primary" Visible="False" />
-                <div runat="server" id="divQuestion">
+                
+                <div runat="server" id="divQuestion" class="heigth100">
                     <section class="login-section auth-section">
                         <div class="container">
                             <div class="row">
@@ -53,14 +54,13 @@
                                         <h2 class="title">¿Cómo quieres recuperar tu contraseña?</h2>
                                         <div class="row">
                                             <div class="form-container col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
-                                                <%----%>
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-inline text-left" runat="server">
-                                                        <asp:RadioButton runat="server" ID="rbtnCorreo" Text="Quiero recibir un correo con un enlace" GroupName="Options" CssClass="radio" Style="font-weight: normal" OnCheckedChanged="rbtnCorreo_OnCheckedChanged" AutoPostBack="True" />
+                                                        <asp:RadioButton runat="server" ID="rbtnCorreo" Text="Quiero recibir un correo con un enlace" GroupName="Options" CssClass="radio" OnCheckedChanged="rbtnCorreo_OnCheckedChanged" AutoPostBack="True" />
                                                         <br />
-                                                        <asp:RadioButton runat="server" ID="rbtnSms" Text="Quiero recibir un SMS con mi codigo" GroupName="Options" CssClass="radio" Style="font-weight: normal" OnCheckedChanged="rbtnSms_OnCheckedChanged" AutoPostBack="True" />
+                                                        <asp:RadioButton runat="server" ID="rbtnSms" Text="Quiero recibir un SMS con mi codigo" GroupName="Options" CssClass="radio" OnCheckedChanged="rbtnSms_OnCheckedChanged" AutoPostBack="True" />
                                                         <br />
-                                                        <asp:RadioButton runat="server" ID="rbtnPreguntas" Text="Quiero contestar preguntas Reto" GroupName="Options" CssClass="radio" Style="font-weight: normal" OnCheckedChanged="rbtnPreguntas_OnCheckedChanged" AutoPostBack="True" />
+                                                        <asp:RadioButton runat="server" ID="rbtnPreguntas" Text="Quiero contestar preguntas Reto" GroupName="Options" CssClass="radio" OnCheckedChanged="rbtnPreguntas_OnCheckedChanged" AutoPostBack="True" />
                                                         <br />
                                                     </div>
                                                 </div>
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="copyright2 center">
+                            <div class="row copyright2 center">
                                 <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
                                 &copy; 2018                       
                             </div>
@@ -151,7 +151,7 @@
                                                                     <asp:Label runat="server" Text='<%# Eval("Pregunta") %>' class="col-xs-12 col-md-12 text-left" ID="lblPregunta" />
 
                                                                     <div class="col-sm-12">
-                                                                        <asp:TextBox runat="server" ID="txtRespuesta" CssClass="form-control obligatorio" Style="text-transform: none" />
+                                                                        <asp:TextBox runat="server" ID="txtRespuesta" CssClass="form-control obligatorio text-no-transform"/>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
@@ -192,15 +192,16 @@
                                                     <asp:Label runat="server" Text="Ingresa tu nueva contraseña" CssClass="col-lg-12 text-left" />
                                                     <br>
                                                     <div class="form-group password">
-                                                        <label class="sr-only" for="login-password">Password</label>
-                                                        <span class="fa fa-lock icon top13"></span>
-                                                        <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password" Style="text-transform: none" />
+                                                        <label class="sr-only" for="txtContrasena">Password</label>
+                                                        <span class="fa fa-lock icon"></span>
+                                                        <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password text-no-transform" />
                                                     </div>
-                                                    <asp:Label runat="server" Text="Confirma tu contraseña" CssClass="col-lg-12 text-left"></asp:Label>
+                                                    <asp:Label runat="server" Text="Confirma tu contraseña" CssClass="col-lg-12 text-left"/>
+                                                    <br>
                                                     <div class="form-group password">
-                                                        <label class="sr-only" for="login-password">Password</label>
-                                                        <span class="fa fa-lock icon top31"></span>
-                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control login-password" Style="text-transform: none" />
+                                                        <label class="sr-only" for="txtConfirmar">Password</label>
+                                                        <span class="fa fa-lock icon"></span>
+                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control login-password text-no-transform"/>
                                                     </div>
                                                     <div class="form-group password">
                                                         <asp:Button class="btn btn-block btn-primary" runat="server" Text="Cambiar contraseña" OnClick="btncontinuar_OnClick" />

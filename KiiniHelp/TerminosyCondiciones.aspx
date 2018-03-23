@@ -56,8 +56,7 @@
 <script src="assets/js/Notificaciones.js" type="text/javascript"></script>
 <script src="assets/js/validation.js" type="text/javascript"></script>
 
-<body style="height: 100%; background-color: #30bbc0;">
-
+<body class="heigth100 bg-aqua">
 
     <section class="legales-section auth-section">
         <div class="container">

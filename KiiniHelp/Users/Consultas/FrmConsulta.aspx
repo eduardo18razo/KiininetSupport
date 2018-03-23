@@ -21,8 +21,8 @@
         <div class="fullheight">
             <asp:UpdateProgress ID="updateProgress" runat="server">
                 <ProgressTemplate>
-                    <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 1.0;">
-                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 25%; left: 35%; border: 10px;" />
+                    <div class="progressBar">
+                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..."/>
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -31,10 +31,10 @@
                     <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
                         <div class="alert alert-danger">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />

@@ -12,10 +12,10 @@
                 <header class="modal-header" id="panelAlertaGrupos" runat="server" visible="false">
                     <div class="alert alert-danger">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
@@ -177,15 +177,15 @@
                                         <HeaderTemplate>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <div class="row form-control" style="margin-top: 5px">
+                                            <div class="row form-control margin-top-5">
                                                 <asp:Label runat="server" ID="lblIdTipoSubGrupo" Text='<%# Eval("grupoUsuario.TipoGrupo.Id") %>' Visible="False" />
-                                                <asp:Label runat="server" Text='<%# Eval("grupoUsuario.TipoGrupo.Descripcion") %>' Style="width: 50%" />
+                                                <asp:Label runat="server" Text='<%# Eval("grupoUsuario.TipoGrupo.Descripcion") %>' CssClass="widht50Perc" />
                                                 > 
                                                 <asp:Label runat="server" ID="lblIdGrupoUsuario" Text='<%# Eval("GrupoUsuario.Id") %>' Visible="False" />
-                                                <asp:Label runat="server" Text='<%# Eval("GrupoUsuario.Descripcion") %>' Style="width: 50%" />
+                                                <asp:Label runat="server" Text='<%# Eval("GrupoUsuario.Descripcion") %>' CssClass="widht50Perc" />
                                                 >
                                                 <asp:Label runat="server" ID="lblIdSubGrupo" Text='<%# Eval("SubGrupoUsuario.Id") %>' Visible="False" />
-                                                <asp:Label runat="server" Text='<%# Eval("SubGrupoUsuario.SubRol.Descripcion") %>' Style="width: 50%" />
+                                                <asp:Label runat="server" Text='<%# Eval("SubGrupoUsuario.SubRol.Descripcion") %>' CssClass="widht50Perc" />
                                                 <asp:Button runat="server" CssClass="btn btn-primary btn-sm" ID="btnEliminar" OnClick="btnEliminar_OnClick" Text="Quitar"/>
                                             </div>
                                         </ItemTemplate>
@@ -193,7 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer" style="text-align: center">
+                        <div class="panel-footer text-center">
                             <asp:Button ID="btnLimpiar" runat="server" CssClass="btn btn-success" Text="Limpiar" OnClick="btnLimpiar_OnClick" />
                         </div>
                     </div>
@@ -228,10 +228,10 @@
                     <div class="modal-header" id="panelAlertaSeleccionRol" runat="server" visible="false">
                         <div class="alert alert-danger">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />
@@ -262,7 +262,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer" style="text-align: center">
+                    <div class="panel-footer text-center">
                         <asp:Button ID="btnAsignarSubRoles" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAsignarSubRoles_OnClick" />
                         <asp:Button ID="btnCancelarSubRoles" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelarSubRoles_OnClick" />
                     </div>

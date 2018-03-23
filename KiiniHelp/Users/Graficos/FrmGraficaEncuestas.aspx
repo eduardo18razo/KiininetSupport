@@ -12,10 +12,10 @@
             <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
                 <div class="alert alert-danger">
                     <div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                         </div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <h3>Error</h3>
                         </div>
                         <div class="clearfix clear-fix" />
@@ -37,7 +37,7 @@
                         <asp:UpdatePanel runat="server" UpdateMode="Conditional" Visible="True" ID="upGrafica">
                             <ContentTemplate>
                                 <asp:HiddenField runat="server" ID="hfGraficado" Value="false"/>
-                                <iframe name="geocharts" runat="server" ID="frameGeoCharts" width="800px" height="600px" Visible="False" style="width: 850px; height: 650px; border: none">
+                                <iframe name="geocharts" runat="server" id="frameGeoCharts" width="800px" height="600px" Visible="False" class="frameGraficas">
                                 </iframe>
                                 <asp:Chart ID="cGrafico" runat="server" Width="800px" Height="600px" Visible="False">
                                     <Titles>
@@ -76,13 +76,13 @@
     <div class="modal fade" id="modalDetalleGrafico" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upDetalleGrafico" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog modal-lg" style="width: 1310px">
-                    <div class="modal-content" style="width: 1310px">
+                <div class="modal-dialog modal-lg widht1310px">
+                    <div class="modal-content widht1310px">
                         <div class="panel panel-primary">
-                            <div class="panel-body" style="overflow-y: auto">
+                            <div class="panel-body overflowY">
                                 <asp:GridView runat="server" ID="gvResult" CssClass="table table-bordered table-hover table-responsive" />
                             </div>
-                            <div class="text-center"> <%--panel-footer--%>
+                            <div class="text-center">
                                 <asp:Button runat="server" CssClass="btn btn-danger" Text="Cerrar" ID="btnCerrar" OnClick="btnCerrar_OnClick" />
                             </div>
                         </div>

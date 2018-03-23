@@ -1,14 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcConsultaEncuestaPendiente.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcConsultaEncuestaPendiente" %>
-<div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+<div class="heigth100">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
             <div class="modal-header" id="panelAlertaGeneral" runat="server" visible="false">
                 <div class="alert alert-danger" role="alert">
                     <div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                         </div>
-                        <div style="float: left">
+                        <div class="float-left">
                             <h3>Error</h3>
                         </div>
                         <div class="clearfix clear-fix"></div>
@@ -32,7 +32,7 @@
                     <asp:Repeater runat="server" ID="rptEncuestasPendientes">
                         <HeaderTemplate>
                             <div style="overflow-y: auto; min-height: 380px;">
-                                <div class="panel-heading" style="padding-bottom: 9px; margin: 0 0 20px; padding-left: 0">
+                                <div class="panel-heading no-padding-left padding-9-bottom" style="margin: 0 0 20px;">
                                     <asp:Label CssClass="col-xs-1" runat="server" Text="Ticket" Width="8%" />
                                     <asp:Label CssClass="col-xs-2" runat="server" Text="Descripcion" Width="14%" />
                                     <asp:Label CssClass="col-xs-2" runat="server" Text="Encuesta" Style="width: 14%" />
@@ -41,7 +41,7 @@
                                 </div>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <div class="panel-body row" style="padding-bottom: 9px; margin: 0 0 20px; padding-left: 0">
+                            <div class="panel-body row padding-9-bottom" style="margin: 0 0 20px; padding-left: 0">
                                 <%--ID--%>
                                 <asp:Label runat="server" CssClass="col-xs-1" Text='<%#Eval("IdTicket") %>' Visible="False" />
                                 <asp:Label runat="server" CssClass="col-xs-1" Text='<%#Eval("IdEncuesta") %>' Visible="False" />

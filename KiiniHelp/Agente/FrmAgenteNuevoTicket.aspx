@@ -6,7 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="height: 100%;">
+    <div class="heigth100">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <asp:HiddenField runat="server" ID="hfIdUsuarioSolicito" />
@@ -14,7 +14,7 @@
                     <div class="row">
 
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <section class="module" style="height: 530px;">
+                            <section class="module heigth530px">
                                 <div class="row">
                                     <div class="module-inner">
                                         <uc1:UcBusquedaFormulario runat="server" ID="ucBusquedaFormulario" />
@@ -52,7 +52,7 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <span class="col-lg-2 col-md-2 col-sm-2 pe-icon pe-7s-ticket icon margin-top-5" style="font-size: 24px"></span>
+                                            <span class="col-lg-2 col-md-2 col-sm-2 pe-icon pe-7s-ticket icon iconoFont24 margin-top-5"></span>
                                             <div class="col-lg-10 col-md-10 col-sm-10">
                                                 <asp:DropDownList runat="server" CssClass="form-control" ID="ddlTicketUsuario" />
                                             </div>
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <hr />
-                                    <div class="row" style="display: none">
+                                    <div class="row ocultar">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <strong>
                                                 <asp:Label runat="server" Text="Facebook" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>
@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row" style="display: none">
+                                    <div class="row ocultar">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <strong>
                                                 <asp:Label runat="server" Text="twitter" CssClass="col-lg-12 col-md-12 col-sm-12"></asp:Label></strong>

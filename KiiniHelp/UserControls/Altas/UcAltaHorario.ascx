@@ -140,48 +140,16 @@
     }
 </script>
 <style>
-    .tdHorario {
-        height: 25px;
-        width: 20px;
-        text-align: center;
-        vertical-align: middle;
-        background-color: #fff;
-        border: 2px solid #ecf0f1;
-    }
-
-    .no-border {
-        border: none !important;
-    }
-
+    
     .highlighted {
        background-color: #3FA9F5;
-    }
-
-    .transparente {
-        background: transparent;
-        border: none !important;
     }
 
     .headertd {
         background: transparent;
         border: none !important;
     }
-
-    .footerHorario {
-        background: transparent;
-        height: 40px;
-        width: 1px;
-        border: none !important;
-    }
-
-    .footerLabel {
-        transform: rotate(-80deg);
-        background: transparent;
-        border: none !important;
-        width: 1px;
-        position: absolute;
-        margin-top: 8px;
-    }
+    
 </style>
 <asp:UpdatePanel runat="server" ID="updateAltaAreas">
     <ContentTemplate>
@@ -225,7 +193,7 @@
                     <asp:UpdatePanel runat="server" ID="upTableHorario" UpdateMode="Conditional">
                         <ContentTemplate>
                             
-                            <table class="table table-responsive disabled" id="our_table" style="background: transparent">
+                            <table class="table table-responsive disabled bg-transparent" id="our_table">
                                 <tbody>
                                     <tr id="row1">
                                         <td class="headertd col-xs-1 col-sm-1 col-md-1 col-lg-1">Lun</td>
@@ -420,30 +388,30 @@
                                 <tfoot>
                                     <tr class="footerHorario">
                                         <td class="transparente"></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">00:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">01:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">02:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">03:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">04:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">05:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">06:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">07:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">08:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">09:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">10:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">11:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">12:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">13:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">14:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">15:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">16:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">17:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">18:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">19:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">20:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">21:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">22:00</span></td>
-                                        <td class="tdHorario no-border" style="padding-top: 20px; background: transparent"><span class="footerLabel">23:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">00:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">01:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">02:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">03:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">04:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">05:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">06:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">07:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">08:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">09:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">10:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">11:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">12:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">13:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">14:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">15:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">16:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">17:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">18:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">19:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">20:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">21:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">22:00</span></td>
+                                        <td class="tdHorario bg-transparent padding-20-top"><span class="footerLabel">23:00</span></td>
                                     </tr>
                                 </tfoot>
                             </table>

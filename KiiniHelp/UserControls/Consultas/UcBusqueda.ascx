@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcBusqueda.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcBusqueda" %>
 <div style="height: 100%;">
-    <asp:UpdatePanel runat="server" style="height: 100%">
+    <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
 
             <ol class="breadcrumb">

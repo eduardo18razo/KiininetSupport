@@ -17,10 +17,10 @@
                     <header class="" id="panelAlertaGeneral" runat="server" visible="False">
                         <div class="alert alert-danger">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />
@@ -56,8 +56,8 @@
                             </div>
                         </div>
                         <div class="panel-footer">
-                            <asp:Button CssClass="btn btn-lg btn-danger" ID="btnCancelar" runat="server" Text="Cancelar" Style="float: right; margin-left: 25px" OnClick="btnCancelar_OnClick"></asp:Button>
-                            <asp:Button CssClass="btn btn-lg btn-success" ID="btnGuardar" runat="server" Text="Guardar" Style="float: right" OnClick="btnGuardar_OnClick"></asp:Button>
+                            <asp:Button CssClass="btn btn-lg btn-danger float-right margin-left-25" ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_OnClick"></asp:Button>
+                            <asp:Button CssClass="btn btn-lg btn-success float-right" ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_OnClick"></asp:Button>
 
                             <div class="clearfix clear-fix"></div>
                         </div>
@@ -74,10 +74,10 @@
                                 <div class="modal-header" id="panelAlertaModalDg" runat="server" visible="False">
                                     <div class="alert alert-danger">
                                         <div>
-                                            <div style="float: left">
+                                            <div class="float-left">
                                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                             </div>
-                                            <div style="float: left">
+                                            <div class="float-left">
                                                 <h3>Error</h3>
                                             </div>
                                             <div class="clearfix clear-fix" />
@@ -104,13 +104,13 @@
                                                     <asp:Label ID="Label6" runat="server" Text="Nombre" class="col-sm-4 control-label izquierda" />
                                                 </div>
                                                 <div class="form-group col-sm-12">
-                                                    <div class="col-sm-4" style="padding-left: 0">
+                                                    <div class="col-sm-4 no-padding-left">
                                                         <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true"  MaxLength="100" OnTextChanged="txtAp_OnTextChanged" />
                                                     </div>
-                                                    <div class="col-sm-4" style="padding-left: 0">
+                                                    <div class="col-sm-4 no-padding-left">
                                                         <asp:TextBox ID="txtAm" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" MaxLength="100" />
                                                     </div>
-                                                    <div class="col-sm-4" style="padding-left: 0">
+                                                    <div class="col-sm-4 no-padding-left">
                                                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="100"  OnTextChanged="txtAp_OnTextChanged" />
                                                     </div>
                                                 </div>
@@ -118,15 +118,15 @@
                                                     <asp:Label runat="server" Text="usuario" class="col-sm-4 control-label izquierda" />
                                                 </div>
                                                 <div class="form-group col-sm-12">
-                                                    <div class="col-sm-4" style="padding-left: 0">
-                                                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control texto-normal" onkeypress="return ValidaCampo(this,14)" MaxLength="100" style="textTransform: none" />
+                                                    <div class="col-sm-4 no-padding-left">
+                                                        <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control texto-normal text-no-transform" onkeypress="return ValidaCampo(this,14)" MaxLength="100"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-12">
                                                     <asp:Label ID="Label2" runat="server" Text="Puesto" class="col-sm-4 control-label izquierda" />
                                                 </div>
                                                 <div class="form-group col-sm-12">
-                                                    <div class="col-sm-4" style="padding-left: 0">
+                                                    <div class="col-sm-4 no-padding-left">
                                                         <asp:DropDownList runat="server" ID="ddlPuesto" CssClass="DropSelect" />
                                                     </div>
                                                     <div class="col-sm-2">
@@ -134,10 +134,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-sm-12 margen-arriba">
-                                                    <div class="col-sm-3" style="padding-left: 0">
+                                                    <div class="col-sm-3 no-padding-left">
                                                         <asp:CheckBox runat="server" Text="VIP" ID="chkVip" />
                                                     </div>
-                                                    <div class="col-sm-3" style="padding-left: 0">
+                                                    <div class="col-sm-3 no-padding-left">
                                                         <asp:CheckBox runat="server" Text="Directorio Activo " ID="chkDirectoriActivo" />
                                                     </div>
                                                     <div class="form-group margen-arriba">
@@ -164,7 +164,7 @@
                                                         <ItemTemplate>
                                                             <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
                                                                 <div class="row">
-                                                                    <div class="col-xs-6 col-md-3" style="display: none">
+                                                                    <div class="col-xs-6 col-md-3 ocultar">
                                                                         <asp:Label runat="server" ID="lblTipotelefono" Text='<%# Eval("TipoTelefono.Id") %>'></asp:Label>
                                                                     </div>
                                                                     <div class="col-xs-5 col-md-3">
@@ -195,7 +195,7 @@
                                                             <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
                                                                 <div class="row">
                                                                     <div class="col-xs-8 col-md-6">
-                                                                        <asp:TextBox runat="server" ID="txtCorreo" Text='<%# Eval("Correo") %>' CssClass="form-control" Style="text-transform: lowercase" onkeypress="return ValidaCampo(this,13)" />
+                                                                        <asp:TextBox runat="server" ID="txtCorreo" Text='<%# Eval("Correo") %>' CssClass="form-control text-lowercase" onkeypress="return ValidaCampo(this,13)" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -205,7 +205,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel-footer" style="text-align: center">
+                                    <div class="panel-footer text-center">
                                         <asp:Button ID="btnAceptarDatosGenerales" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarDatosGenerales_OnClick" />
                                         <asp:Button ID="btnCerrarDatosGenerales" runat="server" CssClass="btn btn-danger" Text="Cancelar" data-dismiss="modal" />
                                     </div>
@@ -218,7 +218,7 @@
 
             <%--ORGANIZACION--%>
             <div class="modal fade" id="modalOrganizacion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog modal-lg" style="width: 75%">
+                <div class="modal-dialog modal-lg widht75Perc">
                     <div class="modal-content">
                         <asp:UpdatePanel ID="upOrganizacion" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
@@ -232,11 +232,10 @@
 
             <%--UBICACIONES--%>
             <div class="modal fade" id="modalUbicacion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                <div class="modal-dialog modal-lg" style="width: 75%">
+                <div class="modal-dialog modal-lg widht75Perc">
                     <div class="modal-content">
                         <asp:UpdatePanel ID="upUbicacion" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
-                                <%--<uc:UcAltaUbicacion runat="server" ID="UcUbicacion" FromModal="True" />--%>
                                 <uc:UcConsultaUbicaciones runat="server" ID="UcConsultaUbicaciones" />
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -253,10 +252,10 @@
                                 <div class="modal-header" id="panelAlertaRoles" runat="server" visible="false">
                                     <div class="alert alert-danger">
                                         <div>
-                                            <div style="float: left">
+                                            <div class="float-left">
                                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                             </div>
-                                            <div style="float: left">
+                                            <div class="float-left">
                                                 <h3>Error</h3>
                                             </div>
                                             <div class="clearfix clear-fix" />
@@ -278,7 +277,7 @@
                                     <div class="panel-body">
                                         <asp:CheckBoxList runat="server" ID="chklbxRoles" OnSelectedIndexChanged="chkKbxRoles_OnSelectedIndexChanged" AutoPostBack="True" />
                                     </div>
-                                    <div class="panel-footer" style="text-align: center">
+                                    <div class="panel-footer text-center">
                                         <asp:Button ID="btnAceptarRoles" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnCerrarRoles_OnClick" />
                                         <asp:Button ID="btnCerrarRoles" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCerrarRoles_OnClick" data-dismiss="modal" />
                                     </div>

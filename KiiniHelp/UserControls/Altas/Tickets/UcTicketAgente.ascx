@@ -8,7 +8,7 @@
                 <div class="col-lg-8 col-md-7 col-sm-7">
                     <div class="module-inner">
                         <asp:Label runat="server" Text="Correo electrónico, teléfono, nombre de usuario" CssClass="col-sm-4" />
-                        <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control" Style="text-transform: none"  />
+                        <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control text-no-transform" />
                         <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-success col-sm-1" OnClick="btnBuscar_OnClick" />
                     </div>
                 </div>

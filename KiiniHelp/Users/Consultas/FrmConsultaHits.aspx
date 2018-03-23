@@ -17,10 +17,10 @@
                 <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
                     <div class="alert alert-danger">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />

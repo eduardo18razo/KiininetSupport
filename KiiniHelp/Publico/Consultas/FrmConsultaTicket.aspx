@@ -39,7 +39,7 @@
                         <div class="module-wrapper">
                             <section class="module member-module module-no-heading module-no-footer">
                                 <div class="module-inner">
-                                    <div class="module-heading no-border" style="border: none !important">
+                                    <div class="module-heading no-border">
                                         <h4 class="title">Consulta de tickets</h4>
                                         <p class="text-primary">Ingresa la siguiente información para consultar tu ticket.</p>
                                         <hr>
@@ -58,7 +58,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label" for="txtClave">Clave de registro</label>
                                                     <div class="col-sm-10">
-                                                        <asp:TextBox type="text" class="form-control" runat="server" ID="txtClave"  onkeydown="return (event.keyCode!=13);" style="text-transform: uppercase"/>
+                                                        <asp:TextBox type="text" CssClass="form-control text-uppercase" runat="server" ID="txtClave"  onkeydown="return (event.keyCode!=13);"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -151,8 +151,6 @@
                                                                         <ctrlexterno:htmleditor runat="Server" id="txtEditor" height="350px" ToggleMode="ToggleButton" colorscheme="VisualStudio" onkeypress="SetComment(this)"/>
                                                                     </ContentTemplate>
                                                                 </asp:UpdatePanel>
-                                                                <%--<asp:TextBox ID="targetEditor" ClientIDMode="Static" onclick="CargaEditor('#targetEditor')" data-provide="markdown" Rows="10" CssClass="form-control" TextMode="MultiLine" runat="server" Style="text-transform: none"></asp:TextBox>
-                                                                <asp:Button CssClass="btn btn-primary" runat="server" Text="Comentar" ID="btnComentar" OnClick="btnComentar_OnClick" />--%>
                                                                 <asp:Button CssClass="btn btn-primary" runat="server" Text="Comentar" ID="btnComentar"  OnClick="btnComentar_OnClick" OnClientClick="SetComment(this);"/>
                                                             </div>
                                                         </div>

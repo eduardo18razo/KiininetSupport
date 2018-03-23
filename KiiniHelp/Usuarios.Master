@@ -385,11 +385,11 @@
                                 <asp:Image ImageUrl="~/assets/images/profiles/perfil.png" alt="" ID="imgPerfil" runat="server" />
                                 <i class="fa fa-caret-down"></i>
                                 <p class="nombreUsuario">
-                                    <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
-                                    <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
+                                    <asp:Label runat="server" CssClass="fontXs">Hola,</asp:Label>
+                                    <asp:Label runat="server" ID="lblUsuario" CssClass="fontXs" />
                                     / <strong class="text-theme">
-                                        <asp:Label runat="server" ID="lblAreaSeleccionada" Style="font-size: x-small"></asp:Label>
-                                        <asp:Label runat="server" ID="lblTipoUsr" Style="font-size: x-small" Visible="False" /></strong>
+                                        <asp:Label runat="server" ID="lblAreaSeleccionada" CssClass="fontXs"></asp:Label>
+                                        <asp:Label runat="server" ID="lblTipoUsr" CssClass="fontXs" Visible="False" /></strong>
                                 </p>
                             </div>
 

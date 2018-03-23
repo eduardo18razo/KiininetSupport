@@ -71,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer" style="text-align: center">
+                    <div class="panel-footer text-center">
                         <asp:Button ID="btnAceptar" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnAceptarOrganizacion_OnClick" />
                         <asp:Button ID="btnCancelar" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelar_OnClick" />
                     </div>
@@ -90,10 +90,10 @@
                     <div class="modal-header" id="panelAlertaCatalogo" runat="server" visible="false">
                         <div class="alert alert-danger">
                             <div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                                 </div>
-                                <div style="float: left">
+                                <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
                                 <div class="clearfix clear-fix" />
@@ -132,7 +132,7 @@
                             <asp:CheckBox runat="server" ID="chkHabilitado" Checked="True" Visible="False" />
                         </div>
                     </div>
-                    <div class="panel-footer" style="text-align: center">
+                    <div class="panel-footer text-center">
                         <asp:Button ID="btnGuardarCatalogo" runat="server" CssClass="btn btn-success" Text="Aceptar" OnClick="btnGuardarCatalogo_OnClick" />
                         <asp:Button ID="btnCancelarCatalogo" runat="server" CssClass="btn btn-danger" Text="Cancelar" OnClick="btnCancelarCatalogo_OnClick" />
                     </div>

@@ -20,10 +20,10 @@
                 <header class="modal-header" id="panelAlerta" runat="server" visible="false">
                     <div class="alert alert-danger">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
@@ -129,8 +129,8 @@
 <div class="modal fade" id="modalFiltroFechas" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     <asp:UpdatePanel ID="upFiltroFechas" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <div class="modal-dialog modal-lg" style="width: 450px">
-                <div class="modal-content" style="width: 450px">
+            <div class="modal-dialog modal-lg widht450px">
+                <div class="modal-content widht450px">
                     <uc1:UcFiltroFechasGrafico runat="server" ID="ucFiltroFechasGrafico" />
                 </div>
             </div>

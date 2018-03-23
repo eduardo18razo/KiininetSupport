@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="height: 100%;">
+    <div class="heigth100">
         <uc1:UcTicketDetalle runat="server" ID="UcTicketDetalle" />
     </div>
 </asp:Content>

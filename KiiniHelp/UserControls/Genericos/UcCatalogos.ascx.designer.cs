@@ -7,10 +7,6 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-
 namespace KiiniHelp.UserControls.Genericos {
     
     
@@ -23,7 +19,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected UpdatePanel upCatlogos;
+        protected global::System.Web.UI.UpdatePanel upCatlogos;
         
         /// <summary>
         /// Control lblTitleCatalogo.
@@ -32,7 +28,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected Label lblTitleCatalogo;
+        protected global::System.Web.UI.WebControls.Label lblTitleCatalogo;
         
         /// <summary>
         /// Control panelAlertaCatalogo.
@@ -41,7 +37,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected HtmlGenericControl panelAlertaCatalogo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelAlertaCatalogo;
         
         /// <summary>
         /// Control rptErrorCatalogo.
@@ -50,7 +46,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected Repeater rptErrorCatalogo;
+        protected global::System.Web.UI.WebControls.Repeater rptErrorCatalogo;
         
         /// <summary>
         /// Control hfCatalogo.
@@ -59,7 +55,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected HiddenField hfCatalogo;
+        protected global::System.Web.UI.WebControls.HiddenField hfCatalogo;
         
         /// <summary>
         /// Control ddlTipoUsuarioCatalogo.
@@ -68,7 +64,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected DropDownList ddlTipoUsuarioCatalogo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuarioCatalogo;
         
         /// <summary>
         /// Control txtDescripcionCatalogo.
@@ -77,7 +73,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected TextBox txtDescripcionCatalogo;
+        protected global::System.Web.UI.WebControls.TextBox txtDescripcionCatalogo;
         
         /// <summary>
         /// Control chkHabilitado.
@@ -86,7 +82,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected CheckBox chkHabilitado;
+        protected global::System.Web.UI.WebControls.CheckBox chkHabilitado;
         
         /// <summary>
         /// Control btnGuardarCatalogo.
@@ -95,7 +91,7 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected Button btnGuardarCatalogo;
+        protected global::System.Web.UI.WebControls.Button btnGuardarCatalogo;
         
         /// <summary>
         /// Control btnCancelarCatalogo.
@@ -104,6 +100,6 @@ namespace KiiniHelp.UserControls.Genericos {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected Button btnCancelarCatalogo;
+        protected global::System.Web.UI.WebControls.Button btnCancelarCatalogo;
     }
 }

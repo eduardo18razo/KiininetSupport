@@ -74,14 +74,14 @@
 
                                                 <div class="row">
                                                     <div class="col-lg-1 col-md-2 col-sm-6 col-xs-12">
-                                                        <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="Upload" Style="display: none" ClientIDMode="Static" />
+                                                        <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="Upload" CssClass="ocultar" ClientIDMode="Static" />
                                                         <div class="form-group avatar" runat="server" id="divAvatar" visible="True">
                                                             <figure class="figure col-lg-10 col-md-12 col-sm-6 col-xs-6 center-content-div center-block centered">
                                                                 <asp:Image CssClass="img-rounded img-responsive padding-25-top center-block" ImageUrl="~/assets/images/profiles/profile-1.png" ID="imgPerfil" alt="imgPerfil" runat="server" />
 
                                                                 <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer; max-height: 165px; max-width: 165px;">
                                                                     <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer; height: 56px" Enabled="false" />
-                                                                    <asp:LinkButton runat="server" Text="Editar" Style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-primary" Visible="false" />
+                                                                    <asp:LinkButton runat="server" Text="Editar" Style="margin-top: 10px;" ID="btnCambiarImagen" ClientIDMode="Static" CssClass="btn btn-primary margin-top-10" Visible="false" />
                                                                 </asp:Panel>
                                                             </figure>
                                                             <div class="form-group col-sm-10">
@@ -112,14 +112,14 @@
                                                                 <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                                             </div>
 
-                                                            <div class="col-lg-3 col-md-3 padding-20-left" style="padding-left: 20px">
+                                                            <div class="col-lg-3 col-md-3 padding-20-left">
                                                                 <label>Apellido Materno</label>
                                                                 <asp:TextBox ID="txtAm" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" MaxLength="32" />
                                                             </div>
 
                                                             <div class="col-lg-3 col-md-3 padding-20-left">
                                                                 <label>Nombre usuario</label>
-                                                                <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control texto-normal" onkeypress="return ValidaCampo(this,14)" OnTextChanged="txtAp_OnTextChanged" MaxLength="30" Style="text-transform: none" AutoPostBack="True" />
+                                                                <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control texto-normal text-no-transform" onkeypress="return ValidaCampo(this,14)" OnTextChanged="txtAp_OnTextChanged" MaxLength="30" AutoPostBack="True" />
                                                             </div>
                                                         </div>
 
@@ -222,7 +222,7 @@
                                                                     <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
                                                                         <div class="row">
                                                                             <div class="col-lg-12 col-md-12 no-padding-left">
-                                                                                <asp:TextBox runat="server" ID="txtCorreo" Text='<%# Eval("Correo") %>' type="email" CssClass='<%# bool.Parse(Eval("Obligatorio").ToString()) ? "form-control obligatorio"  : "form-control"  %>' Style="text-transform: lowercase" onkeypress="return ValidaCampo(this,13)" />
+                                                                                <asp:TextBox runat="server" ID="txtCorreo" Text='<%# Eval("Correo") %>' type="email" CssClass='<%# bool.Parse(Eval("Obligatorio").ToString()) ? "form-control obligatorio text-lowercase"  : "form-control text-lowercase"  %>' onkeypress="return ValidaCampo(this,13)" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -434,22 +434,22 @@
                                                                 <div class="col-lg-12 col-md-12">
                                                                     <div runat="server" id="divRolesGrupos" class="col-lg-12 col-md-12">
                                                                         <asp:Label runat="server" Visible="False" ID="lblIdRol" Text='<%# Eval("IdRol") %>' />
-                                                                        <span style="font-weight: 700;"><%# Eval("DescripcionRol") %></span>
+                                                                        <span class="strong"><%# Eval("DescripcionRol") %></span>
                                                                         <div class="col-lg-12 col-md-12">
                                                                             <asp:Repeater runat="server" ID="rptGrupos" OnItemDataBound="rptGrupos_OnItemDataBound">
                                                                                 <ItemTemplate>
                                                                                     <asp:Label runat="server" Visible="False" ID="lblIdGrupo" Text='<%# Eval("IdGrupo") %>' />
-                                                                                    <div class="form-group col-lg-4 col-md-4" style="padding: 5px">
+                                                                                    <div class="form-group col-lg-4 col-md-4 padding-5">
                                                                                         <span class="tag label label-info">
-                                                                                            <div class="row col-lg-4 col-md-4" style="padding: 5px">
-                                                                                                <div style="width: 100%">
+                                                                                            <div class="row col-lg-4 col-md-4 padding-5">
+                                                                                                <div class="widht100">
                                                                                                     <span style="font-weight: 400" class="text-left"><%# Eval("DescripcionGrupo") %></span>
                                                                                                     <asp:Repeater runat="server" ID="rptSubGrupos">
                                                                                                         <HeaderTemplate>
                                                                                                             <br />
                                                                                                         </HeaderTemplate>
                                                                                                         <ItemTemplate>
-                                                                                                            <div style="font-weight: 200; padding-left: 40px;" class="text-left">
+                                                                                                            <div class="padding-40-left text-left" >
                                                                                                                 <br />
                                                                                                                 <%# Eval("Descripcion") %>
                                                                                                                 <asp:LinkButton runat="server" class="remove el el-remove-circle" Visible="true" ID="btnRemoveRolSub" OnClick="btnRemoveRolSub_OnClick" CommandName='<%# Container.ItemIndex %>' CommandArgument='<%# Eval("Id") %>' />
@@ -486,10 +486,10 @@
 
                 <section class="module" id="divBtnGuardar" runat="server" visible="true">
                     <div class="module-inner">
-                        <div class="row" style="width: 100%; text-align: center">
+                        <div class="row widht100 text-center">
                             <br />
                             <asp:Button runat="server" Text="Cancelar" ID="btnCancelarEdicion" CssClass="btn btn-default margin-right-15" OnClick="btnCancelarEdicion_OnClick" />
-                            <asp:Button runat="server" Text="Guardar" ID="btnGuardar" CssClass="btn btn-primary margin-left" OnClick="btnGuardar_OnClick" />
+                            <asp:Button runat="server" Text="Guardar" ID="btnGuardar" CssClass="btn btn-primary margin-auto" OnClick="btnGuardar_OnClick" />
                         </div>
                     </div>
                     <br />

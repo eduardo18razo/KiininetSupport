@@ -97,7 +97,7 @@
             <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
                 <ProgressTemplate>
                     <div class="progressBar">
-                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." /> <%--Style="padding: 10px; position: fixed; top: 25%; left: 40%; border: 10px;" --%>
+                        <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." /> 
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -120,7 +120,7 @@
                     </div>
 
                     <div class="search-container" runat="server" visible="true">
-                        <div id="main-search" style="padding-top: 20px;">
+                        <div id="main-search" class="padding-20-top">
                             <i id="main-search-toggle" class="fa fa-search icon"></i>
                             <div id="main_search_input_wrapper" class="main_search_input_wrapper">
                                 <asp:UpdatePanel runat="server">
@@ -256,11 +256,11 @@
                                 <i class="fa fa-caret-down"></i>
 
                                 <p class="nombreUsuario">
-                                    <asp:Label runat="server" Style="font-size: x-small">Hola,</asp:Label>
-                                    <asp:Label runat="server" ID="lblUsuario" Style="font-size: x-small" />
+                                    <asp:Label runat="server" CssClass="fontXs">Hola,</asp:Label>
+                                    <asp:Label runat="server" ID="lblUsuario" CssClass="fontXs"  />
                                     / <strong class="text-theme">
-                                        <asp:Label runat="server" ID="lblAreaSeleccionada" Style="font-size: x-small"></asp:Label>
-                                        <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" Style="font-size: x-small" Visible="true" /></strong>
+                                        <asp:Label runat="server" ID="lblAreaSeleccionada" CssClass="fontXs"></asp:Label>
+                                        <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" CssClass="fontXs" Visible="true" /></strong>
                                 </p>
                             </div>
                         </div>

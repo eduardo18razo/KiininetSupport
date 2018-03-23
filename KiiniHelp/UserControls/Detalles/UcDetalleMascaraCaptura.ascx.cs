@@ -133,7 +133,6 @@ namespace KiiniHelp.UserControls.Detalles
                             createDivTexto.ID = "createDivTexto" + campo.NombreCampo;
                             createDivTexto.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12";
                             createDivTexto.Controls.Add(txtAlfanumerico);
-                            //txtAlfanumerico.Style.Add("margin-left", "10px");
                             createDiv.Controls.Add(createDivTexto);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
@@ -425,7 +424,7 @@ namespace KiiniHelp.UserControls.Detalles
                             {
                                 lk.Text = archivo;
                                 lk.NavigateUrl = ResolveUrl(string.Format("~/Downloads/FrmDownloads.aspx?file={0}", BusinessVariables.Directorios.RepositorioMascara + "~" + archivo));
-                                lk.Style.Add("margin-left", "10px");
+                                lk.Style.Add("margin-auto", "10px");
                                 HtmlGenericControl createDivFile = new HtmlGenericControl("DIV");
                                 createDivFile.ID = "createDivFile" + campo.NombreCampo;
                                 createDivFile.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12";

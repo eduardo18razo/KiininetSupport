@@ -55,12 +55,12 @@
                         <asp:Label runat="server" Text="Palabras de Búsqueda" />
                         <hr />
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtBusqueda" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control" Style="width: 100%" MaxLength="500"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtBusqueda" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control widht100" MaxLength="500"></asp:TextBox>
                         </div>
                         <asp:Label runat="server" Text="Etiquetas" />
                         <hr />
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtTags" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control" Style="width: 100%" MaxLength="500"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtTags" ClientIDMode="Static" TextMode="MultiLine" Rows="5" CssClass="form-control widht100" MaxLength="500"></asp:TextBox>
                         </div>
                         <asp:Label runat="server" Text="Adjuntos" />
                         <br />

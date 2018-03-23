@@ -8,10 +8,10 @@
                         <asp:Label runat="server" ID="lblTitleCatalogo"></asp:Label></h4>
                     <div class="alert alert-warning" id="panelAlertaCatalogo" runat="server" visible="false">
                         <div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
                             </div>
-                            <div style="float: left">
+                            <div class="float-left">
                                 <h3>Error</h3>
                             </div>
                             <div class="clearfix clear-fix" />
