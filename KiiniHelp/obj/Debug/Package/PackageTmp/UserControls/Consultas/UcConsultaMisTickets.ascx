@@ -64,7 +64,7 @@
 
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" ShowHeaderWhenEmpty="True"
                                     CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
-                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="1000" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                     <EmptyDataTemplate>
                                         <h3>Sin informacion Disponible</h3>

@@ -294,6 +294,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 ddlNivel1_OnSelectedIndexChanged(ddlNivel1, null);
                 ddlTipoUsuario.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
                 txtDescripcionNivel.Text = string.Empty;
+                txtDescripcionOpcion.Text = string.Empty;
                 LlenaCombos();
                 chkPublico.Checked = false;
                 chkEvaluacion.Checked = true;
@@ -424,7 +425,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         Metodos.LimpiarCombo(ddlNivel5);
                         Metodos.LimpiarCombo(ddlNivel6);
                         //Metodos.LimpiarCombo(ddlNivel7);
-                        Metodos.LlenaComboCatalogo(ddlArea, _servicioArea.ObtenerAreasTipoUsuario(IdTipoUsuario, true).Where(w => !w.Sistema).ToList());
+                        Metodos.LlenaComboCatalogo(ddlArea, _servicioArea.ObtenerAreas(true).Where(w => !w.Sistema).ToList());
                         btnPreview.Visible = false;
                         btnSaveAll.Visible = false;
                         btnSiguiente.Visible = true;
@@ -470,7 +471,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 area.IdUsuarioAlta = ((Usuario)Session["UserData"]).Id;
                 _servicioArea.Guardar(area);
                 txtDescripcionArea.Text = String.Empty;
-                Metodos.LlenaComboCatalogo(ddlArea, _servicioArea.ObtenerAreasTipoUsuario(IdTipoUsuario, true));
+                Metodos.LlenaComboCatalogo(ddlArea, _servicioArea.ObtenerAreas(true).Where(w => !w.Sistema).ToList());
             }
             catch (Exception ex)
             {

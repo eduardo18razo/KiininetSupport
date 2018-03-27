@@ -16,7 +16,7 @@ namespace KiiniHelp.UserControls.Consultas
         private readonly ServiceTicketClient _servicioTickets = new ServiceTicketClient();
         private readonly ServiceEstatusClient _servicioEstatus = new ServiceEstatusClient();
         private List<string> _lstError = new List<string>();
-        private const int PageSize = 20;
+        private const int PageSize = 100000;
 
         public List<string> Alerta
         {
@@ -51,8 +51,6 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<HelperTickets> lst = _servicioTickets.ObtenerTicketsUsuario(((Usuario)Session["UserData"]).Id, pageIndex, PageSize);
-                tblResults.DataSource = lst;
-                tblResults.DataBind();
                 if (lst != null)
                 {
                     if (ddlEstatus.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
@@ -89,6 +87,8 @@ namespace KiiniHelp.UserControls.Consultas
 
                     ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
                 }
+                tblResults.DataSource = lst;
+                tblResults.DataBind();
             }
             catch (Exception e)
             {
@@ -209,7 +209,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 Button btn = (Button)sender;
                 if (btn == null) return;
-                hfMuestraEncuesta.Value = btn.Attributes["nameofmyattribute"];
+                hfMuestraEncuesta.Value = btn.Attributes["data-tieneEncuesta"];
                 ucCambiarEstatusTicket.EsPropietario = true;
                 ucCambiarEstatusTicket.IdTicket = int.Parse(btn.CommandArgument);
                 ucCambiarEstatusTicket.IdEstatusActual = int.Parse(btn.CommandName);

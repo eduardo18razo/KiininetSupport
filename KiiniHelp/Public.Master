@@ -144,7 +144,8 @@
                                     <span class="sr-only">Tickets</span> <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                 </div>
                                 <ul class="dropdown-menu wdropdown-ticket right-45" role="menu" aria-labelledby="dropdownMenu-user">
-                                    <li><span class="arrow right48" />
+                                    <li>
+                                        <span class="arrow right48" ></span>
                                         <a role="menuitem" data-toggle="modal" data-target="#modal-new-ticket" data-backdrop="static" data-keyboard="false">
                                             <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
                                         </a></li>
