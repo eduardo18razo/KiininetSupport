@@ -174,7 +174,7 @@ namespace KiiniHelp.Agente
 
                 fechaInicio = DateTime.Now.AddMinutes(-60);
 
-                ((Label)btnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio).ToString();
+                ((Label)btnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio && EstatusSeleccionado.Contains(w.EstatusTicket.Id)).ToString();
             }
             catch (Exception e)
             {
@@ -569,6 +569,7 @@ namespace KiiniHelp.Agente
                             return;
                         }
                     _servicioAtencionTicket.AutoAsignarTicket(idTicket, ((Usuario)Session["UserData"]).Id, txtComentarioAsignacion.Text.Trim());
+                    txtComentarioAsignacion.Text = string.Empty;
                 }
 
                 ObtenerTicketsPage();
@@ -868,6 +869,7 @@ namespace KiiniHelp.Agente
             try
             {
                 GridDataItem row = (GridDataItem)e.Item;
+                if (row == null) return;
                 int idTicket = int.Parse(row.GetDataKeyValue("NumeroTicket").ToString());
                 string titulo = row["Tipificacion"].Text;
                 bool asigna = bool.Parse(row["puedeasignar"].Text);

@@ -136,10 +136,10 @@ namespace KiiniHelp
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
 
-
                 if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
                     if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
-                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx"));
+                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx?confirmaCuenta=true"));
+                
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
@@ -158,8 +158,8 @@ namespace KiiniHelp
                     hfCargaInicial.Value = (Session["CargaInicialModal"] ?? "False").ToString();
                     lblUsuario.Text = usuario.NombreCompleto;
                     lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
-                    int IdUsuario = usuario.Id;
-                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png";
+                    int idUsuario = usuario.Id;
+                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + idUsuario : "~/assets/images/profiles/profile-1.png";
                     ObtenerAreas();
                     int rolSeleccionado = agente ? (int)BusinessVariables.EnumRoles.Agente : 0;
                     if (RolSeleccionado != null)
@@ -171,17 +171,20 @@ namespace KiiniHelp
                     divMensajes.Visible = rolSeleccionado != (int)BusinessVariables.EnumRoles.Administrador;
                     divTickets.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.Agente;
                     divMensajes.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.Usuario;
+                    
                 }
                 rptMenu.DataSource = MenuActivo;
                 rptMenu.DataBind();
                 Session["ParametrosGenerales"] = _servicioParametros.ObtenerParametrosGenerales();
                 if (IsPostBack)
                 {
+                    
                     if (Page.Request.Params["__EVENTTARGET"] == "Buscador")
                     {
                         Buscador();
                     }
                 }
+                
             }
             catch (Exception ex)
             {

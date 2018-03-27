@@ -150,10 +150,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/08/2017 15:24:33</publishTime>
     </File>
     <File Include="bin/KiiniMaster.dll">
-      <publishTime>03/23/2018 13:28:26</publishTime>
+      <publishTime>03/23/2018 16:40:13</publishTime>
     </File>
     <File Include="bin/KiiniMaster.pdb">
-      <publishTime>03/23/2018 13:28:26</publishTime>
+      <publishTime>03/23/2018 16:40:12</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
       <publishTime>03/23/2018 10:52:59</publishTime>
@@ -162,16 +162,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/23/2018 10:52:59</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.dll">
-      <publishTime>03/23/2018 13:18:54</publishTime>
+      <publishTime>03/23/2018 16:40:07</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.pdb">
-      <publishTime>03/23/2018 13:18:54</publishTime>
+      <publishTime>03/23/2018 16:40:07</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.dll">
-      <publishTime>03/23/2018 13:18:54</publishTime>
+      <publishTime>03/23/2018 16:40:09</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.pdb">
-      <publishTime>03/23/2018 13:18:54</publishTime>
+      <publishTime>03/23/2018 16:40:09</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
       <publishTime>03/23/2018 10:52:59</publishTime>
@@ -180,10 +180,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/23/2018 10:52:59</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.dll">
-      <publishTime>03/23/2018 13:18:52</publishTime>
+      <publishTime>03/23/2018 16:40:02</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.pdb">
-      <publishTime>03/23/2018 13:18:52</publishTime>
+      <publishTime>03/23/2018 16:40:02</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.dll">
       <publishTime>03/23/2018 10:52:59</publishTime>
