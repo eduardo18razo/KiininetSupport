@@ -53,7 +53,7 @@
                                             <a data-toggle="collapse" class="panel-toggle no-underline" href="#faq5_1">
 
                                                 <div class="row">
-                                                    <div class="col-lg-10 col-md-8 col-sm-8">
+                                                    <div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
                                                         <h3 class="TitulosAzul">
                                                             <asp:Label runat="server" ID="lblTitle" /></h3>
                                                         <div runat="server" id="divUltimoAcceso">
@@ -61,7 +61,7 @@
                                                             <asp:Label runat="server" ID="lblFechaUltimoAcceso" Text="Fecha Último Acceso" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-2 col-md-4 col-sm-4 text-right">
+                                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-right">
                                                         <asp:LinkButton runat="server" Text="Editar" CssClass="btn btn-primary" ID="btnEditar" OnClick="btnEditar_OnClick" />
                                                     </div>
                                                 </div>

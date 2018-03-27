@@ -25,6 +25,10 @@
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
 
+    <%--    <link rel="stylesheet" href="assets/css/styles_movil.css" />
+    <link rel="stylesheet" href="assets/css/modales_movil.css" />--%>
+    <%-- <link rel="stylesheet" href="assets/css/main_movil.css" />--%>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
@@ -243,7 +247,7 @@
 
                             <div>
 
-                                <div class="item item-notifications separador-vertical-derecho" runat="server" ID="divRoles">
+                                <div class="item item-notifications separador-vertical-derecho" runat="server" id="divRoles">
                                     <i id="side-panel-toggle" class="side-panel-toggle panel-hide icon fa fa-users icon" data-toggle="tooltip" data-placement="bottom" title="Roles">
                                         <span class="badge badge-circle badge-info">
                                             <asp:Label runat="server" ID="lblBadgeRoles"></asp:Label></span>
@@ -270,7 +274,7 @@
                                             </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt=""  runat="server"/>
+                                                    <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt="" runat="server" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
                                                 <div class="meta">2h </div>

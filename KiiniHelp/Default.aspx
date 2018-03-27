@@ -24,10 +24,9 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <%--   <link rel="stylesheet" href="assets/css/elegant-icons.css" />--%>
+    <link rel="stylesheet" href="assets/css/menuStyle.css" />
     <link rel="stylesheet" href="assets/css/bootstrap-markdown.css" />
 
-    <%--    <link rel="stylesheet" href="assets/css/elusive-icons.css" />--%>
 
     <script type="text/javascript">
         function MostrarPopup(modalName) {
@@ -110,12 +109,12 @@
         </asp:UpdateProgress>
 
         <header class="header">
-            <div class="row">
+            <div class="row clearfix">
                 <div class="col-lg-2 col-md-2 col-sm-12">
                     <div class="branding">
                         <h1 class="logo text-center">
                             <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
-                                <asp:Image CssClass="logo-icon z-Index-Top" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server"/>
+                                <asp:Image CssClass="logo-icon z-Index-Top" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
                                 <asp:Label runat="server" ID="lblBranding" Visible="false" />
                             </asp:HyperLink>
                         </h1>
@@ -136,14 +135,14 @@
                     <div class="navbar-tools col-lg-6 col-md-6 col-sm-6 text-right">
                         <div class="utilities-container col-lg-12 col-md-12 col-sm-12 text-right">
                             <div class="utilities col-lg-4 col-md-3 col-sm-4 col-lg-offset-8 col-md-offset-9 col-sm-offset-8">
-                                <div class="item item-notifications">
-                                    <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
+                                <div class="item item-notifications z-Index-Top">
+                                    <div class="dropdown-toggle z-Index-Top" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Tickets</span> <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                     </div>
                                     <ul class="dropdown-menu wdropdown-ticket right-45" role="menu" aria-labelledby="dropdownMenu-user">
                                         <li>
-                                            <span class="arrow right48"></span>
-                                            <a role="menuitem" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modal-new-ticket">
+                                            <span class="arrow z-Index-Top right48"></span>
+                                            <a role="menuitem" class="z-Index-Top" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modal-new-ticket">
                                                 <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
                                             </a>
                                         </li>
@@ -159,15 +158,13 @@
                                         <span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
                                     </div>
                                     <div class="dropdown-menu wdropdown-login right-25" role="menu" aria-labelledby="dropdownMenu-messages">
-                                        <span class="arrow right25"></span>
+                                        <%--<span class="arrow"></span>--%>
                                         <div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <asp:UpdatePanel runat="server" UpdateMode="Conditional">
-                                                    <ContentTemplate>
-                                                        <uc1:UcLogCopia runat="server" ID="UcLogCopia" />
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                            </div>
+                                            <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                                                <ContentTemplate>
+                                                    <uc1:UcLogCopia runat="server" ID="UcLogCopia" />
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                             <div class="social-btns col-md-12 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-sm-offset-0">
                                             </div>
                                         </div>
@@ -186,7 +183,7 @@
                     <div class="row margin-top-100">
                         <div class="module-content collapse in centra-carrusel" id="content-1">
                             <div class="module-content-inner no-padding-bottom no-padding-top">
-                                <div class="carousel slide" data-ride="carousel" id="carouselPresenter">
+                                <div class="carousel slide z-Index-9" data-ride="carousel" id="carouselPresenter">
                                     <%
                                         string[] arch = Directory.GetFiles(ConfigurationManager.AppSettings["RepositorioCarousel"], "*.jpg", SearchOption.TopDirectoryOnly);
                                         int nNumOfDrives = arch.Length;
@@ -219,7 +216,7 @@
                                             }
                                         %>
                                     </div>
-                                    <a class="left carousel-control" data-slide="prev" href="#carouselPresenter">
+                                    <a class="left carousel-control z-Index-9" data-slide="prev" href="#carouselPresenter">
                                         <span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only">Previous</span>
                                     </a><a class="right carousel-control" data-slide="next" href="#carouselPresenter"><span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only">Next</span></a>
                                 </div>
@@ -331,8 +328,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Tu ticket se creo con éxito</h4>
+                        <h4 class="modal-title" id="myModalLabel">Tu ticket se creo con éxito</h4>
                     </div>
                     <div class="modal-body">
                         <asp:UpdatePanel runat="server">
@@ -356,8 +352,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div class="row">
             <footer id="footer" class="site-footer">

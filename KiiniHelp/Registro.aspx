@@ -6,12 +6,19 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Kiinisupport</title>
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
-    <link href="assets/css/elegant-icons.css" rel="stylesheet" />
-    <link href="assets/css/bootstrap-markdown.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/elegant-icons.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-markdown.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles_movil.css" />
+    <link rel="stylesheet" href="assets/css/modales_movil.css" />
+    <link rel="stylesheet" href="assets/css/main_movil.css" />
+
+
     <script type="text/javascript">
         function MostrarPopup(modalName) {
             $(modalName).on('shown.bs.modal', function () {
@@ -23,7 +30,7 @@
         };
     </script>
 </head>
-<body class="layout_no_leftnav">
+<body class="bg-aqua">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -38,21 +45,20 @@
         <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
             <ProgressTemplate>
                 <div class="progressBar">
-                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..."/>
+                    <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Images/loading.gif" AlternateText="Loading ..." ToolTip="Loading ..." />
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
 
         <asp:UpdatePanel ID="upGeneral" runat="server">
             <ContentTemplate>
-                <section class="auth-section">
+                <section class="bienvenido-section auth-section">
                     <div class="container">
                         <div class="row">
                             <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
-                                <h1 class="form-box-heading logo text-center"><span class="highlight">SOPORTE
-                                    <asp:Label runat="server" ID="lblBrandingModal" /></span> </h1>
-                                <div class="form-box-inner">
-                                    <h2 class="title text-center">Regístrate</h2>
+                                <h1 class="form-box-heading2 logo text-center"><span class="highlight">Regístrate
+                                    <asp:Label runat="server" ID="lblBrandingModal" Visible="false" /></span> </h1>
+                                <div class="form-box-inner2">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
                                             <div data-parsley-validate class="form-horizontal">
@@ -60,13 +66,9 @@
                                                     <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
                                                 </div>
                                                 <div class="form-group email top15">
-                                                    <asp:Button CssClass="btn btn-block btn-primary margin-top-30" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
-
-
-
-                                                    <p class="alt-path text-right">
-                                                        <asp:HyperLink CssClass="signup-link" NavigateUrl="~/Default.aspx" runat="server">Regresar al inicio</asp:HyperLink>
-                                                    </p>
+                                                    <asp:Button CssClass="btn btn-primary margin-top-15 margin-bottom-15" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
+                                                    <asp:Button CssClass="btn btn-default margin-top-15 margin-bottom-15" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
+                                                  
                                                 </div>
                                             </div>
                                         </div>
@@ -74,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="copyright text-center">&copy; 2017 - Powered by Kiininet</div>
+                        <div class="copyright2 text-center">&copy; 2017 - Powered by Kiininet</div>
                     </div>
                 </section>
             </ContentTemplate>

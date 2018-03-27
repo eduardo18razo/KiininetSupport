@@ -24,37 +24,36 @@
                             </div>
                         </div>
 
-
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
                             <div class="col-xs-12 col-sm-12 col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta de Tickets:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
+                                    <div class="col-xs-11 col-sm-11 col-md-10 col-lg-10 no-padding-left no-margin-left">
                                         <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
+                                    <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2 margin-top-3">
                                         <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">  
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o consulta por estatus</label>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
+                                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11  no-padding-left no-margin-left">
                                         <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control no-padding-left no-margin-left" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
-                                    <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
-                                        <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
-                                    </a>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center margin-top-btn-consulta">
+                                <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
+                                    <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
             </section>
 
             <section class="module">

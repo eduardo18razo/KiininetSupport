@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
+                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
+                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
+                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -190,14 +190,14 @@
                                             <div class="form-container col-md-6 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="row">
                                                     <asp:Label runat="server" Text="Ingresa tu nueva contraseña" CssClass="col-lg-12 text-left" />
-                                                    <br>
+                                                    <br/>
                                                     <div class="form-group password">
                                                         <label class="sr-only" for="txtContrasena">Password</label>
                                                         <span class="fa fa-lock icon"></span>
                                                         <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password text-no-transform" />
                                                     </div>
                                                     <asp:Label runat="server" Text="Confirma tu contraseña" CssClass="col-lg-12 text-left"/>
-                                                    <br>
+                                                    <br/>
                                                     <div class="form-group password">
                                                         <label class="sr-only" for="txtConfirmar">Password</label>
                                                         <span class="fa fa-lock icon"></span>
@@ -221,7 +221,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br>
+                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>
