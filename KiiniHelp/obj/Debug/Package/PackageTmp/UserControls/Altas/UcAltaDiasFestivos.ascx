@@ -56,13 +56,11 @@
 
                                 <div class="col-lg-7 col-md-7">
                                     <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" step="1" onkeydown="return (event.keyCode!=13);" />
-                                    <%--<asp:ImageButton ID="imgPopup" ImageUrl="~/assets/images/icons/Roles.png" runat="server" />--%>
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
                                     <i class="fa fa-calendar fa-20x margin-top-6" id="imgPopup2" runat="server"></i>
                                     <ajax:CalendarExtender runat="server" ID="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" PopupButtonID="imgPopup2"/>
-                                    <%-- --%>
                                     <ajax:maskededitextender id="MaskedEditExtender1" runat="server"
                                         targetcontrolid="txtDate" mask="99/99/9999"
                                         masktype="Date" messagevalidatortip="true"
