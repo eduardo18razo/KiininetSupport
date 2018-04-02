@@ -121,8 +121,8 @@
                     </div>
                 </div>
                 <div class="topbar bg_w_header col-lg-10 col-md-10 col-sm-12">
-                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding-top" runat="server" visible="True">
-                        <div class="search-container no-margin-left">
+                    <div class="no-padding-top" runat="server" visible="True">
+                        <div class="search-container2 no-margin-left">
                             <div id="main-search" class="padding-20-top">
                                 <i id="main-search-toggle" class="fa fa-search icon"></i>
                                 <div id="main_search_input_wrapper" class="main_search_input_wrapper">
@@ -157,7 +157,7 @@
                                     <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
                                     </div>
-                                    <div class="dropdown-menu wdropdown-login right-25" role="menu" aria-labelledby="dropdownMenu-messages">
+                                    <div class="dropdown-menu wdropdown-login right-25 margin-bottom-25" role="menu" aria-labelledby="dropdownMenu-messages">
                                         <%--<span class="arrow"></span>--%>
                                         <div>
                                             <asp:UpdatePanel runat="server" UpdateMode="Conditional">

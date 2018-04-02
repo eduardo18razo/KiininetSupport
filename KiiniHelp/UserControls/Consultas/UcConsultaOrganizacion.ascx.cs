@@ -38,7 +38,6 @@ namespace KiiniHelp.UserControls.Consultas
             set
             {
                 hfModal.Value = value.ToString();
-                //lblTitleOrganizacion.Text = value ? "Agregar Organización" : "Organizaciones";
             }
         }
         public int IdTipoUsuario
@@ -79,12 +78,6 @@ namespace KiiniHelp.UserControls.Consultas
             set
             {
                 LlenaOrganizaciones();
-                //No se ocupaba
-                //foreach (RepeaterItem item in rptResultados.Items)
-                //{
-                //    if ((((DataBoundLiteralControl)item.Controls[0])).Text.Split('\n')[1].Contains("id='" + value + "'"))
-                //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "Scripts", "SeleccionaOrganizacion(\"" + value + "\");", true);
-                //}
                 hfIdSeleccion.Value = value.ToString();
             }
         }
@@ -99,8 +92,6 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
-                //if (lstTipoUsuario.Count >= 2)
-                //    lstTipoUsuario.Insert(BusinessVariables.ComboBoxCatalogo.IndexTodos, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueTodos, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionTodos });
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
 
 
@@ -138,8 +129,6 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 tblResults.DataSource = null;
                 tblResults.DataBind();
-                //rptResultados.DataSource = null;
-                //rptResultados.DataBind();
             }
             catch (Exception e)
             {
@@ -151,7 +140,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                // lblBranding.Text = WebConfigurationManager.AppSettings["Brand"]; Etiqueta nombre organización
                 Alerta = new List<string>();
                 ucAltaOrganizaciones.OnAceptarModal += UcAltaOrganizacionesOnOnAceptarModal;
                 ucAltaOrganizaciones.OnCancelarModal += UcAltaOrganizacionesOnOnCancelarModal;
@@ -231,11 +219,6 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 txtFiltroDecripcion.Text = string.Empty;
-                //if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //{
-                //    LimpiarOrganizaciones();
-                //    return;
-                //}
 
                 LlenaOrganizaciones();
             }
@@ -253,7 +236,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                //ucAltaOrganizaciones.IdOrganizacion = int.Parse(((Button)sender).CommandArgument);
                 ucAltaOrganizaciones.IdOrganizacion = int.Parse(((ImageButton)sender).CommandArgument);
                 ucAltaOrganizaciones.EsSeleccion = false;
                 ucAltaOrganizaciones.EsAlta = false;
@@ -333,8 +315,6 @@ namespace KiiniHelp.UserControls.Consultas
                 tblResults.DataSource = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
                 tblResults.DataBind();
 
-                //rptResultados.DataSource = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
-                //rptResultados.DataBind();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception ex)

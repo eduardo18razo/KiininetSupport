@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcLogCopia.ascx.cs" Inherits="KiiniHelp.UserControls.UcLogCopia" %>
 <%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
 
-
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
 
@@ -9,7 +8,7 @@
             <h6>Accede a tu cuenta</h6>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body no-padding-top no-padding-bottom">
             <div class="row">
                 <asp:HiddenField runat="server" ID="fhFallo" Value="False" />
                 <div class="email">

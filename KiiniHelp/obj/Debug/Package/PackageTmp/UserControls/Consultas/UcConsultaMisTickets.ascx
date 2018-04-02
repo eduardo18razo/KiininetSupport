@@ -64,7 +64,7 @@
 
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" ShowHeaderWhenEmpty="True"
                                     CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
-                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="1000" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="14" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
                                     <EmptyDataTemplate>
                                         <h3>Sin informacion Disponible</h3>
@@ -113,15 +113,13 @@
                 </div>
             </section>
 
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
 
     <div class="modal fade" id="modalCambiaEstatus" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upCambiaestatus" runat="server">
             <ContentTemplate>
-                <div class="modal-dialog" style="height: 250px;">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <uc1:UcCambiarEstatusTicket runat="server" ID="ucCambiarEstatusTicket" />
                     </div>

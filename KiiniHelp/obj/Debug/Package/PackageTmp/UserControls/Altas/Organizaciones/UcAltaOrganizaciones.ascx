@@ -126,7 +126,6 @@
                     </div>
                 </div>
                 <!--/CONTAINER IZQUIERDA-->
-
                 <!--CONTAINER DERECHA-->
 
                 <!--Filtro 1 ORGANIZACIÓN-->
@@ -169,8 +168,7 @@
                                             </label>
                                             <p>
                                                 <asp:TextBox CssClass="form-control no-margin-left" ID="txtDescripcionCatalogo" runat="server" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" MaxLength="50" autofocus="autofocus" />
-
-                                                <asp:LinkButton runat="server" OnClick="btnGuardarCatalogo_OnClick" ID="btnGuardarCatalogo" class="fa fa-plus-circle col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right no-padding-right" />
+                                                <asp:LinkButton runat="server" OnClick="btnGuardarCatalogo_OnClick" ID="btnGuardarCatalogo" class="fa fa-plus-circle col-lg-1 col-md-1 col-sm-2 col-xs-2 col-lg-offset-11 col-md-offset-11 text-right no-padding-right" />
                                             </p>
                                             <p class="text-right">
                                                 <asp:LinkButton runat="server" ID="btnGuardar" Text="Guardar" CssClass="text-right btn btn-guardar" OnClick="btnGuardar_Click" />

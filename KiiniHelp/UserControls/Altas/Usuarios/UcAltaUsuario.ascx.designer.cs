@@ -85,6 +85,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.HiddenField hfConsultas;
         
         /// <summary>
+        /// Control pnlPrincipal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink pnlPrincipal;
+        
+        /// <summary>
         /// Control lblTitle.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditar;
+        
+        /// <summary>
+        /// Control faq5_1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel faq5_1;
         
         /// <summary>
         /// Control btnUpload.
@@ -292,6 +310,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.CheckBox chkPersonaFisica;
         
         /// <summary>
+        /// Control faq5_2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel faq5_2;
+        
+        /// <summary>
         /// Control rptTelefonos.
         /// </summary>
         /// <remarks>
@@ -337,6 +364,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.Button btnModalOrganizacion;
         
         /// <summary>
+        /// Control faq5_3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel faq5_3;
+        
+        /// <summary>
         /// Control rptOrganizacion.
         /// </summary>
         /// <remarks>
@@ -355,6 +391,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.Button btnModalUbicacion;
         
         /// <summary>
+        /// Control faq5_4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel faq5_4;
+        
+        /// <summary>
         /// Control rptUbicacion.
         /// </summary>
         /// <remarks>
@@ -371,6 +416,15 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModalRoles;
+        
+        /// <summary>
+        /// Control faq5_5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel faq5_5;
         
         /// <summary>
         /// Control rptRoles.

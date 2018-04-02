@@ -66,6 +66,15 @@ input {
         font-size: 16px;
     }
 
+    /*empieza Móvil  main_movil.css*/
+
+    body, input, select, textarea {
+        font-size: 11pt;
+        line-height: 1.35em;
+    }
+
+    /*termina Móvil*/
+
     .container-fluid {
         padding: 15px;
     }
@@ -174,9 +183,9 @@ input {
         margin: 0 auto;
     }
 
-    .modal-dialog {
+    /*.modal-dialog {
         width: 40%;
-    }
+    }*/
 
     .help-section .search-box .btn {
         width: 100%;
@@ -268,48 +277,6 @@ input {
         }
 }
 
-/* Landscape phones and down */
-@media (max-width: 480px) {
-    body {
-        font-size: 18px;
-    }
-}
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    body {
-        font-size: 20px;
-    }
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-    body {
-        font-size: 20px;
-    }
-}
-
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-    body {
-        font-size: 20px;
-    }
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-    body {
-        font-size: 20px;
-    }
-}
-
-/* iPhone 4 and high pixel ratio devices ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
-    body {
-        font-size: 20px;
-    }
-}
 
 
 hr {
@@ -635,42 +602,61 @@ button.close:focus {
     height: 65px;
 }
 
-    .header .search-container .icon {
+.header .search-container2 {
+    float: left;
+    display: inline-block;
+    margin-left: 60px;
+    position: relative;
+    background-color: #F5F5F5;
+    width: 60px; /*300px*/
+    height: 65px;
+}
+
+    .header .search-container2 .icon {
         position: absolute;
-        left: 270px;
+        left: 20px; /*70px*/
         font-size: 18px;
         color: #afb3bb;
         cursor: pointer;
     }
 
-        .header .search-container .icon:hover {
-            color: #7C7C7C;
-        }
+.header .search-container .icon {
+    position: absolute;
+    left: 270px;
+    font-size: 18px;
+    color: #afb3bb;
+    cursor: pointer;
+}
 
-        .header .search-container .icon.clear-search {
-            left: auto;
-            right: 0;
-            display: none;
-            cursor: pointer;
-        }
 
-    .header .search-container .main_search_input_wrapper {
-        padding-left: 0;
+    .header .search-container .icon:hover {
+        color: #7C7C7C;
     }
 
-    .header .search-container .main_search_input {
-        background: #fbfbfb;
-        border-radius: 0;
-        background-clip: padding-box;
-        border: none;
-        padding-bottom: 5px;
-        width: 270px;
-        vertical-align: middle;
+    .header .search-container .icon.clear-search {
+        left: auto;
+        right: 0;
+        display: none;
+        cursor: pointer;
     }
 
-        .header .search-container .main_search_input:focus {
-            border-color: #40babd;
-        }
+.header .search-container .main_search_input_wrapper {
+    padding-left: 0;
+}
+
+.header .search-container .main_search_input {
+    background: #fbfbfb;
+    border-radius: 0;
+    background-clip: padding-box;
+    border: none;
+    padding-bottom: 5px;
+    width: 270px;
+    vertical-align: middle;
+}
+
+    .header .search-container .main_search_input:focus {
+        border-color: #40babd;
+    }
 
 .header .navbar-tools {
     float: right;
@@ -799,7 +785,7 @@ button.close:focus {
     }
 
     .header .utilities-container .item-messages .dropdown-menu {
-        width: 420px;
+        width: 280px;
         left: auto;
         /*right: -101px;*/ /*login */
         padding: 0;
@@ -3756,10 +3742,10 @@ textarea {
 }
 
 
-.radio label,
+/*.radio label,
 .checkbox label {
     margin: 3px 0;
-}
+}*/
 
 
 .radio label {
@@ -4648,7 +4634,6 @@ ul.sortable {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
 }
 
 /* Theme default */
@@ -6013,7 +5998,6 @@ ul.sortable {
     .margin-top-btn-consulta {
         margin-top: 35px;
     }
-
 }
 
 .overflowY {
@@ -6626,7 +6610,7 @@ input[type="radio"] + label {
     font-size: x-small !important;
 }
 
-.iconLogin{
+.iconLogin {
     top: 28px !important;
     left: 8px;
 }
@@ -6747,4 +6731,63 @@ input, input[type="file"] {
     width: 850px;
     height: 650px;
     border: none;
+}
+
+
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    body {
+        font-size: 20px;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+    body {
+        font-size: 20px;
+    }
+}
+
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    body {
+        font-size: 20px;
+    }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    body {
+        font-size: 20px;
+    }
+
+    .form-control {
+        font-size: 16px;
+        /*background-color:violet;*/
+    }
+}
+
+/* iPhone 4 and high pixel ratio devices ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+    body {
+        font-size: 18px;
+    }
+
+    .form-control {
+        font-size: 16px !important;
+        /*background-color: ActiveCaption;*/
+    }
+
+    .content-wrapper {
+        padding-top: 120px;
+    }
 }

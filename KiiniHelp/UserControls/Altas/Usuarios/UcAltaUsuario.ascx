@@ -50,7 +50,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading panel-heading-theme-1 ">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" class="panel-toggle no-underline" href="#faq5_1">
+                                            <asp:HyperLink data-toggle="collapse" ID="pnlPrincipal" runat="server" CssClass="panel-toggle no-underline" NavigateUrl="#faq5_1">
 
                                                 <div class="row">
                                                     <div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
@@ -65,10 +65,11 @@
                                                         <asp:LinkButton runat="server" Text="Editar" CssClass="btn btn-primary" ID="btnEditar" OnClick="btnEditar_OnClick" />
                                                     </div>
                                                 </div>
-
-                                            </a></h4>
+                                            </asp:HyperLink>
+                                        </h4>
                                     </div>
-                                    <div class="panel-collapse  collapse" id="faq5_1">
+
+                                    <asp:Panel runat="server" CssClass="panel-collapse  collapse" ID="faq5_1" ClientIDMode="Static">
                                         <div class="panel-body">
                                             <div class="panel-group panel-group-theme-1">
 
@@ -89,10 +90,8 @@
                                                                     <asp:Label runat="server" ID="lblnombreCompleto" CssClass="col-sm-11" />
                                                                 </h2>
                                                             </div>
-
                                                         </div>
                                                     </div>
-
 
                                                     <div class="col-lg-11 col-md-11">
                                                         <div class="row" runat="server" id="divTipousuario">
@@ -158,10 +157,9 @@
                                                     </div>
                                                 </div>
 
-
                                             </div>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
                                 </div>
                             </div>
 
@@ -177,7 +175,7 @@
                                                 </div>
                                             </a></h4>
                                     </div>
-                                    <div class="panel-collapse  collapse" id="faq5_2">
+                                    <asp:Panel runat="server" CssClass="panel-collapse  collapse" ID="faq5_2" ClientIDMode="Static">
                                         <div class="panel-body">
                                             <div class="panel-group panel-group-theme-1">
 
@@ -238,7 +236,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
                                 </div>
 
                             </div>
@@ -262,7 +260,7 @@
                                     </div>
 
 
-                                    <div class="panel-collapse  collapse" id="faq5_3">
+                                    <asp:Panel runat="server" CssClass="panel-collapse collapse" ID="faq5_3" ClientIDMode="Static">
                                         <div class="panel-body">
                                             <div class="panel-group panel-group-theme-1">
                                                 <div class="row">
@@ -319,7 +317,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
                                 </div>
                             </div>
 
@@ -342,7 +340,7 @@
                                             </div>
                                         </h4>
                                     </div>
-                                    <div class="panel-collapse  collapse" id="faq5_4">
+                                    <asp:Panel runat="server" CssClass="panel-collapse collapse" ID="faq5_4" ClientIDMode="Static">
                                         <div class="panel-body">
                                             <div class="panel-group panel-group-theme-1">
 
@@ -399,7 +397,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
                                 </div>
 
                             </div>
@@ -423,7 +421,7 @@
                                             </div>
                                         </h4>
                                     </div>
-                                    <div class="panel-collapse  collapse" id="faq5_5">
+                                    <asp:Panel runat="server" CssClass="panel-collapse collapse" ID="faq5_5" ClientIDMode="Static">
                                         <div class="panel-body">
                                             <div class="panel-group panel-group-theme-1">
                                                 <div class="row">
@@ -449,7 +447,7 @@
                                                                                                             <br />
                                                                                                         </HeaderTemplate>
                                                                                                         <ItemTemplate>
-                                                                                                            <div class="padding-40-left text-left" >
+                                                                                                            <div class="padding-40-left text-left">
                                                                                                                 <br />
                                                                                                                 <%# Eval("Descripcion") %>
                                                                                                                 <asp:LinkButton runat="server" class="remove el el-remove-circle" Visible="true" ID="btnRemoveRolSub" OnClick="btnRemoveRolSub_OnClick" CommandName='<%# Container.ItemIndex %>' CommandArgument='<%# Eval("Id") %>' />
@@ -475,14 +473,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </asp:Panel>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </section>
-
 
                 <section class="module" id="divBtnGuardar" runat="server" visible="true">
                     <div class="module-inner">

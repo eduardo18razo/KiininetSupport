@@ -71,8 +71,8 @@
                                                     <div class="form-group">
                                                         <asp:CustomValidator ErrorMessage="" OnServerValidate="OnServerValidate" runat="server" />
                                                         <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="4"
-                                                            CssClass="col-sm-4 margin-bottom-5"
-                                                            CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
+                                                            CssClass="col-lg-4 col-md-4 col-sm-12 col-xs-12 margin-bottom-5" 
+                                                            CaptchaHeight="60" CaptchaWidth="150" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
                                                             FontColor="#D20B0C" NoiseColor="#B1B1B1" />
                                                         <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa el texto de la imagen:</asp:Label>
                                                         <asp:TextBox class="form-control text-uppercase" ID="txtCaptcha" runat="server" />

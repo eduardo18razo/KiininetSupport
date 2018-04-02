@@ -125,6 +125,22 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
+        #region Paginador
+        protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            tblResults.PageIndex = e.NewPageIndex;
+
+            ViewState["Column"] = "DateTime";
+            ViewState["Sortorder"] = "ASC";
+            ViewState["PageIndex"] = "0";
+            ViewState["Filtros"] = new Dictionary<string, string>();
+            LlenaEstatus();
+            ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
+        }
+
+        #endregion
+
+
         void ucCambiarEstatusTicket_OnCancelarModal()
         {
             try
@@ -151,16 +167,16 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     string url =
                         ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" +
-                                   (int) BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" +
+                                   (int)BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" +
                                    ucCambiarEstatusTicket.IdTicket);
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof (Page), "ScriptEncuesta",
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta",
                         "OpenWindow(\"" + url + "\");", true);
                 }
             }
             ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()),
-                (Dictionary<string, string>) ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC",
+                (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC",
                 ViewState["Column"].ToString());
-            ScriptManager.RegisterClientScriptBlock(Page, typeof (Page), "Script",
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script",
                 "CierraPopup(\"#modalCambiaEstatus\");", true);
         }
 
@@ -228,16 +244,9 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        
 
-        #region Paginador
-        protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            tblResults.PageIndex = e.NewPageIndex;
-            LlenaEstatus();
-        }
 
-        #endregion
+
 
 
     }

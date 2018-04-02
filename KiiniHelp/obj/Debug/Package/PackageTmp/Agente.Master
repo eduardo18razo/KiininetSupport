@@ -162,21 +162,21 @@
                                         <div class="notification-items no-overflow">
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
                                                 <div class="meta">2h </div>
                                             </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
                                                 <div class="meta">2h </div>
                                             </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
                                                 <div class="meta">2h </div>

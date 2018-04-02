@@ -727,7 +727,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 divData.Visible = true;
                 divStep1.Visible = true;
                 int level = hfCatalogo.Value == string.Empty ? 0 : int.Parse(hfCatalogo.Value);
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Operador || level > 1)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && (int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Operador || level > 1))
                 {
                     pnlAlta.Visible = true;
                     LlenaComboDinamico(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerHoldings(int.Parse(ddlTipoUsuario.SelectedValue), true));
@@ -778,7 +778,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblStepNivel2.Text = "...";
                         btnStatusNivel2.CssClass = "btn btn-seleccione btn-square";
                         pnlAlta.Visible = true;
-                        //pnlAlta.Enabled = true;
                         break;
                     case 2:
                         btnStatusNivel2.CssClass = "btn btn-primary btn-square";
@@ -1212,7 +1211,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 else if (!EsAlta && !EsSeleccion)
                 {
                     Guardar();
-                    //btnGuardarCatalogo_OnClick(btnGuardarCatalogo, null);
                 }
                 LimpiaCatalogo();
                 if (OnTerminarModal != null)
