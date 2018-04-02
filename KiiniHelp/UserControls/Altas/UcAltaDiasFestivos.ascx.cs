@@ -244,10 +244,6 @@ namespace KiiniHelp.UserControls.Altas
                     DateTime fecha = Convert.ToDateTime(btn.CommandArgument);
                     IdDiaFeriadoEdicion = _servicioDias.ObtenerDiaByFecha(fecha).Id;
                     hfEditando.Value = btn.CommandArgument;
-                    //List<DiaFeriado> tmpSeleccionados = DiasFeriados ?? new List<DiaFeriado>();
-                    //DiaFeriado diaSeleccion = tmpSeleccionados.Single(f => f.Fecha == fecha);
-                    //txtDescripcionDia.Text = diaSeleccion.Descripcion;
-                    //txtDate.Text = diaSeleccion.Fecha.ToString("yyyy-MM-dd");
                 }
             }
             catch (Exception ex)
