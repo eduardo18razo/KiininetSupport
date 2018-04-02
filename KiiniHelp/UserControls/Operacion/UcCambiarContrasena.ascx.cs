@@ -29,20 +29,12 @@ namespace KiiniHelp.UserControls.Operacion
         {
             try
             {
-                StringBuilder sb = new StringBuilder();
                 if (txtContrasenaActual.Text.Trim() == string.Empty)
-                    sb.AppendLine("<li>Contraseña antigua es campo obligatorio</li>");
+                    throw new Exception("Contraseña antigua es campo obligatorio~");
                 if (txtContrasenaNueva.Text.Trim() == string.Empty)
-                    sb.AppendLine("<li>Contraseña nueva es campo obligatorio</li>");
+                    throw new Exception("Contraseña nueva es campo obligatorio~");
                 if (txtContrasenaNueva.Text.Trim() != txtConfirmaContrasenaNueva.Text.Trim())
-                    sb.AppendLine("<li>Las contraseñas no coinciden</li>");
-                if (sb.ToString() != string.Empty)
-                {
-                    sb.Append("</ul>");
-                    sb.Insert(0, "<ul>");
-                    sb.Insert(0, "<h3>Datos Generales</h3>");
-                    throw new Exception(sb.ToString());
-                }
+                    throw new Exception("Las contraseñas no coinciden");
             }
             catch (Exception e)
             {
@@ -86,7 +78,15 @@ namespace KiiniHelp.UserControls.Operacion
                 {
                     _lstError = new List<string>();
                 }
-                _lstError.Add(ex.Message);
+                if(ex.Message.Contains("~"))
+                    foreach (string msg in ex.Message.Split('~'))
+                    {
+                        _lstError.Add(msg);
+                    }
+                else
+                {
+                    _lstError.Add(ex.Message);
+                }
                 AlertaGeneral = _lstError;
             }
         }

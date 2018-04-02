@@ -555,10 +555,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/08/2017 15:24:33</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>03/26/2018 17:14:21</publishTime>
+      <publishTime>03/27/2018 11:00:13</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>03/26/2018 17:14:21</publishTime>
+      <publishTime>03/27/2018 11:00:13</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
       <publishTime>03/23/2018 10:52:59</publishTime>

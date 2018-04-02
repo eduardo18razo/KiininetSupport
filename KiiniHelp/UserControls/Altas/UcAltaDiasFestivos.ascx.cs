@@ -85,7 +85,7 @@ namespace KiiniHelp.UserControls.Altas
                 if (dia != null)
                 {
                     txtDescripcionDia.Text = dia.Descripcion;
-                    txtDate.Text = dia.Fecha.ToString("yyyy-MM-dd");
+                    txtDate.Text = dia.Fecha.ToString("dd/MM/yyyy");
                 }
             }
         }
