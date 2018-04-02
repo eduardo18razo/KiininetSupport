@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
 
+    <link href="assets/css/fontello-codes.css" rel="stylesheet" />
+    <link href="assets/css/fontello-ie7-codes.css" rel="stylesheet" />
+    <link href="assets/css/fontello-ie7.css" rel="stylesheet" />
+    <link href="assets/css/fontello.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
@@ -88,7 +93,6 @@
                     <asp:ScriptReference Path="~/assets/tmp/editor/plugins/base64/trumbowyg.base64.min.js" />
                     <asp:ScriptReference Path="~/assets/tmp/editor/plugins/upload/trumbowyg.upload.min.js" />
                     <asp:ScriptReference Path="~/assets/tmp/jquery.tagsinput.min.js" />
-
 
                     <asp:ScriptReference Path="~/assets/js/jquery.sumoselect.min.js" />
                     <asp:ScriptReference Path="~/assets/js/validation.js" />
@@ -194,35 +198,35 @@
                                         <div class="message-items no-overflow cont-badge-msg">
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img class="profile" src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" CssClass="profile" ImageUrl="~/assets/images/profiles/profile-1.png" AlternateText="perfil" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
                                                 <div class="meta">Ene 6 </div>
                                             </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img class="profile" src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" CssClass="profile" ImageUrl="~/assets/images/profiles/profile-1.png" AlternateText="perfil" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
                                                 <div class="meta">Ene 6 </div>
                                             </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img class="profile" src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" CssClass="profile" ImageUrl="~/assets/images/profiles/profile-1.png" AlternateText="perfil" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
                                                 <div class="meta">Ene 6 </div>
                                             </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img class="profile" src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" CssClass="profile" ImageUrl="~/assets/images/profiles/profile-1.png" AlternateText="perfil"/>
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
                                                 <div class="meta">Ene 6 </div>
                                             </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img class="profile" src="/assets/images/profiles/profile-1.png" alt="" />
+                                                    <asp:Image runat="server" CssClass="profile" ImageUrl="~/assets/images/profiles/profile-1.png" AlternateText="perfil"/>
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
                                                 <div class="meta">Ene 6 </div>

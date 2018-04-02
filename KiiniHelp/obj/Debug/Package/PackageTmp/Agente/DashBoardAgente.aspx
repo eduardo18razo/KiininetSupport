@@ -4,10 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../assets/css/dashboards.css" rel="stylesheet" />
-    <link href="../assets/css/fontello-codes.css" rel="stylesheet" />
-    <link href="../assets/css/fontello-ie7-codes.css" rel="stylesheet" />
-    <link href="../assets/css/fontello-ie7.css" rel="stylesheet" />
-    <link href="../assets/css/fontello.css" rel="stylesheet" />
+    
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

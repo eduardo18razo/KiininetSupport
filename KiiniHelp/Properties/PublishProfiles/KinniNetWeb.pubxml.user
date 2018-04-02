@@ -9,13 +9,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="Agente.Master">
-      <publishTime>03/27/2018 11:34:45</publishTime>
+      <publishTime>03/28/2018 17:26:27</publishTime>
     </File>
     <File Include="Agente/Bandeja.aspx">
       <publishTime>03/23/2018 15:07:36</publishTime>
     </File>
     <File Include="Agente/DashBoardAgente.aspx">
-      <publishTime>03/23/2018 15:06:00</publishTime>
+      <publishTime>03/28/2018 16:01:40</publishTime>
     </File>
     <File Include="Agente/FrmAgenteNuevoTicket.aspx">
       <publishTime>03/23/2018 15:06:00</publishTime>
@@ -510,10 +510,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/05/2018 12:49:54</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>03/28/2018 14:33:42</publishTime>
+      <publishTime>04/02/2018 11:10:01</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>03/28/2018 14:33:42</publishTime>
+      <publishTime>04/02/2018 11:10:01</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
       <publishTime>03/28/2018 14:33:26</publishTime>
@@ -1155,7 +1155,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/19/2018 18:55:52</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaDiasFestivos.ascx">
-      <publishTime>03/23/2018 15:06:00</publishTime>
+      <publishTime>04/02/2018 11:36:41</publishTime>
     </File>
     <File Include="UserControls/Altas/UcAltaGrupoUsuario.ascx">
       <publishTime>03/27/2018 11:34:46</publishTime>
@@ -1407,7 +1407,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/23/2018 15:06:00</publishTime>
     </File>
     <File Include="UserControls/Operacion/UcCambiarContrasena.ascx">
-      <publishTime>03/28/2018 14:33:20</publishTime>
+      <publishTime>03/28/2018 15:37:16</publishTime>
     </File>
     <File Include="UserControls/Operacion/UcCambiarEstatusAsignacion.ascx">
       <publishTime>02/19/2018 18:55:52</publishTime>
