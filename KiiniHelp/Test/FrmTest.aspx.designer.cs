@@ -22,66 +22,30 @@ namespace KiiniHelp.Test {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control ddlUsuarioAsignacion.
+        /// Control scripMain.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownTree ddlUsuarioAsignacion;
+        protected global::System.Web.UI.ScriptManager scripMain;
         
         /// <summary>
-        /// Control rchArea.
+        /// Control txtEditor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rchArea;
+        protected global::Winthusiasm.HtmlEditor.HtmlEditor txtEditor;
         
         /// <summary>
-        /// Control rhcTickets.
+        /// Control afuArchivo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcTickets;
-        
-        /// <summary>
-        /// Control rhcEspacio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcEspacio;
-        
-        /// <summary>
-        /// Control rcTest.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rcTest;
-        
-        /// <summary>
-        /// Control cGraficoEspacio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart cGraficoEspacio;
-        
-        /// <summary>
-        /// Control Chart1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.DataVisualization.Charting.Chart Chart1;
+        protected global::AjaxControlToolkit.AsyncFileUpload afuArchivo;
     }
 }
