@@ -175,7 +175,7 @@
     </script>
 
 </head>
-<body class="preload">
+<body class="preload layout_no_leftnav">
     <div id="full">
         <form runat="server" id="form1" enctype="multipart/form-data" class="bg-blanco">
             <asp:HiddenField runat="server" ID="hfAreaSeleccionada" />
@@ -241,6 +241,35 @@
                     </div>
 
                     <div class="navbar-tools">
+
+                        <div class="user-container dropdown">
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-user">
+                                <li>
+                                    <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Detail=1" ID="btnMiPerfil" OnClick="btnMiPerfil_OnClick" runat="server">
+                                    <span class="pe-icon pe-7s-user icon"></span>Mi perfil
+                                    </asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx" ID="btnCambiarContraseña" OnClick="btnCambiarContraseña_OnClick" runat="server">
+                                    <span class="pe-icon pe-7s-lock icon"></span>Contraseña
+                                    </asp:LinkButton>
+                                </li>
+                            </ul>
+
+                            <div class="dropdown-toggle padding-10-top" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
+                                <asp:Image ImageUrl="~/assets/images/profiles/perfil.png" alt="" ID="imgPerfil" runat="server" />
+                                <i class="fa fa-caret-down"></i>
+                                <p class="nombreUsuario">
+                                    <asp:Label runat="server" ID="lblUsuario" CssClass="fontXs" />
+                                    / <strong class="text-theme">
+                                        <asp:Label runat="server" ID="lblAreaSeleccionada" CssClass="fontXs"></asp:Label>
+                                        <asp:Label runat="server" ID="lblTipoUsr" CssClass="fontXs" Visible="False" /></strong>
+                                </p>
+                            </div>
+
+                        </div>
+
+
                         <div class="utilities-container">
                             <div class="utilities">
                             </div>
@@ -371,33 +400,6 @@
                             </div>
                         </div>
 
-                        <div class="user-container dropdown">
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-user">
-                                <li>
-                                    <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Detail=1" ID="btnMiPerfil" OnClick="btnMiPerfil_OnClick" runat="server">
-                                    <span class="pe-icon pe-7s-user icon"></span>Mi perfil
-                                    </asp:LinkButton>
-                                </li>
-                                <li>
-                                    <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx" ID="btnCambiarContraseña" OnClick="btnCambiarContraseña_OnClick" runat="server">
-                                    <span class="pe-icon pe-7s-lock icon"></span>Contraseña
-                                    </asp:LinkButton>
-                                </li>
-                            </ul>
-
-                            <div class="dropdown-toggle padding-10-top" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
-                                <asp:Image ImageUrl="~/assets/images/profiles/perfil.png" alt="" ID="imgPerfil" runat="server" />
-                                <i class="fa fa-caret-down"></i>
-                                <p class="nombreUsuario">
-                                    <asp:Label runat="server" CssClass="fontXs">Hola,</asp:Label>
-                                    <asp:Label runat="server" ID="lblUsuario" CssClass="fontXs" />
-                                    / <strong class="text-theme">
-                                        <asp:Label runat="server" ID="lblAreaSeleccionada" CssClass="fontXs"></asp:Label>
-                                        <asp:Label runat="server" ID="lblTipoUsr" CssClass="fontXs" Visible="False" /></strong>
-                                </p>
-                            </div>
-
-                        </div>
 
                         <div class="utilities-container margin-right-10" data-toggle="tooltip" data-placement="bottom">
                             <asp:LinkButton CssClass="item" role="menuitem" NavigateUrl="~/Default.aspx" runat="server" OnClick="btnsOut_OnClick">
@@ -602,14 +604,17 @@
                                     <hr />
                                     <p class="h4">
                                         <strong>Tu no. de ticket:
-                                        <asp:Label runat="server" ID="lblNoTicket" /></strong><br>
+                                       
+                                            <asp:Label runat="server" ID="lblNoTicket" /></strong><br>
                                     </p>
                                     <p class="h4">
                                         <strong>Clave de registro:
-                                    <asp:Label runat="server" ID="lblRandom" /></strong>
+                                   
+                                            <asp:Label runat="server" ID="lblRandom" /></strong>
                                     </p>
                                     <hr />
                                     En breve recibirás un correo con los datos de tu ticket para que puedas dar seguimiento.
+                               
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>

@@ -853,6 +853,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblStepNivel7.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel7.Value = ddlNivelSeleccionModal.SelectedValue;
                         succNivel7.Visible = true;
+                        btnTerminar_OnClick(sender, e);
                         break;
 
                 }

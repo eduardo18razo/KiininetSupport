@@ -962,8 +962,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblStepNivel7.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel7.Value = ddlNivelSeleccionModal.SelectedValue;
                         succNivel7.Visible = true;
+                        btnTerminar_OnClick(sender, e);
                         break;
-
                 }
                 if (EsAlta)
                 {
@@ -974,8 +974,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             }
             catch (Exception ex)
             {
-                //divCapturaDescripcion.Visible = false;
-                //  divNombre.Visible = false; //EsAlta || EsSeleccion; revisar
                 switch (int.Parse(btnSeleccionarModal.CommandArgument))
                 {
                     case 1:
@@ -985,7 +983,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divNombre.Visible = false;
                         break;
                     case 2:
-                        //divNombre.Visible = true;
                         btnSeleccionarModal.CommandArgument = "2";
                         break;
                     case 3:

@@ -37,7 +37,6 @@
             $(modalName).modal('show');
             return true;
         };
-
         function CierraPopup(modalName) {
             $(modalName).modal('hide');
             return true;
@@ -108,7 +107,7 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
 
-        <header class="header">
+        <%-- <header class="header">
             <div class="row clearfix">
                 <div class="col-lg-2 col-md-2 col-sm-12">
                     <div class="branding">
@@ -122,7 +121,7 @@
                 </div>
                 <div class="topbar bg_w_header col-lg-10 col-md-10 col-sm-12">
                     <div class="no-padding-top" runat="server" visible="True">
-                        <div class="search-container2 no-margin-left">
+                        <div class="search-container no-margin-left">
                             <div id="main-search" class="padding-20-top">
                                 <i id="main-search-toggle" class="fa fa-search icon"></i>
                                 <div id="main_search_input_wrapper" class="main_search_input_wrapper">
@@ -158,7 +157,6 @@
                                         <span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
                                     </div>
                                     <div class="dropdown-menu wdropdown-login right-25 margin-bottom-25" role="menu" aria-labelledby="dropdownMenu-messages">
-                                        <%--<span class="arrow"></span>--%>
                                         <div>
                                             <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                                 <ContentTemplate>
@@ -175,7 +173,75 @@
                     </div>
                 </div>
             </div>
+        </header>--%>
+
+        <header class="header" style="background-color: violet;">
+            <div class="branding ">
+                <h1 class="logo text-center">
+                    <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
+                        <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
+                        <asp:Label runat="server" ID="lblBranding" Visible="false" />
+                    </asp:HyperLink>
+                </h1>
+            </div>
+
+            <div class="topbar bg_w_header">
+                <div class="search-container margin-left-15" runat="server" visible="true">
+                    <div id="main-search padding-20-top">
+                        <i id="main-search-toggle" class="fa fa-search icon"></i>
+                        <div id="main_search_input_wrapper" class="main_search_input_wrapper">
+                            <asp:TextBox ID="main_search_input" ClientIDMode="Static" CssClass="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
+                            <span id="clear-search" aria-hidden="true" class="fs1 icon icon_close_alt2 clear-search"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-tools">
+                    <div class="utilities-container">
+                        <div class="utilities">
+                            <div class="item item-notifications">
+                                <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
+                                    <span class="sr-only">Tickets</span> <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
+                                </div>
+                                <ul class="dropdown-menu wdropdown-ticket" role="menu" aria-labelledby="dropdownMenu-user" style="right: -45px">
+                                    <li>
+                                        <span class="arrow" style="right: 48px"></span>
+                                        <a role="menuitem" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modal-new-ticket">
+                                            <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <asp:LinkButton role="menuitem" runat="server" ID="btnconsultarTicket" OnClick="btnconsultarTicket_OnClick">
+                                            <span class="pe-icon pe-7s-look icon"></span>Consultar ticket
+                                        </asp:LinkButton>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="item item-messages dropdown">
+
+                                <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
+                                    <span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
+                                </div>
+
+                                <div class="dropdown-menu wdropdown-login" role="menu" aria-labelledby="dropdownMenu-messages" style="right: -25px">
+                                    <span class="arrow" style="right: 25px"></span>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <uc1:UcLogCopia runat="server" ID="UcLogCopia" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
+
 
         <div class="row">
             <div id="content-wrapper" class="content-wrapper">
@@ -267,8 +333,8 @@
                             </section>
                         </div>
                     </div>
-                    <hr />
-                    <div class="row margin-bottom-10">
+                    <%--<hr />--%>
+                    <%--  <div class="row margin-bottom-10">
                         <div class="module-wrapper col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <section class="module module-headings">
                                 <div class="module-inner">
@@ -276,7 +342,6 @@
                                         <div class="help-search">
                                             <h4 class="text-center title">¿Podemos ayudarte?</h4>
                                             <div class="row">
-                                                <%--role="form"--%>
                                                 <div class="search-box form-inline text-center">
                                                     <label class="sr-only" for="help_search_form">Buscar</label>
                                                     <div class="form-group col-lg-6 col-md-6 col-sm-10 col-xs-10 col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-1">
@@ -301,7 +366,7 @@
                                 </div>
                             </section>
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
         </div>
