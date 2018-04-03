@@ -1,21 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaGrupoUsuario.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaGrupoUsuario" %>
 
-<style>
-    /*.hideCheck {
-    }
-
-        .hideCheck input {
-            left: -9999px;
-            display: none;
-        }
-
-        .hideCheck label {
-            width: 100% !important;
-            height: 100% !important;
-            cursor: pointer !important;
-            padding: 6px 12px !important;
-        }*/
-</style>
 <asp:UpdatePanel ID="upGrupoUsuario" runat="server">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfIdGrupo" />

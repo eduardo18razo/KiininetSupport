@@ -611,20 +611,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         }
 
         protected void btnCambiarImagen_OnClick(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    BusinessFile.Imagenes.ImageToByteArray()
-            //}
-            //catch (Exception ex)
-            //{
-            //    if (_lstError == null)
-            //    {
-            //        _lstError = new List<string>();
-            //    }
-            //    _lstError.Add(ex.Message);
-            //    Alerta = _lstError;
-            //}
+        {            
         }
 
         protected void btnEditar_OnClick(object sender, EventArgs e)
@@ -676,6 +663,13 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 ucRolGrupo.OnTerminarModal += UcRolGrupoOnTerminarModal;
                 ucRolGrupo.OnCancelarModal += UcRolGrupoOnOnCancelarModal;
                 ucRolGrupo.AsignacionAutomatica = false;
+
+                faq5_1.CssClass = "panel-collapse collapse in";
+                faq5_2.CssClass = "panel-collapse collapse in";
+                faq5_3.CssClass = "panel-collapse collapse in";
+                faq5_4.CssClass = "panel-collapse collapse in";
+                faq5_5.CssClass = "panel-collapse collapse in";
+
                 if (!IsPostBack)
                 {
                     Session["UsuarioTemporal"] = null;

@@ -53,6 +53,7 @@ namespace KiiniHelp
         {
             try
             {
+                ucAltaUsuarioRapida.ValidaUsuarioExiste();
                 ucAltaUsuarioRapida.RegistraUsuario();
             }
             catch (Exception ex)
@@ -94,5 +95,12 @@ namespace KiiniHelp
                 Alerta = _lstError;
             }
         }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
+
+
     }
 }

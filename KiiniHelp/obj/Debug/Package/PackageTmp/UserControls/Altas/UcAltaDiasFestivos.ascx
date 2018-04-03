@@ -56,13 +56,11 @@
 
                                 <div class="col-lg-7 col-md-7">
                                     <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" step="1" onkeydown="return (event.keyCode!=13);" />
-                                    <%--<asp:ImageButton ID="imgPopup" ImageUrl="~/assets/images/icons/Roles.png" runat="server" />--%>
                                 </div>
 
                                 <div class="col-lg-2 col-md-2">
                                     <i class="fa fa-calendar fa-20x margin-top-6" id="imgPopup2" runat="server"></i>
                                     <ajax:CalendarExtender runat="server" ID="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" PopupButtonID="imgPopup2"/>
-                                    <%-- --%>
                                     <ajax:maskededitextender id="MaskedEditExtender1" runat="server"
                                         targetcontrolid="txtDate" mask="99/99/9999"
                                         masktype="Date" messagevalidatortip="true"
@@ -90,12 +88,12 @@
                     <ItemTemplate>
                         <div class="row form-control margin-left-3 margin-top-5">
                             <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
-                            <asp:Label runat="server" Text='<%# Eval("Fecha", "{0:d}") %>' ID="lblFecha" CssClass="col-lg-2 col-md-2 col-sm-2" />
-                            <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" CssClass="col-lg-6 col-md-6 col-sm-6" />
-                            <div class="col-lg-4 col-md-4 col-sm-4 text-center">
-                                <asp:LinkButton runat="server" Text="Editar" ID="lnkBtnEditar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lnkBtnEditar_OnClick"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar</asp:LinkButton>
+                            <asp:Label runat="server" Text='<%# Eval("Fecha", "{0:d}") %>' ID="lblFecha" CssClass="col-lg-2 col-md-2 col-sm-2 col-xs-2" />
+                            <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" CssClass="col-lg-7 col-md-7 col-sm-7 col-xs-7" />
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
+                                <asp:LinkButton runat="server" Text="Editar" ID="lnkBtnEditar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lnkBtnEditar_OnClick"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></asp:LinkButton>
                                 <asp:Label runat="server" Text="|" ID="lblSeparador"></asp:Label>
-                                <asp:LinkButton runat="server" Text="Borrar" ID="lbkBtnBorrar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lbkBtnBorrar_OnClick"><i class="fa fa-times" aria-hidden="true"></i>Borrar</asp:LinkButton>
+                                <asp:LinkButton runat="server" Text="Borrar" ID="lbkBtnBorrar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lbkBtnBorrar_OnClick"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
                             </div>
                         </div>
                     </ItemTemplate>

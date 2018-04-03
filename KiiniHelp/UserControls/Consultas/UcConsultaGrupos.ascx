@@ -167,11 +167,10 @@
         </Triggers>
 
     </asp:UpdatePanel>
-    <%--MODAL GRUPO USUARIO--%>
     <div class="modal fade" id="modalAltaGrupoUsuarios" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upAltaGrupo" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <div class="modal-dialog widht250px">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <uc:UcAltaGrupoUsuario runat="server" ID="ucAltaGrupoUsuario" />
                     </div>
@@ -180,7 +179,6 @@
         </asp:UpdatePanel>
     </div>
 
-    <%--MODAL DETALLE GRUPO USUARIO--%>
     <div class="modal fade" id="modalDetalleGrupoUsuario" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
@@ -193,7 +191,6 @@
         </asp:UpdatePanel>
     </div>
 
-    <%--MODAL DETALLE GRUPO OPCIONES--%>
     <div class="modal fade" id="modalDetalleGrupoOpciones" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
@@ -206,7 +203,6 @@
         </asp:UpdatePanel>
     </div>
 
-    <%--MODAL SELECCION DE ROL--%>
     <div class="modal fade" id="modalSeleccionRol" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upSubRoles" runat="server">
             <ContentTemplate>

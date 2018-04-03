@@ -24,11 +24,11 @@
                                         <div class="search-box form-inline text-center padding-10-bottom">
                                             <label class="sr-only" for="help_search_form">Buscar</label>
                                             <div class="form-group col-lg-6 col-md-6 col-sm-10 col-xs-10 col-lg-offset-3 col-md-offset-3 col-sm-offset-1 col-xs-offset-1">
-                                                <div class="col-lg-8 col-md-8 col-sm-11 col-xs-11 text-right no-padding-top">
+                                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right no-padding-top">
                                                     <asp:TextBox ID="help_search_form" name="search-form" type="text" class="form-control help_search_form" placeholder="Busca con una palabra clave..." runat="server" />
                                                 </div>
 
-                                                <div class="col-lg-4 col-md-4 col-sm-1 col-xs-1 text-left">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-left">
                                                     <asp:LinkButton CssClass="btn btn-primary btn-single-icon" runat="server"><i class="fa fa-search"></i></asp:LinkButton>
                                                 </div>
 

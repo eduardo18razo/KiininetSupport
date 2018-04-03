@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
 
+    <%--<link rel="stylesheet" href="assets/css/styles_movil.css" />
+    <link rel="stylesheet" href="assets/css/modales_movil.css" />
+    <link rel="stylesheet" href="assets/css/main_movil.css" />--%>
+
     <script type="text/javascript">
         function MostrarPopup(modalName) {
             $(modalName).on('shown.bs.modal', function () {
@@ -119,7 +123,7 @@
             <div class="topbar bg_w_header">
                 <div runat="server" id="divMenuBtn" class="cont-menu-trigger">
                     <div>
-                        <span id="trigger" class="menu-trigger z-Index-Top"/>
+                        <span id="trigger" class="menu-trigger z-Index-Top" />
                     </div>
                 </div>
                 <div class="search-container">
@@ -139,8 +143,9 @@
                                 <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
                                     <span class="sr-only">Tickets</span> <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                 </div>
-                                <ul class="dropdown-menu wdropdown-ticket right-45" role="menu" aria-labelledby="dropdownMenu-user" >  
-                                    <li><span class="arrow right48" /> 
+                                <ul class="dropdown-menu wdropdown-ticket right-45" role="menu" aria-labelledby="dropdownMenu-user">
+                                    <li>
+                                        <span class="arrow right48" ></span>
                                         <a role="menuitem" data-toggle="modal" data-target="#modal-new-ticket" data-backdrop="static" data-keyboard="false">
                                             <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
                                         </a></li>
@@ -153,13 +158,14 @@
                             </div>
                             <div class="item item-messages dropdown">
                                 <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span></div>
-                                <div class="dropdown-menu wdropdown-login right-45" role="menu" aria-labelledby="dropdownMenu-messages"> 
-                                    <span class="arrow right25"></span> 
+                                <div class="dropdown-menu wdropdown-login right-45" role="menu" aria-labelledby="dropdownMenu-messages">
+                                    <%--<span class="arrow right25"></span>--%>
                                     <div>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <br />
-                                            <uc1:UcLogCopia runat="server" ID="UcLogIn" />
-                                        </div>
+                                        <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+                                            <ContentTemplate>
+                                                <uc1:UcLogCopia runat="server" ID="UcLogIn" />
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
                                         <div class="social-btns col-md-12 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-sm-offset-0" visible="false">
                                             <div class="divider">
                                             </div>
@@ -188,7 +194,7 @@
                                                 <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                 <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
                                                     <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
-                                                    <div class="menu85Porc"> 
+                                                    <div class="menu85Porc">
                                                         <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                         <ul>
                                                             <asp:Repeater runat="server" ID="rptSubMenu1" OnItemDataBound="rptSubMenu1_OnItemDataBound">
@@ -331,7 +337,7 @@
 
                 </div>
                 <div class="scroller" id="scroller">
-                    <div class="no-margin-top heigth100"> 
+                    <div class="no-margin-top heigth100">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolderPublic" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>

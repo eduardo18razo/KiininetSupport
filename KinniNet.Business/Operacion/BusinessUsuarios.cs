@@ -1391,9 +1391,13 @@ namespace KinniNet.Core.Operacion
                     idUsuario = db.Usuario.First(w => w.NombreUsuario == usuario).Id;
                     result = db.Usuario.SingleOrDefault(s => s.Id == idUsuario);
                 }
-                db.LoadProperty(result, "PreguntaReto");
-                db.LoadProperty(result, "TelefonoUsuario");
-                db.LoadProperty(result, "CorreoUsuario");
+                if (result != null)
+                {
+
+                    db.LoadProperty(result, "PreguntaReto");
+                    db.LoadProperty(result, "TelefonoUsuario");
+                    db.LoadProperty(result, "CorreoUsuario");
+                }
             }
             catch (Exception ex)
             {
@@ -1416,6 +1420,7 @@ namespace KinniNet.Core.Operacion
                 {
                     throw new Exception("Especifique nombre de usuario");
                 }
+                usuario = usuario.Trim();
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = new List<Usuario>();
                 int idUsuario;

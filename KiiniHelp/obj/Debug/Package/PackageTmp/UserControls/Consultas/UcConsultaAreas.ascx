@@ -127,7 +127,7 @@
     <div class="modal fade" id="modalAltaArea" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <asp:UpdatePanel ID="upAltaArea" runat="server">
             <ContentTemplate>
-                <div class="modal-dialog widht250px">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <uc1:AltaArea runat="server" ID="ucAltaArea" />
                     </div>
