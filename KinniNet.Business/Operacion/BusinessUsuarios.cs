@@ -1200,11 +1200,12 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                TelefonoUsuario telefono =
-                    db.TelefonoUsuario.Single(
-                        s =>
-                            s.Id == idTelefono && s.IdUsuario == idUsuario &&
-                            s.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular);
+                numero = numero.Trim();
+                if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular))
+                {
+                    throw new Exception("Telefono ya ha sido registrado.");
+                }
+                TelefonoUsuario telefono = db.TelefonoUsuario.Single(s => s.Id == idTelefono && s.IdUsuario == idUsuario && s.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular);
                 if (telefono != null)
                 {
                     telefono.Numero = numero;
