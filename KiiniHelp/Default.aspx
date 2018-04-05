@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/medias.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
     <link rel="stylesheet" href="assets/css/bootstrap-markdown.css" />
 
@@ -187,12 +188,12 @@
 
             <div class="topbar bg_w_header">
                 <div class="search-container margin-left-15" runat="server" visible="true">
-                    <div id="main-search padding-20-top">
+                    <div id="main-search" class="margin-top-20">
                         <i id="main-search-toggle" class="fa fa-search icon"></i>
-                        <div id="main_search_input_wrapper" class="main_search_input_wrapper">
-                            <asp:TextBox ID="main_search_input" ClientIDMode="Static" CssClass="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
-                            <span id="clear-search" aria-hidden="true" class="fs1 icon icon_close_alt2 clear-search"></span>
-                        </div>
+                        <%-- <div id="main_search_input_wrapper" class="main_search_input_wrapper">
+                    <asp:TextBox ID="main_search_input" ClientIDMode="Static" CssClass="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
+                    <span id="clear-search" aria-hidden="true" class="fs1 icon icon_close_alt2 clear-search"></span>
+                </div>--%>
                     </div>
                 </div>
 
@@ -217,7 +218,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            
+
                             <div class="item item-messages dropdown">
 
                                 <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
@@ -239,6 +240,18 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="main_search_input_wrapper" class="main_search_input_wrapper">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+                            <asp:TextBox ID="main_search_input" ClientIDMode="Static" CssClass="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                            <span id="clear-search" aria-hidden="true" class="clear-search">Cancelar</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </header>
 

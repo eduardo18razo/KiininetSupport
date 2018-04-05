@@ -166,9 +166,10 @@ $(document).ready(function() {
 	}).on('blur', function() {
 		var $this = $(this);
 
-		if($this.val().length === 0) {
-			$(this).closest('form').find('#clear-search').hide();
-		}
+        //oculta texto cancelar
+		//if($this.val().length === 0) {
+		//	$(this).closest('form').find('#clear-search').hide();
+		//}
 
 	});
 
