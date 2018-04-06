@@ -335,7 +335,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel2.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel2.Text;
-
+                        hfCatalogo.Value = "2";
                         break;
                     case 2:
                         divStep1.Visible = true;
@@ -359,6 +359,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel3.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
+                        hfCatalogo.Value = "3";
                         break;
                     case 3:
                         divStep1.Visible = true;
@@ -387,6 +388,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel4.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel4.Text;
+                        hfCatalogo.Value = "4";
                         break;
                     case 4:
                         divStep1.Visible = true;
@@ -418,6 +420,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel5.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel5.Text;
+                        hfCatalogo.Value = "5";
                         break;
                     case 5:
                         divStep1.Visible = true;
@@ -453,6 +456,8 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel6.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
+
+                        hfCatalogo.Value = "6";
                         break;
                     case 6:
 
@@ -493,6 +498,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel7.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel7.Text;
+                        hfCatalogo.Value = "7";
                         break;
                     case 7:
                         divStep1.Visible = true;
@@ -853,6 +859,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                         lblStepNivel7.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel7.Value = ddlNivelSeleccionModal.SelectedValue;
                         succNivel7.Visible = true;
+                        btnTerminar_OnClick(sender, e);
                         break;
 
                 }

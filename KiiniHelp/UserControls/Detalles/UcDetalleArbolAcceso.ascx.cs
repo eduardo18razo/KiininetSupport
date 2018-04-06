@@ -152,7 +152,6 @@ namespace KiiniHelp.UserControls.Detalles
 
         protected void btnDownload_OnClick(object sender, EventArgs e)
         {
-
         }
     }
 }

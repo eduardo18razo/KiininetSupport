@@ -218,8 +218,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                txtFiltroDecripcion.Text = string.Empty;
-
                 LlenaOrganizaciones();
             }
             catch (Exception ex)
@@ -308,14 +306,15 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                int? idTipoUsuario = null;
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
-                    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
+                LlenaOrganizaciones();
+                //int? idTipoUsuario = null;
+                //if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
+                //    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
 
-                tblResults.DataSource = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
-                tblResults.DataBind();
+                //tblResults.DataSource = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
+                //tblResults.DataBind();
 
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception ex)
             {

@@ -156,7 +156,7 @@ namespace KiiniHelp
                     if (administrador || agente)
                         Session["CargaInicialModal"] = true.ToString();
                     hfCargaInicial.Value = (Session["CargaInicialModal"] ?? "False").ToString();
-                    lblUsuario.Text = usuario.NombreCompleto;
+                    lblUsuario.Text = usuario.Nombre;
                     lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
                     int idUsuario = usuario.Id;
                     imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + idUsuario : "~/assets/images/profiles/profile-1.png";

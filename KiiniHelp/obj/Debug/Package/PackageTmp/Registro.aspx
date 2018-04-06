@@ -67,7 +67,7 @@
                                                 </div>
                                                 <div class="form-group email top15">
                                                     <asp:Button CssClass="btn btn-primary margin-top-15 margin-bottom-15" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
-                                                    <asp:Button CssClass="btn btn-default margin-top-15 margin-bottom-15" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
+                                                    <asp:Button CssClass="btn btn-default margin-top-15 margin-bottom-15" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="False" />
                                                   
                                                 </div>
                                             </div>

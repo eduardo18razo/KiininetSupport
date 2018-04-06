@@ -45,7 +45,7 @@
                         <div class="col-lg-6 col-md-6 text-center">
                             <div class="module-inner">
                                 <div class="form-group">
-                                    <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-download" Text="  Descargar reporte" ID="btnDownload" OnClick="btnDownload_OnClick" />
+                                    <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-download" Text="  Descargar reporte" ID="btnDownload" Enabled="False" OnClick="btnDownload_OnClick" />
                                     <asp:Button runat="server" CssClass="btn btn-success" ID="btnNew" Text="Agregar Registro" OnClick="btnNew_OnClick" />
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
-                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" > 
+                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick" Visible='<%# (bool) Eval("Habilitado") %>'> 
                                                             <asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" /> 
                                                         </asp:LinkButton>
                                                     </li>
@@ -115,6 +115,9 @@
 
             </script>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnDownload" />
+        </Triggers>
     </asp:UpdatePanel>
     <%--MODAL ALTA--%>
     <div class="modal fade" id="modalAltaRegistro" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">

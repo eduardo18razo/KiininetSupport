@@ -19,7 +19,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Resultados" /></h3>
                             </div>
                             <p>
-                                <asp:Label runat="server" ID="lblNumeroResultados" CssClass="totalResultados"  Text="1,25769 resultados para campo búsqueda"/>
+                                <asp:Label runat="server" ID="lblNumeroResultados" CssClass="totalResultados" Text="0 resultados para campo búsqueda" />
                                 <br />
                                 <div class="form col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
@@ -60,7 +60,8 @@
                                             <asp:Label runat="server" CssClass="text-theme" ID="lblLikes" Text='<%#Eval("TotalLikes") %>' />
                                             <br />
                                             <asp:Label runat="server" ID="lblDescripcion" Text='<%#Eval("Descripcion") %>' />
-                                            <br /><br />
+                                            <br />
+                                            <br />
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>

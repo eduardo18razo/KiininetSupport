@@ -31,11 +31,11 @@
                 <asp:HiddenField runat="server" ID="hfConsultas" Value="false" />
                 <!--MIGAS DE PAN-->
                 <div class="row">
-                    <div class="project-heading">
+                    <div >
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
+                            <li >
                                 <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                            <li class="breadcrumb-item active">Mi perfil</li>
+                            <li class="active">Mi perfil</li>
                         </ol>
                     </div>
                 </div>

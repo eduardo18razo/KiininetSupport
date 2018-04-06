@@ -548,12 +548,14 @@ namespace KinniNet.Core.Operacion
                 if (idUsuario == null)
                     foreach (string numero in telefonos)
                     {
+                        if (string.IsNullOrEmpty(numero)) continue;
                         if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Obligatorio))
                             throw new Exception(string.Format("Telefono {0} ya se encuentra registrado", numero));
                     }
                 else
                     foreach (string numero in telefonos)
                     {
+                        if (string.IsNullOrEmpty(numero)) continue;
                         if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdUsuario != idUsuario && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Obligatorio))
                             throw new Exception(string.Format("Telefono {0} ya se encuentra registrado", numero));
                     }

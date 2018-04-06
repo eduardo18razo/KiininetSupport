@@ -1,9 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaDiasFestivos.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaDiasFestivos" %>
 <%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=16.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
-
-
-
 <asp:UpdatePanel runat="server" ID="updateAltaAreas">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfIdDiaFeriado" Value="0" />
@@ -60,13 +57,13 @@
 
                                 <div class="col-lg-2 col-md-2">
                                     <i class="fa fa-calendar fa-20x margin-top-6" id="imgPopup2" runat="server"></i>
-                                    <ajax:CalendarExtender runat="server" ID="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" PopupButtonID="imgPopup2"/>
-                                    <ajax:maskededitextender id="MaskedEditExtender1" runat="server"
-                                        targetcontrolid="txtDate" mask="99/99/9999"
-                                        masktype="Date" messagevalidatortip="true"
-                                        onfocuscssclass="MaskedEditFocus"
-                                        clearmaskonlostfocus="false" oninvalidcssclass="MaskedEditError"
-                                        inputdirection="LeftToRight" />
+                                    <ajax:CalendarExtender runat="server" ID="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" PopupButtonID="imgPopup2" />
+                                    <ajax:MaskedEditExtender ID="MaskedEditExtender1" runat="server"
+                                        TargetControlID="txtDate" Mask="99/99/9999"
+                                        MaskType="Date" MessageValidatorTip="true"
+                                        OnFocusCssClass="MaskedEditFocus"
+                                        ClearMaskOnLostFocus="false" OnInvalidCssClass="MaskedEditError"
+                                        InputDirection="LeftToRight" />
                                 </div>
 
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-calendar " Visible="False"></asp:LinkButton>
@@ -89,11 +86,11 @@
                         <div class="row form-control margin-left-3 margin-top-5">
                             <asp:Label runat="server" ID="lblId" Text='<%# Eval("Id") %>' Visible="False" />
                             <asp:Label runat="server" Text='<%# Eval("Fecha", "{0:d}") %>' ID="lblFecha" CssClass="col-lg-2 col-md-2 col-sm-2 col-xs-2" />
-                            <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" CssClass="col-lg-7 col-md-7 col-sm-7 col-xs-7" />
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
-                                <asp:LinkButton runat="server" Text="Editar" ID="lnkBtnEditar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lnkBtnEditar_OnClick"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></asp:LinkButton>
+                            <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" CssClass="col-lg-8 col-md-8 col-sm-8 col-xs-7" />
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 text-right">
+                                <asp:LinkButton runat="server" ID="lnkBtnEditar" CssClass="btn lnkBtn fa fa-pencil-square-o" CommandArgument='<%# Eval("Fecha") %>' OnClick="lnkBtnEditar_OnClick"></asp:LinkButton>
                                 <asp:Label runat="server" Text="|" ID="lblSeparador"></asp:Label>
-                                <asp:LinkButton runat="server" Text="Borrar" ID="lbkBtnBorrar" class="btn lnkBtn" CommandArgument='<%# Eval("Fecha") %>' OnClick="lbkBtnBorrar_OnClick"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="lbkBtnBorrar" CssClass="btn lnkBtn fa fa-times" CommandArgument='<%# Eval("Fecha") %>' OnClick="lbkBtnBorrar_OnClick"></asp:LinkButton>
                             </div>
                         </div>
                     </ItemTemplate>

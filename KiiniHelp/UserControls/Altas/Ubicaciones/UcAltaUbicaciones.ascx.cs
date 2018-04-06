@@ -350,7 +350,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel2.Text;
 
                         divNombre.Visible = true;
-
+                        hfCatalogo.Value = "2";
                         break;
                     case 2:
                         divStep1.Visible = true;
@@ -376,6 +376,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "3";
                         break;
                     case 3:
                         divStep1.Visible = true;
@@ -406,6 +407,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel4.Text;
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "4";
                         break;
                     case 4:
                         divStep1.Visible = true;
@@ -440,6 +442,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "5";
                         break;
                     case 5:
                         divStep1.Visible = true;
@@ -477,6 +480,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "6";
                         break;
                     case 6:
 
@@ -520,6 +524,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "7";
 
                         break;
                     case 7:
@@ -962,8 +967,8 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblStepNivel7.Text = ddlNivelSeleccionModal.SelectedItem.Text;
                         hfNivel7.Value = ddlNivelSeleccionModal.SelectedValue;
                         succNivel7.Visible = true;
+                        btnTerminar_OnClick(sender, e);
                         break;
-
                 }
                 if (EsAlta)
                 {
@@ -974,8 +979,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             }
             catch (Exception ex)
             {
-                //divCapturaDescripcion.Visible = false;
-                //  divNombre.Visible = false; //EsAlta || EsSeleccion; revisar
                 switch (int.Parse(btnSeleccionarModal.CommandArgument))
                 {
                     case 1:
@@ -985,7 +988,6 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         divNombre.Visible = false;
                         break;
                     case 2:
-                        //divNombre.Visible = true;
                         btnSeleccionarModal.CommandArgument = "2";
                         break;
                     case 3:

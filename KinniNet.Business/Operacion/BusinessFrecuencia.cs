@@ -29,7 +29,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
+                                   where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -90,7 +90,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
+                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -150,7 +150,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
+                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -211,7 +211,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema
+                                   where f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas && f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key

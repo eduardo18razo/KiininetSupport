@@ -98,7 +98,7 @@ input {
     }
 
     .header .utilities-container .item {
-        margin-right: 15px;
+        margin-right: 5px;
     }
 
     .header .utilities-container .item-messages .dropdown-menu {
@@ -128,7 +128,7 @@ input {
             display: none;
             position: absolute;
             left: 0;
-            top: 80px;
+            top: 5px;
             width: 100%;
         }
 
@@ -142,8 +142,8 @@ input {
         }
 
             .header .search-container .main_search_input:focus {
-                background: #e8e8e8;
-                border-color: #e8e8e8;
+                background-color: transparent ;
+                border-color: transparent;
             }
 
 
@@ -485,7 +485,7 @@ button.close:focus {
 .compact:not(.nav-toggled) .header .branding,
 .mobile.nav-toggled .header .branding,
 .nav-toggled:not(.compact):not(.mobile) .header .branding {
-    width: 40px;
+    width: 45px;
 }
 
 
@@ -1176,7 +1176,7 @@ button.close:focus {
 }
 
     .layout_no_leftnav .header {
-        background: none;
+        background-color: white;
         box-shadow: none;
         height: auto;
     }
@@ -5858,7 +5858,7 @@ ul.sortable {
 }
 
 .margin-left-15 {
-    margin-left: 15px;
+    margin-left: 15px !important;
 }
 
 .margin-left-20 {

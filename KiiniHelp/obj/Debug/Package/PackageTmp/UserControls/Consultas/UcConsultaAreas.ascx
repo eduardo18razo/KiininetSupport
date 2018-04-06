@@ -81,7 +81,7 @@
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
-                                                        <asp:LinkButton runat="server" Visible='<%# !(bool)Eval("Sistema") %>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"> 
+                                                        <asp:LinkButton runat="server" Visible='<%# !(bool)Eval("Sistema") && (bool) Eval("Habilitado")%>' CommandArgument='<%# Eval("Id")%>' OnClick="btnEditar_OnClick"> 
                                                             <asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" />  </asp:LinkButton>
                                                     </li>
                                                 </ul>

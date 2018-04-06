@@ -424,7 +424,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.DiasFeriados.SingleOrDefault(w => w.Id == id && w.Habilitado);
+                result = db.DiasFeriados.SingleOrDefault(w => w.Id == id);
                 if (result != null)
                     db.LoadProperty(result, "DiasFeriadosDetalle");
             }

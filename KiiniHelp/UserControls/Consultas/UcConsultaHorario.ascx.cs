@@ -144,8 +144,6 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 string filtro = txtFiltro.Text.Trim().ToUpper();
                 List<Horario> lstcatalogos = _servicioHorarios.ObtenerHorarioConsulta(filtro);
-                if (filtro != string.Empty)
-                    lstcatalogos = lstcatalogos.Where(w => w.Descripcion.Contains(filtro)).ToList();
 
                 Response.Clear();
                 string ultimaEdicion = "Últ. Edición";

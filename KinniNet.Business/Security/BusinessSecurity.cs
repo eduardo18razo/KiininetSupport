@@ -440,14 +440,17 @@ namespace KinniNet.Core.Security
                     ParametroPassword parametrosPassword = db.ParametroPassword.FirstOrDefault();
                     if (parametrosPassword != null)
                     {
-                        DateTime? fecha = DateTime.ParseExact(DateTime.Now.AddDays((parametrosPassword.TiempoCaducidad * -1)).ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                        if (db.UsuarioPassword.Any(a => a.IdUsuario == idUsuario && a.Fecha >= fecha))
+                        if (parametrosPassword.CaducaPassword)
                         {
-                            result = false;
-                        }
-                        else
-                        {
-                            result = true;
+                            DateTime? fecha = DateTime.ParseExact(DateTime.Now.AddDays((parametrosPassword.TiempoCaducidad*-1)).ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff",CultureInfo.InvariantCulture);
+                            if (db.UsuarioPassword.Any(a => a.IdUsuario == idUsuario && a.Fecha >= fecha))
+                            {
+                                result = false;
+                            }
+                            else
+                            {
+                                result = true;
+                            }
                         }
                     }
                 }

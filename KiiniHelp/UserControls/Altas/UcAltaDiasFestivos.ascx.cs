@@ -203,7 +203,7 @@ namespace KiiniHelp.UserControls.Altas
         {
             try
             {
-                if (txtDate.Text.Trim() == string.Empty)
+                if (txtDate.Text.Trim() == string.Empty || txtDate.Text.Trim() == "__/__/____")
                     throw new Exception("Ingrese una fecha");
                 if (txtDescripcionDia.Text.Trim() == string.Empty)
                     throw new Exception("Ingrese una descripción");
