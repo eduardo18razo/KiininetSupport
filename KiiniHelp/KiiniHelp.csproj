@@ -108,6 +108,7 @@
     <Content Include="assets\css\fontello-ie7.css" />
     <Content Include="assets\css\fontello.css" />
     <Content Include="assets\css\main_movil.css" />
+    <Content Include="assets\css\medias.css" />
     <Content Include="assets\css\menuStyle.css" />
     <Content Include="assets\css\modales.css" />
     <Content Include="assets\css\modales_movil.css" />

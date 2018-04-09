@@ -275,7 +275,6 @@
                             </div>
 
                             <div>
-
                                 <div class="item item-notifications separador-vertical-derecho" runat="server" id="divRoles">
                                     <i id="side-panel-toggle" class="side-panel-toggle panel-hide icon fa fa-users icon" data-toggle="tooltip" data-placement="bottom" title="Roles">
                                         <span class="badge badge-circle badge-info">
@@ -296,7 +295,7 @@
                                         <div class="notification-items no-overflow">
                                             <div class="item media">
                                                 <div class="media-left profile">
-                                                    <img src="assets/images/profiles/perfil.png" alt="imgPerfil" />
+                                                    <asp:Image runat="server" ImageUrl="assets/images/profiles/perfil.png" AlternateText="imgPerfil" />
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
                                                 <div class="meta">2h </div>
@@ -308,17 +307,11 @@
                                                 <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
                                                 <div class="meta">2h </div>
                                             </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" runat="server" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
-                                                <div class="meta">2h </div>
-                                            </div>
                                         </div>
                                         <div class="dropdown-footer"><a href="#">Ver todos los tickets</a> </div>
                                     </div>
                                 </div>
+
                                 <div class="item item-messages dropdown" runat="server" id="divMensajes">
                                     <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Mensajes</span>
@@ -370,33 +363,7 @@
                                         <div class="dropdown-footer"><a href="#">Ver todos los mensajes</a> </div>
                                     </div>
                                 </div>
-                                <div class="item item-more dropdown">
-                                    <div class="dropdown-toggle" id="dropdownMenu-more" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Acceso Rápido</span> <span aria-hidden="true" class="fs1 icon icon_grid-3x3" data-toggle="tooltip" data-placement="bottom" title="Acceso Rápido"></span></div>
-                                    <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-more">
-                                        <span class="arrow"></span>
-                                        <h4 class="title">Menú de acceso rápido</h4>
-                                        <ul class="more-list">
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-users icon"></span>
-                                                <br />
-                                                Roles</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-ticket icon"></span>
-                                                <br />
-                                                Tickets</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-mail icon"></span>
-                                                <br />
-                                                Mensajes</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-config icon"></span>
-                                                <br />
-                                                Ajustes</a></li>
-                                            <li><a role="menuitem" href="#"><span class="pe-icon pe-7s-user icon"></span>
-                                                <br />
-                                                Perfil</a></li>
-                                            <li><a role="menuitem" href="help.html"><span class="pe-icon pe-7s-help2 icon"></span>
-                                                <br />
-                                                Ayuda</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
 
@@ -407,8 +374,6 @@
                             </asp:LinkButton>
                         </div>
                     </div>
-
-
 
                 </div>
             </header>

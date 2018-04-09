@@ -232,7 +232,6 @@ namespace KiiniHelp
                 if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
                     if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
                         Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx"));
-                //lnkBtnCerrar.Visible = !ContentPlaceHolder1.Page.ToString().ToUpper().Contains("DASHBOARD");
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
@@ -245,7 +244,7 @@ namespace KiiniHelp
                     if (administrador)
                         Session["CargaInicialModal"] = true.ToString();
                     hfCargaInicial.Value = (Session["CargaInicialModal"] ?? "False").ToString();
-                    lblUsuario.Text = usuario.NombreCompleto;
+                    lblUsuario.Text = usuario.Nombre;
                     int IdUsuario = usuario.Id;
 
                     imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png";
