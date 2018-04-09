@@ -68,7 +68,8 @@
             }
 
     .header .main_search_input_wrapper {
-        border: 1px solid black;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
         padding-top: 4px;
         position: absolute;
         left: 0px !important;

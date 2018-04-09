@@ -257,7 +257,6 @@ button.close:focus {
     left: 97px;
     top: 12px;
     width: 250px;
-    background-color: aliceblue;
 }
 
 .compact:not(.nav-toggled) .header .nombreUsuario,
@@ -404,8 +403,7 @@ button.close:focus {
     position: absolute;
     left: 260px;
     top: 12px;
-    width: 250px;
-    background-color: rebeccapurple;
+    width: 250px;  
 }
 
 .header .main_search_input {
@@ -1588,8 +1586,8 @@ a.btn {
     .btn .f-ca,
     a.btn .fa {
         margin-right: 5px;
-        /*margin-top: 5px;
-        margin-left: 5px;*/
+        margin-top: 5px;
+       /* margin-left: 5px;*/
     }
 
 .altoBtn {
@@ -2517,7 +2515,7 @@ a.btn {
 }
 
     .btn-single-icon .fa {
-        font-size: 17px;
+        font-size: 12px;
     }
 
 .social-btn {
