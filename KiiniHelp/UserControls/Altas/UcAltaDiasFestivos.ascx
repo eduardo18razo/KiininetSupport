@@ -68,7 +68,7 @@
                                 <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-calendar " Visible="False"></asp:LinkButton>
                             </div>
                             <div class="form-group">
-                                <asp:LinkButton runat="server" ID="btnAddDiaDescanso" class="fa fa-plus-circle margin-left-5 margin-top-7" OnClick="btnAddDiaDescanso_OnClick">Nuevo </asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="btnAddDiaDescanso" class="fa fa-plus-circle margin-left-5 margin-top-7" OnClick="btnAddDiaDescanso_OnClick"/>
                             </div>
                             <div class="clearfix"></div>
                         </ContentTemplate>
