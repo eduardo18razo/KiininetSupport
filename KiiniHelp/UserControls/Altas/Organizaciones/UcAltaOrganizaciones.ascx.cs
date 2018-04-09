@@ -25,7 +25,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
         private UsuariosMaster _mp;
-
         readonly ServiceTipoUsuarioClient _servicioSistemaTipoUsuario = new ServiceTipoUsuarioClient();
         readonly ServiceOrganizacionClient _servicioOrganizacion = new ServiceOrganizacionClient();
         readonly ServiceParametrosClient _servicioParametros = new ServiceParametrosClient();
@@ -43,7 +42,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 }
             }
         }
-
         public string Title
         {
             set { lblTitleCatalogo.Text = value; }
@@ -583,7 +581,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 ddlTipoUsuario.Enabled = false;
             }
         }
-
         private void SetAliasModal()
         {
             try
@@ -689,7 +686,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 throw new Exception(ex.Message);
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -935,7 +931,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 throw new Exception(ex.Message);
             }
         }
-
         private void Guardar()
         {
             try
@@ -1136,7 +1131,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
-        /*Modificado Estilos pasos*/
         protected void btnTerminar_OnClick(object sender, EventArgs e)
         {
             try
@@ -1233,8 +1227,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
-
-        /*Modificado Estilos pasos*/
         protected void btnStatusNivel1_OnClick(object sender, EventArgs e)
         {
             try
@@ -1353,7 +1345,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try

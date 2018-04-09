@@ -44,7 +44,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 btnCambiarImagen.Visible = false;
                 FileUpload1.Enabled = false;
 
-                desbloqueaBotones();
+                DesbloqueaBotones();
 
                 if (!value)
                 {
@@ -628,10 +628,9 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 btnCambiarImagen.Visible = true;
 
                 //botones organización, ubicación & Roles y grupos
-                btnModalOrganizacion.Visible = true;
-                btnModalUbicacion.Visible = true;
-                btnModalRoles.Visible = true;
-                desbloqueaBotones();
+                //btnModalOrganizacion.Visible = true;
+                //btnModalUbicacion.Visible = true;
+                //btnModalRoles.Visible = true;
             }
             catch (Exception ex)
             {
@@ -852,8 +851,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     throw new Exception("Seleccione el Tipo de usuario");
                 ucAltaPuesto.EsAlta = true;
                 ucAltaPuesto.IdTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAreas\");",
-                    true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAreas\");", true);
             }
             catch (Exception ex)
             {
@@ -1042,26 +1040,14 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             }
         }
 
-
-        private void bloqueaBotones()
-        {
-            btnAddCorreo.Visible = false;
-            btnAddTelefono.Visible = false;
-            chkVip.Enabled = false;
-            chkDirectoriActivo.Enabled = false;
-            chkPersonaFisica.Enabled = false;
-
-        }
-
-
-        private void desbloqueaBotones()
+        
+        private void DesbloqueaBotones()
         {
             btnAddCorreo.Visible = true;
             btnAddTelefono.Visible = true;
             chkVip.Enabled = true;
             chkDirectoriActivo.Enabled = true;
             chkPersonaFisica.Enabled = true;
-
         }
 
 

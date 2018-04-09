@@ -160,7 +160,7 @@ namespace KiiniHelp.UserControls.Altas
                     mp.AlertaSucces(BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.Actualizacion));
                 }
                 LimpiarCampos();
-                if (!EsAlta)
+                if (!EsAlta || !ddlTipoUsuario.Enabled)
                     btnTerminar_OnClick(btnTerminar, null);
 
             }
