@@ -18,6 +18,11 @@
         padding: 15px;
     }
 
+    /*.content-wrapper {
+        padding-top: 15px;
+        border-left: 0;
+    }*/
+
     .content-wrapper .view-title {
         max-width: 250px;
         white-space: nowrap;
@@ -33,7 +38,6 @@
 
     .header .utilities-container .item {
         margin-right: 5px;
-        padding: 0px 10px;
     }
 
     .header .utilities-container .item-messages .dropdown-menu {
@@ -46,14 +50,14 @@
     }
 
     .header .search-container {
-        width: 35px !important;
-        margin-left: 35px;
-        padding-top: 20px;
+        width: 55px !important;
+        margin-left: 40px;
     }
 
         .header .search-container .icon {
             position: absolute;
             left: 12px !important;
+            /*font-size: 22px !important;*/
         }
 
             .header .search-container .icon.fa-search {
@@ -67,7 +71,10 @@
                 background-color: blueviolet;
             }
 
+    /*.header .search-container .main_search_input_wrapper {*/
     .header .main_search_input_wrapper {
+        /*display: none;*/
+        /*Prueba*/
         border: 1px solid black;
         padding-top: 4px;
         position: absolute;
@@ -78,6 +85,7 @@
         background-color: white;
     }
 
+    /*.header .search-container .main_search_input {*/
     .header .main_search_input {
         border-color: #f0f0f0;
         background: #f0f0f0;
@@ -226,6 +234,7 @@
         }
 }
 
+/* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .modal-fullscreen .modal-dialog {
         width: 100%;
@@ -233,8 +242,9 @@
     }
 }
 
-
+/* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+    /* login/signup */
     .auth-section .divider {
         text-align: center;
         margin-bottom: 30px;
@@ -272,7 +282,7 @@
             text-align: left;
         }
 }
-
+/* Large devices (large desktops, 1200px and up) */
 @media print {
     .header {
         display: none;
@@ -290,7 +300,9 @@
         margin-left: 0;
     }
 }
+/* ======= CAMBIOS =======*/
 
+/* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     .form-inline .help_search_form {
         width: 250px;
@@ -309,6 +321,7 @@
     }
 }
 
+/* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .view-account .content-panel {
         min-height: 800px;
@@ -382,7 +395,7 @@
                         display: inline-block;
                     }
 }
-
+/* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
 
     .margin-top-btn-consulta {
@@ -396,30 +409,35 @@
     }
 }
 
+/* Landscape phones and down */
 @media (max-width: 480px) {
     body {
         font-size: 16px;
     }
 }
 
+/* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
     body {
         font-size: 20px;
     }
 }
 
+/* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     body {
         font-size: 20px;
     }
 }
 
+/* iPads (landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
     body {
         font-size: 20px;
     }
 }
 
+/* iPads (portrait) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
     body {
         font-size: 20px;

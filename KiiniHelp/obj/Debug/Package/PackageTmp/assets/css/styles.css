@@ -52,233 +52,6 @@ input {
 }
 
 
-/* tableta horizontal vertical */
-@media (min-width: 768px) and (max-width: 979px) {
-    body {
-        font-size: 12px;
-    }
-}
-
-/* Landscape phone to portrait tablet */
-/* Extra small devices (phones, less than 768px) */
-@media (max-width: 767px) {
-    body {
-        font-size: 16px;
-    }
-
-    /*empieza Móvil  main_movil.css*/
-
-    body, input, select, textarea {
-        font-size: 11pt;
-        line-height: 1.35em;
-    }
-
-    /*termina Móvil*/
-
-    .container-fluid {
-        padding: 15px;
-    }
-
-    .content-wrapper {
-        padding-top: 15px;
-        border-left: 0;
-    }
-
-        .content-wrapper .view-title {
-            max-width: 250px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 260px;
-            font-size: 16px;
-        }
-
-    .header .main-nav-toggle {
-        margin-left: 5px;
-    }
-
-    .header .utilities-container .item {
-        margin-right: 5px;
-    }
-
-    .header .utilities-container .item-messages .dropdown-menu {
-        right: -26px;
-        /*background-color: red;*/
-    }
-
-    .header .utilities-container .item-notifications .dropdown-menu {
-        width: 280px;
-    }
-
-    .header .search-container {
-        position: static;
-    }
-
-        .header .search-container .icon.fa-search {
-            position: relative;
-        }
-
-        .header .search-container .icon.clear-search {
-            right: 15px;
-            top: 15px;
-            color: #494d55;
-        }
-
-        .header .search-container .main_search_input_wrapper {
-            display: none;
-            position: absolute;
-            left: 0;
-            top: 5px;
-            width: 100%;
-        }
-
-        .header .search-container .main_search_input {
-            border-color: #f0f0f0;
-            background: #f0f0f0;
-            margin-top: 0;
-            padding: 15px;
-            height: 50px;
-            width: 100%;
-        }
-
-            .header .search-container .main_search_input:focus {
-                background-color: transparent ;
-                border-color: transparent;
-            }
-
-
-    .separador-vertical-derecho {
-        border-right: none;
-    }
-
-    .module .module-inner {
-        padding: 10px 15px;
-    }
-
-    .module .module-heading {
-        padding-bottom: 15px;
-    }
-
-    .dataTables_wrapper .dataTables_filter input[type="search"] {
-        width: 160px;
-    }
-
-    .modal-fullscreen .modal-dialog {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .form-inline .form-group {
-        margin-bottom: 5px;
-    }
-
-    .form-inline .radio label,
-    .form-inline .checkbox label {
-        padding-left: 1px;
-        vertical-align: bottom;
-    }
-
-    .modal-fullscreen .modal-dialog {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    /*.modal-dialog {
-        width: 40%;
-    }*/
-
-    .help-section .search-box .btn {
-        width: 100%;
-        margin-top: 5px;
-    }
-
-
-    .view-account .content-panel .title {
-        text-align: center;
-    }
-
-    .view-account .side-bar .user-info {
-        padding: 0;
-    }
-
-        .view-account .side-bar .user-info .img-profile {
-            width: 60px;
-            height: 60px;
-        }
-
-        .view-account .side-bar .user-info .meta li {
-            margin-bottom: 5px;
-        }
-
-    .view-account .content-panel .content-header-wrapper .actions {
-        position: static;
-        margin-bottom: 30px;
-    }
-
-    .view-account .content-panel {
-        padding: 0;
-    }
-
-        .view-account .content-panel .content-utilities .page-nav {
-            position: static;
-            margin-bottom: 15px;
-        }
-
-    .drive-wrapper .drive-item {
-        width: 100px;
-        margin-right: 5px;
-        float: none;
-    }
-
-    .drive-wrapper .drive-item-thumb {
-        width: auto;
-        height: 54px;
-    }
-
-        .drive-wrapper .drive-item-thumb .fa {
-            font-size: 24px;
-            padding-top: 0;
-        }
-
-    .view-account .content-panel .avatar .figure img {
-        float: none;
-        margin-bottom: 15px;
-    }
-
-    .view-account .file-uploader {
-        margin-bottom: 15px;
-    }
-
-    .file-uploader {
-        display: none;
-    }
-
-    .file-uploader-label {
-        display: inline-block;
-        padding: 6px 12px;
-        cursor: pointer;
-        text-decoration-line: underline;
-    }
-
-    .view-account .mail-subject {
-        max-width: 100px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .view-account .content-panel .mails-wrapper .mail-item .time-container {
-        position: static;
-    }
-
-        .view-account .content-panel .mails-wrapper .mail-item .time-container .time {
-            width: auto;
-            text-align: left;
-        }
-}
-
-
-
 hr {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -488,6 +261,19 @@ button.close:focus {
     width: 45px;
 }
 
+.compact:not(.nav-toggled) .header .main_search_input_wrapper,
+.mobile.nav-toggled .header .main_search_input_wrapper,
+.nav-toggled:not(.compact):not(.mobile) .header .main_search_input_wrapper {
+    padding-left: 0;
+    position: absolute;
+    left: 97px;
+    top: 12px;
+    width: 250px;
+    background-color: aliceblue;
+}
+
+
+
 
 /*Oculta Logo*/
 .mobile:not(.nav-toggled) .header .branding {
@@ -503,7 +289,6 @@ button.close:focus {
 .header .branding .logo {
     font-size: 14px;
     margin: 0;
-    /*text-transform: uppercase;*/
     font-weight: lighter;
 }
 
@@ -597,66 +382,62 @@ button.close:focus {
     display: inline-block;
     margin-left: 60px;
     position: relative;
-    background-color: #F5F5F5;
+    background-color: transparent;
     width: 300px;
     height: 65px;
 }
 
-.header .search-container2 {
-    float: left;
-    display: inline-block;
-    margin-left: 60px;
-    position: relative;
-    background-color: #F5F5F5;
-    width: 60px; /*300px*/
-    height: 65px;
-}
-
-    .header .search-container2 .icon {
+    .header .search-container .icon {
         position: absolute;
-        left: 20px; /*70px*/
-        font-size: 18px;
+        left: 12px;
+        font-size: 16px;
         color: #afb3bb;
         cursor: pointer;
     }
 
-.header .search-container .icon {
-    position: absolute;
-    left: 270px;
-    font-size: 18px;
-    color: #afb3bb;
-    cursor: pointer;
-}
+        .header .search-container .icon:hover {
+            color: #7C7C7C;
+        }
 
+        .header .search-container .icon.clear-search {
+            left: auto;
+            right: 0;
+            display: none;
+            cursor: pointer;
+        }
 
-    .header .search-container .icon:hover {
-        color: #7C7C7C;
-    }
-
-    .header .search-container .icon.clear-search {
-        left: auto;
-        right: 0;
-        display: none;
-        cursor: pointer;
-    }
-
-.header .search-container .main_search_input_wrapper {
+/*.header .search-container .main_search_input_wrapper {*/
+.header .main_search_input_wrapper {
     padding-left: 0;
+    position: absolute;
+    left: 225px;
+    top: 9px;
+    width: 250px;
+    background-color: rebeccapurple;
 }
 
-.header .search-container .main_search_input {
+/*.header .search-container .main_search_input {*/
+.header .main_search_input {
     background: #fbfbfb;
     border-radius: 0;
     background-clip: padding-box;
     border: none;
     padding-bottom: 5px;
-    width: 270px;
+    width: 100%;
     vertical-align: middle;
 }
 
-    .header .search-container .main_search_input:focus {
-        border-color: #40babd;
-    }
+.header .clear-search {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+
+.header .search-container .main_search_input:focus {
+    border-color: #40babd;
+}
 
 .header .navbar-tools {
     float: right;
@@ -1057,7 +838,7 @@ button.close:focus {
 .content-wrapper {
     background: #f9f9fb;
     margin-right: 0;
-    padding-top: 80px; /*30px*/
+    padding-top: 65px; /*30px*/
     height: 97%;
 }
 
@@ -1950,23 +1731,17 @@ a.btn {
     font-size: 10px;
 }
 
-.btn-default {
-    background: #fff;
-    border: 1px solid #e6e7ea;
-    color: #a2a6af;
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.btn-default.focus,
+.btn-default.hover {
+    border-color: #e6e7ea;
+    color: #6c727e;
+    background: #f9f9fb;
+    box-shadow: none;
 }
-
-    .btn-default:hover,
-    .btn-default:focus,
-    .btn-default:active,
-    .btn-default.active,
-    .btn-default.focus,
-    .btn-default.hover {
-        border-color: #e6e7ea;
-        color: #6c727e;
-        background: #f9f9fb;
-        box-shadow: none;
-    }
 
 .open > .dropdown-toggle.btn-default {
     border-color: #e6e7ea;
@@ -4367,13 +4142,6 @@ ul.sortable {
         opacity: 1;
     }
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    .modal-fullscreen .modal-dialog {
-        width: 100%;
-        margin: 0 auto;
-    }
-}
 /* ===== FORMAS (WIZARD) ===== */
 .wizard > .content {
     min-height: 300px;
@@ -4508,64 +4276,6 @@ ul.sortable {
     background: #40babd;
 }
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    /* login/signup */
-    .auth-section .divider {
-        text-align: center;
-        margin-bottom: 30px;
-        text-transform: uppercase;
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-    }
-
-        .auth-section .divider span {
-            background: #fff;
-            display: inline-block;
-            padding: 10px 0;
-            position: relative;
-            top: 80px;
-            margin-left: -10px;
-        }
-
-        .auth-section .divider:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: #f3f3f7;
-            height: 100%;
-            width: 1px;
-        }
-
-    .auth-section .social-btns {
-        padding-left: 65px;
-    }
-
-        .auth-section .social-btns .note {
-            text-align: left;
-        }
-}
-/* Large devices (large desktops, 1200px and up) */
-@media print {
-    .header {
-        display: none;
-    }
-
-    #side-panel {
-        display: none;
-    }
-
-    .main-nav-wrapper {
-        display: none;
-    }
-
-    .content-wrapper {
-        margin-left: 0;
-    }
-}
 /* ======= CAMBIOS =======*/
 
 .wdropdown-ticket {
@@ -4615,25 +4325,6 @@ ul.sortable {
 
 .module .help-lead .subtitle {
     margin-bottom: 15px;
-}
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-    .form-inline .help_search_form {
-        width: 250px;
-    }
-
-    .view-account .side-bar .user-info {
-        padding: 0;
-        padding-bottom: 15px;
-    }
-
-    .view-account .mail-subject .subject {
-        max-width: 200px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 }
 
 /* Theme default */
@@ -5472,81 +5163,6 @@ ul.sortable {
     color: #a2a6af;
 }
 
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    .view-account .content-panel {
-        min-height: 800px;
-        border-left: 1px solid #f3f3f7;
-        margin-left: 200px;
-    }
-
-    .view-account .mail-subject .subject {
-        max-width: 280px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .view-account .side-bar {
-        position: absolute;
-        width: 200px;
-        min-height: 600px;
-    }
-
-        .view-account .side-bar .user-info {
-            margin-bottom: 0;
-            border-bottom: none;
-            padding: 30px;
-        }
-
-            .view-account .side-bar .user-info .img-profile {
-                width: 120px;
-                height: 120px;
-            }
-
-        .view-account .side-bar .side-menu {
-            text-align: left;
-        }
-
-            .view-account .side-bar .side-menu .nav {
-                display: block;
-            }
-
-                .view-account .side-bar .side-menu .nav > li {
-                    display: block;
-                    float: none;
-                    font-size: 14px;
-                    border-bottom: 1px solid #f3f3f7;
-                    margin-right: 0;
-                    margin-bottom: 0;
-                }
-
-                    .view-account .side-bar .side-menu .nav > li > a {
-                        display: block;
-                        color: #9499a3;
-                        padding: 10px 15px;
-                        padding-left: 30px;
-                    }
-
-                        .view-account .side-bar .side-menu .nav > li > a:hover {
-                            background: #f9f9fb;
-                        }
-
-                    .view-account .side-bar .side-menu .nav > li.active a {
-                        background: #f9f9fb;
-                        border-right: 4px solid #40babd;
-                        border-bottom: none;
-                    }
-
-                    .view-account .side-bar .side-menu .nav > li .icon {
-                        font-size: 24px;
-                        vertical-align: middle;
-                        text-align: center;
-                        width: 40px;
-                        display: inline-block;
-                    }
-}
-/* Large devices (large desktops, 1200px and up) */
 /* default */
 
 .border-rounded {
@@ -5785,6 +5401,10 @@ ul.sortable {
     margin-top: 20px;
 }
 
+.margin-top-24 {
+    margin-top: 24px;
+}
+
 .margin-top-30 {
     margin-top: 30px;
 }
@@ -5867,6 +5487,10 @@ ul.sortable {
 
 .margin-left-25 {
     margin-left: 25px;
+}
+
+.margin-left-35 {
+    margin-left: 35px;
 }
 
 .margin-top-btn-consulta {
@@ -5993,12 +5617,6 @@ ul.sortable {
     overflow-x: auto;
 }
 
-@media (min-width: 1200px) {
-
-    .margin-top-btn-consulta {
-        margin-top: 35px;
-    }
-}
 
 .overflowY {
     overflow-y: auto;
@@ -6183,183 +5801,177 @@ a.fa-plus-circle {
         overflow: hidden;
     }
 
-@media \0screen {
-    .RadSearchBox button {
-        overflow: visible !important;
+        .RadSearchBox button::-moz-focus-inner {
+            padding: 0;
+            border: 0;
+        }
+
+    .RadSearchBox img {
+        vertical-align: baseline;
     }
-}
 
-.RadSearchBox button::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-}
+    .RadSearchBox .rsbInner {
+        padding: 1px;
+        box-sizing: content-box;
+        border-width: 1px;
+        border-style: solid;
+        display: block;
+        position: relative;
+    }
 
-.RadSearchBox img {
-    vertical-align: baseline;
-}
+    .RadSearchBox.RadSearchBoxWithLabel .rsbInner {
+        display: inline-block;
+        vertical-align: middle;
+    }
 
-.RadSearchBox .rsbInner {
-    padding: 1px;
-    box-sizing: content-box;
-    border-width: 1px;
-    border-style: solid;
-    display: block;
-    position: relative;
-}
+    .RadSearchBox .rsbInput {
+        margin: 0 3px;
+        padding: 0;
+        width: 100%;
+        height: 18px;
+        border: 0;
+        color: inherit;
+        background: 0;
+        font: inherit;
+        display: inline-block;
+        vertical-align: top;
+    }
 
-.RadSearchBox.RadSearchBoxWithLabel .rsbInner {
-    display: inline-block;
-    vertical-align: middle;
-}
+    .RadSearchBox .rsbEmptyMessage {
+        font-style: italic;
+        filter: alpha(opacity=80);
+        opacity: .8;
+    }
 
-.RadSearchBox .rsbInput {
-    margin: 0 3px;
-    padding: 0;
-    width: 100%;
-    height: 18px;
-    border: 0;
-    color: inherit;
-    background: 0;
-    font: inherit;
-    display: inline-block;
-    vertical-align: top;
-}
+    * + html .RadSearchBox .rsbInput {
+        color: expression(this.parentNode.currentStyle['color']);
+        font-size: 1em;
+        font-family: expression(this.parentNode.currentStyle['fontFamily']);
+    }
 
-.RadSearchBox .rsbEmptyMessage {
-    font-style: italic;
-    filter: alpha(opacity=80);
-    opacity: .8;
-}
+    .RadSearchBox .rsbButtons {
+        display: inline-block;
+        vertical-align: top;
+    }
 
-* + html .RadSearchBox .rsbInput {
-    color: expression(this.parentNode.currentStyle['color']);
-    font-size: 1em;
-    font-family: expression(this.parentNode.currentStyle['fontFamily']);
-}
+    .RadSearchBox .rsbButton {
+        margin: 0;
+        padding: 0;
+        width: 18px;
+        height: 18px;
+        border: 1px solid transparent;
+        background-color: transparent;
+        background-repeat: repeat-x;
+        background-position: 0 0;
+        vertical-align: top;
+        position: relative;
+    }
 
-.RadSearchBox .rsbButtons {
-    display: inline-block;
-    vertical-align: top;
-}
+        .RadSearchBox .rsbButton .rsbIcon {
+            margin: -8px 0 0 -8px;
+            width: 16px;
+            height: 16px;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
 
-.RadSearchBox .rsbButton {
-    margin: 0;
-    padding: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid transparent;
-    background-color: transparent;
-    background-repeat: repeat-x;
-    background-position: 0 0;
-    vertical-align: top;
-    position: relative;
-}
+    .RadSearchBox .rsbLoadingIcon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: top;
+    }
 
-    .RadSearchBox .rsbButton .rsbIcon {
-        margin: -8px 0 0 -8px;
+    .RadSearchBox .rsbButtonSearch {
+        margin: -2px -2px -2px 0;
+        width: 22px;
+        height: 22px;
+    }
+
+    .RadSearchBox .rsbLabel {
+        padding-right: 10px;
+        line-height: 22px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .RadSearchBox .rsbSearchContext {
+        display: inline-block;
+        margin: -2px 0 -2px -2px;
+        cursor: default;
+        vertical-align: top;
+    }
+
+        .RadSearchBox .rsbSearchContext:focus {
+            outline: 0;
+        }
+
+    .RadSearchBox .rsbSCDisabled {
+        opacity: .6;
+    }
+
+    .RadSearchBox .rsbSCInner {
+        padding: 1px 20px 1px 4px;
+        border-width: 1px;
+        border-style: solid;
+        background-position: 0 0;
+        background-repeat: repeat-x;
+        display: block;
+        position: relative;
+        box-sizing: content-box;
+        vertical-align: middle;
+    }
+
+    .RadSearchBox .rsbSCFakeInput {
+        display: inline-block;
+        *display: inline;
+        width: 100%;
+        *width: auto;
+        overflow: hidden;
+        vertical-align: top;
+        zoom: 1;
+    }
+
+    .RadSearchBox .rsbListItemImg, .RadSearchBox .rsbListItemText {
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .RadSearchBox .rsbSCIcon {
+        margin: -8px 0 0 0;
         width: 16px;
         height: 16px;
         background-repeat: no-repeat;
         position: absolute;
         top: 50%;
-        left: 50%;
+        left: auto;
+        right: 0;
     }
 
-.RadSearchBox .rsbLoadingIcon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    vertical-align: top;
-}
-
-.RadSearchBox .rsbButtonSearch {
-    margin: -2px -2px -2px 0;
-    width: 22px;
-    height: 22px;
-}
-
-.RadSearchBox .rsbLabel {
-    padding-right: 10px;
-    line-height: 22px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.RadSearchBox .rsbSearchContext {
-    display: inline-block;
-    margin: -2px 0 -2px -2px;
-    cursor: default;
-    vertical-align: top;
-}
-
-    .RadSearchBox .rsbSearchContext:focus {
-        outline: 0;
+    .RadSearchBox .rsbListItemImg {
+        margin-right: 3px;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
     }
 
-.RadSearchBox .rsbSCDisabled {
-    opacity: .6;
-}
-
-.RadSearchBox .rsbSCInner {
-    padding: 1px 20px 1px 4px;
-    border-width: 1px;
-    border-style: solid;
-    background-position: 0 0;
-    background-repeat: repeat-x;
-    display: block;
-    position: relative;
-    box-sizing: content-box;
-    vertical-align: middle;
-}
-
-.RadSearchBox .rsbSCFakeInput {
-    display: inline-block;
-    *display: inline;
-    width: 100%;
-    *width: auto;
-    overflow: hidden;
-    vertical-align: top;
-    zoom: 1;
-}
-
-.RadSearchBox .rsbListItemImg, .RadSearchBox .rsbListItemText {
-    vertical-align: middle;
-    display: inline-block;
-}
-
-.RadSearchBox .rsbSCIcon {
-    margin: -8px 0 0 0;
-    width: 16px;
-    height: 16px;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 50%;
-    left: auto;
-    right: 0;
-}
-
-.RadSearchBox .rsbListItemImg {
-    margin-right: 3px;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-}
-
-.RadSearchBox .rsbListItemText {
-    vertical-align: middle;
-}
-
-.RadSearchBox .rsbButton {
-    background-position: 0 1000px;\9
-}
-
-    .RadSearchBox .rsbButton:hover, .RadSearchBox .rsbSCHovered {
-        background-position: 0 -1000px;\9
+    .RadSearchBox .rsbListItemText {
+        vertical-align: middle;
     }
 
-    .RadSearchBox .rsbButton:focus, .RadSearchBox .rsbSCFocused {
-        background-position: 0 -2000px;\9
+    .RadSearchBox .rsbButton {
+        background-position: 0 1000px;\9
     }
+
+        .RadSearchBox .rsbButton:hover, .RadSearchBox .rsbSCHovered {
+            background-position: 0 -1000px;\9
+        }
+
+        .RadSearchBox .rsbButton:focus, .RadSearchBox .rsbSCFocused {
+            background-position: 0 -2000px;\9
+        }
 
 .RadSearchBox_rtl {
     text-align: right;
@@ -6652,7 +6264,7 @@ input[type="radio"] + label {
 
 input, input[type="file"] {
     font-family: 'Proxima Nova' !important;
-    font-size: 12px !important;
+    font-size: 12px;
 }
 /*Inicio Resultados de búsqueda*/
 
@@ -6731,63 +6343,4 @@ input, input[type="file"] {
     width: 850px;
     height: 650px;
     border: none;
-}
-
-
-
-/* Landscape phones and down */
-@media (max-width: 480px) {
-    body {
-        font-size: 18px;
-    }
-}
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    body {
-        font-size: 20px;
-    }
-}
-
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-    body {
-        font-size: 20px;
-    }
-}
-
-
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-    body {
-        font-size: 20px;
-    }
-}
-
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-    body {
-        font-size: 20px;
-    }
-
-    .form-control {
-        font-size: 16px;
-        /*background-color:violet;*/
-    }
-}
-
-/* iPhone 4 and high pixel ratio devices ----------- */
-@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
-    body {
-        font-size: 18px;
-    }
-
-    .form-control {
-        font-size: 16px !important;
-        /*background-color: ActiveCaption;*/
-    }
-
-    .content-wrapper {
-        padding-top: 120px;
-    }
 }

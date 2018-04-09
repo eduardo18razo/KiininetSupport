@@ -6,6 +6,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
     <link rel='stylesheet' href="assets/css/font.css" />
@@ -124,7 +126,7 @@
                     </div>
 
                     <div class="search-container" runat="server" visible="true">
-                        <div id="main-search" class="margin-top-20">
+                        <div id="main-search">
                             <i id="main-search-toggle" class="fa fa-search icon"></i>
                             <div id="main_search_input_wrapper" class="main_search_input_wrapper">
                                 <asp:UpdatePanel runat="server">
@@ -165,7 +167,7 @@
                                         <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" CssClass="fontXs" Visible="true" /></strong>
                                 </p>
                             </div>
-                        
+
                         </div>
 
                         <div class="utilities-container">
@@ -182,15 +184,8 @@
                                     </i>
                                 </div>
 
-                                <%--nuevo ticket--%>
-                                <div class="item item-notifications separador-vertical-derecho">
-                                    <asp:LinkButton class="dropdown-toggle" runat="server" OnClick="OnClick">
-                                        <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Generar Ticket"></span>
-                                    </asp:LinkButton>
-                                </div>
-                                
                                 <%--lista de ticket--%>
-                                <div class="item item-notifications margin-right-35">
+                                <div class="item item-notifications margin-right-35" style="display:none;">
                                     <div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Tickets</span> <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                         <span class="badge badge-circle badge-danger left32">
@@ -205,21 +200,7 @@
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
                                                 <div class="meta">2h </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
-                                                <div class="meta">2h </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
-                                                <div class="meta">2h </div>
-                                            </div>
+                                            </div>                                            
                                         </div>
                                         <div class="dropdown-footer"><a href="#">Ver todos los tickets</a> </div>
                                     </div>
@@ -262,7 +243,7 @@
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
                                                 <div class="meta">Ene 6 </div>
-                                            </div>                                           
+                                            </div>
                                         </div>
                                         <div class="dropdown-footer"><a href="#">Ver todos los mensajes</a> </div>
                                     </div>

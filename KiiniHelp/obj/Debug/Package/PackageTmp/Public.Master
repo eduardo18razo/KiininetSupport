@@ -8,6 +8,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KiiniNet</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
     <link rel='stylesheet' href="assets/css/font.css" />
@@ -77,7 +80,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body class="preload">
+<body class="layout_no_leftnav">
     <form runat="server" id="form1" enctype="multipart/form-data" class="bg-grisClaro">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -126,13 +129,11 @@
                         <span id="trigger" class="menu-trigger z-Index-Top" />
                     </div>
                 </div>
-                <div class="search-container">
-                    <div id="main-search" class="padding-20-top">
+
+                <div class="search-container margin-left-35" runat="server" visible="true">
+                    <div id="main-search" class="margin-top-24">
                         <i id="main-search-toggle" class="fa fa-search icon"></i>
-                        <div id="main_search_input_wrapper" class="main_search_input_wrapper">
-                            <asp:TextBox type="text" ID="main_search_input" ClientIDMode="Static" class="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
-                            <span id="clear-search" aria-hidden="true" class="fs1 icon icon_close_alt2 clear-search"></span>
-                        </div>
+
                     </div>
                 </div>
 
@@ -145,7 +146,7 @@
                                 </div>
                                 <ul class="dropdown-menu wdropdown-ticket right-45" role="menu" aria-labelledby="dropdownMenu-user">
                                     <li>
-                                        <span class="arrow right48" ></span>
+                                        <span class="arrow right48"></span>
                                         <a role="menuitem" data-toggle="modal" data-target="#modal-new-ticket" data-backdrop="static" data-keyboard="false">
                                             <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
                                         </a></li>
@@ -156,6 +157,7 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="item item-messages dropdown">
                                 <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span></div>
                                 <div class="dropdown-menu wdropdown-login right-45" role="menu" aria-labelledby="dropdownMenu-messages">
@@ -173,9 +175,22 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+
+                <div id="main_search_input_wrapper" class="main_search_input_wrapper">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
+                            <asp:TextBox type="text" ID="main_search_input" ClientIDMode="Static" class="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                            <span id="clear-search" aria-hidden="true" class="clear-search"></span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </header>
 
