@@ -11,7 +11,6 @@
             <asp:LinkButton class="close" ID="btnClose" OnClick="btnCancelar_OnClick" runat="server"><span aria-hidden="true">&times;</span></asp:LinkButton>
             <h6 class="modal-title" id="modal-new-ticket-label">Nuevo día feriado</h6>
         </div>
-
         <div class="modal-body">
             <div class="row">
                 <div class="row">
@@ -75,7 +74,6 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
-
                 <hr />
                 <asp:Label runat="server" Text="Días seleccionados del nuevo grupo de días feriados" CssClass="control-label col-lg-12 col-md-12" />
                 <br />
@@ -102,7 +100,6 @@
                 </div>
             </div>
         </div>
-
     </ContentTemplate>
 </asp:UpdatePanel>
 
