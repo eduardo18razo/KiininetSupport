@@ -29,6 +29,7 @@ namespace KiiniHelp.UserControls.Consultas
                 }
                 rptPager.DataSource = pages;
                 rptPager.DataBind();
+                lblNumeroResultados.Text = string.Format("{0} resultados para campo búsqueda", result.Count);
 
             }
             catch (Exception ex)

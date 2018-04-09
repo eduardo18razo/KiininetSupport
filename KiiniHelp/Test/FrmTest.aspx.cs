@@ -256,15 +256,15 @@ namespace KiiniHelp.Test
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!IsPostBack)
-            {
-                ddlUsuarioAsignacion.DataFieldID = "IdUsuario";
-                ddlUsuarioAsignacion.DataFieldParentID = "IdSubRol";
-                ddlUsuarioAsignacion.DataValueField = "DescripcionSubRol";
-                ddlUsuarioAsignacion.DataTextField = "NombreUsuario";
-                ddlUsuarioAsignacion.DataSource = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(4, 1, new List<int>());
-                ddlUsuarioAsignacion.DataBind();
-            }
+            //if (!IsPostBack)
+            //{
+            //    ddlUsuarioAsignacion.DataFieldID = "IdUsuario";
+            //    ddlUsuarioAsignacion.DataFieldParentID = "IdSubRol";
+            //    ddlUsuarioAsignacion.DataValueField = "DescripcionSubRol";
+            //    ddlUsuarioAsignacion.DataTextField = "NombreUsuario";
+            //    ddlUsuarioAsignacion.DataSource = _servicioUsuario.ObtenerUsuarioAgenteByGrupoUsuario(4, 1, new List<int>());
+            //    ddlUsuarioAsignacion.DataBind();
+            //}
 
             //DataTable dtTicketsCanal = new DataTable("dt");
             //dtTicketsCanal.Columns.Add("Id", typeof(int));

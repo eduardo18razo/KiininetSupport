@@ -1019,7 +1019,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             try
             {
-
+                ValidaMascaraCaptura();
                 //TODO: Cambiar id arbol por parametro
                 if (divRegistraUsuario.Visible)
                     ucAltaUsuarioRapida.RegistraUsuario();

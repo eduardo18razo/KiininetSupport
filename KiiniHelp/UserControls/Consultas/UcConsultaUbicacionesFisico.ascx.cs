@@ -1303,6 +1303,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
+                //LlenaUbicaciones();
                 int? idTipoUsuario = null;
                 int? idHolding = null;
                 int? idCompania = null;

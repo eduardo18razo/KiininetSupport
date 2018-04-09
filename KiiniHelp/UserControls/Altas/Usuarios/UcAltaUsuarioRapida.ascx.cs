@@ -30,6 +30,27 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             }
         }
 
+        public bool ValidaUsuarioExiste()
+        {
+            try
+            {
+                ValidaCaptura();
+                if (_servicioUsuario.BuscarUsuario(txtCorreoRapido.Text.Trim()) != null)
+                {
+                    throw new Exception("Ya existe una cuenta con estos datos");
+                }
+                if (!string.IsNullOrEmpty(txtTelefonoCelularRapido.Text.Trim()))
+                    if (_servicioUsuario.BuscarUsuario(txtTelefonoCelularRapido.Text.Trim()) != null)
+                    {
+                        throw new Exception("Ya existe una cuenta con estos datos");
+                    }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return false;
+        }
         public void RegistraUsuario()
         {
             try
@@ -124,7 +145,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }

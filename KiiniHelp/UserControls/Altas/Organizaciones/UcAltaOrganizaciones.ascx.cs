@@ -25,7 +25,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
         private UsuariosMaster _mp;
-
         readonly ServiceTipoUsuarioClient _servicioSistemaTipoUsuario = new ServiceTipoUsuarioClient();
         readonly ServiceOrganizacionClient _servicioOrganizacion = new ServiceOrganizacionClient();
         readonly ServiceParametrosClient _servicioParametros = new ServiceParametrosClient();
@@ -43,7 +42,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 }
             }
         }
-
         public string Title
         {
             set { lblTitleCatalogo.Text = value; }
@@ -335,7 +333,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel2.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel2.Text;
-
+                        hfCatalogo.Value = "2";
                         break;
                     case 2:
                         divStep1.Visible = true;
@@ -359,6 +357,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel3.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
+                        hfCatalogo.Value = "3";
                         break;
                     case 3:
                         divStep1.Visible = true;
@@ -387,6 +386,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel4.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel4.Text;
+                        hfCatalogo.Value = "4";
                         break;
                     case 4:
                         divStep1.Visible = true;
@@ -418,6 +418,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel5.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel5.Text;
+                        hfCatalogo.Value = "5";
                         break;
                     case 5:
                         divStep1.Visible = true;
@@ -453,6 +454,8 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel6.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
+
+                        hfCatalogo.Value = "6";
                         break;
                     case 6:
 
@@ -493,6 +496,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
 
                         lblOperacion.Text = lblAliasNivel7.Text;
                         lblOperacionDescripcion.Text = lblAliasNivel7.Text;
+                        hfCatalogo.Value = "7";
                         break;
                     case 7:
                         divStep1.Visible = true;
@@ -577,7 +581,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 ddlTipoUsuario.Enabled = false;
             }
         }
-
         private void SetAliasModal()
         {
             try
@@ -683,7 +686,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 throw new Exception(ex.Message);
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -929,7 +931,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 throw new Exception(ex.Message);
             }
         }
-
         private void Guardar()
         {
             try
@@ -1130,7 +1131,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
-        /*Modificado Estilos pasos*/
         protected void btnTerminar_OnClick(object sender, EventArgs e)
         {
             try
@@ -1227,8 +1227,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
-
-        /*Modificado Estilos pasos*/
         protected void btnStatusNivel1_OnClick(object sender, EventArgs e)
         {
             try
@@ -1347,7 +1345,6 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 Alerta = _lstError;
             }
         }
-
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try

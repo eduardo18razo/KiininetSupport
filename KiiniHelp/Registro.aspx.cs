@@ -53,6 +53,7 @@ namespace KiiniHelp
         {
             try
             {
+                ucAltaUsuarioRapida.ValidaUsuarioExiste();
                 ucAltaUsuarioRapida.RegistraUsuario();
             }
             catch (Exception ex)

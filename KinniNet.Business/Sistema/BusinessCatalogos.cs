@@ -10,6 +10,7 @@ using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Helper;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
+using Telerik.Web.UI.ExportInfrastructure;
 
 namespace KinniNet.Core.Sistema
 {
@@ -527,32 +528,40 @@ namespace KinniNet.Core.Sistema
                 tabla = catalogo.Tabla;
                 ExisteMascara(tabla, true);
                 DataSet dtExcel = BusinessFile.ExcelManager.LeerHojaExcel(archivo, hoja);
-                string sqltable = CreateSqlTableFromDataTable(catalogo.Tabla, dtExcel.Tables["tablaPaso"]);
-                db.ExecuteStoreCommand(sqltable);
-                SqlConnection sqlConn = new SqlConnection(connection);
-                sqlConn.Open();
-                SqlCommand cmd = new SqlCommand(string.Format("select * from {0}", catalogo.Tabla), sqlConn);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.TableMappings.Add("Table", catalogo.Tabla);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                List<CampoCatalogo> lstCampos = (from DataColumn column in dtExcel.Tables["tablaPaso"].Columns select new CampoCatalogo { Campo = column.ColumnName, TipoCampo = SqlGetType(column) }).ToList();
-                catalogo.CampoCatalogo = lstCampos;
-                foreach (DataRow row in dtExcel.Tables["tablaPaso"].Rows)
+                if (dtExcel.Tables.Count > 0)
                 {
-                    DataRow dr = ds.Tables[catalogo.Tabla].NewRow();
-                    foreach (DataColumn column in dtExcel.Tables["tablaPaso"].Columns)
+                    if (dtExcel.Tables[0].Columns.Cast<DataColumn>().Any(column => column.ColumnName.Trim().ToUpper() == "ID" || column.ColumnName.Trim().ToUpper() == "HABILITADO"))
                     {
-                        dr[column.ColumnName] = row[column.ColumnName].ToString();
+                        throw new Exception("No se puede colocar una columna con el Nombre Id");
                     }
-                    dr["Habilitado"] = true;
-                    ds.Tables[catalogo.Tabla].Rows.Add(dr);
+                    string sqltable = CreateSqlTableFromDataTable(catalogo.Tabla, dtExcel.Tables["tablaPaso"]);
+                    db.ExecuteStoreCommand(sqltable);
+                    SqlConnection sqlConn = new SqlConnection(connection);
+                    sqlConn.Open();
+                    SqlCommand cmd = new SqlCommand(string.Format("select * from {0}", catalogo.Tabla), sqlConn);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.TableMappings.Add("Table", catalogo.Tabla);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    List<CampoCatalogo> lstCampos = (from DataColumn column in dtExcel.Tables["tablaPaso"].Columns
+                        select new CampoCatalogo {Campo = column.ColumnName, TipoCampo = SqlGetType(column)}).ToList();
+                    catalogo.CampoCatalogo = lstCampos;
+                    foreach (DataRow row in dtExcel.Tables["tablaPaso"].Rows)
+                    {
+                        DataRow dr = ds.Tables[catalogo.Tabla].NewRow();
+                        foreach (DataColumn column in dtExcel.Tables["tablaPaso"].Columns)
+                        {
+                            dr[column.ColumnName] = row[column.ColumnName].ToString();
+                        }
+                        dr["Habilitado"] = true;
+                        ds.Tables[catalogo.Tabla].Rows.Add(dr);
+                    }
+                    new SqlCommandBuilder(da);
+                    da.Update(ds.Tables[catalogo.Tabla]);
+                    db.Catalogos.AddObject(catalogo);
+                    db.SaveChanges();
                 }
-                new SqlCommandBuilder(da);
-                da.Update(ds.Tables[catalogo.Tabla]);
-                db.Catalogos.AddObject(catalogo);
-                db.SaveChanges();
             }
             catch (Exception ex)
             {

@@ -302,7 +302,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).Where(w => w.IdTipoUsuario == idTipoUsuario).ToList();
+                result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).Where(w => w.IdTipoUsuario == idTipoUsuario && w.Habilitado).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new GrupoUsuario

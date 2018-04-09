@@ -196,12 +196,6 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                txtFiltroDecripcion.Text = string.Empty;
-                //if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //{
-                //    LimpiarUbicaciones();
-                //    return;
-                //}
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     LlenaUbicaciones();

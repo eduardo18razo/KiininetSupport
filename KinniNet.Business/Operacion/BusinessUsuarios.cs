@@ -548,12 +548,14 @@ namespace KinniNet.Core.Operacion
                 if (idUsuario == null)
                     foreach (string numero in telefonos)
                     {
+                        if (string.IsNullOrEmpty(numero)) continue;
                         if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Obligatorio))
                             throw new Exception(string.Format("Telefono {0} ya se encuentra registrado", numero));
                     }
                 else
                     foreach (string numero in telefonos)
                     {
+                        if (string.IsNullOrEmpty(numero)) continue;
                         if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdUsuario != idUsuario && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Obligatorio))
                             throw new Exception(string.Format("Telefono {0} ya se encuentra registrado", numero));
                     }
@@ -1200,11 +1202,12 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                TelefonoUsuario telefono =
-                    db.TelefonoUsuario.Single(
-                        s =>
-                            s.Id == idTelefono && s.IdUsuario == idUsuario &&
-                            s.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular);
+                numero = numero.Trim();
+                if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular))
+                {
+                    throw new Exception("Telefono ya ha sido registrado.");
+                }
+                TelefonoUsuario telefono = db.TelefonoUsuario.Single(s => s.Id == idTelefono && s.IdUsuario == idUsuario && s.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular);
                 if (telefono != null)
                 {
                     telefono.Numero = numero;
@@ -1391,9 +1394,13 @@ namespace KinniNet.Core.Operacion
                     idUsuario = db.Usuario.First(w => w.NombreUsuario == usuario).Id;
                     result = db.Usuario.SingleOrDefault(s => s.Id == idUsuario);
                 }
-                db.LoadProperty(result, "PreguntaReto");
-                db.LoadProperty(result, "TelefonoUsuario");
-                db.LoadProperty(result, "CorreoUsuario");
+                if (result != null)
+                {
+
+                    db.LoadProperty(result, "PreguntaReto");
+                    db.LoadProperty(result, "TelefonoUsuario");
+                    db.LoadProperty(result, "CorreoUsuario");
+                }
             }
             catch (Exception ex)
             {
@@ -1416,6 +1423,7 @@ namespace KinniNet.Core.Operacion
                 {
                     throw new Exception("Especifique nombre de usuario");
                 }
+                usuario = usuario.Trim();
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = new List<Usuario>();
                 int idUsuario;

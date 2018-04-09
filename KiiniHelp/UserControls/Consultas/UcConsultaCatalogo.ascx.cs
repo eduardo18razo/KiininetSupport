@@ -57,12 +57,15 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
+                btnDownload.Enabled = false;
+                List<CatalogoGenerico> lst = null;
                 if (ddlCatalogos.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
-                    List<CatalogoGenerico> lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(int.Parse(ddlCatalogos.SelectedValue), true, false).Where(w => w.Id != 0).ToList();
-                    tblResults.DataSource = lst;
-                    tblResults.DataBind();
+                    btnDownload.Enabled = true;
+                    lst = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(int.Parse(ddlCatalogos.SelectedValue), true, false).Where(w => w.Id != 0).ToList();
                 }
+                tblResults.DataSource = lst;
+                tblResults.DataBind();
             }
             catch (Exception e)
             {
@@ -212,8 +215,10 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 List<CatalogoGenerico> lstRegistros = null;
+                string catalogo = null;
                 if (ddlCatalogos.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
+                    catalogo = ddlCatalogos.Text;
                     lstRegistros = _servicioCatalogos.ObtenerRegistrosSistemaCatalogo(int.Parse(ddlCatalogos.SelectedValue), true, false).Where(w => w.Id != 0).ToList();
                     tblResults.DataSource = lstRegistros;
                 }
@@ -221,15 +226,14 @@ namespace KiiniHelp.UserControls.Consultas
                     throw new Exception("Seleccione un catálogo.");
                 Response.Clear();
                 string ultimaEdicion = "Últ. edición";
-                MemoryStream ms =
-                    new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstRegistros.Select(
+                MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstRegistros.Select(
                                 s => new
                                 {
                                     Nombre = s.Descripcion
                                 })
                                 .ToList()).GetAsByteArray());
                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;  filename=Catalgos.xlsx");
+                Response.AddHeader("content-disposition", "attachment;  filename=" + catalogo +".xlsx");
                 Response.Buffer = true;
                 ms.WriteTo(Response.OutputStream);
                 Response.End();

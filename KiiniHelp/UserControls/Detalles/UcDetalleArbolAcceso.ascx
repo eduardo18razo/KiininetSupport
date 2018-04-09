@@ -16,10 +16,10 @@
                     <div class="col-lg-8 col-md-8 padding-8-top">
                         <asp:Label runat="server" ID="Label1" Text="Consulta los detalles de la consulta, servicio o incidente" />
                     </div>
-                    <div class="col-lg-4 col-md-4 text-right">
+                    <%--<div class="col-lg-4 col-md-4 text-right">
                         <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
                                  <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
-                    </div>
+                    </div>--%>
                     <hr class="col-lg-12 col-md-12 no-margin-bottom" />
                 </div>
             </div>

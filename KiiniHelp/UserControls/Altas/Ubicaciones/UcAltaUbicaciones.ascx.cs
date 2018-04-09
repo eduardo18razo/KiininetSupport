@@ -350,7 +350,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel2.Text;
 
                         divNombre.Visible = true;
-
+                        hfCatalogo.Value = "2";
                         break;
                     case 2:
                         divStep1.Visible = true;
@@ -376,6 +376,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel3.Text;
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "3";
                         break;
                     case 3:
                         divStep1.Visible = true;
@@ -406,6 +407,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel4.Text;
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "4";
                         break;
                     case 4:
                         divStep1.Visible = true;
@@ -440,6 +442,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "5";
                         break;
                     case 5:
                         divStep1.Visible = true;
@@ -477,6 +480,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                         lblOperacionDescripcion.Text = lblAliasNivel6.Text;
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "6";
                         break;
                     case 6:
 
@@ -520,6 +524,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
 
                         divNombre.Visible = true;
                         dataCampus.Visible = false;
+                        hfCatalogo.Value = "7";
 
                         break;
                     case 7:

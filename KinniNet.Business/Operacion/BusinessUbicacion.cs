@@ -828,7 +828,7 @@ namespace KinniNet.Core.Operacion
                     var qry = db.Ubicacion.Where(w => w.IdTipoUsuario == ub.IdTipoUsuario && w.IdPais == ub.IdPais);
                     if (!habilitado)
                     {
-                        qry = qry.Where(w => w.IdNivelUbicacion > ub.IdNivelUbicacion && w.Habilitado);
+                        qry = qry.Where(w => w.IdNivelUbicacion >= ub.IdNivelUbicacion && w.Habilitado);
                         foreach (Ubicacion source in qry.OrderBy(o => o.Id))
                         {
                             //if (ub.HitConsulta.Any() || ub.Ticket.Any() || ub.Usuario.Any())
