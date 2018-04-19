@@ -409,7 +409,7 @@ namespace KinniNet.Core.Operacion
                     {
                         IdTicket = idTicket,
                         IdUsuario = idUsuario,
-                        Mensaje = mensaje,
+                        Mensaje = mensaje.Replace("\n","<br/>"),
                         FechaGeneracion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
                         Sistema = sistema,
                         Leido = false,

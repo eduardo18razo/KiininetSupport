@@ -186,16 +186,16 @@ namespace KiiniHelp.Publico.Consultas
         {
             try
             {
-                if (hfComentario.Value == string.Empty)
+                if (txtConversacion.Text.Trim() == string.Empty)
                     throw new Exception("Ingrese un comentario.");
-                _servicioAtencionTicket.AgregarComentarioConversacionTicket(int.Parse(lblticket.Text), int.Parse(hfIdUsuarioTicket.Value), hfComentario.Value.Trim(), false, null, false, true);
+                _servicioAtencionTicket.AgregarComentarioConversacionTicket(int.Parse(lblticket.Text), int.Parse(hfIdUsuarioTicket.Value), txtConversacion.Text.Trim(), false, null, false, true);
                 HelperDetalleTicket detalle = _servicioticket.ObtenerDetalleTicketNoRegistrado(int.Parse(txtTicket.Text.Trim()), txtClave.Text.Trim());
                 if (detalle != null)
                 {
                     rptComentrios.DataSource = detalle.ConversacionDetalle;
                     rptComentrios.DataBind();
                 }
-                txtEditor.Text = string.Empty;
+                txtConversacion.Text = string.Empty;
             }
             catch (Exception ex)
             {

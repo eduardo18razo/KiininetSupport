@@ -13,15 +13,6 @@ namespace KiiniHelp.Publico.Consultas {
     public partial class FrmConsultaTicket {
         
         /// <summary>
-        /// Control hfComentario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfComentario;
-        
-        /// <summary>
         /// Control hfMuestraEncuesta.
         /// </summary>
         /// <remarks>
@@ -157,13 +148,13 @@ namespace KiiniHelp.Publico.Consultas {
         protected global::KiiniHelp.UserControls.Detalles.UcDetalleMascaraCaptura ucDetalleMascaraCaptura;
         
         /// <summary>
-        /// Control txtEditor.
+        /// Control txtConversacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Winthusiasm.HtmlEditor.HtmlEditor txtEditor;
+        protected global::System.Web.UI.WebControls.TextBox txtConversacion;
         
         /// <summary>
         /// Control btnComentar.
