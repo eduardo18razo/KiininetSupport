@@ -35,7 +35,7 @@
 }
 
 /*CAPTCHA*/
-.auth-section .form-control2 {
+/*.auth-section .form-control2 {
     padding-left: 10px;
 }
 
@@ -50,7 +50,7 @@
     background-repeat: initial;
     /*background-repeat-x: initial;
             background-repeat-y: initial;*/
-    background-attachment: initial;
+   /* background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
     background-color: rgba(255, 255, 255, 0.8);
@@ -96,7 +96,7 @@
     border-top-left-radius: 4px;
     background-clip: padding-box;
     position: relative;
-}
+}*/
 
 .module .module-heading2 {
     border-bottom: 0px solid #f3f3f7;
@@ -105,7 +105,7 @@
     margin-bottom: 15px;
 }
 
-.login-section {
+/*.login-section {
     background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -113,7 +113,7 @@
     background-size: cover;
     width: 100%;
     text-align: center;
-}
+}*/
 
 .bienvenido-section {
     background: url(../images/backs/bienvenido.jpg) no-repeat fixed center;

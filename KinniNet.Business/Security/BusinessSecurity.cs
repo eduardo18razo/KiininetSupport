@@ -563,8 +563,7 @@ namespace KinniNet.Core.Security
                     }
 
                     List<Area> lstAreas = new BusinessArea().ObtenerAreasUsuarioByIdRol(idUsuario, idRol, false).Distinct().ToList();
-
-                    //result.AddRange(lstAreas.Select(s => new Menu { Id = s.Id, Descripcion = s.Descripcion, Url = "DELSYSTEM" }).Distinct().ToList());
+                    
                     result.AddRange(lstAreas.Select(s => new Menu { Id = s.Id, Descripcion = s.Descripcion, Url = "DELSYSTEM" }).Distinct().ToList());
                     if (arboles)
                         foreach (Area area in lstAreas)

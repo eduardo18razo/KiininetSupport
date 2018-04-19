@@ -252,10 +252,21 @@ namespace KiiniHelp.Test
             table.Rows.Add(new String[] { "13", "2", "South_Ocean", "SouthOcean" });
 
             return table;
-        } 
+        }
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            //FileStream fs = new FileStream(@"C:\Users\Eduardo Cerritos\Pictures\demorv\qr2.jpg", FileMode.Open, FileAccess.Read);
+            //byte[] filebytes = new byte[fs.Length];
+            //fs.Read(filebytes, 0, Convert.ToInt32(fs.Length));
+            //string data = string.Format("<img src=\"data:image/png;base64," + Convert.ToBase64String(filebytes, Base64FormattingOptions.None) + "\">");
+            //Editor1.Content += data; 
+            //lblComment.Text = Editor1.Content + data;
+
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //gvTest.DataSource = _servicioArea.ObtenerAreas(false);
+            //gvTest.DataBind();
             //if (!IsPostBack)
             //{
             //    ddlUsuarioAsignacion.DataFieldID = "IdUsuario";

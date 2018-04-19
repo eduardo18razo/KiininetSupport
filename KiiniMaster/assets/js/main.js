@@ -143,13 +143,16 @@ $(document).ready(function() {
 
 	/* ========= Main Search ======== */
 
-	$('#main-search-toggle').on('click', function(){
-		$searchWrapper.toggle();
+	$('#main-search-toggle').on('click', function () {
+	    debugger;
+        $searchWrapper.toggle();
 		$('#main_search_input').trigger('focus');
 
 	});
 
-	$('#clear-search').on('click', function(){
+	$('#clear-search').on('click', function () {
+	    debugger;
+	    $searchWrapper.hide();
 		$(this).closest('#main-search').find('#main-search-toggle').trigger("click");
 	});
 

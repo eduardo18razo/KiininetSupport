@@ -37,6 +37,7 @@
       <xs:element name="_x003C_TipoUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_Titulo_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_TotalLikes_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TotalPage_x003E_k__BackingField" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperBusquedaArbolAcceso" nillable="true" type="tns:HelperBusquedaArbolAcceso" />

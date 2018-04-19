@@ -53,13 +53,13 @@ namespace KiiniNet.Services.Sistema.Implementacion
             }
         }
 
-        public List<EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion)
+        public List<EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int estatusAsignacionActual, bool esPropietario, int subRolActual, bool insertarSeleccion)
         {
             try
             {
                 using (BusinessEstatus negocio = new BusinessEstatus())
                 {
-                    return negocio.ObtenerEstatusAsignacionUsuario(idUsuario, idGrupo,  estatusAsignacionActual,  esPropietario,  insertarSeleccion);
+                    return negocio.ObtenerEstatusAsignacionUsuario(idUsuario, idGrupo,  estatusAsignacionActual,  esPropietario, subRolActual,  insertarSeleccion);
                 }
             }
             catch (Exception ex)

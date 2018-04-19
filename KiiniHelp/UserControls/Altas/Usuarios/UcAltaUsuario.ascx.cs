@@ -606,8 +606,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             btnModalOrganizacion.Visible = !habilitado && !EditarDetalle;
             btnModalUbicacion.Visible = !habilitado && !EditarDetalle;
             btnModalRoles.Visible = !habilitado && !EditarDetalle;
-            btnCancelarEdicion.Visible = !habilitado;
-            btnGuardar.Visible = !habilitado;
         }
 
         protected void btnCambiarImagen_OnClick(object sender, EventArgs e)
@@ -626,11 +624,9 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 btnEditar.Visible = false;
                 FileUpload1.Enabled = true;
                 btnCambiarImagen.Visible = true;
-
-                //botones organización, ubicación & Roles y grupos
-                //btnModalOrganizacion.Visible = true;
-                //btnModalUbicacion.Visible = true;
-                //btnModalRoles.Visible = true;
+                divBtnGuardar.Visible = true;
+                btnCancelarEdicion.Visible = true;
+                btnGuardar.Visible = true;
             }
             catch (Exception ex)
             {

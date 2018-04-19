@@ -14,3 +14,7 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHe
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\AjaxControlToolkit.HtmlEditor.Sanitizer.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\HtmlAgilityPack.dll
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\HtmlAgilityPack.pdb
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\HtmlAgilityPack.xml

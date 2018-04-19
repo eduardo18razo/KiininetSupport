@@ -544,6 +544,8 @@
         <xs:element minOccurs="0" name="idUsuario" nillable="true" type="xs:int" />
         <xs:element minOccurs="0" name="filter" nillable="true" type="xs:string" />
         <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="tipoUsuario" nillable="true" type="q25:ArrayOfint" />
+        <xs:element minOccurs="0" name="idTipoArbol" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idCategoria" nillable="true" type="xs:int" />
         <xs:element minOccurs="0" name="page" type="xs:int" />
         <xs:element minOccurs="0" name="pagesize" type="xs:int" />
       </xs:sequence>

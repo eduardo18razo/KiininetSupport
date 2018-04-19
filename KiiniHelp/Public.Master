@@ -27,12 +27,8 @@
     <link rel="stylesheet" href="assets/css/sumoselect.css" />
     <link rel="stylesheet" href="assets/tmp/editor/ui/trumbowyg.css" />
     <link rel="stylesheet" href="assets/tmp/editor/ui/trumbowyg.min.css" />
-    <link rel="stylesheet" href="assets/css/controls.css" />
+    <link rel="stylesheet" href="assets/css/fileupload.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
-
-    <%--<link rel="stylesheet" href="assets/css/styles_movil.css" />
-    <link rel="stylesheet" href="assets/css/modales_movil.css" />
-    <link rel="stylesheet" href="assets/css/main_movil.css" />--%>
 
     <script type="text/javascript">
         function MostrarPopup(modalName) {
@@ -56,9 +52,9 @@
         };
         function search(evt) {
             if (evt.charCode == 13) {
-                this.__doPostBack(this.name, 'OnKeyPress');
+                this.__doPostBack('Buscador', 'OnKeyPress');
                 evt.preventDefault();
-                return false; // returning false will prevent the event from bubbling up.
+                return false;
             }
             else {
                 return true;
@@ -134,7 +130,6 @@
                 <div class="search-container margin-left-35" runat="server" visible="true">
                     <div id="main-search">
                         <i id="main-search-toggle" class="fa fa-search icon"></i>
-
                     </div>
                 </div>
 
@@ -145,9 +140,9 @@
                                 <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
                                     <span class="sr-only">Tickets</span> <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                 </div>
-                                <ul class="dropdown-menu wdropdown-ticket right-45" role="menu" aria-labelledby="dropdownMenu-user">
+                                <ul class="dropdown-menu wdropdown-ticket" role="menu" aria-labelledby="dropdownMenu-user">
                                     <li>
-                                        <span class="arrow right48"></span>
+                                        <span class="arrow arrowTicket"></span>
                                         <a role="menuitem" data-toggle="modal" data-target="#modal-new-ticket" data-backdrop="static" data-keyboard="false">
                                             <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
                                         </a></li>
@@ -160,23 +155,21 @@
                             </div>
 
                             <div class="item item-messages dropdown">
-                                <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button"><span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span></div>
-                                <div class="dropdown-menu wdropdown-login right-45" role="menu" aria-labelledby="dropdownMenu-messages">
-                                    <%--<span class="arrow right25"></span>--%>
+                                <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
+                                    <span class="sr-only">Ingresa</span>
+                                    <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
+                                </div>
+                                <div class="dropdown-menu wdropdown-login" role="menu" aria-labelledby="dropdownMenu-messages">
+                                    <span class="arrow arrowLogin"></span>
                                     <div>
                                         <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                             <ContentTemplate>
                                                 <uc1:UcLogCopia runat="server" ID="UcLogIn" />
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
-                                        <div class="social-btns col-md-12 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-sm-offset-0" visible="false">
-                                            <div class="divider">
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -187,7 +180,7 @@
                             <asp:TextBox type="text" ID="main_search_input" ClientIDMode="Static" class="main_search_input form-control" onkeypress="search(event)" placeholder="Buscar por palabra clave..." runat="server" />
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
-                            <span id="clear-search" aria-hidden="true" class="clear-search"></span>
+                            <span id="clear-search" aria-hidden="true" class="clear-search">Cancelar</span>
                         </div>
                     </div>
                 </div>

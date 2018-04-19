@@ -175,8 +175,17 @@ namespace KiiniHelp.UserControls.Altas
                 List<DiaFeriado> tmpSeleccionados = DiasFeriadosDetalle ?? new List<DiaFeriado>();
                 if (hfEditando.Value != string.Empty && hfEditando.Value != "0")
                 {
-                    tmpSeleccionados.Single(a => a.Fecha == selectedDay.Fecha).Descripcion = txtDescripcionDia.Text.ToUpper();
-                    tmpSeleccionados.Single(a => a.Fecha == selectedDay.Fecha).Fecha = Convert.ToDateTime(txtDate.Text);
+                    if (tmpSeleccionados.Any(a => a.Fecha == selectedDay.Fecha))
+                    {
+
+                        tmpSeleccionados.Single(a => a.Fecha == selectedDay.Fecha).Descripcion = txtDescripcionDia.Text.ToUpper();
+                        tmpSeleccionados.Single(a => a.Fecha == selectedDay.Fecha).Fecha = Convert.ToDateTime(txtDate.Text);
+
+                    }
+                    else
+                    {
+                        throw new Exception("Debe terminar de editar primero");
+                    }
                 }
                 else
                 {

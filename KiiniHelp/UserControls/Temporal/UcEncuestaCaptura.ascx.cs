@@ -77,7 +77,7 @@ namespace KiiniHelp.UserControls.Temporal
 
                 if (encuesta != null)
                 {
-                    lbltitulo.Text = encuesta.Titulo;
+                    lbltitulo.Text = encuesta.TituloCliente;
                     lblDescripcionCliente.Text = encuesta.Descripcion;
                     PintaControles(encuesta.EncuestaPregunta, encuesta.IdTipoEncuesta);
                     Session["EncuestaActiva"] = encuesta;

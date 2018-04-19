@@ -1954,7 +1954,7 @@ namespace KinniNet.Core.Operacion
 
         #endregion Flujo normal
 
-        public List<HelperBusquedaArbolAcceso> BusquedaGeneral(int? idUsuario, string filter, List<int> tipoUsuario, int page, int pagesize)
+        public List<HelperBusquedaArbolAcceso> BusquedaGeneral(int? idUsuario, string filter, List<int> tipoUsuario, int? idTipoArbol, int? idCategoria, int page, int pagesize)
         {
             List<HelperBusquedaArbolAcceso> result = null;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -1968,6 +1968,14 @@ namespace KinniNet.Core.Operacion
                 if (tipoUsuario != null && tipoUsuario.Any())
                     qry = from q in qry
                           where tipoUsuario.Contains(q.aa.IdTipoUsuario)
+                          select q;
+                if (idTipoArbol != null)
+                    qry = from q in qry
+                          where q.aa.IdTipoArbolAcceso == idTipoArbol
+                          select q;
+                if (idCategoria != null)
+                    qry = from q in qry
+                          where q.aa.IdArea == idCategoria
                           select q;
                 if (idUsuario != null)
                 {

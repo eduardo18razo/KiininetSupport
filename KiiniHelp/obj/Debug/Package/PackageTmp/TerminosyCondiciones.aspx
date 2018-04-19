@@ -1,23 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TerminosyCondiciones.aspx.cs" Inherits="KiiniHelp.frmTerminosyCondiciones" %>
 
-<%--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
-</body>
-</html>--%>
-
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -64,8 +46,6 @@
                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
                     <h1 class="form-box-heading2 text-center"><span class="highlight">Terminos y condiciones</span></h1>
                     <div class="form-box-inner2">
-
-                        <%--<img src="assets/images/logoBlanco.png" class="center">--%>
                         <div class="row text-justificado padding-bottom-10">
 
                             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>

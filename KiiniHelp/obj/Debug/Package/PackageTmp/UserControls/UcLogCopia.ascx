@@ -3,11 +3,9 @@
 
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
-
         <div class="modal-header">
             <h6>Accede a tu cuenta</h6>
         </div>
-
         <div class="modal-body no-padding-top no-padding-bottom">
             <div class="row">
                 <asp:HiddenField runat="server" ID="fhFallo" Value="False" />

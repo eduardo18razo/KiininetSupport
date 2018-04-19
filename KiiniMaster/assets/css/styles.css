@@ -87,11 +87,14 @@ body {
 .video-container iframe {
     max-width: 100%;
 }
-.margin-top-5 {
-    margin-top: 5px;
+.margin-top0 {
+    margin-top: 0 !important;
 }
 .margin-top {
     margin-top: 20px;
+}
+.margin-top-5 {
+    margin-top: 5px;
 }
 
 .margin-top-40 {
@@ -4495,7 +4498,7 @@ ul.sortable {
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     /* login/signup */
-    .auth-section .divider {
+    /*.auth-section .divider {
         text-align: center;
         margin-bottom: 30px;
         text-transform: uppercase;
@@ -4530,7 +4533,7 @@ ul.sortable {
 
         .auth-section .social-btns .note {
             text-align: left;
-        }
+        }*/
 }
 /* Large devices (large desktops, 1200px and up) */
 @media print {
@@ -4552,23 +4555,11 @@ ul.sortable {
 }
 /* ======= CAMBIOS =======*/
 
-
-
-
 .margin-left {
     margin: auto;
 }
 .margin-left-5 {
     margin-left: 5px;
-}
-
-.wdropdown-ticket {
-    max-width: 130px;
-}
-
-.wdropdown-login {
-    max-width: 330px;
-    margin-right: 18px;
 }
 
 .margin-r-arrow {
@@ -4796,7 +4787,7 @@ ul.sortable {
 
 /* Theme default */
 /* ======= Login/Signup ======== */
-.auth-section {
+/*.auth-section {
     padding-bottom: 200px;
     padding-top: 90px;
     padding-left: 10px;
@@ -4930,21 +4921,21 @@ ul.sortable {
             .auth-section .forgot-password a:hover {
                 text-decoration: underline;
                 color: #40babd;
-            }
+            }*/
 
-.theme-2 .auth-section .forgot-password a:hover {
+.theme-2 /*.auth-section*/ .forgot-password a:hover {
     color: #6dbd63;
 }
 
-.theme-3 .auth-section .forgot-password a:hover {
+.theme-3 /*.auth-section*/ .forgot-password a:hover {
     color: #497cb1;
 }
 
-.theme-4 .auth-section .forgot-password a:hover {
+.theme-4 /*.auth-section*/ .forgot-password a:hover {
     color: #ec6952;
 }
 
-.auth-section .divider {
+/*.auth-section .divider {
     border-left: none;
     margin-bottom: 30px;
     position: static;
@@ -5007,7 +4998,7 @@ ul.sortable {
 .auth-section .copyright {
     padding: 30px;
     color: #9499a3;
-}
+}*/
 
 .radio label {
     padding-left: 5px;

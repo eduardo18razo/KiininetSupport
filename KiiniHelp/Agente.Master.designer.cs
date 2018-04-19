@@ -94,24 +94,6 @@ namespace KiiniHelp {
         protected global::System.Web.UI.WebControls.TextBox main_search_input;
         
         /// <summary>
-        /// Control btnMiPerfil.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnMiPerfil;
-        
-        /// <summary>
-        /// Control btnCambiarContraseña.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCambiarContraseña;
-        
-        /// <summary>
         /// Control imgPerfil.
         /// </summary>
         /// <remarks>
@@ -146,6 +128,24 @@ namespace KiiniHelp {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTipoUsr;
+        
+        /// <summary>
+        /// Control btnMiPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnMiPerfil;
+        
+        /// <summary>
+        /// Control btnCambiarContraseña.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCambiarContraseña;
         
         /// <summary>
         /// Control lblBadgeRoles.

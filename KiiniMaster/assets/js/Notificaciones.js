@@ -1,5 +1,4 @@
 ﻿function SuccsessAlert(title, msg) {
-    debugger;
     $.notify({
         // options
         icon: 'glyphicon glyphicon-ok',

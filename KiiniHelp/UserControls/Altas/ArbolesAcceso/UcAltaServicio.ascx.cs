@@ -799,7 +799,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         divStep5Data.Visible = false;
                         divStep6.Visible = true;
                         divStep6Data.Visible = true;
-                        Metodos.LlenaComboCatalogo(ddlEncuesta, _servicioEncuesta.ObtenerEncuestas(true));
+                        Metodos.LlenaComboCatalogo(ddlEncuesta, _servicioEncuesta.ObtenerEncuestas(true), "Titulo");
                         btnPreview.Visible = true;
                         btnSaveAll.Visible = true;
                         btnSiguiente.Visible = false;

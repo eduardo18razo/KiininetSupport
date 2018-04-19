@@ -149,7 +149,8 @@ $(document).ready(function() {
 
 	});
 
-	$('#clear-search').on('click', function(){
+	$('#clear-search').on('click', function () {
+	    $searchWrapper.hide();
 		$(this).closest('#main-search').find('#main-search-toggle').trigger("click");
 	});
 

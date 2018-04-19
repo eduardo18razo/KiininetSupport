@@ -1680,14 +1680,14 @@ table {
 
 /*FORMAS LOGING, REGISTRO, ETC*/
 
-.auth-section {
+/*.auth-section {
     /*padding-bottom: 50px;*/
-    padding-top: 15px;
+    /*padding-top: 15px;
     padding-left: 10px;
     padding-right: 10px;
-}
+}*/
 
-    .auth-section .form-box .form-box-heading {
+    /*.auth-section .form-box .form-box-heading {
         background: #3FA9F5;
         padding: 5px;
         font-size: 28px;
@@ -1698,7 +1698,7 @@ table {
 
         .auth-section .form-box .form-box-heading:before {
             /*content: "";*/
-            display: block;
+            /*display: block;
             width: 0;
             height: 0;
             border-left: 10px solid transparent;
@@ -1709,7 +1709,7 @@ table {
             margin-left: -10px;
             left: 50%;
         }
-
+*/
 
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {

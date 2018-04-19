@@ -124,7 +124,7 @@ namespace KinniNet.Core.Sistema
             return result;
         }
 
-        public List<EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int estatusAsignacionActual, bool esPropietario, bool insertarSeleccion)
+        public List<EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int estatusAsignacionActual, bool esPropietario, int subRolActual, bool insertarSeleccion)
         {
             List<EstatusAsignacion> result;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -137,9 +137,10 @@ namespace KinniNet.Core.Sistema
                           join ug in db.UsuarioGrupo on easg.IdGrupoUsuario equals ug.IdGrupoUsuario
                           where ug.IdUsuario == idUsuario && easg.IdSubRol == ug.SubGrupoUsuario.IdSubRol &&
                                 easg.IdGrupoUsuario == idGrupo &&
-                                easg.TieneSupervisor == ug.GrupoUsuario.TieneSupervisor &&
+                                easg.TieneSupervisor == ug.GrupoUsuario.TieneSupervisor && easg.IdSubRol == subRolActual &&
                                 easg.IdEstatusAsignacionActual == estatusAsignacionActual && easg.Habilitado && easg.Propietario == esPropietario
                           select ea1).Distinct().ToList();
+
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new EstatusAsignacion

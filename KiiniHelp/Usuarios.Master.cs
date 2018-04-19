@@ -123,6 +123,19 @@ namespace KiiniHelp
                 throw new Exception(ex.Message);
             }
         }
+        private void Buscador()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(main_search_input.Text.Trim()))
+                    throw new Exception("Debe espicificar un parametro de busqueda");
+                Response.Redirect("~/Users/FrmBusqueda.aspx?w=" + main_search_input.Text.Trim() + "&tu=" + ((Usuario)Session["UserData"]).Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -168,17 +181,16 @@ namespace KiiniHelp
                         LlenaMenu(usuario.Id, rolSeleccionado, rolSeleccionado != 0);
 
                     divTickets.Visible = rolSeleccionado != (int)BusinessVariables.EnumRoles.Administrador;
-                    divMensajes.Visible = rolSeleccionado != (int)BusinessVariables.EnumRoles.Administrador;
+                    //divMensajes.Visible = rolSeleccionado != (int)BusinessVariables.EnumRoles.Administrador;
                     divTickets.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.Agente;
-                    divMensajes.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.Usuario;
-                    
+                    //divMensajes.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.Usuario;
+                    divSearch.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.Usuario;
                 }
                 rptMenu.DataSource = MenuActivo;
                 rptMenu.DataBind();
                 Session["ParametrosGenerales"] = _servicioParametros.ObtenerParametrosGenerales();
                 if (IsPostBack)
                 {
-                    
                     if (Page.Request.Params["__EVENTTARGET"] == "Buscador")
                     {
                         Buscador();
@@ -409,12 +421,15 @@ namespace KiiniHelp
                     switch (RolSeleccionado)
                     {
                         case (int)BusinessVariables.EnumRoles.Agente:
+                            divSearch.Visible = false;
                             Response.Redirect("~/Agente/DashBoardAgente.aspx");
                             break;
                         case (int)BusinessVariables.EnumRoles.Administrador:
+                            divSearch.Visible = false;
                             Response.Redirect("~/Users/DashBoard.aspx");
                             break;
                         default:
+                            divSearch.Visible = true;
                             Response.Redirect("~/Users/FrmDashboardUser.aspx?");
                             break;
                     }
@@ -518,20 +533,6 @@ namespace KiiniHelp
                 throw;
             }
         }
-        private void Buscador()
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(main_search_input.Text.Trim()))
-                    throw new Exception("Debe espicificar un parametro de busqueda");
-                Response.Redirect("~/Users/FrmBusqueda.aspx?w=" + main_search_input.Text.Trim() + "&tu=" + ((Usuario)Session["UserData"]).Id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         protected void lnkHome_OnClick(object sender, EventArgs e)
         {
             try

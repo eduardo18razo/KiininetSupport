@@ -34,8 +34,8 @@
     height: 100%;
 }
 .private {
-    background: #fef69f;
-    background: rgba(254, 246, 159, 0.47);
+    background: #fff6d3;
+    background: rgba(255, 246, 211, 1);
 }
 
 .public {

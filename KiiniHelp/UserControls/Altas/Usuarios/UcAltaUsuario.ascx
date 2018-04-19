@@ -78,7 +78,7 @@
                                                         <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="Upload" CssClass="ocultar" ClientIDMode="Static" />
                                                         <div class="form-group avatar" runat="server" id="divAvatar" visible="True">
                                                             <figure class="figure col-lg-10 col-md-12 col-sm-6 col-xs-6 center-content-div center-block centered">
-                                                                <asp:Image CssClass="img-rounded img-responsive padding-25-top center-block" ImageUrl="~/assets/images/profiles/profile-1.png" ID="imgPerfil" alt="imgPerfil" runat="server" />
+                                                                <asp:Image CssClass="img-rounded img-responsive margin-top-25 center-block imageCircle image80" ImageUrl="~/assets/images/profiles/profile-1.png" ID="imgPerfil" alt="imgPerfil" runat="server" />
 
                                                                 <asp:Panel ID="PnlFsAttch" runat="server" Style="position: relative; overflow: Hidden; cursor: pointer; max-height: 165px; max-width: 165px;">
                                                                     <asp:FileUpload runat="server" ID="FileUpload1" Style="position: absolute; left: -20px; z-index: 2; opacity: 0; filter: alpha(opacity=0); cursor: pointer; height: 56px" Enabled="false" />

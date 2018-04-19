@@ -155,6 +155,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             try
             {
                 Mascara mascara = (Mascara)Session["MascaraActiva"];
+                mascara = mascara ?? _servicioMascaras.ObtenerMascaraCaptura(IdMascara);
                 foreach (CampoMascara campo in mascara.CampoMascara)
                 {
                     string nombreControl;
@@ -999,7 +1000,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             try
             {
                 Alerta = new List<string>();
-                
+
                 if (!IsPostBack)
                 {
                     divRegistraUsuario.Visible = Session["UserData"] == null;

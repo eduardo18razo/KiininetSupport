@@ -6,6 +6,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
     <link rel='stylesheet' href="assets/css/font.css" />
@@ -26,11 +28,12 @@
     <link rel="stylesheet" href="assets/css/sumoselect.css" />
     <link rel="stylesheet" href="assets/tmp/editor/ui/trumbowyg.css" />
     <link rel="stylesheet" href="assets/tmp/editor/ui/trumbowyg.min.css" />
-    <link rel="stylesheet" href="assets/css/controls.css" />
+    <link rel="stylesheet" href="assets/css/fileupload.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
+    <link rel="stylesheet" href="assets/css/telerikControl.css" />
 
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         var win;
         function MostrarPopup(modalName) {
 
@@ -69,7 +72,7 @@
                 return true;
             }
         }
-    </script>
+    </script>--%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -93,9 +96,9 @@
                     <asp:ScriptReference Path="~/assets/tmp/editor/plugins/base64/trumbowyg.base64.min.js" />
                     <asp:ScriptReference Path="~/assets/tmp/editor/plugins/upload/trumbowyg.upload.min.js" />
                     <asp:ScriptReference Path="~/assets/tmp/jquery.tagsinput.min.js" />
-
                     <asp:ScriptReference Path="~/assets/js/jquery.sumoselect.min.js" />
                     <asp:ScriptReference Path="~/assets/js/validation.js" />
+                    <asp:ScriptReference Path="~/assets/js/functions.js" />
                 </Scripts>
             </asp:ScriptManager>
             <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
@@ -123,8 +126,8 @@
                         </div>
                     </div>
 
-                    <div class="search-container" runat="server" visible="true">
-                        <div id="main-search" class="margin-top-20">
+                    <div class="search-container" runat="server" visible="false">
+                        <div id="main-search">
                             <i id="main-search-toggle" class="fa fa-search icon"></i>
                             <div id="main_search_input_wrapper" class="main_search_input_wrapper">
                                 <asp:UpdatePanel runat="server">
@@ -138,10 +141,21 @@
                     </div>
 
                     <div class="navbar-tools">
-
                         <div class="user-container dropdown">
+                            <div class="dropdown-toggle padding-5-top" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
+                                <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt="" ID="imgPerfil" runat="server" CssClass="imageCircle image40" />
+                                <i class="fa fa-caret-down"></i>
 
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-user">
+                                <p class="nombreUsuario">
+                                    <asp:Label runat="server" ID="lblUsuario" CssClass="fontXs" />
+                                    / <strong class="text-theme">
+                                        <asp:Label runat="server" ID="lblAreaSeleccionada" CssClass="fontXs"></asp:Label>
+                                        <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" CssClass="fontXs" Visible="true" /></strong>
+                                </p>
+                            </div>
+
+                            <div class="dropdown-menu wdropdown-UserProfile" role="menu" aria-labelledby="dropdownMenu-messages">
+                                <span class="arrow arrowUser"></span>
                                 <li>
                                     <asp:LinkButton role="menuitem" NavigateUrl="~/Users/Administracion/Usuarios/FrmEdicionUsuario.aspx?Detail=1" ID="btnMiPerfil" OnClick="btnMiPerfil_OnClick" runat="server">
                                     <span class="pe-icon pe-7s-user icon"></span>Mi perfil
@@ -152,20 +166,7 @@
                                     <span class="pe-icon pe-7s-lock icon"></span>Contraseña
                                     </asp:LinkButton>
                                 </li>
-                            </ul>
-
-                            <div class="dropdown-toggle padding-10-top" id="dropdownMenu-user" data-toggle="dropdown" aria-expanded="true" role="button">
-                                <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" alt="" ID="imgPerfil" runat="server" />
-                                <i class="fa fa-caret-down"></i>
-
-                                <p class="nombreUsuario">
-                                    <asp:Label runat="server" ID="lblUsuario" CssClass="fontXs" />
-                                    / <strong class="text-theme">
-                                        <asp:Label runat="server" ID="lblAreaSeleccionada" CssClass="fontXs"></asp:Label>
-                                        <asp:Label runat="server" ID="lblTipoUsr" Text="Agente" CssClass="fontXs" Visible="true" /></strong>
-                                </p>
                             </div>
-                        
                         </div>
 
                         <div class="utilities-container">
@@ -182,15 +183,8 @@
                                     </i>
                                 </div>
 
-                                <%--nuevo ticket--%>
-                                <div class="item item-notifications separador-vertical-derecho">
-                                    <asp:LinkButton class="dropdown-toggle" runat="server" OnClick="OnClick">
-                                        <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Generar Ticket"></span>
-                                    </asp:LinkButton>
-                                </div>
-                                
                                 <%--lista de ticket--%>
-                                <div class="item item-notifications margin-right-35">
+                                <div class="item item-notifications margin-right-35" style="display: none;">
                                     <div class="dropdown-toggle" id="dropdownMenu-notifications" data-toggle="dropdown" aria-expanded="true" role="button">
                                         <span class="sr-only">Tickets</span> <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                         <span class="badge badge-circle badge-danger left32">
@@ -199,20 +193,6 @@
                                     <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications">
                                         <span class="arrow"></span>
                                         <div class="notification-items no-overflow">
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
-                                                <div class="meta">2h </div>
-                                            </div>
-                                            <div class="item media">
-                                                <div class="media-left profile">
-                                                    <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
-                                                </div>
-                                                <div class="media-body"><a href="#"><span class="name">Usuario</span> / <span class="action">Tipo de ticket</span> "Descripción corta del ticket..." </a></div>
-                                                <div class="meta">2h </div>
-                                            </div>
                                             <div class="item media">
                                                 <div class="media-left profile">
                                                     <asp:Image runat="server" ImageUrl="~/images/profiles/profile-1.png" alt="" />
@@ -262,7 +242,7 @@
                                                 </div>
                                                 <div class="media-body"><a href="#"><span class="sender display-block">Nombre</span> <span class="message-title display-block">Titulo del mensjae</span> <span class="excerpt display-block">"Vista previa del mensaje..."</span> </a></div>
                                                 <div class="meta">Ene 6 </div>
-                                            </div>                                           
+                                            </div>
                                         </div>
                                         <div class="dropdown-footer"><a href="#">Ver todos los mensajes</a> </div>
                                     </div>
@@ -295,17 +275,17 @@
 
                                 <asp:Repeater runat="server" ID="rptTicketsAbiertos">
                                     <HeaderTemplate>
-                                        <ul class="nav nav-tabs" role="tablist">
+                                        <ul class="nav nav-tabs no-border" role="tablist">
                                     </HeaderTemplate>
                                     <ItemTemplate>
                                         <li role="presentation" class="active liTab">
                                             <div class="row">
                                                 <div class="form-inline">
-                                                    <div class="col-lg-10 col-md-10 col-sm-10">
-                                                        <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
+                                                    <div class="col-lg-10 col-md-10 col-sm-10 ocultaTexto">
+                                                        <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CssClass="widht115 ocultaTexto" CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
                                                             <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>'></asp:Label>
                                                             <asp:Label runat="server" Text=" "></asp:Label>
-                                                            <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />
+                                                            <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' title='<%#Eval("Title") %>' />
                                                         </asp:LinkButton>
                                                     </div>
                                                     <div class="col-lg-2 col-md-2 col-sm-2 tab-row">
@@ -340,11 +320,11 @@
                                                                 <li role="presentation" class="active liTab borderbootom">
                                                                     <div class="row">
                                                                         <div class="form-inline">
-                                                                            <div class="col-lg-10 col-md-10 col-sm-10">
-                                                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
+                                                                            <div class="col-lg-10 col-md-10 col-sm-10 ocultaTexto">
+                                                                                <asp:LinkButton runat="server" CommandArgument='<%#Eval("IdTicket") %>' ID="lbtnTabTicket" data-asigna='<%#Eval("Asigna") %>' CssClass="widht115 ocultaTexto" CommandName='<%#Eval("Nuevo") %>' OnClick="lbtnTabTicket_OnClick">
                                                                                     <asp:Label runat="server" ID="lblIdTicket" Text='<%#Eval("IdTicket") %>' />
                                                                                     <asp:Label runat="server" Text=" "></asp:Label>
-                                                                                    <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' />
+                                                                                    <asp:Label runat="server" ID="lblTitle" Text='<%#Eval("Title") %>' title='<%#Eval("Title") %>' />
                                                                                 </asp:LinkButton>
                                                                             </div>
                                                                             <div class="col-lg-2 col-md-2 col-sm-2 tab-row">

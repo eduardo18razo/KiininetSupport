@@ -271,18 +271,17 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-
                 int? idTipoUsuario = null;
-
-                LimpiarUsuarios();
                 if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
                 }
                 List<Usuario> lstUsuarios = _servicioUsuarios.ObtenerUsuarios(idTipoUsuario);
+
+                if (txtFiltro.Text.Trim() != string.Empty)
+                    lstUsuarios = lstUsuarios.Where(w => w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.Nombre.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.NombreCompleto.ToLower().Contains(txtFiltro.Text.ToLower().Trim())).ToList();
+                
                 Response.Clear();
-
-
                 MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstUsuarios.Select(
                                 s => new
                                 {

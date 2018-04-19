@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kiinisupport</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
 
@@ -52,7 +54,7 @@
 
         <asp:UpdatePanel ID="upGeneral" runat="server">
             <ContentTemplate>
-                <section class="bienvenido-section auth-section">
+                <section class="bienvenido-section panelsection">
                     <div class="container">
                         <div class="row">
                             <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
@@ -66,9 +68,8 @@
                                                     <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
                                                 </div>
                                                 <div class="form-group email top15">
-                                                    <asp:Button CssClass="btn btn-primary margin-top-15 margin-bottom-15" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
-                                                    <asp:Button CssClass="btn btn-default margin-top-15 margin-bottom-15" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="False" />
-                                                  
+                                                    <asp:Button CssClass="btn btn-default margin-top-15 margin-bottom-15" Width="73px" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="False" />
+                                                    <asp:Button CssClass="btn btn-primary margin-top-15 margin-bottom-15" Width="73px" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
                                                 </div>
                                             </div>
                                         </div>

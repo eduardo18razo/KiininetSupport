@@ -26,6 +26,7 @@ namespace KiiniNet.Entities.Helper
     public class HelperConversacionDetalle
     {
         public int Id { get; set; }
+        public byte[] Foto { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaHora { get; set; }
         public int IdUsuario { get; set; }
@@ -62,16 +63,20 @@ namespace KiiniNet.Entities.Helper
     {
         public Int64 IdEvento { get; set; }
         public int IdUsuarioGenero { get; set; }
+
+
+        public byte[] Foto { get; set; }
         public string NombreUsuario { get; set; }
         public DateTime FechaHoraEvento { get; set; }
         public string FechaHoraEventoFormato { get; set; }
-        public List<HelperMovimientoEvento>  Movimientos { get; set; }
+        public List<HelperMovimientoEvento> Movimientos { get; set; }
     }
 
     [Serializable]
     public class HelperMovimientoEvento
     {
         public Int64 IdMovimiento { get; set; }
+        public byte[] Foto { get; set; }
         public bool EsMovimientoEstatusTicket { get; set; }
         public bool EsMovimientoAsignacion { get; set; }
         public bool EsMovimientoConversacion { get; set; }
@@ -88,6 +93,8 @@ namespace KiiniNet.Entities.Helper
         public string NombreUsuarioAsignado { get; set; }
 
         public string Comentarios { get; set; }
+
+        public bool ComentarioPublico { get; set; }
         public string Conversacion { get; set; }
     }
 

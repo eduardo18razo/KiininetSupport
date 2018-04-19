@@ -27,63 +27,9 @@
     <link rel="stylesheet" href="assets/css/medias.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
     <link rel="stylesheet" href="assets/css/bootstrap-markdown.css" />
-
-
-    <script type="text/javascript">
-        function MostrarPopup(modalName) {
-            $(modalName).on('shown.bs.modal', function () {
-                $(this).find('[autofocus]').focus();
-            });
-            $(modalName).modal({ backdrop: 'static', keyboard: false });
-            $(modalName).modal('show');
-            return true;
-        };
-        function CierraPopup(modalName) {
-            $(modalName).modal('hide');
-            return true;
-        };
-        function DontCloseMenu(event) {
-            event.stopPropagation();
-        };
-        function load() {
-            var dir = "http://localhost:2802/assets/carouselImage/";
-            var fileextension = ".jpg";
-            $.ajax({
-                url: dir,
-                success: function (data) {
-                    $(data).find("a:contains(" + fileextension + ")").each(function () {
-                        var filename = this.href.replace(window.location.host, "").replace("http:///", "");
-                        $("body").append($("<img src=" + dir + filename + "></img>"));
-                    });
-                }
-            });
-        }
-        function search(evt) {
-            if (evt.charCode == 13) {
-                this.__doPostBack('Buscador', 'OnKeyPress');
-                evt.preventDefault();
-                return false; // returning false will prevent the event from bubbling up.
-            }
-            else {
-                return true;
-            }
-        }
-        function ShowLanding() {
-            var landing = document.getElementById('updateProgress');
-            if (landing != undefined) {
-                landing.style.display = 'block';
-            }
-        }
-
-        function HideLanding() {
-            var landing = document.getElementById('updateProgress');
-            if (landing != undefined) {
-                landing.style.display = 'none';
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="assets/css/fileupload.css" />
+    <script src="assets/js/functions.js"></script>
 </head>
-
 <body class="layout_no_leftnav">
     <form runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
@@ -108,8 +54,8 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
 
-        <header class="header" style="background-color: violet;">
-            <div class="branding ">
+        <header class="header">
+            <div class="branding">
                 <h1 class="logo text-center">
                     <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
                         <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
@@ -131,11 +77,12 @@
                         <div class="utilities">
                             <div class="item item-notifications">
                                 <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true" role="button">
-                                    <span class="sr-only">Tickets</span> <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
+                                    <span class="sr-only">Tickets</span>
+                                    <span class="pe-icon fa fa-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
                                 </div>
-                                <ul class="dropdown-menu wdropdown-ticket" role="menu" aria-labelledby="dropdownMenu-user" style="right: -45px">
+                                <ul class="dropdown-menu wdropdown-ticket" role="menu" aria-labelledby="dropdownMenu-user">
                                     <li>
-                                        <span class="arrow" style="right: 48px"></span>
+                                        <span class="arrow arrowTicket"></span>
                                         <a role="menuitem" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modal-new-ticket">
                                             <span class="pe-icon pe-7s-plus icon"></span>Nuevo ticket
                                         </a>
@@ -149,14 +96,13 @@
                             </div>
 
                             <div class="item item-messages dropdown">
-
                                 <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
-                                    <span class="sr-only">Ingresa</span> <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
-                                </div>
-
-                                <div class="dropdown-menu wdropdown-login" role="menu" aria-labelledby="dropdownMenu-messages" style="right: -25px">
-                                    <span class="arrow" style="right: 25px"></span>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <span class="sr-only">Ingresa</span>
+                                    <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
+                                </div>  
+                                <div class="dropdown-menu wdropdown-login" role="menu" aria-labelledby="dropdownMenu-messages">
+                                    <span class="arrow arrowLogin"></span>
+                                    <div>
                                         <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                             <ContentTemplate>
                                                 <uc1:UcLogCopia runat="server" ID="UcLogCopia" />

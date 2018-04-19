@@ -22,13 +22,22 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.HiddenField hfTicketActivo;
         
         /// <summary>
-        /// Control hfFiltroSla.
+        /// Control hfFiltroTodos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfFiltroSla;
+        protected global::System.Web.UI.WebControls.HiddenField hfFiltroTodos;
+        
+        /// <summary>
+        /// Control hfFiltroAbierto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFiltroAbierto;
         
         /// <summary>
         /// Control fhFiltroSinAsignar.
@@ -40,22 +49,49 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.HiddenField fhFiltroSinAsignar;
         
         /// <summary>
-        /// Control hfResueltos.
+        /// Control hfFiltroPrendientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfResueltos;
+        protected global::System.Web.UI.WebControls.HiddenField hfFiltroPrendientes;
         
         /// <summary>
-        /// Control hfRecienActualizados.
+        /// Control hfFiltroResueltos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfRecienActualizados;
+        protected global::System.Web.UI.WebControls.HiddenField hfFiltroResueltos;
+        
+        /// <summary>
+        /// Control hfFiltroFueraSla.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFiltroFueraSla;
+        
+        /// <summary>
+        /// Control hfFiltroRecienActualizados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFiltroRecienActualizados;
+        
+        /// <summary>
+        /// Control hfFilaSeleccionada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFilaSeleccionada;
         
         /// <summary>
         /// Control tmLoadTickets.
@@ -74,6 +110,15 @@ namespace KiiniHelp.Agente {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTicketAbiertosHeader;
+        
+        /// <summary>
+        /// Control lblcontadorTicketHeader.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcontadorTicketHeader;
         
         /// <summary>
         /// Control btnAutoasignar.
@@ -121,15 +166,6 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.LinkButton btnEscalar;
         
         /// <summary>
-        /// Control hfFilaSeleccionada.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfFilaSeleccionada;
-        
-        /// <summary>
         /// Control gvTickets.
         /// </summary>
         /// <remarks>
@@ -157,130 +193,130 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.DropDownList ddlAgente;
         
         /// <summary>
-        /// Control FiltroTodos.
+        /// Control FiltrosTodos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroTodos;
+        protected global::System.Web.UI.WebControls.Panel FiltrosTodos;
         
         /// <summary>
-        /// Control btnFiltroTodos.
+        /// Control rBtnFiltroTodos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnFiltroTodos;
+        protected global::Telerik.Web.UI.RadButton rBtnFiltroTodos;
         
         /// <summary>
-        /// Control FiltroAbiertos.
+        /// Control FiltrosAbiertos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroAbiertos;
+        protected global::System.Web.UI.WebControls.Panel FiltrosAbiertos;
         
         /// <summary>
-        /// Control btnFiltroAbierto.
+        /// Control rBtnFiltroAbierto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnFiltroAbierto;
+        protected global::Telerik.Web.UI.RadButton rBtnFiltroAbierto;
         
         /// <summary>
-        /// Control FiltroSinAsignar.
+        /// Control FiltrosSinAsignar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroSinAsignar;
+        protected global::System.Web.UI.WebControls.Panel FiltrosSinAsignar;
         
         /// <summary>
-        /// Control btnFiltroSinAsignar.
+        /// Control rBtnFiltroSinAsignar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnFiltroSinAsignar;
+        protected global::Telerik.Web.UI.RadButton rBtnFiltroSinAsignar;
         
         /// <summary>
-        /// Control FiltroEspera.
+        /// Control FiltrosEspera.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroEspera;
+        protected global::System.Web.UI.WebControls.Panel FiltrosEspera;
         
         /// <summary>
-        /// Control btnFiltroEspera.
+        /// Control rBtnFiltroEspera.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnFiltroEspera;
+        protected global::Telerik.Web.UI.RadButton rBtnFiltroEspera;
         
         /// <summary>
-        /// Control FiltroResueltos.
+        /// Control FiltrosResueltos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroResueltos;
+        protected global::System.Web.UI.WebControls.Panel FiltrosResueltos;
         
         /// <summary>
-        /// Control btnFiltroResuelto.
+        /// Control rBtnFiltroResuelto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnFiltroResuelto;
+        protected global::Telerik.Web.UI.RadButton rBtnFiltroResuelto;
         
         /// <summary>
-        /// Control FiltroFueraSLA.
+        /// Control FiltrosFueraSLA.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroFueraSLA;
+        protected global::System.Web.UI.WebControls.Panel FiltrosFueraSLA;
         
         /// <summary>
-        /// Control btnFueraSla.
+        /// Control rBtnFueraSla.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnFueraSla;
+        protected global::Telerik.Web.UI.RadButton rBtnFueraSla;
         
         /// <summary>
-        /// Control FiltroRecienActualizados.
+        /// Control FiltrosRecienActualizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroRecienActualizados;
+        protected global::System.Web.UI.WebControls.Panel FiltrosRecienActualizados;
         
         /// <summary>
-        /// Control btnRecienActualizados.
+        /// Control rBtnRecienActualizados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnRecienActualizados;
+        protected global::Telerik.Web.UI.RadButton rBtnRecienActualizados;
         
         /// <summary>
         /// Control UcDetalleTicket.

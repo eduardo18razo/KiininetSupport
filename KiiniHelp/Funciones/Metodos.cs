@@ -70,13 +70,13 @@ namespace KiiniHelp.Funciones
                 throw new Exception(ex.Message);
             }
         }
-        public static void LlenaComboCatalogo(DropDownList ddl, object datos)
+        public static void LlenaComboCatalogo(DropDownList ddl, object datos, string descripcion = "Descripcion")
         {
             try
             {
                 ddl.Items.Clear();
                 ddl.DataSource = datos;
-                ddl.DataTextField = "Descripcion";
+                ddl.DataTextField = descripcion;
                 ddl.DataValueField = "Id";
                 ddl.DataBind();
             }

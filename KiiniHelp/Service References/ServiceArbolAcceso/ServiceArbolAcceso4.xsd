@@ -67,6 +67,7 @@
   <xs:element name="ArrayOfEstatusTicketSubRolGeneralDefault" nillable="true" type="tns:ArrayOfEstatusTicketSubRolGeneralDefault" />
   <xs:complexType name="EstatusTicketSubRolGeneralDefault">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ComentarioObligado" type="xs:boolean" />
       <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusTicketAccion" nillable="true" type="q10:EstatusTicket" />
       <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusTicketActual" nillable="true" type="q11:EstatusTicket" />
       <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" minOccurs="0" name="GrupoUsuario" nillable="true" type="q12:GrupoUsuario" />
@@ -98,6 +99,7 @@
   <xs:element name="ArrayOfEstatusTicketSubRolGeneral" nillable="true" type="tns:ArrayOfEstatusTicketSubRolGeneral" />
   <xs:complexType name="EstatusTicketSubRolGeneral">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ComentarioObligado" type="xs:boolean" />
       <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusTicketAccion" nillable="true" type="q17:EstatusTicket" />
       <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusTicketActual" nillable="true" type="q18:EstatusTicket" />
       <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" minOccurs="0" name="GrupoUsuario" nillable="true" type="q19:GrupoUsuario" />

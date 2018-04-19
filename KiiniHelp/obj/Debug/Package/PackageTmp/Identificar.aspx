@@ -26,7 +26,7 @@
 
 
 </head>
-<body class="heigth100">
+<body >
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -46,7 +46,7 @@
         <asp:UpdatePanel ID="upGeneral" runat="server" class="heigth100">
             <ContentTemplate>
                 <div runat="server" class="heigth100">
-                    <section class="login-section auth-section">
+                    <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 xs-offset-0">
@@ -56,7 +56,7 @@
                                     <div class="form-box-inner2">
                                         <h2 class="title">¿Olvidaste tu contraseña?</h2>
                                         <div class="row">
-                                            <div class="form-container col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-group email no-margin-bottom">
                                                         <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa tu usuario, correo electrónico o número celular:</asp:Label>
@@ -64,8 +64,7 @@
 
                                                     <div class="form-group email">
                                                         <label class="sr-only" for="login-email">Email or username</label>
-                                                        <span class="fa fa-user icon"></span>
-                                                        <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control login-email text-no-transform" />
+                                                        <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control text-no-transform" />
                                                     </div>
 
                                                     <div class="form-group">
@@ -79,8 +78,8 @@
                                                     </div>
 
                                                     <div class="form-group email">
-                                                        <asp:Button CssClass="btn btn-default" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
-                                                        <asp:Button CssClass="btn btn-primary" Text="Continuar" runat="server" OnClick="btnBuscar_OnClick" />
+                                                        <asp:Button CssClass="btn btn-default" ID="btnCancelar" Width="73px" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
+                                                        <asp:Button CssClass="btn btn-primary" Text="Continuar" Width="73px" runat="server" OnClick="btnBuscar_OnClick" />
                                                     </div>
                                                 </div>
                                             </div>

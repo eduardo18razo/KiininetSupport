@@ -99,7 +99,7 @@ namespace KiiniHelp.UserControls.Operacion
         {
             try
             {
-                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdSubRolActual, IdEstatusAsignacionActual, EsPropietario, true);
+                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdEstatusAsignacionActual, EsPropietario, IdSubRolActual, true);
                 ddlEstatus.DataTextField = "Descripcion";
                 ddlEstatus.DataValueField = "Id";
                 ddlEstatus.DataBind();

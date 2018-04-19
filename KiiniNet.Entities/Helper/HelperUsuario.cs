@@ -8,6 +8,7 @@ namespace KiiniNet.Entities.Helper
 
         public string NombreCompleto { get; set; }
         public string TipoUsuarioDescripcion { get; set; }
+        public string TipoUsuarioColor { get; set; }
         public bool Vip { get; set; }
         public string FechaUltimoLogin { get; set; }
         public int NumeroTicketsAbiertos { get; set; }

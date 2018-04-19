@@ -34,7 +34,7 @@
 }
 
 /*CAPTCHA*/	
-.auth-section .form-control2 {
+./*auth-section .form-control2 {
         padding-left: 10px;
 }
 
@@ -93,7 +93,7 @@
         border-top-left-radius: 4px;
         background-clip: padding-box;
         position: relative;
-        }
+        }*/
 .module .module-heading2 {
     border-bottom: 0px solid #f3f3f7;
     padding-bottom: 15px;
@@ -101,7 +101,7 @@
     margin-bottom: 15px;
 }
 
-.login-section {
+/*.login-section {
 
     background: url(../images/backs/lost_password.jpg) no-repeat fixed center;
    -webkit-background-size: cover;
@@ -111,7 +111,7 @@
    height: 100%;
    width: 100% ;
    text-align: center;
-}
+}*/
 
 .copyright2 {
     color: white;

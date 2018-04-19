@@ -585,7 +585,7 @@ namespace KinniNet.Core.Operacion
                         result.PuedeAsignar = propietarioTicket && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto;
                         result.EsPropietario = idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
                         result.IdGrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().IdGrupoUsuario;
-
+                        result.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
                         #region Usuario Levanto
                         if (ticket.UsuarioLevanto != null)
                         {
@@ -594,6 +594,7 @@ namespace KinniNet.Core.Operacion
                             result.UsuarioLevanto.IdUsuario = ticket.IdUsuarioLevanto;
                             result.UsuarioLevanto.NombreCompleto = string.Format("{0} {1} {2}", ticket.UsuarioLevanto.Nombre, ticket.UsuarioLevanto.ApellidoPaterno, ticket.UsuarioLevanto.ApellidoMaterno);
                             result.UsuarioLevanto.TipoUsuarioDescripcion = ticket.UsuarioLevanto.TipoUsuario.Descripcion;
+                            result.UsuarioLevanto.TipoUsuarioColor = ticket.UsuarioLevanto.TipoUsuario.Color;
                             result.UsuarioLevanto.Vip = ticket.UsuarioLevanto.Vip;
                             result.UsuarioLevanto.FechaUltimoLogin = ticket.UsuarioLevanto.BitacoraAcceso != null && ticket.UsuarioLevanto.BitacoraAcceso.Count > 0 ? ticket.UsuarioLevanto.BitacoraAcceso.Last().Fecha.ToString("dd/MM/yyyy HH:mm") : "";
                             result.UsuarioLevanto.NumeroTicketsAbiertos = ticket.UsuarioLevanto.TicketsLevantados != null ? ticket.UsuarioLevanto.TicketsLevantados.Count : 0;
@@ -639,6 +640,7 @@ namespace KinniNet.Core.Operacion
                         {
                             HelperEvento evento = new HelperEvento();
                             evento.IdEvento = eventoTicket.Id;
+                            evento.Foto = eventoTicket.Usuario.Foto;
                             evento.IdUsuarioGenero = eventoTicket.IdUsuarioRealizo;
                             evento.NombreUsuario = eventoTicket.Usuario.NombreCompleto;
                             evento.FechaHoraEvento = eventoTicket.FechaHora;
@@ -650,6 +652,8 @@ namespace KinniNet.Core.Operacion
                                 movimientoEstatus.IdMovimiento = eventoConversacion.Id;
                                 movimientoEstatus.EsMovimientoConversacion = true;
                                 movimientoEstatus.Conversacion = eventoConversacion.TicketConversacion.Mensaje;
+                                movimientoEstatus.Foto = eventoConversacion.TicketConversacion.Usuario.Foto;
+                                movimientoEstatus.ComentarioPublico = (bool) eventoConversacion.TicketConversacion.Privado;
                                 evento.Movimientos.Add(movimientoEstatus);
                             }
 
@@ -668,11 +672,13 @@ namespace KinniNet.Core.Operacion
                                     movimientoEstatus.IdEstatusAnterior = asignacionAnterior.IdEstatus;
                                     movimientoEstatus.DescripcionEstatusAnterior = asignacionAnterior.EstatusTicket.Descripcion;
                                 }
+                                movimientoEstatus.Foto = eventoEstatus.TicketEstatus.Usuario.Foto;
                                 movimientoEstatus.Comentarios = eventoEstatus.TicketEstatus.Comentarios;
                                 evento.Movimientos.Add(movimientoEstatus);
                             }
                             foreach (TicketEventoAsignacion eventoAsignacion in eventoTicket.TicketEventoAsignacion)
                             {
+                                
                                 evento.Movimientos = evento.Movimientos ?? new List<HelperMovimientoEvento>();
                                 HelperMovimientoEvento movimientoEstatus = new HelperMovimientoEvento();
                                 movimientoEstatus.IdMovimiento = eventoAsignacion.Id;
@@ -687,6 +693,7 @@ namespace KinniNet.Core.Operacion
                                     movimientoEstatus.DescripcionEstatusAnterior = asignacionAnterior.EstatusAsignacion.Descripcion;
                                 }
 
+                                movimientoEstatus.Foto = eventoAsignacion.TicketAsignacion.UsuarioAsignado != null ? eventoAsignacion.TicketAsignacion.UsuarioAsignado.Foto : null;
                                 movimientoEstatus.IdUsuarioAsigno = eventoAsignacion.TicketAsignacion.IdUsuarioAsigno;
                                 movimientoEstatus.NombreCambioEstatus = eventoAsignacion.TicketAsignacion.UsuarioAsigno == null ? string.Empty : eventoAsignacion.TicketAsignacion.UsuarioAsigno.NombreCompleto;
                                 movimientoEstatus.IdUsuarioAsignado = eventoAsignacion.TicketAsignacion.IdUsuarioAsignado;
@@ -711,6 +718,7 @@ namespace KinniNet.Core.Operacion
                                 {
                                     Id = conversacion.Id,
                                     IdUsuario = conversacion.IdUsuario,
+                                    Foto = conversacion.Usuario.Foto,
                                     Nombre = conversacion.Usuario.NombreCompleto,
                                     FechaHora = conversacion.FechaGeneracion,
                                     Comentario = conversacion.Mensaje,

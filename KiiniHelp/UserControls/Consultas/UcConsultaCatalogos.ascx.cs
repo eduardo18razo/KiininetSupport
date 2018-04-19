@@ -247,10 +247,10 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                string filtro = txtFiltro.Text.Trim().ToUpper();
+                string filtro = txtFiltro.Text.ToLower().Trim();
                 List<Catalogos> lstcatalogos = _servicioCatalogos.ObtenerCatalogos(false);
                 if (filtro != string.Empty)
-                    lstcatalogos = lstcatalogos.Where(w => w.Descripcion.Contains(filtro)).ToList();
+                    lstcatalogos = lstcatalogos.Where(w => w.Descripcion.ToLower().Contains(filtro)).ToList();
 
                 Response.Clear();
                 string ultimaEdicion = "Últ. edición";

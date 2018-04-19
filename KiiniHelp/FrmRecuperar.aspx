@@ -20,10 +20,10 @@
 
     <link rel="stylesheet" href="assets/css/divs.css" />
 
-    <link rel="stylesheet" href="assets/css/modales_movil.css" />
-    <link rel="stylesheet" href="assets/css/main_movil.css" />
+    <%--<link rel="stylesheet" href="assets/css/modales_movil.css" />
+    <link rel="stylesheet" href="assets/css/main_movil.css" />--%>
 </head>
-<body class="heigth100">
+<body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
@@ -40,10 +40,10 @@
                 <asp:HiddenField runat="server" ID="hfEsLink" Value="false" />
                 <asp:HiddenField runat="server" ID="hfParametrosConfirmados" Value="false" />
                 <asp:HiddenField runat="server" ID="hfValueNotivicacion" Value="false" />
-                <asp:Button runat="server" ID="btncontinuar" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-block btn-primary" Visible="False" />
+                <asp:Button runat="server" ID="btncontinuar" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-block btn-primary widthCanelar" Visible="False" />
                 
                 <div runat="server" id="divQuestion" class="heigth100">
-                    <section class="login-section auth-section">
+                    <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
@@ -62,6 +62,9 @@
                                                         <br />
                                                         <asp:RadioButton runat="server" ID="rbtnPreguntas" Text="Quiero contestar preguntas Reto" GroupName="Options" CssClass="radio" OnCheckedChanged="rbtnPreguntas_OnCheckedChanged" AutoPostBack="True" />
                                                         <br />
+                                                    </div>
+                                                    <div class="form-group email">
+                                                        <asp:Button CssClass="btn btn-default widthCanelar" ID="Button1" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,8 +118,8 @@
                                                     </div>
 
                                                     <div class="form-group email">
-                                                        <asp:Button CssClass="btn btn-default" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
-                                                        <asp:Button runat="server" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-primary" />
+                                                        <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar" Text="Cancelar"  OnClick="btnCancelar_Click" />
+                                                        <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick"  />
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,8 +162,8 @@
                                                     </div>
 
                                                     <div class="form-group email">
-                                                        <asp:Button CssClass="btn btn-default" ID="btnCancelar2" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
-                                                        <asp:Button runat="server" ID="btnContinuarPreguntas" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-primary" />
+                                                        <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar2" Text="Cancelar"  OnClick="btnCancelar_Click" />
+                                                        <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarPreguntas" Text="Continuar" OnClick="btncontinuar_OnClick"  />
                                                     </div>
 
                                                 </div>

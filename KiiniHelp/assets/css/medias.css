@@ -36,14 +36,14 @@
         padding: 0px 10px;
     }
 
-    .header .utilities-container .item-messages .dropdown-menu {
+    /*.header .utilities-container .item-messages .dropdown-menu {
         right: -26px;
-    }
+    }*/
 
-    .header .utilities-container .item-notifications .dropdown-menu {
+    /*.header .utilities-container .item-notifications .dropdown-menu {
         top: 40px;
         right: -28px !important;
-    }
+    }*/
 
     .header .search-container {
         width: 35px !important;
@@ -64,7 +64,6 @@
                 right: 15px;
                 top: 15px;
                 color: #494d55;
-                background-color: blueviolet;
             }
 
     .header .main_search_input_wrapper {
@@ -236,7 +235,7 @@
 
 
 @media (min-width: 992px) {
-    .auth-section .divider {
+    /*.auth-section .divider {
         text-align: center;
         margin-bottom: 30px;
         text-transform: uppercase;
@@ -271,7 +270,7 @@
 
         .auth-section .social-btns .note {
             text-align: left;
-        }
+        }*/
 }
 
 @media print {
@@ -435,7 +434,6 @@
 @media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
     body {
         font-size: 18px;
-        background-color: violet !important;
     }
 
     .form-control {

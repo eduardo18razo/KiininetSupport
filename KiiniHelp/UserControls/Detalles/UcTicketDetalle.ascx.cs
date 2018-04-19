@@ -181,6 +181,9 @@ namespace KiiniHelp.UserControls.Detalles
                     lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto;
                     lblFechaAlta.Text = ticket.FechaLevanto;
                     lblFecha.Text = ticket.FechaLevanto;
+                    lblAsignacion.Text = ticket.DescripcionEstatusAsignacion;
+                    lblAgenteAsignado.Text = ticket.UsuarioAsignado;
+                    lblAgenteAsignado.Attributes.Add("title", ticket.UsuarioAsignado);
                     iPrioridad.Visible = ticket.Impacto == "prioridadalta.png";
                     string colorSla = ticket.DentroSla ? "green" : "red";
                     iSLA.Style.Add("color", colorSla);
@@ -202,7 +205,6 @@ namespace KiiniHelp.UserControls.Detalles
                     if (Asigna)
                     {
                         LlenaAsignaciones(((Usuario)Session["UserData"]).Id);
-                        LlenaEstatus(EsPropietario, IdSubRolActual);
                     }
                     if (ticket.EsPropietario)
                     {
@@ -260,8 +262,8 @@ namespace KiiniHelp.UserControls.Detalles
                 {
 
                     lblNombreDetalle.Text = usuario.NombreCompleto;
+                    spanTu.Style.Add("background", usuario.TipoUsuarioColor);
                     lblTipoUsuarioDetalle.Text = usuario.TipoUsuarioDescripcion.Substring(0, 1);
-
                     iVip.Visible = usuario.Vip;
                     lblFechaUltimaconexion.Text = usuario.FechaUltimoLogin;
 
@@ -329,7 +331,7 @@ namespace KiiniHelp.UserControls.Detalles
                 {
                     if (Request.QueryString["id"] != null && Request.QueryString["asigna"] != null)
                     {
-                        LlenaTicket(int.Parse(Request.QueryString["id"]), bool.Parse(Request.QueryString["asigna"]));
+                         LlenaTicket(int.Parse(Request.QueryString["id"]), bool.Parse(Request.QueryString["asigna"]));
                     }
                 }
                 else
@@ -366,7 +368,7 @@ namespace KiiniHelp.UserControls.Detalles
         {
             try
             {
-                txtConversacion.BackColor = Color.FromArgb(254, 246, 159);
+                txtConversacion.BackColor = Color.FromArgb(255, 246, 211);
             }
             catch (Exception ex)
             {
@@ -501,9 +503,9 @@ namespace KiiniHelp.UserControls.Detalles
 
                 ValidaCaptura();
 
-                if (ddlCambiarEstatus.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                if (ddlCambiarEstatus.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idEstatusTicket = int.Parse(ddlCambiarEstatus.SelectedValue);
-                if (ddlCambiarAsignar.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                if (ddlCambiarAsignar.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     idEstatusAsignacion = int.Parse(ddlCambiarAsignar.SelectedValue);
 
                 if (ddlCambiarAsignar.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
@@ -597,7 +599,7 @@ namespace KiiniHelp.UserControls.Detalles
             try
             {
                 Metodos.LimpiarCombo(ddlCambiarAsignar);
-                ddlCambiarAsignar.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(idUsuario, IdGrupoAsignado, IdSubRolActual, IdEstatusAsignacion, EsPropietario, true);
+                ddlCambiarAsignar.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(idUsuario, IdGrupoAsignado, IdEstatusAsignacion, EsPropietario, IdSubRolActual, true);
                 ddlCambiarAsignar.DataTextField = "Descripcion";
                 ddlCambiarAsignar.DataValueField = "Id";
                 ddlCambiarAsignar.DataBind();

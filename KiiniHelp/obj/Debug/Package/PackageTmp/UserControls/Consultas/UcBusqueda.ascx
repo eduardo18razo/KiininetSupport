@@ -25,7 +25,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Por tipo:</label>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
-                                            <asp:DropDownList runat="server" ID="ddlTipoArbol" CssClass="form-control no-padding-left no-margin-left" Width="190px" AutoPostBack="True" />
+                                            <asp:DropDownList runat="server" ID="ddlTipoArbol" CssClass="form-control no-padding-left no-margin-left" Width="190px" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoArbol_OnSelectedIndexChanged" />
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Por categoria</label>
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
-                                            <asp:DropDownList runat="server" ID="ddlCategoria" CssClass="form-control no-padding-left no-margin-left" Width="190px" AutoPostBack="True" />
+                                            <asp:DropDownList runat="server" ID="ddlCategoria" CssClass="form-control no-padding-left no-margin-left" Width="190px" AutoPostBack="True" OnSelectedIndexChanged="ddlCategoria_OnSelectedIndexChanged"/>
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +56,6 @@
                                             <asp:Label runat="server" CssClass="text-theme" ID="lblIdOpcion" Visible="False" Text='<%# Eval("Id") %>' />
                                             <asp:Label runat="server" CssClass="text-theme" ID="lblTitulo" Text='<%#Eval("Titulo") %>' />
                                             <i class="text-theme fa fa-thumbs-up"></i>
-                                            <%--<asp:Image runat="server" ID="imgLike" ImageUrl="~/assets/images/like_S1.png"></asp:Image>--%>
                                             <asp:Label runat="server" CssClass="text-theme" ID="lblLikes" Text='<%#Eval("TotalLikes") %>' />
                                             <br />
                                             <asp:Label runat="server" ID="lblDescripcion" Text='<%#Eval("Descripcion") %>' />

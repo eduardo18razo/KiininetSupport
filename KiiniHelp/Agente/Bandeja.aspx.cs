@@ -65,10 +65,42 @@ namespace KiiniHelp.Agente
                 return result;
             }
         }
-        private bool SinAsignar
+
+        private bool FiltroTodos
+        {
+            get { return bool.Parse(hfFiltroTodos.Value); }
+            set { hfFiltroTodos.Value = value.ToString(); }
+        }
+        private bool FiltroAbiertos
+        {
+            get { return bool.Parse(hfFiltroAbierto.Value); }
+            set { hfFiltroAbierto.Value = value.ToString(); }
+        }
+        private bool FiltroSinAsignar
         {
             get { return bool.Parse(fhFiltroSinAsignar.Value); }
             set { fhFiltroSinAsignar.Value = value.ToString(); }
+        }
+        private bool FiltroPendientes
+        {
+            get { return bool.Parse(hfFiltroPrendientes.Value); }
+            set { hfFiltroPrendientes.Value = value.ToString(); }
+        }
+        private bool FiltroResueltos
+        {
+            get { return bool.Parse(hfFiltroResueltos.Value); }
+            set { hfFiltroResueltos.Value = value.ToString(); }
+        }
+        private bool FiltroFueraSla
+        {
+            get { return bool.Parse(hfFiltroFueraSla.Value); }
+            set { hfFiltroFueraSla.Value = value.ToString(); }
+        }
+
+        private bool FiltroRecienActualizados
+        {
+            get { return bool.Parse(hfFiltroRecienActualizados.Value); }
+            set { hfFiltroRecienActualizados.Value = value.ToString(); }
         }
         private List<int> EstatusSinAsignar
         {
@@ -98,22 +130,7 @@ namespace KiiniHelp.Agente
                 return result;
             }
         }
-        private bool FueraSla
-        {
-            get { return bool.Parse(hfFiltroSla.Value); }
-            set { hfFiltroSla.Value = value.ToString(); }
-        }
 
-        private bool Resueltos
-        {
-            get { return bool.Parse(hfResueltos.Value); }
-            set { hfResueltos.Value = value.ToString(); }
-        }
-        private bool RecienActualizados
-        {
-            get { return bool.Parse(hfRecienActualizados.Value); }
-            set { hfRecienActualizados.Value = value.ToString(); }
-        }
         private List<int> EstatusFueraSla
         {
             get
@@ -153,28 +170,70 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                if (lst == null || lst.Count <= 0) return;
-                lblTicketAbiertosHeader.Text = "Tickets Abiertos (" + lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString() + ")";
+                if (lst == null || lst.Count <= 0)
+                {
+                    lblcontadorTicketHeader.Text = "0";
+                    return;
+                }
 
-                ((Label)btnFiltroTodos.FindControl("lblTicketsTodos")).Text = lst.Count().ToString();
+                ((Label)rBtnFiltroTodos.FindControl("lblTicketsTodos")).Text = lst.Count().ToString();
 
-                ((Label)btnFiltroAbierto.FindControl("lblTicketsAbiertos")).Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
+                ((Label)rBtnFiltroAbierto.FindControl("lblTicketsAbiertos")).Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
 
                 const int statusSinAsignar = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
-                ((Label)btnFiltroSinAsignar.FindControl("lblTicketsSinAsignar")).Text = lst.Count(w => EstatusSinAsignar.Contains(w.EstatusTicket.Id) && w.EstatusAsignacion.Id == statusSinAsignar).ToString();
+                ((Label)rBtnFiltroSinAsignar.FindControl("lblTicketsSinAsignar")).Text = lst.Count(w => EstatusSinAsignar.Contains(w.EstatusTicket.Id) && w.EstatusAsignacion.Id == statusSinAsignar).ToString();
 
 
-                ((Label)btnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
+                ((Label)rBtnFiltroEspera.FindControl("lblTicketsEspera")).Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
 
                 DateTime fechaInicio = DateTime.Now.AddHours(36);
 
-                ((Label)btnFiltroResuelto.FindControl("lblTicketsResueltos")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= fechaInicio).ToString();
+                ((Label)rBtnFiltroResuelto.FindControl("lblTicketsResueltos")).Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= fechaInicio).ToString();
 
-                ((Label)btnFueraSla.FindControl("lblTicketsFueraSla")).Text = lst.Count(w => EstatusFueraSla.Contains(w.EstatusTicket.Id) && !w.DentroSla).ToString();
+                ((Label)rBtnFueraSla.FindControl("lblTicketsFueraSla")).Text = lst.Count(w => EstatusFueraSla.Contains(w.EstatusTicket.Id) && !w.DentroSla).ToString();
 
                 fechaInicio = DateTime.Now.AddMinutes(-60);
 
-                ((Label)btnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio && EstatusSeleccionado.Contains(w.EstatusTicket.Id)).ToString();
+                ((Label)rBtnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio ).ToString();
+
+                lblTicketAbiertosHeader.Text = "Todos";
+                lblcontadorTicketHeader.Text = lst.Count().ToString();
+
+                if (FiltroAbiertos)
+                {
+                    lblTicketAbiertosHeader.Text = "Abiertos";
+                    lblcontadorTicketHeader.Text = lst.Count(c => EstatusAbierto.Contains(c.EstatusTicket.Id)).ToString();
+                }
+
+                if (FiltroSinAsignar)
+                {
+                    lblTicketAbiertosHeader.Text = "Sin asignar";
+                    lblcontadorTicketHeader.Text = lst.Count(w => EstatusSinAsignar.Contains(w.EstatusTicket.Id) && w.EstatusAsignacion.Id == statusSinAsignar).ToString();
+                }
+
+                if (FiltroPendientes)
+                {
+                    lblTicketAbiertosHeader.Text = "Pendientes";
+                    lblcontadorTicketHeader.Text = lst.Count(c => EstatusEspera.Contains(c.EstatusTicket.Id)).ToString();
+                }
+
+                if (FiltroResueltos)
+                {
+                    lblTicketAbiertosHeader.Text = "Recién resueltos";
+                    lblcontadorTicketHeader.Text = lst.Count(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= fechaInicio).ToString();
+                }
+
+                if (FiltroFueraSla)
+                {
+                    lblTicketAbiertosHeader.Text = "Fuera de SLA";
+                    lblcontadorTicketHeader.Text = lst.Count(w => EstatusFueraSla.Contains(w.EstatusTicket.Id) && !w.DentroSla).ToString();
+                }
+
+                if (FiltroRecienActualizados)
+                {
+                    lblTicketAbiertosHeader.Text = "Recién actualizados";
+                    lblcontadorTicketHeader.Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio && EstatusSeleccionado.Contains(w.EstatusTicket.Id)).ToString();
+                }
             }
             catch (Exception e)
             {
@@ -212,13 +271,14 @@ namespace KiiniHelp.Agente
                         else
                             lst = lst.Where(w => w.IdUsuarioAsignado == idAgente).ToList();
                     }
-                    if (SinAsignar)
+
+                    if (FiltroSinAsignar)
                         lst = lst.Where(w => w.EstatusAsignacion.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar).ToList();
-                    if (FueraSla)
+                    if (FiltroFueraSla)
                         lst = lst.Where(w => !w.DentroSla).ToList();
-                    if (Resueltos)
-                        lst = lst.Where(w => w.FechaCambioEstatusAsignacion >= DateTime.Now.AddHours(-36)).ToList();
-                    if (RecienActualizados)
+                    if (FiltroResueltos)
+                        lst = lst.Where(w => EstatusResuletos.Contains(w.EstatusTicket.Id) && w.FechaCambioEstatusAsignacion >= DateTime.Now.AddHours(-36)).ToList();
+                    if (FiltroRecienActualizados)
                         lst = lst.Where(w => w.FechaUltimoEvento >= DateTime.Now.AddMinutes(-60)).ToList();
 
                     ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
@@ -226,7 +286,7 @@ namespace KiiniHelp.Agente
                 }
                 Tickets = lst;
                 gvTickets.Rebind();
-                tmLoadTickets.Enabled = true;
+                //tmLoadTickets.Enabled = true;
             }
             catch (Exception e)
             {
@@ -281,7 +341,13 @@ namespace KiiniHelp.Agente
                     }
                     if (int.Parse(Session["RolSeleccionado"].ToString()) != (int)BusinessVariables.EnumRoles.Agente)
                         Response.Redirect("~/Users/DashBoard.aspx");
-                    Session["EstatusSeleccionado"] = EstatusAbierto;
+                    FiltroTodos = true;
+                    FiltroAbiertos = false;
+                    FiltroSinAsignar = false;
+                    FiltroPendientes = false;
+                    FiltroResueltos = false;
+                    FiltroFueraSla = false;
+                    FiltroRecienActualizados = false;
                     ObtenerTicketsPage();
                     LlenaCombos();
                     AgenteMaster master = Master as AgenteMaster;
@@ -751,103 +817,150 @@ namespace KiiniHelp.Agente
                 {
                     switch (btn.CommandArgument)
                     {
-                        case "Abierto":
-                            SinAsignar = false;
-                            FueraSla = false;
-                            Resueltos = false;
-                            RecienActualizados = false;
+                        case "FiltroTodos":
+                            lblTicketAbiertosHeader.Text = "Todos";
+
+                            FiltroTodos = true;
+                            FiltroAbiertos = false;
+                            FiltroSinAsignar = false;
+                            FiltroPendientes = false;
+                            FiltroResueltos = false;
+                            FiltroFueraSla = false;
+                            FiltroRecienActualizados = false;
+
                             EstatusSeleccionado = EstatusAbierto;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
-                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
+                            FiltrosTodos.CssClass = "row borderbootom padding-10-top padding-10-bottom btn-seleccione";
+                            FiltrosAbiertos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosSinAsignar.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosEspera.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosResueltos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosFueraSLA.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosRecienActualizados.CssClass = "row borderbootom padding-10-top padding-10-bottom";
                             break;
-                        case "Espera":
-                            SinAsignar = false;
-                            FueraSla = false;
-                            Resueltos = false;
-                            RecienActualizados = false;
-                            EstatusSeleccionado = EstatusEspera;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
-                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
+
+                        case "FiltroAbierto":
+                            lblTicketAbiertosHeader.Text = "Abiertos";
+                            FiltroTodos = false;
+                            FiltroAbiertos = true;
+                            FiltroSinAsignar = false;
+                            FiltroPendientes = false;
+                            FiltroResueltos = false;
+                            FiltroFueraSla = false;
+                            FiltroRecienActualizados = false;
+
+                            EstatusSeleccionado = EstatusAbierto;
+                            FiltrosTodos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosAbiertos.CssClass = "row borderbootom padding-10-top padding-10-bottom btn-seleccione";
+                            FiltrosSinAsignar.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosEspera.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosResueltos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosFueraSLA.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosRecienActualizados.CssClass = "row borderbootom padding-10-top padding-10-bottom";
                             break;
-                        case "SinAsignar":
-                            SinAsignar = true;
-                            FueraSla = false;
-                            Resueltos = false;
-                            RecienActualizados = false;
+
+                        case "FiltroSinAsignar":
+                            lblTicketAbiertosHeader.Text = "Sin asignar";
+
+                            FiltroTodos = false;
+                            FiltroAbiertos = false;
+                            FiltroSinAsignar = true;
+                            FiltroPendientes = false;
+                            FiltroResueltos = false;
+                            FiltroFueraSla = false;
+                            FiltroRecienActualizados = false;
+
                             EstatusSeleccionado = EstatusSinAsignar;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
-                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
+                            FiltrosTodos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosAbiertos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosSinAsignar.CssClass = "row borderbootom padding-10-top padding-10-bottom btn-seleccione";
+                            FiltrosEspera.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosResueltos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosFueraSLA.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosRecienActualizados.CssClass = "row borderbootom padding-10-top padding-10-bottom";
                             break;
-                        case "Resuelto":
-                            SinAsignar = false;
-                            FueraSla = false;
-                            Resueltos = true;
-                            RecienActualizados = false;
+
+                        case "FiltroEspera":
+                            lblTicketAbiertosHeader.Text = "Pendientes";
+
+                            FiltroTodos = false;
+                            FiltroAbiertos = false;
+                            FiltroSinAsignar = false;
+                            FiltroPendientes = true;
+                            FiltroResueltos = false;
+                            FiltroFueraSla = false;
+                            FiltroRecienActualizados = false;
+
+                            EstatusSeleccionado = EstatusEspera;
+                            FiltrosTodos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosAbiertos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosSinAsignar.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosEspera.CssClass = "row borderbootom padding-10-top padding-10-bottom btn-seleccione";
+                            FiltrosResueltos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosFueraSLA.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosRecienActualizados.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            break;
+
+                        case "FiltroResuelto":
+                            lblTicketAbiertosHeader.Text = "Recién resueltos";
+
+                            FiltroTodos = false;
+                            FiltroAbiertos = false;
+                            FiltroSinAsignar = false;
+                            FiltroPendientes = false;
+                            FiltroResueltos = true;
+                            FiltroFueraSla = false;
+                            FiltroRecienActualizados = false;
+
                             EstatusSeleccionado = EstatusResuletos;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
-                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
+                            FiltrosTodos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosAbiertos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosSinAsignar.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosEspera.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosResueltos.CssClass = "row borderbootom padding-10-top padding-10-bottom btn-seleccione";
+                            FiltrosFueraSLA.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosRecienActualizados.CssClass = "row borderbootom padding-10-top padding-10-bottom";
                             break;
-                        case "FueraSla":
-                            SinAsignar = false;
-                            FueraSla = true;
-                            Resueltos = false;
-                            RecienActualizados = false;
+
+                        case "FiltroFueraSla":
+                            lblTicketAbiertosHeader.Text = "Fuera de SLA";
+
+                            FiltroTodos = false;
+                            FiltroAbiertos = false;
+                            FiltroSinAsignar = false;
+                            FiltroPendientes = false;
+                            FiltroResueltos = false;
+                            FiltroFueraSla = true;
+                            FiltroRecienActualizados = false;
+
                             EstatusSeleccionado = EstatusFueraSla;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom btn-seleccione";
-                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
+                            FiltrosTodos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosAbiertos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosSinAsignar.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosEspera.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosResueltos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosFueraSLA.CssClass = "row borderbootom padding-10-top padding-10-bottom btn-seleccione";
+                            FiltrosRecienActualizados.CssClass = "row borderbootom padding-10-top padding-10-bottom";
                             break;
-                        case "recienActualizados":
-                            SinAsignar = false;
-                            FueraSla = false;
-                            Resueltos = false;
-                            RecienActualizados = true;
+
+                        case "FiltroRecienActualizados":
+                            lblTicketAbiertosHeader.Text = "Recién actualizados";
+
+                            FiltroTodos = false;
+                            FiltroAbiertos = false;
+                            FiltroSinAsignar = false;
+                            FiltroPendientes = false;
+                            FiltroResueltos = false;
+                            FiltroFueraSla = false;
+                            FiltroRecienActualizados = true;
+
                             EstatusSeleccionado = EstatusAbierto;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
-                            break;
-                        default:
-                            SinAsignar = false;
-                            FueraSla = false;
-                            Resueltos = false;
-                            RecienActualizados = false;
-                            EstatusSeleccionado = EstatusAbierto;
-                            FiltroTodos.CssClass = "row borderbootom padding-10-bottom  btn-seleccione";
-                            FiltroAbiertos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroEspera.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroSinAsignar.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroResueltos.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroFueraSLA.CssClass = "row borderbootom padding-10-bottom";
-                            FiltroRecienActualizados.CssClass = "row borderbootom padding-10-bottom";
+                            FiltrosTodos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosAbiertos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosSinAsignar.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosEspera.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosResueltos.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosFueraSLA.CssClass = "row borderbootom padding-10-top padding-10-bottom";
+                            FiltrosRecienActualizados.CssClass = "row borderbootom padding-10-top padding-10-bottom btn-seleccione";
                             break;
                     }
                     ObtenerTicketsPage();
@@ -893,16 +1006,16 @@ namespace KiiniHelp.Agente
                             btnAsignar.Enabled = asigna;
                             btnCambiarEstatus.Enabled = propietaro;
                         }
-                        
+
                         //hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
 
                         //if (!seleccionado && (hfFilaSeleccionada.Value.ToString() != itemIndex.ToString()))
                         //    {
-                                
+
                         //    }
                         //    else
                         //    {
-                                
+
                         //    }
                         break;
                 }

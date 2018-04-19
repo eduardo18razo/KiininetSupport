@@ -8,15 +8,15 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-sm-12 col-md-4 col-lg-4">
-                            <label for="txtNombre" class="col-sm-12 col-md-12 col-lg-12">Nombre</label>
+                            <label for="txtNombreRapido" class="col-sm-12 col-md-12 col-lg-12">Nombre</label>
                             <asp:TextBox class="form-control" ID="txtNombreRapido" ClientIDMode="Static" runat="server" />
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-4">
-                            <label for="txtAp" class="col-sm-12 col-md-12 col-lg-12">Apellido Paterno</label>
+                            <label for="txtApRapido" class="col-sm-12 col-md-12 col-lg-12">Apellido Paterno</label>
                             <asp:TextBox class="form-control" ID="txtApRapido" ClientIDMode="Static" runat="server" />
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-4">
-                            <label for="txtAm" class="col-sm-12 col-md-12 col-lg-12">Apellido Materno</label>
+                            <label for="txtAmRapido" class="col-sm-12 col-md-12 col-lg-12">Apellido Materno</label>
                             <asp:TextBox class="form-control" ID="txtAmRapido" ClientIDMode="Static" runat="server" />
                         </div>
                     </div>

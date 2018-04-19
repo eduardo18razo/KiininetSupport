@@ -311,7 +311,7 @@ namespace KinniNet.Core.Sistema
             try
             {
                 Catalogos catalogo = db.Catalogos.Single(w => w.Id == idCatalogo);
-                string store = string.Format("{0} '{1}', '{2}', {3}", BusinessVariables.ParametrosCatalogo.PrefijoComandoActualizar, catalogo.Tabla, descripcion, idRegistro);
+                string store = string.Format("{0} '{1}', '{2}',{3}, {4}", BusinessVariables.ParametrosCatalogo.PrefijoComandoActualizar, catalogo.Tabla, descripcion, 1, idRegistro);
                 db.ExecuteStoreCommand(store);
             }
             catch (Exception ex)
@@ -447,15 +447,16 @@ namespace KinniNet.Core.Sistema
         {
             DataBaseModelContext db = new DataBaseModelContext();
             DataSet dsOriginales = null;
-            SqlConnection sqlConn = null;
             string nombreTabla = null;
+            SqlConnection sqlConn = null;
             try
             {
+                string connection = (((System.Data.EntityClient.EntityConnection)(db.Connection)).StoreConnection).ConnectionString;
                 Catalogos catalogo = db.Catalogos.SingleOrDefault(s => s.Id == cat.Id);
                 if (catalogo != null)
                 {
                     nombreTabla = catalogo.Tabla;
-                    sqlConn = new SqlConnection(string.Format("Server={0};Database={1};Trusted_Connection=True", db.Connection.DataSource, (((System.Data.EntityClient.EntityConnection)(db.Connection)).StoreConnection).Database));
+                    sqlConn = new SqlConnection(connection);
                     sqlConn.Open();
                     SqlCommand cmdSql = new SqlCommand(string.Format("select * from {0} order by Id", catalogo.Tabla), sqlConn);
                     SqlDataAdapter daOriginal = new SqlDataAdapter(cmdSql);

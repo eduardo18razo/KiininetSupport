@@ -157,6 +157,24 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.Label lblFechaAlta;
         
         /// <summary>
+        /// Control lblAsignacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAsignacion;
+        
+        /// <summary>
+        /// Control lblAgenteAsignado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAgenteAsignado;
+        
+        /// <summary>
         /// Control iPrioridad.
         /// </summary>
         /// <remarks>
@@ -164,15 +182,6 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl iPrioridad;
-        
-        /// <summary>
-        /// Control lblDescripcionPrioridad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescripcionPrioridad;
         
         /// <summary>
         /// Control iSLA.
@@ -211,6 +220,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMovimientos;
         
         /// <summary>
+        /// Control ddlCambiarEstatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCambiarEstatus;
+        
+        /// <summary>
         /// Control ddlCambiarAsignar.
         /// </summary>
         /// <remarks>
@@ -245,15 +263,6 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::Telerik.Web.UI.RadDropDownTree ddlUsuarioAsignacion;
-        
-        /// <summary>
-        /// Control ddlCambiarEstatus.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCambiarEstatus;
         
         /// <summary>
         /// Control imgProfileNewComment.
@@ -434,6 +443,15 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNombreDetalle;
+        
+        /// <summary>
+        /// Control spanTu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanTu;
         
         /// <summary>
         /// Control lblTipoUsuarioDetalle.

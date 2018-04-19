@@ -1,30 +1,20 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcBusquedaUsuario.ascx.cs" Inherits="KiiniHelp.UserControls.Agentes.UcBusquedaUsuario" %>
 
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
-<style>
+<%--<style>
     .RadSearchBox {
         width: 100% !important;
-       
     }
 
     .RadAutoCompleteBoxPopup {
         margin-bottom: 15px;
-        /*background: red !important;*/
-        /*width: 400px !important;*/
     }
 
     .racSlide {
-        /*background: violet !important;*/
         width: 100px !important;
-         margin-bottom: 15px;
+        margin-bottom: 15px;
     }
-
-
-    .RadAutoCompleteBoxPopup .racList {
-        /*background: blue;*/
-        /*width: 90% !important;*/
-    }
-</style>
+</style>--%>
 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
     <ContentTemplate>
 

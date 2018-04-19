@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using KiiniNet.Entities.Operacion.Tickets;
 
 namespace KiiniNet.Entities.Helper
@@ -7,6 +8,7 @@ namespace KiiniNet.Entities.Helper
     [Serializable]
     public class HelperTicketEnAtencion
     {
+        [IntegerValidator(MinValue = 1, MaxValue = 1000)]
         public int IdTicket { get; set; }
         public string Tipificacion { get; set; }
         public string CorreoTicket { get; set; }
@@ -23,6 +25,7 @@ namespace KiiniNet.Entities.Helper
         public bool EsPropietario { get; set; }
         public bool PuedeAsignar { get; set; }
         public int IdGrupoAsignado { get; set; }
+        public string UsuarioAsignado { get; set; }
 
         public bool GrupoConSupervisor { get; set; }
         

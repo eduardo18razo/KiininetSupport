@@ -55,7 +55,7 @@ namespace KiiniHelp.UserControls.Seleccion
                     rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario);
                     rptProblemasFrecuentes.DataBind();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -91,11 +91,6 @@ namespace KiiniHelp.UserControls.Seleccion
             }
         }
 
-        protected void lbtnTypeUser_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + int.Parse(Request.Params["userType"]));
-        }
-
         protected void lbtnCategoria_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + int.Parse(Request.Params["userType"]));
@@ -104,22 +99,50 @@ namespace KiiniHelp.UserControls.Seleccion
         protected void verOpcion_Click(object sender, EventArgs e)
         {
             int tipoArbol = Convert.ToInt32(((LinkButton)sender).CommandName);
+            if (Session["UserData"] == null)
+                switch (tipoArbol)
+                {
+                    case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
+                        Response.Redirect("~/Publico/FrmConsulta.aspx?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        break;
 
-            switch (tipoArbol)
+                    case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
+                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        break;
+
+                    case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
+                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        break;
+                }
+            else
+                switch (tipoArbol)
+                {
+                    case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
+                        Response.Redirect("~/Users/General/FrmNodoConsultas.aspx?IdArbol==" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        break;
+
+                    case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
+                        Response.Redirect("~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        break;
+
+                    case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
+                        Response.Redirect("~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        break;
+                }
+
+        }
+
+        protected void OnClick(object sender, EventArgs e)
+        {
+            try
             {
-                case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
-                    Response.Redirect("~/Publico/FrmConsulta.aspx?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));   
-                    break;
-
-                case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
-                    Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));            
-                    break;
-
-                case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
-                    Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?idArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));                                
-                    break;
+                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + Request.Params["userType"]);
             }
-
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }

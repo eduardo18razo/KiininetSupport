@@ -31,21 +31,12 @@ namespace KiiniHelp.Test {
         protected global::System.Web.UI.ScriptManager scripMain;
         
         /// <summary>
-        /// Control txtEditor.
+        /// Control RadEditor1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Winthusiasm.HtmlEditor.HtmlEditor txtEditor;
-        
-        /// <summary>
-        /// Control afuArchivo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.AsyncFileUpload afuArchivo;
+        protected global::Telerik.Web.UI.RadEditor RadEditor1;
     }
 }
