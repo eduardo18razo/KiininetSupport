@@ -576,22 +576,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/18/2018 13:55:40</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>04/19/2018 10:42:26</publishTime>
+      <publishTime>04/23/2018 16:51:13</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>04/19/2018 10:42:26</publishTime>
+      <publishTime>04/23/2018 16:51:13</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>04/19/2018 10:12:15</publishTime>
+      <publishTime>04/23/2018 12:34:02</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>04/19/2018 10:12:15</publishTime>
+      <publishTime>04/23/2018 12:34:02</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>04/19/2018 10:12:18</publishTime>
+      <publishTime>04/23/2018 12:34:04</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>04/19/2018 10:12:18</publishTime>
+      <publishTime>04/23/2018 12:34:04</publishTime>
     </File>
     <File Include="bin/MSCaptcha.dll">
       <publishTime>04/09/2018 16:38:58</publishTime>
@@ -1125,7 +1125,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/18/2018 10:33:15</publishTime>
     </File>
     <File Include="Publico/Consultas/FrmConsultaTicket.aspx">
-      <publishTime>04/09/2018 16:38:56</publishTime>
+      <publishTime>04/23/2018 13:18:41</publishTime>
     </File>
     <File Include="Publico/Consultas/FrmPreviewConsulta.aspx">
       <publishTime>04/09/2018 16:38:56</publishTime>
@@ -1137,7 +1137,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:56</publishTime>
     </File>
     <File Include="Publico/FrmConsulta.aspx">
-      <publishTime>04/09/2018 16:38:56</publishTime>
+      <publishTime>04/19/2018 16:06:23</publishTime>
     </File>
     <File Include="Publico/FrmServiceArea.aspx">
       <publishTime>04/09/2018 16:38:56</publishTime>
@@ -1155,10 +1155,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/12/2018 13:23:19</publishTime>
     </File>
     <File Include="Test/FrmTest.aspx">
-      <publishTime>04/19/2018 11:08:19</publishTime>
+      <publishTime>04/19/2018 16:06:22</publishTime>
     </File>
     <File Include="Test/FrmTestTelerik.aspx">
-      <publishTime>04/09/2018 16:38:56</publishTime>
+      <publishTime>04/19/2018 16:06:22</publishTime>
     </File>
     <File Include="UserControls/Agentes/UcAsignacionUsuario.ascx">
       <publishTime>04/09/2018 16:38:56</publishTime>
@@ -1302,7 +1302,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaMisTickets.ascx">
-      <publishTime>04/09/2018 16:38:57</publishTime>
+      <publishTime>04/20/2018 11:28:03</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaNotasOpcion.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1369,6 +1369,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="UserControls/Detalles/UcTicketDetalle.ascx">
       <publishTime>04/19/2018 10:55:17</publishTime>
+    </File>
+    <File Include="UserControls/Detalles/UcTicketDetalleUsuario.ascx">
+      <publishTime>04/20/2018 10:59:13</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroAtendedores.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1497,7 +1500,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcCategoria.ascx">
-      <publishTime>04/09/2018 16:38:57</publishTime>
+      <publishTime>04/23/2018 12:00:33</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcImpactoUrgencia.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1628,8 +1631,14 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Users/FrmBusqueda.aspx">
       <publishTime>04/10/2018 13:15:16</publishTime>
     </File>
+    <File Include="Users/FrmCategorias.aspx">
+      <publishTime>04/23/2018 12:01:14</publishTime>
+    </File>
     <File Include="Users/FrmDashboardUser.aspx">
       <publishTime>04/09/2018 16:38:57</publishTime>
+    </File>
+    <File Include="Users/General/FrmDetalleTicketUsuario.aspx">
+      <publishTime>04/20/2018 10:18:22</publishTime>
     </File>
     <File Include="Users/General/FrmMiInformacion.aspx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1677,10 +1686,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="Usuarios.Master">
-      <publishTime>04/18/2018 10:34:06</publishTime>
+      <publishTime>04/23/2018 16:21:48</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/19/2018 11:25:41</publishTime>
+      <publishTime>04/23/2018 13:00:48</publishTime>
     </File>
     <File Include="Xml/Notificaciones.xml">
       <publishTime>04/09/2018 16:38:57</publishTime>

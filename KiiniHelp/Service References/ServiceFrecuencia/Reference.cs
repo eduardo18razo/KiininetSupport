@@ -16,16 +16,16 @@ namespace KiiniHelp.ServiceFrecuencia {
     public interface IServiceFrecuencia {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenGeneral", ReplyAction="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenGeneralResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario, System.Nullable<int> idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenConsulta", ReplyAction="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenConsultaResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario, System.Nullable<int> idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenServicio", ReplyAction="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenServicioResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario, System.Nullable<int> idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenIncidente", ReplyAction="http://tempuri.org/IServiceFrecuencia/ObtenerTopTenIncidenteResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario, System.Nullable<int> idUsuario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +55,20 @@ namespace KiiniHelp.ServiceFrecuencia {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario) {
-            return base.Channel.ObtenerTopTenGeneral(idTipoUsuario);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario, System.Nullable<int> idUsuario) {
+            return base.Channel.ObtenerTopTenGeneral(idTipoUsuario, idUsuario);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario) {
-            return base.Channel.ObtenerTopTenConsulta(idTipoUsuario);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario, System.Nullable<int> idUsuario) {
+            return base.Channel.ObtenerTopTenConsulta(idTipoUsuario, idUsuario);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario) {
-            return base.Channel.ObtenerTopTenServicio(idTipoUsuario);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario, System.Nullable<int> idUsuario) {
+            return base.Channel.ObtenerTopTenServicio(idTipoUsuario, idUsuario);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario) {
-            return base.Channel.ObtenerTopTenIncidente(idTipoUsuario);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario, System.Nullable<int> idUsuario) {
+            return base.Channel.ObtenerTopTenIncidente(idTipoUsuario, idUsuario);
         }
     }
 }

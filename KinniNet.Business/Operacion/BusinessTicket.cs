@@ -399,7 +399,7 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public List<HelperTickets> ObtenerTicketsUsuario(int idUsuario, int pageIndex, int pageSize)
+        public List<HelperTickets> ObtenerTicketsUsuario(int idUsuario)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             List<HelperTickets> result = null;
@@ -416,7 +416,7 @@ namespace KinniNet.Core.Operacion
                 if (totalRegistros > 0)
                 {
                     result = new List<HelperTickets>();
-                    foreach (Ticket ticket in lstTickets.Skip(pageIndex * pageSize).Take(pageSize))
+                    foreach (Ticket ticket in lstTickets)
                     {
                         db.LoadProperty(ticket, "UsuarioLevanto");
                         db.LoadProperty(ticket.UsuarioLevanto, "TipoUsuario");

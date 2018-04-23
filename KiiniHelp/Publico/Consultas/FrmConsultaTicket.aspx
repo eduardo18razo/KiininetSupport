@@ -2,26 +2,13 @@
 <%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusTicket.ascx" TagPrefix="uc1" TagName="UcCambiarEstatusTicket" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleMascaraCaptura.ascx" TagPrefix="uc1" TagName="UcDetalleMascaraCaptura" %>
 <%@ Import Namespace="KinniNet.Business.Utils" %>
-<%@ Register TagPrefix="ctrlExterno" Namespace="Winthusiasm.HtmlEditor" Assembly="Winthusiasm.HtmlEditor" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <%--<script>
-        function SetComment(parameters) {
-            var txtEditor = document.getElementById('ContentPlaceHolderPublic_txtEditor_designEditor');
-            if (txtEditor != undefined) {
-                var hfComentario = document.getElementById('<%= hfComentario.ClientID%>');
-                if (hfComentario != undefined) {
-                    hfComentario.value = txtEditor.contentDocument.body.innerHTML;
-                }
-            }
-        }
-    </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPublic" runat="server">
 
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <%--<asp:HiddenField runat="server" ID="hfComentario"/>--%>
             <asp:HiddenField runat="server" ID="hfMuestraEncuesta"/>
             <div runat="server" id="divConsulta">
                 <div>                 
@@ -117,8 +104,6 @@
                                                     <hr>
 
                                                     <uc1:UcDetalleMascaraCaptura runat="server" id="ucDetalleMascaraCaptura" />
-
-                                                    
                                                 </div>
                                             </div>
                                             <hr>
@@ -132,12 +117,7 @@
                                                         <div class="form-holder">
                                                             <div>
                                                                 <asp:TextBox ID="txtConversacion" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control no-padding-top no-margin-top" MaxLength="999" />
-                                                                <%--<asp:UpdatePanel runat="server" UpdateMode="Conditional">
-                                                                    <ContentTemplate>
-                                                                        <ctrlexterno:htmleditor runat="Server" id="txtEditor" height="350px" ToggleMode="ToggleButton" colorscheme="VisualStudio" onkeypress="SetComment(this)"/>
-                                                                    </ContentTemplate>
-                                                                </asp:UpdatePanel>--%>
-                                                                <asp:Button CssClass="btn btn-primary" runat="server" Text="Comentar" ID="btnComentar"  OnClick="btnComentar_OnClick" /><%--OnClientClick="SetComment(this);"--%>
+                                                                <asp:Button CssClass="btn btn-primary" runat="server" Text="Comentar" ID="btnComentar"  OnClick="btnComentar_OnClick" />
                                                             </div>
                                                         </div>
                                                     </div>

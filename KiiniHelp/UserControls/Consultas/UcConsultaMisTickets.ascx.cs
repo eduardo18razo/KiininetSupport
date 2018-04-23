@@ -8,6 +8,7 @@ using KiiniHelp.ServiceTicket;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -16,7 +17,6 @@ namespace KiiniHelp.UserControls.Consultas
         private readonly ServiceTicketClient _servicioTickets = new ServiceTicketClient();
         private readonly ServiceEstatusClient _servicioEstatus = new ServiceEstatusClient();
         private List<string> _lstError = new List<string>();
-        private const int PageSize = 100000;
 
         public List<string> Alerta
         {
@@ -31,70 +31,45 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        private void LlenaEstatus()
+        private void ObtenerTicketsPage(string filter = "")
         {
             try
             {
-                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusTicket(true);
-                ddlEstatus.DataTextField = "Descripcion";
-                ddlEstatus.DataValueField = "Id";
-                ddlEstatus.DataBind();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+                List<HelperTickets> lst = _servicioTickets.ObtenerTicketsUsuario(((Usuario)Session["UserData"]).Id);
 
-        private void ObtenerTicketsPage(int pageIndex, Dictionary<string, string> filtros, bool orden, bool asc, string ordering = "")
-        {
-            try
-            {
-                List<HelperTickets> lst = _servicioTickets.ObtenerTicketsUsuario(((Usuario)Session["UserData"]).Id, pageIndex, PageSize);
-                if (lst != null)
+                if (filter.Trim() != string.Empty)
                 {
-                    if (ddlEstatus.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    {
-                        int idEstatus = int.Parse(ddlEstatus.SelectedValue);
-                        lst = lst.Where(w => w.EstatusTicket.Id == idEstatus).ToList();
-                    }
-                    foreach (KeyValuePair<string, string> filtro in filtros)
-                    {
-                        switch (filtro.Key)
-                        {
-                            case "NumeroTicket":
-                                lst = lst.Where(w => w.NumeroTicket == int.Parse(filtro.Value)).ToList();
-                                break;
-                            case "Asunto":
-                                lst = lst.Where(w => w.Tipificacion.Contains(filtro.Value)).ToList();
-                                break;
-                        }
-                    }
-                    if (orden && asc)
-                        switch (ordering)
-                        {
-                            case "DateTime":
-                                lst = lst.OrderBy(o => o.FechaHora).ToList();
-                                break;
-                        }
-                    else
-                        switch (ordering)
-                        {
-                            case "DateTime":
-                                lst = lst.OrderByDescending(o => o.FechaHora).ToList();
-                                break;
-                        }
-
-                    ViewState["Tipificaciones"] = lst.Select(s => s.Tipificacion).Distinct().ToList();
+                    int idTicket;
+                    bool numeroFiltro = int.TryParse(filter, out idTicket);
+                    lst = numeroFiltro ?
+                        lst.Where(w => w.IdTicket == idTicket || w.Tipificacion.ToLower().Contains(filter.ToLower())).ToList() :
+                        lst.Where(w => w.Tipificacion.ToLower().Contains(filter.ToLower())).ToList();
                 }
-                tblResults.DataSource = lst;
-                tblResults.DataBind();
+                Tickets = lst;
+                gvTickets.Rebind();
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
 
+        }
+
+        public List<HelperTickets> Tickets
+        {
+            get
+            {
+                List<HelperTickets> data = Session["HelperMisTickets"] == null ? new List<HelperTickets>() : (List<HelperTickets>)Session["HelperMisTickets"];
+
+                if (data == null)
+                {
+                    ObtenerTicketsPage();
+                    data = (List<HelperTickets>)Session["HelperMisTickets"];
+                }
+
+                return data;
+            }
+            set { Session["HelperMisTickets"] = value; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -106,12 +81,7 @@ namespace KiiniHelp.UserControls.Consultas
                 ucCambiarEstatusTicket.OnCancelarModal += ucCambiarEstatusTicket_OnCancelarModal;
                 if (!IsPostBack)
                 {
-                    ViewState["Column"] = "DateTime";
-                    ViewState["Sortorder"] = "ASC";
-                    ViewState["PageIndex"] = "0";
-                    ViewState["Filtros"] = new Dictionary<string, string>();
-                    LlenaEstatus();
-                    ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
+                    ObtenerTicketsPage();
                 }
             }
             catch (Exception ex)
@@ -124,28 +94,10 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
-
-        #region Paginador
-        protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            tblResults.PageIndex = e.NewPageIndex;
-
-            ViewState["Column"] = "DateTime";
-            ViewState["Sortorder"] = "ASC";
-            ViewState["PageIndex"] = "0";
-            ViewState["Filtros"] = new Dictionary<string, string>();
-            LlenaEstatus();
-            ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
-        }
-
-        #endregion
-
-
         void ucCambiarEstatusTicket_OnCancelarModal()
         {
             try
             {
-                //ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalCambiaEstatus\");", true);
             }
             catch (Exception ex)
@@ -165,17 +117,11 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 if (bool.Parse(hfMuestraEncuesta.Value))
                 {
-                    string url =
-                        ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" +
-                                   (int)BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" +
-                                   ucCambiarEstatusTicket.IdTicket);
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta",
-                        "OpenWindow(\"" + url + "\");", true);
+                    string url = ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" + (int)BusinessVariables.EnumTipoArbol.SolicitarServicio + "&IdTicket=" + ucCambiarEstatusTicket.IdTicket);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");", true);
                 }
             }
-            ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()),
-                (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC",
-                ViewState["Column"].ToString());
+            ObtenerTicketsPage();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script",
                 "CierraPopup(\"#modalCambiaEstatus\");", true);
         }
@@ -184,29 +130,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-
-                Dictionary<string, string> filter = new Dictionary<string, string>();
-                if (txtFiltro.Text.Trim() != string.Empty)
-                    filter.Add("Asunto", txtFiltro.Text.Trim().ToUpper());
-
-                ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), filter, true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void ddlEstatus_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ObtenerTicketsPage(int.Parse(ViewState["PageIndex"].ToString()), (Dictionary<string, string>)ViewState["Filtros"], true, ViewState["Sortorder"].ToString() == "ASC", ViewState["Column"].ToString());
+                ObtenerTicketsPage(txtFiltro.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -245,9 +169,46 @@ namespace KiiniHelp.UserControls.Consultas
         }
 
 
+        protected void gvTickets_OnItemCommand(object sender, GridCommandEventArgs e)
+        {
+            try
+            {
+                GridDataItem row = (GridDataItem)e.Item;
+                if (row == null) return;
+                switch (e.CommandName)
+                {
+                    case "RowClick":
+                        int idTicket = int.Parse(row.GetDataKeyValue("IdTicket").ToString());
+                        Response.Redirect("~/Users/General/FrmDetalleTicketUsuario.aspx?IdTicket=" + idTicket);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
 
-
-
-
+        protected void gvTickets_OnNeedDataSource(object sender, GridNeedDataSourceEventArgs e)
+        {
+            try
+            {
+                gvTickets.DataSource = Tickets;
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

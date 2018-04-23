@@ -9,8 +9,10 @@
   <xs:complexType name="HelperFrecuencia">
     <xs:sequence>
       <xs:element minOccurs="0" name="DescripcionOpcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescripcionOpcionLarga" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdArbol" type="xs:int" />
       <xs:element minOccurs="0" name="IdFrecuencia" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoArbol" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperFrecuencia" nillable="true" type="tns:HelperFrecuencia" />

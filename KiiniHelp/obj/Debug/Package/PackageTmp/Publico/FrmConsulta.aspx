@@ -1,6 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Public.Master" AutoEventWireup="true" CodeBehind="FrmConsulta.aspx.cs" Inherits="KiiniHelp.Publico.FrmConsulta" %>
-
-<%--<%@ Register Src="~/UserControls/Preview/UcPreviewConsulta.ascx" TagPrefix="uc1" TagName="UcPreviewConsulta" %>--%>
 <%@ Register Src="~/UserControls/Preview/UcVisorConsultainformacion.ascx" TagPrefix="uc1" TagName="UcVisorConsultainformacion" %>
 
 
@@ -13,7 +11,6 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPublic" runat="server">
-    <%--<uc1:UcPreviewConsulta runat="server" id="UcPreviewConsulta" />--%>
     <h3 class="h6">
         <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
         </h3>

@@ -29,30 +29,43 @@ namespace KiiniHelp.UserControls.Seleccion
                 {
                     Area area = _servicioArea.ObtenerAreaById(idArea);
                     lblCategoria.Text = area.Descripcion;
-                    rptCatTodos.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    rptCatTodos.DataBind();
 
-                    rptCatConsultas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    rptCatConsultas.DataBind();
+                    rpt10Frecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenGeneral(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null).Where(w => w.IdArea == area.Id);
+                    rpt10Frecuentes.DataBind();
 
-                    rptCatServicios.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    rptCatServicios.DataBind();
+                    rptConsultasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenConsulta(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null).Where(w => w.IdArea == area.Id);
+                    rptConsultasFrecuentes.DataBind();
 
-                    rptCatProblemas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    rptCatProblemas.DataBind();
+                    rptServiciosFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenServicio(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null).Where(w => w.IdArea == area.Id);
+                    rptServiciosFrecuentes.DataBind();
+
+                    rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null).Where(w => w.IdArea == area.Id);
+                    rptProblemasFrecuentes.DataBind();
+
+                    //rptCatTodos.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
+                    //rptCatTodos.DataBind();
+
+                    //rptCatConsultas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
+                    //rptCatConsultas.DataBind();
+
+                    //rptCatServicios.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
+                    //rptCatServicios.DataBind();
+
+                    //rptCatProblemas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
+                    //rptCatProblemas.DataBind();
                 }
                 else
                 {
-                    rpt10Frecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenGeneral(idTipoUsuario);
+                    rpt10Frecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenGeneral(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null);
                     rpt10Frecuentes.DataBind();
 
-                    rptConsultasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenConsulta(idTipoUsuario);
+                    rptConsultasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenConsulta(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null);
                     rptConsultasFrecuentes.DataBind();
 
-                    rptServiciosFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenServicio(idTipoUsuario);
+                    rptServiciosFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenServicio(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null);
                     rptServiciosFrecuentes.DataBind();
 
-                    rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario);
+                    rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null);
                     rptProblemasFrecuentes.DataBind();
                 }
 
@@ -93,7 +106,10 @@ namespace KiiniHelp.UserControls.Seleccion
 
         protected void lbtnCategoria_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + int.Parse(Request.Params["userType"]));
+            if (Session["UserData"] == null)
+                Response.Redirect("~/Publico/FrmCategoria.aspx?userType=" + int.Parse(Request.Params["userType"]));
+            else
+                Response.Redirect("~/Users/FrmCategorias.aspx?userType=" + ((Usuario)Session["UserData"]).IdTipoUsuario);
         }
 
         protected void verOpcion_Click(object sender, EventArgs e)
@@ -136,12 +152,13 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + Request.Params["userType"]);
+                if (Session["UserData"] == null)
+                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + Request.Params["userType"]);
+                else
+                    Response.Redirect("~/Users/FrmDashboardUser.aspx");
             }
-            catch (Exception)
+            catch 
             {
-                
-                throw;
             }
         }
     }

@@ -8,12 +8,12 @@ namespace KiiniNet.Services.Operacion.Interface
     public interface IServiceFrecuencia
     {
         [OperationContract]
-        List<HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario);
+        List<HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario, int? idUsuario);
         [OperationContract]
-        List<HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario);
+        List<HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario, int? idUsuario);
         [OperationContract]
-        List<HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario);
+        List<HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario, int? idUsuario);
         [OperationContract]
-        List<HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario);
+        List<HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario, int? idUsuario);
     }
 }

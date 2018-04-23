@@ -2,6 +2,7 @@
 <%@ Import Namespace="KinniNet.Business.Utils" %>
 
 <%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusTicket.ascx" TagPrefix="uc1" TagName="UcCambiarEstatusTicket" %>
+<%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 
 <div class="heigth100">
     <asp:UpdatePanel runat="server" class="heigth100">
@@ -23,9 +24,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Mis Tickets" /></h3>
                             </div>
                         </div>
-
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
                             <div class="col-xs-12 col-sm-12 col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta de Tickets:</label>
@@ -37,21 +36,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 separador-vertical-derecho">  
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o consulta por estatus</label>
-                                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11  no-padding-left no-margin-left">
-                                        <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control no-padding-left no-margin-left" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlEstatus_OnSelectedIndexChanged" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center margin-top-btn-consulta">
-                                <a data-toggle="modal" role="menuitem" data-keyboard="false" data-target="#modal-new-ticket">
-                                    <label class="btn btn-success"><i class="fa fa-plus"></i>Nuevo</label>
-                                </a>
-                            </div>
                         </div>
                     </div>
             </section>
@@ -62,7 +46,44 @@
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
 
-                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" ShowHeaderWhenEmpty="True"
+                                <tc:RadGrid runat="server" ID="gvTickets" CssClass="table table-striped display"
+                                    FilterType="HeaderContext" EnableHeaderContextMenu="true" EnableHeaderContextFilterMenu="true"
+                                    PagerStyle-AlwaysVisible="true"
+                                    OnNeedDataSource="gvTickets_OnNeedDataSource" AllowFilteringByColumn="True" OnItemCommand="gvTickets_OnItemCommand"
+                                    PageSize="14" PagerStyle-PageButtonCount="10"
+                                    AllowPaging="True" AllowSorting="true" ShowGroupPanel="False" RenderMode="Classic">
+                                    <GroupingSettings ShowUnGroupButton="False" CaseSensitive="False" />
+
+                                    <ExportSettings ExportOnlyData="true" IgnorePaging="true"></ExportSettings>
+                                    <MasterTableView AutoGenerateColumns="False" TableLayout="Fixed" ShowHeadersWhenNoRecords="True" CommandItemDisplay="None"
+                                        DataKeyNames="IdTicket" NoDetailRecordsText="No hay Registros" HeaderStyle-CssClass="textoTabla" HeaderStyle-Font-Bold="true"
+                                        HeaderStyle-Font-Names="Proxima Nova" HeaderStyle-ForeColor="#6E6E6E"
+                                        ItemStyle-Font-Names="Proxima Nova" ItemStyle-ForeColor="#6E6E6E"
+                                        AlternatingItemStyle-Font-Names="Proxima Nova" AlternatingItemStyle-ForeColor="#6E6E6E"
+                                        FooterStyle-BackColor="White">
+
+                                        <CommandItemSettings ShowAddNewRecordButton="False" ShowRefreshButton="False"></CommandItemSettings>
+                                        <Columns>
+                                            <tc:GridBoundColumn DataField="IdTicket" HeaderText="Ticket" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
+                                            <tc:GridBoundColumn DataField="Tipificacion" HeaderText="Asunto" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
+                                            <tc:GridBoundColumn DataField="FechaHora" HeaderText="Solicitado" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
+                                            <tc:GridBoundColumn DataField="Estatusticket.Descripcion" HeaderText="Estatus" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
+                                            <tc:GridTemplateColumn FilterCheckListEnableLoadOnDemand="True" DataField="Estatusticket.Id" HeaderText="CambiaEstatus" SortExpression="CambiaEstatus" UniqueName="CambiaEstatus"
+                                                CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False" EnableHeaderContextMenu="False">
+                                                <ItemTemplate>
+                                                    <asp:Button runat="server" data-tieneEncuesta='<%# Eval("TieneEncuesta")%>' Text="Estatus" ID="btnCambiaEstatus" CssClass="btn btn-primary" OnClick="btnCambiaEstatus_OnClick" CommandArgument='<%# Eval("IdTicket")%>' CommandName='<%# Eval("EstatusTicket.Id") %>'
+                                                        Visible='<%# int.Parse(Eval("Estatusticket.Id").ToString()) == (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto %>' />
+                                                </ItemTemplate>
+                                            </tc:GridTemplateColumn>
+                                        </Columns>
+                                    </MasterTableView>
+                                    <ClientSettings EnableAlternatingItems="True" EnableRowHoverStyle="True" EnablePostBackOnRowClick="True">
+                                        <Selecting AllowRowSelect="True" UseClientSelectColumnOnly="true"></Selecting>
+                                        <Resizing AllowResizeToFit="True"></Resizing>
+                                    </ClientSettings>
+                                </tc:RadGrid>
+
+                               <%-- <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" ShowHeaderWhenEmpty="True"
                                     CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="14" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
@@ -105,7 +126,7 @@
                                         </asp:TemplateField>
 
                                     </Columns>
-                                </asp:GridView>
+                                </asp:GridView>--%>
 
                             </div>
                         </div>

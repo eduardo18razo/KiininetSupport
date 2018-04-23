@@ -32,8 +32,23 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                lbTipoUsuario.Text = string.Format("{0}", int.Parse(Request.Params["userType"]) == (int)BusinessVariables.EnumTiposUsuario.Empleado ? "Empleado" : int.Parse(Request.Params["userType"]) == (int)BusinessVariables.EnumTiposUsuario.Cliente ? "Cliente" : "Proveedor");
-                rptAreas.DataSource = _servicioArea.ObtenerAreasTipoUsuario(int.Parse(Request.Params["userType"]), false).Where(w => !w.Sistema);
+                switch (int.Parse(Request.Params["userType"]))
+                {
+                    case (int)BusinessVariables.EnumTiposUsuario.Operador:
+                        lnkbtnTipoUsuario.Text = "Operador";
+                        break;
+                    case (int)BusinessVariables.EnumTiposUsuario.Cliente:
+                        lnkbtnTipoUsuario.Text = "Cliente";
+                        break;
+                    case (int)BusinessVariables.EnumTiposUsuario.Proveedor:
+                        lnkbtnTipoUsuario.Text = "Proveedor";
+                        break;
+                    case (int)BusinessVariables.EnumTiposUsuario.Empleado:
+                        lnkbtnTipoUsuario.Text = "Empleado";
+                        break;
+                }
+
+                rptAreas.DataSource = Session["UserData"] == null ? _servicioArea.ObtenerAreasTipoUsuario(int.Parse(Request.Params["userType"]), false).Where(w => !w.Sistema) : _servicioArea.ObtenerAreasUsuario(((Usuario)Session["UserData"]).Id, false).Where(w => !w.Sistema);
                 rptAreas.DataBind();
             }
             catch (Exception ex)
@@ -53,9 +68,10 @@ namespace KiiniHelp.UserControls.Seleccion
             {
                 LinkButton lnkbtn = (LinkButton)sender;
                 int tipoUsuario = int.Parse(Request.Params["userType"]);
-                //Response.Redirect("~/Publico/FrmServiceArea.aspx?idArea=" + lnkbtn.CommandArgument);
-
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario + "&idArea=" + lnkbtn.CommandArgument);
+                if (Session["UserData"] == null)
+                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario + "&idArea=" + lnkbtn.CommandArgument);
+                else
+                    Response.Redirect("~/Users/FrmDashboardUser.aspx?userType=" + tipoUsuario + "&idArea=" + lnkbtn.CommandArgument);
 
             }
             catch (Exception ex)
@@ -74,7 +90,10 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 string tipoUsuario = Request.Params["userType"];
+                if (Session["UserData"] == null)
                 Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario);
+                else
+                    Response.Redirect("~/Users/FrmDashboardUser.aspx");
             }
             catch (Exception ex)
             {

@@ -244,7 +244,6 @@
     <Content Include="Publico\FrmBusqueda.aspx" />
     <Content Include="Publico\FrmCategoria.aspx" />
     <Content Include="Publico\FrmConsulta.aspx" />
-    <Content Include="Publico\FrmServiceArea.aspx" />
     <Content Include="Publico\FrmTicketPublico.aspx" />
     <Content Include="Publico\FrmUserSelect.aspx" />
     <Content Include="Downloads\FrmDownloads.aspx" />
@@ -321,10 +320,13 @@
     <Content Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
+    <Content Include="UserControls\Detalles\UcTicketDetalleUsuario.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
     <Content Include="Users\FrmBusqueda.aspx" />
     <Content Include="Users\FrmDashboardUser.aspx" />
+    <Content Include="Users\General\FrmDetalleTicketUsuario.aspx" />
+    <Content Include="Users\FrmCategorias.aspx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuario.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource" />
@@ -900,7 +902,6 @@
     <Content Include="UserControls\Filtros\Componentes\UcFiltroServicioIncidenteEncuesta.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGeograficoHit.ascx" />
     <Content Include="UserControls\Filtros\Consultas\UcFiltrosConsulta.ascx" />
-    <Content Include="UserControls\Consultas\UcConsultaTicketUsuario.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleMascaraCaptura.ascx" />
     <Content Include="UserControls\Filtros\Componentes\UcFiltroEstatus.ascx" />
     <Content Include="UserControls\Filtros\Componentes\UcFiltroFechasGrafico.ascx" />
@@ -2660,13 +2661,6 @@
     <Compile Include="Publico\FrmConsulta.aspx.designer.cs">
       <DependentUpon>FrmConsulta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Publico\FrmServiceArea.aspx.cs">
-      <DependentUpon>FrmServiceArea.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Publico\FrmServiceArea.aspx.designer.cs">
-      <DependentUpon>FrmServiceArea.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Publico\FrmTicketPublico.aspx.cs">
       <DependentUpon>FrmTicketPublico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3052,6 +3046,13 @@
     <Compile Include="UserControls\Detalles\UcMensajeValidacion.ascx.designer.cs">
       <DependentUpon>UcMensajeValidacion.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Detalles\UcTicketDetalleUsuario.ascx.cs">
+      <DependentUpon>UcTicketDetalleUsuario.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Detalles\UcTicketDetalleUsuario.ascx.designer.cs">
+      <DependentUpon>UcTicketDetalleUsuario.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Detalles\UcTicketDetalle.ascx.cs">
       <DependentUpon>UcTicketDetalle.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3318,6 +3319,13 @@
     <Compile Include="Users\FrmDashboardUser.aspx.designer.cs">
       <DependentUpon>FrmDashboardUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Users\General\FrmDetalleTicketUsuario.aspx.cs">
+      <DependentUpon>FrmDetalleTicketUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\General\FrmDetalleTicketUsuario.aspx.designer.cs">
+      <DependentUpon>FrmDetalleTicketUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\General\FrmMisTickets.aspx.cs">
       <DependentUpon>FrmMisTickets.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3484,13 +3492,6 @@
     </Compile>
     <Compile Include="UserControls\Filtros\Consultas\UcFiltrosConsulta.ascx.designer.cs">
       <DependentUpon>UcFiltrosConsulta.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Consultas\UcConsultaTicketUsuario.ascx.cs">
-      <DependentUpon>UcConsultaTicketUsuario.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControls\Consultas\UcConsultaTicketUsuario.ascx.designer.cs">
-      <DependentUpon>UcConsultaTicketUsuario.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Detalles\UcDetalleMascaraCaptura.ascx.cs">
       <DependentUpon>UcDetalleMascaraCaptura.ascx</DependentUpon>
@@ -3923,6 +3924,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Users\FrmCategorias.aspx.cs">
+      <DependentUpon>FrmCategorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\FrmCategorias.aspx.designer.cs">
+      <DependentUpon>FrmCategorias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\Ticket\FrmTicket.aspx.cs">
       <DependentUpon>FrmTicket.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4249,7 +4257,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

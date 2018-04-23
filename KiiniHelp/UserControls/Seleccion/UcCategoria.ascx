@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item">
                     <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink></li>
                 <li class="breadcrumb-item">
-                    <asp:LinkButton runat="server" ID="lbTipoUsuario" OnClick="lbTipoUsuario_Click">
+                    <asp:LinkButton runat="server" ID="lnkbtnTipoUsuario" OnClick="lbTipoUsuario_Click">
                     </asp:LinkButton>
                 </li>
                 <li class="breadcrumb-item active">Categorías</li>

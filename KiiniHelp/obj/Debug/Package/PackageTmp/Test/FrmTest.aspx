@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrmTest.aspx.cs" ValidateRequest="false" Inherits="KiiniHelp.Test.FrmTest" Culture="Auto" UICulture="Auto" %>
 
-<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit.HtmlEditor" Assembly="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
-<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,7 +24,36 @@
     <div id="full">
         <form id="form1" runat="server" enctype="multipart/form-data">
             <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true" />
-            <asp:RadioButton runat="server" Text="Quiero recibir un correo con un enlace" />
+            <tc:RadEditor RenderMode="Lightweight" runat="server" ID="RadEditor1" Width="800px">
+                <tools>
+                <tc:EditorToolGroup>
+                    <tc:EditorTool Name="PageProperties" Text="Page Properties"></tc:EditorTool>
+                </tc:EditorToolGroup>
+                <tc:EditorToolGroup>
+                    <tc:EditorTool Name="Bold"></tc:EditorTool>
+                    <tc:EditorTool Name="Italic"></tc:EditorTool>
+                    <tc:EditorTool Name="Underline"></tc:EditorTool>
+                    <tc:EditorTool Name="Cut"></tc:EditorTool>
+                    <tc:EditorTool Name="Copy"></tc:EditorTool>
+                    <tc:EditorTool Name="Paste"></tc:EditorTool>
+                    <tc:EditorTool Name="FontName"></tc:EditorTool>
+                    <tc:EditorTool Name="RealFontSize"></tc:EditorTool>
+                </tc:EditorToolGroup>
+                <tc:EditorToolGroup>
+                    <tc:EditorTool Name="InsertTable"></tc:EditorTool>
+                    <tc:EditorTool Name="InsertImage"></tc:EditorTool>
+                    <tc:EditorTool Name="LinkManager"></tc:EditorTool>
+                    <tc:EditorTool Name="Unlink"></tc:EditorTool>
+                    <tc:EditorTool Name="InsertOrderedList"></tc:EditorTool>
+                    <tc:EditorTool Name=""/>
+                    <tc:EditorTool Name="InsertUnorderedList"></tc:EditorTool>
+                </tc:EditorToolGroup>
+            </tools>
+                <imagemanager viewpaths="~/Editor/images/UserDir/Marketing,~/Editor/images/UserDir/PublicRelations"></imagemanager>
+                <content>
+            </content>
+            </tc:RadEditor>
+            <%--<asp:RadioButton runat="server" Text="Quiero recibir un correo con un enlace" />
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <asp:TextBox
@@ -33,9 +61,9 @@
                         TextMode="MultiLine"
                         Columns="50"
                         Rows="8"
-                        runat="server" />
-                    <%--OnImageUploadComplete=" txtDescricao_HtmlEditorExtender_ImageUploadComplete"--%>
-                    <ajax:HtmlEditorExtender ID="txtDescricao_HtmlEditorExtender" runat="server" DisplaySourceTab="True"
+                        runat="server" />--%>
+            <%--OnImageUploadComplete=" txtDescricao_HtmlEditorExtender_ImageUploadComplete"--%>
+            <%--<ajax:HtmlEditorExtender ID="txtDescricao_HtmlEditorExtender" runat="server" DisplaySourceTab="True"
                         Enabled="True" TargetControlID="txtComments" >
                         <Toolbar>
                             <ajax:Bold />
@@ -64,7 +92,7 @@
                         ID="lblComment"
                         runat="server" />
                 </ContentTemplate>
-            </asp:UpdatePanel>
+            </asp:UpdatePanel>--%>
             <%--<asp:ListBox runat="server">
                 <Items>
                     <asp:ListItem Text="Red" Value="#FF0000" Selected="True" />

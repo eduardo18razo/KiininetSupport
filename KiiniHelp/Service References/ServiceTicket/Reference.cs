@@ -22,7 +22,7 @@ namespace KiiniHelp.ServiceTicket {
         KiiniNet.Entities.Operacion.Tickets.Ticket CrearTicket(int idUsuario, int idUsuarioSolicito, int idArbol, System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperCampoMascaraCaptura> lstCaptura, int idCanal, bool campoRandom, bool esTercero, bool esMail);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTicket/ObtenerTicketsUsuario", ReplyAction="http://tempuri.org/IServiceTicket/ObtenerTicketsUsuarioResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperTickets> ObtenerTicketsUsuario(int idUsuario, int pageIndex, int pageSize);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperTickets> ObtenerTicketsUsuario(int idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTicket/ObtenerTickets", ReplyAction="http://tempuri.org/IServiceTicket/ObtenerTicketsResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperTickets> ObtenerTickets(int idUsuario, System.Collections.Generic.List<int> estatus, int pageIndex, int pageSize);
@@ -78,8 +78,8 @@ namespace KiiniHelp.ServiceTicket {
             return base.Channel.CrearTicket(idUsuario, idUsuarioSolicito, idArbol, lstCaptura, idCanal, campoRandom, esTercero, esMail);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperTickets> ObtenerTicketsUsuario(int idUsuario, int pageIndex, int pageSize) {
-            return base.Channel.ObtenerTicketsUsuario(idUsuario, pageIndex, pageSize);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperTickets> ObtenerTicketsUsuario(int idUsuario) {
+            return base.Channel.ObtenerTicketsUsuario(idUsuario);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperTickets> ObtenerTickets(int idUsuario, System.Collections.Generic.List<int> estatus, int pageIndex, int pageSize) {

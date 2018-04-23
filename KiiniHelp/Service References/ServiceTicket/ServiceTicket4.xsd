@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
-  <xs:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-  <xs:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
   <xs:complexType name="ArrayOfHelperCampoMascaraCaptura">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperCampoMascaraCaptura" nillable="true" type="tns:HelperCampoMascaraCaptura" />
@@ -32,7 +32,10 @@
       <xs:element name="_x003C_EsPropietario_x003E_k__BackingField" type="xs:boolean" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusAsignacion_x003E_k__BackingField" nillable="true" type="q1:EstatusAsignacion" />
       <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusTicket_x003E_k__BackingField" nillable="true" type="q2:EstatusTicket" />
+      <xs:element name="_x003C_FechaCambioEstatusAsignacion_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_FechaCambioEstatusTicket_x003E_k__BackingField" type="xs:dateTime" />
       <xs:element name="_x003C_FechaHora_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_FechaUltimoEvento_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
       <xs:element name="_x003C_GrupoAsignado_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_IdGrupoAsignado_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_IdImpacto_x003E_k__BackingField" type="xs:int" />
@@ -48,6 +51,7 @@
       <xs:element name="_x003C_NombreUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_NumeroTicket_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_RecienCerrado_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_TieneEncuesta_x003E_k__BackingField" type="xs:boolean" />
       <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_TipoTicketAbreviacion_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_TipoTicketDescripcion_x003E_k__BackingField" nillable="true" type="xs:string" />
@@ -60,17 +64,20 @@
   <xs:element name="HelperTickets" nillable="true" type="tns:HelperTickets" />
   <xs:complexType name="HelperDetalleTicket">
     <xs:sequence>
-      <xs:element minOccurs="0" name="AsignacionActual" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="AsignacionesDetalle" nillable="true" type="tns:ArrayOfHelperAsignacionesDetalle" />
-      <xs:element minOccurs="0" name="ConversacionDetalle" nillable="true" type="tns:ArrayOfHelperConversacionDetalle" />
-      <xs:element minOccurs="0" name="CveRegistro" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EstatusActual" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EstatusDetalle" nillable="true" type="tns:ArrayOfHelperEstatusDetalle" />
-      <xs:element minOccurs="0" name="FechaCreacion" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="IdEstatusAsignacion" type="xs:int" />
-      <xs:element minOccurs="0" name="IdEstatusTicket" type="xs:int" />
-      <xs:element minOccurs="0" name="IdTicket" type="xs:int" />
-      <xs:element minOccurs="0" name="IdUsuarioLevanto" type="xs:int" />
+      <xs:element name="_x003C_AsignacionActual_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_AsignacionesDetalle_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperAsignacionesDetalle" />
+      <xs:element name="_x003C_ConversacionDetalle_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperConversacionDetalle" />
+      <xs:element name="_x003C_CveRegistro_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EstatusActual_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EstatusDetalle_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperEstatusDetalle" />
+      <xs:element name="_x003C_FechaCreacion_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_IdEstatusAsignacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdEstatusTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdNivelAsignado_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdTipoUsuarioLevanto_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdUsuarioLevanto_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TieneEncuesta_x003E_k__BackingField" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperDetalleTicket" nillable="true" type="tns:HelperDetalleTicket" />
@@ -82,10 +89,10 @@
   <xs:element name="ArrayOfHelperAsignacionesDetalle" nillable="true" type="tns:ArrayOfHelperAsignacionesDetalle" />
   <xs:complexType name="HelperAsignacionesDetalle">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FechaMovimiento" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="UsuarioAsignado" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="UsuarioAsigno" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Descripcion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaMovimiento_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_UsuarioAsignado_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsuarioAsigno_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperAsignacionesDetalle" nillable="true" type="tns:HelperAsignacionesDetalle" />
@@ -97,11 +104,14 @@
   <xs:element name="ArrayOfHelperConversacionDetalle" nillable="true" type="tns:ArrayOfHelperConversacionDetalle" />
   <xs:complexType name="HelperConversacionDetalle">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Archivo" nillable="true" type="tns:ArrayOfHelperConversacionArchivo" />
-      <xs:element minOccurs="0" name="Comentario" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FechaHora" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Archivo_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperConversacionArchivo" />
+      <xs:element name="_x003C_Comentario_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaHora_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_Foto_x003E_k__BackingField" nillable="true" type="xs:base64Binary" />
+      <xs:element name="_x003C_IdUsuario_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Nombre_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Privado_x003E_k__BackingField" type="xs:boolean" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperConversacionDetalle" nillable="true" type="tns:HelperConversacionDetalle" />
@@ -113,8 +123,8 @@
   <xs:element name="ArrayOfHelperConversacionArchivo" nillable="true" type="tns:ArrayOfHelperConversacionArchivo" />
   <xs:complexType name="HelperConversacionArchivo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Archivo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="IdConversacion" type="xs:int" />
+      <xs:element name="_x003C_Archivo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IdConversacion_x003E_k__BackingField" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperConversacionArchivo" nillable="true" type="tns:HelperConversacionArchivo" />
@@ -126,10 +136,10 @@
   <xs:element name="ArrayOfHelperEstatusDetalle" nillable="true" type="tns:ArrayOfHelperEstatusDetalle" />
   <xs:complexType name="HelperEstatusDetalle">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Comentarios" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FechaMovimiento" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="UsuarioMovimiento" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Comentarios_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Descripcion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaMovimiento_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_UsuarioMovimiento_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="HelperEstatusDetalle" nillable="true" type="tns:HelperEstatusDetalle" />

@@ -292,8 +292,8 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                 Encuesta tmpMascara = ((Encuesta)Session["Encuesta"]);
                 LinkButton btn = (LinkButton)sender;
                 RepeaterItem item = (RepeaterItem)btn.NamingContainer;
-                Label txtPregunta = (Label)item.FindControl("txtPregunta");
-                Label txtPonderacion = (Label)item.FindControl("txtPonderacion");
+                TextBox txtPregunta = (TextBox)item.FindControl("txtPregunta");
+                TextBox txtPonderacion = (TextBox)item.FindControl("txtPonderacion");
                 decimal ponderacion = decimal.Parse(txtPonderacion.Text);
                 EncuestaPregunta campoEditar = txtPregunta.Text.Trim() == string.Empty ? tmpMascara.EncuestaPregunta.SingleOrDefault(s => s.Pregunta == null && s.Ponderacion == ponderacion) : tmpMascara.EncuestaPregunta.SingleOrDefault(s => s.Pregunta == txtPregunta.Text && s.Ponderacion == ponderacion);
                 if (campoEditar == null) return;

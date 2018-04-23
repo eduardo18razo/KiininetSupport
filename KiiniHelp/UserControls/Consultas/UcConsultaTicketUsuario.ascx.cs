@@ -12,7 +12,6 @@ namespace KiiniHelp.UserControls.Consultas
     {
         private readonly ServiceTicketClient _servicioTickets = new ServiceTicketClient();
         private List<string> _lstError = new List<string>();
-        private const int PageSize = 20;
 
         private List<string> AlertaGeneral
         {
@@ -25,7 +24,7 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
         
-        private void ObtenerTicketsPage(int pageIndex, Dictionary<string, string> filtros, bool orden, bool asc, string ordering = "")
+        private void ObtenerTicketsPage(int pageIndex)
         {
             try
             {

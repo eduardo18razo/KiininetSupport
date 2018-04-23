@@ -18,7 +18,7 @@ namespace KiiniNet.Services.Operacion.Interface
         Ticket CrearTicket(int idUsuario, int idUsuarioSolicito, int idArbol, List<HelperCampoMascaraCaptura> lstCaptura, int idCanal, bool campoRandom, bool esTercero, bool esMail);
 
         [OperationContract]
-        List<HelperTickets> ObtenerTicketsUsuario(int idUsuario, int pageIndex, int pageSize);
+        List<HelperTickets> ObtenerTicketsUsuario(int idUsuario);
 
         [OperationContract]
         List<HelperTickets> ObtenerTickets(int idUsuario, List<int> estatus, int pageIndex, int pageSize);

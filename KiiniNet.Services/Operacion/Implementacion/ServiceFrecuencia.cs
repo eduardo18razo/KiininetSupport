@@ -8,13 +8,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
 {
     public class ServiceFrecuencia : IServiceFrecuencia
     {
-        public List<HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario)
+        public List<HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario, int? idUsuario)
         {
             try
             {
                 using (BusinessFrecuencia negocio = new BusinessFrecuencia())
                 {
-                    return negocio.ObtenerTopTenGeneral(idTipoUsuario);
+                    return negocio.ObtenerTopTenGeneral(idTipoUsuario, idUsuario);
                 }
             }
             catch (Exception ex)
@@ -23,13 +23,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario)
+        public List<HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario, int? idUsuario)
         {
             try
             {
                 using (BusinessFrecuencia negocio = new BusinessFrecuencia())
                 {
-                    return negocio.ObtenerTopTenConsulta(idTipoUsuario);
+                    return negocio.ObtenerTopTenConsulta(idTipoUsuario, idUsuario);
                 }
             }
             catch (Exception ex)
@@ -38,13 +38,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario)
+        public List<HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario, int? idUsuario)
         {
             try
             {
                 using (BusinessFrecuencia negocio = new BusinessFrecuencia())
                 {
-                    return negocio.ObtenerTopTenServicio(idTipoUsuario);
+                    return negocio.ObtenerTopTenServicio(idTipoUsuario, idUsuario);
                 }
             }
             catch (Exception ex)
@@ -53,13 +53,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario)
+        public List<HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario, int? idUsuario)
         {
             try
             {
                 using (BusinessFrecuencia negocio = new BusinessFrecuencia())
                 {
-                    return negocio.ObtenerTopTenIncidente(idTipoUsuario);
+                    return negocio.ObtenerTopTenIncidente(idTipoUsuario, idUsuario);
                 }
             }
             catch (Exception ex)
