@@ -556,5 +556,10 @@ namespace KiiniHelp
                 throw;
             }
         }
+
+        protected void OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Users/General/FrmMisTickets.aspx");
+        }
     }
 }

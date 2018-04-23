@@ -137,10 +137,12 @@
                             <div class="item item-notifications" runat="server" id="divTickets">
                                 <div class="dropdown-toggle" id="dropdownMenu-notifications2" data-toggle="dropdown" aria-expanded="true" role="button">
                                     <span class="sr-only">Tickets</span>
+                                    <asp:LinkButton runat="server" OnClick="OnClick">
                                     <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
-                                    <span class="badge badge-circle badge-danger">
+                                        </asp:LinkButton>
+                                    <%--<span class="badge badge-circle badge-danger">
                                         <asp:Label runat="server" ID="lblNoTickets" />
-                                    </span>
+                                    </span>--%>
                                 </div>
                                 <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-notifications">
                                     <span class="arrow"></span>
