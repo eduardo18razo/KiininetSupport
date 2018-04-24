@@ -33,9 +33,9 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.Description = "Servicio controlador envio de notificaciones";
-            this.serviceInstaller1.DisplayName = "KiiniNet Notification";
-            this.serviceInstaller1.ServiceName = "Notificaciones Kiininet";
+            this.serviceInstaller1.Description = "Servicio controlador envio de notificaciones 3030";
+            this.serviceInstaller1.DisplayName = "KiiniNet Notification 3030";
+            this.serviceInstaller1.ServiceName = "Notificaciones Kiininet 3030";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // serviceProcessInstaller1

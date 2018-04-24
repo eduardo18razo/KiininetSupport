@@ -509,7 +509,7 @@ namespace KinniNet.Core.Demonio
                                         Valor = subject
                                     });
                                     break;
-                                case "COMENTARIOS":
+                                case "COMENTARIO":
                                     result.Add(new HelperCampoMascaraCaptura
                                     {
                                         IdCampo = campo.Id,

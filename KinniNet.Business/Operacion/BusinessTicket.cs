@@ -336,7 +336,7 @@ namespace KinniNet.Core.Operacion
                 result = new Ticket { Id = ticket.Id, Random = campoRandom, ClaveRegistro = ticket.ClaveRegistro };
                 new BusinessDemonio().ActualizaSla();
 
-                if (correo != string.Empty)
+                if (correo != string.Empty && !esMail)
                 {
                     string cuerpo = string.Format("Hola {0},<br>" +
                                     "¡Gracias por contactarnos! Hemos recibido su correo y nos pondremos en contacto contigo lo antes posible. " +
@@ -1040,7 +1040,7 @@ namespace KinniNet.Core.Operacion
                     result.DiferenciaSla = string.Empty;
                     result.EstatusTicket = ticket.EstatusTicket;
                     result.EstatusAsignacion = ticket.EstatusAsignacion;
-                    result.UltimaActualizacion = ticket.TicketEstatus.LastOrDefault() != null ? ticket.TicketEstatus.LastOrDefault().FechaMovimiento : ticket.FechaHoraAlta;
+                    result.UltimaActualizacion = ticket.TicketEstatus.LastOrDefault() != null ? ticket.TicketEstatus.Last().FechaMovimiento : ticket.FechaHoraAlta;
                     result.EsPropietario = ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar && supervisor ? true : idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
 
                     result.Asigna = grupoConSupervisor ? (ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar && supervisor ? true
