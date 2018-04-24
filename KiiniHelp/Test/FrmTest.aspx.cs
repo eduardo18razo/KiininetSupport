@@ -25,7 +25,7 @@ namespace KiiniHelp.Test
 {
     public partial class FrmTest : Page
     {
-
+        //commit prueba
         private readonly ServiceCatalogosClient _servicioCatalogos = new ServiceCatalogosClient();
         private readonly ServiceAreaClient _servicioArea = new ServiceAreaClient();
         private readonly ServiceUsuariosClient _servicioUsuario = new ServiceUsuariosClient();
