@@ -123,7 +123,7 @@ namespace KiiniHelp.Publico.Consultas
                     lblfecha.Text = detalle.FechaCreacion.ToString(CultureInfo.InvariantCulture);
                     rptComentrios.DataSource = detalle.ConversacionDetalle.Where(w=> !w.Privado);
                     rptComentrios.DataBind();
-                    btnCambiaEstatus.Visible = detalle.IdEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto;
+                    btnCambiaEstatus.Visible = detalle.EstatusDisponibles.Any();
                 }
             }
             catch (Exception ex)

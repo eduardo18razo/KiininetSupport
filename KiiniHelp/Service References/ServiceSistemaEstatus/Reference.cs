@@ -29,6 +29,9 @@ namespace KiiniHelp.ServiceSistemaEstatus {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/HasComentarioObligatorio", ReplyAction="http://tempuri.org/IServiceEstatus/HasComentarioObligatorioResponse")]
         bool HasComentarioObligatorio(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorio", ReplyAction="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorioResponse")]
+        bool HasCambioEstatusComentarioObligatorio(System.Nullable<int> idUsuario, int idTicket, int estatusAsignar, bool esPropietario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -76,6 +79,10 @@ namespace KiiniHelp.ServiceSistemaEstatus {
         
         public bool HasComentarioObligatorio(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario) {
             return base.Channel.HasComentarioObligatorio(idUsuario, idGrupo, idSubRol, estatusAsignacionActual, estatusAsignar, esPropietario);
+        }
+        
+        public bool HasCambioEstatusComentarioObligatorio(System.Nullable<int> idUsuario, int idTicket, int estatusAsignar, bool esPropietario) {
+            return base.Channel.HasCambioEstatusComentarioObligatorio(idUsuario, idTicket, estatusAsignar, esPropietario);
         }
     }
 }

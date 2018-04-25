@@ -82,5 +82,20 @@ namespace KiiniNet.Services.Sistema.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int estatusAsignar, bool esPropietario)
+        {
+            try
+            {
+                using (BusinessEstatus negocio = new BusinessEstatus())
+                {
+                    return negocio.HasCambioEstatusComentarioObligatorio(idUsuario, idTicket, estatusAsignar, esPropietario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

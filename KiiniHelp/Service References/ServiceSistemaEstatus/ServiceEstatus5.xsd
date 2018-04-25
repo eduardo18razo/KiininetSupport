@@ -86,4 +86,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="HasCambioEstatusComentarioObligatorio">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idUsuario" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idTicket" type="xs:int" />
+        <xs:element minOccurs="0" name="estatusAsignar" type="xs:int" />
+        <xs:element minOccurs="0" name="esPropietario" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HasCambioEstatusComentarioObligatorioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="HasCambioEstatusComentarioObligatorioResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

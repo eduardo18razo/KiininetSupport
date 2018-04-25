@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
+using KiiniNet.Entities.Operacion.Tickets;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
+using Telerik.Web.UI.Export;
 
 namespace KinniNet.Core.Sistema
 {
@@ -181,6 +184,52 @@ namespace KinniNet.Core.Sistema
                                   easg.IdEstatusAsignacionActual == estatusAsignacionActual &&
                                   easg.IdEstatusAsignacionAccion == estatusAsignar && easg.Propietario == esPropietario
                               select easg.ComentarioObligado).First();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int estatusAsignar, bool esPropietario)
+        {
+            bool result = false;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                Ticket ticket = db.Ticket.SingleOrDefault(s => s.Id == idTicket);
+                if (ticket != null)
+                {
+                    if (idUsuario == null)
+                        idUsuario = ticket.IdUsuarioSolicito;
+                    db.LoadProperty(ticket, "TicketGrupoUsuario");
+                    foreach (TicketGrupoUsuario tgu in ticket.TicketGrupoUsuario)
+                    {
+                        db.LoadProperty(tgu, "GrupoUsuario");
+                    }
+                    GrupoUsuario gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.GrupoUsuario).SingleOrDefault();
+                    if (gpo != null)
+                    {
+                        if (db.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdGrupoUsuario == gpo.Id))
+                        {
+                            result = (from etsrg in db.EstatusTicketSubRolGeneral
+                                      where etsrg.IdGrupoUsuario == gpo.Id
+                                          //&& etsrg.TieneSupervisor == gpo.TieneSupervisor
+                                      && etsrg.IdEstatusTicketActual == ticket.IdEstatusTicket
+                                            && etsrg.IdEstatusTicketAccion == estatusAsignar &&
+                                            etsrg.IdSubRolPertenece == UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket)
+                                      select etsrg.ComentarioObligado).First();
+                        }
+                        else
+                            throw new Exception("Cambio no permitido.");
+                    }
                 }
             }
             catch (Exception e)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net.Sockets;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
@@ -139,7 +138,7 @@ namespace KinniNet.Core.Operacion
                             CultureInfo.InvariantCulture),
                     IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
                     Random = campoRandom,
-                    ClaveRegistro = GeneraCampoRandom(),
+                    ClaveRegistro = UtilsTicket.GeneraCampoRandom(),
                     EsTercero = usuario.Id != idUsuarioSolicito,
                     DentroSla = true,
                     TicketCorreo = new List<TicketCorreo>(),
@@ -352,25 +351,6 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        private string GeneraCampoRandom()
-        {
-            string result = null;
-            try
-            {
-                Random obj = new Random();
-                int longitud = BusinessVariables.ParametrosMascaraCaptura.CaracteresCampoRandom.Length;
-                for (int i = 0; i < BusinessVariables.ParametrosMascaraCaptura.LongitudRandom; i++)
-                {
-                    result += BusinessVariables.ParametrosMascaraCaptura.CaracteresCampoRandom[obj.Next(longitud)];
-                }
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            return result;
-        }
-
         private int ObtenerSubRolAsignadoTicket(int? nivelAsignacion)
         {
             int result = 0;
@@ -559,7 +539,7 @@ namespace KinniNet.Core.Operacion
                         hticket.NombreUsuario = ticket.UsuarioLevanto.NombreCompleto;
                         hticket.Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(ticket.IdArbolAcceso);
                         hticket.GrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().GrupoUsuario.Descripcion;
-                        hticket.FechaUltimoEvento = ticket.TicketEvento != null && ticket.TicketEvento.Count > 0 ? ticket.TicketEvento.Last().FechaHora : (DateTime?) null;
+                        hticket.FechaUltimoEvento = ticket.TicketEvento != null && ticket.TicketEvento.Count > 0 ? ticket.TicketEvento.Last().FechaHora : (DateTime?)null;
                         hticket.EstatusTicket = ticket.EstatusTicket;
                         hticket.EstatusAsignacion = ticket.EstatusAsignacion;
                         hticket.FechaCambioEstatusAsignacion = ticket.TicketAsignacion.Last().FechaAsignacion;
@@ -818,6 +798,44 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
+        private List<EstatusTicket> CambiaEstatus(int idUsuario, int idEstatusActualTicket, int idGrupoUsuarioTicket, int? subRolPertenece)
+        {
+            List<EstatusTicket> result = null;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+
+                if (db.UsuarioGrupo.Any(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario && w.IdGrupoUsuario == idGrupoUsuarioTicket))
+                {
+                    var qry = from etsrg in db.EstatusTicketSubRolGeneral
+                              where etsrg.IdGrupoUsuario == idGrupoUsuarioTicket &&
+                                  etsrg.IdEstatusTicketActual == idEstatusActualTicket
+                                  && etsrg.IdRolSolicita == 2
+                              select etsrg;
+                    if (subRolPertenece == null)
+                        qry = from q in qry
+                              where q.IdSubRolPertenece == null
+                              select q;
+                    else
+                        qry = from q in qry
+                              where q.IdSubRolPertenece == subRolPertenece
+                              select q;
+                    result = qry.Select(s=>s.EstatusTicketAccion).Distinct().ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+        
         public HelperDetalleTicket ObtenerDetalleTicketNoRegistrado(int idTicket, string cveRegistro)
         {
             HelperDetalleTicket result = null;
@@ -833,6 +851,11 @@ namespace KinniNet.Core.Operacion
                     db.LoadProperty(ticket, "TicketEstatus");
                     db.LoadProperty(ticket, "TicketConversacion");
                     db.LoadProperty(ticket, "UsuarioLevanto");
+                    db.LoadProperty(ticket, "TicketGrupoUsuario");
+                    foreach (TicketGrupoUsuario tgu in ticket.TicketGrupoUsuario)
+                    {
+                        db.LoadProperty(tgu, "GrupoUsuario");
+                    }
                     foreach (TicketConversacion conversacion in ticket.TicketConversacion)
                     {
                         db.LoadProperty(conversacion, "ConversacionArchivo");
@@ -865,6 +888,8 @@ namespace KinniNet.Core.Operacion
                         AsignacionesDetalle = new List<HelperAsignacionesDetalle>(),
                         ConversacionDetalle = new List<HelperConversacionDetalle>()
                     };
+
+                    result.EstatusDisponibles = CambiaEstatus(ticket.IdUsuarioSolicito, ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                     foreach (HelperEstatusDetalle detalle in ticket.TicketEstatus.Select(movEstatus => new HelperEstatusDetalle { Descripcion = movEstatus.EstatusTicket.Descripcion, UsuarioMovimiento = movEstatus.Usuario.NombreCompleto, FechaMovimiento = movEstatus.FechaMovimiento, Comentarios = movEstatus.Comentarios }))
                     {
                         result.EstatusDetalle.Add(detalle);
@@ -921,7 +946,7 @@ namespace KinniNet.Core.Operacion
                     FechaHora =
                         DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff",
                             CultureInfo.InvariantCulture),
-                    ClaveRegistro = GeneraCampoRandom(),
+                    ClaveRegistro = UtilsTicket.GeneraCampoRandom(),
                     Observaciones = observaciones.Trim()
                 };
                 db.PreTicket.AddObject(result);

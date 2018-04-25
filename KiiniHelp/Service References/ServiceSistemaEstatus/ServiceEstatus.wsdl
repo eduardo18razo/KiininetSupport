@@ -48,6 +48,12 @@
   <wsdl:message name="IServiceEstatus_HasComentarioObligatorio_OutputMessage">
     <wsdl:part name="parameters" element="tns:HasComentarioObligatorioResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceEstatus_HasCambioEstatusComentarioObligatorio_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasCambioEstatusComentarioObligatorio" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEstatus_HasCambioEstatusComentarioObligatorio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasCambioEstatusComentarioObligatorioResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceEstatus">
     <wsdl:operation name="ObtenerEstatusTicket">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicket" message="tns:IServiceEstatus_ObtenerEstatusTicket_InputMessage" />
@@ -68,6 +74,10 @@
     <wsdl:operation name="HasComentarioObligatorio">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/HasComentarioObligatorio" message="tns:IServiceEstatus_HasComentarioObligatorio_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceEstatus/HasComentarioObligatorioResponse" message="tns:IServiceEstatus_HasComentarioObligatorio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasCambioEstatusComentarioObligatorio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorio" message="tns:IServiceEstatus_HasCambioEstatusComentarioObligatorio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorioResponse" message="tns:IServiceEstatus_HasCambioEstatusComentarioObligatorio_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceEstatus">
@@ -110,6 +120,15 @@
     </wsdl:operation>
     <wsdl:operation name="HasComentarioObligatorio">
       <soap:operation soapAction="http://tempuri.org/IServiceEstatus/HasComentarioObligatorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasCambioEstatusComentarioObligatorio">
+      <soap:operation soapAction="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorio" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -20,5 +20,8 @@ namespace KiiniNet.Services.Sistema.Interface
 
         [OperationContract]
         bool HasComentarioObligatorio(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario);
+
+        [OperationContract]
+        bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int estatusAsignar, bool esPropietario);
     }
 }

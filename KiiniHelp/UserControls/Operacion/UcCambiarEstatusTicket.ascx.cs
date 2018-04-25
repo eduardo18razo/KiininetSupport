@@ -94,8 +94,6 @@ namespace KiiniHelp.UserControls.Operacion
             }
         }
 
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -123,6 +121,10 @@ namespace KiiniHelp.UserControls.Operacion
             {
                 if (ddlEstatus.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     throw new Exception("Debe seleccionar un estatus");
+
+                if (_servicioEstatus.HasCambioEstatusComentarioObligatorio(Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null, IdTicket, Convert.ToInt32(ddlEstatus.SelectedValue), EsPropietario))
+                    if (txtComentarios.Text.Trim() == string.Empty)
+                        throw new Exception("Debe agregar un comentario");
 
                 if (ddlEstatus.SelectedValue != BusinessVariables.ComboBoxCatalogo.ValueSeleccione.ToString())
                 {
