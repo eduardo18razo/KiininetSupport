@@ -164,7 +164,7 @@ namespace KiiniHelp.UserControls.Detalles
         {
             try
             {
-                HelperTicketEnAtencion ticket = _servicioAtencionTicket.ObtenerTicketEnAtencion(idTicket, ((Usuario)Session["UserData"]).Id);
+                HelperTicketEnAtencion ticket = _servicioAtencionTicket.ObtenerTicketEnAtencion(idTicket, ((Usuario)Session["UserData"]).Id, false);
                 if (ticket != null)
                 {
                     Asigna = ticket.PuedeAsignar;

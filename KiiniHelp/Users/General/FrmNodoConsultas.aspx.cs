@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.UI;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceInformacionConsulta;
+using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Operacion;
 
 namespace KiiniHelp.Users.General
@@ -17,8 +18,17 @@ namespace KiiniHelp.Users.General
                 if (!IsPostBack)
                 {
                     int idArbol = Convert.ToInt32(Request.QueryString["IdArbol"]);
-                    ucVisorConsultainformacion.MuestraEvaluacion = _servicoArbol.ObtenerArbolAcceso(idArbol).Evaluacion;
-                    ucVisorConsultainformacion.IdArbol = idArbol;
+                    ArbolAcceso arbol = _servicoArbol.ObtenerArbolAcceso(idArbol);
+                    if (arbol != null)
+                    {
+                        ucVisorConsultainformacion.MuestraEvaluacion = arbol.Evaluacion;
+                        ucVisorConsultainformacion.IdArbol = idArbol;
+                    }
+                    else if (Request.UrlReferrer != null) Response.Redirect(Request.UrlReferrer.ToString());
+                    else
+                    {
+                        Response.Redirect("~/Users/FrmDashboardUser.aspx");
+                    }
                 }
             }
             catch (Exception ex)

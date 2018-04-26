@@ -4,12 +4,8 @@
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <ol class="breadcrumb">
-                <li>
-                    <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li><asp:HyperLink runat="server" NavigateUrl="~/Users/General/FrmMisTickets.aspx">Mis Tickets</asp:HyperLink></li>
-                <li class="active"><asp:Label runat="server" ID="lblIdTicket"></asp:Label></li>
-            </ol>
+            <asp:HiddenField runat="server" ID="hfIdTicket"/>
+            <asp:HiddenField runat="server" ID="hfIdUsuario"/>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
 
@@ -96,8 +92,10 @@
                                             <asp:TextBox ID="txtConversacion" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control no-padding-top no-margin-top" MaxLength="999" />
                                         </div>
                                         <div class="wrapperResponse col-lg-12 col-md-12 col-sm-12 text-right padding-10-top padding-10-bottom">
+                                            <asp:Button ID="btnEstatus" runat="server" Text="Estatus" CssClass="btn btn-guardar" />
                                             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnEnviar_OnClick" />
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>

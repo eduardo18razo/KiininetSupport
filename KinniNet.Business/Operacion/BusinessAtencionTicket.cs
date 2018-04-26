@@ -149,6 +149,39 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
+        private List<EstatusTicket> CambiaEstatus( int idEstatusActualTicket, int idGrupoUsuarioTicket, int? subRolPertenece)
+        {
+            List<EstatusTicket> result = null;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+
+                var qry = from etsrg in db.EstatusTicketSubRolGeneral
+                          where etsrg.IdGrupoUsuario == idGrupoUsuarioTicket &&
+                              etsrg.IdEstatusTicketActual == idEstatusActualTicket
+                              && etsrg.IdRolSolicita == 2
+                          select etsrg;
+                if (subRolPertenece == null)
+                    qry = from q in qry
+                          where q.IdSubRolPertenece == null
+                          select q;
+                else
+                    qry = from q in qry
+                          where q.IdSubRolPertenece == subRolPertenece
+                          select q;
+                result = qry.Select(s => s.EstatusTicketAccion).Distinct().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
 
         public BusinessAtencionTicket(bool proxy = false)
         {
@@ -409,7 +442,7 @@ namespace KinniNet.Core.Operacion
                     {
                         IdTicket = idTicket,
                         IdUsuario = idUsuario,
-                        Mensaje = mensaje.Replace("\n","<br/>"),
+                        Mensaje = mensaje.Replace("\n", "<br/>"),
                         FechaGeneracion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
                         Sistema = sistema,
                         Leido = false,
@@ -517,7 +550,7 @@ namespace KinniNet.Core.Operacion
             return string.Format("{0} {1} hrs.", fecha, fechaParse.ToString("HH:mm"));
         }
 
-        public HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario)
+        public HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario, bool esDetalle)
         {
             HelperTicketEnAtencion result = null;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -527,9 +560,17 @@ namespace KinniNet.Core.Operacion
                 Ticket ticket = db.Ticket.SingleOrDefault(s => s.Id == idTicket);
                 if (ticket != null)
                 {
-                    GrupoUsuario gpoAgenteTicket = db.Ticket.Join(db.TicketGrupoUsuario, t => t.Id, tgu => tgu.IdTicket, (t, tgu) => new { t, tgu }).Join(db.GrupoUsuario, @t1 => @t1.tgu.IdGrupoUsuario, gu => gu.Id, (@t1, gu) => new { @t1, gu }).Join(db.UsuarioGrupo, @t1 => @t1.gu.Id, ug => ug.IdGrupoUsuario, (@t1, ug) => new { @t1, ug })
-                            .Where(@t1 => @t1.@t1.@t1.t.Id == idTicket && @t1.@t1.gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && @t1.ug.IdUsuario == idUsuario)
-                            .Select(@t1 => @t1.@t1.gu).ToList().FirstOrDefault();
+                    GrupoUsuario gpoAgenteTicket;
+                    if (!esDetalle)
+                        gpoAgenteTicket = db.Ticket.Join(db.TicketGrupoUsuario, t => t.Id, tgu => tgu.IdTicket, (t, tgu) => new { t, tgu }).Join(db.GrupoUsuario, @t1 => @t1.tgu.IdGrupoUsuario, gu => gu.Id, (@t1, gu) => new { @t1, gu })
+                                .Join(db.UsuarioGrupo, @t1 => @t1.gu.Id, ug => ug.IdGrupoUsuario, (@t1, ug) => new { @t1, ug })
+                                .Where(@t1 => @t1.@t1.@t1.t.Id == idTicket && @t1.@t1.gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && @t1.ug.IdUsuario == idUsuario)
+                                .Select(@t1 => @t1.@t1.gu).ToList().FirstOrDefault();
+                    else
+                        gpoAgenteTicket = (from t in db.Ticket
+                                           join tgu in db.TicketGrupoUsuario on t.Id equals tgu.IdTicket
+                                           where tgu.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente
+                                           select tgu.GrupoUsuario).FirstOrDefault();
 
                     if (gpoAgenteTicket != null)
                     {
@@ -586,6 +627,7 @@ namespace KinniNet.Core.Operacion
                         result.EsPropietario = idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
                         result.IdGrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().IdGrupoUsuario;
                         result.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
+                        result.EstatusDisponibles = CambiaEstatus( ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                         #region Usuario Levanto
                         if (ticket.UsuarioLevanto != null)
                         {
@@ -653,7 +695,7 @@ namespace KinniNet.Core.Operacion
                                 movimientoEstatus.EsMovimientoConversacion = true;
                                 movimientoEstatus.Conversacion = eventoConversacion.TicketConversacion.Mensaje;
                                 movimientoEstatus.Foto = eventoConversacion.TicketConversacion.Usuario.Foto;
-                                movimientoEstatus.ComentarioPublico = (bool) eventoConversacion.TicketConversacion.Privado;
+                                movimientoEstatus.ComentarioPublico = (bool)eventoConversacion.TicketConversacion.Privado;
                                 evento.Movimientos.Add(movimientoEstatus);
                             }
 
@@ -678,7 +720,7 @@ namespace KinniNet.Core.Operacion
                             }
                             foreach (TicketEventoAsignacion eventoAsignacion in eventoTicket.TicketEventoAsignacion)
                             {
-                                
+
                                 evento.Movimientos = evento.Movimientos ?? new List<HelperMovimientoEvento>();
                                 HelperMovimientoEvento movimientoEstatus = new HelperMovimientoEvento();
                                 movimientoEstatus.IdMovimiento = eventoAsignacion.Id;

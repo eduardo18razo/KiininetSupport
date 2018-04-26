@@ -186,11 +186,19 @@ namespace KiiniHelp.Users.Ticket
                 else if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] != null)
                 {
                     ArbolAcceso arbol = _servicioArbolAcceso.ObtenerArbolAcceso(Convert.ToInt32(Request.QueryString["IdArbol"]));
-                    Session["ArbolAcceso"] = arbol;
-                    IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
-                    IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
-                    IdUsuarioSolicita = ((Usuario)Session["UserData"]).Id;
-                    IdCanal = (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal;
+                    if (arbol != null)
+                    {
+                        Session["ArbolAcceso"] = arbol;
+                        IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
+                        IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
+                        IdUsuarioSolicita = ((Usuario) Session["UserData"]).Id;
+                        IdCanal = (int) BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal;
+                    }
+                    else if (Request.UrlReferrer != null) Response.Redirect(Request.UrlReferrer.ToString());
+                    else
+                    {
+                        Response.Redirect("~/Users/FrmDashboardUser.aspx");
+                    }
                 }
             }
             catch (Exception ex)

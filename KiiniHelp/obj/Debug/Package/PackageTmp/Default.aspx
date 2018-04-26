@@ -178,7 +178,7 @@
                         </div>
                     </div>
 
-                    <h1 class="title text-center">Para ofrecerte un mejor servicio indicanos que tipo de usuario eres.</h1>
+                    <h1 class="subtitle text-center">Para ofrecerte un mejor servicio indicanos que tipo de usuario eres.</h1>
 
                     <div id="masonry" class="row">
                         <div class=" col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -267,7 +267,7 @@
                                 <asp:LinkButton CssClass="close" runat="server" ID="btnCerrarTicket" OnClick="btnCerrarTicket_OnClick" Text='&times' />
                                 <h6 id="modal-new-ticket-label" class="modal-title">Crear Ticket Nuevo</h6>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body modalhidebarhorizontal">
                                 <uc1:UcTicketPortal runat="server" ID="ucTicketPortal" />
                             </div>
                         </ContentTemplate>

@@ -23,7 +23,7 @@
     <%--<link rel="stylesheet" href="assets/css/modales_movil.css" />
     <link rel="stylesheet" href="assets/css/main_movil.css" />--%>
 </head>
-<body>
+<body class="bodyBackgroundPassword">
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>

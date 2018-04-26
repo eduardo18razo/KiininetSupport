@@ -139,7 +139,7 @@
                                     <span class="sr-only">Tickets</span>
                                     <asp:LinkButton runat="server" OnClick="OnClick">
                                     <span class="pe-icon pe-7s-ticket icon" data-toggle="tooltip" data-placement="bottom" title="Tickets"></span>
-                                        </asp:LinkButton>
+                                    </asp:LinkButton>
                                     <%--<span class="badge badge-circle badge-danger">
                                         <asp:Label runat="server" ID="lblNoTickets" />
                                     </span>--%>
@@ -165,35 +165,10 @@
                                     <div class="dropdown-footer"><a href="#">Ver todos los tickets</a> </div>
                                 </div>
                             </div>
-
-                            <div class="item item-messages dropdown" runat="server" id="divMensajes">
-                                <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
-                                    <span class="sr-only">Mensajes</span>
-                                    <span class="pe-icon pe-7s-mail icon" data-toggle="tooltip" data-placement="bottom" title="Messages"></span>
-                                    <span class="badge badge-circle badge-success badge-mensajes">
-                                        <asp:Label runat="server" ID="lblNoMensajes" />
-                                    </span>
-                                </div>
-                                <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-messages">
-                                    <span class="arrow"></span>
-                                    <div class="cont-badge-msg">
-                                        <div class="item media">
-                                            <div class="media-left profile">
-                                                <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" runat="server" alt="" />
-                                            </div>
-                                            <div class="media-body"><a href="#"><span class="sender">Nombre</span> <span class="message-title">Titulo del mensjae</span> <span class="excerpt">"Vista previa del mensaje..."</span> </a></div>
-                                            <div class="meta">Ene 6 </div>
-                                        </div>
-                                        <div class="item media">
-                                            <div class="media-left profile">
-                                                <asp:Image ImageUrl="~/assets/images/profiles/profile-1.png" runat="server" alt="" />
-                                            </div>
-                                            <div class="media-body"><a href="#"><span class="sender">Nombre</span> <span class="message-title">Titulo del mensjae</span> <span class="excerpt">"Vista previa del mensaje..."</span> </a></div>
-                                            <div class="meta">Ene 6 </div>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown-footer"><a href="#">Ver todos los mensajes</a> </div>
-                                </div>
+                            <div class="item item-notifications separador-vertical-derecho" runat="server" id="divMensajes">
+                                <asp:LinkButton CssClass="panel-hide" role="menuitem" runat="server" ID="btnMisTickets" OnClick="btnMisTickets_OnClick" data-toggle="tooltip" data-placement="bottom" title="Mis Tickets">
+                               <span class="pe-icon pe-7s-mail icon"></span>
+                                </asp:LinkButton>
                             </div>
 
                         </div>
@@ -201,7 +176,7 @@
 
 
                     <div class="utilities-container margin-right-10" data-toggle="tooltip" data-placement="bottom">
-                        <asp:LinkButton CssClass="item" role="menuitem" NavigateUrl="~/Default.aspx" runat="server" OnClick="btnsOut_OnClick">
+                        <asp:LinkButton CssClass="item" role="menuitem" NavigateUrl="~/Default.aspx" runat="server" OnClick="btnsOut_OnClick" data-toggle="tooltip" data-placement="bottom" title="Salir">
                                <span class="fa fa-sign-out icon"></span>
                         </asp:LinkButton>
                     </div>

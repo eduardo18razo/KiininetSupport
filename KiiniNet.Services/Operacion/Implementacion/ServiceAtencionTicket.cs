@@ -102,13 +102,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario)
+        public HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario, bool esDetalle)
         {
             try
             {
                 using (BusinessAtencionTicket negocio = new BusinessAtencionTicket())
                 {
-                    return negocio.ObtenerTicketEnAtencion(idTicket, idUsuario);
+                    return negocio.ObtenerTicketEnAtencion(idTicket, idUsuario, esDetalle);
                 }
             }
             catch (Exception ex)

@@ -798,32 +798,27 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        private List<EstatusTicket> CambiaEstatus(int idUsuario, int idEstatusActualTicket, int idGrupoUsuarioTicket, int? subRolPertenece)
+        private List<EstatusTicket> CambiaEstatus(int idEstatusActualTicket, int idGrupoUsuarioTicket, int? subRolPertenece)
         {
             List<EstatusTicket> result = null;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-
-                if (db.UsuarioGrupo.Any(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario && w.IdGrupoUsuario == idGrupoUsuarioTicket))
-                {
-                    var qry = from etsrg in db.EstatusTicketSubRolGeneral
-                              where etsrg.IdGrupoUsuario == idGrupoUsuarioTicket &&
-                                  etsrg.IdEstatusTicketActual == idEstatusActualTicket
-                                  && etsrg.IdRolSolicita == 2
-                              select etsrg;
-                    if (subRolPertenece == null)
-                        qry = from q in qry
-                              where q.IdSubRolPertenece == null
-                              select q;
-                    else
-                        qry = from q in qry
-                              where q.IdSubRolPertenece == subRolPertenece
-                              select q;
-                    result = qry.Select(s=>s.EstatusTicketAccion).Distinct().ToList();
-                }
-
+                var qry = from etsrg in db.EstatusTicketSubRolGeneral
+                          where etsrg.IdGrupoUsuario == idGrupoUsuarioTicket &&
+                              etsrg.IdEstatusTicketActual == idEstatusActualTicket
+                              && etsrg.IdRolSolicita == 2
+                          select etsrg;
+                if (subRolPertenece == null)
+                    qry = from q in qry
+                          where q.IdSubRolPertenece == null
+                          select q;
+                else
+                    qry = from q in qry
+                          where q.IdSubRolPertenece == subRolPertenece
+                          select q;
+                result = qry.Select(s => s.EstatusTicketAccion).Distinct().ToList();
             }
             catch (Exception ex)
             {
@@ -835,7 +830,7 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
-        
+
         public HelperDetalleTicket ObtenerDetalleTicketNoRegistrado(int idTicket, string cveRegistro)
         {
             HelperDetalleTicket result = null;
@@ -889,7 +884,7 @@ namespace KinniNet.Core.Operacion
                         ConversacionDetalle = new List<HelperConversacionDetalle>()
                     };
 
-                    result.EstatusDisponibles = CambiaEstatus(ticket.IdUsuarioSolicito, ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
+                    result.EstatusDisponibles = CambiaEstatus(ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                     foreach (HelperEstatusDetalle detalle in ticket.TicketEstatus.Select(movEstatus => new HelperEstatusDetalle { Descripcion = movEstatus.EstatusTicket.Descripcion, UsuarioMovimiento = movEstatus.Usuario.NombreCompleto, FechaMovimiento = movEstatus.FechaMovimiento, Comentarios = movEstatus.Comentarios }))
                     {
                         result.EstatusDetalle.Add(detalle);

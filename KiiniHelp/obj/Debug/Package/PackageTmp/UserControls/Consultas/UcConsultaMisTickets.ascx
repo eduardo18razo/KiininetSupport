@@ -68,13 +68,6 @@
                                             <tc:GridBoundColumn DataField="Tipificacion" HeaderText="Asunto" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
                                             <tc:GridBoundColumn DataField="FechaHora" HeaderText="Solicitado" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
                                             <tc:GridBoundColumn DataField="Estatusticket.Descripcion" HeaderText="Estatus" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
-                                            <tc:GridTemplateColumn FilterCheckListEnableLoadOnDemand="True" DataField="Estatusticket.Id" HeaderText="CambiaEstatus" SortExpression="CambiaEstatus" UniqueName="CambiaEstatus"
-                                                CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False" EnableHeaderContextMenu="False">
-                                                <ItemTemplate>
-                                                    <asp:Button runat="server" data-tieneEncuesta='<%# Eval("TieneEncuesta")%>' Text="Estatus" ID="btnCambiaEstatus" CssClass="btn btn-primary" OnClick="btnCambiaEstatus_OnClick" CommandArgument='<%# Eval("IdTicket")%>' CommandName='<%# Eval("EstatusTicket.Id") %>'
-                                                        Visible='<%# int.Parse(Eval("Estatusticket.Id").ToString()) == (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto %>' />
-                                                </ItemTemplate>
-                                            </tc:GridTemplateColumn>
                                         </Columns>
                                     </MasterTableView>
                                     <ClientSettings EnableAlternatingItems="True" EnableRowHoverStyle="True" EnablePostBackOnRowClick="True">
@@ -82,52 +75,6 @@
                                         <Resizing AllowResizeToFit="True"></Resizing>
                                     </ClientSettings>
                                 </tc:RadGrid>
-
-                               <%-- <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" ShowHeaderWhenEmpty="True"
-                                    CssClass="table table-striped display alineaTablaIzquierda" OnPageIndexChanging="gvPaginacion_PageIndexChanging"
-                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="14" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
-                                    PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" PagerSettings-PageButtonCount="20">
-                                    <EmptyDataTemplate>
-                                        <h3>Sin informacion Disponible</h3>
-                                    </EmptyDataTemplate>
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Ticket" HeaderStyle-Width="10%" ItemStyle-CssClass="altoFijo">
-                                            <ItemTemplate>
-                                                <div>
-                                                    <label><%# Eval("IdTicket")%></label>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Asunto" HeaderStyle-Width="30%">
-                                            <ItemTemplate>
-                                                <label><%# Eval("Tipificacion")%></label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Solicitado" HeaderStyle-Width="30%">
-                                            <ItemTemplate>
-                                                <label><%# Eval("FechaHora" , "{0:dd/MMM/yyyy}")%></label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Estatus" HeaderStyle-Width="15%">
-                                            <ItemTemplate>
-                                                <div class="btn btnBandejaCliente" style='<%# "background-color: " + Eval("Estatusticket.Color") %>'>
-                                                    <asp:Label runat="server" Text='<%# Eval("Estatusticket.Descripcion")%>'></asp:Label>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="" HeaderStyle-Width="15%">
-                                            <ItemTemplate>
-                                                <asp:Button runat="server" data-tieneEncuesta='<%# Eval("TieneEncuesta")%>' Text="Estatus" ID="btnCambiaEstatus" CssClass="btn btn-primary" OnClick="btnCambiaEstatus_OnClick" CommandArgument='<%# Eval("IdTicket")%>' CommandName='<%# Eval("EstatusTicket.Id") %>'
-                                                    Visible='<%# int.Parse(Eval("Estatusticket.Id").ToString()) == (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto %>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                    </Columns>
-                                </asp:GridView>--%>
-
                             </div>
                         </div>
                     </div>

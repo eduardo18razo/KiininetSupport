@@ -28,7 +28,7 @@ namespace KiiniNet.Services.Operacion.Interface
         void MarcarAsignacionLeida(int idAsignacion);
 
         [OperationContract]
-        HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario);
+        HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario, bool esDetalle);
 
         [OperationContract]
         int ObtenerNumeroTicketsEnAtencionNuevos(int idUsuario);

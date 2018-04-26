@@ -13,13 +13,22 @@ namespace KiiniHelp.UserControls.Detalles {
     public partial class UcTicketDetalleUsuario {
         
         /// <summary>
-        /// Control lblIdTicket.
+        /// Control hfIdTicket.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIdTicket;
+        protected global::System.Web.UI.WebControls.HiddenField hfIdTicket;
+        
+        /// <summary>
+        /// Control hfIdUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdUsuario;
         
         /// <summary>
         /// Control lblNoticket.
@@ -128,6 +137,15 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtConversacion;
+        
+        /// <summary>
+        /// Control btnEstatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEstatus;
         
         /// <summary>
         /// Control btnEnviar.

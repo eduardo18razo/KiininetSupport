@@ -6,6 +6,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="heigth100">
-        <uc1:UcTicketDetalleUsuario runat="server" id="UcTicketDetalleUsuario" />
+        <ol class="breadcrumb">
+            <li>
+                <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
+            <li>
+                <asp:HyperLink runat="server" NavigateUrl="~/Users/General/FrmMisTickets.aspx">Mis Tickets</asp:HyperLink></li>
+        </ol>
+        <uc1:UcTicketDetalleUsuario runat="server" ID="UcTicketDetalleUsuario" />
     </div>
 </asp:Content>

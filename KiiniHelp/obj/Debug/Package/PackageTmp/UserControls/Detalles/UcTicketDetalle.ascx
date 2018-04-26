@@ -117,24 +117,24 @@
                                 <div class="">
                                     <div class="col-lg-1 col-md-1 col-sm-1 col-lg-1Custom"></div>
                                     <div>
-                                        <div class="form-group col-lg-3 col-md-2 col-sm-2 ">
-                                            <asp:Label runat="server" Text="Estatus" />
+                                        <div class="form-group col-lg-3 col-md-2 col-sm-2 minWidth225">
+                                            <asp:Label runat="server" Text="Estatus" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235"/>
                                             <div class="col-lg-12 col-md-12 col-sm-12 no-padding-left">
                                                 <asp:DropDownList runat="server" CssClass="form-control widht200" ID="ddlCambiarEstatus" />
                                             </div>
                                         </div>
 
-                                        <div class="form-group col-lg-3 col-md-2 col-sm-2">
-                                            <asp:Label runat="server" Text="Asignación" />
+                                        <div class="form-group col-lg-3 col-md-2 col-sm-2 minWidth225">
+                                            <asp:Label runat="server" Text="Asignación" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235"/>
                                             <div class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235">
                                                 <asp:DropDownList runat="server" CssClass="form-control widht200" ID="ddlCambiarAsignar" AutoPostBack="True" OnSelectedIndexChanged="ddlCambiarAsignar_OnSelectedIndexChanged" Style="width: 120px; display: inline-block" />
                                                 <asp:LinkButton runat="server" ID="lnkBtndeshacer" CssClass="icon-cancel" OnClick="lnkBtndeshacer_OnClick" />
                                             </div>
 
                                         </div>
-                                        <div class="form-group col-lg-3 col-md-3 col-sm-3">
+                                        <div class="form-group col-lg-3 col-md-3 col-sm-3 minWidth225">
                                             <div class="form-group" runat="server" id="divUsuariosAsignacion" visible="False">
-                                                <asp:Label runat="server" Text="Usuario" />
+                                                <asp:Label runat="server" Text="Usuario" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235"/>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 no-padding-left">
                                                     <tc:RadDropDownTree runat="server" CssClass="form-control no-border no-padding-left widht200" ID="ddlUsuarioAsignacion" AutoPostBack="True" RenderMode="Lightweight" ExpandNodeOnSingleClick="true" CheckNodeOnClick="False"
                                                         DefaultMessage="-" EnableFiltering="True" OnClientEntryAdding="OnClientEntryAdding" OnEntriesAdded="ddlUsuarioAsignacion_OnEntriesAdded">

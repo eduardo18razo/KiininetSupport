@@ -123,11 +123,11 @@ namespace KiiniHelp.UserControls.Seleccion
                         break;
 
                     case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
-                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
                         break;
 
                     case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
-                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
                         break;
                 }
             else

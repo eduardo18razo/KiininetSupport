@@ -150,18 +150,24 @@ namespace KiiniHelp.Publico
                 if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] != null)
                 {
                     ArbolAcceso arbol = _servicioArbolAcceso.ObtenerArbolAcceso(Convert.ToInt32(Request.QueryString["IdArbol"]));
-                    Session["ArbolAcceso"] = arbol;
-                    IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
-                    IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
-                    IdCanal = int.Parse(Request.QueryString["Canal"]);
+                    if (arbol != null)
+                    {
+                        Session["ArbolAcceso"] = arbol;
+                        IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
+                        IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
+                        IdCanal = int.Parse(Request.QueryString["Canal"]);
+                    }
                 }
                 else if (Request.QueryString["IdArbol"] != null && Request.QueryString["Canal"] == null)
                 {
                     ArbolAcceso arbol = _servicioArbolAcceso.ObtenerArbolAcceso(Convert.ToInt32(Request.QueryString["IdArbol"]));
-                    Session["ArbolAcceso"] = arbol;
-                    IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
-                    IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
-                    IdCanal = (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal;
+                    if (arbol != null)
+                    {
+                        Session["ArbolAcceso"] = arbol;
+                        IdMascara = arbol.InventarioArbolAcceso.First().IdMascara ?? 0;
+                        IdEncuesta = arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0;
+                        IdCanal = (int) BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal;
+                    }
                 }
             }
             catch (Exception ex)

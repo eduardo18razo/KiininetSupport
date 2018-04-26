@@ -166,13 +166,13 @@ namespace KiiniHelp {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMensajes;
         
         /// <summary>
-        /// Control lblNoMensajes.
+        /// Control btnMisTickets.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoMensajes;
+        protected global::System.Web.UI.WebControls.LinkButton btnMisTickets;
         
         /// <summary>
         /// Control main_search_input.

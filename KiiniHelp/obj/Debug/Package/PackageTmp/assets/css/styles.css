@@ -1168,13 +1168,12 @@ footer {
         border-bottom: 1px solid #f3f3f7;
         padding-bottom: 15px;
         position: relative;
-        margin-bottom: 15px;
     }
 
         .module .module-heading .module-title {
             margin: 0;
             /*nuevo diseño*/
-            font-size: 25px;
+            font-size: 22px;
             color: #0c223F;
             font-weight: 700 !important;
         }
@@ -4070,9 +4069,9 @@ ul.sortable {
 
 .modal-title {
     text-align: left;
-    line-height: 1;
+    line-height: 2;
     color: #494d55;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 14px;
 }
 
@@ -4089,6 +4088,9 @@ ul.sortable {
     height: auto;
     max-height: 500px;
     overflow-y: auto;
+}
+.modalhidebarhorizontal {
+    overflow-x: hidden;
 }
 
 .modal-body-media {
@@ -6419,7 +6421,7 @@ input, input[type="file"] {
 }
 
 .radio input[type="radio"], .radio-inline input[type="radio"] {
-    top: -1px;
+    top: -14px;
     vertical-align: baseline;
 }
 
@@ -6513,13 +6515,15 @@ option:hover {
 .selectConver [type=radio] + label {
     margin-bottom: 0;
 }
-
+.bodyBackgroundPassword {
+    background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
+}
 .panelsectionbacground {
-     background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
+     /*background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover;*/
     width: 100%;
     text-align: center;
 }
@@ -6636,10 +6640,40 @@ option:hover {
 .title {
     font-size: 22px;
     font-weight: 300;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 15px;
     margin-top: 15px;
 }
 
 .radio {
     display: inline;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"] {
+    top: initial;
+    vertical-align: baseline;
+}
+
+
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    line-height: 1;
+}
+
+@media (min-width: 768px) {
+    .form-inline .radio input[type="radio"], .form-inline .checkbox input[type="checkbox"] {
+        position: relative;
+        margin-left: 0;
+        top: 0;
+    }
+}
+
+.minWidth225 {
+    min-width: 225px;
 }

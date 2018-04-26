@@ -35,7 +35,7 @@ namespace KiiniHelp.ServiceAtencionTicket {
         void MarcarAsignacionLeida(int idAsignacion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/ObtenerTicketEnAtencion", ReplyAction="http://tempuri.org/IServiceAtencionTicket/ObtenerTicketEnAtencionResponse")]
-        KiiniNet.Entities.Helper.HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario);
+        KiiniNet.Entities.Helper.HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario, bool esDetalle);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceAtencionTicket/ObtenerNumeroTicketsEnAtencionNuevos", ReplyAction="http://tempuri.org/IServiceAtencionTicket/ObtenerNumeroTicketsEnAtencionNuevosRes" +
             "ponse")]
@@ -93,8 +93,8 @@ namespace KiiniHelp.ServiceAtencionTicket {
             base.Channel.MarcarAsignacionLeida(idAsignacion);
         }
         
-        public KiiniNet.Entities.Helper.HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario) {
-            return base.Channel.ObtenerTicketEnAtencion(idTicket, idUsuario);
+        public KiiniNet.Entities.Helper.HelperTicketEnAtencion ObtenerTicketEnAtencion(int idTicket, int idUsuario, bool esDetalle) {
+            return base.Channel.ObtenerTicketEnAtencion(idTicket, idUsuario, esDetalle);
         }
         
         public int ObtenerNumeroTicketsEnAtencionNuevos(int idUsuario) {

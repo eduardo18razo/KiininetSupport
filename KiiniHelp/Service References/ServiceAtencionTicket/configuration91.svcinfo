@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="dPFIVVRtIvOrXpFsA2NVG7JaZLc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="/JwPtUclNa8QVBu4GX4tox8gT74=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="EndPointSeguridad5">
+    <bindingConfiguration bindingType="basicHttpBinding" name="EndPointSeguridad1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>EndPointSeguridad5</serializedValue>
+          <serializedValue>EndPointSeguridad1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,7 +112,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="EndPointSeguridad22" contract="ServiceAtencionTicket.IServiceAtencionTicket" bindingType="basicHttpBinding" address="http://localhost:15277/SetviceAtencionTicket.svc" bindingConfiguration="EndPointSeguridad5">
+    <endpoint name="EndPointSeguridad22" contract="ServiceAtencionTicket.IServiceAtencionTicket" bindingType="basicHttpBinding" address="http://localhost:15277/SetviceAtencionTicket.svc" bindingConfiguration="EndPointSeguridad1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:15277/SetviceAtencionTicket.svc</serializedValue>
@@ -124,7 +124,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>EndPointSeguridad5</serializedValue>
+          <serializedValue>EndPointSeguridad1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>ServiceAtencionTicket.IServiceAtencionTicket</serializedValue>

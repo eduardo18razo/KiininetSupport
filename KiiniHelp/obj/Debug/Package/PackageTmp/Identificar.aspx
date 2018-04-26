@@ -26,7 +26,7 @@
 
 
 </head>
-<body >
+<body class="bodyBackgroundPassword" >
     <form id="form1" runat="server">
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>

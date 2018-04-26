@@ -177,6 +177,11 @@
                                         </div>
 
                                         <div class="form-group">
+                                            Consultas Especiales<br />
+                                            <asp:ListBox ID="lstGruposEc" runat="server" SelectionMode="Multiple"></asp:ListBox>
+                                        </div>
+
+                                        <div class="form-group">
                                             Responsable de Categoría<br />
                                             <asp:DropDownList runat="server" ID="ddlGrupoDuenoServicio" CssClass="form-control" />
                                         </div>
@@ -188,7 +193,8 @@
                                     </div>
                                     <div runat="server" id="divStep4Data" visible="false">
                                         <div class="form-group">
-                                            SLA <br />
+                                            SLA
+                                            <br />
                                             Establece un tiempo de respuesta para este evento. 
                                         </div>
                                         <hr />
@@ -270,7 +276,8 @@
                                     </div>
                                     <div runat="server" id="divStep5Data" visible="False">
                                         <div class="form-group">
-                                            Notificaciones <br />
+                                            Notificaciones
+                                            <br />
                                             Establece el tiempo en el que se recibirán notificaciones sobre este evento.
                                         </div>
 
@@ -392,11 +399,17 @@
                 $('[id*=lstGruposAu]').multiselect({
                     includeSelectAllOption: true
                 });
+                $('[id*=lstGruposEc]').multiselect({
+                    includeSelectAllOption: true
+                });
             });
             var prm = Sys.WebForms.PageRequestManager.getInstance();
 
             prm.add_endRequest(function () {
                 $('[id*=lstGruposAu]').multiselect({
+                    includeSelectAllOption: true
+                });
+                $('[id*=lstGruposEc]').multiselect({
                     includeSelectAllOption: true
                 });
             });
