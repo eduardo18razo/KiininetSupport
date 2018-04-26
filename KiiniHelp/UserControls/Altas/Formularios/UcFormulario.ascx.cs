@@ -85,6 +85,11 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     Session["MascaraActiva"] = mascara;
                 }
             }
+            else if (Request.UrlReferrer != null) Response.Redirect(Request.UrlReferrer.ToString());
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
         }
 
         public static Control GetPostBackControl(Page thePage)

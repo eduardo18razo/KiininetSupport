@@ -433,7 +433,7 @@
 /* iPhone 4 and high pixel ratio devices ----------- */
 @media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
     body {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .form-control {
@@ -441,6 +441,6 @@
     }
 
     .content-wrapper {
-        padding-top: 80px;
+        padding-top: 70px;
     }
 }

@@ -152,7 +152,7 @@ namespace KiiniHelp
                 if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
                     if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
                         Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx?confirmaCuenta=true"));
-                
+
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
@@ -196,7 +196,7 @@ namespace KiiniHelp
                         Buscador();
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -560,6 +560,19 @@ namespace KiiniHelp
         protected void OnClick(object sender, EventArgs e)
         {
             Response.Redirect("~/Users/General/FrmMisTickets.aspx");
+        }
+
+        protected void btnMisTickets_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Users/General/FrmMisTickets.aspx");
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }

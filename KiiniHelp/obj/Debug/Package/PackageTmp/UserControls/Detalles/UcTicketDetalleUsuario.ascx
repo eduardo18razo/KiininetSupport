@@ -4,12 +4,8 @@
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <ol class="breadcrumb">
-                <li>
-                    <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li><asp:HyperLink runat="server" NavigateUrl="~/Users/General/FrmMisTickets.aspx">Mis Tickets</asp:HyperLink></li>
-                <li class="active"><asp:Label runat="server" ID="lblIdTicket"></asp:Label></li>
-            </ol>
+            <asp:HiddenField runat="server" ID="hfIdTicket"/>
+            <asp:HiddenField runat="server" ID="hfIdUsuario"/>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
 

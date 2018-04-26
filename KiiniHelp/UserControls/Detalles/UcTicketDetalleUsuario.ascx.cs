@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -36,10 +35,30 @@ namespace KiiniHelp.UserControls.Detalles
             }
         }
 
-        private int IdTicket
+        public int IdUsuario
         {
-            get { return int.Parse(lblIdTicket.Text); }
-            set { lblIdTicket.Text = value.ToString(); }
+            get
+            {
+                int value = hfIdUsuario.Value.Trim() == string.Empty
+                    ? ((Usuario)Session["UserData"]).Id
+                    : int.Parse(hfIdUsuario.Value.Trim());
+                return value;
+            }
+            set
+            {
+                if (Session["UserData"] == null)
+                    hfIdUsuario.Value = value.ToString();
+            }
+        }
+
+        public int IdTicket
+        {
+            get { return int.Parse(hfIdTicket.Value); }
+            set
+            {
+                hfIdTicket.Value = value.ToString();
+                LlenaTicket(value);
+            }
         }
 
         private List<HelperConversacionDetalle> ConversacionTicketActivo
@@ -54,10 +73,9 @@ namespace KiiniHelp.UserControls.Detalles
         {
             try
             {
-                HelperTicketEnAtencion ticket = _servicioAtencionTicket.ObtenerTicketEnAtencion(idTicket, ((Usuario)Session["UserData"]).Id);
+                HelperTicketEnAtencion ticket = _servicioAtencionTicket.ObtenerTicketEnAtencion(idTicket, IdUsuario, true);
                 if (ticket != null)
                 {
-                    IdTicket = ticket.IdTicket;
                     lblNoticket.Text = ticket.IdTicket.ToString();
                     lblTituloTicket.Text = ticket.Tipificacion;
 
@@ -76,7 +94,7 @@ namespace KiiniHelp.UserControls.Detalles
 
                     ConversacionTicketActivo = ticket.Conversaciones;
                     LlenaConversacion(1);
-                    UcDetalleMascaraCaptura.IdTicket = idTicket;
+                    UcDetalleMascaraCaptura.IdTicket = IdTicket;
                 }
 
             }
@@ -118,11 +136,9 @@ namespace KiiniHelp.UserControls.Detalles
                 {
                     if (Request.QueryString["IdTicket"] != null)
                     {
-                        LlenaTicket(int.Parse(Request.QueryString["IdTicket"]));
+                        IdTicket = int.Parse(Request.QueryString["IdTicket"]);
                     }
                 }
-                else
-                    UcDetalleMascaraCaptura.IdTicket = IdTicket;
             }
             catch (Exception ex)
             {
@@ -172,12 +188,14 @@ namespace KiiniHelp.UserControls.Detalles
                     throw new Exception("Debe Especificar un comentario");
 
                 const bool sistema = false;
-                int idUsuarioGeneraEvento = (((Usuario)Session["UserData"]).Id);
                 string mensajeConversacion = txtConversacion.Text.Trim();
 
-                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, idUsuarioGeneraEvento, mensajeConversacion, sistema, null, false, true);
-                LlenaTicket(IdTicket);
+                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, IdUsuario, mensajeConversacion, sistema, null, false, true);
                 txtConversacion.Text = string.Empty;
+                if (Session["UserData"] != null)
+                    Response.Redirect("~/Users/General/FrmMisTickets.aspx");
+                else
+                    LlenaTicket(IdTicket);
             }
             catch (Exception ex)
             {
@@ -205,8 +223,6 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
-        #endregion Eventos
-
         protected void rptEventos_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -231,5 +247,6 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
+        #endregion Eventos
     }
 }

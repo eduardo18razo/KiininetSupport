@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using KiiniNet.Entities.Operacion.Tickets;
 
 namespace KiiniNet.Entities.Helper
 {

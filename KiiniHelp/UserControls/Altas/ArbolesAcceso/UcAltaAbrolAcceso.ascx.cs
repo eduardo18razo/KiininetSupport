@@ -23,12 +23,13 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
 
         void UcAltaServicio_OnCancelarModal()
         {
+            UcAltaConsulta.LimpiarPantalla();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
         }
 
         void UcAltaConsulta_OnCancelarModal()
         {
-
+            UcAltaServicio.LimpiarPantalla();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
         }
 

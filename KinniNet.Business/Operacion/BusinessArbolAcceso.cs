@@ -817,8 +817,8 @@ namespace KinniNet.Core.Operacion
                 if (arbol.EsTerminal)
                 {
                     // TODO: ESTE FRAGMENTO AGREGA LOS GRUPOS ESPECIALES DE CONSULTA ESPECIFICOS AL TIPO DE USUARIO
-                    List<GrupoUsuario> gposEspCons = new BusinessGrupoUsuario().ObtenerGruposUsuarioByIdRol((int)BusinessVariables.EnumRoles.ConsultasEspeciales, false).Where(w => w.IdTipoUsuario == arbol.IdTipoUsuario).ToList();
-                    foreach (GrupoUsuario gpoEspCons in gposEspCons)
+                    GrupoUsuario gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol((int)BusinessVariables.EnumRoles.ConsultasEspeciales, arbol.IdTipoUsuario);
+                    if(gpoEspCons != null)
                     {
                         if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != gpoEspCons.Id))
                         {
