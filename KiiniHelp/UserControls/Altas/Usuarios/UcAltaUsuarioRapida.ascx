@@ -9,26 +9,26 @@
                     <div class="form-group">
                         <div class="col-sm-12 col-md-4 col-lg-4">
                             <label for="txtNombreRapido" class="col-sm-12 col-md-12 col-lg-12">Nombre</label>
-                            <asp:TextBox class="form-control" ID="txtNombreRapido" ClientIDMode="Static" runat="server" />
+                            <asp:TextBox class="form-control" ID="txtNombreRapido" ClientIDMode="Static" runat="server" onkeydown="return (event.keyCode!=13);"/>
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-4">
                             <label for="txtApRapido" class="col-sm-12 col-md-12 col-lg-12">Apellido Paterno</label>
-                            <asp:TextBox class="form-control" ID="txtApRapido" ClientIDMode="Static" runat="server" />
+                            <asp:TextBox class="form-control" ID="txtApRapido" ClientIDMode="Static" runat="server" onkeydown="return (event.keyCode!=13);"/>
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-4">
                             <label for="txtAmRapido" class="col-sm-12 col-md-12 col-lg-12">Apellido Materno</label>
-                            <asp:TextBox class="form-control" ID="txtAmRapido" ClientIDMode="Static" runat="server" />
+                            <asp:TextBox class="form-control" ID="txtAmRapido" ClientIDMode="Static" runat="server" onkeydown="return (event.keyCode!=13);" />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <label for="txtCorreoRapido" class="col-sm-12 col-md-12 col-lg-12">Correo</label>
-                    <asp:TextBox class="form-control" type="email" ID="txtCorreoRapido" ClientIDMode="Static" runat="server" />
+                    <asp:TextBox class="form-control" type="email" ID="txtCorreoRapido" ClientIDMode="Static" runat="server" onkeydown="return (event.keyCode!=13);" />
                 </div>
                 
                 <div class="row">
                     <label for="txtTelefonoCelularRapido" class="col-sm-12 col-md-12 col-lg-12">Teléfono (Celular)</label>
-                        <asp:TextBox class="form-control" ID="txtTelefonoCelularRapido" ClientIDMode="Static" runat="server" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
+                        <asp:TextBox class="form-control" ID="txtTelefonoCelularRapido" ClientIDMode="Static" runat="server" onkeypress="return (event.keyCode!=13) && ValidaCampo(this,2)" MaxLength="10" />
                 </div>
            
             </div>

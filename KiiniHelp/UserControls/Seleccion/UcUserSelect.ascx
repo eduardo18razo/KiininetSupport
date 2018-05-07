@@ -16,13 +16,13 @@
                     <section class="module">
                         <div class="module-inner">
                             <div class="module-content">
-                                <div>
+                                <div runat="server" ID="divCategoriaReference">
                                     <h4 class="text-center title">Haz una consulta rápida o selecciona una
                                         <asp:LinkButton ID="lbtnCategoria" runat="server" OnClick="lbtnCategoria_OnClick" CssClass="text-theme">categoría</asp:LinkButton></h4>
                                 </div>
-                                <div class="row">
+                                <div class="row" runat="server" ID="divCategoriaTitle" Visible="False">
                                     <h3>
-                                        <asp:Label runat="server" ID="lblCategoria" Visible="False"></asp:Label>
+                                        <asp:Label runat="server" ID="lblCategoria"></asp:Label>
                                     </h3>
                                 </div>
                             </div>

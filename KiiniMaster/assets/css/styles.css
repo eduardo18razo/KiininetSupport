@@ -362,10 +362,6 @@ button.close:focus {
             border-color: #40babd;
         }
 
-.header .navbar-tools {
-    float: right;
-}
-
 .header .utilities-container {
     float: left;
     display: inline-block;
@@ -4576,6 +4572,7 @@ ul.sortable {
     box-shadow: 0 0 4px #000000;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 }
+
 
 #admin_org {
     background-image: url(../images/stock/admin_org.png);

@@ -1177,6 +1177,13 @@ footer {
             color: #0c223F;
             font-weight: 700 !important;
         }
+        .module .module-heading .module-title18px {
+            margin: 0;
+            /*nuevo diseño*/
+            font-size: 18px;
+            color: #0c223F;
+            font-weight: 700 !important;
+        }
 
         .module .module-heading .actions {
             position: absolute;
@@ -1373,7 +1380,8 @@ footer {
 /* Large devices (large desktops, 1200px and up) */
 /* ======= GALERIA DE TIPOGRAFIA ========= */
 p {
-    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     line-height: 1.5;
 }
 
@@ -4333,11 +4341,6 @@ ul.sortable {
     max-height: 90%;
 }
 
-.bg_w_header {
-    background: #FFF;
-    box-shadow: 0 0 4px #000000;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
-}
 
 #admin_org {
     background-image: url(images/stock/admin_org.png);
@@ -6640,8 +6643,8 @@ option:hover {
 .title {
     font-size: 22px;
     font-weight: 300;
-    margin-bottom: 20px;
-    margin-top: 0;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .subtitle {

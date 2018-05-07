@@ -686,81 +686,72 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.LazyLoadingEnabled = true;
-                Ubicacion ubicacion = db.Ubicacion.SingleOrDefault(s => s.Id == ub.Id);
-                if (ubicacion != null)
+                Ubicacion ubicacionBase = db.Ubicacion.SingleOrDefault(s => s.Id == ub.Id);
+                if (ubicacionBase != null)
                 {
-                    if (ubicacion.Pais != null)
+                    if (ubicacionBase.Pais != null)
                     {
-                        if (db.Pais.Any(a => a.Descripcion == ub.Pais.Descripcion && a.IdTipoUsuario == ub.Pais.IdTipoUsuario && a.Id != ubicacion.Pais.Id))
-                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 1).Descripcion));
-                        ubicacion.Pais.Descripcion = ub.Pais.Descripcion.Trim();
+                        if (db.Pais.Any(a => a.Descripcion == ub.Pais.Descripcion && a.IdTipoUsuario == ub.Pais.IdTipoUsuario && a.Id != ubicacionBase.Pais.Id))
+                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacionBase.IdTipoUsuario, 1).Descripcion));
+                        ubicacionBase.Pais.Descripcion = ub.Pais.Descripcion.Trim();
                     }
 
-                    if (ubicacion.Campus != null)
+                    if (ubicacionBase.Campus != null)
                     {
-                        if (db.Campus.Any(a => a.Descripcion == ub.Campus.Descripcion && a.IdTipoUsuario == ub.Campus.IdTipoUsuario && a.Id != ubicacion.Campus.Id))
-                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 2).Descripcion));
+                        if (db.Ubicacion.Where(w => w.IdPais == ub.IdPais).Any(a => a.Campus.Descripcion == ub.Campus.Descripcion && a.IdTipoUsuario == ub.Campus.IdTipoUsuario && a.Campus.Id != ubicacionBase.Campus.Id))
+                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacionBase.IdTipoUsuario, 2).Descripcion));
 
-                        ubicacion.Campus.Descripcion = ub.Campus.Descripcion.Trim();
-                        if (ubicacion.Torre == null)
+                        ubicacionBase.Campus.Descripcion = ub.Campus.Descripcion.Trim();
+                        if (ubicacionBase.Torre == null)
                         {
                             ub.Campus.Domicilio = ub.Campus.Domicilio ?? new List<Domicilio>();
 
-                            if (ubicacion.Campus.Domicilio.Count == 0)
-                                ubicacion.Campus.Domicilio.Add(new Domicilio());
-                            ubicacion.Campus.Domicilio[0].IdColonia = ub.Campus.Domicilio[0].IdColonia;
-                            ubicacion.Campus.Domicilio[0].Calle = ub.Campus.Domicilio[0].Calle.Trim();
-                            ubicacion.Campus.Domicilio[0].NoExt = ub.Campus.Domicilio[0].NoExt.Trim();
-                            ubicacion.Campus.Domicilio[0].NoInt = ub.Campus.Domicilio[0].NoInt.Trim();
+                            if (ubicacionBase.Campus.Domicilio.Count == 0)
+                                ubicacionBase.Campus.Domicilio.Add(new Domicilio());
+                            ubicacionBase.Campus.Domicilio[0].IdColonia = ub.Campus.Domicilio[0].IdColonia;
+                            ubicacionBase.Campus.Domicilio[0].Calle = ub.Campus.Domicilio[0].Calle.Trim();
+                            ubicacionBase.Campus.Domicilio[0].NoExt = ub.Campus.Domicilio[0].NoExt.Trim();
+                            ubicacionBase.Campus.Domicilio[0].NoInt = ub.Campus.Domicilio[0].NoInt.Trim();
                         }
                     }
 
-                    if (ubicacion.Torre != null)
+                    if (ubicacionBase.Torre != null)
                     {
-                        if (db.Torre.Any(a => a.Descripcion == ub.Torre.Descripcion && a.IdTipoUsuario == ub.Torre.IdTipoUsuario && a.Id != ubicacion.Torre.Id))
-                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 3).Descripcion));
-                        ubicacion.Torre.Descripcion = ub.Torre.Descripcion.Trim();
+                        if (db.Ubicacion.Where(w => w.IdPais == ub.IdPais && w.IdCampus == ub.IdCampus).Any(a => a.Torre.Descripcion == ub.Torre.Descripcion && a.IdTipoUsuario == ub.Torre.IdTipoUsuario && a.Torre.Id != ubicacionBase.Torre.Id))
+                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacionBase.IdTipoUsuario, 3).Descripcion));
+                        ubicacionBase.Torre.Descripcion = ub.Torre.Descripcion.Trim();
                     }
 
-                    if (ubicacion.Piso != null)
+                    if (ubicacionBase.Piso != null)
                     {
-                        if (db.Piso.Any(a => a.Descripcion == ub.Piso.Descripcion && a.IdTipoUsuario == ub.Piso.IdTipoUsuario && a.Id != ubicacion.Piso.Id))
-                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 4).Descripcion));
-                        ubicacion.Piso.Descripcion = ub.Piso.Descripcion.Trim();
+                        if (db.Ubicacion.Where(w => w.IdPais == ub.IdPais && w.IdTorre == ub.IdTorre).Any(a => a.Piso.Descripcion == ub.Piso.Descripcion && a.IdTipoUsuario == ub.Piso.IdTipoUsuario && a.Piso.Id != ubicacionBase.Piso.Id))
+                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacionBase.IdTipoUsuario, 4).Descripcion));
+                        ubicacionBase.Piso.Descripcion = ub.Piso.Descripcion.Trim();
                     }
 
-                    if (ubicacion.Zona != null)
+                    if (ubicacionBase.Zona != null)
                     {
-                        if (db.Zona.Any(a => a.Descripcion == ub.Zona.Descripcion && a.IdTipoUsuario == ub.Zona.IdTipoUsuario && a.Id != ubicacion.Zona.Id))
-                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 5).Descripcion));
-                        ubicacion.Zona.Descripcion = ub.Zona.Descripcion.Trim();
+                        if (db.Ubicacion.Where(w => w.IdPais == ub.IdPais && w.IdPiso == ub.IdPiso).Any(a => a.Zona.Descripcion == ub.Zona.Descripcion && a.IdTipoUsuario == ub.Zona.IdTipoUsuario && a.Zona.Id != ubicacionBase.Zona.Id))
+                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacionBase.IdTipoUsuario, 5).Descripcion));
+                        ubicacionBase.Zona.Descripcion = ub.Zona.Descripcion.Trim();
                     }
 
-                    if (ubicacion.SubZona != null)
+                    if (ubicacionBase.SubZona != null)
                     {
-                        if (db.SubZona.Any(a => a.Descripcion == ub.SubZona.Descripcion && a.IdTipoUsuario == ub.SubZona.IdTipoUsuario && a.Id != ubicacion.SubZona.Id))
-                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 6).Descripcion));
-                        ubicacion.SubZona.Descripcion = ub.SubZona.Descripcion.Trim();
+                        if (db.Ubicacion.Where(w => w.IdPais == ub.IdPais && w.IdZona == ub.IdZona).Any(a => a.SubZona.Descripcion == ub.SubZona.Descripcion && a.IdTipoUsuario == ub.SubZona.IdTipoUsuario && a.SubZona.Id != ubicacionBase.SubZona.Id))
+                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacionBase.IdTipoUsuario, 6).Descripcion));
+                        ubicacionBase.SubZona.Descripcion = ub.SubZona.Descripcion.Trim();
                     }
 
-                    if (ubicacion.SiteRack != null)
+                    if (ubicacionBase.SiteRack != null)
                     {
-                        if (db.SiteRack.Any(a => a.Descripcion == ub.SiteRack.Descripcion && a.IdTipoUsuario == ub.SiteRack.IdTipoUsuario && a.Id != ubicacion.SiteRack.Id))
-                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 7).Descripcion));
-                        //if (db.SiteRack.Join(db.Ubicacion, sr => sr.Id, u => u.IdSiteRack, (sr, u) => new { sr, u })
-                        //    .Any(@t => @t.u.IdPais == ubicacion.IdPais && @t.u.IdCampus == ubicacion.IdCampus
-                        //               && @t.u.IdTorre == ubicacion.IdTorre
-                        //               && @t.u.IdPiso == ubicacion.IdPiso
-                        //               && @t.u.IdZona == ubicacion.IdZona
-                        //               && @t.u.IdSubZona == ubicacion.IdSubZona
-                        //               && @t.sr.Descripcion == ubicacion.SiteRack.Descripcion &&
-                        //               @t.sr.IdTipoUsuario == ubicacion.SiteRack.IdTipoUsuario && t.sr.Id != ubicacion.Id))
-                        //throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacion.IdTipoUsuario, 7).Descripcion));
-                        ubicacion.SiteRack.Descripcion = ub.SiteRack.Descripcion.Trim();
+                        if (db.Ubicacion.Where(w => w.IdPais == ub.IdPais && w.IdCampus == ub.IdCampus).Any(a => a.SiteRack.Descripcion == ub.SiteRack.Descripcion && a.IdTipoUsuario == ub.SiteRack.IdTipoUsuario && a.SiteRack.Id != ubicacionBase.SiteRack.Id))
+                            throw new Exception(string.Format("Este {0} se encuetra registrado", new BusinessParametros().ObtenerAliasUbicacionNivel(ubicacionBase.IdTipoUsuario, 7).Descripcion));
+                        ubicacionBase.SiteRack.Descripcion = ub.SiteRack.Descripcion.Trim();
                     }
 
-                    if (ubicacion.Id == 0)
-                        db.Ubicacion.AddObject(ubicacion);
+                    if (ubicacionBase.Id == 0)
+                        db.Ubicacion.AddObject(ubicacionBase);
 
                     db.SaveChanges();
                 }

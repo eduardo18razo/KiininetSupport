@@ -8,10 +8,10 @@
             <asp:HiddenField runat="server" ID="hfIdSeleccion" />
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Administración</li>
-                <li class="breadcrumb-item active">Organizaciones</li>
+                <li>Administración</li>
+                <li class="active">Organizaciones</li>
             </ol>
 
             <section class="module">
@@ -124,7 +124,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>
@@ -143,7 +143,7 @@
                                                 </ul>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                       
+
                                     </Columns>
                                 </asp:GridView>
 

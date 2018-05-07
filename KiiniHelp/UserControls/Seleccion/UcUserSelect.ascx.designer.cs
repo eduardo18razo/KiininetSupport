@@ -22,6 +22,15 @@ namespace KiiniHelp.UserControls.Seleccion {
         protected global::System.Web.UI.WebControls.Label lbltipoUsuario;
         
         /// <summary>
+        /// Control divCategoriaReference.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCategoriaReference;
+        
+        /// <summary>
         /// Control lbtnCategoria.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace KiiniHelp.UserControls.Seleccion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnCategoria;
+        
+        /// <summary>
+        /// Control divCategoriaTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCategoriaTitle;
         
         /// <summary>
         /// Control lblCategoria.

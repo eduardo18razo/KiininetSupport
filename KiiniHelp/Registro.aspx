@@ -51,7 +51,6 @@
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-
         <asp:UpdatePanel ID="upGeneral" runat="server">
             <ContentTemplate>
                 <section class="bienvenido-section panelsection">
@@ -84,23 +83,21 @@
         </asp:UpdatePanel>
 
         <div class="modal fade" id="modalRegistroExito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                        <h3 class="modal-title" id="myModalLabel">
-                            <br />
+                        <h6 id="modal-new-ticket-label" class="modal-title">
                             Registro Exitoso
-                        </h3>
+                        </h6>
                     </div>
                     <div class="modal-body">
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-                                <hr />
-                                <p class="h4">
+                                <p class="h4 centered">
                                     <strong>En breve recibirás un correo electrónico para confirmar tu registro.</strong><br>
                                 </p>
-                                <p class="h4">
+                                <p class="h4 centered">
                                     <asp:Button runat="server" Text="Aceptar" ID="btnAceptar" OnClick="btnCerrarExito_OnClick" CssClass="btn btn-primary" />
                                 </p>
                             </ContentTemplate>

@@ -24,9 +24,10 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 int idArea = Request.Params["idArea"] != null ? int.Parse(Request.Params["idArea"]) : 0;
-                lblCategoria.Visible = idArea > 0;
-                if (lblCategoria.Visible)
+                divCategoriaTitle.Visible = idArea > 0;
+                if (divCategoriaTitle.Visible)
                 {
+                    divCategoriaReference.Visible = false;
                     Area area = _servicioArea.ObtenerAreaById(idArea);
                     lblCategoria.Text = area.Descripcion;
 
@@ -41,21 +42,10 @@ namespace KiiniHelp.UserControls.Seleccion
 
                     rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null).Where(w => w.IdArea == area.Id);
                     rptProblemasFrecuentes.DataBind();
-
-                    //rptCatTodos.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    //rptCatTodos.DataBind();
-
-                    //rptCatConsultas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    //rptCatConsultas.DataBind();
-
-                    //rptCatServicios.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    //rptCatServicios.DataBind();
-
-                    //rptCatProblemas.DataSource = new ServiceArbolAccesoClient().ObtenerArbolesAccesoAll(idArea, idTipoUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, null, null, null, null, null, null, null).Where(w => w.EsTerminal);
-                    //rptCatProblemas.DataBind();
                 }
                 else
                 {
+                    divCategoriaReference.Visible = true;
                     rpt10Frecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenGeneral(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null);
                     rpt10Frecuentes.DataBind();
 
@@ -68,6 +58,10 @@ namespace KiiniHelp.UserControls.Seleccion
                     rptProblemasFrecuentes.DataSource = _servicioFrecuencia.ObtenerTopTenIncidente(idTipoUsuario, Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null);
                     rptProblemasFrecuentes.DataBind();
                 }
+                lbtnCategoria.Enabled = rpt10Frecuentes.Items.Count > 0
+                        || rptConsultasFrecuentes.Items.Count > 0
+                        || rptServiciosFrecuentes.Items.Count > 0
+                        || rptProblemasFrecuentes.Items.Count > 0;
 
             }
             catch (Exception ex)
@@ -157,7 +151,7 @@ namespace KiiniHelp.UserControls.Seleccion
                 else
                     Response.Redirect("~/Users/FrmDashboardUser.aspx");
             }
-            catch 
+            catch
             {
             }
         }
