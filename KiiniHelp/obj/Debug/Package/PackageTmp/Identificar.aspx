@@ -77,7 +77,7 @@
                                                         <asp:TextBox class="form-control text-uppercase" ID="txtCaptcha" runat="server" />
                                                     </div>
 
-                                                    <div class="form-group email">
+                                                    <div class="form-group">
                                                         <asp:Button CssClass="btn btn-default" ID="btnCancelar" Width="73px" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
                                                         <asp:Button CssClass="btn btn-primary" Text="Continuar" Width="73px" runat="server" OnClick="btnBuscar_OnClick" />
                                                     </div>

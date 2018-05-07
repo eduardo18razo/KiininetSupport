@@ -388,6 +388,11 @@
         <EntityTypeShape EntityType="KiiniNet_v2Model.CorreoService" Width="1.5" PointX="35.375" PointY="92.375" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_CorreoService_TicketEvento" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_CorreoService_Usuario" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" Width="1.5" PointX="11.625" PointY="58.25" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoGrupo" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

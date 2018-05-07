@@ -1173,7 +1173,7 @@ footer {
         .module .module-heading .module-title {
             margin: 0;
             /*nuevo diseño*/
-            font-size: 22px;
+            font-size: 25px;
             color: #0c223F;
             font-weight: 700 !important;
         }
@@ -5686,7 +5686,7 @@ ul.sortable {
 }
 
 .no-border-bottom {
-    border-bottom: 0px;
+    border-bottom: 0 !important;
 }
 
 .bordercolor {

@@ -1122,6 +1122,23 @@
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="CorreoService" EntitySet="CorreoService" />
     </AssociationSet>
+    <EntitySet Name="GrupoUsuarioDefaultOpcion" EntityType="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" />
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario">
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso">
+      <End Role="TipoArbolAcceso" EntitySet="TipoArbolAcceso" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoGrupo" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoGrupo">
+      <End Role="TipoGrupo" EntitySet="TipoGrupo" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Campus">
     <Key>
@@ -1480,6 +1497,7 @@
     <NavigationProperty Name="RolTipoGrupo" Relationship="KiiniNet_v2Model.FK_RolTipoGrupo_TipoGrupo" FromRole="TipoGrupo" ToRole="RolTipoGrupo" />
     <NavigationProperty Name="GrupoUsuario" Relationship="KiiniNet_v2Model.FK_GrupoUsuario_TipoGrupo1" FromRole="TipoGrupo" ToRole="GrupoUsuario" />
     <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_TipoGrupo" FromRole="TipoGrupo" ToRole="TiempoInformeArbol" />
+    <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoGrupo" FromRole="TipoGrupo" ToRole="GrupoUsuarioDefaultOpcion" />
   </EntityType>
   <EntityType Name="TipoInfConsulta">
     <Key>
@@ -1544,6 +1562,7 @@
     <NavigationProperty Name="ParametrosUsuario" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario" FromRole="TipoUsuario" ToRole="ParametrosUsuario" />
     <NavigationProperty Name="ParametroDatosAdicionales" Relationship="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario" FromRole="TipoUsuario" ToRole="ParametroDatosAdicionales" />
     <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" FromRole="TipoUsuario" ToRole="HitConsulta" />
+    <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario" FromRole="TipoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
   </EntityType>
   <EntityType Name="Torre">
     <Key>
@@ -3297,6 +3316,7 @@
     <NavigationProperty Name="NotaGeneralGrupo" Relationship="KiiniNet_v2Model.FK_NotaGeneralGrupo_GrupoUsuario" FromRole="GrupoUsuario" ToRole="NotaGeneralGrupo" />
     <NavigationProperty Name="HitGrupoUsuario" Relationship="KiiniNet_v2Model.FK_HitGrupoUsuario_GrupoUsuario" FromRole="GrupoUsuario" ToRole="HitGrupoUsuario" />
     <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TiempoInformeArbol" />
+    <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" FromRole="GrupoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
   </EntityType>
   <Association Name="FK_GrupoUsuario_TipoGrupo1">
     <End Type="KiiniNet_v2Model.TipoGrupo" Role="TipoGrupo" Multiplicity="0..1" />
@@ -5222,6 +5242,7 @@
     <NavigationProperty Name="Frecuencia" Relationship="KiiniNet_v2Model.FK_Frecuencia_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="Frecuencia" />
     <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="HitConsulta" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="Ticket" />
+    <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="GrupoUsuarioDefaultOpcion" />
   </EntityType>
   <Association Name="FK_tblArbolAcceso_tblCatTipoArbolAcceso">
     <End Type="KiiniNet_v2Model.TipoArbolAcceso" Role="TipoArbolAcceso" Multiplicity="1" />
@@ -6072,6 +6093,69 @@
       </Principal>
       <Dependent Role="CorreoService">
         <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GrupoUsuarioDefaultOpcion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoArbolAcceso" Type="Int32" />
+    <Property Name="IdTipoUsuario" Type="Int32" />
+    <Property Name="IdTipoGrupo" Type="Int32" />
+    <Property Name="IdGrupoUsuario" Type="Int32" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="GrupoUsuario" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" FromRole="GrupoUsuarioDefaultOpcion" ToRole="GrupoUsuario" />
+    <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso" FromRole="GrupoUsuarioDefaultOpcion" ToRole="TipoArbolAcceso" />
+    <NavigationProperty Name="TipoGrupo" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoGrupo" FromRole="GrupoUsuarioDefaultOpcion" ToRole="TipoGrupo" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario" FromRole="GrupoUsuarioDefaultOpcion" ToRole="TipoUsuario" />
+  </EntityType>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_GrupoUsuario">
+    <End Type="KiiniNet_v2Model.GrupoUsuario" Role="GrupoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" Role="GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso">
+    <End Type="KiiniNet_v2Model.TipoArbolAcceso" Role="TipoArbolAcceso" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" Role="GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdTipoArbolAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoGrupo">
+    <End Type="KiiniNet_v2Model.TipoGrupo" Role="TipoGrupo" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" Role="GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoGrupo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdTipoGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" Role="GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

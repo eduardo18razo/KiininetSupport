@@ -174,6 +174,7 @@ namespace KinniNet.Data.Help
                 _frecuencia = CreateObjectSet<Frecuencia>();
                 _mascaraSeleccionCatalogo = CreateObjectSet<MascaraSeleccionCatalogo>();
                 _puesto = CreateObjectSet<Puesto>();
+                _grupoUsuarioDefaultOpcion = CreateObjectSet<GrupoUsuarioDefaultOpcion>();
             }
             catch (Exception ex)
             {
@@ -1205,7 +1206,16 @@ namespace KinniNet.Data.Help
             }
         }
 
+        public ObjectSet<GrupoUsuarioDefaultOpcion> GrupoUsuarioDefaultOpcion
+        {
+            get
+            {
+                return _grupoUsuarioDefaultOpcion;
+            }
+        }
+
         private readonly ObjectSet<GrupoUsuario> _grupoUsuario;
+        private readonly ObjectSet<GrupoUsuarioDefaultOpcion> _grupoUsuarioDefaultOpcion;
 
         private readonly ObjectSet<SubGrupoUsuario> _subGrupoUsuario;
         private readonly ObjectSet<Puesto> _puesto;

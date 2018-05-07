@@ -406,6 +406,17 @@
     <Property Name="RecadoTicket" Type="bit" />
     <Property Name="Habilitado" Type="bit" />
   </EntityType>
+  <EntityType Name="GrupoUsuarioDefaultOpcion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoArbolAcceso" Type="int" />
+    <Property Name="IdTipoUsuario" Type="int" />
+    <Property Name="IdTipoGrupo" Type="int" />
+    <Property Name="IdGrupoUsuario" Type="int" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
   <EntityType Name="GrupoUsuarioInventarioArbol">
     <Key>
       <PropertyRef Name="Id" />
@@ -2256,6 +2267,54 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="GrupoUsuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_GrupoUsuario">
+    <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="0..1" />
+    <End Role="GrupoUsuarioDefaultOpcion" Type="Self.GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso">
+    <End Role="TipoArbolAcceso" Type="Self.TipoArbolAcceso" Multiplicity="0..1" />
+    <End Role="GrupoUsuarioDefaultOpcion" Type="Self.GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdTipoArbolAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoGrupo">
+    <End Role="TipoGrupo" Type="Self.TipoGrupo" Multiplicity="0..1" />
+    <End Role="GrupoUsuarioDefaultOpcion" Type="Self.GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoGrupo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdTipoGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
+    <End Role="GrupoUsuarioDefaultOpcion" Type="Self.GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
         <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
@@ -4490,6 +4549,7 @@
     <EntitySet Name="Frecuencia" EntityType="Self.Frecuencia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gerencia" EntityType="Self.Gerencia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GrupoUsuario" EntityType="Self.GrupoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GrupoUsuarioDefaultOpcion" EntityType="Self.GrupoUsuarioDefaultOpcion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GrupoUsuarioInventarioArbol" EntityType="Self.GrupoUsuarioInventarioArbol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HitConsulta" EntityType="Self.HitConsulta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HitGrupoUsuario" EntityType="Self.HitGrupoUsuario" Schema="dbo" store:Type="Tables" />
@@ -4837,6 +4897,22 @@
     <AssociationSet Name="FK_GrupoUsuario_TipoUsuario" Association="Self.FK_GrupoUsuario_TipoUsuario">
       <End Role="TipoUsuario" EntitySet="TipoUsuario" />
       <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" Association="Self.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario">
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso" Association="Self.FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso">
+      <End Role="TipoArbolAcceso" EntitySet="TipoArbolAcceso" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoGrupo" Association="Self.FK_GrupoUsuarioDefaultOpcion_TipoGrupo">
+      <End Role="TipoGrupo" EntitySet="TipoGrupo" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario" Association="Self.FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
     </AssociationSet>
     <AssociationSet Name="FK_GrupoUsuarioInventarioArbol_GrupoUsuario" Association="Self.FK_GrupoUsuarioInventarioArbol_GrupoUsuario">
       <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />

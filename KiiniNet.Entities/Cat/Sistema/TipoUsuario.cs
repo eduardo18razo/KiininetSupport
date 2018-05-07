@@ -112,5 +112,7 @@ namespace KiiniNet.Entities.Cat.Sistema
 
         [DataMember]
         public virtual List<HitConsulta> HitConsulta { get; set; }
+        [DataMember]
+        public virtual List<GrupoUsuarioDefaultOpcion> GrupoUsuarioDefaultOpcion { get; set; }
     }
 }

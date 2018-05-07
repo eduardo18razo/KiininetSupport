@@ -44,6 +44,7 @@
     <Compile Include="Cat\Arbol\Nodos\Nivel7.cs" />
     <Compile Include="Cat\Arbol\Nodos\Nivel2.cs" />
     <Compile Include="Cat\Mascaras\MascaraSeleccionCatalogo.cs" />
+    <Compile Include="Cat\Operacion\GrupoUsuarioDefaultOpcion.cs" />
     <Compile Include="Cat\Sistema\CampoCatalogo.cs" />
     <Compile Include="Cat\Sistema\Canal.cs" />
     <Compile Include="Cat\Mascaras\CampoMascara.cs" />

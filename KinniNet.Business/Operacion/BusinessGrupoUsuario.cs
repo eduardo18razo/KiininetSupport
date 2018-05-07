@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Operacion.Usuarios;
@@ -302,7 +303,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                if(idRol == (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
+                if (idRol == (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
                     result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).Where(w => w.IdTipoUsuario == idTipoUsuario && w.Habilitado).ToList();
                 else
                     result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).Where(w => w.IdTipoUsuario == idTipoUsuario && w.Habilitado).ToList();
@@ -408,6 +409,26 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
+        public List<GrupoUsuario> ObtenerGrupoDefaultRolOpcion(int idTipoArbol, int idTipoGrupo, int idTipoUsuario)
+        {
+            List<GrupoUsuario> result = null;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.GrupoUsuarioDefaultOpcion.Where(f => f.IdTipoGrupo == idTipoGrupo && f.IdTipoUsuario == idTipoUsuario).Select(s=>s.GrupoUsuario).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
         public List<UsuarioGrupo> ObtenerGruposDeUsuario(int idUsuario)
         {
             List<UsuarioGrupo> result;

@@ -9,7 +9,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="Agente.Master">
-      <publishTime>04/18/2018 08:57:07</publishTime>
+      <publishTime>05/03/2018 16:05:47</publishTime>
     </File>
     <File Include="Agente/Bandeja.aspx">
       <publishTime>04/19/2018 10:22:27</publishTime>
@@ -111,7 +111,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="assets/css/styles.css">
-      <publishTime>04/26/2018 16:14:54</publishTime>
+      <publishTime>05/07/2018 12:37:31</publishTime>
     </File>
     <File Include="assets/css/styles_movil.css">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -576,22 +576,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/18/2018 13:55:40</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>04/26/2018 18:07:30</publishTime>
+      <publishTime>05/07/2018 11:12:22</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>04/26/2018 18:07:30</publishTime>
+      <publishTime>05/07/2018 11:12:22</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>04/26/2018 18:02:04</publishTime>
+      <publishTime>05/07/2018 11:12:07</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>04/26/2018 18:02:04</publishTime>
+      <publishTime>05/07/2018 11:12:07</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>04/26/2018 18:02:05</publishTime>
+      <publishTime>05/07/2018 11:12:10</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>04/26/2018 18:02:05</publishTime>
+      <publishTime>05/07/2018 11:12:10</publishTime>
     </File>
     <File Include="bin/MSCaptcha.dll">
       <publishTime>04/09/2018 16:38:58</publishTime>
@@ -606,10 +606,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:58</publishTime>
     </File>
     <File Include="ConfirmacionCuenta.aspx">
-      <publishTime>04/09/2018 16:38:56</publishTime>
+      <publishTime>05/04/2018 16:39:18</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>04/26/2018 16:14:54</publishTime>
+      <publishTime>05/03/2018 16:05:48</publishTime>
     </File>
     <File Include="DisplayImages.ashx">
       <publishTime>04/09/2018 16:38:56</publishTime>
@@ -630,13 +630,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:56</publishTime>
     </File>
     <File Include="FrmRecuperar.aspx">
-      <publishTime>04/26/2018 16:14:54</publishTime>
+      <publishTime>05/03/2018 11:25:14</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>04/09/2018 16:38:56</publishTime>
     </File>
     <File Include="Identificar.aspx">
-      <publishTime>04/26/2018 16:14:54</publishTime>
+      <publishTime>05/04/2018 16:37:59</publishTime>
     </File>
     <File Include="Images/accent.png">
       <publishTime>04/09/2018 16:38:56</publishTime>
@@ -1125,7 +1125,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/18/2018 10:33:15</publishTime>
     </File>
     <File Include="Publico/Consultas/FrmConsultaTicket.aspx">
-      <publishTime>04/26/2018 16:14:54</publishTime>
+      <publishTime>05/04/2018 11:04:50</publishTime>
     </File>
     <File Include="Publico/Consultas/FrmPreviewConsulta.aspx">
       <publishTime>04/09/2018 16:38:56</publishTime>
@@ -1149,7 +1149,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:56</publishTime>
     </File>
     <File Include="Registro.aspx">
-      <publishTime>04/18/2018 12:51:46</publishTime>
+      <publishTime>05/04/2018 13:03:46</publishTime>
     </File>
     <File Include="TerminosyCondiciones.aspx">
       <publishTime>04/12/2018 13:23:19</publishTime>
@@ -1263,7 +1263,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/13/2018 11:26:10</publishTime>
     </File>
     <File Include="UserControls/Altas/Usuarios/UcAltaUsuarioRapida.ascx">
-      <publishTime>04/12/2018 18:00:32</publishTime>
+      <publishTime>05/02/2018 16:15:02</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcBusqueda.ascx">
       <publishTime>04/10/2018 16:12:31</publishTime>
@@ -1311,7 +1311,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaOrganizacion.ascx">
-      <publishTime>04/09/2018 16:38:57</publishTime>
+      <publishTime>05/03/2018 09:44:57</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaPuestos.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1494,13 +1494,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/Preview/UcVisorConsultainformacion.ascx">
-      <publishTime>04/09/2018 16:38:57</publishTime>
+      <publishTime>05/04/2018 11:04:52</publishTime>
     </File>
     <File Include="UserControls/Seleccion/AsociarGrupoUsuario.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcCategoria.ascx">
-      <publishTime>04/23/2018 12:00:33</publishTime>
+      <publishTime>05/07/2018 12:43:53</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcImpactoUrgencia.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1512,7 +1512,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/Seleccion/UcUserSelect.ascx">
-      <publishTime>04/19/2018 09:16:00</publishTime>
+      <publishTime>05/07/2018 12:44:58</publishTime>
     </File>
     <File Include="UserControls/Temporal/UcCatalogoNiveles.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1527,7 +1527,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/UcLogCopia.ascx">
-      <publishTime>04/12/2018 17:10:48</publishTime>
+      <publishTime>05/05/2018 18:59:13</publishTime>
     </File>
     <File Include="UserControls/UcLogIn.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
@@ -1686,7 +1686,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="Usuarios.Master">
-      <publishTime>04/26/2018 16:14:54</publishTime>
+      <publishTime>05/03/2018 16:05:47</publishTime>
     </File>
     <File Include="Web.config">
       <publishTime>04/26/2018 16:14:54</publishTime>

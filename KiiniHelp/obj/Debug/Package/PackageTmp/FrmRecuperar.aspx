@@ -81,7 +81,7 @@
                 </div>
 
                 <div runat="server" id="divCodigoVerificacion" visible="False" class="heigth100">
-                    <section class="login-section auth-section">
+                    <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
@@ -136,7 +136,7 @@
                 </div>
 
                 <div runat="server" id="divPreguntas" visible="False" class="heigth100">
-                    <section class="login-section auth-section">
+                    <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
@@ -181,7 +181,7 @@
                 </div>
 
                 <div runat="server" id="divChangePwd" visible="False" class="heigth100">
-                    <section class="login-section auth-section ">
+                    <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
                                 <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">

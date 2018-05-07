@@ -99,7 +99,7 @@
                                 <div class="dropdown-toggle" id="dropdownMenu-messages" data-toggle="dropdown" aria-expanded="true" role="button">
                                     <span class="sr-only">Ingresa</span>
                                     <span class="pe-icon fa fa-sign-in icon" data-toggle="tooltip" data-placement="bottom" title="Ingresa"></span>
-                                </div>  
+                                </div>
                                 <div class="dropdown-menu wdropdown-login" role="menu" aria-labelledby="dropdownMenu-messages">
                                     <span class="arrow arrowLogin"></span>
                                     <div>
@@ -281,23 +281,23 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                        <h4 class="modal-title" id="myModalLabel">Tu ticket se creo con éxito</h4>
+                        <h6 class="modal-title" id="myModalLabel">Ticket creado con éxito</h6>
                     </div>
                     <div class="modal-body">
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
-                                <hr />
                                 <p class="h4">
-                                    <strong>Tu no. de ticket:
-                                        <asp:Label runat="server" ID="lblNoTicket" /></strong>
+                                    Tu no. de ticket:
+                                        <asp:Label runat="server" ID="lblNoTicket" />
                                     <br>
                                 </p>
                                 <p class="h4">
-                                    <strong>Clave de registro:
-                                    <asp:Label runat="server" ID="lblRandom" /></strong>
+                                    Clave de registro:
+                                    <asp:Label runat="server" ID="lblRandom" />
                                 </p>
-                                <hr />
-                                En breve recibirás un correo con los datos de tu ticket para que puedas dar seguimiento.
+                                <p>
+                                    En breve recibirás un correo con los datos de tu ticket para que puedas dar seguimiento.
+                                </p>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>

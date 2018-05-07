@@ -14,16 +14,18 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <section class="module">
-                        <div class="module-inner">
-                            <div class="module-content">
-                                <div runat="server" ID="divCategoriaReference">
-                                    <h4 class="text-center title">Haz una consulta rápida o selecciona una
-                                        <asp:LinkButton ID="lbtnCategoria" runat="server" OnClick="lbtnCategoria_OnClick" CssClass="text-theme">categoría</asp:LinkButton></h4>
-                                </div>
-                                <div class="row" runat="server" ID="divCategoriaTitle" Visible="False">
-                                    <h3>
-                                        <asp:Label runat="server" ID="lblCategoria"></asp:Label>
-                                    </h3>
+                        <div class="row">
+                            <div class="module-inner">
+                                <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                                    <div class="module-heading no-border-bottom" runat="server" id="divCategoriaReference">
+                                        <h3 class="text-center module-title">Haz una consulta rápida o selecciona una
+                                        <asp:LinkButton ID="lbtnCategoria" runat="server" OnClick="lbtnCategoria_OnClick" CssClass="text-theme">categoría</asp:LinkButton></h3>
+                                    </div>
+                                    <div class="module-heading no-border-bottom" runat="server" id="divCategoriaTitle" visible="False">
+                                        <h3 class="module-title">
+                                            <asp:Label runat="server" ID="lblCategoria"></asp:Label>
+                                        </h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>

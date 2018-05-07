@@ -66,6 +66,8 @@ namespace KiiniNet.Entities.Cat.Usuario
         [DataMember]
         public virtual List<NotaGeneralGrupo> NotaGeneralGrupo { get; set; }
         [DataMember]
-        public virtual List<HitGrupoUsuario> HitGrupoUsuario { get; set; } 
+        public virtual List<HitGrupoUsuario> HitGrupoUsuario { get; set; }
+        [DataMember]
+        public virtual List<GrupoUsuarioDefaultOpcion> GrupoUsuarioDefaultOpcion { get; set; }
     }
 }
