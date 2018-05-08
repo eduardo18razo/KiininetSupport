@@ -25,16 +25,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 11:12:07</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.dll">
-      <publishTime>05/07/2018 11:12:15</publishTime>
+      <publishTime>05/07/2018 16:52:10</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.pdb">
-      <publishTime>05/07/2018 11:12:15</publishTime>
+      <publishTime>05/07/2018 16:52:10</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.dll">
-      <publishTime>05/07/2018 11:12:15</publishTime>
+      <publishTime>05/07/2018 16:52:10</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.pdb">
-      <publishTime>05/07/2018 11:12:15</publishTime>
+      <publishTime>05/07/2018 16:52:10</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
       <publishTime>05/07/2018 11:12:10</publishTime>
@@ -43,10 +43,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 11:12:10</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.dll">
-      <publishTime>05/07/2018 11:12:14</publishTime>
+      <publishTime>05/07/2018 16:52:08</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.pdb">
-      <publishTime>05/07/2018 11:12:14</publishTime>
+      <publishTime>05/07/2018 16:52:08</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.dll">
       <publishTime>05/07/2018 11:12:11</publishTime>
@@ -175,7 +175,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/26/2018 18:02:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/07/2018 12:04:02</publishTime>
+      <publishTime>05/07/2018 16:54:52</publishTime>
     </File>
   </ItemGroup>
 </Project>

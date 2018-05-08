@@ -92,14 +92,17 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
+
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
                 var frecuencias = (
                         from f in db.Frecuencia
                         join aa in db.ArbolAcceso on new { idarbol = f.IdArbolAcceso, idtu = f.IdTipoUsuario } equals new { idarbol = aa.Id, idtu = aa.IdTipoUsuario }
                         join iaa in db.InventarioArbolAcceso on aa.Id equals iaa.IdArbolAcceso
                         join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
                         join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
-                        where ug.IdUsuario == idUsuario &&
-                        f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
+                        //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
+                        where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
+                            && f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
                             .OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
@@ -252,14 +255,16 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
                 var frecuencias = (
                         from f in db.Frecuencia
                         join aa in db.ArbolAcceso on new { idarbol = f.IdArbolAcceso, idtu = f.IdTipoUsuario } equals new { idarbol = aa.Id, idtu = aa.IdTipoUsuario }
                         join iaa in db.InventarioArbolAcceso on aa.Id equals iaa.IdArbolAcceso
                         join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
-                        join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario }
-                        where ug.IdUsuario == idUsuario && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion &&
-                        f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
+                        //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
+                        where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
+                        && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion
+                            && f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
                             .OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
@@ -350,6 +355,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
+
                 var frecuencias = (from f in db.Frecuencia
                                    where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
                                    && f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio
@@ -415,13 +421,16 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
+
                 var frecuencias = (
                         from f in db.Frecuencia
                         join aa in db.ArbolAcceso on new { idarbol = f.IdArbolAcceso, idtu = f.IdTipoUsuario } equals new { idarbol = aa.Id, idtu = aa.IdTipoUsuario }
                         join iaa in db.InventarioArbolAcceso on aa.Id equals iaa.IdArbolAcceso
                         join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
-                        join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
-                        where ug.IdUsuario == idUsuario && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio &&
+                        //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
+                        where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
+                            && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio &&
                         f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
@@ -578,14 +587,16 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
                 var frecuencias = (
                         from f in db.Frecuencia
                         join aa in db.ArbolAcceso on new { idarbol = f.IdArbolAcceso, idtu = f.IdTipoUsuario } equals new { idarbol = aa.Id, idtu = aa.IdTipoUsuario }
                         join iaa in db.InventarioArbolAcceso on aa.Id equals iaa.IdArbolAcceso
                         join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
-                        join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
-                        where ug.IdUsuario == idUsuario && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas &&
-                        f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
+                        //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
+                        where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
+                        && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas
+                        && f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
                             .OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
@@ -657,7 +668,7 @@ namespace KinniNet.Core.Operacion
             List<HelperFrecuencia> result;
             try
             {
-                result = idUsuario == null ? GeneraTopConsultaPublico(idTipoUsuario) : GeneraTopConsultaPrivado(idTipoUsuario, (int)idUsuario);
+                result = idUsuario == null ? GeneraTopIncidentePublico(idTipoUsuario) : GeneraTopIncidentePrivado(idTipoUsuario, (int)idUsuario);
             }
             catch (Exception ex)
             {
