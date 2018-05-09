@@ -1,11 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcTicketDetalleUsuario.ascx.cs" Inherits="KiiniHelp.UserControls.Detalles.UcTicketDetalleUsuario" %>
-<%@ Register Src="~/UserControls/Detalles/UcDetalleMascaraCaptura.ascx" TagPrefix="uc1" TagName="UcDetalleMascaraCaptura" %>
+<%@ Register Src="~/UserControls/Detalles/UcDetalleMascaraCaptura.ascx" TagPrefix="ucMascara" TagName="UcDetalleMascaraCaptura" %>
+<%@ Register Src="~/UserControls/Operacion/UcCambiarEstatusTicket.ascx" TagPrefix="ucCambioEstatus" TagName="UcCambiarEstatusTicket" %>
+
 
 <div style="height: 100%;">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <asp:HiddenField runat="server" ID="hfIdTicket"/>
-            <asp:HiddenField runat="server" ID="hfIdUsuario"/>
+            <asp:HiddenField runat="server" ID="hfIdTicket" />
+            <asp:HiddenField runat="server" ID="hfIdUsuario" />
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
 
@@ -95,7 +97,7 @@
                                             <asp:Button ID="btnEstatus" runat="server" Text="Estatus" CssClass="btn btn-guardar" />
                                             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnEnviar_OnClick" />
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +128,7 @@
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="row" style="border-bottom: 1px solid #f3f3f7">
                                     <div class="col-lg-1 col-md-2 col-sm-2 col-lg-1Custom ">
@@ -141,7 +143,7 @@
                                             <asp:Label runat="server" ID="lblFecha" Text='<%# Eval("FechaHora") %>' />
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <uc1:UcDetalleMascaraCaptura runat="server" ID="UcDetalleMascaraCaptura" />
+                                            <ucMascara:UcDetalleMascaraCaptura runat="server" ID="UcDetalleMascaraCaptura" />
                                         </div>
                                     </div>
                                 </div>
@@ -153,4 +155,15 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <div class="modal fade" id="modalEstatusCambio" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <ucCambioEstatus:UcCambiarEstatusTicket runat="server" ID="ucCambiarEstatusTicket" />
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
 </div>

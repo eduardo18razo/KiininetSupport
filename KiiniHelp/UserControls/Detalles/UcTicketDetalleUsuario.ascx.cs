@@ -248,6 +248,33 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
+        protected void btnCambiarEstatus_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var gpoAsignado = item["IdGrupoAsignado"].Text;
+
+                int idTicket = IdTicket;
+                int estatusTicket = int.Parse(item["IdEstatusTicket"].Text);
+                int idNivelAsignado = int.Parse(item["IdNivelAsignado"].Text) + 2;
+                ucCambiarEstatusTicket.EsPropietario = true;
+                ucCambiarEstatusTicket.IdTicket = idTicket;
+                ucCambiarEstatusTicket.IdEstatusActual = estatusTicket;
+                ucCambiarEstatusTicket.IdSubRolActual = idNivelAsignado;
+                ucCambiarEstatusTicket.IdGrupo = Convert.ToInt32(gpoAsignado);
+                ucCambiarEstatusTicket.IdUsuario = ((Usuario)Session["UserData"]).Id;
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalEstatusCambio\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
         #endregion Eventos
     }
 }
