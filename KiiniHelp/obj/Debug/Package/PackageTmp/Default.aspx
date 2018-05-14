@@ -29,6 +29,15 @@
     <link rel="stylesheet" href="assets/css/bootstrap-markdown.css" />
     <link rel="stylesheet" href="assets/css/fileupload.css" />
     <script src="assets/js/functions.js"></script>
+    <script type="text/javascript">
+        window.addEventListener("pageshow", function (evt) {
+            if (evt.persisted) {
+                setTimeout(function () {
+                    window.location.reload();
+                }, 10);
+            }
+        }, false);
+    </script>
 </head>
 <body class="layout_no_leftnav">
     <form runat="server">

@@ -25,6 +25,7 @@ function ShowLanding() {
     }
 }
 
+
 function HideLanding() {
     var landing = document.getElementById('updateProgress');
     if (landing != undefined) {

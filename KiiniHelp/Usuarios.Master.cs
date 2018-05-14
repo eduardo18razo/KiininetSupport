@@ -428,6 +428,10 @@ namespace KiiniHelp
                             divSearch.Visible = false;
                             Response.Redirect("~/Users/DashBoard.aspx");
                             break;
+                        case (int)BusinessVariables.EnumRoles.ResponsableDeCategoría:
+                            divSearch.Visible = true;
+                            Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                            break;
                         default:
                             divSearch.Visible = true;
                             Response.Redirect("~/Users/FrmDashboardUser.aspx?");

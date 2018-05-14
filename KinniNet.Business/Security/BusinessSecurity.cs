@@ -442,7 +442,7 @@ namespace KinniNet.Core.Security
                     {
                         if (parametrosPassword.CaducaPassword)
                         {
-                            DateTime? fecha = DateTime.ParseExact(DateTime.Now.AddDays((parametrosPassword.TiempoCaducidad*-1)).ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff",CultureInfo.InvariantCulture);
+                            DateTime? fecha = DateTime.ParseExact(DateTime.Now.AddDays((parametrosPassword.TiempoCaducidad * -1)).ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                             if (db.UsuarioPassword.Any(a => a.IdUsuario == idUsuario && a.Fecha >= fecha))
                             {
                                 result = false;
@@ -562,41 +562,49 @@ namespace KinniNet.Core.Security
                         result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.View).Menu1 = result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.View).Menu1.OrderBy(o => o.Orden).ToList();
                     }
 
-                    List<Area> lstAreas = new BusinessArea().ObtenerAreasUsuarioByIdRol(idUsuario, idRol, false).Distinct().ToList();
-                    
-                    result.AddRange(lstAreas.Select(s => new Menu { Id = s.Id, Descripcion = s.Descripcion, Url = "DELSYSTEM" }).Distinct().ToList());
+
                     if (arboles)
-                        foreach (Area area in lstAreas)
+                        if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Consultas) ||
+                            menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Servicio) ||
+                            menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Incidentes))
                         {
-                            Menu menuToAdd = null;
-                            List<ArbolAcceso> lstArboles;
-                            if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Consultas))
+
+                            List<Area> lstAreas = new BusinessArea().ObtenerAreasUsuarioByIdRol(idUsuario, idRol, false).Distinct().ToList();
+
+                            result.AddRange(lstAreas.Select(s => new Menu { Id = s.Id, Descripcion = s.Descripcion, Url = "DELSYSTEM" }).Distinct().ToList());
+                            foreach (Area area in lstAreas)
                             {
-                                lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, area.Id).Where(w => !w.Sistema).Distinct().ToList();
-                                if (lstArboles.Any())
+                                Menu menuToAdd = null;
+                                List<ArbolAcceso> lstArboles;
+                                if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Consultas))
                                 {
-                                    menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/General/FrmNodoConsultas.aspx?IdArbol=");
+                                    lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion, area.Id).Where(w => !w.Sistema).Distinct().ToList();
+                                    if (lstArboles.Any())
+                                    {
+                                        menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
+                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/General/FrmNodoConsultas.aspx?IdArbol=");
+                                    }
+                                }
+                                if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Servicio))
+                                {
+                                    lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, area.Id).Where(w => !w.Sistema).Distinct().ToList();
+                                    if (lstArboles.Any())
+                                    {
+                                        menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
+                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
+                                    }
+                                }
+                                if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Incidentes))
+                                {
+                                    lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, area.Id).Where(w => !w.Sistema).Distinct().ToList();
+                                    if (lstArboles.Any())
+                                    {
+                                        menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
+                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
+                                    }
                                 }
                             }
-                            if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Servicio))
-                            {
-                                lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.SolicitarServicio, area.Id).Where(w => !w.Sistema).Distinct().ToList();
-                                if (lstArboles.Any())
-                                {
-                                    menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
-                                }
-                            }
-                            if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Incidentes))
-                            {
-                                lstArboles = new BusinessArbolAcceso().ObtenerArbolesAccesoByUsuarioTipoArbol(idUsuario, (int)BusinessVariables.EnumTipoArbol.ReportarProblemas, area.Id).Where(w => !w.Sistema).Distinct().ToList();
-                                if (lstArboles.Any())
-                                {
-                                    menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
-                                }
-                            }
+
                         }
                 }
                 catch (Exception ex)

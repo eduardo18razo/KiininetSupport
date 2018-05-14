@@ -133,6 +133,13 @@
                                                 <asp:LinkButton runat="server" Text="Ver" CommandArgument='<%# Eval("Id")%>' ID="lnkBtnDetalleOpciones" OnClick="lnkBtnDetalleOpciones_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Ult. Movimiento" HeaderStyle-Width="15%">
+                                            <ItemTemplate>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta")%>'><%# Eval("FechaAlta")%></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
 
                                         <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>

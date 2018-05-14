@@ -128,7 +128,7 @@ namespace KiiniHelp.UserControls.Seleccion
                 switch (tipoArbol)
                 {
                     case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
-                        Response.Redirect("~/Users/General/FrmNodoConsultas.aspx?IdArbol==" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        Response.Redirect("~/Users/General/FrmNodoConsultas.aspx?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
                         break;
 
                     case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:

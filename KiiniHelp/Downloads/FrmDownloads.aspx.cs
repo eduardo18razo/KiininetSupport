@@ -24,6 +24,7 @@ namespace KiiniHelp.Downloads
                         response.ClearContent();
                         response.ClearHeaders();
                         response.Buffer = true;
+                        response.AddHeader("Content-Type", "binary/octet-stream");
                         response.AddHeader("Content-Disposition", "attachment;filename=\"" + values[1] + "\"");
                         byte[] data = req.DownloadData(values[0] + values[1]);
                         response.BinaryWrite(data);

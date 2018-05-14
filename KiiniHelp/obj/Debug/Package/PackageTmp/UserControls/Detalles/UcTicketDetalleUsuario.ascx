@@ -15,7 +15,7 @@
                                 <div class="col-lg-1 col-md-2 col-sm-2 col-lg-1Custom">
                                     <span class="fa fa-envelope fa-30x padding-10 " />
                                 </div>
-                                <div class="col-lg-5 col-md-6 col-sm-12">
+                                <div class="col-lg-5 col-md-6 col-sm-10">
                                     <div class="row">
                                         <label class="module-title titulosBandeja">
                                             <asp:Label runat="server" ID="lblNoticket" />:
@@ -31,7 +31,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row col-lg-6 col-md-3 col-sm-12">
+                                <div class="col-lg-5 col-md-3 col-sm-12">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <table class="tableHeadTicket">
                                             <tr>

@@ -110,6 +110,7 @@ namespace KinniNet.Core.Operacion
                 foreach (var type in frecuencias.Distinct())
                 {
                     ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso);
+                    if (!result.Any(a => a.IdArbol == arbol.Id))
                     result.Add(new HelperFrecuencia
                     {
                         IdArbol = type.IdArbolAcceso,
@@ -272,14 +273,15 @@ namespace KinniNet.Core.Operacion
                 foreach (var type in frecuencias.Distinct())
                 {
                     ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso);
-                    result.Add(new HelperFrecuencia
-                    {
-                        IdArbol = type.IdArbolAcceso,
-                        IdArea = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).IdArea,
-                        IdTipoArbol = arbol.IdTipoArbolAcceso,
-                        DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
-                        DescripcionOpcionLarga = arbol.Descripcion
-                    });
+                    if (!result.Any(a => a.IdArbol == arbol.Id))
+                        result.Add(new HelperFrecuencia
+                        {
+                            IdArbol = type.IdArbolAcceso,
+                            IdArea = bArbol.ObtenerArbolAcceso(type.IdArbolAcceso).IdArea,
+                            IdTipoArbol = arbol.IdTipoArbolAcceso,
+                            DescripcionOpcion = bArbol.ObtenerTipificacion(type.IdArbolAcceso),
+                            DescripcionOpcionLarga = arbol.Descripcion
+                        });
                 }
 
                 List<int> arbolesAgregados = new List<int>();

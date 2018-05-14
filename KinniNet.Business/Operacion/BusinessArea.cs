@@ -94,14 +94,13 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<int> lstgpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.GrupoUsuario.IdTipoGrupo == idRol).Select(s => s.IdGrupoUsuario).Distinct().ToList();
                 List<int> lstAreas = (from a in db.Area
                                       join aa in db.ArbolAcceso on a.Id equals aa.IdArea
                                       join iaa in db.InventarioArbolAcceso on aa.Id equals iaa.IdArbolAcceso
                                       join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
                                       join gu in db.GrupoUsuario on new { gpo = guia.IdGrupoUsuario, tu = aa.IdTipoUsuario } equals new { gpo = gu.Id, tu = gu.IdTipoUsuario }
-                                      join ug in db.UsuarioGrupo on gu.Id equals ug.IdGrupoUsuario
-                                      join ur in db.UsuarioRol on ug.IdUsuario equals ur.IdUsuario
-                                      where ug.IdUsuario == idUsuario && guia.IdRol == idRol && !aa.Sistema && aa.Habilitado
+                                      where lstgpos.Contains(guia.IdGrupoUsuario) && guia.IdRol == idRol && !aa.Sistema && aa.Habilitado
                                       select a.Id).Distinct().ToList();
                 result = db.Area.Where(w => lstAreas.Contains(w.Id)).ToList();
                 if (insertarSeleccion)

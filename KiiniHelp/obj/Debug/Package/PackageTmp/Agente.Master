@@ -32,7 +32,15 @@
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
     <link rel="stylesheet" href="assets/css/telerikControl.css" />
-
+    <script type="text/javascript">
+        window.addEventListener("pageshow", function (evt) {
+            if (evt.persisted) {
+                setTimeout(function () {
+                    window.location.reload();
+                }, 10);
+            }
+        }, false);
+    </script>
     <%--<script type="text/javascript">
         var win;
         function MostrarPopup(modalName) {
@@ -260,7 +268,7 @@
                 </div>
             </header>
             <header class="header header-Tabs z-Index-9">
-                <div class="branding bandeja">
+                <div class="branding branding-bandeja bandeja">
                     <h1 class="logo text-center no-padding-top margin-top-12 texto-claro bg-grisOscuro">
                         <asp:HyperLink NavigateUrl="~/Agente/Bandeja.aspx" runat="server"> 
                              <i class="fa fa-envelope padding-5-right iconoFontLg"></i>

@@ -249,6 +249,15 @@ button.close:focus {
     width: 45px;
 }
 
+.branding-bandeja {
+    width: auto !important;
+}
+
+.compact:not(.nav-toggled) .branding-bandeja,
+.nav-toggled:not(.compact):not(.mobile) .branding-bandeja {
+    width: 45px;
+}
+
 .compact:not(.nav-toggled) .header .main_search_input_wrapper,
 .mobile.nav-toggled .header .main_search_input_wrapper,
 .nav-toggled:not(.compact):not(.mobile) .header .main_search_input_wrapper {
@@ -6411,6 +6420,12 @@ input, input[type="file"] {
     width: 6.333333% !important;
 }
 
+@media (min-width: 768px) {
+    .col-lg-1Custom {
+        width: 10.333333% !important;
+    }
+}
+
 .col-lg-offset-1Custom {
     margin-left: 6.333333% !important;
 }
@@ -6441,6 +6456,7 @@ input, input[type="file"] {
 }
 
 .tableHeadTicket {
+    width: 100%;
 }
 
     .tableHeadTicket tr td {
