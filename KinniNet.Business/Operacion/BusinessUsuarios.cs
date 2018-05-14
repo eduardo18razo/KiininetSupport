@@ -158,9 +158,9 @@ namespace KinniNet.Core.Operacion
                     if (rol.RolTipoUsuario != null)
                     {
                         rol.IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(usuario.IdTipoUsuario, rol.RolTipoUsuario.IdRol).Id;
-                        if (rol.RolTipoUsuario.IdRol != (int) BusinessVariables.EnumRoles.ConsultasEspeciales)
+                        if (rol.RolTipoUsuario.IdRol != (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
                         {
-                            GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol( rol.RolTipoUsuario.IdRol, usuario.IdTipoUsuario);
+                            GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.RolTipoUsuario.IdRol, usuario.IdTipoUsuario);
                             if (gu != null)
                             {
                                 if (usuario.UsuarioGrupo.All(a => a.IdGrupoUsuario != gu.Id))
@@ -425,7 +425,7 @@ namespace KinniNet.Core.Operacion
                             rol.IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(rol.RolTipoUsuario.IdTipoUsuario, rol.RolTipoUsuario.IdRol).Id;
                             rol.IdUsuario = idUsuario;
                             GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.RolTipoUsuario.IdRol, usuario.IdTipoUsuario);
-                            if (rol.RolTipoUsuario.IdRol != (int) BusinessVariables.EnumRoles.ConsultasEspeciales)
+                            if (rol.RolTipoUsuario.IdRol != (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
                             {
                                 if (gu != null)
                                 {
@@ -1324,7 +1324,13 @@ namespace KinniNet.Core.Operacion
                     db.LoadProperty(correo, "TipoCorreo");
                     Usuario usuario = db.Usuario.Single(u => u.Id == idUsuario);
                     db.LoadProperty(usuario, "CorreoUsuario");
-                    String body = string.Format(correo.Contenido, usuario.NombreCompleto, ConfigurationManager.AppSettings["siteUrl"] + "/FrmRecuperar.aspx?confirmacionCodigo=" + BusinessQueryString.Encrypt(idUsuario + "_" + g) + "&correo=" + BusinessQueryString.Encrypt(idCorreo.ToString()) + "&code=" + BusinessQueryString.Encrypt(codigo), codigo);
+                    string url = ConfigurationManager.AppSettings["siteUrl"];
+                    if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["siteUrlfolder"]))
+                        url += ConfigurationManager.AppSettings["siteUrlfolder"];
+                    url += "/FrmRecuperar.aspx?confirmacionCodigo=" + BusinessQueryString.Encrypt(idUsuario + "_" + g) +
+                           "&correo=" + BusinessQueryString.Encrypt(idCorreo.ToString()) + "&code=" +
+                           BusinessQueryString.Encrypt(codigo);
+                    String body = string.Format(correo.Contenido, usuario.NombreCompleto, url , codigo);
                     BusinessCorreo.SendMail(to, correo.TipoCorreo.Descripcion, body);
                     usuario.UsuarioLinkPassword = new List<UsuarioLinkPassword>
                     {

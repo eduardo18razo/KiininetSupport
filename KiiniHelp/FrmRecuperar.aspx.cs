@@ -35,18 +35,10 @@ namespace KiiniHelp
         {
             try
             {
-                StringBuilder sb = new StringBuilder();
                 if (txtContrasena.Text.Trim() == string.Empty)
-                    sb.AppendLine("<li>Contraseña nueva es campo obligatorio</li>");
+                    throw new Exception("Contraseña nueva es campo obligatorio");
                 if (txtContrasena.Text.Trim() != txtConfirmar.Text.Trim())
-                    sb.AppendLine("<li>Las contraseñas no coinciden</li>");
-                if (sb.ToString() != string.Empty)
-                {
-                    sb.Append("</ul>");
-                    sb.Insert(0, "<ul>");
-                    sb.Insert(0, "<h3>Reestablecer Contraseña</h3>");
-                    throw new Exception(sb.ToString());
-                }
+                    throw new Exception("Las contraseñas no coinciden");
             }
             catch (Exception e)
             {
@@ -144,6 +136,7 @@ namespace KiiniHelp
                     }
                     else
                     {
+                        ValidaCampos();
                         _servicioSeguridad.RecuperarCuenta(int.Parse(values[0]), (int)BusinessVariables.EnumTipoLink.Reset, values[1], int.Parse(QueryString.Decrypt(Request.Params["correo"])), txtCodigo.Text.Trim(), txtContrasena.Text, "0");
                         Response.Redirect("~/Default.aspx");
                     }

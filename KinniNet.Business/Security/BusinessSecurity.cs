@@ -293,14 +293,11 @@ namespace KinniNet.Core.Security
                     {
                         case 0:
                             new BusinessUsuarios().ValidaCodigoVerificacionCorreo(idUsuario, idTipoNotificacion, link, idCorreo, codigo);
-                            new BusinessUsuarios().TerminaCodigoVerificacionCorreo(idUsuario, idTipoNotificacion, link, idCorreo, codigo);
                             break;
                         case 1:
                             new BusinessUsuarios().ValidaCodigoVerificacionSms(idUsuario, idTipoNotificacion, idCorreo, codigo);
-                            new BusinessUsuarios().TerminaCodigoVerificacionSms(idUsuario, idTipoNotificacion, idCorreo, codigo);
                             break;
                     }
-
                     string hashedPdw = SecurityUtils.CreateShaHash(contrasena);
                     Usuario user = db.Usuario.SingleOrDefault(w => w.Id == idUsuario && w.Habilitado);
                     if (user != null)
@@ -325,6 +322,17 @@ namespace KinniNet.Core.Security
                         db.SaveChanges();
                     }
                     LimpiaPasswordsAntiguos(idUsuario);
+
+                    switch (int.Parse(tipoRecuperacion))
+                    {
+                        case 0:
+                            new BusinessUsuarios().TerminaCodigoVerificacionCorreo(idUsuario, idTipoNotificacion, link, idCorreo, codigo);
+                            break;
+                        case 1:
+                            new BusinessUsuarios().TerminaCodigoVerificacionSms(idUsuario, idTipoNotificacion, idCorreo, codigo);
+                            break;
+                    }
+                    
                 }
                 catch (Exception ex)
                 {
