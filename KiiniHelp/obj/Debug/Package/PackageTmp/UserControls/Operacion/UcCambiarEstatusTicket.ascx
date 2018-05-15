@@ -4,6 +4,7 @@
         <asp:HiddenField runat="server" ID="hfTicketCerrado" />
         <asp:HiddenField runat="server" ID="hfEstatusActual" />
         <asp:HiddenField runat="server" ID="hfIdSubRolActual" />
+        <asp:HiddenField runat="server" ID="hfPublico" Value="false" />
         <div class="modal-header">
             <asp:LinkButton CssClass="close" runat="server" OnClick="btnCancelar_OnClick" Text='&times' />
             <h6 class="modal-title" id="modal-new-ticket-label">

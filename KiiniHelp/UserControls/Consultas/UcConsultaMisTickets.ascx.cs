@@ -150,6 +150,8 @@ namespace KiiniHelp.UserControls.Consultas
                 Button btn = (Button)sender;
                 if (btn == null) return;
                 hfMuestraEncuesta.Value = btn.Attributes["data-tieneEncuesta"];
+
+                ucCambiarEstatusTicket.EsPublico = false;
                 ucCambiarEstatusTicket.EsPropietario = true;
                 ucCambiarEstatusTicket.IdTicket = int.Parse(btn.CommandArgument);
                 ucCambiarEstatusTicket.IdEstatusActual = int.Parse(btn.CommandName);

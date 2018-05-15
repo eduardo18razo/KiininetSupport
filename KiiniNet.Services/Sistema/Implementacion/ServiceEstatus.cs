@@ -53,6 +53,21 @@ namespace KiiniNet.Services.Sistema.Implementacion
             }
         }
 
+        public List<EstatusTicket> ObtenerEstatusTicketUsuarioPublico(int idTicket, int idGrupo, int idEstatusActual, bool esPropietario, int? idSubRol, bool insertarSeleccion)
+        {
+            try
+            {
+                using (BusinessEstatus negocio = new BusinessEstatus())
+                {
+                    return negocio.ObtenerEstatusTicketUsuarioPublico(idTicket, idGrupo, idEstatusActual, esPropietario, idSubRol, insertarSeleccion);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public List<EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int estatusAsignacionActual, bool esPropietario, int subRolActual, bool insertarSeleccion)
         {
             try
@@ -83,13 +98,13 @@ namespace KiiniNet.Services.Sistema.Implementacion
             }
         }
 
-        public bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int estatusAsignar, bool esPropietario)
+        public bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int estatusAsignar, bool esPropietario, bool publico)
         {
             try
             {
                 using (BusinessEstatus negocio = new BusinessEstatus())
                 {
-                    return negocio.HasCambioEstatusComentarioObligatorio(idUsuario, idTicket, estatusAsignar, esPropietario);
+                    return negocio.HasCambioEstatusComentarioObligatorio(idUsuario, idTicket, estatusAsignar, esPropietario, publico);
                 }
             }
             catch (Exception ex)

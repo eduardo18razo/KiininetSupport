@@ -24,6 +24,9 @@ namespace KiiniHelp.ServiceSistemaEstatus {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuario", ReplyAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuario(int idUsuario, int idGrupo, int idEstatusActual, bool esPropietario, System.Nullable<int> idSubRol, bool insertarSeleccion);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioPublico", ReplyAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioPublicoResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuarioPublico(int idTicket, int idGrupo, int idEstatusActual, bool esPropietario, System.Nullable<int> idSubRol, bool insertarSeleccion);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuario", ReplyAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuarioResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int estatusAsignacionActual, bool esPropietario, int subRolActual, bool insertarSeleccion);
         
@@ -31,7 +34,7 @@ namespace KiiniHelp.ServiceSistemaEstatus {
         bool HasComentarioObligatorio(int idUsuario, int idGrupo, int idSubRol, int estatusAsignacionActual, int estatusAsignar, bool esPropietario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorio", ReplyAction="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorioResponse")]
-        bool HasCambioEstatusComentarioObligatorio(System.Nullable<int> idUsuario, int idTicket, int estatusAsignar, bool esPropietario);
+        bool HasCambioEstatusComentarioObligatorio(System.Nullable<int> idUsuario, int idTicket, int estatusAsignar, bool esPropietario, bool publico);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -73,6 +76,10 @@ namespace KiiniHelp.ServiceSistemaEstatus {
             return base.Channel.ObtenerEstatusTicketUsuario(idUsuario, idGrupo, idEstatusActual, esPropietario, idSubRol, insertarSeleccion);
         }
         
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusTicket> ObtenerEstatusTicketUsuarioPublico(int idTicket, int idGrupo, int idEstatusActual, bool esPropietario, System.Nullable<int> idSubRol, bool insertarSeleccion) {
+            return base.Channel.ObtenerEstatusTicketUsuarioPublico(idTicket, idGrupo, idEstatusActual, esPropietario, idSubRol, insertarSeleccion);
+        }
+        
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.EstatusAsignacion> ObtenerEstatusAsignacionUsuario(int idUsuario, int idGrupo, int estatusAsignacionActual, bool esPropietario, int subRolActual, bool insertarSeleccion) {
             return base.Channel.ObtenerEstatusAsignacionUsuario(idUsuario, idGrupo, estatusAsignacionActual, esPropietario, subRolActual, insertarSeleccion);
         }
@@ -81,8 +88,8 @@ namespace KiiniHelp.ServiceSistemaEstatus {
             return base.Channel.HasComentarioObligatorio(idUsuario, idGrupo, idSubRol, estatusAsignacionActual, estatusAsignar, esPropietario);
         }
         
-        public bool HasCambioEstatusComentarioObligatorio(System.Nullable<int> idUsuario, int idTicket, int estatusAsignar, bool esPropietario) {
-            return base.Channel.HasCambioEstatusComentarioObligatorio(idUsuario, idTicket, estatusAsignar, esPropietario);
+        public bool HasCambioEstatusComentarioObligatorio(System.Nullable<int> idUsuario, int idTicket, int estatusAsignar, bool esPropietario, bool publico) {
+            return base.Channel.HasCambioEstatusComentarioObligatorio(idUsuario, idTicket, estatusAsignar, esPropietario, publico);
         }
     }
 }

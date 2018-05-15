@@ -48,6 +48,25 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerEstatusTicketUsuarioPublico">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTicket" type="xs:int" />
+        <xs:element minOccurs="0" name="idGrupo" type="xs:int" />
+        <xs:element minOccurs="0" name="idEstatusActual" type="xs:int" />
+        <xs:element minOccurs="0" name="esPropietario" type="xs:boolean" />
+        <xs:element minOccurs="0" name="idSubRol" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="insertarSeleccion" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerEstatusTicketUsuarioPublicoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="ObtenerEstatusTicketUsuarioPublicoResult" nillable="true" type="q4:ArrayOfEstatusTicket" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ObtenerEstatusAsignacionUsuario">
     <xs:complexType>
       <xs:sequence>
@@ -63,7 +82,7 @@
   <xs:element name="ObtenerEstatusAsignacionUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="ObtenerEstatusAsignacionUsuarioResult" nillable="true" type="q4:ArrayOfEstatusAsignacion" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="ObtenerEstatusAsignacionUsuarioResult" nillable="true" type="q5:ArrayOfEstatusAsignacion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -93,6 +112,7 @@
         <xs:element minOccurs="0" name="idTicket" type="xs:int" />
         <xs:element minOccurs="0" name="estatusAsignar" type="xs:int" />
         <xs:element minOccurs="0" name="esPropietario" type="xs:boolean" />
+        <xs:element minOccurs="0" name="publico" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

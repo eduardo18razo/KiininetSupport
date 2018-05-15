@@ -772,6 +772,7 @@ namespace KiiniHelp.Agente
                     int idNivelAsignado = int.Parse(item["IdNivelAsignado"].Text) + 2;
                     hfTicketActivo.Value = idTicket.ToString();
                     UcCambiarEstatusTicket.EsPropietario = true;
+                    UcCambiarEstatusTicket.EsPublico = false;
                     UcCambiarEstatusTicket.IdTicket = idTicket;
                     UcCambiarEstatusTicket.IdEstatusActual = estatusTicket;
                     UcCambiarEstatusTicket.IdSubRolActual = idNivelAsignado;

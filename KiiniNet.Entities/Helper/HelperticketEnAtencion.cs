@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using KiiniNet.Entities.Cat.Sistema;
-using KiiniNet.Entities.Operacion.Tickets;
 
 namespace KiiniNet.Entities.Helper
 {
@@ -20,12 +18,18 @@ namespace KiiniNet.Entities.Helper
         public string ColorEstatus { get; set; }
         public int? IdNivelAsignacion { get; set; }
 
+        public int IdTipoTicket { get; set; }
+
         public int IdEstatusAsignacion { get; set; }
         public string DescripcionEstatusAsignacion { get; set; }
         public bool EsPropietario { get; set; }
         public bool PuedeAsignar { get; set; }
         public int IdGrupoAsignado { get; set; }
+        public int IdGrupoUsuario { get; set; }
         public string UsuarioAsignado { get; set; }
+        public int IdUsuarioSolicito { get; set; }
+
+        public bool TieneEncuesta { get; set; }
 
         public List<EstatusTicket> EstatusDisponibles { get; set; }
 

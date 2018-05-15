@@ -5,6 +5,7 @@ using System.Web.Configuration;
 using System.Web.UI;
 using KiiniHelp.ServiceAtencionTicket;
 using KiiniHelp.ServiceSistemaEstatus;
+using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 
@@ -49,6 +50,11 @@ namespace KiiniHelp.UserControls.Operacion
             set { hfEstatusActual.Value = value.ToString(); }
         }
 
+        public int IdEstatusSeleccionado
+        {
+            get { return Convert.ToInt32(ddlEstatus.SelectedValue); }
+        }
+
         public int? IdSubRolActual
         {
             get { return string.IsNullOrEmpty(hfIdSubRolActual.Value) ? null : (int?)int.Parse(hfIdSubRolActual.Value); }
@@ -66,11 +72,21 @@ namespace KiiniHelp.UserControls.Operacion
             set { ddlEstatus.Enabled = value; }
         }
 
+        public bool EsPublico
+        {
+            get { return bool.Parse(hfPublico.Value); }
+            set { hfPublico.Value = value.ToString(); }
+        }
         private void LLenaEstatus()
         {
             try
             {
-                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusTicketUsuario(IdUsuario, IdGrupo, IdEstatusActual, EsPropietario, IdSubRolActual, true);
+                List<EstatusTicket> lst = null;
+                if (EsPublico)
+                    lst = _servicioEstatus.ObtenerEstatusTicketUsuarioPublico(IdTicket, IdGrupo, IdEstatusActual, EsPropietario, IdSubRolActual, true);
+                else
+                    lst = _servicioEstatus.ObtenerEstatusTicketUsuario(IdUsuario, IdGrupo, IdEstatusActual, EsPropietario, IdSubRolActual, true);
+                ddlEstatus.DataSource = lst;
                 ddlEstatus.DataTextField = "Descripcion";
                 ddlEstatus.DataValueField = "Id";
                 ddlEstatus.DataBind();
@@ -101,7 +117,7 @@ namespace KiiniHelp.UserControls.Operacion
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    
+
                 }
             }
             catch (Exception ex)
@@ -122,16 +138,16 @@ namespace KiiniHelp.UserControls.Operacion
                 if (ddlEstatus.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     throw new Exception("Debe seleccionar un estatus");
 
-                if (_servicioEstatus.HasCambioEstatusComentarioObligatorio(Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null, IdTicket, Convert.ToInt32(ddlEstatus.SelectedValue), EsPropietario))
+                if (_servicioEstatus.HasCambioEstatusComentarioObligatorio(Session["UserData"] != null ? (int?)((Usuario)Session["UserData"]).Id : null, IdTicket, Convert.ToInt32(ddlEstatus.SelectedValue), EsPropietario, EsPublico))
                     if (txtComentarios.Text.Trim() == string.Empty)
                         throw new Exception("Debe agregar un comentario");
 
                 if (ddlEstatus.SelectedValue != BusinessVariables.ComboBoxCatalogo.ValueSeleccione.ToString())
                 {
-                    CerroTicket = Convert.ToInt32(ddlEstatus.SelectedValue) == (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado;
+                    CerroTicket = Convert.ToInt32(ddlEstatus.SelectedValue) == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado;
                     _servicioAtencionTicket.CambiarEstatus(IdTicket, Convert.ToInt32(ddlEstatus.SelectedValue), IdUsuario, txtComentarios.Text.Trim());
                 }
-                
+
                 if (OnAceptarModal != null)
                     OnAceptarModal();
             }
@@ -150,8 +166,8 @@ namespace KiiniHelp.UserControls.Operacion
         {
             try
             {
-               if (OnCancelarModal != null)
-                   OnCancelarModal();
+                if (OnCancelarModal != null)
+                    OnCancelarModal();
             }
             catch (Exception ex)
             {

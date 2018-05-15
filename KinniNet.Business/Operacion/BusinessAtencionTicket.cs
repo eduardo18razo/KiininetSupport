@@ -11,7 +11,6 @@ using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
 using KinniNet.Data.Help;
-using Telerik.Web.UI.GridExcelBuilder;
 
 namespace KinniNet.Core.Operacion
 {
@@ -162,14 +161,14 @@ namespace KinniNet.Core.Operacion
                               etsrg.IdEstatusTicketActual == idEstatusActualTicket
                               && etsrg.IdRolSolicita == 2
                           select etsrg;
-                if (subRolPertenece == null)
-                    qry = from q in qry
-                          where q.IdSubRolPertenece == null
-                          select q;
-                else
-                    qry = from q in qry
-                          where q.IdSubRolPertenece == subRolPertenece
-                          select q;
+                //if (subRolPertenece == null)
+                //    qry = from q in qry
+                //          where q.IdSubRolPertenece == null
+                //          select q;
+                //else
+                //    qry = from q in qry
+                //          where q.IdSubRolPertenece == subRolPertenece
+                //          select q;
                 result = qry.Select(s => s.EstatusTicketAccion).Distinct().ToList();
             }
             catch (Exception ex)
@@ -615,7 +614,7 @@ namespace KinniNet.Core.Operacion
                                                  && easrg.Habilitado).Distinct().ToList();
                             propietarioTicket = estatusPermitidos.Count > 0;
                         }
-
+                        result.IdTipoTicket = ticket.IdTipoArbolAcceso;
                         result.DentroSla = ticket.DentroSla;
                         result.IdEstatusTicket = ticket.IdEstatusTicket;
                         result.DescripcionEstatusTicket = ticket.EstatusTicket.Descripcion;
@@ -626,8 +625,10 @@ namespace KinniNet.Core.Operacion
                         result.PuedeAsignar = propietarioTicket && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto;
                         result.EsPropietario = idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
                         result.IdGrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().IdGrupoUsuario;
+                        result.IdGrupoUsuario = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Distinct().First().IdGrupoUsuario;
                         result.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
                         result.EstatusDisponibles = CambiaEstatus( ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
+                        result.TieneEncuesta = ticket.ArbolAcceso.InventarioArbolAcceso.First().IdEncuesta != null;
                         #region Usuario Levanto
                         if (ticket.UsuarioLevanto != null)
                         {

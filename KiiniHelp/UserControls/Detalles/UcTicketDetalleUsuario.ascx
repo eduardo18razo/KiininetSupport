@@ -7,7 +7,13 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfIdTicket" />
+            <asp:HiddenField runat="server" ID="hfIdEstatusActual" />
             <asp:HiddenField runat="server" ID="hfIdUsuario" />
+            <asp:HiddenField runat="server" ID="hfIdGrupoUsuario"/>
+            <asp:HiddenField runat="server" ID="hfPropietario"/>
+            <asp:HiddenField runat="server" ID="hfTipoTicket"/>
+            <asp:HiddenField runat="server" ID="hfTieneEncuesta" Value ="false"/>
+
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
 
@@ -94,7 +100,7 @@
                                             <asp:TextBox ID="txtConversacion" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control no-padding-top no-margin-top" MaxLength="999" />
                                         </div>
                                         <div class="wrapperResponse col-lg-12 col-md-12 col-sm-12 text-right padding-10-top padding-10-bottom">
-                                            <asp:Button ID="btnEstatus" runat="server" Text="Estatus" CssClass="btn btn-guardar" />
+                                            <asp:Button ID="btnEstatus" runat="server" Text="Estatus" CssClass="btn btn-guardar" OnClick="btnCambiarEstatus_OnClick" />
                                             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnEnviar_OnClick" />
                                         </div>
 
