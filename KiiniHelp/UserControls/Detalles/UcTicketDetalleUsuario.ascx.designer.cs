@@ -22,6 +22,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.HiddenField hfIdTicket;
         
         /// <summary>
+        /// Control hfIdEstatusActual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdEstatusActual;
+        
+        /// <summary>
         /// Control hfIdUsuario.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,42 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfIdUsuario;
+        
+        /// <summary>
+        /// Control hfIdGrupoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdGrupoUsuario;
+        
+        /// <summary>
+        /// Control hfPropietario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfPropietario;
+        
+        /// <summary>
+        /// Control hfTipoTicket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTipoTicket;
+        
+        /// <summary>
+        /// Control hfTieneEncuesta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTieneEncuesta;
         
         /// <summary>
         /// Control lblNoticket.
@@ -139,6 +184,15 @@ namespace KiiniHelp.UserControls.Detalles {
         protected global::System.Web.UI.WebControls.TextBox txtConversacion;
         
         /// <summary>
+        /// Control btnEstatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEstatus;
+        
+        /// <summary>
         /// Control btnEnviar.
         /// </summary>
         /// <remarks>
@@ -200,5 +254,14 @@ namespace KiiniHelp.UserControls.Detalles {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::KiiniHelp.UserControls.Detalles.UcDetalleMascaraCaptura UcDetalleMascaraCaptura;
+        
+        /// <summary>
+        /// Control ucCambiarEstatusTicket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::KiiniHelp.UserControls.Operacion.UcCambiarEstatusTicket ucCambiarEstatusTicket;
     }
 }

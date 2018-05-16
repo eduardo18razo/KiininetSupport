@@ -36,6 +36,12 @@
   <wsdl:message name="IServiceEstatus_ObtenerEstatusTicketUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerEstatusTicketUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceEstatus_ObtenerEstatusTicketUsuarioPublico_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusTicketUsuarioPublico" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEstatus_ObtenerEstatusTicketUsuarioPublico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstatusTicketUsuarioPublicoResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceEstatus_ObtenerEstatusAsignacionUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerEstatusAsignacionUsuario" />
   </wsdl:message>
@@ -47,6 +53,12 @@
   </wsdl:message>
   <wsdl:message name="IServiceEstatus_HasComentarioObligatorio_OutputMessage">
     <wsdl:part name="parameters" element="tns:HasComentarioObligatorioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEstatus_HasCambioEstatusComentarioObligatorio_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasCambioEstatusComentarioObligatorio" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEstatus_HasCambioEstatusComentarioObligatorio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasCambioEstatusComentarioObligatorioResponse" />
   </wsdl:message>
   <wsdl:portType name="IServiceEstatus">
     <wsdl:operation name="ObtenerEstatusTicket">
@@ -61,6 +73,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuario" message="tns:IServiceEstatus_ObtenerEstatusTicketUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioResponse" message="tns:IServiceEstatus_ObtenerEstatusTicketUsuario_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusTicketUsuarioPublico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioPublico" message="tns:IServiceEstatus_ObtenerEstatusTicketUsuarioPublico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioPublicoResponse" message="tns:IServiceEstatus_ObtenerEstatusTicketUsuarioPublico_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ObtenerEstatusAsignacionUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuario" message="tns:IServiceEstatus_ObtenerEstatusAsignacionUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuarioResponse" message="tns:IServiceEstatus_ObtenerEstatusAsignacionUsuario_OutputMessage" />
@@ -68,6 +84,10 @@
     <wsdl:operation name="HasComentarioObligatorio">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/HasComentarioObligatorio" message="tns:IServiceEstatus_HasComentarioObligatorio_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceEstatus/HasComentarioObligatorioResponse" message="tns:IServiceEstatus_HasComentarioObligatorio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasCambioEstatusComentarioObligatorio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorio" message="tns:IServiceEstatus_HasCambioEstatusComentarioObligatorio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorioResponse" message="tns:IServiceEstatus_HasCambioEstatusComentarioObligatorio_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceEstatus">
@@ -99,6 +119,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerEstatusTicketUsuarioPublico">
+      <soap:operation soapAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusTicketUsuarioPublico" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerEstatusAsignacionUsuario">
       <soap:operation soapAction="http://tempuri.org/IServiceEstatus/ObtenerEstatusAsignacionUsuario" style="document" />
       <wsdl:input>
@@ -110,6 +139,15 @@
     </wsdl:operation>
     <wsdl:operation name="HasComentarioObligatorio">
       <soap:operation soapAction="http://tempuri.org/IServiceEstatus/HasComentarioObligatorio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasCambioEstatusComentarioObligatorio">
+      <soap:operation soapAction="http://tempuri.org/IServiceEstatus/HasCambioEstatusComentarioObligatorio" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

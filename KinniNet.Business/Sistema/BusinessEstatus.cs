@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
+using KiiniNet.Entities.Operacion.Tickets;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
+using Telerik.Web.UI.Export;
 
 namespace KinniNet.Core.Sistema
 {
@@ -56,7 +59,6 @@ namespace KinniNet.Core.Sistema
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = new List<EstatusTicket>();
-                GrupoUsuario gpo = db.GrupoUsuario.SingleOrDefault(s => s.Id == idGrupo);
                 var qry = from etsrg in db.EstatusTicketSubRolGeneral
                           join et in db.EstatusTicket on etsrg.IdEstatusTicketAccion equals et.Id
                           join ug in db.UsuarioGrupo on etsrg.IdGrupoUsuario equals ug.IdGrupoUsuario
@@ -78,6 +80,55 @@ namespace KinniNet.Core.Sistema
                           select q;
 
                 result.AddRange((from q in qry select q.et).Distinct().ToList());
+                if (insertarSeleccion)
+                    result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
+                        new EstatusTicket
+                        {
+                            Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione,
+                            Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione
+                        });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<EstatusTicket> ObtenerEstatusTicketUsuarioPublico(int idTicket, int idGrupo, int idEstatusActual, bool esPropietario, int? idSubRol, bool insertarSeleccion)
+        {
+            List<EstatusTicket> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = new List<EstatusTicket>();
+                var gpoTicket = db.TicketGrupoUsuario.SingleOrDefault(s => s.IdTicket == idTicket && s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario);
+                if (gpoTicket != null)
+                {
+                    if (gpoTicket.IdGrupoUsuario != idGrupo)
+                        throw new Exception("Datos incorrectos consulte a su administrador");
+                    var qry = from etsrg in db.EstatusTicketSubRolGeneral
+                              join et in db.EstatusTicket on etsrg.IdEstatusTicketAccion equals et.Id
+                              where etsrg.IdEstatusTicketActual == idEstatusActual
+                                    && etsrg.Propietario == esPropietario
+                                    && etsrg.Habilitado
+                              select new { etsrg, et};
+                    if (idSubRol != null)
+                        qry = from q in qry
+                              where q.etsrg.IdSubRolPertenece == idSubRol
+                              select q;
+                    if (idGrupo != 0)
+                        qry = from q in qry
+                              where q.etsrg.IdGrupoUsuario == idGrupo
+                              select q;
+
+                    result.AddRange((from q in qry select q.et).Distinct().ToList());
+                }
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new EstatusTicket
@@ -181,6 +232,57 @@ namespace KinniNet.Core.Sistema
                                   easg.IdEstatusAsignacionActual == estatusAsignacionActual &&
                                   easg.IdEstatusAsignacionAccion == estatusAsignar && easg.Propietario == esPropietario
                               select easg.ComentarioObligado).First();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int estatusAsignar, bool esPropietario, bool publico)
+        {
+            bool result = false;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                Ticket ticket = db.Ticket.SingleOrDefault(s => s.Id == idTicket);
+                if (ticket != null)
+                {
+                    if (idUsuario == null)
+                        idUsuario = ticket.IdUsuarioSolicito;
+                    db.LoadProperty(ticket, "TicketGrupoUsuario");
+                    foreach (TicketGrupoUsuario tgu in ticket.TicketGrupoUsuario)
+                    {
+                        db.LoadProperty(tgu, "GrupoUsuario");
+                    }
+                    GrupoUsuario gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.GrupoUsuario).SingleOrDefault();
+                    if (gpo != null)
+                    {
+                        int? rolPertenece = UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket);
+                        var qry = from etsrg in db.EstatusTicketSubRolGeneral
+                            where etsrg.IdGrupoUsuario == gpo.Id
+                                  && etsrg.TieneSupervisor == gpo.TieneSupervisor
+                                  && etsrg.IdEstatusTicketActual == ticket.IdEstatusTicket
+                                  && etsrg.IdEstatusTicketAccion == estatusAsignar
+                            select etsrg;
+                        if (!publico)
+                            qry = from q in qry
+                                where q.IdRolPertenece == rolPertenece
+                                select q;
+                        var res = (from q in qry
+                                   select q.ComentarioObligado).FirstOrDefault();
+                        if (res == false)
+                            result = false;
+                        else
+                            result = true;
+                    }
                 }
             }
             catch (Exception e)

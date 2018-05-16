@@ -22,6 +22,15 @@ namespace KiiniHelp.Publico.Consultas {
         protected global::System.Web.UI.WebControls.HiddenField hfMuestraEncuesta;
         
         /// <summary>
+        /// Control divTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTitle;
+        
+        /// <summary>
         /// Control divConsulta.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace KiiniHelp.Publico.Consultas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDetalle;
+        
+        /// <summary>
+        /// Control divDetalleTicket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDetalleTicket;
         
         /// <summary>
         /// Control ucTicketDetalleUsuario.

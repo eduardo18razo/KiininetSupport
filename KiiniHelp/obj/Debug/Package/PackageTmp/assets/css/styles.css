@@ -6420,7 +6420,7 @@ input, input[type="file"] {
     width: 6.333333% !important;
 }
 
-@media (min-width: 768px) {
+@media only screen and (device-width:768px){
     .col-lg-1Custom {
         width: 10.333333% !important;
     }

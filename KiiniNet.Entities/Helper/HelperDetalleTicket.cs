@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using KiiniNet.Entities.Cat.Sistema;
 
 namespace KiiniNet.Entities.Helper
 {
@@ -17,6 +18,7 @@ namespace KiiniNet.Entities.Helper
         public string AsignacionActual { get; set; }
         public DateTime FechaCreacion { get; set; }
         public bool TieneEncuesta { get; set; }
+        public List<EstatusTicket> EstatusDisponibles { get; set; }
         public List<HelperEstatusDetalle> EstatusDetalle { get; set; }
         public List<HelperAsignacionesDetalle> AsignacionesDetalle { get; set; }
         public List<HelperConversacionDetalle> ConversacionDetalle { get; set; }

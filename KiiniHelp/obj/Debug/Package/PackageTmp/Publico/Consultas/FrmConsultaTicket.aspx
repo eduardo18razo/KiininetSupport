@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Consulta Ticket" Language="C#" MasterPageFile="~/Public.Master" ValidateRequest="false" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="FrmConsultaTicket.aspx.cs" Inherits="KiiniHelp.Publico.Consultas.FrmConsultaTicket" %>
+
 <%@ Register Src="~/UserControls/Detalles/UcTicketDetalleUsuario.ascx" TagPrefix="uc1" TagName="UcTicketDetalleUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -15,7 +16,7 @@
             <section class="module">
                 <div class="row">
                     <div class="module-inner">
-                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" runat="server" id="divTitle">
                             <div class="module-heading">
                                 <h3 class="module-title">
                                     <asp:Label runat="server" Text="Consulta de tickets" /></h3>
@@ -23,7 +24,7 @@
                             <p>
                                 Ingresa la siguiente información para consultar tu ticket. 
                             </p>
-                            <hr/>
+                            <hr />
                         </div>
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" runat="server" id="divConsulta">
                             <div class="module-content collapse in" id="content-4">
@@ -52,21 +53,24 @@
                         </div>
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" runat="server" id="divDetalle" visible="False">
-                            <section class="module module-no-heading">
-                                <div class="module-inner">
-                                    <div class="module-heading no-border">
-                                        <h4 class="title">Detalle del Ticket</h4>
-                                        <hr>
-                                    </div>
-                                    <div class="module-content collapse in">
-                                        <div class="module-content-inner no-padding-bottom">
-                                            <uc1:UcTicketDetalleUsuario runat="server" ID="ucTicketDetalleUsuario" />
-                                        </div>
+                            <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="module-heading">
+                                    <h3 class="module-title">Detalle del Ticket</h3>
+                                </div>
+                            </div>
+                            <hr>
+                            </div>
+                            <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" runat="server" ID="divDetalleTicket" Visible="False">
+                                <div class="module-content collapse in">
+                                    <div class="module-content-inner no-padding-bottom">
+                                        <uc1:UcTicketDetalleUsuario runat="server" ID="ucTicketDetalleUsuario" />
                                     </div>
                                 </div>
-                            </section>
+                            </div>
                         </div>
                     </div>
+                </div>
+                </div>
                 </div>
             </section>
         </ContentTemplate>

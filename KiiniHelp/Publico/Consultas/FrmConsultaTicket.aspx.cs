@@ -54,10 +54,12 @@ namespace KiiniHelp.Publico.Consultas
                 HelperDetalleTicket detalle = _servicioticket.ObtenerDetalleTicketNoRegistrado(int.Parse(txtTicket.Text.Trim()), txtClave.Text.Trim());
                 if (detalle != null)
                 {
-                    ucTicketDetalleUsuario.IdUsuario = detalle.IdUsuarioLevanto;
-                    ucTicketDetalleUsuario.IdTicket = detalle.IdTicket;
+                    divTitle.Visible = false;
                     divConsulta.Visible = false;
                     divDetalle.Visible = true;
+                    divDetalleTicket.Visible = true;
+                    ucTicketDetalleUsuario.IdUsuario = detalle.IdUsuarioLevanto;
+                    ucTicketDetalleUsuario.IdTicket = detalle.IdTicket;
                     hfMuestraEncuesta.Value = detalle.TieneEncuesta.ToString();
                 }
             }
