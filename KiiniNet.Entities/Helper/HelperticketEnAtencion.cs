@@ -31,6 +31,8 @@ namespace KiiniNet.Entities.Helper
 
         public bool TieneEncuesta { get; set; }
 
+        public bool EncuestaRespondida { get; set; }
+
         public List<EstatusTicket> EstatusDisponibles { get; set; }
 
         public bool GrupoConSupervisor { get; set; }

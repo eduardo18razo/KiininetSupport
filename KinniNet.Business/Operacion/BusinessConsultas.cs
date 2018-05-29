@@ -369,7 +369,11 @@ namespace KinniNet.Core.Operacion
 
 
                 if (grupos.Any())
-                    qry = grupos.Aggregate(qry, (current, grupo) => (from q in current where q.t.TicketGrupoUsuario.Select(s => s.IdGrupoUsuario).Contains(grupo) select q));
+                    qry = from q in qry
+                        where grupos.Contains(q.tgu.IdGrupoUsuario)
+                        select q;
+
+                        //grupos.Aggregate(qry, (current, grupo) => (from q in current where q.t.TicketGrupoUsuario.Select(s => s.IdGrupoUsuario).Contains(grupo) select q));
 
                 if (tipoArbol.Any())
                     qry = from q in qry
@@ -384,7 +388,10 @@ namespace KinniNet.Core.Operacion
                           select q;
 
                 if (atendedores.Any())
-                    qry = atendedores.Aggregate(qry, (current, grupo) => (from q in current where q.t.TicketGrupoUsuario.Select(s => s.IdGrupoUsuario).Contains(grupo) select q));
+                    qry = from q in qry
+                        where atendedores.Contains(q.tgu.IdGrupoUsuario)
+                        select q;
+                        //atendedores.Aggregate(qry, (current, grupo) => (from q in current where q.t.TicketGrupoUsuario.Select(s => s.IdGrupoUsuario).Contains(grupo) select q));
 
                 if (fechas != null)
                     if (fechas.Count == 2)

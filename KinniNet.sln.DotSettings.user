@@ -1,6 +1,10 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/CodeStyle/LiveTemplatesUseVar/PreferVar/@EntryValue">False</s:Boolean>
 	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=561EFD4B639940A998A18E42FD4DB8F0/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=561EFD4B639940A998A18E42FD4DB8F0/Name/@EntryValue">TesConsultas</s:String>
 	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionPersistentData/=561EFD4B639940A998A18E42FD4DB8F0/XmlSerializedElements/@EntryValue">&lt;Session&gt;&lt;Elements&gt;&lt;UnitTestElement Provider="MSTest" Id="MsTest:KiiniNet.UnitTest.UnitTest1" type="MsTestTestClassElement" TypeName="KiiniNet.UnitTest.UnitTest1" Project="57F1DD03-D379-472B-BF06-1C7EE8637F9C" /&gt;&lt;UnitTestElement Provider="MSTest" Id="MsTest:KiiniNet.UnitTest.UnitTest1.TesConsultas" ParentId="MsTest:KiiniNet.UnitTest.UnitTest1" type="MsTestTestMethodElement" MethodName="TesConsultas" TypeName="KiiniNet.UnitTest.UnitTest1" Project="57F1DD03-D379-472B-BF06-1C7EE8637F9C" /&gt;&lt;UnitTestElement Provider="MSTest" Id="MsTest:KiiniNet.UnitTest.UnitTest1.Test" ParentId="MsTest:KiiniNet.UnitTest.UnitTest1" type="MsTestTestMethodElement" MethodName="Test" TypeName="KiiniNet.UnitTest.UnitTest1" Project="57F1DD03-D379-472B-BF06-1C7EE8637F9C" /&gt;&lt;/Elements&gt;&lt;/Session&gt;</s:String></wpf:ResourceDictionary>

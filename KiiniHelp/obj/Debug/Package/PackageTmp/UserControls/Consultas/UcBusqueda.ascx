@@ -54,7 +54,7 @@
                                     <ItemTemplate>
                                         <div class="row">
                                             <asp:Label runat="server" CssClass="text-theme" ID="lblIdOpcion" Visible="False" Text='<%# Eval("Id") %>' />
-                                            <asp:Label runat="server" CssClass="text-theme" ID="lblTitulo" Text='<%#Eval("Titulo") %>' />
+                                            <asp:LinkButton runat="server" CssClass="text-theme" Text='<%#Eval("Titulo") %>' CommandArgument='<%# Eval("Id") %>' ID="lnkBtnResult" OnClick="lnkBtnResult_OnClick"/>
                                             <i class="text-theme fa fa-thumbs-up"></i>
                                             <asp:Label runat="server" CssClass="text-theme" ID="lblLikes" Text='<%#Eval("TotalLikes") %>' />
                                             <br />

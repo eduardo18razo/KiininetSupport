@@ -59,18 +59,15 @@
                                 </div>
                             </div>
                             <hr>
-                            </div>
-                            <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" runat="server" ID="divDetalleTicket" Visible="False">
-                                <div class="module-content collapse in">
-                                    <div class="module-content-inner no-padding-bottom">
-                                        <uc1:UcTicketDetalleUsuario runat="server" ID="ucTicketDetalleUsuario" />
-                                    </div>
+                        </div>
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" runat="server" id="divDetalleTicket" visible="False">
+                            <div class="module-content collapse in">
+                                <div class="module-content-inner no-padding-bottom">
+                                    <uc1:UcTicketDetalleUsuario runat="server" ID="ucTicketDetalleUsuario" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                </div>
                 </div>
             </section>
         </ContentTemplate>

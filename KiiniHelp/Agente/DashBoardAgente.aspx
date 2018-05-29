@@ -18,14 +18,14 @@
                         </div>
                         <hr />
                         <div class="row module-inner">
-                            <div class="col-lg-3 col-md-2 col-sm-2 margin-right-10">
+                            <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12 margin-right-10">
                                 <label>Grupo</label>
                                 <div>
                                     <asp:DropDownList runat="server" ID="ddlGrupo" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlGrupo_OnSelectedIndexChanged" />
                                 </div>
                             </div>
 
-                            <div class="col-lg-3 col-md-2 col-sm-2">
+                            <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12">
                                 <label>Agente</label>
                                 <div>
                                     <asp:DropDownList runat="server" ID="ddlAgente" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlAgente_OnSelectedIndexChanged" />

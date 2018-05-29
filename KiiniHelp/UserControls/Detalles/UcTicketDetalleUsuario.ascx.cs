@@ -103,6 +103,11 @@ namespace KiiniHelp.UserControls.Detalles
             get { return bool.Parse(hfTieneEncuesta.Value); }
             set { hfTieneEncuesta.Value = value.ToString(); }
         }
+        public bool EncuestaRespondida
+        {
+            get { return bool.Parse(hfEncuestaRespondida.Value); }
+            set { hfEncuestaRespondida.Value = value.ToString(); }
+        }
 
         private List<HelperConversacionDetalle> ConversacionTicketActivo
         {
@@ -215,8 +220,9 @@ namespace KiiniHelp.UserControls.Detalles
             {
 
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalEstatusCambio\");", true);
-                if (ucCambiarEstatusTicket.CerroTicket && TieneEncuesta)
+                if (ucCambiarEstatusTicket.CerroTicket && TieneEncuesta && !EncuestaRespondida)
                 {
+                    LlenaTicket(IdTicket);
                     string url = ResolveUrl("~/FrmEncuesta.aspx?IdTipoServicio=" + TipoTicket + "&IdTicket=" + IdTicket);
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptEncuesta", "OpenWindow(\"" + url + "\");", true);
                 }
@@ -231,6 +237,8 @@ namespace KiiniHelp.UserControls.Detalles
                                 Response.Redirect(Request.UrlReferrer.ToString());
                         }
                     LlenaTicket(IdTicket);
+                    if(EncuestaRespondida)
+                        throw new Exception("Ya se resondio encuesta con anteriorida");
                 }
             }
             catch (Exception ex)

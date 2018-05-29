@@ -18,44 +18,21 @@
     <ContentTemplate>
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
-                <header class="modal-header" id="panelAlerta" runat="server" visible="false">
-                    <div class="alert alert-danger">
-                        <div>
-                            <div class="float-left">
-                                <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
-                            </div>
-                            <div class="float-left">
-                                <h3>Error</h3>
-                            </div>
-                            <div class="clearfix clear-fix" />
-                        </div>
-                        <hr />
-                        <asp:Repeater runat="server" ID="rptError">
-                            <ItemTemplate>
-                                <ul>
-                                    <li><%# Container.DataItem %></li>
-                                </ul>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                </header>
-                <div class="panel panel-primary">                    
-                    <div class="panel-body text-center">
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroGrupo" Text="Grupo" OnClick="btnFiltroGrupo_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroCanal" Text="Canal Apertura" OnClick="btnFiltroCanal_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroTipoUsuario" Text="Tipo Usuario" OnClick="btnFiltroTipoUsuario_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroOrganizacion" Text="Organización" OnClick="btnFiltroOrganizacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroUbicacion" Text="Ubicación" OnClick="btnFiltroUbicacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroServicioIncidente" Text="Servicio/Incidente" OnClick="btnFiltroServicioIncidente_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary disabled" ID="btnFiltroTipificacion" Text="Tipificación" OnClick="btnFiltroTipificacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroPrioridad" Text="Prioridad" OnClick="btnFiltroPrioridad_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroEstatus" Text="Estatus" OnClick="btnFiltroEstatus_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroSla" Text="SLA" OnClick="btnFiltroSla_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroVip" Text="Vip" OnClick="btnFiltroVip_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroFechas" Text="Fechas" OnClick="btnFiltroFechas_OnClick" />
-                        <asp:Label runat="server" Width="60px"></asp:Label>
-                        <asp:Button runat="server" CssClass="btn btn-success" ID="btnConsultar" Text="Consultar" OnClick="btnConsultar_Click" />
-                     </div>                    
+                <div class="panel-body text-center">
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroGrupo" Text="Grupo" OnClick="btnFiltroGrupo_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroCanal" Text="Canal Apertura" OnClick="btnFiltroCanal_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroTipoUsuario" Text="Tipo Usuario" OnClick="btnFiltroTipoUsuario_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroOrganizacion" Text="Organización" OnClick="btnFiltroOrganizacion_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroUbicacion" Text="Ubicación" OnClick="btnFiltroUbicacion_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroServicioIncidente" Text="Servicio/Incidente" OnClick="btnFiltroServicioIncidente_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary disabled" ID="btnFiltroTipificacion" Text="Tipificación" OnClick="btnFiltroTipificacion_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroPrioridad" Text="Prioridad" OnClick="btnFiltroPrioridad_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroEstatus" Text="Estatus" OnClick="btnFiltroEstatus_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroSla" Text="SLA" OnClick="btnFiltroSla_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroVip" Text="Vip" OnClick="btnFiltroVip_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroFechas" Text="Fechas" OnClick="btnFiltroFechas_OnClick" />
+                    <asp:Label runat="server" Width="60px"></asp:Label>
+                    <asp:Button runat="server" CssClass="btn btn-success" ID="btnConsultar" Text="Consultar" OnClick="btnConsultar_Click" />
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
@@ -79,7 +56,7 @@
         <ContentTemplate>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <uc1:UcFiltroCanalApertura runat="server" id="ucFiltroCanalApertura" />
+                    <uc1:UcFiltroCanalApertura runat="server" ID="ucFiltroCanalApertura" />
                 </div>
             </div>
         </ContentTemplate>
@@ -91,7 +68,7 @@
         <ContentTemplate>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <uc1:UcFiltroTipoUsuario runat="server" id="ucFiltroTipoUsuario" />
+                    <uc1:UcFiltroTipoUsuario runat="server" ID="ucFiltroTipoUsuario" />
                 </div>
             </div>
         </ContentTemplate>
@@ -187,7 +164,7 @@
         <ContentTemplate>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <uc1:UcFiltroVip runat="server" id="ucFiltroVip" />
+                    <uc1:UcFiltroVip runat="server" ID="ucFiltroVip" />
                 </div>
             </div>
         </ContentTemplate>
@@ -200,7 +177,7 @@
         <ContentTemplate>
             <div class="modal-dialog modal-lg widht450px">
                 <div class="modal-content widht450px">
-                    <uc1:UcFiltroFechasConsultas runat="server" id="ucFiltroFechasConsultas" />
+                    <uc1:UcFiltroFechasConsultas runat="server" ID="ucFiltroFechasConsultas" />
                 </div>
             </div>
         </ContentTemplate>

@@ -13,22 +13,13 @@ namespace KiiniHelp.Users.Consultas {
     public partial class FrmConsultaEncuestasUnitarias {
         
         /// <summary>
-        /// Control pnlAlertaGeneral.
+        /// Control pnlResult.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlAlertaGeneral;
-        
-        /// <summary>
-        /// Control rptErrorGeneral.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptErrorGeneral;
+        protected global::System.Web.UI.UpdatePanel pnlResult;
         
         /// <summary>
         /// Control ucFiltrosEncuestas.

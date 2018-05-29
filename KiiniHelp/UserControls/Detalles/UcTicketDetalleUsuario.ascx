@@ -13,6 +13,8 @@
             <asp:HiddenField runat="server" ID="hfPropietario"/>
             <asp:HiddenField runat="server" ID="hfTipoTicket"/>
             <asp:HiddenField runat="server" ID="hfTieneEncuesta" Value ="false"/>
+            <asp:HiddenField runat="server" ID="hfEncuestaRespondida" Value ="false"/>
+
 
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">

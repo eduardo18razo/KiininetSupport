@@ -1186,6 +1186,7 @@ footer {
             color: #0c223F;
             font-weight: 700 !important;
         }
+
         .module .module-heading .module-title18px {
             margin: 0;
             /*nuevo diseño*/
@@ -1706,16 +1707,17 @@ a.btn {
     position: relative;
     vertical-align: middle;
     color: #fff;
-    top:0; 
+    top: 0;
     Border: none !important;
     cursor: text;
 }
-.btn-square-usuario .lbl {
-    min-height: inherit; 
-    align-items: center; 
-    display: inline-flex; 
-    height: inherit
-}
+
+    .btn-square-usuario .lbl {
+        min-height: inherit;
+        align-items: center;
+        display: inline-flex;
+        height: inherit;
+    }
 
     .btn-square-usuario .fa {
         margin-right: 0;
@@ -4106,6 +4108,7 @@ ul.sortable {
     max-height: 500px;
     overflow-y: auto;
 }
+
 .modalhidebarhorizontal {
     overflow-x: hidden;
 }
@@ -4657,7 +4660,7 @@ ul.sortable {
         padding-left: 60px;
         min-height: 250px;
         /*margin-bottom: 15px;*/
-    /*}
+/*}
 
         .auth-section .social-btns li {
             margin-bottom: 10px;
@@ -5427,7 +5430,7 @@ ul.sortable {
 }
 
 .margin-top-10 {
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 .margin-top-12 {
@@ -6420,7 +6423,7 @@ input, input[type="file"] {
     width: 6.333333% !important;
 }
 
-@media only screen and (device-width:768px){
+@media only screen and (device-width:768px) {
     .col-lg-1Custom {
         width: 10.333333% !important;
     }
@@ -6455,8 +6458,14 @@ input, input[type="file"] {
     width: 20% !important;
 }
 
+.tableHeadMascara {
+    width: 100%;
+    overflow: auto;
+}
+
 .tableHeadTicket {
     width: 100%;
+    overflow: auto;
 }
 
     .tableHeadTicket tr td {
@@ -6534,11 +6543,13 @@ option:hover {
 .selectConver [type=radio] + label {
     margin-bottom: 0;
 }
+
 .bodyBackgroundPassword {
     background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
 }
+
 .panelsectionbacground {
-     /*background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
+    /*background: url(../images/backs/lost_password_movil.jpg) no-repeat fixed center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -6546,8 +6557,8 @@ option:hover {
     width: 100%;
     text-align: center;
 }
+
 .panelsection {
-       
     padding-top: 15px;
     padding-left: 10px;
     padding-right: 10px;
@@ -6674,10 +6685,10 @@ option:hover {
     display: inline;
 }
 
-.radio input[type="radio"], .radio-inline input[type="radio"] {
-    top: initial;
-    vertical-align: baseline;
-}
+    .radio input[type="radio"], .radio-inline input[type="radio"] {
+        top: initial;
+        vertical-align: baseline;
+    }
 
 
 

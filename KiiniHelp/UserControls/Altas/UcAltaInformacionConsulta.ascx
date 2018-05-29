@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span class="span-upload">
-                                        <ajax:AsyncFileUpload ID="afuArchivo" runat="server" CssClass="FileUploadClass" UploaderStyle="Traditional" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadComplete="uploadComplete" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
+                                        <ajax:AsyncFileUpload ID="afuArchivo" runat="server" CssClass="FileUploadClass" UploaderStyle="Traditional" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadComplete="uploadComplete" OnClientUploadStarted="ShowLanding" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
                                         Cargar archivos (max 10 MB)
                                                 <br />
                                         <br />

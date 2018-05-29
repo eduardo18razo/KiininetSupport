@@ -130,12 +130,15 @@ namespace KinniNet.Core.Operacion
 
                 List<InformacionConsultaDocumentos> documentosEliminar = new List<InformacionConsultaDocumentos>();
                 List<string> archivosNuevos = new List<string>();
+
+
+
                 foreach (InformacionConsultaDocumentos doctoExist in info.InformacionConsultaDocumentos)
                 {
-                    if (!documentosDescarga.Any(a => a.Contains(doctoExist.Archivo) || (info.Id + a).Contains(doctoExist.Archivo)))
-                    {
+                    //if (!documentosDescarga.Any(a => a.Contains(doctoExist.Archivo) || (info.Id + a).Contains(doctoExist.Archivo)))
+                    //{
                         documentosEliminar.Add(doctoExist);
-                    }
+                    //}
                 }
 
                 foreach (string doctoNuevo in documentosDescarga)
@@ -157,6 +160,9 @@ namespace KinniNet.Core.Operacion
                 {
                     db.InformacionConsultaDocumentos.DeleteObject(documentos);
                 }
+                
+                
+                
                 db.SaveChanges();
                 foreach (InformacionConsultaDocumentos documentos in documentosEliminar)
                 {

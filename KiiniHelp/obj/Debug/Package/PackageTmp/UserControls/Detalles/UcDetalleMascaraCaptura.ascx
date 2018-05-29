@@ -7,7 +7,7 @@
         <asp:Label runat="server" ID="lblDescripcionMascara"></asp:Label>
         <hr />
 
-        <div runat="server" id="divControles" class="form-horizontal">
+        <div runat="server" id="divControles" class="form-horizontal col-lg-12 col-md-12 col-sm-12 col-xs-12">
         </div>
 
     </ContentTemplate>

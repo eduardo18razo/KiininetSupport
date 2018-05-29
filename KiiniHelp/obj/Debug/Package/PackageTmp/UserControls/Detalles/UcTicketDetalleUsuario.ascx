@@ -13,6 +13,8 @@
             <asp:HiddenField runat="server" ID="hfPropietario"/>
             <asp:HiddenField runat="server" ID="hfTipoTicket"/>
             <asp:HiddenField runat="server" ID="hfTieneEncuesta" Value ="false"/>
+            <asp:HiddenField runat="server" ID="hfEncuestaRespondida" Value ="false"/>
+
 
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -40,8 +42,8 @@
                                 </div>
 
                                 <div class="col-lg-5 col-md-3 col-sm-12">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <table class="tableHeadTicket">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 table-responsive no-border">
+                                        <table class="table no-border tableHeadTicket">
                                             <tr>
                                                 <td>
                                                     <asp:Label runat="server" CssClass="fontbold" Text="Asignación" /></td>
@@ -96,10 +98,10 @@
                                 </div>
                                 <div class="col-lg-11 col-md-10 col-sm-10">
                                     <div class="row no-padding-top margin-top0" runat="server">
-                                        <div class="wrapperResponse col-lg-12 col-md-12 col-sm-12 no-padding-top margin-top0">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 no-padding-top margin-top0">
                                             <asp:TextBox ID="txtConversacion" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control no-padding-top no-margin-top" MaxLength="999" />
                                         </div>
-                                        <div class="wrapperResponse col-lg-12 col-md-12 col-sm-12 text-right padding-10-top padding-10-bottom">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 text-right padding-10-top padding-10-bottom">
                                             <asp:Button ID="btnEstatus" runat="server" Text="Estatus" CssClass="btn btn-guardar" OnClick="btnCambiarEstatus_OnClick" />
                                             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnEnviar_OnClick" />
                                         </div>

@@ -7,6 +7,7 @@ using KiiniHelp.Funciones;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaTipoArbolAcceso;
+using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
@@ -173,6 +174,61 @@ namespace KiiniHelp.UserControls.Consultas
                     tiposUsuario.Add(int.Parse(Request.Params["tu"]));
                 }
                 LlenaResultados(Request.Params["w"], tiposUsuario, 1);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void lnkBtnResult_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkButton btn = (LinkButton) sender;
+                if (btn != null)
+                {
+                    ArbolAcceso opcion = _servicioArbol.ObtenerArbolAcceso(int.Parse(btn.CommandArgument));
+                    if (opcion != null)
+                    {
+                        if (Session["UserData"] == null)
+                            switch (opcion.IdTipoArbolAcceso)
+                            {
+                                case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
+                                    Response.Redirect("~/Publico/FrmConsulta.aspx?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                                    break;
+
+                                case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
+                                    Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + opcion.Id);
+                                    break;
+
+                                case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
+                                    Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + opcion.Id);
+                                    break;
+                            }
+                        else
+                            switch (opcion.IdTipoArbolAcceso)
+                            {
+                                case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
+                                    Response.Redirect("~/Users/General/FrmNodoConsultas.aspx?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                                    break;
+
+                                case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
+                                    Response.Redirect("~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + opcion.Id);
+                                    break;
+
+                                case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
+                                    Response.Redirect("~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + opcion.Id);
+                                    break;
+                            }
+                    }
+                }
+                
             }
             catch (Exception ex)
             {

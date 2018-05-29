@@ -265,7 +265,7 @@ namespace KiiniHelp.UserControls.Altas
 
                     Int64 sumaArchivos = Int64.Parse(Session["FileSize"].ToString());
                     sumaArchivos += int.Parse(e.FileSize);
-                    if ((sumaArchivos / 1024) > (10 * 1024))
+                    if ((sumaArchivos / 1024) > (1024 * 1024))
                         throw new Exception(string.Format("El tamaño maximo de carga es de {0}MB", "10"));
                     afuArchivo.PostedFile.SaveAs(BusinessVariables.Directorios.RepositorioTemporalInformacionConsulta + afuArchivo.FileName);
                     HelperFiles hFiles = new HelperFiles { NombreArchivo = e.FileName.Split('\\').Last(), Tamaño = BusinessFile.ConvertirTamaño(e.FileSize), Extension = Path.GetExtension(afuArchivo.FileName) };
@@ -311,7 +311,13 @@ namespace KiiniHelp.UserControls.Altas
             {
                 LinkButton lnk = (LinkButton)sender;
                 List<HelperFiles> lstArchivos = (List<HelperFiles>)Session["selectedFiles"];
-                lstArchivos.Remove(lstArchivos.Single(s => s.NombreArchivo == lnk.CommandArgument));
+                List<HelperFiles> lstArchivosEliminar = lstArchivos.Where(s => s.NombreArchivo == lnk.CommandArgument).ToList();
+                foreach (HelperFiles file in lstArchivosEliminar)
+                {
+                    if (lstArchivos.Contains(file))
+                        lstArchivos.Remove(file);
+                }
+
                 Session["selectedFiles"] = lstArchivos;
                 LlenaArchivosCargados();
             }

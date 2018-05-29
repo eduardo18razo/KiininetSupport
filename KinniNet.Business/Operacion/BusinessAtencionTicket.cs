@@ -629,6 +629,7 @@ namespace KinniNet.Core.Operacion
                         result.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
                         result.EstatusDisponibles = CambiaEstatus( ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                         result.TieneEncuesta = ticket.ArbolAcceso.InventarioArbolAcceso.First().IdEncuesta != null;
+                        result.EncuestaRespondida = ticket.EncuestaRespondida;
                         #region Usuario Levanto
                         if (ticket.UsuarioLevanto != null)
                         {

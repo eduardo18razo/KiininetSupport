@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI;
 using KiiniHelp.ServiceConsultas;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniNet.Entities.Helper;
@@ -8,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace KiiniHelp.Users.Consultas
 {
-    public partial class FrmConsultaHits : System.Web.UI.Page
+    public partial class FrmConsultaHits : Page
     {
         private readonly ServiceConsultasClient _servicioConsultas = new ServiceConsultasClient();
 
@@ -18,10 +19,12 @@ namespace KiiniHelp.Users.Consultas
         {
             set
             {
-                pnlAlertaGeneral.Visible = value.Any();
-                if (!pnlAlertaGeneral.Visible) return;
-                rptErrorGeneral.DataSource = value;
-                rptErrorGeneral.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
 
@@ -52,7 +55,7 @@ namespace KiiniHelp.Users.Consultas
             }
         }
 
-        private void UcFiltrosConsulta_OnAceptarModal()
+        private void LlenaConsulta()
         {
             try
             {
@@ -65,8 +68,22 @@ namespace KiiniHelp.Users.Consultas
                     gvResult.DataBind();
                     gvResult.DataSource = lst;
                     gvResult.DataBind();
-                    pnlAlertaGral.Update();
+                    pnlResult.Update();
                 }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        private void UcFiltrosConsulta_OnAceptarModal()
+        {
+            try
+            {
+                if (!UcFiltrosConsulta.FiltroGrupos.Any())
+                    throw new Exception("Debe seleccionar al menos un grupo");
+                LlenaConsulta();
             }
             catch (Exception ex)
             {
@@ -77,6 +94,11 @@ namespace KiiniHelp.Users.Consultas
                 _lstError.Add(ex.Message);
                 AlertaGeneral = _lstError;
             }
-        }        
+        }
+        protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvResult.PageIndex = e.NewPageIndex;
+            LlenaConsulta();
+        }
     }
 }

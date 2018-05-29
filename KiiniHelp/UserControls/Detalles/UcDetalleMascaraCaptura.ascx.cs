@@ -114,9 +114,9 @@ namespace KiiniHelp.UserControls.Detalles
                 {
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
-                    createDiv.Attributes["class"] = "form-group clearfix";
+                    createDiv.Attributes["class"] = "form-group col-lg-12 col-md-12 col-sm-12 col-xs-12  tableHeadTicket clearfix";
                     //createDiv.InnerHtml = campo.Descripcion;
-                    Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12" };
+                    Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-lg-12 col-md-12 col-sm-12 col-xs-12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
@@ -131,7 +131,7 @@ namespace KiiniHelp.UserControls.Detalles
                             };
                             HtmlGenericControl createDivTexto = new HtmlGenericControl("DIV");
                             createDivTexto.ID = "createDivTexto" + campo.NombreCampo;
-                            createDivTexto.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12";
+                            createDivTexto.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
                             createDivTexto.Controls.Add(txtAlfanumerico);
                             createDiv.Controls.Add(createDivTexto);
                             break;
@@ -151,12 +151,13 @@ namespace KiiniHelp.UserControls.Detalles
                             txtMultilinea.Attributes["placeholder"] = campo.Descripcion;
                             HtmlGenericControl createDivMultilinea = new HtmlGenericControl("DIV");
                             createDivMultilinea.ID = "createDivMultilinea" + campo.NombreCampo;
-                            createDivMultilinea.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12";
+                            createDivMultilinea.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
                             createDivMultilinea.Controls.Add(txtMultilinea);
                             createDiv.Controls.Add(createDivMultilinea);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
                             lbl.Attributes["for"] = "lstRadio" + campo.NombreCampo;
+                            createDiv.Attributes.Add("class", "tableHeadMascara");
                             createDiv.Controls.Add(lbl);
                             RadioButtonList lstRadio = new RadioButtonList
                             {
@@ -184,7 +185,7 @@ namespace KiiniHelp.UserControls.Detalles
                             lstRadio.SelectedValue = datosMascara.Single(s => s.Campo == campo.NombreCampo).Value;
                             HtmlGenericControl createDivRadio = new HtmlGenericControl("DIV");
                             createDivRadio.ID = "createDivRadio" + campo.NombreCampo;
-                            createDivRadio.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12";
+                            createDivRadio.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
                             createDivRadio.Controls.Add(lstRadio);
 
                             createDiv.Controls.Add(createDivRadio);
@@ -224,6 +225,7 @@ namespace KiiniHelp.UserControls.Detalles
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
                             lbl.Attributes["for"] = "chklist" + campo.NombreCampo;
+                            createDiv.Attributes.Add("class", "tableHeadMascara");
                             createDiv.Controls.Add(lbl);
                             CheckBoxList chklist = new CheckBoxList
                             {
@@ -232,7 +234,7 @@ namespace KiiniHelp.UserControls.Detalles
                                 Text = campo.Descripcion,
                                 RepeatColumns = 5,
                                 RepeatDirection = RepeatDirection.Horizontal,
-                                Enabled = false
+                                Enabled = false,
                             };
                             if (campo.EsArchivo)
                             {

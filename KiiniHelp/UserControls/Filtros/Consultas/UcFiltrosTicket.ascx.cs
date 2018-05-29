@@ -1,6 +1,4 @@
-﻿using KiiniHelp.ServiceConsultas;
-using KiiniNet.Entities.Helper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
@@ -70,10 +68,12 @@ namespace KiiniHelp.UserControls.Filtros.Consultas
         {
             set
             {
-                panelAlerta.Visible = value.Any();
-                if (!panelAlerta.Visible) return;
-                rptError.DataSource = value;
-                rptError.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
         

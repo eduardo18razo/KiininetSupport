@@ -14,39 +14,16 @@
         <asp:HiddenField runat="server" ID="hfEncuesta" />
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
-                <header class="modal-header" id="panelAlerta" runat="server" visible="false">
-                    <div class="alert alert-danger">
-                        <div>
-                            <div class="float-left">
-                                <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
-                            </div>
-                            <div class="float-left">
-                                <h3>Error</h3>
-                            </div>
-                            <div class="clearfix clear-fix" />
-                        </div>
-                        <hr />
-                        <asp:Repeater runat="server" ID="rptError">
-                            <ItemTemplate>
-                                <ul>
-                                    <li><%# Container.DataItem %></li>
-                                </ul>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                </header>
-                <div class="panel panel-primary">
-                    <div class="panel-body text-center">
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroGrupo" Text="Grupo" OnClick="btnFiltroGrupo_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroTipoUsuario" Text="Tipo Usuario" OnClick="btnFiltroTipoUsuario_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroOrganizacion" Text="Organización" OnClick="btnFiltroOrganizacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroUbicacion" Text="Ubicación" OnClick="btnFiltroUbicacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroTipificacion" Text="Tipificación" OnClick="btnFiltroTipificacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroVip" Text="Vip" OnClick="btnFiltroVip_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroFechas" Text="Fechas" OnClick="btnFiltroFechas_OnClick" />
-                        <asp:Label runat="server" Width="120px"></asp:Label>
-                        <asp:Button runat="server" CssClass="btn btn-success" ID="btnConsultar" Text="Consultar" OnClick="btnConsultar_Click" />
-                    </div>
+                <div class="panel-body text-center">
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroGrupo" Text="Grupo" OnClick="btnFiltroGrupo_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroTipoUsuario" Text="Tipo Usuario" OnClick="btnFiltroTipoUsuario_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroOrganizacion" Text="Organización" OnClick="btnFiltroOrganizacion_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroUbicacion" Text="Ubicación" OnClick="btnFiltroUbicacion_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroTipificacion" Text="Tipificación" OnClick="btnFiltroTipificacion_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroVip" Text="Vip" OnClick="btnFiltroVip_OnClick" />
+                    <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroFechas" Text="Fechas" OnClick="btnFiltroFechas_OnClick" />
+                    <asp:Label runat="server" Width="120px"></asp:Label>
+                    <asp:Button runat="server" CssClass="btn btn-success" ID="btnConsultar" Text="Consultar" OnClick="btnConsultar_Click" />
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>

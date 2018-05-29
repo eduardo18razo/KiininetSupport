@@ -1,47 +1,44 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Usuarios.Master" AutoEventWireup="true" CodeBehind="FrmConsultaEncuestasUnitarias.aspx.cs" Inherits="KiiniHelp.Users.Consultas.FrmConsultaEncuestasUnitarias" %>
-<%@ Page MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Usuarios.Master" AutoEventWireup="true" CodeBehind="FrmConsultaEncuestasUnitarias.aspx.cs" Inherits="KiiniHelp.Users.Consultas.FrmConsultaEncuestasUnitarias" MaintainScrollPositionOnPostback="true" %>
+
 <%@ Register Src="~/UserControls/Filtros/Consultas/UcFiltrosEncuestas.ascx" TagPrefix="uc1" TagName="UcFiltrosEncuestas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="pnlResult">
         <ContentTemplate>
-            <header class="modal-header" id="pnlAlertaGeneral" runat="server" visible="false">
-                <div class="alert alert-danger">
-                    <div>
-                        <div class="float-left">
-                            <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
+            <ol class="breadcrumb">
+                <li>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
+                <li>Reportes</li>
+                <li class="active">Encuestas</li>
+            </ol>
+            <section class="module">
+                <div class="row">
+                    <div class="module-inner">
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-group">
+                                <uc1:UcFiltrosEncuestas runat="server" ID="ucFiltrosEncuestas" />
+                            </div>
                         </div>
-                        <div class="float-left">
-                            <h3>Error</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section class="module module-headings">
+                <div class="module-inner">
+                    <div class="module-content collapse in" id="content-1">
+                        <div class="module-content-inner no-padding-bottom">
+                            <div class="table-responsive">
+                                <asp:GridView runat="server" ID="gvResult" AllowPaging="true" Width="99%" OnRowCreated="gvResult_OnRowCreated"
+                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
+                                    BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
+                                    PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-bordered table-hover table-responsive">
+                                </asp:GridView>
+                            </div>
                         </div>
-                        <div class="clearfix clear-fix" />
                     </div>
-                    <hr />
-                    <asp:Repeater runat="server" ID="rptErrorGeneral">
-                        <ItemTemplate>
-                            <ul>
-                                <li><%# Container.DataItem %></li>
-                            </ul>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-            </header>                       
-            <uc1:UcFiltrosEncuestas runat="server" ID="ucFiltrosEncuestas" />                
-                <%--<div class="panel-footer text-center">
-                    <asp:Button runat="server" CssClass="btn btn-success" ID="btnConsultar" Text="Consultar" OnClick="btnConsultar_OnClick" />
-                </div>--%>           
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    <asp:Panel runat="server" ScrollBars="Both" Width="100%" Height="350px">
-                    <div style="overflow-x: auto">
-                        <asp:GridView runat="server" ID="gvResult" CssClass="table table-bordered table-hover table-responsive" OnRowCreated="gvResult_OnRowCreated">
-                        </asp:GridView>
-                    </div>
-                    </asp:Panel>
-                </div>
-            </div>
+            </section>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

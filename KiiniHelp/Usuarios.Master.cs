@@ -129,7 +129,7 @@ namespace KiiniHelp
             {
                 if (string.IsNullOrEmpty(main_search_input.Text.Trim()))
                     throw new Exception("Debe espicificar un parametro de busqueda");
-                Response.Redirect("~/Users/FrmBusqueda.aspx?w=" + main_search_input.Text.Trim() + "&tu=" + ((Usuario)Session["UserData"]).Id);
+                Response.Redirect("~/Users/FrmBusqueda.aspx?w=" + main_search_input.Text.Trim() + "&tu=" + ((Usuario)Session["UserData"]).IdTipoUsuario);
             }
             catch (Exception ex)
             {

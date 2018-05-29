@@ -29,19 +29,19 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-lg-5">
+                            <div class="col-lg-5 col-md-3 col-sm-3 col-xs-12">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Organizaciones:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
+                                    <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">Consulta Organizaciones:</label>
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 no-padding-left no-margin-left">
                                         <asp:TextBox runat="server" ID="txtFiltroDecripcion" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 margin-top-3">
                                         <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3 separador-vertical-derecho">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o Consulta por Tipo de Usuario</label>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  no-padding-left no-margin-left">
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
                                 <div class="form-group margin-top-btn-consulta">
                                     <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_Click">
                                  <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
