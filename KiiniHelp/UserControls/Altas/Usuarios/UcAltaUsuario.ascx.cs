@@ -31,6 +31,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         private readonly ServicePuestoClient _servicioPuesto = new ServicePuestoClient();
         private readonly ServiceTipoTelefonoClient _servicioTipoTelefono = new ServiceTipoTelefonoClient();
         private List<string> _lstError = new List<string>();
+        UsuariosMaster mp;
 
         public bool Alta
         {
@@ -466,7 +467,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             List<TextBox> lstCorreos = rptCorreos.Items.Cast<RepeaterItem>().Select(item => (TextBox)item.FindControl("txtCorreo")).Where(w => w.Text != string.Empty).ToList();
             foreach (TextBox correo in lstCorreos)
             {
-                if (!BusinessCorreo.IsValid(correo.Text.Trim()) || correo.Text.Trim().Contains(" "))
+                if (!BusinessCorreo.IsValidEmail(correo.Text.Trim()) || correo.Text.Trim().Contains(" "))
                 {
                     sb.Add(string.Format("Correo {0} con formato invalido", correo.Text.Trim()));
                 }
@@ -664,7 +665,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 faq5_3.CssClass = "panel-collapse collapse in";
                 faq5_4.CssClass = "panel-collapse collapse in";
                 faq5_5.CssClass = "panel-collapse collapse in";
-
+                mp = (UsuariosMaster)Page.Master;
                 if (!IsPostBack)
                 {
                     Session["UsuarioTemporal"] = null;
@@ -766,6 +767,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             {
                 _servicioUsuarios.GuardarFoto(IdUsuario, FileUpload1.FileBytes);
                 imgPerfil.ImageUrl = "~/DisplayImages.ashx?id=" + IdUsuario;
+                mp.ActualizarFoto();
             }
             catch (Exception ex)
             {

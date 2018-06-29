@@ -31,6 +31,12 @@ namespace KiiniHelp.Publico.Consultas
             try
             {
                 Alerta = new List<string>();
+                if (Request.Params["idTicket"] != null && Request.Params["cveRandom"] != null)
+                {
+                    txtTicket.Text = Request.Params["idTicket"];
+                    txtClave.Text = Request.Params["cveRandom"];
+                    btnConsultar_OnClick(btnConsultar, null);
+                }
             }
             catch (Exception ex)
             {

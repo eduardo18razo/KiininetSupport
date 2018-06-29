@@ -6,10 +6,10 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item active">Artículos</li>
+                <li>Help Center</li>
+                <li class="active">Artículos</li>
             </ol>
 
             <section class="module">
@@ -22,14 +22,13 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Artículos" /></h3>
                             </div>
                             <p>
-                               Los artículos forman parte de las categorías y son contenidos tales como manuales de ayuda, fichas técnicas, etc.
+                                Los artículos forman parte de las categorías y son contenidos tales como manuales de ayuda, fichas técnicas, etc.
                             </p>
                         </div>
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-
-                            <div class="form col-lg-6 separador-vertical-derecho">
+                            <div class="col-lg-6 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Artículos:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -41,7 +40,7 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
                                 <div class="form-group margin-top-btn-consulta">
                                     <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
                                  <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
@@ -59,7 +58,7 @@
             </section>
 
 
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
 
                     <div class="module-content collapse in" id="content-1">
@@ -67,37 +66,37 @@
                             <div class="table-responsive">
 
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
-                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
+                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25" AllowSorting="True" OnSorting="tblResults_OnSorting"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Titulo" HeaderStyle-Width="40%" ItemStyle-CssClass="altoFijo">
+                                        <asp:TemplateField HeaderText="Titulo" HeaderStyle-Width="40%" ItemStyle-CssClass="altoFijo" SortExpression="Titulo">
                                             <ItemTemplate>
                                                 <div>
-                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
+                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Titulo")%>'><%# Eval("Titulo")%></label>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Autor" HeaderStyle-Width="22%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("UsuarioAlta.NombreCompleto")%>'><%# Eval("UsuarioAlta.NombreCompleto")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Autor")%>'><%# Eval("Autor")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta")%>'><%# Eval("FechaAlta")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Creacion")%>'><%# Eval("Creacion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion")%>'><%# Eval("FechaModificacion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("UltEdicion")%>'><%# Eval("UltEdicion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
+                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>

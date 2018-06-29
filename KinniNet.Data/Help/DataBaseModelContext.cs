@@ -109,6 +109,7 @@ namespace KinniNet.Data.Help
 
                 //Mascara
                 _mascara = CreateObjectSet<Mascara>();
+                _tipoMascara = CreateObjectSet<TipoMascara>();
                 _campoMascara = CreateObjectSet<CampoMascara>();
 
                 //Operacion
@@ -147,6 +148,7 @@ namespace KinniNet.Data.Help
                 _ticketGrupoUsuario = CreateObjectSet<TicketGrupoUsuario>();
                 _ticketAsignacion = CreateObjectSet<TicketAsignacion>();
                 _ticketEstatus = CreateObjectSet<TicketEstatus>();
+                _ticketNotificacion = CreateObjectSet<TicketNotificacion>();
                 _area = CreateObjectSet<Area>();
                 _estatusTicketSubRolGeneral = CreateObjectSet<EstatusTicketSubRolGeneral>();
                 _estatusAsignacionSubRolGeneral = CreateObjectSet<EstatusAsignacionSubRolGeneral>();
@@ -563,6 +565,13 @@ namespace KinniNet.Data.Help
                 return _ticketEstatus;
             }
         }
+        public ObjectSet<TicketNotificacion> TicketNotificacion
+        {
+            get
+            {
+                return _ticketNotificacion;
+            }
+        }
 
         public ObjectSet<HorarioSubGrupo> HorarioSubGrupo
         {
@@ -744,6 +753,7 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<TicketGrupoUsuario> _ticketGrupoUsuario;
         private readonly ObjectSet<TicketAsignacion> _ticketAsignacion;
         private readonly ObjectSet<TicketEstatus> _ticketEstatus;
+        private readonly ObjectSet<TicketNotificacion> _ticketNotificacion;
         private readonly ObjectSet<Area> _area;
         private readonly ObjectSet<EstatusTicketSubRolGeneral> _estatusTicketSubRolGeneral;
         private readonly ObjectSet<EstatusAsignacionSubRolGeneral> _estatusAsignacionSubRolGeneral;
@@ -778,6 +788,13 @@ namespace KinniNet.Data.Help
                 return _mascara;
             }
         }
+        public ObjectSet<TipoMascara> TipoMascara
+        {
+            get
+            {
+                return _tipoMascara;
+            }
+        }
 
         public ObjectSet<CampoMascara> CampoMascara
         {
@@ -788,6 +805,7 @@ namespace KinniNet.Data.Help
         }
 
         private readonly ObjectSet<Mascara> _mascara;
+        private readonly ObjectSet<TipoMascara> _tipoMascara;
         private readonly ObjectSet<CampoMascara> _campoMascara;
         #endregion Mascara
 

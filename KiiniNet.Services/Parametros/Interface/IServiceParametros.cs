@@ -29,5 +29,7 @@ namespace KiiniNet.Services.Parametros.Interface
         [OperationContract]
         ParametroDatosAdicionales ObtenerDatosAdicionales(int idTipoUsuario);
 
+        [OperationContract]
+        ParametroPassword ObtenerParemtrosPassword();
     }
 }

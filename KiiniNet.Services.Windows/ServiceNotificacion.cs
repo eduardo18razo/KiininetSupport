@@ -1,28 +1,41 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.ServiceProcess;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Core.Demonio;
+using KinniNet.Core.Parametros;
 using Timer = System.Timers.Timer;
 
 namespace KiiniNet.Services.Windows
 {
     public partial class ServiceNotificacion : ServiceBase
     {
-        private readonly Timer _intervaloEjecucion = null;
+        private Timer _intervaloEjecucion = null;
         public ServiceNotificacion()
         {
             InitializeComponent();
-            _intervaloEjecucion = new Timer(60000);
-            _intervaloEjecucion.Elapsed += intervaloEjecucion_Elapsed;
+            
+        }
+
+        public void OnDebugg()
+        {
+            OnStart(null);
         }
 
         void intervaloEjecucion_Elapsed(object sender, ElapsedEventArgs e)
         {
             try
             {
+
+                Thread.Sleep(1000);
+                LogCorrect("KiiniNet", "Service Send Notication", "Iniciando Tickets Resuletos Sin Cerrar");
+                new BusinessDemonio().CierraTicketsResueltos();
+                LogCorrect("KiiniNet", "Service Send Notication", "Tickets Resuletos Sin Cerrar");
+
                 LogCorrect("KiiniNet", "Service Send Notication", "Iniciando notificaciones");
                 new BusinessDemonio().EnvioNotificacion();
                 LogCorrect("KiiniNet", "Service Send Notication", "Terminado notificaciones");
@@ -30,6 +43,7 @@ namespace KiiniNet.Services.Windows
                 LogCorrect("KiiniNet", "Service Send Notication", "Iniciando Correos");
                 new BusinessTicketMailService().RecibeCorreos();
                 LogCorrect("KiiniNet", "Service Send Notication", "Terminado Correos");
+
             }
             catch (Exception ex)
             {
@@ -76,6 +90,21 @@ namespace KiiniNet.Services.Windows
             //System.Diagnostics.Debugger.Launch();
             try
             {
+                File.Create(AppDomain.CurrentDomain.BaseDirectory + "OnStart.txt");
+                BusinessParametros bparams = new BusinessParametros();
+                ParametrosGenerales parametros =  bparams.ObtenerParametrosGenerales();
+                double intervalo = 60000;
+                if (parametros != null)
+                {
+                    intervalo = parametros.FrecuenciaDemonioSegundos * 1000;
+                    _intervaloEjecucion = new Timer(intervalo);
+                }
+                else
+                {
+                    _intervaloEjecucion = new Timer(intervalo);
+                }
+                
+                _intervaloEjecucion.Elapsed += intervaloEjecucion_Elapsed;
                 LogCorrect("KiiniNet", "Service Send Notication", "Iniciando Servicio");
                 _intervaloEjecucion.Start();
                 LogCorrect("KiiniNet", "Service Send Notication", "Servicio Iniciado");
@@ -92,6 +121,7 @@ namespace KiiniNet.Services.Windows
             try
             {
                 _intervaloEjecucion.Stop();
+                File.Create(Environment.CurrentDirectory + "OnStop.txt");
             }
             catch (Exception ex)
             {

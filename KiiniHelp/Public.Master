@@ -131,7 +131,7 @@
             <div class="topbar bg_w_header">
                 <div runat="server" id="divMenuBtn" class="cont-menu-trigger">
                     <div>
-                        <span id="trigger" class="menu-trigger z-Index-Top" />
+                        <span id="trigger" class="menu-trigger z-Index-Top" ></span>
                     </div>
                 </div>
 
@@ -201,16 +201,16 @@
                 <div class="divMainMenu margin-top-65" id="divMainMenu">
                     <nav id="pMenu" class="pMenu">
                         <div class="menuLevel">
-                            <h2 class="icon icon-shop">Inicio</h2>
+                            <h2 class="icon">Inicio</h2>
                             <ul>
                                 <asp:Repeater runat="server" ID="rptMenu" OnItemDataBound="rptMenu_OnItemDataBound">
                                     <ItemTemplate>
                                         <li>
                                             <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                            <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                            <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                 <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                 <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                    <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                    <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                     <div class="menu85Porc">
                                                         <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                         <ul>
@@ -218,80 +218,80 @@
                                                                 <ItemTemplate>
                                                                     <li>
                                                                         <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") == null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                        <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                        <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                             <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                             <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                 <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                 <ul>
                                                                                     <asp:Repeater runat="server" ID="rptSubMenu2" OnItemDataBound="rptSubMenu2_OnItemDataBound">
                                                                                         <ItemTemplate>
                                                                                             <li>
                                                                                                 <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                                                <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                                                <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                     <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                     <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                                        <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                                        <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                                         <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                                         <ul>
                                                                                                             <asp:Repeater runat="server" ID="rptSubMenu3" OnItemDataBound="rptSubMenu3_OnItemDataBound">
                                                                                                                 <ItemTemplate>
                                                                                                                     <li>
                                                                                                                         <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                                                                        <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                                                                        <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                                             <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                             <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                                                                <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                                                                <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                                                                 <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                                                                 <ul>
                                                                                                                                     <asp:Repeater runat="server" ID="rptSubMenu4" OnItemDataBound="rptSubMenu4_OnItemDataBound">
                                                                                                                                         <ItemTemplate>
                                                                                                                                             <li>
                                                                                                                                                 <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                                                                                                <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                                                                                                <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                                                                     <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                                                     <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                                                                                        <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                                                                                        <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                                                                                         <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                                                                                         <ul>
                                                                                                                                                             <asp:Repeater runat="server" ID="rptSubMenu5" OnItemDataBound="rptSubMenu5_OnItemDataBound">
                                                                                                                                                                 <ItemTemplate>
                                                                                                                                                                     <li>
                                                                                                                                                                         <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                                                                                                                        <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                                                                                                                        <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                                                                                             <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                                                                             <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                                                                                                                <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                                                                                                                <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                                                                                                                 <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                                                                                                                 <ul>
                                                                                                                                                                                     <asp:Repeater runat="server" ID="rptSubMenu6" OnItemDataBound="rptSubMenu6_OnItemDataBound">
                                                                                                                                                                                         <ItemTemplate>
                                                                                                                                                                                             <li>
                                                                                                                                                                                                 <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                                                                                                                                                <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                                                                                                                                                <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                                                                                                                     <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                                                                                                     <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                                                                                                                                        <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                                                                                                                                        <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                                                                                                                                         <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                                                                                                                                         <ul>
                                                                                                                                                                                                             <asp:Repeater runat="server" ID="rptSubMenu7" OnItemDataBound="rptSubMenu7_OnItemDataBound">
                                                                                                                                                                                                                 <ItemTemplate>
                                                                                                                                                                                                                     <li>
                                                                                                                                                                                                                         <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                                                                                                                                                                        <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                                                                                                                                                                        <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                                                                                                                                             <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                                                                                                                             <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                                                                                                                                                                <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                                                                                                                                                                <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                                                                                                                                                                 <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                                                                                                                                                                 <ul>
                                                                                                                                                                                                                                     <asp:Repeater runat="server" ID="rptSubMenu8">
                                                                                                                                                                                                                                         <ItemTemplate>
                                                                                                                                                                                                                                             <li>
                                                                                                                                                                                                                                                 <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") ==null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
-                                                                                                                                                                                                                                                <li class="icon icon-arrow-left" runat="server" visible='<%# Eval("Menu1") !=null %>'>
+                                                                                                                                                                                                                                                <li class="icon" runat="server" visible='<%# Eval("Menu1") !=null %>'>
                                                                                                                                                                                                                                                     <asp:HyperLink NavigateUrl='<%# Eval("Url") %>' Visible='<%# Eval("Menu1") !=null %>' runat="server" Text='<%# Eval("Descripcion") %>' />
                                                                                                                                                                                                                                                     <div runat="server" visible='<%# Eval("Menu1") !=null %>' class="menuLevel">
-                                                                                                                                                                                                                                                        <h2 class="icon icon-display"><%# Eval("Descripcion") %></h2>
+                                                                                                                                                                                                                                                        <h2 class="icon"><%# Eval("Descripcion") %></h2>
                                                                                                                                                                                                                                                         <asp:HyperLink runat="server" CssClass="menuBack" href="#">Atras</asp:HyperLink>
                                                                                                                                                                                                                                                     </div>
                                                                                                                                                                                                                                                 </li>

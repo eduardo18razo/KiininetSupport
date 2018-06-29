@@ -10,6 +10,11 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-7">
                             <div class="module-inner">
+                                
+                                <asp:Label runat="server" ID="lblIdTipoFormulario" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left" Text="Tipo del Formulario" Visible="True" />
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left no-padding-right">
+                                    <asp:DropDownList runat="server" ID="ddlTipoFormulario" CssClass="form-control"/>
+                                </div>
 
                                 <asp:Label runat="server" ID="lblIdTipoCampoMascara" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left" Text="Título del Formulario" Visible="True" />
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left no-padding-right">

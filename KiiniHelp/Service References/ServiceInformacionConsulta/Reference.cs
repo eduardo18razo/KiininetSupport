@@ -39,13 +39,17 @@ namespace KiiniHelp.ServiceInformacionConsulta {
         void GuardarHit(int idArbol, int idTipoUsuario, System.Nullable<int> idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsulta", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsultaResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Operacion.InformacionConsulta> ObtenerConsulta(string descripcion);
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperInformacionConsulta> ObtenerConsulta(string descripcion, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/RateConsulta", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/RateConsultaResponse")]
         void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/HabilitarInformacion", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/HabilitarInformacionResponse")]
         void HabilitarInformacion(int idInformacion, bool habilitado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerReporteInformacionConsulta", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerReporteInformacionConsultaR" +
+            "esponse")]
+        KiiniNet.Entities.Reportes.ReporteInformacionConsulta ObtenerReporteInformacionConsulta(int idInformacionConsulta, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -99,8 +103,8 @@ namespace KiiniHelp.ServiceInformacionConsulta {
             base.Channel.GuardarHit(idArbol, idTipoUsuario, idUsuario);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.InformacionConsulta> ObtenerConsulta(string descripcion) {
-            return base.Channel.ObtenerConsulta(descripcion);
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperInformacionConsulta> ObtenerConsulta(string descripcion, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerConsulta(descripcion, fechas);
         }
         
         public void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta) {
@@ -109,6 +113,10 @@ namespace KiiniHelp.ServiceInformacionConsulta {
         
         public void HabilitarInformacion(int idInformacion, bool habilitado) {
             base.Channel.HabilitarInformacion(idInformacion, habilitado);
+        }
+        
+        public KiiniNet.Entities.Reportes.ReporteInformacionConsulta ObtenerReporteInformacionConsulta(int idInformacionConsulta, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
+            return base.Channel.ObtenerReporteInformacionConsulta(idInformacionConsulta, fechas, tipoFecha);
         }
     }
 }

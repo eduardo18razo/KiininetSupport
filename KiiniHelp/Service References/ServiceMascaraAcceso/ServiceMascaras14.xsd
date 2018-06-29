@@ -9,6 +9,7 @@
   <xs:complexType name="CatalogoGenerico">
     <xs:sequence>
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
     </xs:sequence>
   </xs:complexType>

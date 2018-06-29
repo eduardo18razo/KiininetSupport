@@ -67,6 +67,15 @@ namespace KiiniHelp {
         protected global::System.Web.UI.WebControls.TextBox main_search_input;
         
         /// <summary>
+        /// Control divEmpleados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEmpleados;
+        
+        /// <summary>
         /// Control lnkBtnEmpleado.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace KiiniHelp {
         protected global::System.Web.UI.WebControls.LinkButton lnkBtnEmpleado;
         
         /// <summary>
+        /// Control divClientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divClientes;
+        
+        /// <summary>
         /// Control lnkBtnCliente.
         /// </summary>
         /// <remarks>
@@ -83,6 +101,15 @@ namespace KiiniHelp {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkBtnCliente;
+        
+        /// <summary>
+        /// Control divProveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProveedores;
         
         /// <summary>
         /// Control lnkBtnProveedor.

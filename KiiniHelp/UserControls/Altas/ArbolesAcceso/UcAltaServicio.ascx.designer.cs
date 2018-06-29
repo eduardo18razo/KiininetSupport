@@ -562,13 +562,13 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.ListBox lstGruposEc;
         
         /// <summary>
-        /// Control ddlGrupoDuenoServicio.
+        /// Control ddlGrupoResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoDuenoServicio;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoResponsableCategoria;
         
         /// <summary>
         /// Control lstGruposAu.
@@ -679,184 +679,184 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStep5Data;
         
         /// <summary>
-        /// Control chkNotificacionDueno.
+        /// Control chkNotificacionResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionDueno;
+        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionResponsableCategoria;
         
         /// <summary>
-        /// Control txtTiempoNotificacionDueno.
+        /// Control txtTiempoNotificacionResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionDueno;
+        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionResponsableCategoria;
         
         /// <summary>
-        /// Control ddlNotificacionGrupoDueño.
+        /// Control ddlNotificacionResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionGrupoDueño;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionResponsableCategoria;
         
         /// <summary>
-        /// Control ddlCanalDueño.
+        /// Control ddlCanalResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCanalDueño;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCanalResponsableCategoria;
         
         /// <summary>
-        /// Control chkVencimientoDueño.
+        /// Control chkVencimientoResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoDueño;
+        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoResponsableCategoria;
         
         /// <summary>
-        /// Control chkNotificacionMtto.
+        /// Control chkNotificacionResponsableContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionMtto;
+        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionResponsableContenido;
         
         /// <summary>
-        /// Control txtTiempoNotificacionMtto.
+        /// Control txtTiempoNotificacionResponsableContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionMtto;
+        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionResponsableContenido;
         
         /// <summary>
-        /// Control ddlNotificacionGrupoMtto.
+        /// Control ddlNotificacionResponsableContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionGrupoMtto;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionResponsableContenido;
         
         /// <summary>
-        /// Control ddlCanalMtto.
+        /// Control ddlCanalResponsableContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCanalMtto;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCanalResponsableContenido;
         
         /// <summary>
-        /// Control chkVencimientoMtto.
+        /// Control chkVencimientoResponsableContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoMtto;
+        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoResponsableContenido;
         
         /// <summary>
-        /// Control chkNotificacionDesarrollo.
+        /// Control chkNotificacionResponsableDesarrollo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionDesarrollo;
+        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionResponsableDesarrollo;
         
         /// <summary>
-        /// Control txtTiempoNotificacionDev.
+        /// Control txtTiempoNotificacionResponsableDesarrollo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionDev;
+        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionResponsableDesarrollo;
         
         /// <summary>
-        /// Control ddlNotificacionGrupoDev.
+        /// Control ddlNotificacionResponsableDesarrollo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionGrupoDev;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionResponsableDesarrollo;
         
         /// <summary>
-        /// Control ddlCanalDev.
+        /// Control ddlCanalResponsableDesarrollo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCanalDev;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCanalResponsableDesarrollo;
         
         /// <summary>
-        /// Control chkVencimientoDev.
+        /// Control chkVencimientoResponsableDesarrollo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoDev;
+        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoResponsableDesarrollo;
         
         /// <summary>
-        /// Control chkNotificacionOperacion.
+        /// Control chkNotificacionResponsableOperacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionOperacion;
+        protected global::System.Web.UI.WebControls.CheckBox chkNotificacionResponsableOperacion;
         
         /// <summary>
-        /// Control txtTiempoNotificacionOperacion.
+        /// Control txtTiempoNotificacionResponsableOperacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionOperacion;
+        protected global::System.Web.UI.WebControls.TextBox txtTiempoNotificacionResponsableOperacion;
         
         /// <summary>
-        /// Control ddlNotificacionGrupoOperacion.
+        /// Control ddlNotificacionResponsableOperacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionGrupoOperacion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNotificacionResponsableOperacion;
         
         /// <summary>
-        /// Control ddlCanalOperacion.
+        /// Control ddlCanalResponsableOperacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCanalOperacion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCanalResponsableOperacion;
         
         /// <summary>
-        /// Control chkVencimientoOperacion.
+        /// Control chkVencimientoResponsableOperacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoOperacion;
+        protected global::System.Web.UI.WebControls.CheckBox chkVencimientoResponsableOperacion;
         
         /// <summary>
         /// Control divStep6Data.

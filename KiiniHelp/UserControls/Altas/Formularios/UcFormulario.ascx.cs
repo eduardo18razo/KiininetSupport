@@ -72,7 +72,9 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 
             if (arbol != null)
             {
-
+                lblTitle.Text = arbol.InventarioArbolAcceso[0].Descripcion;
+                lblDescripcion.Text = arbol.Descripcion;
+                lblTitle.Text = arbol.InventarioArbolAcceso[0].Descripcion;
                 int? idMascara = arbol.InventarioArbolAcceso.First().IdMascara;
                 if (idMascara != null) IdMascara = (int)idMascara;
                 Mascara mascara = _servicioMascaras.ObtenerMascaraCaptura(IdMascara);
@@ -84,11 +86,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     PintaControles(mascara.CampoMascara);
                     Session["MascaraActiva"] = mascara;
                 }
-            }
-            else if (Request.UrlReferrer != null) Response.Redirect(Request.UrlReferrer.ToString());
-            else
-            {
-                Response.Redirect("~/Default.aspx");
             }
         }
 
@@ -367,7 +364,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                         throw new Exception(string.Format("Campo {0} debe capturar un rango valido", campo.Descripcion));
                                     else if (txtFechaInicio.Text.Trim() != String.Empty && txtFechaFin.Text.Trim() == string.Empty)
                                         throw new Exception(string.Format("Campo {0} debe capturar un rango valido", campo.Descripcion));
-
                                 }
                             }
                             break;
@@ -393,7 +389,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                     if (txtMascara.Text.Trim().Length > campo.LongitudMaxima)
                                         throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
                                 }
-
                             }
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
@@ -408,6 +403,59 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 }
                                 else
                                     throw new Exception(string.Format("Campo {0} debe seleccionar un archivo", campo.Descripcion));
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtTelefono = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtTelefono != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtTelefono.Text.Trim() == String.Empty || txtTelefono.Text.Trim() == campo.MascaraDetalle)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        
+                                        if (txtTelefono.Text.Trim().Length < campo.LongitudMinima)
+                                            throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                        if (txtTelefono.Text.Trim().Length > campo.LongitudMaxima)
+                                            throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                    }
+                                if (!campo.Requerido && txtTelefono.Text.Trim() != string.Empty)
+                                {
+                                    if (txtTelefono.Text.Trim().Length < campo.LongitudMinima)
+                                        throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                    if (txtTelefono.Text.Trim().Length > campo.LongitudMaxima)
+                                        throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                }
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtCorreo = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtCorreo != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtCorreo.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        if (txtCorreo.Text.Trim().Length < campo.LongitudMinima)
+                                            throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                        if (txtCorreo.Text.Trim().Length > campo.LongitudMaxima)
+                                            throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                    }
+                                if (!campo.Requerido && txtCorreo.Text.Trim() != string.Empty)
+                                {
+                                    if (txtCorreo.Text.Trim().Length < campo.LongitudMinima)
+                                        throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                    if (txtCorreo.Text.Trim().Length > campo.LongitudMaxima)
+                                        throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                }
+                                if (!BusinessCorreo.IsValidEmail(txtCorreo.Text.Trim()) || txtCorreo.Text.Trim().Contains(" "))
+                                {
+                                    throw new Exception(string.Format("Correo {0} con formato invalido", campo.Descripcion));
+                                }
                             }
                             break;
                     }
@@ -500,6 +548,12 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
                             nombreControl = "fu" + campo.NombreCampo;
                             campoTexto = false;
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            nombreControl = "txt" + campo.NombreCampo;
                             break;
                     }
 
@@ -656,7 +710,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
-                    //createDiv.InnerHtml = campo.Descripcion;
                     Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label" };
                     switch (campo.TipoCampoMascara.Id)
                     {
@@ -671,7 +724,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             };
                             txtSimple.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtSimple.Attributes["MaxLength"] = campo.TipoCampoMascara.LongitudMaxima.ToString();
-                            // txtSimple.Attributes["placeholder"] = campo.Descripcion; ecl
                             _lstControles.Add(txtSimple);
                             createDiv.Controls.Add(txtSimple);
                             break;
@@ -687,7 +739,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             };
                             txtMultilinea.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMultilinea.Attributes["MaxLength"] = campo.LongitudMaxima.ToString();
-                            //txtMultilinea.Attributes["placeholder"] = campo.Descripcion; ecl
                             _lstControles.Add(txtMultilinea);
                             createDiv.Controls.Add(txtMultilinea);
                             break;
@@ -790,7 +841,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 CssClass = "form-control"
                             };
                             txtDecimal.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtDecimal.Attributes["placeholder"] = campo.Descripcion; ecl
                             txtDecimal.Attributes["type"] = "number";
                             txtDecimal.Attributes["step"] = "0.01";
                             txtDecimal.Attributes["min"] = campo.ValorMinimo.ToString();
@@ -809,7 +859,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 CssClass = "form-control"
                             };
                             txtEntero.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtEntero.Attributes["placeholder"] = campo.NombreCampo; ecl
                             txtEntero.Attributes["type"] = "number";
                             txtEntero.Attributes["step"] = "1";
                             txtEntero.Attributes["min"] = campo.ValorMinimo.ToString();
@@ -817,9 +866,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             createDiv.Controls.Add(txtEntero);
                             _lstControles.Add(txtEntero);
                             break;
-
-
-
 
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
                             lbl.Attributes["for"] = "FECHA";
@@ -836,7 +882,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 Format = "dd/MM/yyyy"
                             };
                             txtFecha.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFecha.Attributes["placeholder"] = campo.Descripcion; ecl
                             txtFecha.Attributes["for"] = "FECHA";
                             txtFecha.Attributes["MaxLength"] = "10";
                             createDiv.Controls.Add(ceeFechaOpcion);
@@ -868,13 +913,10 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 Format = "dd/MM/yyyy"
                             };
                             txtFechaInicio.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFechaInicio.Attributes["placeholder"] = campo.Descripcion; ecl
                             txtFechaInicio.Attributes["for"] = "FECHAINICIO";
                             txtFechaInicio.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaInicio);
                             createDivGrupoFechas.Controls.Add(txtFechaInicio);
-
-
                             Label lblHasta = new Label { Text = "De:", CssClass = "" };
                             lblHasta.Attributes["for"] = "FECHAFIN";
                             createDivGrupoFechas.Controls.Add(lblHasta);
@@ -890,7 +932,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 Format = "dd/MM/yyyy"
                             };
                             txtFechaFin.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFechaFin.Attributes["placeholder"] = campo.Descripcion; ecl
                             txtFechaFin.Attributes["for"] = "FECHAFIN";
                             txtFechaFin.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaFin);
@@ -921,26 +962,19 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 CssClass = "form-control",
                                 EnableViewState = true
                             };
-                            //txtMascara.Attributes["placeholder"] = campo.Descripcion;
                             txtMascara.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMascara.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtMascara.Attributes["for"] = "txt" + campo.Descripcion.Replace(" ", string.Empty);
                             MaskedEditExtender meeMascara = new MaskedEditExtender
                             {
                                 ID = "mee" + campo.NombreCampo,
-                                ClearTextOnInvalid = false,
-                                ClearMaskOnLostFocus = false,
-                                EnableViewState = true,
-                                TargetControlID = txtMascara.ID,
-                                InputDirection = MaskedEditInputDirection.LeftToRight,
                                 Mask = campo.MascaraDetalle,
-                                MaskType = MaskedEditType.Date,
-                                AcceptAMPM = false,
-                                AcceptNegative = MaskedEditShowSymbol.None,
+                                TargetControlID = txtMascara.ID,
+                                ClearMaskOnLostFocus = true,
+                                ClearTextOnInvalid = true,
                             };
-                            txtMascara.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            createDiv.Controls.Add(meeMascara);
                             createDiv.Controls.Add(txtMascara);
+                            createDiv.Controls.Add(meeMascara);
                             _lstControles.Add(txtMascara);
                             _lstControles.Add(meeMascara);
                             break;
@@ -954,14 +988,53 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 UploaderStyle = AsyncFileUploaderStyle.Traditional,
                                 OnClientUploadStarted = "ShowLanding",
                                 OnClientUploadComplete = "HideLanding"
-
                             };
-                            //Session[asyncFileUpload.ID] = string.Empty;
                             asyncFileUpload.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             asyncFileUpload.Attributes["style"] = "margin-top: 25px";
                             asyncFileUpload.UploadedComplete += asyncFileUpload_UploadedComplete;
                             createDiv.Controls.Add(asyncFileUpload);
                             _lstControles.Add(asyncFileUpload);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
+                            createDiv.Controls.Add(lbl);
+                            TextBox txtMascaraTelefono = new TextBox
+                            {
+                                ID = "txt" + campo.NombreCampo,
+                                Text = campo.Descripcion,
+                                CssClass = "form-control",
+                                EnableViewState = true,
+                                
+                            };
+                            txtMascaraTelefono.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
+                            MaskedEditExtender meeMascaraTelefono = new MaskedEditExtender
+                            {
+                                ID = "mee" + campo.NombreCampo,
+                                Mask = campo.MascaraDetalle,
+                                TargetControlID = txtMascaraTelefono.ID,
+                                ClearMaskOnLostFocus = true,
+                                ClearTextOnInvalid = true,
+                            };
+
+                            createDiv.Controls.Add(txtMascaraTelefono);
+                            createDiv.Controls.Add(meeMascaraTelefono);
+                            _lstControles.Add(txtMascaraTelefono);
+                            _lstControles.Add(meeMascaraTelefono);
+                            break;
+
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            createDiv.Controls.Add(lbl);
+                            TextBox txtCorreo = new TextBox
+                            {
+                                ID = "txt" + campo.Descripcion,
+                                CssClass = "form-control",
+                            };
+                            txtCorreo.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
+                            txtCorreo.Attributes["MaxLength"] = campo.TipoCampoMascara.LongitudMaximaPermitida;
+                            txtCorreo.Attributes["type"] = "email";
+                            _lstControles.Add(txtCorreo);
+                            createDiv.Controls.Add(txtCorreo);
                             break;
                     }
 

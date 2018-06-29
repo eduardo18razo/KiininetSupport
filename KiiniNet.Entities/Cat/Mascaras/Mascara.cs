@@ -13,6 +13,8 @@ namespace KiiniNet.Entities.Cat.Mascaras
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public int IdTipoMascara { get; set; }
+        [DataMember]
         public string Descripcion { get; set; }
         [DataMember]
         public int NoCampos { get; set; }
@@ -49,5 +51,7 @@ namespace KiiniNet.Entities.Cat.Mascaras
         public virtual Entities.Operacion.Usuarios.Usuario UsuarioModifico { get; set; }
         [DataMember]
         public virtual List<ParametroDatosAdicionales> ParametroDatosAdicionales { get; set; }
+        [DataMember]
+        public virtual TipoMascara TipoMascara { get; set; }
     }
 }

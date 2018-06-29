@@ -140,6 +140,9 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         public virtual List<UsuarioNotificacion> UsuarioNotificacion { get; set; }
         [DataMember]
         public virtual List<CorreoService> CorreoService { get; set; }
+
+        [DataMember]
+        public virtual List<TicketNotificacion> TicketNotificacion { get; set; }
         #endregion Mapeo
 
         [DataMember]

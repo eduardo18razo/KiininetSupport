@@ -29,4 +29,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerTipoMascara">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="insertarSeleccion" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerTipoMascaraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" minOccurs="0" name="ObtenerTipoMascaraResult" nillable="true" type="q3:ArrayOfTipoMascara" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

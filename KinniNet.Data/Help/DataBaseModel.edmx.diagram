@@ -369,7 +369,6 @@
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketCorreo" Width="1.5" PointX="23.125" PointY="74.375" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketCorreo_Ticket" />
-        <EntityTypeShape EntityType="KiiniNet_v2Model.ParametrosGenerales" Width="1.5" PointX="9.375" PointY="4.75" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEvento" Width="1.5" PointX="32.125" PointY="99.875" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoAsignacion" Width="1.5" PointX="31.875" PointY="96.875" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoConversacion" Width="1.5" PointX="32.375" PointY="87.875" />
@@ -393,6 +392,15 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoGrupo" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.ParametrosGenerales" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.TipoMascara" Width="1.5" PointX="9.375" PointY="9.875" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Mascara_TipoMascara" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.TicketNotificacion" Width="1.5" PointX="33.25" PointY="104" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_SmsService" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_Usuario" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

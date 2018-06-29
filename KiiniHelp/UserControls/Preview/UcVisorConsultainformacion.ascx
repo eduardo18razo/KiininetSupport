@@ -6,6 +6,7 @@
         width: 98%;
         padding: 30PX;
     }
+
     .dontlike {
         transform: scale(0.5);
     }
@@ -25,6 +26,9 @@
                             <h3 class="module-title18px">
                                 <asp:Label runat="server" ID="lblTitle" />
                             </h3>
+                            <p>
+                                <asp:Label runat="server" ID="lblDescripcion"></asp:Label>
+                            </p>
                         </div>
                         <div id="TextPreview" runat="server" class="preview"></div>
                     </div>
@@ -37,12 +41,17 @@
                         <asp:Repeater runat="server" ID="rptArchivos">
                             <ItemTemplate>
                                 <div class="row margin-top-10" runat="server">
-                                    <span class=" col-lg-12 col-md-12 col-sm-12 fa fa-paperclip">
-                                        <asp:Label runat="server" ID="lblFile" Text='<%# Eval("Archivo")%>' />
-                                    </span>
-                                    <br />
-                                    <asp:HyperLink runat="server" Enabled='<%# BusinessFile.ExisteArchivo(BusinessVariables.Directorios.RepositorioInformacionConsulta + Eval("Archivo")) %>' Text="Download" NavigateUrl='<%# ResolveUrl(string.Format("~/Downloads/FrmDownloads.aspx?file={0}", BusinessVariables.Directorios.RepositorioInformacionConsulta + "~" + Eval("Archivo"))) %>'></asp:HyperLink>
-                                    <asp:LinkButton runat="server" Enabled='<%# BusinessFile.ExisteArchivo(BusinessVariables.Directorios.RepositorioInformacionConsulta + Eval("Archivo")) %>' Text="Preview" ID="btnPreviewDocument" CssClass="margin-left-5" OnClick="btnPreviewDocument_OnClick" CommandArgument='<%# Eval("Archivo") %>'></asp:LinkButton>
+                                    <div class="row">
+                                        <div class="col-lg-11 col-md-11 col-sm-11">
+                                            <div class="row">
+                                                <span class="fa fa-paperclip" style="font-size: 14px"></span>
+                                                <asp:Label runat="server" ID="lblFile" Text='<%# Eval("Archivo")%>' />
+                                            </div>
+                                            <div class="row">
+                                                <asp:HyperLink runat="server" Enabled='<%# BusinessFile.ExisteArchivo(BusinessVariables.Directorios.RepositorioInformacionConsulta + Eval("Archivo")) %>' Text="Download" CssClass="text-theme" NavigateUrl='<%# ResolveUrl(string.Format("~/Downloads/FrmDownloads.aspx?file={0}", BusinessVariables.Directorios.RepositorioInformacionConsulta + "~" + Eval("Archivo"))) %>'></asp:HyperLink> |<asp:LinkButton runat="server" CssClass="margin-left-5 text-theme" Enabled='<%# BusinessFile.ExisteArchivo(BusinessVariables.Directorios.RepositorioInformacionConsulta + Eval("Archivo")) %>' Text="Preview" ID="btnPreviewDocument" OnClick="btnPreviewDocument_OnClick" CommandArgument='<%# Eval("Archivo") %>'></asp:LinkButton>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>

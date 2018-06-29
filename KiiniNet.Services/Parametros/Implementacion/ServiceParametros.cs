@@ -113,5 +113,20 @@ namespace KiiniNet.Services.Parametros.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public ParametroPassword ObtenerParemtrosPassword()
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerParemtrosPassword();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

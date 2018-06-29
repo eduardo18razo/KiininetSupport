@@ -23,5 +23,13 @@ namespace KiiniNet.Entities.Parametros
         public bool StrongPassword { get; set; }
         [DataMember]
         public string FormularioPortal { get; set; }
+        [DataMember]
+        public int FrecuenciaDemonioSegundos { get; set; }
+        [DataMember]
+        public int FrecuenciaNotificacionMinutos { get; set; }
+        [DataMember]
+        public int MensajesNotificacion { get; set; }
+        [DataMember]
+        public int? DiasCierreTicket { get; set; }
     }
 }

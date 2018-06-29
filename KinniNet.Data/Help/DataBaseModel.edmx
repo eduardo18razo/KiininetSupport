@@ -590,6 +590,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoMascara" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
           <Property Name="NoCampos" Type="int" />
           <Property Name="NombreTabla" Type="nvarchar" MaxLength="150" />
@@ -856,6 +857,10 @@
           <Property Name="MensajeValidacion" Type="nvarchar(max)" />
           <Property Name="StrongPassword" Type="bit" />
           <Property Name="FormularioPortal" Type="nvarchar(max)" />
+          <Property Name="FrecuenciaDemonioSegundos" Type="int" />
+          <Property Name="FrecuenciaNotificacionMinutos" Type="int" />
+          <Property Name="MensajesNotificacion" Type="int" />
+          <Property Name="DiasCierreTicket" Type="int" />
         </EntityType>
         <EntityType Name="ParametrosSla">
           <Key>
@@ -1267,6 +1272,20 @@
           <Property Name="IdGrupoUsuario" Type="int" Nullable="false" />
           <Property Name="IdSubGrupoUsuario" Type="int" />
         </EntityType>
+        <EntityType Name="TicketNotificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSmsService" Type="int" />
+          <Property Name="IdTicket" Type="int" Nullable="false" />
+          <Property Name="IdGrupoUsuario" Type="int" />
+          <Property Name="IdUsuario" Type="int" Nullable="false" />
+          <Property Name="TelefonoUsuario" Type="nvarchar" MaxLength="30" />
+          <Property Name="CorreoUsuario" Type="nvarchar" MaxLength="300" />
+          <Property Name="IdTipoNotificacion" Type="int" Nullable="false" />
+          <Property Name="FechaNotificacion" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="TiempoInformeArbol">
           <Key>
             <PropertyRef Name="Id" />
@@ -1275,11 +1294,11 @@
           <Property Name="IdArbol" Type="int" />
           <Property Name="IdTipoGrupo" Type="int" />
           <Property Name="IdGrupoUsuario" Type="int" />
-          <Property Name="Dias" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Horas" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Minutos" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Segundos" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="TiempoNotificacion" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Dias" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Horas" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Minutos" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Segundos" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="TiempoNotificacion" Type="decimal" Precision="18" Scale="9" />
           <Property Name="IdTipoNotificacion" Type="int" />
           <Property Name="AntesVencimiento" Type="bit" />
           <Property Name="Habilitado" Type="bit" />
@@ -1317,6 +1336,8 @@
           <Property Name="Catalogo" Type="bit" Nullable="false" />
           <Property Name="Mask" Type="bit" />
           <Property Name="UploadFile" Type="bit" />
+          <Property Name="Telefono" Type="bit" />
+          <Property Name="Correo" Type="bit" />
           <Property Name="Habilitado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoCorreo">
@@ -1370,6 +1391,16 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Habilitado" Type="bit" />
+        </EntityType>
+        <EntityType Name="TipoMascara">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="30" />
+          <Property Name="TablaLlave" Type="nvarchar" MaxLength="50" />
+          <Property Name="CampoLlave" Type="nvarchar" MaxLength="50" />
           <Property Name="Habilitado" Type="bit" />
         </EntityType>
         <EntityType Name="TipoNota">
@@ -2717,6 +2748,18 @@
             </Principal>
             <Dependent Role="Jefatura">
               <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mascara_TipoMascara">
+          <End Role="TipoMascara" Type="Self.TipoMascara" Multiplicity="1" />
+          <End Role="Mascara" Type="Self.Mascara" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMascara">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mascara">
+              <PropertyRef Name="IdTipoMascara" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4160,6 +4203,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TicketNotificacion_GrupoUsuario">
+          <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="0..1" />
+          <End Role="TicketNotificacion" Type="Self.TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoUsuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdGrupoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_SmsService">
+          <End Role="SmsService" Type="Self.SmsService" Multiplicity="0..1" />
+          <End Role="TicketNotificacion" Type="Self.TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SmsService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdSmsService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_Ticket">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="TicketNotificacion" Type="Self.TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_TipoNotificacion">
+          <End Role="TipoNotificacion" Type="Self.TipoNotificacion" Multiplicity="1" />
+          <End Role="TicketNotificacion" Type="Self.TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoNotificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdTipoNotificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="TicketNotificacion" Type="Self.TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TiempoInformeArbol_ArbolAcceso">
           <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="0..1" />
           <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
@@ -4632,6 +4735,7 @@
           <EntitySet Name="TicketEventoConversacion" EntityType="Self.TicketEventoConversacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketEventoEstatus" EntityType="Self.TicketEventoEstatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TicketGrupoUsuario" EntityType="Self.TicketGrupoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketNotificacion" EntityType="Self.TicketNotificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TiempoInformeArbol" EntityType="Self.TiempoInformeArbol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoArbolAcceso" EntityType="Self.TipoArbolAcceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoCampoMascara" EntityType="Self.TipoCampoMascara" Schema="dbo" store:Type="Tables" />
@@ -4641,6 +4745,7 @@
           <EntitySet Name="TipoGrupo" EntityType="Self.TipoGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoInfConsulta" EntityType="Self.TipoInfConsulta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoLink" EntityType="Self.TipoLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMascara" EntityType="Self.TipoMascara" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoNota" EntityType="Self.TipoNota" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoNotificacion" EntityType="Self.TipoNotificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoTelefono" EntityType="Self.TipoTelefono" Schema="dbo" store:Type="Tables" />
@@ -5050,6 +5155,10 @@
           <AssociationSet Name="FK_Jefatura_TipoUsuario" Association="Self.FK_Jefatura_TipoUsuario">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Jefatura" EntitySet="Jefatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mascara_TipoMascara" Association="Self.FK_Mascara_TipoMascara">
+            <End Role="TipoMascara" EntitySet="TipoMascara" />
+            <End Role="Mascara" EntitySet="Mascara" />
           </AssociationSet>
           <AssociationSet Name="FK_Mascara_Usuario" Association="Self.FK_Mascara_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -5530,6 +5639,26 @@
           <AssociationSet Name="FK_TicketGrupoUsuario_Ticket" Association="Self.FK_TicketGrupoUsuario_Ticket">
             <End Role="Ticket" EntitySet="Ticket" />
             <End Role="TicketGrupoUsuario" EntitySet="TicketGrupoUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_GrupoUsuario" Association="Self.FK_TicketNotificacion_GrupoUsuario">
+            <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_SmsService" Association="Self.FK_TicketNotificacion_SmsService">
+            <End Role="SmsService" EntitySet="SmsService" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_Ticket" Association="Self.FK_TicketNotificacion_Ticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_TipoNotificacion" Association="Self.FK_TicketNotificacion_TipoNotificacion">
+            <End Role="TipoNotificacion" EntitySet="TipoNotificacion" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_Usuario" Association="Self.FK_TicketNotificacion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
           </AssociationSet>
           <AssociationSet Name="FK_TiempoInformeArbol_ArbolAcceso" Association="Self.FK_TiempoInformeArbol_ArbolAcceso">
             <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
@@ -6723,7 +6852,6 @@
             <End Role="Ticket" EntitySet="Ticket" />
             <End Role="TicketCorreo" EntitySet="TicketCorreo" />
           </AssociationSet>
-          <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
           <EntitySet Name="TicketEvento" EntityType="KiiniNet_v2Model.TicketEvento" />
           <EntitySet Name="TicketEventoAsignacion" EntityType="KiiniNet_v2Model.TicketEventoAsignacion" />
           <EntitySet Name="TicketEventoConversacion" EntityType="KiiniNet_v2Model.TicketEventoConversacion" />
@@ -6794,6 +6922,33 @@
           <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+          </AssociationSet>
+          <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
+          <EntitySet Name="TipoMascara" EntityType="KiiniNet_v2Model.TipoMascara" />
+          <AssociationSet Name="FK_Mascara_TipoMascara" Association="KiiniNet_v2Model.FK_Mascara_TipoMascara">
+            <End Role="TipoMascara" EntitySet="TipoMascara" />
+            <End Role="Mascara" EntitySet="Mascara" />
+          </AssociationSet>
+          <EntitySet Name="TicketNotificacion" EntityType="KiiniNet_v2Model.TicketNotificacion" />
+          <AssociationSet Name="FK_TicketNotificacion_GrupoUsuario" Association="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario">
+            <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_SmsService" Association="KiiniNet_v2Model.FK_TicketNotificacion_SmsService">
+            <End Role="SmsService" EntitySet="SmsService" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_Ticket" Association="KiiniNet_v2Model.FK_TicketNotificacion_Ticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_TipoNotificacion" Association="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion">
+            <End Role="TipoNotificacion" EntitySet="TipoNotificacion" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNotificacion_Usuario" Association="KiiniNet_v2Model.FK_TicketNotificacion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Campus">
@@ -8148,6 +8303,7 @@
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Habilitado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_TipoNotificacion" FromRole="TipoNotificacion" ToRole="TiempoInformeArbol" />
+          <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion" FromRole="TipoNotificacion" ToRole="TicketNotificacion" />
         </EntityType>
         <EntityType Name="EstatusAsignacionSubRolGeneralDefault">
           <Key>
@@ -8691,6 +8847,7 @@
           <Property Name="Habilitado" Type="Boolean" />
           <NavigationProperty Name="TipoLink" Relationship="KiiniNet_v2Model.FK_Sms_Service_TipoLink" FromRole="SmsService" ToRole="TipoLink" />
           <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_Sms_Service_Usuario" FromRole="SmsService" ToRole="Usuario" />
+          <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_SmsService" FromRole="SmsService" ToRole="TicketNotificacion" />
         </EntityType>
         <Association Name="FK_Sms_Service_TipoLink">
           <End Type="KiiniNet_v2Model.TipoLink" Role="TipoLink" Multiplicity="0..1" />
@@ -8973,6 +9130,7 @@
           <NavigationProperty Name="HitGrupoUsuario" Relationship="KiiniNet_v2Model.FK_HitGrupoUsuario_GrupoUsuario" FromRole="GrupoUsuario" ToRole="HitGrupoUsuario" />
           <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TiempoInformeArbol" />
           <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" FromRole="GrupoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
+          <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TicketNotificacion" />
         </EntityType>
         <Association Name="FK_GrupoUsuario_TipoGrupo1">
           <End Type="KiiniNet_v2Model.TipoGrupo" Role="TipoGrupo" Multiplicity="0..1" />
@@ -9430,6 +9588,7 @@
           <NavigationProperty Name="NivelTicket" Relationship="KiiniNet_v2Model.FK_Ticket_NivelTicket" FromRole="Ticket" ToRole="NivelTicket" />
           <NavigationProperty Name="TicketCorreo" Relationship="KiiniNet_v2Model.FK_TicketCorreo_Ticket" FromRole="Ticket" ToRole="TicketCorreo" />
           <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEvento_Ticket" FromRole="Ticket" ToRole="TicketEvento" />
+          <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Ticket" FromRole="Ticket" ToRole="TicketNotificacion" />
         </EntityType>
         <Association Name="FK_tblTicket_tblArbolAcceso">
           <End Type="KiiniNet_v2Model.ArbolAcceso" Role="ArbolAcceso" Multiplicity="1" />
@@ -10074,6 +10233,7 @@
           <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEvento_Usuario" FromRole="Usuario" ToRole="TicketEvento" />
           <NavigationProperty Name="UsuarioNotificacion" Relationship="KiiniNet_v2Model.FK_UsuarioNotificacion_Usuario" FromRole="Usuario" ToRole="UsuarioNotificacion" />
           <NavigationProperty Name="CorreoService" Relationship="KiiniNet_v2Model.FK_CorreoService_Usuario" FromRole="Usuario" ToRole="CorreoService" />
+          <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Usuario" FromRole="Usuario" ToRole="TicketNotificacion" />
         </EntityType>
         <Association Name="FK_ArbolAcceso_Usuario">
           <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
@@ -10639,6 +10799,8 @@
           <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_Mascara" FromRole="Mascara" ToRole="Ticket" />
           <NavigationProperty Name="CampoMascara" Relationship="KiiniNet_v2Model.FK_tblCampoMascara_tblMascara" FromRole="Mascara" ToRole="CampoMascara" />
           <NavigationProperty Name="ParametroDatosAdicionales" Relationship="KiiniNet_v2Model.FK_ParametroDatosAdicionales_Mascara" FromRole="Mascara" ToRole="ParametroDatosAdicionales" />
+          <Property Name="IdTipoMascara" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TipoMascara" Relationship="KiiniNet_v2Model.FK_Mascara_TipoMascara" FromRole="Mascara" ToRole="TipoMascara" />
         </EntityType>
         <Association Name="FK_tblInventarioArbolAcceso_tblMascara">
           <End Type="KiiniNet_v2Model.Mascara" Role="Mascara" Multiplicity="0..1" />
@@ -10713,6 +10875,8 @@
           <Property Name="RadioButton" Type="Boolean" />
           <Property Name="ValorMinimo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CampoMascara" Relationship="KiiniNet_v2Model.FK_tblCampoMascara_tblCatTipoCampoMascara" FromRole="TipoCampoMascara" ToRole="CampoMascara" />
+          <Property Name="Telefono" Type="Boolean" />
+          <Property Name="Correo" Type="Boolean" />
         </EntityType>
         <EntityType Name="Catalogos">
           <Key>
@@ -11240,11 +11404,11 @@
           <Property Name="IdArbol" Type="Int32" />
           <Property Name="IdTipoGrupo" Type="Int32" />
           <Property Name="IdGrupoUsuario" Type="Int32" />
-          <Property Name="Dias" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Horas" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Minutos" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Segundos" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TiempoNotificacion" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Dias" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Horas" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Minutos" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Segundos" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="TiempoNotificacion" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="IdTipoNotificacion" Type="Int32" />
           <Property Name="AntesVencimiento" Type="Boolean" />
           <Property Name="Habilitado" Type="Boolean" />
@@ -11518,20 +11682,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ParametrosGenerales">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LevantaTickets" Type="Boolean" />
-          <Property Name="PeriodoDashboard" Type="Int32" />
-          <Property Name="ValidaUsuario" Type="Boolean" />
-          <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StrongPassword" Type="Boolean" />
-          <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="TicketEvento">
           <Key>
             <PropertyRef Name="Id" />
@@ -11812,6 +11962,126 @@
             </Principal>
             <Dependent Role="GrupoUsuarioDefaultOpcion">
               <PropertyRef Name="IdTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ParametrosGenerales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LevantaTickets" Type="Boolean" />
+          <Property Name="PeriodoDashboard" Type="Int32" />
+          <Property Name="ValidaUsuario" Type="Boolean" />
+          <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StrongPassword" Type="Boolean" />
+          <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FrecuenciaDemonioSegundos" Type="Int32" />
+          <Property Name="FrecuenciaNotificacionMinutos" Type="Int32" />
+          <Property Name="MensajesNotificacion" Type="Int32" />
+          <Property Name="DiasCierreTicket" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TipoMascara">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TablaLlave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CampoLlave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Habilitado" Type="Boolean" />
+          <NavigationProperty Name="Mascara" Relationship="KiiniNet_v2Model.FK_Mascara_TipoMascara" FromRole="TipoMascara" ToRole="Mascara" />
+        </EntityType>
+        <Association Name="FK_Mascara_TipoMascara">
+          <End Type="KiiniNet_v2Model.TipoMascara" Role="TipoMascara" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.Mascara" Role="Mascara" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMascara">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mascara">
+              <PropertyRef Name="IdTipoMascara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TicketNotificacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSmsService" Type="Int32" />
+          <Property Name="IdTicket" Type="Int32" Nullable="false" />
+          <Property Name="IdGrupoUsuario" Type="Int32" />
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="TelefonoUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoUsuario" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="IdTipoNotificacion" Type="Int32" Nullable="false" />
+          <Property Name="FechaNotificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="GrupoUsuario" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario" FromRole="TicketNotificacion" ToRole="GrupoUsuario" />
+          <NavigationProperty Name="SmsService" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_SmsService" FromRole="TicketNotificacion" ToRole="SmsService" />
+          <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Ticket" FromRole="TicketNotificacion" ToRole="Ticket" />
+          <NavigationProperty Name="TipoNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion" FromRole="TicketNotificacion" ToRole="TipoNotificacion" />
+          <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Usuario" FromRole="TicketNotificacion" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_TicketNotificacion_GrupoUsuario">
+          <End Type="KiiniNet_v2Model.GrupoUsuario" Role="GrupoUsuario" Multiplicity="0..1" />
+          <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrupoUsuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdGrupoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_SmsService">
+          <End Type="KiiniNet_v2Model.SmsService" Role="SmsService" Multiplicity="0..1" />
+          <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SmsService">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdSmsService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_Ticket">
+          <End Type="KiiniNet_v2Model.Ticket" Role="Ticket" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_TipoNotificacion">
+          <End Type="KiiniNet_v2Model.TipoNotificacion" Role="TipoNotificacion" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoNotificacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdTipoNotificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNotificacion_Usuario">
+          <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNotificacion">
+              <PropertyRef Name="IdUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -13116,6 +13386,7 @@
           <EntitySetMapping Name="Mascara">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.Mascara">
               <MappingFragment StoreEntitySet="Mascara">
+                <ScalarProperty Name="IdTipoMascara" ColumnName="IdTipoMascara" />
                 <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
                 <ScalarProperty Name="Sistema" ColumnName="Sistema" />
                 <ScalarProperty Name="IdUsuarioModifico" ColumnName="IdUsuarioModifico" />
@@ -13135,6 +13406,8 @@
           <EntitySetMapping Name="TipoCampoMascara">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoCampoMascara">
               <MappingFragment StoreEntitySet="TipoCampoMascara">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="ValorMinimo" ColumnName="ValorMinimo" />
                 <ScalarProperty Name="RadioButton" ColumnName="RadioButton" />
                 <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
@@ -13387,21 +13660,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ParametrosGenerales">
-            <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
-              <MappingFragment StoreEntitySet="ParametrosGenerales">
-                <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
-                <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
-                <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
-                <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
-                <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
-                <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
-                <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
-                <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TicketEvento">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEvento">
               <MappingFragment StoreEntitySet="TicketEvento">
@@ -13475,6 +13733,51 @@
                 <ScalarProperty Name="IdTipoGrupo" ColumnName="IdTipoGrupo" />
                 <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
                 <ScalarProperty Name="IdTipoArbolAcceso" ColumnName="IdTipoArbolAcceso" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParametrosGenerales">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
+              <MappingFragment StoreEntitySet="ParametrosGenerales">
+                <ScalarProperty Name="DiasCierreTicket" ColumnName="DiasCierreTicket" />
+                <ScalarProperty Name="MensajesNotificacion" ColumnName="MensajesNotificacion" />
+                <ScalarProperty Name="FrecuenciaNotificacionMinutos" ColumnName="FrecuenciaNotificacionMinutos" />
+                <ScalarProperty Name="FrecuenciaDemonioSegundos" ColumnName="FrecuenciaDemonioSegundos" />
+                <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
+                <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
+                <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
+                <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
+                <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
+                <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
+                <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
+                <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMascara">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoMascara">
+              <MappingFragment StoreEntitySet="TipoMascara">
+                <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+                <ScalarProperty Name="CampoLlave" ColumnName="CampoLlave" />
+                <ScalarProperty Name="TablaLlave" ColumnName="TablaLlave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketNotificacion">
+            <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketNotificacion">
+              <MappingFragment StoreEntitySet="TicketNotificacion">
+                <ScalarProperty Name="FechaNotificacion" ColumnName="FechaNotificacion" />
+                <ScalarProperty Name="IdTipoNotificacion" ColumnName="IdTipoNotificacion" />
+                <ScalarProperty Name="CorreoUsuario" ColumnName="CorreoUsuario" />
+                <ScalarProperty Name="TelefonoUsuario" ColumnName="TelefonoUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdGrupoUsuario" ColumnName="IdGrupoUsuario" />
+                <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+                <ScalarProperty Name="IdSmsService" ColumnName="IdSmsService" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -36,7 +36,7 @@
                     <div class="form-group col-sm-10">
                         <asp:Label CssClass="col-sm-3" runat="server" Text="Visualizar: " style="width: 110px" />
                         <div class="col-sm-8 widht180">
-                            <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="DropSelect" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
+                            <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
                                 <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
                                 <asp:ListItem Text="Semanal" Value="2"></asp:ListItem>
                                 <asp:ListItem Text="Mensual" Value="3"></asp:ListItem>

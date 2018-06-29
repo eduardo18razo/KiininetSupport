@@ -69,5 +69,7 @@ namespace KiiniNet.Entities.Cat.Usuario
         public virtual List<HitGrupoUsuario> HitGrupoUsuario { get; set; }
         [DataMember]
         public virtual List<GrupoUsuarioDefaultOpcion> GrupoUsuarioDefaultOpcion { get; set; }
+        [DataMember]
+        public virtual List<TicketNotificacion> TicketNotificacion { get; set; }
     }
 }

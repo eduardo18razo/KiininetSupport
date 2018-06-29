@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using KiiniHelp.Funciones;
 using KiiniHelp.ServiceInformacionConsulta;
 using KiiniHelp.ServiceSistemaTipoInformacionConsulta;
-using KiiniNet.Entities.Operacion;
+using KiiniNet.Entities.Helper;
 using KinniNet.Business.Utils;
+using Calendar = System.Globalization.Calendar;
 
 namespace KiiniHelp.UserControls.Consultas
 {
@@ -31,12 +36,12 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        private void LlenaInformacionConsulta()
+        private void LlenaInformacionConsulta(bool isPageIndexChanging)
         {
             try
             {
                 string filtro = txtFiltro.Text;
-                tblResults.DataSource = _servicioInformacionConsulta.ObtenerConsulta(filtro);
+                tblResults.DataSource = SortList(_servicioInformacionConsulta.ObtenerConsulta(filtro, null), isPageIndexChanging); ;
                 tblResults.DataBind();
             }
             catch (Exception e)
@@ -51,7 +56,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 if (!IsPostBack)
                 {
-                    LlenaInformacionConsulta();
+                    LlenaInformacionConsulta(false);
                 }
                 Alerta = new List<string>();
             }
@@ -105,7 +110,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                LlenaInformacionConsulta();
+                LlenaInformacionConsulta(false);
             }
             catch (Exception ex)
             {
@@ -122,7 +127,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 _servicioInformacionConsulta.HabilitarInformacion(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
-                LlenaInformacionConsulta();
+                LlenaInformacionConsulta(false);
             }
             catch (Exception ex)
             {
@@ -140,16 +145,16 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 string filtro = txtFiltro.Text.Trim().ToUpper();
-                List<InformacionConsulta> lstInformacion = _servicioInformacionConsulta.ObtenerConsulta(filtro);
+                List<HelperInformacionConsulta> lstInformacion = _servicioInformacionConsulta.ObtenerConsulta(filtro, null);
 
                 Response.Clear();
                 string ultimaEdicion = "Últ. edición";
                 MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstInformacion.Select(
                                 s => new
                                 {
-                                    Nombre = s.Descripcion,
-                                    Creación = s.FechaAlta.ToShortDateString().ToString(),
-                                    ultimaEdicion = s.FechaModificacion == null ? "" : s.FechaModificacion.Value.ToShortDateString().ToString(),
+                                    Nombre = s.Titulo,
+                                    Creación = s.Creacion.ToShortDateString().ToString(),
+                                    ultimaEdicion = s.UltEdicion == null ? "" : s.UltEdicion.Value.ToShortDateString().ToString(),
                                     Habilitado = s.Habilitado ? "Si" : "No"
                                 })
                                 .ToList()).GetAsByteArray());
@@ -174,11 +179,97 @@ namespace KiiniHelp.UserControls.Consultas
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             tblResults.PageIndex = e.NewPageIndex;
-            LlenaInformacionConsulta();
+            LlenaInformacionConsulta(true);
         }
 
         #endregion
 
+        bool _sorted = false;
+        private string GridViewSortDirection
+        {
+            get
+            {
+                if (ViewState["SortDirection"] == null)
+                {
+                    ViewState["SortDirection"] = "ASC";
+                }
+                return ViewState["SortDirection"].ToString();
+            }
 
+            set
+            {
+                ViewState["SortDirection"] = value;
+            }
+
+        }
+
+        private string GridViewSortExpression
+        {
+            get
+            {
+                return ViewState["SortExpression"] as string ?? string.Empty;
+            }
+
+            set
+            {
+                ViewState["SortExpression"] = value;
+            }
+
+        }
+        protected List<HelperInformacionConsulta> SortList(List<HelperInformacionConsulta> data, bool isPageIndexChanging)
+        {
+            List<HelperInformacionConsulta> result = data;
+            if (data != null)
+            {
+                if (GridViewSortExpression != string.Empty)
+                {
+                    if (data.Count > 0)
+                    {
+                        PropertyInfo[] propertys = data[0].GetType().GetProperties();
+                        foreach (PropertyInfo p in propertys)
+                        {
+                            if (p.Name == GridViewSortExpression)
+                            {
+                                if (GridViewSortDirection == "ASC")
+                                {
+                                    if (isPageIndexChanging)
+                                    {
+                                        result = data.OrderByDescending(key => p.GetValue(key, null)).ToList();
+                                    }
+                                    else
+                                    {
+                                        result = data.OrderBy(key =>
+                                        p.GetValue(key, null)).ToList();
+                                        GridViewSortDirection = "DESC";
+                                    }
+                                }
+                                else
+                                {
+                                    if (isPageIndexChanging)
+                                    {
+                                        result = data.OrderBy(key =>
+                                        p.GetValue(key, null)).ToList();
+                                    }
+                                    else
+                                    {
+                                        result = data.OrderByDescending(key => p.GetValue(key, null)).ToList();
+                                        GridViewSortDirection = "ASC";
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            _sorted = true;
+            return result;
+        }
+
+        protected void tblResults_OnSorting(object sender, GridViewSortEventArgs e)
+        {
+            GridViewSortExpression = e.SortExpression;
+            LlenaInformacionConsulta(false);
+        }
     }
 }

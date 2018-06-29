@@ -7,15 +7,15 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceParametros_TelefonosObligatorios_InputMessage">
@@ -60,6 +60,12 @@
   <wsdl:message name="IServiceParametros_ObtenerDatosAdicionales_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerDatosAdicionalesResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerParemtrosPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerParemtrosPassword" />
+  </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerParemtrosPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerParemtrosPasswordResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceParametros">
     <wsdl:operation name="TelefonosObligatorios">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/TelefonosObligatorios" message="tns:IServiceParametros_TelefonosObligatorios_InputMessage" />
@@ -88,6 +94,10 @@
     <wsdl:operation name="ObtenerDatosAdicionales">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionales" message="tns:IServiceParametros_ObtenerDatosAdicionales_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionalesResponse" message="tns:IServiceParametros_ObtenerDatosAdicionales_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerParemtrosPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerParemtrosPassword" message="tns:IServiceParametros_ObtenerParemtrosPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerParemtrosPasswordResponse" message="tns:IServiceParametros_ObtenerParemtrosPassword_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceParametros" type="tns:IServiceParametros">
@@ -148,6 +158,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerDatosAdicionales">
       <soap:operation soapAction="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerParemtrosPassword">
+      <soap:operation soapAction="http://tempuri.org/IServiceParametros/ObtenerParemtrosPassword" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

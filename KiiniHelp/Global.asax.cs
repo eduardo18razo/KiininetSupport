@@ -85,6 +85,7 @@ namespace KiiniHelp
         {
             if (Session["UserData"] != null)
             {
+                Response.Redirect("~/Test/FrmTest.aspx");
                 Session.RemoveAll();
                 Session.Clear();
                 Session.Abandon();

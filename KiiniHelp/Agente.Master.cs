@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -12,7 +13,6 @@ using KiiniHelp.ServiceSeguridad;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
-using Telerik.Web.UI;
 using Menu = KiiniNet.Entities.Cat.Sistema.Menu;
 
 namespace KiiniHelp
@@ -247,6 +247,9 @@ namespace KiiniHelp
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
+                    int timeout = int.Parse(ConfigurationManager.AppSettings["TiempoSession"]) * 1000 * 60;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", "SessionExpireAlert(" + timeout + ");", true);
+
                     bool administrador = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
                     if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Agente))
@@ -257,9 +260,9 @@ namespace KiiniHelp
                         Session["CargaInicialModal"] = true.ToString();
                     hfCargaInicial.Value = (Session["CargaInicialModal"] ?? "False").ToString();
                     lblUsuario.Text = usuario.Nombre;
-                    int IdUsuario = usuario.Id;
+                    int idUsuario = usuario.Id;
 
-                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + IdUsuario : "~/assets/images/profiles/profile-1.png";
+                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + idUsuario : "~/assets/images/profiles/profile-1.png";
                     //lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
                     ObtenerAreas();
                     int rolSeleccionado = 0;

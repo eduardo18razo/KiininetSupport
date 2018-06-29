@@ -28,7 +28,7 @@ namespace KiiniHelp.ServiceMascaraAcceso {
         KiiniNet.Entities.Cat.Mascaras.Mascara ObtenerMascaraCapturaByIdTicket(int idTicket);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceMascaras/ObtenerMascarasAcceso", ReplyAction="http://tempuri.org/IServiceMascaras/ObtenerMascarasAccesoResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Cat.Mascaras.Mascara> ObtenerMascarasAcceso(bool insertarSeleccion);
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Mascaras.Mascara> ObtenerMascarasAcceso(int idTipoMascara, bool sistema, bool insertarSeleccion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceMascaras/ObtenerCatalogoCampoMascara", ReplyAction="http://tempuri.org/IServiceMascaras/ObtenerCatalogoCampoMascaraResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Helper.CatalogoGenerico> ObtenerCatalogoCampoMascara(int idCatalogo, bool insertarSeleccion, bool filtraHabilitados);
@@ -41,6 +41,9 @@ namespace KiiniHelp.ServiceMascaraAcceso {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceMascaras/ObtenerDatosMascara", ReplyAction="http://tempuri.org/IServiceMascaras/ObtenerDatosMascaraResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperMascaraData> ObtenerDatosMascara(int idMascara, int idTicket);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceMascaras/ObtenerReporteMascara", ReplyAction="http://tempuri.org/IServiceMascaras/ObtenerReporteMascaraResponse")]
+        System.Data.DataTable ObtenerReporteMascara(int idMascara, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -86,8 +89,8 @@ namespace KiiniHelp.ServiceMascaraAcceso {
             return base.Channel.ObtenerMascaraCapturaByIdTicket(idTicket);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Mascaras.Mascara> ObtenerMascarasAcceso(bool insertarSeleccion) {
-            return base.Channel.ObtenerMascarasAcceso(insertarSeleccion);
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Mascaras.Mascara> ObtenerMascarasAcceso(int idTipoMascara, bool sistema, bool insertarSeleccion) {
+            return base.Channel.ObtenerMascarasAcceso(idTipoMascara, sistema, insertarSeleccion);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Helper.CatalogoGenerico> ObtenerCatalogoCampoMascara(int idCatalogo, bool insertarSeleccion, bool filtraHabilitados) {
@@ -104,6 +107,10 @@ namespace KiiniHelp.ServiceMascaraAcceso {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperMascaraData> ObtenerDatosMascara(int idMascara, int idTicket) {
             return base.Channel.ObtenerDatosMascara(idMascara, idTicket);
+        }
+        
+        public System.Data.DataTable ObtenerReporteMascara(int idMascara, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerReporteMascara(idMascara, fechas);
         }
     }
 }

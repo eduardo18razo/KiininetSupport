@@ -11,20 +11,14 @@
 
     <title>Kiininet CPX</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
-
     <link rel="stylesheet" href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
-
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/styles_movil.css" />
-
     <link rel="stylesheet" href="assets/css/divs.css" />
-
     <link rel="stylesheet" href="assets/css/modales_movil.css" />
     <link rel="stylesheet" href="assets/css/main_movil.css" />
-
-
 </head>
 <body class="bodyBackgroundPassword" >
     <form id="form1" runat="server">
@@ -49,7 +43,7 @@
                     <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
-                                <div class="form-box col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 xs-offset-0">
+                                <div class="form-box col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
                                     <h1 class="form-box-heading2">
                                         <span>Recuperar Contraseña </span>
                                     </h1>
@@ -58,11 +52,11 @@
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="form-horizontal">
-                                                    <div class="form-group email no-margin-bottom">
+                                                    <div class="form-group no-margin-bottom">
                                                         <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa tu usuario, correo electrónico o número celular:</asp:Label>
                                                     </div>
 
-                                                    <div class="form-group email">
+                                                    <div class="form-group">
                                                         <label class="sr-only" for="login-email">Email or username</label>
                                                         <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control text-no-transform" />
                                                     </div>
@@ -89,8 +83,8 @@
 
                                 </div>
                             </div>
-                            <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br />
+                            <div class="row copyright2">
+                                <img src="assets/images/logo_kinninet_blanco.png"><br />
                                 &copy; 2018
                             </div>
 

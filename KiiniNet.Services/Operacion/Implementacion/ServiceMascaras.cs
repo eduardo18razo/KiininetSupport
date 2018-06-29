@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Services.Operacion.Interface;
@@ -69,13 +70,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<Mascara> ObtenerMascarasAcceso(bool insertarSeleccion)
+        public List<Mascara> ObtenerMascarasAcceso(int idTipoMascara, bool sistema, bool insertarSeleccion)
         {
             try
             {
                 using (BusinessMascaras negocio = new BusinessMascaras())
                 {
-                    return negocio.ObtenerMascarasAcceso(insertarSeleccion);
+                    return negocio.ObtenerMascarasAcceso(idTipoMascara, sistema, insertarSeleccion);
                 }
             }
             catch (Exception ex)
@@ -136,6 +137,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessMascaras negocio = new BusinessMascaras())
                 {
                     return negocio.ObtenerDatosMascara(idMascara, idTicket);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerReporteMascara(int idMascara, Dictionary<string, DateTime> fechas)
+        {
+            try
+            {
+                using (BusinessMascaras negocio = new BusinessMascaras())
+                {
+                    return negocio.ObtenerReporteMascara(idMascara, fechas);
                 }
             }
             catch (Exception ex)

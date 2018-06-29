@@ -24,19 +24,32 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             set
             {
-                panelAlerta.Visible = value.Any();
-                if (!panelAlerta.Visible) return;
-                rptError.DataSource = value;
-                rptError.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
         public List<int> GruposSeleccionados
         {
             get
             {
-                if (rptGpoSeleccionado.Items.Count <= 0)
-                    throw new Exception("Debe seleccionar un grupo");
-                return (from RepeaterItem item in rptGpoSeleccionado.Items select int.Parse(((Label)item.FindControl("lblId")).Text)).ToList();
+                List<int> result = new List<int>();
+                foreach (RepeaterItem item in rptGpos.Items.Cast<RepeaterItem>().Where(item => item.ItemType == ListItemType.Item))
+                {
+                    CheckBox chk = (CheckBox)item.FindControl("chkSeleccion");
+                    if (chk != null)
+                    {
+                        if (chk.Checked)
+                            result.Add(int.Parse(chk.Attributes["data-id"]));
+                    }
+                }
+                return result;
+                //if (rptGpoSeleccionado.Items.Count <= 0)
+                //    throw new Exception("Debe seleccionar un grupo");
+                //return (from RepeaterItem item in rptGpoSeleccionado.Items select int.Parse(((Label)item.FindControl("lblId")).Text)).ToList();
             }
             set { }
         }

@@ -197,8 +197,23 @@ namespace KiiniHelp.UserControls.Consultas
             LlenaMascaras();
         }
 
-        #endregion 
+        #endregion
 
-
+        protected void btnDetalle_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Users/Administracion/Formularios/FrmConsultaDetalleFormulario.aspx?idMascara=" + ((LinkButton)sender).CommandArgument);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

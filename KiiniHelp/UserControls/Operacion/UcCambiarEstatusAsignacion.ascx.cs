@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web.Configuration;
 using System.Web.UI;
 using KiiniHelp.ServiceAtencionTicket;
+using KiiniHelp.ServiceGrupoUsuario;
 using KiiniHelp.ServiceSistemaEstatus;
 using KiiniHelp.ServiceSistemaSubRol;
 using KiiniHelp.ServiceUsuario;
+using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
@@ -19,6 +21,7 @@ namespace KiiniHelp.UserControls.Operacion
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
         private readonly ServiceSubRolClient _servicioSubRol = new ServiceSubRolClient();
         private readonly ServiceAtencionTicketClient _servicioAtencionTicket = new ServiceAtencionTicketClient();
+        private readonly  ServiceGrupoUsuarioClient _servicioGrupo = new ServiceGrupoUsuarioClient();
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
@@ -99,7 +102,13 @@ namespace KiiniHelp.UserControls.Operacion
         {
             try
             {
-                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdEstatusAsignacionActual, EsPropietario, IdSubRolActual, true);
+                int subRol = (int)BusinessVariables.EnumSubRoles.Supervisor;
+                GrupoUsuario gpo = _servicioGrupo.ObtenerGrupoUsuarioById(IdGrupo);
+                if (IdSubRolActual <= 2)
+                    subRol = gpo.TieneSupervisor ? (int)BusinessVariables.EnumSubRoles.Supervisor : (int)BusinessVariables.EnumSubRoles.PrimererNivel;
+                else
+                    subRol = IdSubRolActual;
+                ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdEstatusAsignacionActual, EsPropietario, subRol, true);
                 ddlEstatus.DataTextField = "Descripcion";
                 ddlEstatus.DataValueField = "Id";
                 ddlEstatus.DataBind();

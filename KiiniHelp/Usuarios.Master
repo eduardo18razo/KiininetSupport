@@ -44,6 +44,22 @@
                 }, 10);
             }
         }, false);
+
+        function SessionExpireAlert(timeout) {
+            var seconds = timeout / 1000;
+            setInterval(function () {
+                seconds--;
+            }, 1000);
+            setTimeout(function () {
+                //Show Popup before 20 seconds of timeout.
+                $('#modalSession').on('shown.bs.modal', function () {
+                    $(this).find('[autofocus]').focus();
+                });
+                $('#modalSession').modal({ backdrop: 'static', keyboard: false });
+                $('#modalSession').modal('show');
+            }, timeout - 20 * 1000);
+        };
+
     </script>
 </head>
 <body class="preload layout_no_leftnav">
@@ -441,11 +457,24 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modalSession" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <asp:LinkButton class="close" runat="server" ID="btnCerrarSession" OnClick="btnsOut_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
+                            <h3 class="modal-title">
+                                <br />
+                                Session ha expirado
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <script type="text/javascript">
             $(document).ready(function () {
 
-                var elementId = document.getElementById("<%= this.FindControl("hfCargaInicial").ClientID %>");
+                var elementId = document.getElementById("<%= FindControl("hfCargaInicial").ClientID %>");
                 if (elementId.value === "False") {
                     $('#side-panel-toggle').click();
                 }

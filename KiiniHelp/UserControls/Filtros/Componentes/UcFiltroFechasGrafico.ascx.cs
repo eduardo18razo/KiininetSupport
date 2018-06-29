@@ -248,7 +248,6 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                         DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
                         DateTime date1 = new DateTime(DateTime.Now.Year, 12, 31);
                         Calendar cal = dfi.Calendar;
-                        ;
                         txtFechaInicio.Attributes["min"] = string.Format("{0}-W{1}", DateTime.Now.Year, "01");
                         txtFechaInicio.Attributes["max"] = string.Format("{0}-W{1}", DateTime.Now.Year, cal.GetWeekOfYear(date1, dfi.CalendarWeekRule, dfi.FirstDayOfWeek));
 

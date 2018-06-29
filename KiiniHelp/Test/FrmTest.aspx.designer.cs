@@ -31,12 +31,21 @@ namespace KiiniHelp.Test {
         protected global::System.Web.UI.ScriptManager scripMain;
         
         /// <summary>
-        /// Control RadEditor1.
+        /// Control rhcLike.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadEditor RadEditor1;
+        protected global::Telerik.Web.UI.RadHtmlChart rhcLike;
+        
+        /// <summary>
+        /// Control RadHtmlChart1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart1;
     }
 }

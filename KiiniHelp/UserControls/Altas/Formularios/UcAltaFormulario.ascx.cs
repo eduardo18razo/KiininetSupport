@@ -28,7 +28,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         readonly ServiceMascarasClient _servicioMascaras = new ServiceMascarasClient();
         private List<string> _lstError = new List<string>();
 
-        public int Ejemplo { get; set; }
         private List<string> Alerta
         {
             set
@@ -41,14 +40,25 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 }
             }
         }
-
-        private bool EsAlta { get { return bool.Parse(hfEsAlta.Value); } set { hfEsAlta.Value = value.ToString(); } }
+        private bool EsAlta
+        {
+            get { return bool.Parse(hfEsAlta.Value); }
+            set
+            {
+                hfEsAlta.Value = value.ToString();
+                ddlTipoFormulario.Enabled = value;
+            }
+        }
         private void LlenaCombos()
         {
             try
             {
                 rptTiposControles.DataSource = _servicioSistemaTipoCampoMascara.ObtenerTipoCampoMascara(false);
                 rptTiposControles.DataBind();
+                ddlTipoFormulario.DataSource = _servicioSistemaTipoCampoMascara.ObtenerTipoMascara(true);
+                ddlTipoFormulario.DataTextField = "Descripcion";
+                ddlTipoFormulario.DataValueField = "Id";
+                ddlTipoFormulario.DataBind();
             }
             catch (Exception e)
             {
@@ -151,6 +161,18 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     txtLongitudMaxima.Text = "255";
                     txtLongitudMaxima.Visible = false;
                 }
+                if (tipoCampo.Telefono)
+                {
+                    txtLongitudMinima.Text = tipoCampo.LongitudMaximaPermitida;
+                    txtLongitudMaxima.Text = tipoCampo.LongitudMaximaPermitida;
+                    txtLongitudMinima.Visible = false;
+                    txtLongitudMaxima.Visible = false;
+                }
+                if (tipoCampo.Correo)
+                {
+                    txtLongitudMaxima.Text = tipoCampo.LongitudMaximaPermitida;
+                    txtLongitudMaxima.Visible = false;
+                }
 
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAgregarCampoMascara\");", true);
             }
@@ -171,6 +193,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 Mascara formulario = _servicioMascaras.ObtenerMascaraCaptura(idMascara);
                 if (formulario != null)
                 {
+                    ddlTipoFormulario.SelectedValue = formulario.IdTipoMascara.ToString();
                     txtNombre.Text = formulario.Descripcion;
                     Session["MascaraAlta"] = formulario;
                     if (EsAlta)
@@ -185,6 +208,23 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        private void UcAltaCatalogoOnOnAceptarModal()
+        {
+            try
+            {
+                Metodos.LlenaComboCatalogo(ddlCatalogosCampo, _servicioSistemaCatalogos.ObtenerCatalogosMascaraCaptura(true));
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
 
@@ -214,22 +254,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     }
                 }
                 divAgregarCampos.Visible = EsAlta;
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-        private void UcAltaCatalogoOnOnAceptarModal()
-        {
-            try
-            {
-                Metodos.LlenaComboCatalogo(ddlCatalogosCampo, _servicioSistemaCatalogos.ObtenerCatalogosMascaraCaptura(true));
             }
             catch (Exception ex)
             {
@@ -298,7 +322,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 chkRequerido.Checked = campoEditar.Requerido;
                 txtDescripcionCampo.Text = campoEditar.Descripcion;
 
-                chkRequerido.Enabled = EsAlta;
+                chkRequerido.Enabled = EsAlta || (!EsAlta && campoEditar.Requerido);
 
                 if (divLongitudMinima.Visible)
                 {
@@ -459,7 +483,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 Alerta = _lstError;
             }
         }
-
         protected void rptControles_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -596,14 +619,19 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                         EsArchivo = tipoCampo.UploadFile,
                         Descripcion = txtDescripcionCampo.Text.Trim(),
                         Requerido = chkRequerido.Checked,
-                        LongitudMinima = tipoCampo.LongitudMinima ? Convert.ToInt32(txtLongitudMinima.Text.Trim()) : tipoCampo.Mask ? 1 : (int?)null,
+                        LongitudMinima = tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono ? int.Parse(tipoCampo.LongitudMaximaPermitida) :
+                        tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico ? int.Parse(tipoCampo.LongitudMaximaPermitida) :
+                                        tipoCampo.LongitudMinima ? Convert.ToInt32(txtLongitudMinima.Text.Trim()) : tipoCampo.Mask ? 1 : (int?)null,
                         LongitudMaxima = tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto ? int.Parse(tipoCampo.LongitudMaximaPermitida) :
                                          tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo ? 3900 :
+                                         tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono ? 10 :
+                                         tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico ? 10 :
                                          tipoCampo.LongitudMaxima ? Convert.ToInt32(txtLongitudMaxima.Text.Trim()) : tipoCampo.Mask ? txtMascara.Text.Trim().Length : (int?)null,
                         SimboloMoneda = tipoCampo.SimboloMoneda ? txtSimboloMoneda.Text.Trim() : null,
                         ValorMinimo = tipoCampo.ValorMinimo ? decimal.Parse(txtValorMinimo.Text.Trim()) : (decimal?)null,
                         ValorMaximo = tipoCampo.ValorMaximo ? decimal.Parse(txtValorMaximo.Text.Trim()) : (decimal?)null,
-                        MascaraDetalle = tipoCampo.Mask ? txtMascara.Text.Trim() : null,
+                        MascaraDetalle = tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono ? "(99) 9999-9999" :
+                        tipoCampo.Mask ? txtMascara.Text.Trim() : null,
                         TipoCampoMascara = tipoCampo
                     });
                 }
@@ -622,14 +650,17 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].IdTipoCampoMascara = tipoCampo.Id;
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].Descripcion = txtDescripcionCampo.Text.Trim();
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].Requerido = chkRequerido.Checked;
-                    tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].LongitudMinima = tipoCampo.LongitudMinima ? Convert.ToInt32(txtLongitudMinima.Text.Trim()) : tipoCampo.Mask ? 1 : (int?)null;
+                    tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].LongitudMinima = tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono ? int.Parse(tipoCampo.LongitudMaximaPermitida) :
+                        tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico ? int.Parse(tipoCampo.LongitudMaximaPermitida) : tipoCampo.LongitudMinima ? Convert.ToInt32(txtLongitudMinima.Text.Trim()) : tipoCampo.Mask ? 1 : (int?)null;
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].LongitudMaxima = tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto ? int.Parse(tipoCampo.LongitudMaximaPermitida) :
                                          tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo ? 3900 :
+                                         tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono ? 10 :
+                                         tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico ? 10 :
                                          tipoCampo.LongitudMaxima ? Convert.ToInt32(txtLongitudMaxima.Text.Trim()) : tipoCampo.Mask ? txtMascara.Text.Trim().Length : (int?)null;
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].SimboloMoneda = tipoCampo.SimboloMoneda ? txtSimboloMoneda.Text.Trim() : null;
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].ValorMinimo = tipoCampo.ValorMinimo ? decimal.Parse(txtValorMinimo.Text.Trim()) : (decimal?)null;
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].ValorMaximo = tipoCampo.ValorMaximo ? decimal.Parse(txtValorMaximo.Text.Trim()) : (decimal?)null;
-                    tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].MascaraDetalle = tipoCampo.Mask ? txtMascara.Text.Trim() : null;
+                    tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].MascaraDetalle = tipoCampo.Id == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono ? "(99) 9999-9999" : tipoCampo.Mask ? txtMascara.Text.Trim() : null;
                     tmpMascara.CampoMascara[int.Parse(hfCampoEditado.Value)].TipoCampoMascara = tipoCampo;
                 }
 
@@ -649,7 +680,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 Alerta = _lstError;
             }
         }
-
         protected void btnCancelarModal_OnClick(object sender, EventArgs e)
         {
             try
@@ -683,13 +713,16 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             try
             {
+                if (ddlTipoFormulario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    throw new Exception("Debe especificar el tipo de formulario");
                 if (txtNombre.Text.Trim() == string.Empty)
                     throw new Exception("Debe especificar un nombre.");
                 Mascara nuevaMascara = ((Mascara)Session["MascaraAlta"]);
                 if (((Mascara)Session["MascaraAlta"]).CampoMascara != null && ((Mascara)Session["MascaraAlta"]).CampoMascara.Count <= 0)
                     throw new Exception("Debe agregar al menos un campo.");
-                if (!((Mascara)Session["MascaraAlta"]).CampoMascara.Any(a=>a.Requerido))
+                if (!((Mascara)Session["MascaraAlta"]).CampoMascara.Any(a => a.Requerido))
                     throw new Exception("Debe al menos un campo obligatorio.");
+                nuevaMascara.IdTipoMascara = int.Parse(ddlTipoFormulario.SelectedValue);
                 nuevaMascara.Descripcion = txtNombre.Text.Trim();
                 nuevaMascara.Random = chkClaveRegistro.Checked;
                 nuevaMascara.IdUsuarioAlta = ((Usuario)Session["UserData"]).Id;

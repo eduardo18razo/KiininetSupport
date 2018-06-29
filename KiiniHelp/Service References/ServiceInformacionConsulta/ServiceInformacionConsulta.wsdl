@@ -8,16 +8,19 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Reportes" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceInformacionConsulta.svc?xsd=xsd18" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceInformacionConsulta_ObtenerInformacionConsulta_InputMessage">
@@ -74,6 +77,12 @@
   <wsdl:message name="IServiceInformacionConsulta_HabilitarInformacion_OutputMessage">
     <wsdl:part name="parameters" element="tns:HabilitarInformacionResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceInformacionConsulta_ObtenerReporteInformacionConsulta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerReporteInformacionConsulta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInformacionConsulta_ObtenerReporteInformacionConsulta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerReporteInformacionConsultaResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceInformacionConsulta">
     <wsdl:operation name="ObtenerInformacionConsulta">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerInformacionConsulta" message="tns:IServiceInformacionConsulta_ObtenerInformacionConsulta_InputMessage" />
@@ -110,6 +119,10 @@
     <wsdl:operation name="HabilitarInformacion">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/HabilitarInformacion" message="tns:IServiceInformacionConsulta_HabilitarInformacion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/HabilitarInformacionResponse" message="tns:IServiceInformacionConsulta_HabilitarInformacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerReporteInformacionConsulta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerReporteInformacionConsulta" message="tns:IServiceInformacionConsulta_ObtenerReporteInformacionConsulta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerReporteInformacionConsultaResponse" message="tns:IServiceInformacionConsulta_ObtenerReporteInformacionConsulta_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointAdministracion" type="tns:IServiceInformacionConsulta">
@@ -188,6 +201,15 @@
     </wsdl:operation>
     <wsdl:operation name="HabilitarInformacion">
       <soap:operation soapAction="http://tempuri.org/IServiceInformacionConsulta/HabilitarInformacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerReporteInformacionConsulta">
+      <soap:operation soapAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerReporteInformacionConsulta" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

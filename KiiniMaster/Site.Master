@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <title>KiiniNet</title>
-    <link href="~/Content/Site.css" rel="stylesheet" /> 
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     <link rel='stylesheet' href="assets/css/font.css" />
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="assets/css/pe-7-icons.css" />
     <%--<link rel="stylesheet" href="assets/css/pe-7-icons.css" />--%>
 
-  <%--   <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <%--   <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/menuStyle.css" />
     <link rel="stylesheet" href="assets/css/divs.css" />
@@ -33,33 +33,49 @@
     <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
 
-     <script type="text/javascript">
-         function MostrarPopup(modalName) {
-             $(modalName).on('shown.bs.modal', function () {
-                 $(this).find('[autofocus]').focus();
-             });
-             $(modalName).modal({ backdrop: 'static', keyboard: false });
-             $(modalName).modal('show');
-             return true;
-         };
+    <script type="text/javascript">
+        function MostrarPopup(modalName) {
+            $(modalName).on('shown.bs.modal', function () {
+                $(this).find('[autofocus]').focus();
+            });
+            $(modalName).modal({ backdrop: 'static', keyboard: false });
+            $(modalName).modal('show');
+            return true;
+        };
 
-         function CierraPopup(modalName) {
-             $(modalName).modal('hide');
-             return true;
-         };
-         function CargaEditor(editorName) {
-             $(editorName).markdown();
-         }
-         function search(evt) {
-             if (evt.charCode == 13) {
-                 this.__doPostBack(this.name, 'OnKeyPress');
-                 evt.preventDefault();
-                 return false; // returning false will prevent the event from bubbling up.
-             }
-             else {
-                 return true;
-             }
-         }
+        function CierraPopup(modalName) {
+            $(modalName).modal('hide');
+            return true;
+        };
+        function CargaEditor(editorName) {
+            $(editorName).markdown();
+        }
+        function search(evt) {
+            if (evt.charCode == 13) {
+                this.__doPostBack(this.name, 'OnKeyPress');
+                evt.preventDefault();
+                return false; // returning false will prevent the event from bubbling up.
+            }
+            else {
+                return true;
+            }
+        }
+
+        function SessionExpireAlert(timeout) {
+            debugger;
+            var seconds = 1 / 1000;
+            setTimeout(function () {
+                //Show Popup before 20 seconds of timeout.
+                $find("modalSession").show();
+            }, timeout - 20 * 1000);
+            setTimeout(function () {
+                window.location = "Default.aspx";
+            }, timeout);
+        };
+        function ResetSession() {
+            //Redirect to refresh Session.
+            window.location = window.location.href;
+        }
     </script>
     <style>
         body {
@@ -71,7 +87,7 @@
         <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
     </asp:PlaceHolder>--%>
 
-    <asp:PlaceHolder runat="server">        
+    <asp:PlaceHolder runat="server">
         <script src="<%: ResolveUrl("~/assets/js/modernizr.custom.js") %>"></script>
     </asp:PlaceHolder>
 
@@ -98,7 +114,7 @@
     </form>
 </body>--%>
 
-    <body class="preload">
+<body class="preload">
     <div id="full">
         <form runat="server" id="form1">
             <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
@@ -180,7 +196,7 @@
                                         <div>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <br />
-                                               <%-- <uc1:UcLogCopia runat="server" ID="UcLogIn" />--%>
+                                                <%-- <uc1:UcLogCopia runat="server" ID="UcLogIn" />--%>
                                             </div>
                                             <div class="social-btns col-md-12 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-sm-offset-0">
                                                 <div class="divider"><span>O ingresa con</span></div>
@@ -199,7 +215,7 @@
                 </div>
             </header>
 
-                        <%--<asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder1" />--%>
+            <%--<asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder1" />--%>
 
             <div id="content-wrapper" class="content-wrapper" style="padding-top: 0">
                 <div class="container-fluid" style="padding-left: 0">
@@ -208,27 +224,27 @@
                             <div class="menuLevel">
                                 <h2 class="icon icon-shop">Inicio</h2>
 
-                           <%--  <div class="navbar-collapse collapse" id="bs-nav">
+                                <%--  <div class="navbar-collapse collapse" id="bs-nav">
                             <ul class="nav navbar-nav">
                                 <li runat="server">
                                     <asp:HyperLink NavigateUrl="~/BusquedaUbicacion/Busqueda.aspx" runat="server" Text="Busqueda" /></li>                                
                             </ul>
                         </div>--%>
 
-                            <ul>
-                                <li runat="server">
-                                    <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasAsignacionDefault.aspx" runat="server" Text="Políticas Asignación Default" /></li>    
-                                <li runat="server">
-                                    <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasEstatusTicketDefault.aspx" runat="server" Text="Políticas Estatus Ticket Default" /></li>   
-                                <li runat="server">
-                                    <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasAsignacionGrupo.aspx" runat="server" Text="Políticas Asignación Grupo" /></li>    
-                                <li runat="server">
-                                    <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasEstatusTicketGrupo.aspx" runat="server" Text="Políticas Estatus Ticket Grupo" /></li>   
-                                 <li runat="server">
-                                    <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasEscalacionPermitida.aspx" runat="server" Text="Políticas Escalación" /></li>                                
-                            </ul>
+                                <ul>
+                                    <li runat="server">
+                                        <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasAsignacionDefault.aspx" runat="server" Text="Políticas Asignación Default" /></li>
+                                    <li runat="server">
+                                        <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasEstatusTicketDefault.aspx" runat="server" Text="Políticas Estatus Ticket Default" /></li>
+                                    <li runat="server">
+                                        <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasAsignacionGrupo.aspx" runat="server" Text="Políticas Asignación Grupo" /></li>
+                                    <li runat="server">
+                                        <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasEstatusTicketGrupo.aspx" runat="server" Text="Políticas Estatus Ticket Grupo" /></li>
+                                    <li runat="server">
+                                        <asp:HyperLink NavigateUrl="~/Configuracion/Politicas/FrmPoliticasEscalacionPermitida.aspx" runat="server" Text="Políticas Escalación" /></li>
+                                </ul>
 
-                               <%-- <ul>
+                                <%-- <ul>
                                     <asp:Repeater runat="server" ID="rptMenu" OnItemDataBound="rptMenu_OnItemDataBound">
                                         <ItemTemplate>
                                             <li>
@@ -434,14 +450,49 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="modal fade" id="modalSession" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <asp:LinkButton class="close" runat="server" ID="LinkButton1" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
+                            <h3 class="modal-title">
+                                <br />
+                                Session ha expirado
+                            </h3>
+                        </div>
+                        <div class="modal-body">
+                            <asp:UpdatePanel runat="server">
+                                <ContentTemplate>
+                                    <hr />
+                                    <p class="h4">
+                                        <strong>Tu no. de ticket:
+                                        <asp:Label runat="server" ID="Label1" /></strong><br>
+                                    </p>
+                                    <p class="h4">
+                                        <strong>Clave de registro:
+                                    <asp:Label runat="server" ID="Label2" /></strong>
+                                    </p>
+                                    <hr />
+                                    En breve recibirás un correo con los datos de tu ticket para que puedas dar seguimiento.
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
 
             <script>
                 $(document).ready(function () {
                     $('[data-toggle="tooltip"]').tooltip();
+                    SessionExpireAlert(1);
                 });
                 new mlPushMenu(document.getElementById('pMenu'), document.getElementById('trigger'), {
                     type: 'overlap'
                 });
+                
+                
             </script>
         </form>
     </div>

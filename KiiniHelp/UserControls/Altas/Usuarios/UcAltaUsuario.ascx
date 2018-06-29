@@ -476,6 +476,42 @@
                                     </asp:Panel>
                                 </div>
                             </div>
+                            
+                            <!--Formularios -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none">>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-theme-1">
+                                        <h4 class="panel-title">
+                                            <div class="row">
+                                                <a data-toggle="collapse" class="panel-toggle no-underline" href="#faq5_3">
+                                                    <div class="col-lg-10 col-md-8 col-sm-8">
+                                                        <h3 class="TitulosAzul">Formularios</h3>
+                                                    </div>
+                                                </a>
+                                                <div class="col-lg-2 col-md-4 col-sm-4 text-right">
+                                                    <asp:Button ID="btnModalFormulario" CssClass="btn btn-primary" runat="server" Text="Agregar"  />
+                                                </div>
+                                            </div>
+                                        </h4>
+                                    </div>
+
+
+                                    <asp:Panel runat="server" CssClass="panel-collapse collapse" ID="Panel1" ClientIDMode="Static">
+                                        <div class="panel-body">
+                                            <div class="panel-group panel-group-theme-1">
+                                                <div class="row">
+                                                    <div>
+                                                        <div class="table-responsive">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </asp:Panel>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

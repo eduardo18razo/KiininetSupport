@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:15277/ServiceMascaras.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
   <xs:import schemaLocation="http://localhost:15277/ServiceMascaras.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceMascaras.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="CrearMascara">
     <xs:complexType>
       <xs:sequence>
@@ -57,6 +58,8 @@
   <xs:element name="ObtenerMascarasAcceso">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="idTipoMascara" type="xs:int" />
+        <xs:element minOccurs="0" name="sistema" type="xs:boolean" />
         <xs:element minOccurs="0" name="insertarSeleccion" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -123,6 +126,33 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerDatosMascaraResult" nillable="true" type="q8:ArrayOfHelperMascaraData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerReporteMascara">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idMascara" type="xs:int" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q9:ArrayOfKeyValueOfstringdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerReporteMascaraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObtenerReporteMascaraResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

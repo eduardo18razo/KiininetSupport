@@ -308,5 +308,25 @@ namespace KinniNet.Core.Parametros
             }
             return result;
         }
+
+        public ParametroPassword ObtenerParemtrosPassword()
+        {
+            ParametroPassword result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.ParametroPassword.First();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
     }
 }

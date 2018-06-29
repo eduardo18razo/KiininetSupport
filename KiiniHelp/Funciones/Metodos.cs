@@ -246,5 +246,80 @@ namespace KiiniHelp.Funciones
 
             return true;
         }
+
+        public static class ManejoFechas
+        {
+
+            public static  Dictionary<string, DateTime> ObtenerFechas(int idTipoFecha, string fechaInicio, string fechaFin)
+            {
+                try
+                {
+                    Dictionary<string, DateTime> result = null;
+
+                    switch (idTipoFecha)
+                    {
+                        case 1:
+                            if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
+                                return null;
+                            if (DateTime.Parse(fechaInicio) > DateTime.Parse(fechaFin))
+                                throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
+                            result = new Dictionary<string, DateTime>
+                        {
+                            {"inicio", Convert.ToDateTime(fechaInicio)},
+                            {"fin", Convert.ToDateTime(fechaFin)}
+                        };
+                            break;
+                        case 2:
+                            if (fechaInicio.Trim() == string.Empty || fechaInicio.Trim() == string.Empty)
+                                return null;
+                            int anioInicialSemana = Convert.ToInt32(fechaInicio.Split('-')[0]);
+                            int semanaInicialSemana = Convert.ToInt32(fechaInicio.Split('-')[1].Substring(1));
+                            int anioFinSemana = Convert.ToInt32(fechaFin.Split('-')[0]);
+                            int semanaFinSemana = Convert.ToInt32(fechaFin.Split('-')[1].Substring(1));
+
+                            result = new Dictionary<string, DateTime>
+                        {
+                            {"inicio", BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anioInicialSemana, semanaInicialSemana)},
+                            {"fin", BusinessCadenas.Fechas.ObtenerFechaFinSemana(anioFinSemana, semanaFinSemana)}
+                        };
+
+                            break;
+                        case 3:
+                            if (fechaInicio.Trim() == string.Empty || fechaInicio.Trim() == string.Empty)
+                                return null;
+                            int anioInicialMes = Convert.ToInt32(fechaInicio.Split('-')[0]);
+                            int mesInicialMes = Convert.ToInt32(fechaInicio.Split('-')[1]);
+                            int anioFinMes = Convert.ToInt32(fechaFin.Split('-')[0]);
+                            int mesFinMes = Convert.ToInt32(fechaFin.Split('-')[1]);
+                            if ((anioInicialMes > anioFinMes) || (mesInicialMes > mesFinMes))
+                                throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
+
+                            result = new Dictionary<string, DateTime>
+                        {
+                            {"inicio", new DateTime(anioInicialMes, mesInicialMes, 1)},
+                            {"fin", new DateTime(anioFinMes, mesFinMes, DateTime.DaysInMonth(anioFinMes, mesFinMes))}
+                        };
+
+                            break;
+                        case 4:
+                            if (fechaInicio.Trim() == string.Empty || fechaInicio.Trim() == string.Empty)
+                                return null;
+                            if (int.Parse(fechaInicio) > int.Parse(fechaFin))
+                                throw new Exception("Año Inicio no puede se mayor a año Fin");
+                            result = new Dictionary<string, DateTime>
+                        {
+                            {"inicio", new DateTime(int.Parse(fechaInicio), 01, 1)},
+                            {"fin", new DateTime(int.Parse(fechaFin), 12, DateTime.DaysInMonth(int.Parse(fechaFin), 12))}
+                        };
+                            break;
+                    }
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+            }
+        }
     }
 }

@@ -322,7 +322,7 @@ namespace KinniNet.Core.Demonio
 
                         reply.Headers.Add("References", references);
                         reply.From.Address = servidor.User;
-                        reply.Subject += "Re:";
+                        reply.Subject += "Ticket " + idTicket;
                         reply.Subject = reply.Subject.Replace("(Trial Version)", string.Empty).Trim();
                         reply.To = to;
                         reply.HtmlBody = GeneraCorreoTicket("eduardo18razo@gmail.com", "Kiininet", string.Empty, DateTime.Now.ToShortDateString().ToString(CultureInfo.InvariantCulture), idTicket, clave, body);

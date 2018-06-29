@@ -10,11 +10,11 @@
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
-    <link href="assets/css/elegant-icons.css" rel="stylesheet" />
-    <link href="assets/css/bootstrap-markdown.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/elegant-icons.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-markdown.css"/>
     <link rel="stylesheet" href="assets/css/styles.css" />
-    <link href="assets/js/jquery.js"/>
-    <link href="assets/js/Notificaciones.js"/>
+    <link rel="stylesheet" href="assets/js/jquery.js"/>
+    <link rel="stylesheet" href="assets/js/Notificaciones.js"/>
     <script>
         function CerrarVentana() {
             window.close();
@@ -52,7 +52,7 @@
                                 <div class="float-left">
                                     <h3>Error</h3>
                                 </div>
-                                <div class="clearfix clear-fix" />
+                                <div class="clearfix" />
                             </div>
                             <hr />
                             <asp:Repeater runat="server" ID="rptHeaderError">

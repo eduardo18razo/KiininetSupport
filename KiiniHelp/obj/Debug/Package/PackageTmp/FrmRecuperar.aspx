@@ -10,18 +10,12 @@
 
     <title>Recuperar Cuenta</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
-
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
-
     <link rel="stylesheet" href="assets/css/bootstrap.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/styles_movil.css" />
-
     <link rel="stylesheet" href="assets/css/divs.css" />
-
-    <%--<link rel="stylesheet" href="assets/css/modales_movil.css" />
-    <link rel="stylesheet" href="assets/css/main_movil.css" />--%>
 </head>
 <body class="bodyBackgroundPassword">
     <form id="form1" runat="server">
@@ -46,14 +40,14 @@
                     <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
-                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
+                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
                                     <h1 class="form-box-heading2">
                                         <span>Recuperar contraseña</span>
                                     </h1>
                                     <div class="form-box-inner2">
                                         <h2 class="title">¿Cómo quieres recuperar tu contraseña?</h2>
                                         <div class="row">
-                                            <div class="form-container col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-inline text-left" runat="server">
                                                         <asp:RadioButton runat="server" ID="rbtnCorreo" Text="Quiero recibir un correo con un enlace" GroupName="Options" CssClass="radio" OnCheckedChanged="rbtnCorreo_OnCheckedChanged" AutoPostBack="True" />
@@ -63,7 +57,7 @@
                                                         <asp:RadioButton runat="server" ID="rbtnPreguntas" Text="Quiero contestar preguntas Reto" GroupName="Options" CssClass="radio" OnCheckedChanged="rbtnPreguntas_OnCheckedChanged" AutoPostBack="True" />
                                                         <br />
                                                     </div>
-                                                    <div class="form-group email">
+                                                    <div class="form-group ">
                                                         <asp:Button CssClass="btn btn-default widthCanelar" ID="Button1" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" />
                                                     </div>
                                                 </div>
@@ -72,8 +66,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
+                            <div class="row copyright2">
+                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -84,7 +78,7 @@
                     <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
-                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
+                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
                                     <h1 class="form-box-heading2">
                                         <span>Recuperar contraseña</span>
                                     </h1>
@@ -93,13 +87,13 @@
                                         <div class="row">
                                             <asp:HiddenField runat="server" ID="hfIdSend" />
                                             <asp:HiddenField runat="server" ID="hfValueSend" />
-                                            <div class="form-container col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 margin-bottom-10">
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-horizontal">
 
                                                         <label class="sr-only" for="login-email">Email or username</label>
 
-                                                        <asp:TextBox runat="server" CssClass="form-control login-email margin-bottom-25" ID="txtCodigo" />
+                                                        <asp:TextBox runat="server" CssClass="form-control margin-bottom-25" ID="txtCodigo" />
 
                                                         <div class="panel-body" runat="server" visible="False">
                                                             <div class="form-horizontal">
@@ -117,7 +111,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group email">
+                                                    <div class="form-group">
                                                         <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar" Text="Cancelar"  OnClick="btnCancelar_Click" />
                                                         <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick"  />
                                                     </div>
@@ -127,8 +121,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
+                            <div class="row copyright2">
+                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -139,11 +133,11 @@
                     <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
-                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
+                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
                                     <h1 class="form-box-heading2"><span>Responde tu pregunta secreta</span> </h1>
                                     <div class="form-box-inner2">
                                         <div class="row">
-                                            <div class="form-container col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
+                                            <div class="col-md-offset-2 col-md-8 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-horizontal margin-bottom-25">
                                                         <asp:Repeater runat="server" ID="rptPreguntas">
@@ -154,14 +148,14 @@
                                                                     <asp:Label runat="server" Text='<%# Eval("Pregunta") %>' class="col-xs-12 col-md-12 text-left" ID="lblPregunta" />
 
                                                                     <div class="col-sm-12">
-                                                                        <asp:TextBox runat="server" ID="txtRespuesta" CssClass="form-control obligatorio text-no-transform"/>
+                                                                        <asp:TextBox runat="server" ID="txtRespuesta" CssClass="form-control text-no-transform"/>
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
                                                     </div>
 
-                                                    <div class="form-group email">
+                                                    <div class="form-group">
                                                         <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar2" Text="Cancelar"  OnClick="btnCancelar_Click" />
                                                         <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarPreguntas" Text="Continuar" OnClick="btncontinuar_OnClick"  />
                                                     </div>
@@ -172,8 +166,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
+                            <div class="row copyright2">
+                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -184,36 +178,36 @@
                     <section class="panelsectionbacground panelsection">
                         <div class="container">
                             <div class="row">
-                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
+                                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
                                     <h1 class="form-box-heading2">
                                         <span>Cambia tu contraseña</span>
                                     </h1>
                                     <div class="form-box-inner2">
                                         <div class="row">
-                                            <div class="form-container col-md-6 col-sm-12 col-xs-12">
+                                            <div class="col-md-6 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="row">
                                                     <asp:Label runat="server" Text="Ingresa tu nueva contraseña" CssClass="col-lg-12 text-left" />
                                                     <br/>
-                                                    <div class="form-group password">
+                                                    <div class="form-group">
                                                         <label class="sr-only" for="txtContrasena">Password</label>
                                                         <span class="fa fa-lock icon"></span>
-                                                        <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control login-password text-no-transform" />
+                                                        <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control text-no-transform" />
                                                     </div>
                                                     <asp:Label runat="server" Text="Confirma tu contraseña" CssClass="col-lg-12 text-left"/>
                                                     <br/>
-                                                    <div class="form-group password">
+                                                    <div class="form-group">
                                                         <label class="sr-only" for="txtConfirmar">Password</label>
                                                         <span class="fa fa-lock icon"></span>
-                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control login-password text-no-transform"/>
+                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control text-no-transform"/>
                                                     </div>
-                                                    <div class="form-group password">
+                                                    <div class="form-group">
                                                         <asp:Button class="btn btn-block btn-primary" runat="server" Text="Cambiar contraseña" OnClick="btncontinuar_OnClick" />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="social-btns col-md-5 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-sm-offset-0">
+                                            <div class=" col-md-5 col-sm-12 col-xs-12 col-md-offset-1 col-sm-offset-0 col-sm-offset-0">
                                                 <div class="divider"><span>IMPORTANTE</span></div>
-                                                <ul class="list-unstyled social-login">
+                                                <ul class="list-unstyled">
                                                     <li>
                                                         <p>Recuerda que para que tu nueva contraseña sea segura debe contenir mínimo 8 caractéres, mayúsculas y minúsculas y algún caracter especial</p>
                                                     </li>
@@ -223,8 +217,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row copyright2 center">
-                                <img src="assets/images/logo_kinninet_blanco.png" class="center"><br/>
+                            <div class="row copyright2">
+                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
                                 &copy; 2018                       
                             </div>
                         </div>

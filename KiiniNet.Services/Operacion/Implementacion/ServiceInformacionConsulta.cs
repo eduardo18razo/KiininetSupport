@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion;
+using KiiniNet.Entities.Reportes;
 using KiiniNet.Services.Operacion.Interface;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Operacion;
@@ -84,7 +86,7 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public void GuardarHit(int idArbol,int idTipoUsuario, int? idUsuario)
+        public void GuardarHit(int idArbol, int idTipoUsuario, int? idUsuario)
         {
             try
             {
@@ -99,13 +101,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<InformacionConsulta> ObtenerConsulta(string descripcion)
+        public List<HelperInformacionConsulta> ObtenerConsulta(string descripcion, Dictionary<string, DateTime> fechas)
         {
             try
             {
                 using (BusinessInformacionConsulta negocio = new BusinessInformacionConsulta())
                 {
-                    return negocio.ObtenerInformacionConsulta(descripcion);
+                    return negocio.ObtenerInformacionConsulta(descripcion, fechas);
                 }
             }
             catch (Exception ex)
@@ -136,6 +138,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessInformacionConsulta negocio = new BusinessInformacionConsulta())
                 {
                     negocio.HabilitarInformacion(idInformacion, habilitado);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public ReporteInformacionConsulta ObtenerReporteInformacionConsulta(int idInformacionConsulta, Dictionary<string, DateTime> fechas, int tipoFecha)
+        {
+            try
+            {
+                using (BusinessInformacionConsulta negocio = new BusinessInformacionConsulta())
+                {
+                    return negocio.ObtenerReporteInformacionConsulta(idInformacionConsulta, fechas, tipoFecha);
                 }
             }
             catch (Exception ex)

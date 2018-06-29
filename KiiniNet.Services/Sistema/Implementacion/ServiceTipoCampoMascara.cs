@@ -37,5 +37,20 @@ namespace KiiniNet.Services.Sistema.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<TipoMascara> ObtenerTipoMascara(bool insertarSeleccion)
+        {
+            try
+            {
+                using (BusinessTipoCampoMascara negocio = new BusinessTipoCampoMascara())
+                {
+                    return negocio.ObtenerTipoMascara(insertarSeleccion);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

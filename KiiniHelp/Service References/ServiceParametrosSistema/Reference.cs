@@ -37,6 +37,9 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionales", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerDatosAdicionalesResponse")]
         KiiniNet.Entities.Parametros.ParametroDatosAdicionales ObtenerDatosAdicionales(int idTipoUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerParemtrosPassword", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerParemtrosPasswordResponse")]
+        KiiniNet.Entities.Parametros.ParametroPassword ObtenerParemtrosPassword();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -92,6 +95,10 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         public KiiniNet.Entities.Parametros.ParametroDatosAdicionales ObtenerDatosAdicionales(int idTipoUsuario) {
             return base.Channel.ObtenerDatosAdicionales(idTipoUsuario);
+        }
+        
+        public KiiniNet.Entities.Parametros.ParametroPassword ObtenerParemtrosPassword() {
+            return base.Channel.ObtenerParemtrosPassword();
         }
     }
 }

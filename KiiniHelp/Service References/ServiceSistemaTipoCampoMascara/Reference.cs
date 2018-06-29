@@ -20,6 +20,9 @@ namespace KiiniHelp.ServiceSistemaTipoCampoMascara {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTipoCampoMascara/TipoCampoMascaraId", ReplyAction="http://tempuri.org/IServiceTipoCampoMascara/TipoCampoMascaraIdResponse")]
         KiiniNet.Entities.Cat.Mascaras.TipoCampoMascara TipoCampoMascaraId(int idTipoCampo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTipoCampoMascara/ObtenerTipoMascara", ReplyAction="http://tempuri.org/IServiceTipoCampoMascara/ObtenerTipoMascaraResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Mascaras.TipoMascara> ObtenerTipoMascara(bool insertarSeleccion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +58,10 @@ namespace KiiniHelp.ServiceSistemaTipoCampoMascara {
         
         public KiiniNet.Entities.Cat.Mascaras.TipoCampoMascara TipoCampoMascaraId(int idTipoCampo) {
             return base.Channel.TipoCampoMascaraId(idTipoCampo);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Mascaras.TipoMascara> ObtenerTipoMascara(bool insertarSeleccion) {
+            return base.Channel.ObtenerTipoMascara(insertarSeleccion);
         }
     }
 }

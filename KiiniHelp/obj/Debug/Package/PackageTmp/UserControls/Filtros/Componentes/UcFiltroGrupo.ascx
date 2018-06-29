@@ -55,6 +55,7 @@
                                     <asp:HiddenField runat="server" ID="hfColor" Value='<%# Eval("TipoUsuario.Color") %>' /> 
                                     <asp:Label CssClass="col-sm-3" runat="server" ID="lblTipoGrupoDes" Text='<%# Eval("TipoGrupo.Descripcion") %>' />
                                     <asp:Label CssClass="col-sm-6" runat="server" ID="lblDescripcion" Text='<%# Eval("Descripcion") %>' />
+                                    <asp:CheckBox runat="server" Checked="False" CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text="Hola"/>
                                     <asp:Button runat="server" Text="Seleccionar" CssClass="btn btn-primary btn-sm" ID="btnSeleccionar" OnClick="btnSeleccionar_OnClick" />
                                 </div>
                             </ItemTemplate>

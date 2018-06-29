@@ -812,7 +812,7 @@ namespace KinniNet.Core.Operacion
                 }
                 if (arbol.EsTerminal && arbol.IdTipoArbolAcceso != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
                 {
-                    arbol.InventarioArbolAcceso.First().Sla.TiempoHoraProceso = (arbol.InventarioArbolAcceso.First().Sla.Dias * 24) + (arbol.InventarioArbolAcceso.First().Sla.Horas / 24) + ((arbol.InventarioArbolAcceso.First().Sla.Minutos / 24) / 24) + (((arbol.InventarioArbolAcceso.First().Sla.Segundos / 60) / 24) / 24);
+                    //arbol.InventarioArbolAcceso.First().Sla.TiempoHoraProceso = (arbol.InventarioArbolAcceso.First().Sla.Dias * 24) + arbol.InventarioArbolAcceso.First().Sla.Horas + (arbol.InventarioArbolAcceso.First().Sla.Minutos / 60) + ((arbol.InventarioArbolAcceso.First().Sla.Minutos / 60) / 60); ;
                 }
                 if (arbol.EsTerminal)
                 {

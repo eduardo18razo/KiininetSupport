@@ -12,7 +12,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderPublic" runat="server">
     <h3 class="h6">
-        <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
+        <asp:HyperLink runat="server" CssClass="text-theme" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
         </h3>
     <hr />
     <uc1:UcVisorConsultainformacion runat="server" ID="ucVisorConsultainformacion" />

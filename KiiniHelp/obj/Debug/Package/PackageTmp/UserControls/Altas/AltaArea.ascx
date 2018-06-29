@@ -20,7 +20,7 @@
                                 Escribe el nombre de la Categoría<br />
                                 <asp:TextBox runat="server" ID="txtDescripcionAreas" CssClass="form-control" onkeydown="return (event.keyCode!=13);" autofocus="autofocus" MaxLength="50" />
                             </div>
-                            <ajax:AsyncFileUpload ID="afDosnload" runat="server" UploaderStyle="Traditional" OnUploadedComplete="afDosnload_OnUploadedComplete" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" Visible="False" />
+                            <ajax:AsyncFileUpload ID="afDosnload" runat="server" UploaderStyle="Traditional"  OnUploadedComplete="afDosnload_OnUploadedComplete" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" Visible="False" />
                             <p class="margin-top-20">
                                 <asp:Button runat="server" CssClass="btn btn-primary" Text="Guardar" ID="btnGuardarArea" OnClick="btnGuardar_OnClick" />
                             </p>

@@ -256,7 +256,7 @@ namespace KiiniHelp.UserControls.Altas
 
                     if (opcion.IdTipoArbolAcceso != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
                     {
-                        Metodos.LlenaComboCatalogo(ddlMascaraAcceso, _servicioMascaras.ObtenerMascarasAcceso(true));
+                        Metodos.LlenaComboCatalogo(ddlMascaraAcceso, _servicioMascaras.ObtenerMascarasAcceso((int)BusinessVariables.EnumTipoMascara.Ticket, false, true));
                         ddlMascaraAcceso.SelectedValue = opcion.InventarioArbolAcceso.First().IdMascara.ToString();
                         Metodos.LlenaComboCatalogo(ddlEncuesta, _servicioEncuesta.ObtenerEncuestas(true));
                         ddlEncuesta.SelectedValue = opcion.InventarioArbolAcceso.First().IdEncuesta.ToString();
@@ -430,7 +430,7 @@ namespace KiiniHelp.UserControls.Altas
         {
             try
             {
-                Metodos.LlenaComboCatalogo(ddlMascaraAcceso, _servicioMascaras.ObtenerMascarasAcceso(true));
+                Metodos.LlenaComboCatalogo(ddlMascaraAcceso, _servicioMascaras.ObtenerMascarasAcceso((int)BusinessVariables.EnumTipoMascara.Ticket, false, true));
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAltaMascara\");", true);
             }
             catch (Exception ex)
@@ -979,7 +979,7 @@ namespace KiiniHelp.UserControls.Altas
                 AsociarGrupoUsuario.Limpiar();
 
                 //Ticket
-                Metodos.LlenaComboCatalogo(ddlMascaraAcceso, _servicioMascaras.ObtenerMascarasAcceso(true));
+                Metodos.LlenaComboCatalogo(ddlMascaraAcceso, _servicioMascaras.ObtenerMascarasAcceso((int)BusinessVariables.EnumTipoMascara.Ticket, false, true));
                 Metodos.LlenaComboCatalogo(ddlEncuesta, _servicioEncuesta.ObtenerEncuestas(true));
 
                 upGrupos.Update();

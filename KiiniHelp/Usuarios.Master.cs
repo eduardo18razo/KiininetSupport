@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
@@ -8,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSeguridad;
+using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
@@ -19,6 +21,7 @@ namespace KiiniHelp
     {
         private readonly ServiceSecurityClient _servicioSeguridad = new ServiceSecurityClient();
         private readonly ServiceParametrosClient _servicioParametros = new ServiceParametrosClient();
+        private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
 
         private List<string> _lstError = new List<string>();
 
@@ -74,6 +77,32 @@ namespace KiiniHelp
                 rptRolesPanel.DataSource = lstRoles;
                 rptRolesPanel.DataBind();
                 lblBadgeRoles.Text = lstRoles.Count.ToString();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+                AlertaSucces(_lstError.ToString());
+            }
+        }
+
+        public void ActualizarFoto()
+        {
+            try
+            {
+                if (Session["UserData"] != null)
+                {
+                    Usuario userData = (Usuario)Session["UserData"];
+                    ((Usuario) Session["UserData"]).Foto = _servicioUsuarios.ObtenerFoto(userData.Id);
+                    userData = (Usuario)Session["UserData"];
+                    imgPerfil.ImageUrl = userData.Foto != null ? "~/DisplayImages.ashx?id=" + userData : "~/assets/images/profiles/profile-1.png";
+                }
+                
+                
             }
             catch (Exception ex)
             {
@@ -156,6 +185,9 @@ namespace KiiniHelp
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
+                    int timeout = int.Parse(ConfigurationManager.AppSettings["TiempoSession"]) * 1000 * 60;
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", "SessionExpireAlert(" + timeout + ");", true);
+
                     bool administrador = false, agente = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
                     if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Administrador))

@@ -31,6 +31,24 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         protected global::System.Web.UI.UpdatePanel upControlesMascara;
         
         /// <summary>
+        /// Control lblIdTipoFormulario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIdTipoFormulario;
+        
+        /// <summary>
+        /// Control ddlTipoFormulario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoFormulario;
+        
+        /// <summary>
         /// Control lblIdTipoCampoMascara.
         /// </summary>
         /// <remarks>

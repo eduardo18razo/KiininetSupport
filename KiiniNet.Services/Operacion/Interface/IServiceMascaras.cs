@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.ServiceModel;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Helper;
@@ -20,7 +22,7 @@ namespace KiiniNet.Services.Operacion.Interface
         Mascara ObtenerMascaraCapturaByIdTicket(int idTicket);
 
         [OperationContract]
-        List<Mascara> ObtenerMascarasAcceso(bool insertarSeleccion);
+        List<Mascara> ObtenerMascarasAcceso(int idTipoMascara, bool sistema, bool insertarSeleccion);
         [OperationContract]
         List<CatalogoGenerico> ObtenerCatalogoCampoMascara(int idCatalogo, bool insertarSeleccion, bool filtraHabilitados);
 
@@ -32,5 +34,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<HelperMascaraData> ObtenerDatosMascara(int idMascara, int idTicket);
+
+        [OperationContract]
+        DataTable ObtenerReporteMascara(int idMascara, Dictionary<string, DateTime> fechas);
     }
 }

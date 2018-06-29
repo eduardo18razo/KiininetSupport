@@ -191,15 +191,46 @@ namespace KiiniHelp.Test
 
             for (int c = 0; c < dt.Columns.Count; c++)
             {
-                BarSeries serie = new BarSeries();
+                ColumnSeries serie = new ColumnSeries();
                 serie.Stacked = true;
                 serie.LabelsAppearance.Position = BarColumnLabelsPosition.Center;
-                serie.LabelsAppearance.DataFormatString = "{0} MB";
-                serie.TooltipsAppearance.DataFormatString = "{0} MB";
+                serie.LabelsAppearance.DataFormatString = "{0}";
+                serie.TooltipsAppearance.DataFormatString = "{0}";
                 serie.DataFieldY = dt.Columns[c].ColumnName;
                 grafico.PlotArea.Series.Add(serie);
             }
             grafico.PlotArea.XAxis.DataLabelsField = dt.Columns[dt.Columns.Count - 1].ColumnName;
+            grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
+            grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
+            grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
+            grafico.PlotArea.YAxis.MinorGridLines.Width = 0;
+            grafico.DataSource = dt;
+            grafico.DataBind();
+        }
+
+        private void GeneraGraficaStackedColumn(RadHtmlChart grafico, DataTable dt)
+        {
+            grafico.Width = Unit.Percentage(100);
+            grafico.Height = Unit.Pixel(500);
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+            foreach (DataRow row in dt.Rows)
+            {
+                ColumnSeries column = new ColumnSeries();
+                column.Name = row[0].ToString();
+                column.GroupName = "Likes";
+                column.Stacked = true;
+                column.TooltipsAppearance.ClientTemplate = "#= series.name# Total: #= dataItem.value#";
+                column.LabelsAppearance.Visible = false;
+                for (int c = 1; c < dt.Columns.Count; c++)
+                {
+                    column.SeriesItems.Add((int)row[c]);
+                }
+                grafico.PlotArea.Series.Add(column);
+            }
+            for (int c = 1; c < dt.Columns.Count; c++)
+            {
+                grafico.PlotArea.XAxis.Items.Add(dt.Columns[c].ColumnName);
+            }
             grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
             grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
             grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
@@ -277,12 +308,24 @@ namespace KiiniHelp.Test
             //    ddlUsuarioAsignacion.DataBind();
             //}
 
-            //DataTable dtTicketsCanal = new DataTable("dt");
-            //dtTicketsCanal.Columns.Add("Id", typeof(int));
+            DataTable dtLike = new DataTable("dt");
+            dtLike.Columns.Add("Descripcion", typeof(string));
+            dtLike.Columns.Add("Enero", typeof(int));
+            dtLike.Columns.Add("Febrero", typeof(int));
+            dtLike.Columns.Add("Marzo", typeof(int));
+            dtLike.Columns.Add("Abril", typeof(int));
+            dtLike.Columns.Add("Mayo", typeof(int));
+            dtLike.Columns.Add("Junio", typeof(int));
+            dtLike.Columns.Add("Julio", typeof(int));
+            dtLike.Columns.Add("Agosto", typeof(int));
+            dtLike.Columns.Add("Septiembre", typeof(int));
+            dtLike.Columns.Add("Octubre", typeof(int));
+            dtLike.Columns.Add("Noviembre", typeof(int));
+            dtLike.Columns.Add("Diciembre", typeof(int));
             //dtTicketsCanal.Columns.Add("Canal", typeof(string));
             //dtTicketsCanal.Columns.Add("Total", typeof(double));
-            //dtTicketsCanal.Rows.Add(1, "Portal", 7);
-            //dtTicketsCanal.Rows.Add(2, "Correo", 11);
+            dtLike.Rows.Add("Like", 7, 9, 11, 13, 12, 9, 12, 14, 18, 22, 24, 26);
+            dtLike.Rows.Add("Dont Like", 16, 7, 14, 5, 8, 8, 8, 8, 10, 7, 6, 4);
             //dtTicketsCanal.Rows.Add(3, "Chat", 8);
             //dtTicketsCanal.Rows.Add(6, "Telefono", 7);
             //GeneraGraficaPieTickets(rhcTickets, dtTicketsCanal);
@@ -294,7 +337,7 @@ namespace KiiniHelp.Test
             //dtAlmacenado.Columns.Add("Titulo", typeof(string));
             //dtAlmacenado.Rows.Add(123.5, 900.5, "Almacenado");
 
-            //GeneraGraficaStackedAdministrador(rhcEspacio, dtAlmacenado);
+            GeneraGraficaStackedColumn(rhcLike, dtLike);
 
 
 
@@ -805,7 +848,7 @@ namespace KiiniHelp.Test
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }

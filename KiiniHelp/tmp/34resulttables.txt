@@ -1,0 +1,1528 @@
+﻿tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+AliasOrganizacion                                                                                                                Id
+AliasOrganizacion                                                                                                                IdTipoUsuario
+AliasOrganizacion                                                                                                                Descripcion
+AliasOrganizacion                                                                                                                Nivel
+AliasOrganizacion                                                                                                                Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+AliasUbicacion                                                                                                                   Id
+AliasUbicacion                                                                                                                   IdTipoUsuario
+AliasUbicacion                                                                                                                   Descripcion
+AliasUbicacion                                                                                                                   Nivel
+AliasUbicacion                                                                                                                   Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ArbolAcceso                                                                                                                      Id
+ArbolAcceso                                                                                                                      IdArea
+ArbolAcceso                                                                                                                      IdTipoUsuario
+ArbolAcceso                                                                                                                      IdTipoArbolAcceso
+ArbolAcceso                                                                                                                      IdImpacto
+ArbolAcceso                                                                                                                      IdNivel1
+ArbolAcceso                                                                                                                      IdNivel2
+ArbolAcceso                                                                                                                      IdNivel3
+ArbolAcceso                                                                                                                      IdNivel4
+ArbolAcceso                                                                                                                      IdNivel5
+ArbolAcceso                                                                                                                      IdNivel6
+ArbolAcceso                                                                                                                      IdNivel7
+ArbolAcceso                                                                                                                      Evaluacion
+ArbolAcceso                                                                                                                      EsTerminal
+ArbolAcceso                                                                                                                      Sistema
+ArbolAcceso                                                                                                                      Habilitado
+ArbolAcceso                                                                                                                      FechaAlta
+ArbolAcceso                                                                                                                      IdUsuarioAlta
+
+(18 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Area                                                                                                                             Id
+Area                                                                                                                             Descripcion
+Area                                                                                                                             Imagen
+Area                                                                                                                             Extension
+Area                                                                                                                             Sistema
+Area                                                                                                                             FechaAlta
+Area                                                                                                                             IdUsuarioAlta
+Area                                                                                                                             FechaModificacion
+Area                                                                                                                             IdUsuarioModifico
+Area                                                                                                                             Habilitado
+
+(10 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Artifact                                                                                                                         Id
+Artifact                                                                                                                         idTecnologia
+Artifact                                                                                                                         idSubTecnologia
+Artifact                                                                                                                         idTipoArtifact
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ArtifactCliente                                                                                                                  Id
+ArtifactCliente                                                                                                                  IdArtifact
+ArtifactCliente                                                                                                                  IdMarca
+ArtifactCliente                                                                                                                  IdFamilia
+ArtifactCliente                                                                                                                  IdModelo
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+BitacoraAcceso                                                                                                                   Id
+BitacoraAcceso                                                                                                                   IdUsuario
+BitacoraAcceso                                                                                                                   Fecha
+BitacoraAcceso                                                                                                                   Success
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+CampoCatalogo                                                                                                                    Id
+CampoCatalogo                                                                                                                    IdCatalogo
+CampoCatalogo                                                                                                                    Campo
+CampoCatalogo                                                                                                                    TipoCampo
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+CampoMascara                                                                                                                     Id
+CampoMascara                                                                                                                     IdMascara
+CampoMascara                                                                                                                     IdTipoCampoMascara
+CampoMascara                                                                                                                     IdCatalogo
+CampoMascara                                                                                                                     EsArchivo
+CampoMascara                                                                                                                     Descripcion
+CampoMascara                                                                                                                     NombreCampo
+CampoMascara                                                                                                                     Requerido
+CampoMascara                                                                                                                     LongitudMinima
+CampoMascara                                                                                                                     LongitudMaxima
+CampoMascara                                                                                                                     SimboloMoneda
+CampoMascara                                                                                                                     ValorMaximo
+CampoMascara                                                                                                                     MascaraDetalle
+
+(13 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Campus                                                                                                                           Id
+Campus                                                                                                                           IdTipoUsuario
+Campus                                                                                                                           Descripcion
+Campus                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Canal                                                                                                                            Id
+Canal                                                                                                                            Descripcion
+Canal                                                                                                                            Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Catalogos                                                                                                                        Id
+Catalogos                                                                                                                        Descripcion
+Catalogos                                                                                                                        Tabla
+Catalogos                                                                                                                        EsMascaraCaptura
+Catalogos                                                                                                                        Archivo
+Catalogos                                                                                                                        Habilitado
+
+(6 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ChatMessageDetail                                                                                                                ID
+ChatMessageDetail                                                                                                                UserName
+ChatMessageDetail                                                                                                                Message
+ChatMessageDetail                                                                                                                EmailID
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ChatPrivateMessageDetails                                                                                                        ID
+ChatPrivateMessageDetails                                                                                                        MasterEmailID
+ChatPrivateMessageDetails                                                                                                        ChatToEmailID
+ChatPrivateMessageDetails                                                                                                        Message
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ChatPrivateMessageMaster                                                                                                         ID
+ChatPrivateMessageMaster                                                                                                         UserName
+ChatPrivateMessageMaster                                                                                                         EmailID
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ChatUserDetail                                                                                                                   ID
+ChatUserDetail                                                                                                                   ConnectionId
+ChatUserDetail                                                                                                                   UserName
+ChatUserDetail                                                                                                                   EmailID
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Colonia                                                                                                                          Id
+Colonia                                                                                                                          IdMunicipio
+Colonia                                                                                                                          Descripcion
+Colonia                                                                                                                          CP
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Compania                                                                                                                         Id
+Compania                                                                                                                         IdTipoUsuario
+Compania                                                                                                                         Descripcion
+Compania                                                                                                                         Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ConversacionArchivo                                                                                                              Id
+ConversacionArchivo                                                                                                              IdTicketConversacion
+ConversacionArchivo                                                                                                              Archivo
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+CorreoUsuario                                                                                                                    Id
+CorreoUsuario                                                                                                                    IdUsuario
+CorreoUsuario                                                                                                                    Correo
+CorreoUsuario                                                                                                                    Obligatorio
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+DiaFeriado                                                                                                                       Id
+DiaFeriado                                                                                                                       Fecha
+DiaFeriado                                                                                                                       Descripcion
+DiaFeriado                                                                                                                       Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+DiaFestivoDefault                                                                                                                Id
+DiaFestivoDefault                                                                                                                Dia
+DiaFestivoDefault                                                                                                                Mes
+DiaFestivoDefault                                                                                                                Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+DiaFestivoSubGrupo                                                                                                               Id
+DiaFestivoSubGrupo                                                                                                               IdSubGrupoUsuario
+DiaFestivoSubGrupo                                                                                                               IdDiasFeriados
+DiaFestivoSubGrupo                                                                                                               Fecha
+DiaFestivoSubGrupo                                                                                                               Descripcion
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+DiasFeriados                                                                                                                     Id
+DiasFeriados                                                                                                                     Descripcion
+DiasFeriados                                                                                                                     Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+DiasFeriadosDetalle                                                                                                              Id
+DiasFeriadosDetalle                                                                                                              IdDiasFeriados
+DiasFeriadosDetalle                                                                                                              Dia
+DiasFeriadosDetalle                                                                                                              Descripcion
+DiasFeriadosDetalle                                                                                                              Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Direccion                                                                                                                        Id
+Direccion                                                                                                                        IdTipoUsuario
+Direccion                                                                                                                        Descripcion
+Direccion                                                                                                                        Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Domicilio                                                                                                                        Id
+Domicilio                                                                                                                        IdCampus
+Domicilio                                                                                                                        IdColonia
+Domicilio                                                                                                                        Calle
+Domicilio                                                                                                                        NoExt
+Domicilio                                                                                                                        NoInt
+
+(6 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Encuesta                                                                                                                         Id
+Encuesta                                                                                                                         IdTipoEncuesta
+Encuesta                                                                                                                         Descripcion
+Encuesta                                                                                                                         EsPonderacion
+Encuesta                                                                                                                         Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+EncuestaPregunta                                                                                                                 Id
+EncuestaPregunta                                                                                                                 IdEncuesta
+EncuestaPregunta                                                                                                                 Pregunta
+EncuestaPregunta                                                                                                                 Ponderacion
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Estado                                                                                                                           Id
+Estado                                                                                                                           IdPais
+Estado                                                                                                                           Descripcion
+Estado                                                                                                                           RegionCode
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+EstatusAsignacion                                                                                                                Id
+EstatusAsignacion                                                                                                                Descripcion
+EstatusAsignacion                                                                                                                Orden
+EstatusAsignacion                                                                                                                Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+EstatusAsignacionSubRolGeneral                                                                                                   Id
+EstatusAsignacionSubRolGeneral                                                                                                   IdGrupoUsuario
+EstatusAsignacionSubRolGeneral                                                                                                   IdRol
+EstatusAsignacionSubRolGeneral                                                                                                   IdSubRol
+EstatusAsignacionSubRolGeneral                                                                                                   IdEstatusAsignacionActual
+EstatusAsignacionSubRolGeneral                                                                                                   IdEstatusAsignacionAccion
+EstatusAsignacionSubRolGeneral                                                                                                   ComentarioObligado
+EstatusAsignacionSubRolGeneral                                                                                                   TieneSupervisor
+EstatusAsignacionSubRolGeneral                                                                                                   Propietario
+EstatusAsignacionSubRolGeneral                                                                                                   Habilitado
+
+(10 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+EstatusAsignacionSubRolGeneralDefault                                                                                            Id
+EstatusAsignacionSubRolGeneralDefault                                                                                            IdRol
+EstatusAsignacionSubRolGeneralDefault                                                                                            IdSubRol
+EstatusAsignacionSubRolGeneralDefault                                                                                            IdEstatusAsignacionActual
+EstatusAsignacionSubRolGeneralDefault                                                                                            IdEstatusAsignacionAccion
+EstatusAsignacionSubRolGeneralDefault                                                                                            ComentarioObligado
+EstatusAsignacionSubRolGeneralDefault                                                                                            TieneSupervisor
+EstatusAsignacionSubRolGeneralDefault                                                                                            Propietario
+EstatusAsignacionSubRolGeneralDefault                                                                                            Habilitado
+
+(9 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+EstatusTicket                                                                                                                    Id
+EstatusTicket                                                                                                                    Descripcion
+EstatusTicket                                                                                                                    Orden
+EstatusTicket                                                                                                                    Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+EstatusTicketSubRolGeneral                                                                                                       Id
+EstatusTicketSubRolGeneral                                                                                                       IdGrupoUsuario
+EstatusTicketSubRolGeneral                                                                                                       IdRolSolicita
+EstatusTicketSubRolGeneral                                                                                                       IdSubRolSolicita
+EstatusTicketSubRolGeneral                                                                                                       IdRolPertenece
+EstatusTicketSubRolGeneral                                                                                                       IdSubRolPertenece
+EstatusTicketSubRolGeneral                                                                                                       IdEstatusTicketActual
+EstatusTicketSubRolGeneral                                                                                                       IdEstatusTicketAccion
+EstatusTicketSubRolGeneral                                                                                                       TieneSupervisor
+EstatusTicketSubRolGeneral                                                                                                       Propietario
+EstatusTicketSubRolGeneral                                                                                                       LevantaTicket
+EstatusTicketSubRolGeneral                                                                                                       Habilitado
+
+(12 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+EstatusTicketSubRolGeneralDefault                                                                                                Id
+EstatusTicketSubRolGeneralDefault                                                                                                IdRolSolicita
+EstatusTicketSubRolGeneralDefault                                                                                                IdSubRolSolicita
+EstatusTicketSubRolGeneralDefault                                                                                                IdRolPertenece
+EstatusTicketSubRolGeneralDefault                                                                                                IdSubRolPertenece
+EstatusTicketSubRolGeneralDefault                                                                                                IdEstatusTicketActual
+EstatusTicketSubRolGeneralDefault                                                                                                IdEstatusTicketAccion
+EstatusTicketSubRolGeneralDefault                                                                                                TieneSupervisor
+EstatusTicketSubRolGeneralDefault                                                                                                Propietario
+EstatusTicketSubRolGeneralDefault                                                                                                LevantaTicket
+EstatusTicketSubRolGeneralDefault                                                                                                Habilitado
+
+(11 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Familia                                                                                                                          Id
+Familia                                                                                                                          Descripcion
+Familia                                                                                                                          Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Frecuencia                                                                                                                       Id
+Frecuencia                                                                                                                       IdTipoUsuario
+Frecuencia                                                                                                                       IdTipoArbolAcceso
+Frecuencia                                                                                                                       IdArbolAcceso
+Frecuencia                                                                                                                       Fecha
+Frecuencia                                                                                                                       NumeroVisitas
+Frecuencia                                                                                                                       UltimaVisita
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Gerencia                                                                                                                         Id
+Gerencia                                                                                                                         IdTipoUsuario
+Gerencia                                                                                                                         Descripcion
+Gerencia                                                                                                                         Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+GrupoUsuario                                                                                                                     Id
+GrupoUsuario                                                                                                                     IdTipoUsuario
+GrupoUsuario                                                                                                                     IdTipoGrupo
+GrupoUsuario                                                                                                                     Descripcion
+GrupoUsuario                                                                                                                     Sistema
+GrupoUsuario                                                                                                                     TieneSupervisor
+GrupoUsuario                                                                                                                     LevantaTicket
+GrupoUsuario                                                                                                                     RecadoTicket
+GrupoUsuario                                                                                                                     Habilitado
+
+(9 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+GrupoUsuarioInventarioArbol                                                                                                      Id
+GrupoUsuarioInventarioArbol                                                                                                      IdInventarioArbolAcceso
+GrupoUsuarioInventarioArbol                                                                                                      IdRol
+GrupoUsuarioInventarioArbol                                                                                                      IdGrupoUsuario
+GrupoUsuarioInventarioArbol                                                                                                      IdSubGrupoUsuario
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+HitConsulta                                                                                                                      Id
+HitConsulta                                                                                                                      IdTipoArbolAcceso
+HitConsulta                                                                                                                      IdArbolAcceso
+HitConsulta                                                                                                                      IdUsuario
+HitConsulta                                                                                                                      IdUbicacion
+HitConsulta                                                                                                                      IdOrganizacion
+HitConsulta                                                                                                                      FechaHoraAlta
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+HitGrupoUsuario                                                                                                                  Id
+HitGrupoUsuario                                                                                                                  IdHit
+HitGrupoUsuario                                                                                                                  IdRol
+HitGrupoUsuario                                                                                                                  IdGrupoUsuario
+HitGrupoUsuario                                                                                                                  IdSubGrupoUsuario
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Holding                                                                                                                          Id
+Holding                                                                                                                          IdTipoUsuario
+Holding                                                                                                                          Descripcion
+Holding                                                                                                                          Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Horario                                                                                                                          Id
+Horario                                                                                                                          Descripcion
+Horario                                                                                                                          Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+HorarioDetalle                                                                                                                   Id
+HorarioDetalle                                                                                                                   IdHorario
+HorarioDetalle                                                                                                                   Dia
+HorarioDetalle                                                                                                                   HoraInicio
+HorarioDetalle                                                                                                                   HoraFin
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+HorarioSubGrupo                                                                                                                  Id
+HorarioSubGrupo                                                                                                                  IdSubGrupoUsuario
+HorarioSubGrupo                                                                                                                  IdHorario
+HorarioSubGrupo                                                                                                                  Dia
+HorarioSubGrupo                                                                                                                  HoraInicio
+HorarioSubGrupo                                                                                                                  HoraFin
+
+(6 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Impacto                                                                                                                          Id
+Impacto                                                                                                                          IdPrioridad
+Impacto                                                                                                                          IdUrgencia
+Impacto                                                                                                                          Descripcion
+Impacto                                                                                                                          Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+InformacionConsulta                                                                                                              Id
+InformacionConsulta                                                                                                              IdTipoInfConsulta
+InformacionConsulta                                                                                                              Descripcion
+InformacionConsulta                                                                                                              FechaAlta
+InformacionConsulta                                                                                                              IdUsuarioAlta
+InformacionConsulta                                                                                                              FechaModificacion
+InformacionConsulta                                                                                                              IdUsuarioModifico
+InformacionConsulta                                                                                                              Habilitado
+
+(8 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+InformacionConsultaDatos                                                                                                         Id
+InformacionConsultaDatos                                                                                                         IdInformacionConsulta
+InformacionConsultaDatos                                                                                                         Datos
+InformacionConsultaDatos                                                                                                         Busqueda
+InformacionConsultaDatos                                                                                                         Tags
+InformacionConsultaDatos                                                                                                         Habilitado
+
+(6 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+InformacionConsultaDocumentos                                                                                                    Id
+InformacionConsultaDocumentos                                                                                                    IdInformacionConsulta
+InformacionConsultaDocumentos                                                                                                    IdTipoDocumento
+InformacionConsultaDocumentos                                                                                                    Archivo
+InformacionConsultaDocumentos                                                                                                    FechaAlta
+InformacionConsultaDocumentos                                                                                                    IdUsuarioAlta
+InformacionConsultaDocumentos                                                                                                    FechaModificacion
+InformacionConsultaDocumentos                                                                                                    IdUsuarioModifico
+InformacionConsultaDocumentos                                                                                                    Habilitado
+
+(9 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+InventarioArbolAcceso                                                                                                            Id
+InventarioArbolAcceso                                                                                                            IdArbolAcceso
+InventarioArbolAcceso                                                                                                            IdMascara
+InventarioArbolAcceso                                                                                                            IdSla
+InventarioArbolAcceso                                                                                                            IdEncuesta
+InventarioArbolAcceso                                                                                                            Descripcion
+
+(6 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+InventarioArtifact                                                                                                               Id
+InventarioArtifact                                                                                                               IdArtifactCliente
+InventarioArtifact                                                                                                               IdUbicacion
+InventarioArtifact                                                                                                               IdOrganizacion
+InventarioArtifact                                                                                                               IdMascaraCaptura
+InventarioArtifact                                                                                                               IdGrupoResponsabilidad
+InventarioArtifact                                                                                                               IdGrupoAtencion
+InventarioArtifact                                                                                                               IdSLA
+InventarioArtifact                                                                                                               SO
+InventarioArtifact                                                                                                               IP
+InventarioArtifact                                                                                                               Comunidad
+InventarioArtifact                                                                                                               IdImpactoUrgencia
+InventarioArtifact                                                                                                               VSNMP
+
+(13 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+InventarioInfConsulta                                                                                                            Id
+InventarioInfConsulta                                                                                                            IdInventario
+InventarioInfConsulta                                                                                                            IdInfConsulta
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Jefatura                                                                                                                         Id
+Jefatura                                                                                                                         IdTipoUsuario
+Jefatura                                                                                                                         Descripcion
+Jefatura                                                                                                                         Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Marca                                                                                                                            Id
+Marca                                                                                                                            Descripcion
+Marca                                                                                                                            Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Mascara                                                                                                                          Id
+Mascara                                                                                                                          Descripcion
+Mascara                                                                                                                          NoCampos
+Mascara                                                                                                                          NombreTabla
+Mascara                                                                                                                          ComandoInsertar
+Mascara                                                                                                                          ComandoActualizar
+Mascara                                                                                                                          Random
+Mascara                                                                                                                          FechaAlta
+Mascara                                                                                                                          IdUsuarioAlta
+Mascara                                                                                                                          FechaModificacion
+Mascara                                                                                                                          IdUsuarioModifico
+Mascara                                                                                                                          Sistema
+Mascara                                                                                                                          Habilitado
+
+(13 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+MASCARAOTROSCORREO                                                                                                               Id
+MASCARAOTROSCORREO                                                                                                               IdTicket
+MASCARAOTROSCORREO                                                                                                               NOMBRE
+MASCARAOTROSCORREO                                                                                                               CORREO
+MASCARAOTROSCORREO                                                                                                               ASUNTO
+MASCARAOTROSCORREO                                                                                                               COMENTARIOS
+MASCARAOTROSCORREO                                                                                                               ARCHIVOADJUNTO
+MASCARAOTROSCORREO                                                                                                               Habilitado
+MASCARAOTROSCORREO                                                                                                               CLAVEREGISTRO
+
+(9 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+MASCARAPORTAL                                                                                                                    Id
+MASCARAPORTAL                                                                                                                    IdTicket
+MASCARAPORTAL                                                                                                                    CUALESTUSOLICITUD
+MASCARAPORTAL                                                                                                                    READEATENCION
+MASCARAPORTAL                                                                                                                    NOMBRE
+MASCARAPORTAL                                                                                                                    CORREOELECTRONICO
+MASCARAPORTAL                                                                                                                    ASUNTO
+MASCARAPORTAL                                                                                                                    ESCRIIBEUNCOMENTARIO
+MASCARAPORTAL                                                                                                                    AGREGARUNARCHIVO
+MASCARAPORTAL                                                                                                                    Habilitado
+MASCARAPORTAL                                                                                                                    CLAVEREGISTRO
+
+(11 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+MASCARATICKETPORTAL                                                                                                              Id
+MASCARATICKETPORTAL                                                                                                              IdTicket
+MASCARATICKETPORTAL                                                                                                              CUÁLESTUSOLICITUD
+MASCARATICKETPORTAL                                                                                                              ÁREADEATENCIÓN
+MASCARATICKETPORTAL                                                                                                              NOMBRE
+MASCARATICKETPORTAL                                                                                                              CORREOELECTRONICO
+MASCARATICKETPORTAL                                                                                                              ASUNTO
+MASCARATICKETPORTAL                                                                                                              COMENTARIOS
+MASCARATICKETPORTAL                                                                                                              Habilitado
+MASCARATICKETPORTAL                                                                                                              CLAVEREGISTRO
+
+(10 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Menu                                                                                                                             Id
+Menu                                                                                                                             Descripcion
+Menu                                                                                                                             Url
+Menu                                                                                                                             IdPadre
+Menu                                                                                                                             Orden
+Menu                                                                                                                             Habilitado
+
+(6 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Modelo                                                                                                                           Id
+Modelo                                                                                                                           Descripcion
+Modelo                                                                                                                           Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Municipio                                                                                                                        Id
+Municipio                                                                                                                        IdEstado
+Municipio                                                                                                                        Descripcion
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Nivel1                                                                                                                           Id
+Nivel1                                                                                                                           IdTipoUsuario
+Nivel1                                                                                                                           Descripcion
+Nivel1                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Nivel2                                                                                                                           Id
+Nivel2                                                                                                                           IdTipoUsuario
+Nivel2                                                                                                                           Descripcion
+Nivel2                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Nivel3                                                                                                                           Id
+Nivel3                                                                                                                           IdTipoUsuario
+Nivel3                                                                                                                           Descripcion
+Nivel3                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Nivel4                                                                                                                           Id
+Nivel4                                                                                                                           IdTipoUsuario
+Nivel4                                                                                                                           Descripcion
+Nivel4                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Nivel5                                                                                                                           Id
+Nivel5                                                                                                                           IdTipoUsuario
+Nivel5                                                                                                                           Descripcion
+Nivel5                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Nivel6                                                                                                                           Id
+Nivel6                                                                                                                           IdTipoUsuario
+Nivel6                                                                                                                           Descripcion
+Nivel6                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Nivel7                                                                                                                           Id
+Nivel7                                                                                                                           IdTipoUsuario
+Nivel7                                                                                                                           Descripcion
+Nivel7                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+NivelOrganizacion                                                                                                                Id
+NivelOrganizacion                                                                                                                Descripcion
+NivelOrganizacion                                                                                                                Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+NivelUbicacion                                                                                                                   Id
+NivelUbicacion                                                                                                                   Descripcion
+NivelUbicacion                                                                                                                   Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+NotaGeneral                                                                                                                      Id
+NotaGeneral                                                                                                                      IdTipoNota
+NotaGeneral                                                                                                                      IdUsuario
+NotaGeneral                                                                                                                      Nombre
+NotaGeneral                                                                                                                      Contenido
+NotaGeneral                                                                                                                      Fecha
+NotaGeneral                                                                                                                      Compartida
+NotaGeneral                                                                                                                      Aprobada
+NotaGeneral                                                                                                                      Habilitado
+
+(9 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+NotaGeneralGrupo                                                                                                                 Id
+NotaGeneralGrupo                                                                                                                 IdNotaGeneral
+NotaGeneralGrupo                                                                                                                 IdGrupoUsuario
+NotaGeneralGrupo                                                                                                                 Fecha
+NotaGeneralGrupo                                                                                                                 Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+NotaOpcionGrupo                                                                                                                  Id
+NotaOpcionGrupo                                                                                                                  IdTipoNota
+NotaOpcionGrupo                                                                                                                  IdArbolAcceso
+NotaOpcionGrupo                                                                                                                  IdUsuario
+NotaOpcionGrupo                                                                                                                  Nombre
+NotaOpcionGrupo                                                                                                                  Contenido
+NotaOpcionGrupo                                                                                                                  Fecha
+NotaOpcionGrupo                                                                                                                  Aprobada
+NotaOpcionGrupo                                                                                                                  Habilitado
+
+(9 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+NotaOpcionUsuario                                                                                                                Id
+NotaOpcionUsuario                                                                                                                IdTipoNota
+NotaOpcionUsuario                                                                                                                IdArbolAcceso
+NotaOpcionUsuario                                                                                                                IdUsuario
+NotaOpcionUsuario                                                                                                                Nombre
+NotaOpcionUsuario                                                                                                                Contenido
+NotaOpcionUsuario                                                                                                                Fecha
+NotaOpcionUsuario                                                                                                                Habilitado
+
+(8 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Organizacion                                                                                                                     Id
+Organizacion                                                                                                                     IdTipoUsuario
+Organizacion                                                                                                                     IdHolding
+Organizacion                                                                                                                     IdCompania
+Organizacion                                                                                                                     IdDireccion
+Organizacion                                                                                                                     IdSubDireccion
+Organizacion                                                                                                                     IdGerencia
+Organizacion                                                                                                                     IdSubGerencia
+Organizacion                                                                                                                     IdJefatura
+Organizacion                                                                                                                     IdNivelOrganizacion
+Organizacion                                                                                                                     Habilitado
+
+(11 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Pais                                                                                                                             Id
+Pais                                                                                                                             IdTipoUsuario
+Pais                                                                                                                             Descripcion
+Pais                                                                                                                             RegionCode
+Pais                                                                                                                             Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ParametroCorreo                                                                                                                  Id
+ParametroCorreo                                                                                                                  IdTipoCorreo
+ParametroCorreo                                                                                                                  Contenido
+ParametroCorreo                                                                                                                  Predefinido
+ParametroCorreo                                                                                                                  Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ParametroPassword                                                                                                                Id
+ParametroPassword                                                                                                                Min
+ParametroPassword                                                                                                                Max
+ParametroPassword                                                                                                                Letras
+ParametroPassword                                                                                                                Numeros
+ParametroPassword                                                                                                                Especiales
+ParametroPassword                                                                                                                Mayusculas
+ParametroPassword                                                                                                                ValidaAnterior
+ParametroPassword                                                                                                                AlmacenAnterior
+ParametroPassword                                                                                                                Fail
+ParametroPassword                                                                                                                TimeoutFail
+ParametroPassword                                                                                                                Tries
+ParametroPassword                                                                                                                CaducaPassword
+ParametroPassword                                                                                                                TiempoCaducidad
+
+(14 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ParametrosAplicaciones                                                                                                           Id
+ParametrosAplicaciones                                                                                                           Descripcion
+ParametrosAplicaciones                                                                                                           Activa
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ParametrosGenerales                                                                                                              Id
+ParametrosGenerales                                                                                                              TamanoDeArchivo
+ParametrosGenerales                                                                                                              NumeroArchivo
+ParametrosGenerales                                                                                                              LevantaTickets
+ParametrosGenerales                                                                                                              ValidaUsuario
+ParametrosGenerales                                                                                                              MensajeValidacion
+ParametrosGenerales                                                                                                              StrongPassword
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ParametrosSla                                                                                                                    Id
+ParametrosSla                                                                                                                    MinimoDias
+ParametrosSla                                                                                                                    MinimoHoras
+ParametrosSla                                                                                                                    MinimoMinutos
+ParametrosSla                                                                                                                    MinimoSegundos
+ParametrosSla                                                                                                                    MaximoDias
+ParametrosSla                                                                                                                    MaximoHoras
+ParametrosSla                                                                                                                    MaximoMinutos
+ParametrosSla                                                                                                                    MaximoSegundos
+
+(9 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+ParametrosTelefonos                                                                                                              Id
+ParametrosTelefonos                                                                                                              IdTipoUsuario
+ParametrosTelefonos                                                                                                              IdTipoTelefono
+ParametrosTelefonos                                                                                                              NumeroTelefonos
+ParametrosTelefonos                                                                                                              Obligatorios
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Piso                                                                                                                             Id
+Piso                                                                                                                             IdTipoUsuario
+Piso                                                                                                                             Descripcion
+Piso                                                                                                                             Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+PreguntaReto                                                                                                                     Id
+PreguntaReto                                                                                                                     IdUsuario
+PreguntaReto                                                                                                                     Pregunta
+PreguntaReto                                                                                                                     Respuesta
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+PreTicket                                                                                                                        Id
+PreTicket                                                                                                                        ClaveRegistro
+PreTicket                                                                                                                        IdUsuarioSolicito
+PreTicket                                                                                                                        IdArbol
+PreTicket                                                                                                                        IdUsuarioAtendio
+PreTicket                                                                                                                        FechaHora
+PreTicket                                                                                                                        Observaciones
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Prioridad                                                                                                                        Id
+Prioridad                                                                                                                        Descripcion
+Prioridad                                                                                                                        Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Puesto                                                                                                                           Id
+Puesto                                                                                                                           IdTipoUsuario
+Puesto                                                                                                                           Descripcion
+Puesto                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+RespuestaEncuesta                                                                                                                Id
+RespuestaEncuesta                                                                                                                IdTicket
+RespuestaEncuesta                                                                                                                IdArbol
+RespuestaEncuesta                                                                                                                IdEncuesta
+RespuestaEncuesta                                                                                                                IdPregunta
+RespuestaEncuesta                                                                                                                ValorRespuesta
+RespuestaEncuesta                                                                                                                Ponderacion
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+RespuestaTipoEncuesta                                                                                                            Id
+RespuestaTipoEncuesta                                                                                                            IdTipoEncuesta
+RespuestaTipoEncuesta                                                                                                            Respuesta
+RespuestaTipoEncuesta                                                                                                            TipoDatoSql
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Rol                                                                                                                              Id
+Rol                                                                                                                              Descripcion
+Rol                                                                                                                              EsUnico
+Rol                                                                                                                              Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+RolMenu                                                                                                                          Id
+RolMenu                                                                                                                          IdRol
+RolMenu                                                                                                                          IdMenu
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+RolTipoGrupo                                                                                                                     Id
+RolTipoGrupo                                                                                                                     IdRol
+RolTipoGrupo                                                                                                                     IdTipoGrupo
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+RolTipoUsuario                                                                                                                   Id
+RolTipoUsuario                                                                                                                   IdRol
+RolTipoUsuario                                                                                                                   IdTipoUsuario
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SiteRack                                                                                                                         Id
+SiteRack                                                                                                                         IdTipoUsuario
+SiteRack                                                                                                                         Descripcion
+SiteRack                                                                                                                         Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Sla                                                                                                                              Id
+Sla                                                                                                                              Dias
+Sla                                                                                                                              Horas
+Sla                                                                                                                              Minutos
+Sla                                                                                                                              Segundos
+Sla                                                                                                                              TiempoHoraProceso
+Sla                                                                                                                              Detallado
+Sla                                                                                                                              Habilitado
+
+(8 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SlaDetalle                                                                                                                       Id
+SlaDetalle                                                                                                                       IdSla
+SlaDetalle                                                                                                                       IdSubRol
+SlaDetalle                                                                                                                       Dias
+SlaDetalle                                                                                                                       Horas
+SlaDetalle                                                                                                                       Minutos
+SlaDetalle                                                                                                                       Segundos
+SlaDetalle                                                                                                                       TiempoProceso
+
+(8 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SlaEstimadoTicket                                                                                                                Id
+SlaEstimadoTicket                                                                                                                IdTicket
+SlaEstimadoTicket                                                                                                                FechaInicio
+SlaEstimadoTicket                                                                                                                FechaFin
+SlaEstimadoTicket                                                                                                                FechaInicioProceso
+SlaEstimadoTicket                                                                                                                FechaFinProceso
+SlaEstimadoTicket                                                                                                                Dias
+SlaEstimadoTicket                                                                                                                Horas
+SlaEstimadoTicket                                                                                                                Minutos
+SlaEstimadoTicket                                                                                                                Segundos
+SlaEstimadoTicket                                                                                                                TiempoHoraProceso
+SlaEstimadoTicket                                                                                                                TiempoRetenido
+SlaEstimadoTicket                                                                                                                TiempoDesface
+SlaEstimadoTicket                                                                                                                Terminado
+
+(14 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SlaEstimadoTicketDetalle                                                                                                         Id
+SlaEstimadoTicketDetalle                                                                                                         IdSlaEstimadoTicket
+SlaEstimadoTicketDetalle                                                                                                         IdSubRol
+SlaEstimadoTicketDetalle                                                                                                         Dias
+SlaEstimadoTicketDetalle                                                                                                         Horas
+SlaEstimadoTicketDetalle                                                                                                         Minutos
+SlaEstimadoTicketDetalle                                                                                                         Segundos
+SlaEstimadoTicketDetalle                                                                                                         TiempoProceso
+SlaEstimadoTicketDetalle                                                                                                         HoraInicio
+SlaEstimadoTicketDetalle                                                                                                         HoraFin
+
+(10 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SmsService                                                                                                                       Id
+SmsService                                                                                                                       IdUsuario
+SmsService                                                                                                                       IdTipoLink
+SmsService                                                                                                                       Numero
+SmsService                                                                                                                       Mensaje
+SmsService                                                                                                                       Enviado
+SmsService                                                                                                                       Habilitado
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SubDireccion                                                                                                                     Id
+SubDireccion                                                                                                                     IdTipoUsuario
+SubDireccion                                                                                                                     Descripcion
+SubDireccion                                                                                                                     Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SubGerencia                                                                                                                      Id
+SubGerencia                                                                                                                      IdTipoUsuario
+SubGerencia                                                                                                                      Descripcion
+SubGerencia                                                                                                                      Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SubGrupoUsuario                                                                                                                  Id
+SubGrupoUsuario                                                                                                                  IdGrupoUsuario
+SubGrupoUsuario                                                                                                                  IdSubRol
+SubGrupoUsuario                                                                                                                  Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SubRol                                                                                                                           Id
+SubRol                                                                                                                           IdRol
+SubRol                                                                                                                           Descripcion
+SubRol                                                                                                                           Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SubRolEscalacionPermitida                                                                                                        Id
+SubRolEscalacionPermitida                                                                                                        IdSubRol
+SubRolEscalacionPermitida                                                                                                        IdEstatusAsignacion
+SubRolEscalacionPermitida                                                                                                        IdSubRolPermitido
+SubRolEscalacionPermitida                                                                                                        Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SubTecnologia                                                                                                                    Id
+SubTecnologia                                                                                                                    Descripcion
+SubTecnologia                                                                                                                    Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+SubZona                                                                                                                          Id
+SubZona                                                                                                                          IdTipoUsuario
+SubZona                                                                                                                          Descripcion
+SubZona                                                                                                                          Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+sysdiagrams                                                                                                                      name
+sysdiagrams                                                                                                                      principal_id
+sysdiagrams                                                                                                                      diagram_id
+sysdiagrams                                                                                                                      version
+sysdiagrams                                                                                                                      definition
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Tecnologia                                                                                                                       Id
+Tecnologia                                                                                                                       Descripcion
+Tecnologia                                                                                                                       Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TelefonoUsuario                                                                                                                  Id
+TelefonoUsuario                                                                                                                  IdTipoTelefono
+TelefonoUsuario                                                                                                                  IdUsuario
+TelefonoUsuario                                                                                                                  Numero
+TelefonoUsuario                                                                                                                  Extension
+TelefonoUsuario                                                                                                                  Obligatorio
+TelefonoUsuario                                                                                                                  Confirmado
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Ticket                                                                                                                           Id
+Ticket                                                                                                                           IdTipoUsuario
+Ticket                                                                                                                           IdTipoArbolAcceso
+Ticket                                                                                                                           IdArbolAcceso
+Ticket                                                                                                                           IdImpacto
+Ticket                                                                                                                           IdUsuarioLevanto
+Ticket                                                                                                                           IdUsuarioSolicito
+Ticket                                                                                                                           IdOrganizacion
+Ticket                                                                                                                           IdUbicacion
+Ticket                                                                                                                           IdMascara
+Ticket                                                                                                                           IdEncuesta
+Ticket                                                                                                                           IdCanal
+Ticket                                                                                                                           IdSlaEstimadoTicket
+Ticket                                                                                                                           IdEstatusTicket
+Ticket                                                                                                                           IdEstatusAsignacion
+Ticket                                                                                                                           FechaHoraAlta
+Ticket                                                                                                                           FechaHoraFinProceso
+Ticket                                                                                                                           FechaTermino
+Ticket                                                                                                                           IdUsuarioResolvio
+Ticket                                                                                                                           DentroSla
+Ticket                                                                                                                           Random
+Ticket                                                                                                                           ClaveRegistro
+Ticket                                                                                                                           EncuestaRespondida
+Ticket                                                                                                                           EsTercero
+Ticket                                                                                                                           Espera
+Ticket                                                                                                                           TiempoEspera
+Ticket                                                                                                                           FechaInicioEspera
+Ticket                                                                                                                           FechaFinEspera
+
+(28 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TicketAsignacion                                                                                                                 Id
+TicketAsignacion                                                                                                                 IdTicket
+TicketAsignacion                                                                                                                 IdEstatusAsignacion
+TicketAsignacion                                                                                                                 IdUsuarioAsigno
+TicketAsignacion                                                                                                                 IdUsuarioAsignado
+TicketAsignacion                                                                                                                 FechaAsignacion
+TicketAsignacion                                                                                                                 Comentarios
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TicketConversacion                                                                                                               Id
+TicketConversacion                                                                                                               IdTicket
+TicketConversacion                                                                                                               IdUsuario
+TicketConversacion                                                                                                               Mensaje
+TicketConversacion                                                                                                               FechaGeneracion
+TicketConversacion                                                                                                               Sistema
+TicketConversacion                                                                                                               Leido
+TicketConversacion                                                                                                               FechaLectura
+
+(8 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TicketEstatus                                                                                                                    Id
+TicketEstatus                                                                                                                    IdTicket
+TicketEstatus                                                                                                                    IdEstatus
+TicketEstatus                                                                                                                    IdUsuarioMovimiento
+TicketEstatus                                                                                                                    Comentarios
+TicketEstatus                                                                                                                    FechaMovimiento
+
+(6 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TicketGrupoUsuario                                                                                                               Id
+TicketGrupoUsuario                                                                                                               IdTicket
+TicketGrupoUsuario                                                                                                               IdGrupoUsuario
+TicketGrupoUsuario                                                                                                               IdSubGrupoUsuario
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TiempoInformeArbol                                                                                                               Id
+TiempoInformeArbol                                                                                                               IdArbol
+TiempoInformeArbol                                                                                                               IdTipoGrupo
+TiempoInformeArbol                                                                                                               IdGrupoUsuario
+TiempoInformeArbol                                                                                                               Dias
+TiempoInformeArbol                                                                                                               Horas
+TiempoInformeArbol                                                                                                               Minutos
+TiempoInformeArbol                                                                                                               Segundos
+TiempoInformeArbol                                                                                                               TiempoNotificacion
+TiempoInformeArbol                                                                                                               IdTipoNotificacion
+TiempoInformeArbol                                                                                                               Habilitado
+
+(11 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoArbolAcceso                                                                                                                  Id
+TipoArbolAcceso                                                                                                                  Descripcion
+TipoArbolAcceso                                                                                                                  Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoArtifact                                                                                                                     Id
+TipoArtifact                                                                                                                     Descripcion
+TipoArtifact                                                                                                                     Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoCampoMascara                                                                                                                 Id
+TipoCampoMascara                                                                                                                 Descripcion
+TipoCampoMascara                                                                                                                 Image
+TipoCampoMascara                                                                                                                 TipoDatoSql
+TipoCampoMascara                                                                                                                 Multiple
+TipoCampoMascara                                                                                                                 Checkbox
+TipoCampoMascara                                                                                                                 LongitudMinima
+TipoCampoMascara                                                                                                                 LongitudMaxima
+TipoCampoMascara                                                                                                                 Entero
+TipoCampoMascara                                                                                                                 Decimal
+TipoCampoMascara                                                                                                                 ValorMaximo
+TipoCampoMascara                                                                                                                 SimboloMoneda
+TipoCampoMascara                                                                                                                 Catalogo
+TipoCampoMascara                                                                                                                 Mask
+TipoCampoMascara                                                                                                                 UploadFile
+TipoCampoMascara                                                                                                                 Habilitado
+
+(16 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoCorreo                                                                                                                       Id
+TipoCorreo                                                                                                                       Descripcion
+TipoCorreo                                                                                                                       Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoDocumento                                                                                                                    Id
+TipoDocumento                                                                                                                    Descripcion
+TipoDocumento                                                                                                                    Extension
+TipoDocumento                                                                                                                    Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoEncuesta                                                                                                                     Id
+TipoEncuesta                                                                                                                     Descripcion
+TipoEncuesta                                                                                                                     Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoGrupo                                                                                                                        Id
+TipoGrupo                                                                                                                        Descripcion
+TipoGrupo                                                                                                                        Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoInfConsulta                                                                                                                  Id
+TipoInfConsulta                                                                                                                  Descripcion
+TipoInfConsulta                                                                                                                  EsBaseDatos
+TipoInfConsulta                                                                                                                  EsDirectorio
+TipoInfConsulta                                                                                                                  EsUrl
+TipoInfConsulta                                                                                                                  EsServicio
+TipoInfConsulta                                                                                                                  Habilitado
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoLink                                                                                                                         Id
+TipoLink                                                                                                                         Descripcion
+TipoLink                                                                                                                         Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoNota                                                                                                                         Id
+TipoNota                                                                                                                         Descripcion
+TipoNota                                                                                                                         Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoNotificacion                                                                                                                 Id
+TipoNotificacion                                                                                                                 Descripcion
+TipoNotificacion                                                                                                                 Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoTelefono                                                                                                                     Id
+TipoTelefono                                                                                                                     Descripcion
+TipoTelefono                                                                                                                     Extension
+TipoTelefono                                                                                                                     Confirmacion
+TipoTelefono                                                                                                                     Habilitado
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+TipoUsuario                                                                                                                      Id
+TipoUsuario                                                                                                                      Descripcion
+TipoUsuario                                                                                                                      EsResidente
+TipoUsuario                                                                                                                      EsMoral
+TipoUsuario                                                                                                                      NumeroCorreos
+TipoUsuario                                                                                                                      CorreosObligatorios
+TipoUsuario                                                                                                                      Habilitado
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Torre                                                                                                                            Id
+Torre                                                                                                                            IdTipoUsuario
+Torre                                                                                                                            Descripcion
+Torre                                                                                                                            Habilitado
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Ubicacion                                                                                                                        Id
+Ubicacion                                                                                                                        IdTipoUsuario
+Ubicacion                                                                                                                        IdPais
+Ubicacion                                                                                                                        IdCampus
+Ubicacion                                                                                                                        IdTorre
+Ubicacion                                                                                                                        IdPiso
+Ubicacion                                                                                                                        IdZona
+Ubicacion                                                                                                                        IdSubZona
+Ubicacion                                                                                                                        IdSiteRack
+Ubicacion                                                                                                                        IdNivelUbicacion
+Ubicacion                                                                                                                        Habilitado
+
+(11 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Urgencia                                                                                                                         Id
+Urgencia                                                                                                                         Descripcion
+Urgencia                                                                                                                         Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+USER_TIPOSOLICITUD                                                                                                               Id
+USER_TIPOSOLICITUD                                                                                                               Descripcion
+USER_TIPOSOLICITUD                                                                                                               Habilitado
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Usuario                                                                                                                          Id
+Usuario                                                                                                                          IdTipoUsuario
+Usuario                                                                                                                          IdUbicacion
+Usuario                                                                                                                          IdOrganizacion
+Usuario                                                                                                                          ApellidoPaterno
+Usuario                                                                                                                          ApellidoMaterno
+Usuario                                                                                                                          Nombre
+Usuario                                                                                                                          DirectorioActivo
+Usuario                                                                                                                          NombreUsuario
+Usuario                                                                                                                          Password
+Usuario                                                                                                                          IdPuesto
+Usuario                                                                                                                          Vip
+Usuario                                                                                                                          Foto
+Usuario                                                                                                                          Habilitado
+Usuario                                                                                                                          Activo
+Usuario                                                                                                                          Tries
+Usuario                                                                                                                          FechaBloqueo
+Usuario                                                                                                                          FechaUpdate
+
+(18 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+UsuarioGrupo                                                                                                                     Id
+UsuarioGrupo                                                                                                                     IdUsuario
+UsuarioGrupo                                                                                                                     IdRol
+UsuarioGrupo                                                                                                                     IdGrupoUsuario
+UsuarioGrupo                                                                                                                     IdSubGrupoUsuario
+
+(5 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+UsuarioLinkPassword                                                                                                              Id
+UsuarioLinkPassword                                                                                                              IdTipoLink
+UsuarioLinkPassword                                                                                                              IdUsuario
+UsuarioLinkPassword                                                                                                              Fecha
+UsuarioLinkPassword                                                                                                              Link
+UsuarioLinkPassword                                                                                                              Codigo
+UsuarioLinkPassword                                                                                                              Activo
+
+(7 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+UsuarioPassword                                                                                                                  Id
+UsuarioPassword                                                                                                                  IdUsuario
+UsuarioPassword                                                                                                                  Password
+UsuarioPassword                                                                                                                  Fecha
+
+(4 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+UsuarioRol                                                                                                                       Id
+UsuarioRol                                                                                                                       IdUsuario
+UsuarioRol                                                                                                                       IdRolTipoUsuario
+
+(3 row(s) affected)
+
+tabla                                                                                                                            columna
+-------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------
+Zona                                                                                                                             Id
+Zona                                                                                                                             IdTipoUsuario
+Zona                                                                                                                             Descripcion
+Zona                                                                                                                             Habilitado
+
+(4 row(s) affected)
+

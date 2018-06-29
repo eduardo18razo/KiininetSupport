@@ -1296,6 +1296,7 @@
     <EntitySetMapping Name="Mascara">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.Mascara">
         <MappingFragment StoreEntitySet="Mascara">
+          <ScalarProperty Name="IdTipoMascara" ColumnName="IdTipoMascara" />
           <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
           <ScalarProperty Name="Sistema" ColumnName="Sistema" />
           <ScalarProperty Name="IdUsuarioModifico" ColumnName="IdUsuarioModifico" />
@@ -1315,6 +1316,8 @@
     <EntitySetMapping Name="TipoCampoMascara">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoCampoMascara">
         <MappingFragment StoreEntitySet="TipoCampoMascara">
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="ValorMinimo" ColumnName="ValorMinimo" />
           <ScalarProperty Name="RadioButton" ColumnName="RadioButton" />
           <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
@@ -1567,21 +1570,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ParametrosGenerales">
-      <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
-        <MappingFragment StoreEntitySet="ParametrosGenerales">
-          <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
-          <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
-          <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
-          <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
-          <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
-          <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
-          <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
-          <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TicketEvento">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketEvento">
         <MappingFragment StoreEntitySet="TicketEvento">
@@ -1655,6 +1643,51 @@
           <ScalarProperty Name="IdTipoGrupo" ColumnName="IdTipoGrupo" />
           <ScalarProperty Name="IdTipoUsuario" ColumnName="IdTipoUsuario" />
           <ScalarProperty Name="IdTipoArbolAcceso" ColumnName="IdTipoArbolAcceso" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParametrosGenerales">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.ParametrosGenerales">
+        <MappingFragment StoreEntitySet="ParametrosGenerales">
+          <ScalarProperty Name="DiasCierreTicket" ColumnName="DiasCierreTicket" />
+          <ScalarProperty Name="MensajesNotificacion" ColumnName="MensajesNotificacion" />
+          <ScalarProperty Name="FrecuenciaNotificacionMinutos" ColumnName="FrecuenciaNotificacionMinutos" />
+          <ScalarProperty Name="FrecuenciaDemonioSegundos" ColumnName="FrecuenciaDemonioSegundos" />
+          <ScalarProperty Name="FormularioPortal" ColumnName="FormularioPortal" />
+          <ScalarProperty Name="StrongPassword" ColumnName="StrongPassword" />
+          <ScalarProperty Name="MensajeValidacion" ColumnName="MensajeValidacion" />
+          <ScalarProperty Name="ValidaUsuario" ColumnName="ValidaUsuario" />
+          <ScalarProperty Name="PeriodoDashboard" ColumnName="PeriodoDashboard" />
+          <ScalarProperty Name="LevantaTickets" ColumnName="LevantaTickets" />
+          <ScalarProperty Name="NumeroArchivo" ColumnName="NumeroArchivo" />
+          <ScalarProperty Name="TamanoDeArchivo" ColumnName="TamanoDeArchivo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoMascara">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoMascara">
+        <MappingFragment StoreEntitySet="TipoMascara">
+          <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+          <ScalarProperty Name="CampoLlave" ColumnName="CampoLlave" />
+          <ScalarProperty Name="TablaLlave" ColumnName="TablaLlave" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TicketNotificacion">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.TicketNotificacion">
+        <MappingFragment StoreEntitySet="TicketNotificacion">
+          <ScalarProperty Name="FechaNotificacion" ColumnName="FechaNotificacion" />
+          <ScalarProperty Name="IdTipoNotificacion" ColumnName="IdTipoNotificacion" />
+          <ScalarProperty Name="CorreoUsuario" ColumnName="CorreoUsuario" />
+          <ScalarProperty Name="TelefonoUsuario" ColumnName="TelefonoUsuario" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdGrupoUsuario" ColumnName="IdGrupoUsuario" />
+          <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
+          <ScalarProperty Name="IdSmsService" ColumnName="IdSmsService" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

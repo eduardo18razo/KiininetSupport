@@ -9,14 +9,19 @@ namespace KiiniNet.Services.Windows
         /// </summary>
         static void Main()
         {
-            ServiceBase[] ServicesToRun;
+//#if DEBUG
+//            ServiceNotificacion myService = new ServiceNotificacion();
+//            myService.OnDebugg();
+//            System.Threading.Thread.Sleep(System.Threading.Timeout.Infinite);
+//#else
 
-            ServicesToRun = new ServiceBase[] 
+            ServiceBase[] servicesToRun = new ServiceBase[] 
             { 
                 new ServiceNotificacion() 
 
             };
-            ServiceBase.Run(ServicesToRun);
+            ServiceBase.Run(servicesToRun);
+//#endif
         }
     }
 }

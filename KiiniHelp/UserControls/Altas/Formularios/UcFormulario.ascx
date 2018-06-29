@@ -13,6 +13,20 @@
         <asp:HiddenField runat="server" ID="hfRandomGenerado" />
         <section class="module no-border">
             <div class="row">
+                <div class="module-inner">
+                    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="module-heading">
+                            <h3 class="module-title18px">
+                                <asp:Label runat="server" ID="lblTitle" />
+                            </h3>
+                            <p>
+                                <asp:Label runat="server" ID="lblDescripcion"></asp:Label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="module-inner no-padding-top">
                         <asp:Label runat="server" ID="lblDescripcionMascara" class="col-lg-12 col-md-12 col-sm-12" />

@@ -147,16 +147,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             set { ddlNivel6.SelectedValue = value.ToString(); }
         }
 
-        //public int IdNivel7
-        //{
-        //    get
-        //    {
-        //        if (ddlNivel7.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-        //            throw new Exception("Seleccione nivel 7.");
-        //        return int.Parse(ddlNivel7.SelectedValue);
-        //    }
-        //    set { ddlNivel7.SelectedValue = value.ToString(); }
-        //}
         public string Catalogo
         {
             get
@@ -174,8 +164,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     result = "6";
                 if (ddlNivel6.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     result = "7";
-                //if (ddlNivel7.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //    result = "7";
                 return result;
             }
         }
@@ -188,7 +176,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuario(true);
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
                 Metodos.LlenaComboCatalogo(ddlTipificacion, _servicioSistemaTipoArbol.ObtenerTiposArbolAcceso(true).Where(w => w.Id != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion));
-                Metodos.LlenaComboCatalogo(ddlFormularios, _servicioMascaras.ObtenerMascarasAcceso(true).Where(w => !w.Sistema));
+                Metodos.LlenaComboCatalogo(ddlFormularios, _servicioMascaras.ObtenerMascarasAcceso((int)BusinessVariables.EnumTipoMascara.Ticket, false, true));
             }
             catch (Exception e)
             {
@@ -210,18 +198,13 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     if (result.Descripcion.ToUpper() == "ALTO")
                     {
                         lblImpacto.Style.Add("color", "red");
-                        //imgImpacto.ImageUrl = "~/assets/images/icons/prioridadalta.png";
                     }
-                    if (result.Descripcion.ToUpper() == "MEDIO")
-                    {
-                        //lblImpacto.Style.Add("color", "blue");
-                        //imgImpacto.ImageUrl = "~/assets/images/icons/prioridadmedia.png";
-                    }
-                    if (result.Descripcion.ToUpper() == "BAJO")
-                    {
-                        //lblImpacto.Style.Add("color", "yellow");
-                        //imgImpacto.ImageUrl = "~/assets/images/icons/prioridadbaja.png";
-                    }
+                    //if (result.Descripcion.ToUpper() == "MEDIO")
+                    //{
+                    //}
+                    //if (result.Descripcion.ToUpper() == "BAJO")
+                    //{
+                    //}
 
 
                     lblImpacto.Text = result.Descripcion;
@@ -266,7 +249,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             try
             {
                 var valida = IdArea;
-                //valida = IdNivel1;
             }
             catch (Exception e)
             {
@@ -303,7 +285,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 {
                     errors.Add("Seleccione al menos un grupo Especial de consulta.");
                 }
-                if (ddlGrupoDuenoServicio.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                if (ddlGrupoResponsableCategoria.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     errors.Add("Seleccione grupo Responsable del Servicio.");
                 }
@@ -356,60 +338,60 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             try
             {
                 List<string> errors = new List<string>();
-                if (chkNotificacionDueno.Checked)
+                if (chkNotificacionResponsableCategoria.Checked)
                 {
-                    if (txtTiempoNotificacionDueno.Text != string.Empty && int.Parse(txtTiempoNotificacionDueno.Text) <= 0)
+                    if (txtTiempoNotificacionResponsableCategoria.Text != string.Empty && int.Parse(txtTiempoNotificacionResponsableCategoria.Text) <= 0)
                         errors.Add("El tiempo de notificacion para el Grupo Dueño de Servicio debe ser mayor a 0.");
 
-                    if (txtTiempoNotificacionDueno.Text == string.Empty)
+                    if (txtTiempoNotificacionResponsableCategoria.Text == string.Empty)
                         errors.Add("Ingrese tiempo de notificacion para el Grupo Dueño de Servicio.");
 
-                    if (ddlNotificacionGrupoDueño.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlNotificacionResponsableCategoria.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione unidad de medida para el Grupo Dueño de Servicio");
 
-                    if (ddlCanalDueño.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlCanalResponsableCategoria.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione un canal de notificacion para el Grupo Dueño de Servicio");
                 }
-                if (chkNotificacionMtto.Checked)
+                if (chkNotificacionResponsableContenido.Checked)
                 {
-                    if (txtTiempoNotificacionMtto.Text != string.Empty && int.Parse(txtTiempoNotificacionMtto.Text) <= 0)
+                    if (txtTiempoNotificacionResponsableContenido.Text != string.Empty && int.Parse(txtTiempoNotificacionResponsableContenido.Text) <= 0)
                         errors.Add("El tiempo de notificacion para el Grupo Responsable de Contenido debe ser mayor a 0.");
 
-                    if (txtTiempoNotificacionMtto.Text == string.Empty)
+                    if (txtTiempoNotificacionResponsableContenido.Text == string.Empty)
                         errors.Add("Ingrese tiempo de notificacion para el Grupo Responsable de Contenido.");
 
-                    if (ddlNotificacionGrupoMtto.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlNotificacionResponsableContenido.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione unidad de medida para el Grupo Responsable de Contenido");
 
-                    if (ddlCanalMtto.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlCanalResponsableContenido.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione un canal de notificacion para Grupo Responsable de Contenido.");
                 }
-                if (chkNotificacionDesarrollo.Checked)
+                if (chkNotificacionResponsableDesarrollo.Checked)
                 {
-                    if (txtTiempoNotificacionDev.Text != string.Empty && int.Parse(txtTiempoNotificacionDev.Text) <= 0)
+                    if (txtTiempoNotificacionResponsableDesarrollo.Text != string.Empty && int.Parse(txtTiempoNotificacionResponsableDesarrollo.Text) <= 0)
                         errors.Add("El tiempo de notificacion para el Grupo de Desarrollo debe ser mayor a 0.");
 
-                    if (txtTiempoNotificacionDev.Text == string.Empty)
+                    if (txtTiempoNotificacionResponsableDesarrollo.Text == string.Empty)
                         errors.Add("Ingrese tiempo de notificacion para el Grupo de Desarrollo.");
 
-                    if (ddlNotificacionGrupoDev.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlNotificacionResponsableDesarrollo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione unidad de medida para el Grupo Dueño de Desarrollo");
 
-                    if (ddlCanalDev.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlCanalResponsableDesarrollo.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione un canal de notificacion para el Grupo de Desarrollo.");
                 }
-                if (chkNotificacionOperacion.Checked)
+                if (chkNotificacionResponsableOperacion.Checked)
                 {
-                    if (txtTiempoNotificacionOperacion.Text != string.Empty && int.Parse(txtTiempoNotificacionOperacion.Text) <= 0)
+                    if (txtTiempoNotificacionResponsableOperacion.Text != string.Empty && int.Parse(txtTiempoNotificacionResponsableOperacion.Text) <= 0)
                         errors.Add("El tiempo de notificacion para el Grupos Especial de Consultas debe ser mayor a 0.");
 
-                    if (txtTiempoNotificacionOperacion.Text == string.Empty)
+                    if (txtTiempoNotificacionResponsableOperacion.Text == string.Empty)
                         errors.Add("Ingrese tiempo de notificacion para los Grupos Especial de Consultas.");
 
-                    if (ddlNotificacionGrupoOperacion.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlNotificacionResponsableOperacion.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione unidad de medida para los Grupos Especial de Consultas");
 
-                    if (ddlCanalOperacion.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (ddlCanalResponsableOperacion.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         errors.Add("Seleccione un canal de notificacion para los Grupos Especial de Consultas.");
                 }
                 _lstError = errors;
@@ -465,9 +447,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     case 6:
                         txt = txtDescripcionN6;
                         break;
-                    //case 7:
-                    //    txt = txtDescripcionN7;
-                    //    break;
                 }
                 if (txt != null && txt.Text.Trim() == string.Empty)
                     throw new Exception("Debe capturar una descripción");
@@ -512,8 +491,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 Metodos.LimpiarCombo(ddlGruporesponsableOperacion);
                 Metodos.LimpiarCombo(ddlGrupoResponsableDesarrollo);
                 Metodos.LimpiarCombo(ddlGrupoResponsableAtencion);
-                //Metodos.LimpiarListBox(lstGrupoEspecialConsultaServicios);
-                Metodos.LimpiarCombo(ddlGrupoDuenoServicio);
+                Metodos.LimpiarCombo(ddlGrupoResponsableCategoria);
                 Metodos.LimpiarListBox(lstGruposAu);
 
                 //SLA
@@ -527,33 +505,33 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 ddlUrgencia_OnSelectedIndexChanged(ddlUrgencia, null);
 
                 //Notificaciones
-                ddlNotificacionGrupoDueño.SelectedIndex = ddlNotificacionGrupoDueño.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionGrupoDueño.SelectedIndex;
-                ddlCanalDueño.SelectedIndex = ddlCanalDueño.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalDueño.SelectedIndex;
-                txtTiempoNotificacionDueno.Text = string.Empty;
-                chkNotificacionDueno.Checked = false;
-                chkNotificacionDueno_OnCheckedChanged(chkNotificacionDueno, null);
-                chkVencimientoDueño.Checked = false;
+                ddlNotificacionResponsableCategoria.SelectedIndex = ddlNotificacionResponsableCategoria.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionResponsableCategoria.SelectedIndex;
+                ddlCanalResponsableCategoria.SelectedIndex = ddlCanalResponsableCategoria.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalResponsableCategoria.SelectedIndex;
+                txtTiempoNotificacionResponsableCategoria.Text = string.Empty;
+                chkNotificacionResponsableCategoria.Checked = false;
+                chkNotificacionResponsableCategoria_OnCheckedChanged(chkNotificacionResponsableCategoria, null);
+                chkVencimientoResponsableCategoria.Checked = false;
 
-                txtTiempoNotificacionMtto.Text = string.Empty;
-                ddlNotificacionGrupoMtto.SelectedIndex = ddlNotificacionGrupoMtto.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionGrupoMtto.SelectedIndex;
-                ddlCanalMtto.SelectedIndex = ddlCanalMtto.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalMtto.SelectedIndex;
-                chkNotificacionMtto.Checked = false;
-                chkNotificacionMtto_OnCheckedChanged(chkNotificacionMtto, null);
-                chkVencimientoMtto.Checked = false;
+                txtTiempoNotificacionResponsableContenido.Text = string.Empty;
+                ddlNotificacionResponsableContenido.SelectedIndex = ddlNotificacionResponsableContenido.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionResponsableContenido.SelectedIndex;
+                ddlCanalResponsableContenido.SelectedIndex = ddlCanalResponsableContenido.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalResponsableContenido.SelectedIndex;
+                chkNotificacionResponsableContenido.Checked = false;
+                chkNotificacionResponsableContenido_OnCheckedChanged(chkNotificacionResponsableContenido, null);
+                chkVencimientoResponsableContenido.Checked = false;
 
-                txtTiempoNotificacionDev.Text = string.Empty;
-                ddlNotificacionGrupoDev.SelectedIndex = ddlNotificacionGrupoDev.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionGrupoDev.SelectedIndex;
-                ddlCanalDev.SelectedIndex = ddlCanalDev.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalDev.SelectedIndex;
-                chkNotificacionDesarrollo.Checked = false;
-                chkNotificacionDesarrollo_OnCheckedChanged(chkNotificacionDesarrollo, null);
-                chkVencimientoDev.Checked = false;
+                txtTiempoNotificacionResponsableDesarrollo.Text = string.Empty;
+                ddlNotificacionResponsableDesarrollo.SelectedIndex = ddlNotificacionResponsableDesarrollo.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionResponsableDesarrollo.SelectedIndex;
+                ddlCanalResponsableDesarrollo.SelectedIndex = ddlCanalResponsableDesarrollo.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalResponsableDesarrollo.SelectedIndex;
+                chkNotificacionResponsableDesarrollo.Checked = false;
+                chkNotificacionResponsableDesarrollo_OnCheckedChanged(chkNotificacionResponsableDesarrollo, null);
+                chkVencimientoResponsableDesarrollo.Checked = false;
 
-                txtTiempoNotificacionOperacion.Text = String.Empty;
-                ddlNotificacionGrupoOperacion.SelectedIndex = ddlNotificacionGrupoOperacion.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionGrupoOperacion.SelectedIndex;
-                ddlCanalOperacion.SelectedIndex = ddlCanalOperacion.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalOperacion.SelectedIndex;
-                chkNotificacionOperacion.Checked = false;
-                chkNotificacionOperacion_OnCheckedChanged(chkNotificacionOperacion, null);
-                chkVencimientoOperacion.Checked = false;
+                txtTiempoNotificacionResponsableOperacion.Text = String.Empty;
+                ddlNotificacionResponsableOperacion.SelectedIndex = ddlNotificacionResponsableOperacion.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlNotificacionResponsableOperacion.SelectedIndex;
+                ddlCanalResponsableOperacion.SelectedIndex = ddlCanalResponsableOperacion.Items.Count > 0 ? BusinessVariables.ComboBoxCatalogo.IndexSeleccione : ddlCanalResponsableOperacion.SelectedIndex;
+                chkNotificacionResponsableOperacion.Checked = false;
+                chkNotificacionResponsableOperacion_OnCheckedChanged(chkNotificacionResponsableOperacion, null);
+                chkVencimientoResponsableOperacion.Checked = false;
 
                 //Encuestas
                 chkEncuestaActiva.Checked = false;
@@ -743,7 +721,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         Metodos.LlenaComboCatalogo(ddlGrupoResponsableDesarrollo, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
                         Metodos.LlenaComboCatalogo(ddlGrupoResponsableAtencion, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.Agente, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
                         Metodos.LlenaListBoxCatalogo(lstGruposEc, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ConsultasEspeciales, (int)BusinessVariables.EnumTiposUsuario.Operador, false).Where(w => !w.Sistema));
-                        Metodos.LlenaComboCatalogo(ddlGrupoDuenoServicio, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
+                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableCategoria, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
                         Metodos.LlenaListBoxCatalogo(lstGruposAu, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AgenteUniversal, (int)BusinessVariables.EnumTiposUsuario.Operador, false).Where(s => s.Habilitado));
                         //imgImpacto.ImageUrl = "";
                         btnPreview.Visible = false;
@@ -776,15 +754,15 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         divStep4Data.Visible = false;
                         divStep5.Visible = true;
                         divStep5Data.Visible = true;
-                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoDueño);
-                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoMtto);
-                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoDev);
-                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionGrupoOperacion);
+                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionResponsableCategoria);
+                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionResponsableContenido);
+                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionResponsableDesarrollo);
+                        Metodos.LlenaComboDuracionEnumerador(ddlNotificacionResponsableOperacion);
                         List<TipoNotificacion> lst = _servicioNotificacion.ObtenerTipos(true);
-                        Metodos.LlenaComboCatalogo(ddlCanalDueño, lst);
-                        Metodos.LlenaComboCatalogo(ddlCanalMtto, lst);
-                        Metodos.LlenaComboCatalogo(ddlCanalDev, lst);
-                        Metodos.LlenaComboCatalogo(ddlCanalOperacion, lst);
+                        Metodos.LlenaComboCatalogo(ddlCanalResponsableCategoria, lst);
+                        Metodos.LlenaComboCatalogo(ddlCanalResponsableContenido, lst);
+                        Metodos.LlenaComboCatalogo(ddlCanalResponsableDesarrollo, lst);
+                        Metodos.LlenaComboCatalogo(ddlCanalResponsableOperacion, lst);
                         btnPreview.Visible = false;
                         btnSaveAll.Visible = false;
                         btnSiguiente.Visible = true;
@@ -1342,9 +1320,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 {
                     switch (int.Parse(ddlTiempoTotal.SelectedValue))
                     {
-                        //case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Meses:
-                        //    txtTiempoTotal.Text = 
-                        //    break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
                             tDias = decimal.Parse(txtTiempoTotal.Text);
                             break;
@@ -1352,7 +1327,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                             tHoras = decimal.Parse(txtTiempoTotal.Text);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
-                            tHoras = decimal.Parse(txtTiempoTotal.Text);
+                            tminutos = decimal.Parse(txtTiempoTotal.Text);
                             break;
                     }
                 }
@@ -1448,14 +1423,14 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         #endregion Sla
 
         #region Notificaciones
-        protected void chkNotificacionDueno_OnCheckedChanged(object sender, EventArgs e)
+        protected void chkNotificacionResponsableCategoria_OnCheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                txtTiempoNotificacionDueno.Enabled = chkNotificacionDueno.Checked;
-                ddlNotificacionGrupoDueño.Enabled = chkNotificacionDueno.Checked;
-                ddlCanalDueño.Enabled = chkNotificacionDueno.Checked;
-                chkVencimientoDueño.Enabled = chkNotificacionDueno.Checked;
+                txtTiempoNotificacionResponsableCategoria.Enabled = chkNotificacionResponsableCategoria.Checked;
+                ddlNotificacionResponsableCategoria.Enabled = chkNotificacionResponsableCategoria.Checked;
+                ddlCanalResponsableCategoria.Enabled = chkNotificacionResponsableCategoria.Checked;
+                chkVencimientoResponsableCategoria.Enabled = chkNotificacionResponsableCategoria.Checked;
             }
             catch (Exception ex)
             {
@@ -1468,14 +1443,14 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             }
         }
 
-        protected void chkNotificacionMtto_OnCheckedChanged(object sender, EventArgs e)
+        protected void chkNotificacionResponsableContenido_OnCheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                txtTiempoNotificacionMtto.Enabled = chkNotificacionMtto.Checked;
-                ddlNotificacionGrupoMtto.Enabled = chkNotificacionMtto.Checked;
-                ddlCanalMtto.Enabled = chkNotificacionMtto.Checked;
-                chkVencimientoMtto.Enabled = chkNotificacionMtto.Checked;
+                txtTiempoNotificacionResponsableContenido.Enabled = chkNotificacionResponsableContenido.Checked;
+                ddlNotificacionResponsableContenido.Enabled = chkNotificacionResponsableContenido.Checked;
+                ddlCanalResponsableContenido.Enabled = chkNotificacionResponsableContenido.Checked;
+                chkVencimientoResponsableContenido.Enabled = chkNotificacionResponsableContenido.Checked;
             }
             catch (Exception ex)
             {
@@ -1488,14 +1463,14 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             }
         }
 
-        protected void chkNotificacionDesarrollo_OnCheckedChanged(object sender, EventArgs e)
+        protected void chkNotificacionResponsableDesarrollo_OnCheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                txtTiempoNotificacionDev.Enabled = chkNotificacionDesarrollo.Checked;
-                ddlNotificacionGrupoDev.Enabled = chkNotificacionDesarrollo.Checked;
-                ddlCanalDev.Enabled = chkNotificacionDesarrollo.Checked;
-                chkVencimientoDev.Enabled = chkNotificacionDesarrollo.Checked;
+                txtTiempoNotificacionResponsableDesarrollo.Enabled = chkNotificacionResponsableDesarrollo.Checked;
+                ddlNotificacionResponsableDesarrollo.Enabled = chkNotificacionResponsableDesarrollo.Checked;
+                ddlCanalResponsableDesarrollo.Enabled = chkNotificacionResponsableDesarrollo.Checked;
+                chkVencimientoResponsableDesarrollo.Enabled = chkNotificacionResponsableDesarrollo.Checked;
             }
             catch (Exception ex)
             {
@@ -1508,14 +1483,14 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             }
         }
 
-        protected void chkNotificacionOperacion_OnCheckedChanged(object sender, EventArgs e)
+        protected void chkNotificacionResponsableOperacion_OnCheckedChanged(object sender, EventArgs e)
         {
             try
             {
-                txtTiempoNotificacionOperacion.Enabled = chkNotificacionOperacion.Checked;
-                ddlNotificacionGrupoOperacion.Enabled = chkNotificacionOperacion.Checked;
-                ddlCanalOperacion.Enabled = chkNotificacionOperacion.Checked;
-                chkVencimientoOperacion.Enabled = chkNotificacionOperacion.Checked;
+                txtTiempoNotificacionResponsableOperacion.Enabled = chkNotificacionResponsableOperacion.Checked;
+                ddlNotificacionResponsableOperacion.Enabled = chkNotificacionResponsableOperacion.Checked;
+                ddlCanalResponsableOperacion.Enabled = chkNotificacionResponsableOperacion.Checked;
+                chkVencimientoResponsableOperacion.Enabled = chkNotificacionResponsableOperacion.Checked;
             }
             catch (Exception ex)
             {
@@ -1582,39 +1557,80 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     IdSubGrupoUsuario = null
                 });
 
+                #region Notificacion
+                
+                #region Responsable Categoria
+                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoResponsableCategoria.SelectedValue));
+
+                if (chkNotificacionResponsableCategoria.Checked)
+                {
+                    TiempoInformeArbol tiempoInforme = new TiempoInformeArbol
+                    {
+                        IdTipoGrupo = gpo.IdTipoGrupo,
+                        IdGrupoUsuario = gpo.Id,
+                        AntesVencimiento = !chkNotificacionResponsableCategoria.Checked
+                    };
+                    decimal dias = 0, horas = 0, minutos = 0;
+                    const decimal segundos = 0;
+
+                    switch (int.Parse(ddlNotificacionResponsableCategoria.SelectedValue))
+                    {
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
+                            dias = decimal.Parse(txtTiempoNotificacionResponsableCategoria.Text);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
+                            horas = decimal.Parse(txtTiempoNotificacionResponsableCategoria.Text);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
+                            minutos = decimal.Parse(txtTiempoNotificacionResponsableCategoria.Text);
+                            break;
+                    }
+                    tiempoInforme.Dias = dias;
+                    tiempoInforme.Horas = horas;
+                    tiempoInforme.Minutos = minutos;
+                    tiempoInforme.Segundos = segundos;
+                    tiempoInforme.TiempoNotificacion += (dias * 24) + horas + (minutos / 60) + ((segundos / 60) / 60);
+                    tiempoInforme.IdTipoNotificacion = int.Parse(ddlCanalResponsableCategoria.SelectedValue);
+                    tiempoInforme.AntesVencimiento = !chkVencimientoResponsableCategoria.Checked;
+                    arbol.TiempoInformeArbol.Add(tiempoInforme);
+                }
+                #endregion Responsable Categoria
+
+                #region Responsable de contenido
+
                 gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoResponsableMantenimiento.SelectedValue));
                 foreach (SubGrupoUsuario subGrupoUsuario in gpo.SubGrupoUsuario)
                 {
-                    if (chkNotificacionMtto.Checked)
+                    if (chkNotificacionResponsableContenido.Checked)
                     {
                         TiempoInformeArbol tiempoInforme = new TiempoInformeArbol
                         {
                             IdTipoGrupo = gpo.IdTipoGrupo,
                             IdGrupoUsuario = gpo.Id,
-                            AntesVencimiento = !chkNotificacionMtto.Checked
+                            AntesVencimiento = !chkNotificacionResponsableContenido.Checked
                         };
                         decimal dias = 0, horas = 0, minutos = 0;
                         const decimal segundos = 0;
 
-                        switch (int.Parse(ddlNotificacionGrupoMtto.SelectedValue))
+                        switch (int.Parse(ddlNotificacionResponsableContenido.SelectedValue))
                         {
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
-                                dias = decimal.Parse(txtTiempoNotificacionMtto.Text);
+                                dias = decimal.Parse(txtTiempoNotificacionResponsableContenido.Text);
                                 break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
-                                horas = decimal.Parse(txtTiempoNotificacionMtto.Text);
+                                horas = decimal.Parse(txtTiempoNotificacionResponsableContenido.Text);
                                 break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
-                                minutos = decimal.Parse(txtTiempoNotificacionMtto.Text);
+                                minutos = decimal.Parse(txtTiempoNotificacionResponsableContenido.Text);
                                 break;
                         }
                         tiempoInforme.Dias = dias;
                         tiempoInforme.Horas = horas;
                         tiempoInforme.Minutos = minutos;
                         tiempoInforme.Segundos = segundos;
-                        tiempoInforme.TiempoNotificacion += (((segundos / 60) / 60) / 8) + (minutos / 60) / 8 + horas / 8 + dias;
-                        tiempoInforme.IdTipoNotificacion = int.Parse(ddlNotificacionGrupoMtto.SelectedValue);
-                        tiempoInforme.AntesVencimiento = !chkVencimientoMtto.Checked;
+                        tiempoInforme.TiempoNotificacion += (dias * 24) + horas + (minutos / 60) + ((segundos / 60) / 60);
+                        tiempoInforme.IdTipoNotificacion = int.Parse(ddlCanalResponsableContenido.SelectedValue);
+                        tiempoInforme.AntesVencimiento = !chkVencimientoResponsableContenido.Checked;
                         arbol.TiempoInformeArbol.Add(tiempoInforme);
                     }
                     arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
@@ -1624,41 +1640,86 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         IdSubGrupoUsuario = subGrupoUsuario.Id
                     });
                 }
+                #endregion Responsable de contenido
 
-                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGruporesponsableOperacion.SelectedValue));
-                if (chkNotificacionOperacion.Checked)
+                #region Responsable de desarrollo
+
+                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoResponsableDesarrollo.SelectedValue));
+
+                if (chkNotificacionResponsableDesarrollo.Checked)
                 {
                     TiempoInformeArbol tiempoInforme = new TiempoInformeArbol
                     {
                         IdTipoGrupo = gpo.IdTipoGrupo,
                         IdGrupoUsuario = gpo.Id,
-                        AntesVencimiento = !chkNotificacionOperacion.Checked
+                        AntesVencimiento = !chkNotificacionResponsableDesarrollo.Checked
                     };
                     decimal dias = 0, horas = 0, minutos = 0;
                     const decimal segundos = 0;
 
-                    switch (int.Parse(ddlNotificacionGrupoOperacion.SelectedValue))
+                    switch (int.Parse(ddlNotificacionResponsableDesarrollo.SelectedValue))
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
-                            dias = decimal.Parse(txtTiempoNotificacionOperacion.Text);
+                            dias = decimal.Parse(txtTiempoNotificacionResponsableDesarrollo.Text);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
-                            horas = decimal.Parse(txtTiempoNotificacionOperacion.Text);
+                            horas = decimal.Parse(txtTiempoNotificacionResponsableDesarrollo.Text);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
-                            minutos = decimal.Parse(txtTiempoNotificacionOperacion.Text);
+                            minutos = decimal.Parse(txtTiempoNotificacionResponsableDesarrollo.Text);
                             break;
                     }
                     tiempoInforme.Dias = dias;
                     tiempoInforme.Horas = horas;
                     tiempoInforme.Minutos = minutos;
                     tiempoInforme.Segundos = segundos;
-                    tiempoInforme.TiempoNotificacion += (((segundos / 60) / 60) / 8) + (minutos / 60) / 8 + horas / 8 + dias;
-                    tiempoInforme.IdTipoNotificacion = int.Parse(ddlCanalOperacion.SelectedValue);
-                    tiempoInforme.AntesVencimiento = !chkVencimientoOperacion.Checked;
+                    tiempoInforme.TiempoNotificacion += (dias * 24) + horas + (minutos / 60) + ((segundos / 60) / 60);
+                    tiempoInforme.IdTipoNotificacion = int.Parse(ddlCanalResponsableDesarrollo.SelectedValue);
+                    tiempoInforme.AntesVencimiento = !chkVencimientoResponsableDesarrollo.Checked;
                     arbol.TiempoInformeArbol.Add(tiempoInforme);
                 }
 
+                #endregion Responsable de desarrollo
+
+                #region Responsable de operación
+
+                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGruporesponsableOperacion.SelectedValue));
+                if (chkNotificacionResponsableOperacion.Checked)
+                {
+                    TiempoInformeArbol tiempoInforme = new TiempoInformeArbol
+                    {
+                        IdTipoGrupo = gpo.IdTipoGrupo,
+                        IdGrupoUsuario = gpo.Id,
+                        AntesVencimiento = !chkNotificacionResponsableOperacion.Checked
+                    };
+                    decimal dias = 0, horas = 0, minutos = 0;
+                    const decimal segundos = 0;
+
+                    switch (int.Parse(ddlNotificacionResponsableOperacion.SelectedValue))
+                    {
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
+                            dias = decimal.Parse(txtTiempoNotificacionResponsableOperacion.Text);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
+                            horas = decimal.Parse(txtTiempoNotificacionResponsableOperacion.Text);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
+                            minutos = decimal.Parse(txtTiempoNotificacionResponsableOperacion.Text);
+                            break;
+                    }
+                    tiempoInforme.Dias = dias;
+                    tiempoInforme.Horas = horas;
+                    tiempoInforme.Minutos = minutos;
+                    tiempoInforme.Segundos = segundos;
+                    tiempoInforme.TiempoNotificacion += (dias * 24) + horas + (minutos / 60) + ((segundos / 60) / 60);
+                    tiempoInforme.IdTipoNotificacion = int.Parse(ddlCanalResponsableOperacion.SelectedValue);
+                    tiempoInforme.AntesVencimiento = !chkVencimientoResponsableOperacion.Checked;
+                    arbol.TiempoInformeArbol.Add(tiempoInforme);
+                }
+                
+                #endregion Responsable de operación
+                #endregion Notificacion
+                
                 arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                 {
                     IdGrupoUsuario = gpo.Id,
@@ -1666,40 +1727,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     IdSubGrupoUsuario = null
                 });
 
-                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoResponsableDesarrollo.SelectedValue));
-
-                if (chkNotificacionDesarrollo.Checked)
-                {
-                    TiempoInformeArbol tiempoInforme = new TiempoInformeArbol
-                    {
-                        IdTipoGrupo = gpo.IdTipoGrupo,
-                        IdGrupoUsuario = gpo.Id,
-                        AntesVencimiento = !chkNotificacionDesarrollo.Checked
-                    };
-                    decimal dias = 0, horas = 0, minutos = 0;
-                    const decimal segundos = 0;
-
-                    switch (int.Parse(ddlNotificacionGrupoDev.SelectedValue))
-                    {
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
-                            dias = decimal.Parse(txtTiempoNotificacionDev.Text);
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
-                            horas = decimal.Parse(txtTiempoNotificacionDev.Text);
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
-                            minutos = decimal.Parse(txtTiempoNotificacionDev.Text);
-                            break;
-                    }
-                    tiempoInforme.Dias = dias;
-                    tiempoInforme.Horas = horas;
-                    tiempoInforme.Minutos = minutos;
-                    tiempoInforme.Segundos = segundos;
-                    tiempoInforme.TiempoNotificacion += (((segundos / 60) / 60) / 8) + (minutos / 60) / 8 + horas / 8 + dias;
-                    tiempoInforme.IdTipoNotificacion = int.Parse(ddlNotificacionGrupoDev.SelectedValue);
-                    tiempoInforme.AntesVencimiento = !chkVencimientoDev.Checked;
-                    arbol.TiempoInformeArbol.Add(tiempoInforme);
-                }
+                
 
                 arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                 {
@@ -1745,41 +1773,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                             IdSubGrupoUsuario = null
                         });
                     }
-                }
-
-                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoDuenoServicio.SelectedValue));
-
-                if (chkNotificacionDueno.Checked)
-                {
-                    TiempoInformeArbol tiempoInforme = new TiempoInformeArbol
-                    {
-                        IdTipoGrupo = gpo.IdTipoGrupo,
-                        IdGrupoUsuario = gpo.Id,
-                        AntesVencimiento = !chkNotificacionDueno.Checked
-                    };
-                    decimal dias = 0, horas = 0, minutos = 0;
-                    const decimal segundos = 0;
-
-                    switch (int.Parse(ddlNotificacionGrupoDueño.SelectedValue))
-                    {
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
-                            dias = decimal.Parse(txtTiempoNotificacionDueno.Text);
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
-                            horas = decimal.Parse(txtTiempoNotificacionDueno.Text);
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
-                            minutos = decimal.Parse(txtTiempoNotificacionDueno.Text);
-                            break;
-                    }
-                    tiempoInforme.Dias = dias;
-                    tiempoInforme.Horas = horas;
-                    tiempoInforme.Minutos = minutos;
-                    tiempoInforme.Segundos = segundos;
-                    tiempoInforme.TiempoNotificacion += (((segundos / 60) / 60) / 8) + (minutos / 60) / 8 + horas / 8 + dias;
-                    tiempoInforme.IdTipoNotificacion = int.Parse(ddlNotificacionGrupoDueño.SelectedValue);
-                    tiempoInforme.AntesVencimiento = !chkVencimientoDueño.Checked;
-                    arbol.TiempoInformeArbol.Add(tiempoInforme);
                 }
 
                 arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol

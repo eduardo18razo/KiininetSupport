@@ -1067,7 +1067,6 @@
       <End Role="Ticket" EntitySet="Ticket" />
       <End Role="TicketCorreo" EntitySet="TicketCorreo" />
     </AssociationSet>
-    <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
     <EntitySet Name="TicketEvento" EntityType="KiiniNet_v2Model.TicketEvento" />
     <EntitySet Name="TicketEventoAsignacion" EntityType="KiiniNet_v2Model.TicketEventoAsignacion" />
     <EntitySet Name="TicketEventoConversacion" EntityType="KiiniNet_v2Model.TicketEventoConversacion" />
@@ -1138,6 +1137,33 @@
     <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
       <End Role="TipoUsuario" EntitySet="TipoUsuario" />
       <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
+    <EntitySet Name="TipoMascara" EntityType="KiiniNet_v2Model.TipoMascara" />
+    <AssociationSet Name="FK_Mascara_TipoMascara" Association="KiiniNet_v2Model.FK_Mascara_TipoMascara">
+      <End Role="TipoMascara" EntitySet="TipoMascara" />
+      <End Role="Mascara" EntitySet="Mascara" />
+    </AssociationSet>
+    <EntitySet Name="TicketNotificacion" EntityType="KiiniNet_v2Model.TicketNotificacion" />
+    <AssociationSet Name="FK_TicketNotificacion_GrupoUsuario" Association="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario">
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+      <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketNotificacion_SmsService" Association="KiiniNet_v2Model.FK_TicketNotificacion_SmsService">
+      <End Role="SmsService" EntitySet="SmsService" />
+      <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketNotificacion_Ticket" Association="KiiniNet_v2Model.FK_TicketNotificacion_Ticket">
+      <End Role="Ticket" EntitySet="Ticket" />
+      <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketNotificacion_TipoNotificacion" Association="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion">
+      <End Role="TipoNotificacion" EntitySet="TipoNotificacion" />
+      <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TicketNotificacion_Usuario" Association="KiiniNet_v2Model.FK_TicketNotificacion_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Campus">
@@ -2492,6 +2518,7 @@
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_TipoNotificacion" FromRole="TipoNotificacion" ToRole="TiempoInformeArbol" />
+    <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion" FromRole="TipoNotificacion" ToRole="TicketNotificacion" />
   </EntityType>
   <EntityType Name="EstatusAsignacionSubRolGeneralDefault">
     <Key>
@@ -3035,6 +3062,7 @@
     <Property Name="Habilitado" Type="Boolean" />
     <NavigationProperty Name="TipoLink" Relationship="KiiniNet_v2Model.FK_Sms_Service_TipoLink" FromRole="SmsService" ToRole="TipoLink" />
     <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_Sms_Service_Usuario" FromRole="SmsService" ToRole="Usuario" />
+    <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_SmsService" FromRole="SmsService" ToRole="TicketNotificacion" />
   </EntityType>
   <Association Name="FK_Sms_Service_TipoLink">
     <End Type="KiiniNet_v2Model.TipoLink" Role="TipoLink" Multiplicity="0..1" />
@@ -3317,6 +3345,7 @@
     <NavigationProperty Name="HitGrupoUsuario" Relationship="KiiniNet_v2Model.FK_HitGrupoUsuario_GrupoUsuario" FromRole="GrupoUsuario" ToRole="HitGrupoUsuario" />
     <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TiempoInformeArbol" />
     <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" FromRole="GrupoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
+    <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TicketNotificacion" />
   </EntityType>
   <Association Name="FK_GrupoUsuario_TipoGrupo1">
     <End Type="KiiniNet_v2Model.TipoGrupo" Role="TipoGrupo" Multiplicity="0..1" />
@@ -3774,6 +3803,7 @@
     <NavigationProperty Name="NivelTicket" Relationship="KiiniNet_v2Model.FK_Ticket_NivelTicket" FromRole="Ticket" ToRole="NivelTicket" />
     <NavigationProperty Name="TicketCorreo" Relationship="KiiniNet_v2Model.FK_TicketCorreo_Ticket" FromRole="Ticket" ToRole="TicketCorreo" />
     <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEvento_Ticket" FromRole="Ticket" ToRole="TicketEvento" />
+    <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Ticket" FromRole="Ticket" ToRole="TicketNotificacion" />
   </EntityType>
   <Association Name="FK_tblTicket_tblArbolAcceso">
     <End Type="KiiniNet_v2Model.ArbolAcceso" Role="ArbolAcceso" Multiplicity="1" />
@@ -4418,6 +4448,7 @@
     <NavigationProperty Name="TicketEvento" Relationship="KiiniNet_v2Model.FK_TicketEvento_Usuario" FromRole="Usuario" ToRole="TicketEvento" />
     <NavigationProperty Name="UsuarioNotificacion" Relationship="KiiniNet_v2Model.FK_UsuarioNotificacion_Usuario" FromRole="Usuario" ToRole="UsuarioNotificacion" />
     <NavigationProperty Name="CorreoService" Relationship="KiiniNet_v2Model.FK_CorreoService_Usuario" FromRole="Usuario" ToRole="CorreoService" />
+    <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Usuario" FromRole="Usuario" ToRole="TicketNotificacion" />
   </EntityType>
   <Association Name="FK_ArbolAcceso_Usuario">
     <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
@@ -4983,6 +5014,8 @@
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_Mascara" FromRole="Mascara" ToRole="Ticket" />
     <NavigationProperty Name="CampoMascara" Relationship="KiiniNet_v2Model.FK_tblCampoMascara_tblMascara" FromRole="Mascara" ToRole="CampoMascara" />
     <NavigationProperty Name="ParametroDatosAdicionales" Relationship="KiiniNet_v2Model.FK_ParametroDatosAdicionales_Mascara" FromRole="Mascara" ToRole="ParametroDatosAdicionales" />
+    <Property Name="IdTipoMascara" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipoMascara" Relationship="KiiniNet_v2Model.FK_Mascara_TipoMascara" FromRole="Mascara" ToRole="TipoMascara" />
   </EntityType>
   <Association Name="FK_tblInventarioArbolAcceso_tblMascara">
     <End Type="KiiniNet_v2Model.Mascara" Role="Mascara" Multiplicity="0..1" />
@@ -5057,6 +5090,8 @@
     <Property Name="RadioButton" Type="Boolean" />
     <Property Name="ValorMinimo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CampoMascara" Relationship="KiiniNet_v2Model.FK_tblCampoMascara_tblCatTipoCampoMascara" FromRole="TipoCampoMascara" ToRole="CampoMascara" />
+    <Property Name="Telefono" Type="Boolean" />
+    <Property Name="Correo" Type="Boolean" />
   </EntityType>
   <EntityType Name="Catalogos">
     <Key>
@@ -5584,11 +5619,11 @@
     <Property Name="IdArbol" Type="Int32" />
     <Property Name="IdTipoGrupo" Type="Int32" />
     <Property Name="IdGrupoUsuario" Type="Int32" />
-    <Property Name="Dias" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Horas" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Minutos" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Segundos" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="TiempoNotificacion" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Dias" Type="Decimal" Precision="18" Scale="9" />
+    <Property Name="Horas" Type="Decimal" Precision="18" Scale="9" />
+    <Property Name="Minutos" Type="Decimal" Precision="18" Scale="9" />
+    <Property Name="Segundos" Type="Decimal" Precision="18" Scale="9" />
+    <Property Name="TiempoNotificacion" Type="Decimal" Precision="18" Scale="9" />
     <Property Name="IdTipoNotificacion" Type="Int32" />
     <Property Name="AntesVencimiento" Type="Boolean" />
     <Property Name="Habilitado" Type="Boolean" />
@@ -5862,20 +5897,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="ParametrosGenerales">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="LevantaTickets" Type="Boolean" />
-    <Property Name="PeriodoDashboard" Type="Int32" />
-    <Property Name="ValidaUsuario" Type="Boolean" />
-    <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="StrongPassword" Type="Boolean" />
-    <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="TicketEvento">
     <Key>
       <PropertyRef Name="Id" />
@@ -6156,6 +6177,126 @@
       </Principal>
       <Dependent Role="GrupoUsuarioDefaultOpcion">
         <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ParametrosGenerales">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TamanoDeArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NumeroArchivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LevantaTickets" Type="Boolean" />
+    <Property Name="PeriodoDashboard" Type="Int32" />
+    <Property Name="ValidaUsuario" Type="Boolean" />
+    <Property Name="MensajeValidacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StrongPassword" Type="Boolean" />
+    <Property Name="FormularioPortal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FrecuenciaDemonioSegundos" Type="Int32" />
+    <Property Name="FrecuenciaNotificacionMinutos" Type="Int32" />
+    <Property Name="MensajesNotificacion" Type="Int32" />
+    <Property Name="DiasCierreTicket" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TipoMascara">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="TablaLlave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CampoLlave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="Mascara" Relationship="KiiniNet_v2Model.FK_Mascara_TipoMascara" FromRole="TipoMascara" ToRole="Mascara" />
+  </EntityType>
+  <Association Name="FK_Mascara_TipoMascara">
+    <End Type="KiiniNet_v2Model.TipoMascara" Role="TipoMascara" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Mascara" Role="Mascara" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoMascara">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mascara">
+        <PropertyRef Name="IdTipoMascara" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TicketNotificacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSmsService" Type="Int32" />
+    <Property Name="IdTicket" Type="Int32" Nullable="false" />
+    <Property Name="IdGrupoUsuario" Type="Int32" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="TelefonoUsuario" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CorreoUsuario" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="IdTipoNotificacion" Type="Int32" Nullable="false" />
+    <Property Name="FechaNotificacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="GrupoUsuario" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario" FromRole="TicketNotificacion" ToRole="GrupoUsuario" />
+    <NavigationProperty Name="SmsService" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_SmsService" FromRole="TicketNotificacion" ToRole="SmsService" />
+    <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Ticket" FromRole="TicketNotificacion" ToRole="Ticket" />
+    <NavigationProperty Name="TipoNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion" FromRole="TicketNotificacion" ToRole="TipoNotificacion" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Usuario" FromRole="TicketNotificacion" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_TicketNotificacion_GrupoUsuario">
+    <End Type="KiiniNet_v2Model.GrupoUsuario" Role="GrupoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TicketNotificacion">
+        <PropertyRef Name="IdGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketNotificacion_SmsService">
+    <End Type="KiiniNet_v2Model.SmsService" Role="SmsService" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmsService">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TicketNotificacion">
+        <PropertyRef Name="IdSmsService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketNotificacion_Ticket">
+    <End Type="KiiniNet_v2Model.Ticket" Role="Ticket" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TicketNotificacion">
+        <PropertyRef Name="IdTicket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketNotificacion_TipoNotificacion">
+    <End Type="KiiniNet_v2Model.TipoNotificacion" Role="TipoNotificacion" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoNotificacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TicketNotificacion">
+        <PropertyRef Name="IdTipoNotificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TicketNotificacion_Usuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.TicketNotificacion" Role="TicketNotificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TicketNotificacion">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

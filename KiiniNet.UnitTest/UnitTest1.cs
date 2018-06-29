@@ -2,10 +2,14 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Configuration;
+using System.Net.Mail;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
@@ -25,7 +29,7 @@ namespace KiiniNet.UnitTest
     {
         private object GetProxyInstance(ref CompilerResults compilerResults)
         {
-            
+
             object proxyInstance = null;
 
             // Define the WSDL Get address, contract name and parameters, with this we can extract WSDL details any time
@@ -110,7 +114,7 @@ namespace KiiniNet.UnitTest
                 dt.Columns.Add(new DataColumn("Ocupado"));
                 dt.Columns.Add(new DataColumn("Libre"));
                 dt.Rows.Add(350, 1000);
-                BusinessGraficosDasboard.Administrador.GeneraGraficoBarraApilada(new Chart(), dt) ;
+                BusinessGraficosDasboard.Administrador.GeneraGraficoBarraApilada(new Chart(), dt);
                 DirectoryInfo dInfo = new DirectoryInfo(@"C:\Users\Eduardo Cerritos\Desktop\Repositorio\");
                 var z = BusinessFile.DirectorySize(dInfo, true);
                 var y = BusinessFile.DirectoryFilesCount(dInfo, true);
@@ -152,15 +156,72 @@ namespace KiiniNet.UnitTest
         [TestMethod]
         public void TesConsultas()
         {
+            new BusinessInformacionConsulta().ObtenerReporteInformacionConsulta(1, new Dictionary<string, DateTime>
+                        {
+                            {"inicio", Convert.ToDateTime("01/01/2018")},
+                            {"fin", Convert.ToDateTime("27/06/2018")}
+                        }, 1);
+            new BusinessInformacionConsulta().ObtenerReporteInformacionConsulta(1, null, 1);
+            new BusinessMascaras().Test(34);
+            new BusinessDemonio().EnvioNotificacion();
+            new BusinessDemonio().CierraTicketsResueltos();
+            
+
             //TODO: Eliminar Comentarios
             try
             {
+                SmtpSection section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+
+                MailAddress fromAddress = new MailAddress("support@kiininet.com", "Eduardo Cerritos");
+                MailAddress toAddress = new MailAddress("eduardo18razo@gmail.com", "Kiininet Support");
+
+                var smtp = new SmtpClient
+                {
+                    Host = section.Network.Host,//"smtp.gmail.com",
+                    Port = section.Network.Port,
+                    EnableSsl = section.Network.EnableSsl,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = section.Network.DefaultCredentials,
+                    Credentials = new NetworkCredential(fromAddress.Address, section.Network.Password)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = "Alias",
+                    IsBodyHtml = true,
+                    Body = "content"
+                })
+                {
+                    smtp.Send(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            try
+            {
+                SmtpClient mailClient = new SmtpClient("smtp.gmail.com");
+                MailMessage msgMail = new MailMessage();
+                msgMail.From = new MailAddress("ecerritos@kiininet.com", "support@kiininet.com");
+                mailClient.UseDefaultCredentials = false;
+                mailClient.Credentials = new NetworkCredential("ecerritos@kiininet.com", "Eyleen231012");
+                mailClient.EnableSsl = true;
+                MailAddress sendMailTo = new MailAddress("eduardo18razo@gmail.com", "Mark Twain");
+                msgMail.To.Add(sendMailTo);
+                msgMail.Subject = "Test Subject Alias";
+
+                msgMail.Body = "Email content";
+                msgMail.IsBodyHtml = true;
+
+                mailClient.Send(msgMail);
+                msgMail.Dispose();
                 //new BusinessCatalogos().CrearCatalogoExcel(new Catalogos(), false, "file", "hoja");
-                new BusinessTicketMailService().RecibeCorreos();
+                //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessTicketMailService().EnviaCorreoTicketGenerado(1, "VLF0", "Este es el cuerpo del mensaje <b> Hola</b> <s>sub</s>", "ecerritos@kiininet.com");
                 //new BusinessTicketMailService().RecibeCorreos();
-                //new BusinessDemonio().EnvioNotificacion();
+                
                 //new KiiniNet.Services.Windows.ServiceNotificacion();
                 //new BusinessDemonio().EnvioNotificacion();
                 //new BusinessDemonio().ActualizaSla();
@@ -204,12 +265,12 @@ namespace KiiniNet.UnitTest
                 //{
                 //    MessageBox.Show(string.Format("{0}={1}", prop.Name, prop.GetValue(z, null)));
                 //}
-                
+
                 ////Invoke Method, and get the return value
                 //var y = methodInfo.Invoke(proxyInstance, BindingFlags.InvokeMethod, null, operationParameters, null).ToString();
                 ////lblUserMessage.Text = methodInfo.Invoke(proxyInstance, BindingFlags.InvokeMethod, null, operationParameters, null).ToString();
                 //BusinessCorreo.SendMail("ecerritos@kiininet.com", "prueba envio", "Correo de prueba");
-                
+
                 //DataBaseModelContext db = new DataBaseModelContext();
                 //string textoOriginal = "¿Cuál es tu solicitud?";//transformación UNICODE
                 ////textoOriginal = QuitAccents(textoOriginal);
@@ -228,7 +289,7 @@ namespace KiiniNet.UnitTest
             }
         }
 
-        
+
         public List<InfoClass> ObtenerPropiedadesObjeto(object obj)
         {
             List<InfoClass> result;

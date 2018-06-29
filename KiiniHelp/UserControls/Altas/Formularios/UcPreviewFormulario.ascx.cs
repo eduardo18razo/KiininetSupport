@@ -127,50 +127,48 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 
                 foreach (CampoMascara campo in lstControles)
                 {
-                    HtmlGenericControl createDiv = new HtmlGenericControl("DIV") ;
+                    HtmlGenericControl hr = new HtmlGenericControl("HR");
+                    HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
-                    //createDiv.InnerHtml = campo.Descripcion;
                     Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
-                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             TextBox txtSimple = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion,
+                                ID = "txt" + campo.NombreCampo,
                                 CssClass = "form-control",
 
                             };
                             txtSimple.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtSimple.Attributes["MaxLength"] = campo.TipoCampoMascara.LongitudMaxima.ToString();
-                            //txtSimple.Attributes["placeholder"] = campo.Descripcion; ecl
                             _lstControles.Add(txtSimple);
                             createDiv.Controls.Add(txtSimple);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
-                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             TextBox txtMultilinea = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion,
+                                ID = "txt" + campo.NombreCampo,
                                 CssClass = "form-control",
                                 TextMode = TextBoxMode.MultiLine,
                                 Rows = 10
                             };
                             txtMultilinea.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMultilinea.Attributes["MaxLength"] = campo.LongitudMaxima.ToString();
-                            //txtMultilinea.Attributes["placeholder"] = campo.Descripcion; ecl
                             _lstControles.Add(txtMultilinea);
                             createDiv.Controls.Add(txtMultilinea);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
-                            lbl.Attributes["for"] = "lstRadio" + campo.Descripcion;
+                            lbl.Attributes["for"] = "lstRadio" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             RadioButtonList lstRadio = new RadioButtonList
                             {
                                 SelectedValue = "0",
-                                ID = "lstRadio" + campo.Descripcion,
+                                ID = "lstRadio" + campo.NombreCampo,
                                 Text = campo.Descripcion,
                                 RepeatColumns = 5,
                                 RepeatDirection = RepeatDirection.Horizontal
@@ -195,12 +193,12 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             _lstControles.Add(lstRadio);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
-                            lbl.Attributes["for"] = "ddl" + campo.Descripcion;
+                            lbl.Attributes["for"] = "ddl" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             DropDownList ddlCatalogo = new DropDownList
                             {
                                 SelectedValue = "0",
-                                ID = "ddl" + campo.Descripcion,
+                                ID = "ddl" + campo.NombreCampo,
                                 Text = campo.Descripcion,
                                 CssClass = "col-sm-10 form-control"
                             };
@@ -224,12 +222,12 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             _lstControles.Add(ddlCatalogo);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
-                            lbl.Attributes["for"] = "chklist" + campo.Descripcion;
+                            lbl.Attributes["for"] = "chklist" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             CheckBoxList chklist = new CheckBoxList
                             {
                                 SelectedValue = "0",
-                                ID = "chklist" + campo.Descripcion,
+                                ID = "chklist" + campo.NombreCampo,
                                 Text = campo.Descripcion,
                                 RepeatColumns = 5,
                                 RepeatDirection = RepeatDirection.Horizontal
@@ -254,51 +252,47 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             _lstControles.Add(chklist);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroDecimal:
-                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             TextBox txtDecimal = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion,
+                                ID = "txt" + campo.NombreCampo,
                                 Text = campo.Descripcion,
                                 CssClass = "form-control"
                             };
                             txtDecimal.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtDecimal.Attributes["placeholder"] = campo.Descripcion;  ecl
-                            txtDecimal.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtDecimal.Attributes["type"] = "number";
                             txtDecimal.Attributes["step"] = "0.01";
+                            txtDecimal.Attributes["min"] = campo.ValorMinimo.ToString();
+                            txtDecimal.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtDecimal.Attributes["for"] = "DECIMAL";
                             createDiv.Controls.Add(txtDecimal);
                             _lstControles.Add(txtDecimal);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
-                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             TextBox txtEntero = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion,
-                                Text = campo.Descripcion,
+                                ID = "txt" + campo.NombreCampo,
+                                Text = campo.NombreCampo,
                                 CssClass = "form-control"
                             };
                             txtEntero.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtEntero.Attributes["placeholder"] = campo.Descripcion; ecl
                             txtEntero.Attributes["type"] = "number";
                             txtEntero.Attributes["step"] = "1";
-                            txtEntero.Attributes["min"] = "1";
+                            txtEntero.Attributes["min"] = campo.ValorMinimo.ToString();
                             txtEntero.Attributes["max"] = campo.ValorMaximo.ToString();
                             createDiv.Controls.Add(txtEntero);
                             _lstControles.Add(txtEntero);
                             break;
-
-
-
 
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
                             lbl.Attributes["for"] = "FECHA";
                             createDiv.Controls.Add(lbl);
                             TextBox txtFecha = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion,
+                                ID = "txt" + campo.NombreCampo,
                                 CssClass = "form-control"
                             };
                             CalendarExtender ceeFechaOpcion = new CalendarExtender
@@ -307,7 +301,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 TargetControlID = txtFecha.ID,
                                 Format = "dd/MM/yyyy"
                             };
-                            //txtFecha.Attributes["placeholder"] = campo.Descripcion; ecl
+                            txtFecha.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtFecha.Attributes["for"] = "FECHA";
                             txtFecha.Attributes["MaxLength"] = "10";
                             createDiv.Controls.Add(ceeFechaOpcion);
@@ -320,15 +314,16 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             createDiv.Controls.Add(lbl);
 
                             HtmlGenericControl createDivGrupoFechas = new HtmlGenericControl("DIV");
+                            createDivGrupoFechas.ID = "createDivGrupoFechas" + campo.NombreCampo;
                             createDivGrupoFechas.Attributes["class"] = "form-group";
 
-                            Label lblDe = new Label { Text = "De: ", CssClass = "" };
+                            Label lblDe = new Label { Text = "De:", CssClass = "" };
                             lblDe.Attributes["for"] = "FECHAINICIO";
                             createDivGrupoFechas.Controls.Add(lblDe);
 
                             TextBox txtFechaInicio = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio,
+                                ID = "txt" + campo.NombreCampo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio,
                                 CssClass = "form-control"
                             };
                             CalendarExtender ceeFechaInicio = new CalendarExtender
@@ -337,19 +332,17 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 TargetControlID = txtFechaInicio.ID,
                                 Format = "dd/MM/yyyy"
                             };
-                            //txtFechaInicio.Attributes["placeholder"] = campo.Descripcion; ecl
+                            txtFechaInicio.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtFechaInicio.Attributes["for"] = "FECHAINICIO";
                             txtFechaInicio.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaInicio);
                             createDivGrupoFechas.Controls.Add(txtFechaInicio);
-
-
-                            Label lblHasta = new Label { Text = "  A: ", CssClass = "" };
+                            Label lblHasta = new Label { Text = "De:", CssClass = "" };
                             lblHasta.Attributes["for"] = "FECHAFIN";
                             createDivGrupoFechas.Controls.Add(lblHasta);
                             TextBox txtFechaFin = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin,
+                                ID = "txt" + campo.NombreCampo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin,
                                 CssClass = "form-control"
                             };
                             CalendarExtender ceeFechaFin = new CalendarExtender
@@ -358,7 +351,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 TargetControlID = txtFechaFin.ID,
                                 Format = "dd/MM/yyyy"
                             };
-                            //txtFechaFin.Attributes["placeholder"] = campo.Descripcion; ecl
+                            txtFechaFin.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtFechaFin.Attributes["for"] = "FECHAFIN";
                             txtFechaFin.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaFin);
@@ -374,54 +367,94 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             break;
 
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:
-                            CheckBox chk = new CheckBox { ID = "chk" + campo.Descripcion, Text = campo.Descripcion, ViewStateMode = ViewStateMode.Inherit };
+                            CheckBox chk = new CheckBox { ID = "chk" + campo.NombreCampo, Text = campo.Descripcion, ViewStateMode = ViewStateMode.Inherit };
+                            chk.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             _lstControles.Add(chk);
                             createDiv.Controls.Add(chk);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ExpresiónRegular:
-                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             TextBox txtMascara = new TextBox
                             {
-                                ID = "txt" + campo.Descripcion,
+                                ID = "txt" + campo.NombreCampo,
                                 Text = campo.Descripcion,
-                                CssClass = "form-control"
+                                CssClass = "form-control",
+                                EnableViewState = true
                             };
-                            //txtMascara.Attributes["placeholder"] = campo.Descripcion;
                             txtMascara.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMascara.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtMascara.Attributes["for"] = "txt" + campo.Descripcion.Replace(" ", string.Empty);
                             MaskedEditExtender meeMascara = new MaskedEditExtender
                             {
-                                ID = "mee" + campo.Descripcion,
-                                TargetControlID = txtMascara.ID,
-                                InputDirection = MaskedEditInputDirection.LeftToRight,
+                                ID = "mee" + campo.NombreCampo,
                                 Mask = campo.MascaraDetalle,
-                                MaskType = MaskedEditType.Date,
-                                AcceptAMPM = false,
-                                AcceptNegative = MaskedEditShowSymbol.None,
+                                TargetControlID = txtMascara.ID,
+                                ClearMaskOnLostFocus = true,
+                                ClearTextOnInvalid = true,
                             };
-                            createDiv.Controls.Add(meeMascara);
                             createDiv.Controls.Add(txtMascara);
+                            createDiv.Controls.Add(meeMascara);
                             _lstControles.Add(txtMascara);
+                            _lstControles.Add(meeMascara);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
-                            lbl.Attributes["for"] = "fu" + campo.Descripcion;
+                            lbl.Attributes["for"] = "fu" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             AsyncFileUpload asyncFileUpload = new AsyncFileUpload
                             {
-                                ID = "fu" + campo.Descripcion,
+                                ID = "fu" + campo.NombreCampo,
                                 PersistFile = true,
                                 UploaderStyle = AsyncFileUploaderStyle.Traditional,
                                 OnClientUploadStarted = "ShowLanding",
                                 OnClientUploadComplete = "HideLanding"
-
                             };
-                            //Session[asyncFileUpload.ID] = string.Empty;
+                            asyncFileUpload.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             asyncFileUpload.Attributes["style"] = "margin-top: 25px";
                             asyncFileUpload.UploadedComplete += asyncFileUpload_UploadedComplete;
                             createDiv.Controls.Add(asyncFileUpload);
                             _lstControles.Add(asyncFileUpload);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
+                            createDiv.Controls.Add(lbl);
+                            TextBox txtMascaraTelefono = new TextBox
+                            {
+                                ID = "txt" + campo.NombreCampo,
+                                Text = campo.Descripcion,
+                                CssClass = "form-control",
+                                EnableViewState = true,
+
+                            };
+                            txtMascaraTelefono.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
+                            MaskedEditExtender meeMascaraTelefono = new MaskedEditExtender
+                            {
+                                ID = "mee" + campo.NombreCampo,
+                                Mask = campo.MascaraDetalle,
+                                TargetControlID = txtMascaraTelefono.ID,
+                                ClearMaskOnLostFocus = true,
+                                ClearTextOnInvalid = true,
+                            };
+
+                            createDiv.Controls.Add(txtMascaraTelefono);
+                            createDiv.Controls.Add(meeMascaraTelefono);
+                            _lstControles.Add(txtMascaraTelefono);
+                            _lstControles.Add(meeMascaraTelefono);
+                            break;
+
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            createDiv.Controls.Add(lbl);
+                            TextBox txtCorreo = new TextBox
+                            {
+                                ID = "txt" + campo.Descripcion,
+                                CssClass = "form-control",
+                            };
+                            txtCorreo.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
+                            txtCorreo.Attributes["MaxLength"] = campo.TipoCampoMascara.LongitudMaximaPermitida;
+                            txtCorreo.Attributes["type"] = "email";
+                            _lstControles.Add(txtCorreo);
+                            createDiv.Controls.Add(txtCorreo);
                             break;
                     }
 

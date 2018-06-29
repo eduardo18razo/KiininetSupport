@@ -36,7 +36,6 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/styles_movil.css" />
     <link rel="stylesheet" href="assets/css/divs.css" />
-    <link rel="stylesheet" href="assets/css/controls.css" />
     <link rel="stylesheet" href="assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="assets/css/elusive-icons.css" />
     <link rel="stylesheet" href="assets/css/modales_movil.css" />
@@ -52,29 +51,29 @@
 
 <body class="heigth100 bg-aqua">
 
-    <section class="legales-section auth-section">
+    <section class="legales-section">
         <div class="container">
             <div class="row">
-                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 xs-offset-0">
+                <div class="form-box col-md-8 col-sm-12 col-xs-12 col-md-offset-2 col-sm-offset-0 col-xs-offset-0">
                     <h1 class="form-box-heading2 text-center">
                         <span class="highlight">Políticas de privacidad</span></h1>
                     <div class="form-box-inner2">
 
                         <%--<img src="assets/images/logoBlanco.png" class="center" />--%>
-                        <div class="row text-justificado padding-bottom-10">
+                        <div class="row text-justificado">
                             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
                             <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
                         </div>
                         <br />
-                        <div class="form-group email">
+                        <div class="form-group">
                             <a class="btn btn-primary" href="Default.aspx">Acepto politicas</a>
                             <a class="btn btn-success" href="Default.aspx">No acepto</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="copyright2 center">
-                <img src="assets/images/logo_kinninet_blanco.png" class="center" /><br />
+            <div class="copyright2">
+                <img src="assets/images/logo_kinninet_blanco.png" /><br />
                 &copy; 2018
             </div>
         </div>

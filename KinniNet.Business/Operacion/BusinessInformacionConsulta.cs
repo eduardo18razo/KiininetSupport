@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using KiiniNet.Entities.Cat.Operacion;
+using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion;
+using KiiniNet.Entities.Reportes;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
 
@@ -137,7 +140,7 @@ namespace KinniNet.Core.Operacion
                 {
                     //if (!documentosDescarga.Any(a => a.Contains(doctoExist.Archivo) || (info.Id + a).Contains(doctoExist.Archivo)))
                     //{
-                        documentosEliminar.Add(doctoExist);
+                    documentosEliminar.Add(doctoExist);
                     //}
                 }
 
@@ -154,15 +157,19 @@ namespace KinniNet.Core.Operacion
                         });
                         archivosNuevos.Add(doctoNuevo);
                     }
+                    else
+                    {
+                        documentosEliminar.RemoveAll(r => r.Archivo == doctoNuevo);
+                    }
                 }
 
                 foreach (InformacionConsultaDocumentos documentos in documentosEliminar)
                 {
                     db.InformacionConsultaDocumentos.DeleteObject(documentos);
                 }
-                
-                
-                
+
+
+
                 db.SaveChanges();
                 foreach (InformacionConsultaDocumentos documentos in documentosEliminar)
                 {
@@ -238,9 +245,9 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public List<InformacionConsulta> ObtenerInformacionConsulta(string descripcion)
+        public List<HelperInformacionConsulta> ObtenerInformacionConsulta(string descripcion, Dictionary<string, DateTime> fechas)
         {
-            List<InformacionConsulta> result;
+            List<HelperInformacionConsulta> result = null;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
@@ -249,12 +256,42 @@ namespace KinniNet.Core.Operacion
                 IQueryable<InformacionConsulta> qry = db.InformacionConsulta;
                 descripcion = descripcion.Trim().ToLower();
                 qry = qry.Where(w => w.Descripcion.ToLower().Contains(descripcion));
-                result = qry.ToList();
-                foreach (InformacionConsulta consulta in result)
+                List<InformacionConsulta> info = qry.ToList();
+                if (qry.Any())
                 {
-                    db.LoadProperty(consulta, "TipoInfConsulta");
-                    db.LoadProperty(consulta, "UsuarioAlta");
+                    if (fechas != null)
+                    {
+                        var qryJoin = from q in qry
+                            join icr in db.InformacionConsultaRate on q.Id equals icr.IdInformacionConsulta
+                            select new {q, icr};
+                        DateTime fechaInicio = fechas.Single(s => s.Key == "inicio").Value;
+                        DateTime fechaFin = fechas.Single(s => s.Key == "fin").Value.AddDays(1);
+                        var infoJoin = qryJoin.ToList();
+                        infoJoin = infoJoin.Where(w => DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) >= DateTime.Parse(fechaInicio.ToString("dd/MM/yyyy"))
+                                    && DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) <= DateTime.Parse(fechaFin.ToString("dd/MM/yyyy"))).ToList();
+                        info = infoJoin.Select(s => s.q).Distinct().ToList();
+                    }
 
+                    result = new List<HelperInformacionConsulta>();
+                    foreach (InformacionConsulta consulta in info)
+                    {
+                        db.LoadProperty(consulta, "TipoInfConsulta");
+                        db.LoadProperty(consulta, "UsuarioAlta");
+                        var qryLike = from icr in db.InformacionConsultaRate
+                                      where icr.IdInformacionConsulta == consulta.Id
+                                      select icr;
+                        result.Add(new HelperInformacionConsulta
+                        {
+                            Id = consulta.Id,
+                            Titulo = consulta.Descripcion,
+                            Autor = consulta.UsuarioAlta.NombreCompleto,
+                            Creacion = consulta.FechaAlta,
+                            UltEdicion = consulta.FechaModificacion,
+                            MeGusta = qryLike.Count(c => c.MeGusta),
+                            NoMeGusta = qryLike.Count(c => c.NoMeGusta),
+                            Habilitado = consulta.Habilitado
+                        });
+                    }
                 }
             }
             catch (Exception ex)
@@ -408,6 +445,193 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
+        }
+
+        public ReporteInformacionConsulta ObtenerReporteInformacionConsulta(int idInformacionConsulta, Dictionary<string, DateTime> fechas, int tipoFecha)
+        {
+            ReporteInformacionConsulta result = null;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = new ReporteInformacionConsulta { IdInformacionConsulta = idInformacionConsulta };
+
+                var qry = from icr in db.InformacionConsultaRate
+                          where icr.IdInformacionConsulta == idInformacionConsulta
+                          select icr;
+
+                DataTable dtBarras = new DataTable("dt");
+                dtBarras.Columns.Add("Descripcion", typeof(string));
+
+                dtBarras.Rows.Add("Like");
+                dtBarras.Rows.Add("Dont Like");
+
+                if (fechas != null)
+                {
+                    DateTime fechaInicio = fechas.Single(s => s.Key == "inicio").Value;
+                    DateTime fechaFin = fechas.Single(s => s.Key == "fin").Value.AddDays(1);
+                    if (fechaInicio > fechaFin)
+                        throw new Exception("Fechas incorrectas");
+
+                    DateTime tmpFecha = (DateTime)fechaInicio;
+                    bool continua = true;
+                    while (continua)
+                    {
+                        switch (tipoFecha)
+                        {
+                            case 1:
+                                if (tmpFecha < fechaFin)
+                                {
+                                    dtBarras.Columns.Add(new DataColumn(tmpFecha.ToShortDateString(), typeof(int)));
+                                    tmpFecha = tmpFecha.AddDays(1);
+                                }
+                                else
+                                    continua = false;
+                                break;
+                            case 2:
+                                if (tmpFecha < fechaFin)
+                                {
+                                    if (!dtBarras.Columns.Contains("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + tmpFecha.Year.ToString()))
+                                        dtBarras.Columns.Add(new DataColumn("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + tmpFecha.Year.ToString(), typeof(int)));
+                                    tmpFecha = tmpFecha.AddDays(7);
+                                }
+                                else
+                                    continua = false;
+                                break;
+                            case 3:
+                                if (tmpFecha < fechaFin)
+                                {
+                                    if (!dtBarras.Columns.Contains(tmpFecha.Month.ToString()))
+                                        dtBarras.Columns.Add(new DataColumn(tmpFecha.Month.ToString(), typeof(int)));
+                                    tmpFecha = tmpFecha.AddMonths(1);
+                                }
+                                else
+                                    continua = false;
+                                break;
+                            case 4:
+                                if (tmpFecha < fechaFin)
+                                {
+                                    if (!dtBarras.Columns.Contains(tmpFecha.Year.ToString()))
+                                        dtBarras.Columns.Add(new DataColumn(tmpFecha.Year.ToString(), typeof(int)));
+                                    tmpFecha = tmpFecha.AddYears(1);
+                                }
+                                else
+                                    continua = false;
+                                break;
+                        }
+
+                    }
+
+                    qry = from icr in db.InformacionConsultaRate
+                          where icr.IdInformacionConsulta == idInformacionConsulta
+                          && icr.FechaModificacion >= fechaInicio
+                                && icr.FechaModificacion <= fechaFin
+                          select icr;
+                    var rate = qry.Distinct().ToList();
+
+                    switch (tipoFecha)
+                    {
+                        case 1:
+                            foreach (DataColumn column in dtBarras.Columns)
+                            {
+                                if (column.ColumnName != "Descripcion")
+                                {
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == column.ColumnName && w.MeGusta);
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == column.ColumnName && w.NoMeGusta);
+                                }
+                            }
+                            break;
+                        case 2:
+                            foreach (DataColumn column in dtBarras.Columns)
+                            {
+                                if (column.ColumnName != "Descripcion")
+                                {
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1]))
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1])));
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1]))
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1])));
+                                }
+                            }
+                            break;
+                        case 3:
+                            foreach (DataColumn column in dtBarras.Columns)
+                            {
+                                if (column.ColumnName != "Descripcion")
+                                {
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
+                                        && w.FechaModificacion.ToString("MM") == column.ColumnName.PadLeft(2, '0'));
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
+                                        && w.FechaModificacion.ToString("MM") == column.ColumnName.PadLeft(2, '0'));
+                                }
+                            }
+                            break;
+                        case 4:
+                            foreach (DataColumn column in dtBarras.Columns)
+                            {
+                                if (column.ColumnName != "Descripcion")
+                                {
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
+                                        && w.FechaModificacion.ToString("yyyy") == column.ColumnName.PadLeft(4, '0'));
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
+                                        && w.FechaModificacion.ToString("yyyy") == column.ColumnName.PadLeft(4, '0'));
+                                }
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    var rate = qry.Distinct().ToList();
+                    List<string> lstFechas = rate.OrderBy(o => o.FechaModificacion).Distinct().ToList().Select(s => s.FechaModificacion.ToString("dd/MM/yyyy")).Distinct().ToList();
+                    switch (tipoFecha)
+                    {
+                        case 1:
+                            foreach (string fecha in lstFechas)
+                            {
+                                dtBarras.Columns.Add(fecha, typeof(int));
+                            }
+                            break;
+                    }
+                    foreach (string fecha in lstFechas)
+                    {
+                        dtBarras.Rows[0][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.MeGusta);
+                        dtBarras.Rows[1][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.NoMeGusta);
+                    }
+                }
+                result.GraficoBarras = dtBarras;
+
+                DataTable dtPie = new DataTable("dtPie");
+                dtPie.Columns.Add("Descripcion", typeof(string));
+                dtPie.Columns.Add("Total", typeof(int));
+
+                dtPie.Rows.Add("Like");
+                dtPie.Rows.Add("Dont Like");
+                int totalLike = 0;
+                int totaldontLike = 0;
+                foreach (DataColumn column in dtBarras.Columns)
+                {
+                    if (column.ColumnName != "Descripcion")
+                    {
+                        totalLike += (int)dtBarras.Rows[0][column.ColumnName];
+                        totaldontLike += (int)dtBarras.Rows[1][column.ColumnName];
+                    }
+                }
+
+                dtPie.Rows[0][1] = totalLike;
+                dtPie.Rows[1][1] = totaldontLike;
+                result.GraficoPie = dtPie;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
         }
 
     }

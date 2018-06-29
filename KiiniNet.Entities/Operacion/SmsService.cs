@@ -1,5 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using KiiniNet.Entities.Cat.Sistema;
+using KiiniNet.Entities.Operacion.Tickets;
 using KiiniNet.Entities.Operacion.Usuarios;
 
 namespace KiiniNet.Entities.Operacion
@@ -25,5 +27,7 @@ namespace KiiniNet.Entities.Operacion
         public virtual TipoLink TipoLink { get; set; }
         [DataMember]
         public virtual Usuario Usuario { get; set; }
+        [DataMember]
+        public virtual List<TicketNotificacion> TicketNotificacion { get; set; }
     }
 }

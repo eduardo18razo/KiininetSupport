@@ -77,11 +77,3 @@ C:\Users\Janeth\Documents\git\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
 C:\Users\Janeth\Documents\git\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
 C:\Users\Janeth\Documents\git\KinniNet.Data\obj\Release\KinniNet.Data.dll
 C:\Users\Janeth\Documents\git\KinniNet.Data\obj\Release\KinniNet.Data.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Release\KinniNet.Data.dll.config
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Release\KinniNet.Data.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Release\KinniNet.Data.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Release\KiiniNet.Entities.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\bin\Release\KiiniNet.Entities.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\obj\Release\KinniNet.Data.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\obj\Release\KinniNet.Data.dll
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KinniNet.Data\obj\Release\KinniNet.Data.pdb

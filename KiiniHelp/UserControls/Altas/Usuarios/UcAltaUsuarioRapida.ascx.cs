@@ -138,7 +138,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 if (!capturoTelefono)
                     txtTelefonoCelularRapido.Text = "";
                 //sb.Add("Debe capturar un telefono.");
-                if (!BusinessCorreo.IsValid(txtCorreoRapido.Text.Trim()) || txtCorreoRapido.Text.Trim().Contains(" "))
+                if (!BusinessCorreo.IsValidEmail(txtCorreoRapido.Text.Trim()) || txtCorreoRapido.Text.Trim().Contains(" "))
                 {
                     throw new Exception(string.Format("Correo {0} con formato invalido", txtCorreoRapido.Text.Trim()));
                 }

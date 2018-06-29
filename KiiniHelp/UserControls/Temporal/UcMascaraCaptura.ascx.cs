@@ -155,13 +155,350 @@ namespace KiiniHelp.UserControls.Temporal
             get { return hfRandomGenerado.Value; }
         }
 
+        public void ValidaMascaraCaptura()
+        {
+            try
+            {
+                Mascara mascara = (Mascara)Session["MascaraActiva"];
+                mascara = mascara ?? _servicioMascaras.ObtenerMascaraCaptura(IdMascara);
+                foreach (CampoMascara campo in mascara.CampoMascara)
+                {
+                    string nombreControl;
+                    switch (campo.IdTipoCampoMascara)
+                    {
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtSimple = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtSimple != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtSimple.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        if (txtSimple.Text.Trim().Length < campo.LongitudMinima)
+                                            throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                        if (txtSimple.Text.Trim().Length > campo.LongitudMaxima)
+                                            throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                    }
+                                if (!campo.Requerido && txtSimple.Text.Trim() != string.Empty)
+                                {
+                                    if (txtSimple.Text.Trim().Length < campo.LongitudMinima)
+                                        throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                    if (txtSimple.Text.Trim().Length > campo.LongitudMaxima)
+                                        throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                }
+
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtMultilinea = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtMultilinea != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtMultilinea.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        if (txtMultilinea.Text.Trim().Length < campo.LongitudMinima)
+                                            throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                        if (txtMultilinea.Text.Trim().Length > campo.LongitudMaxima)
+                                            throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                    }
+                                if (!campo.Requerido && txtMultilinea.Text.Trim() != string.Empty)
+                                {
+                                    if (txtMultilinea.Text.Trim().Length < campo.LongitudMinima)
+                                        throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                    if (txtMultilinea.Text.Trim().Length > campo.LongitudMaxima)
+                                        throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                }
+
+
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
+                            nombreControl = "lstRadio" + campo.NombreCampo;
+                            RadioButtonList rbtnList = (RadioButtonList)divControles.FindControl(nombreControl);
+                            if (rbtnList != null)
+                            {
+                                if (campo.Requerido)
+                                    if (rbtnList.SelectedIndex < (BusinessVariables.ComboBoxCatalogo.IndexSeleccione))
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
+                            nombreControl = "ddl" + campo.NombreCampo;
+                            DropDownList ddl = (DropDownList)divControles.FindControl(nombreControl);
+                            if (ddl != null)
+                            {
+                                if (campo.Requerido)
+                                    if (ddl.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
+                            nombreControl = "chklist" + campo.NombreCampo;
+                            CheckBoxList chklist = (CheckBoxList)divControles.FindControl(nombreControl);
+                            if (chklist != null)
+                            {
+                                if (campo.Requerido)
+                                    if (!chklist.Items.Cast<ListItem>().Any(item => item.Selected))
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtEntero = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtEntero != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtEntero.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        if (int.Parse(txtEntero.Text.Trim()) < campo.ValorMinimo)
+                                            throw new Exception(string.Format("Campo {0} debe se mayor o igual a {1}", campo.Descripcion, campo.ValorMinimo));
+                                        if (int.Parse(txtEntero.Text.Trim()) > campo.ValorMaximo)
+                                            throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
+                                    }
+                                if (!campo.Requerido && txtEntero.Text.Trim() != string.Empty)
+                                {
+                                    if (int.Parse(txtEntero.Text.Trim()) < campo.ValorMinimo)
+                                        throw new Exception(string.Format("Campo {0} debe se mayor o igual a {1}", campo.Descripcion, campo.ValorMinimo));
+                                    if (int.Parse(txtEntero.Text.Trim()) > campo.ValorMaximo)
+                                        throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
+                                }
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroDecimal:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtDecimal = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtDecimal != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtDecimal.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        if (decimal.Parse(txtDecimal.Text.Trim().Replace('_', '0')) < campo.ValorMinimo)
+                                            throw new Exception(string.Format("Campo {0} debe se mayor o igual a {1}", campo.Descripcion, campo.ValorMinimo));
+                                        if (decimal.Parse(txtDecimal.Text.Trim().Replace('_', '0')) > campo.ValorMaximo)
+                                            throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
+                                    }
+                                if (!campo.Requerido && txtDecimal.Text.Trim() != string.Empty)
+                                {
+                                    if (decimal.Parse(txtDecimal.Text.Trim().Replace('_', '0')) < campo.ValorMinimo)
+                                        throw new Exception(string.Format("Campo {0} debe se mayor o igual a {1}", campo.Descripcion, campo.ValorMinimo));
+                                    if (decimal.Parse(txtDecimal.Text.Trim().Replace('_', '0')) > campo.ValorMaximo)
+                                        throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
+                                }
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:
+
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.SelecciónCascada:
+
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtFecha = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtFecha != null)
+                            {
+                                try
+                                {
+                                    if (txtFecha.Text.Trim() != String.Empty)
+                                    {
+                                        var d = DateTime.Parse(txtFecha.Text.Trim());
+                                    }
+                                }
+                                catch
+                                {
+                                    throw new Exception(string.Format("Campo {0} contiene una fecha no valida", campo.Descripcion));
+                                }
+                                if (campo.Requerido)
+                                    if (txtFecha.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtFechaInicio = (TextBox)divControles.FindControl(nombreControl + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio);
+                            TextBox txtFechaFin = (TextBox)divControles.FindControl(nombreControl + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin);
+                            if (txtFechaInicio != null && txtFechaFin != null)
+                            {
+                                if (campo.Requerido)
+                                {
+                                    if (txtFechaInicio.Text.Trim() == String.Empty || txtFechaFin.Text.Trim() == string.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    try
+                                    {
+                                        var dI = DateTime.Parse(txtFechaInicio.Text.Trim());
+                                        var dF = DateTime.Parse(txtFechaFin.Text.Trim());
+                                        if (dI > dF)
+                                            throw new Exception(
+                                                string.Format("Campo {0} no es un rango de fechas valido",
+                                                    campo.Descripcion));
+                                    }
+                                    catch
+                                    {
+                                        throw new Exception(string.Format("Campo {0} contiene una fecha no valida",
+                                            campo.Descripcion));
+                                    }
+                                }
+                                else
+                                {
+                                    if (txtFechaInicio.Text.Trim() != String.Empty && txtFechaFin.Text.Trim() != string.Empty)
+                                    {
+                                        try
+                                        {
+                                            var dI = DateTime.Parse(txtFechaInicio.Text.Trim());
+                                            var dF = DateTime.Parse(txtFechaFin.Text.Trim());
+                                            if (dI > dF)
+                                                throw new Exception(string.Format("Campo {0} no es un rango de fechas valido", campo.Descripcion));
+                                        }
+                                        catch
+                                        {
+                                            throw new Exception(string.Format("Campo {0} contiene una fecha no valida", campo.Descripcion));
+                                        }
+                                    }
+                                    else if (txtFechaInicio.Text.Trim() == String.Empty && txtFechaFin.Text.Trim() != string.Empty)
+                                        throw new Exception(string.Format("Campo {0} debe capturar un rango valido", campo.Descripcion));
+                                    else if (txtFechaInicio.Text.Trim() != String.Empty && txtFechaFin.Text.Trim() == string.Empty)
+                                        throw new Exception(string.Format("Campo {0} debe capturar un rango valido", campo.Descripcion));
+                                }
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ExpresiónRegular:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtMascara = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtMascara != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtMascara.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        if (txtMascara.Text.Trim().Length < campo.LongitudMinima)
+                                            throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                        if (txtMascara.Text.Trim().Length > campo.LongitudMaxima)
+                                            throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                    }
+                                if (!campo.Requerido && txtMascara.Text.Trim() != string.Empty)
+                                {
+                                    if (txtMascara.Text.Trim().Length < campo.LongitudMinima)
+                                        throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                    if (txtMascara.Text.Trim().Length > campo.LongitudMaxima)
+                                        throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                }
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
+                            if (campo.Requerido)
+                            {
+                                if (Session["Files"] != null)
+                                {
+                                    if (!((List<string>)Session["Files"]).Any())
+                                    {
+                                        throw new Exception(string.Format("Campo {0} debe seleccionar un archivo", campo.Descripcion));
+                                    }
+                                }
+                                else
+                                    throw new Exception(string.Format("Campo {0} debe seleccionar un archivo", campo.Descripcion));
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtTelefono = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtTelefono != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtTelefono.Text.Trim() == String.Empty || txtTelefono.Text.Trim() == campo.MascaraDetalle)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+
+                                        if (txtTelefono.Text.Trim().Length < campo.LongitudMinima)
+                                            throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                        if (txtTelefono.Text.Trim().Length > campo.LongitudMaxima)
+                                            throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                    }
+                                if (!campo.Requerido && txtTelefono.Text.Trim() != string.Empty)
+                                {
+                                    if (txtTelefono.Text.Trim().Length < campo.LongitudMinima)
+                                        throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                    if (txtTelefono.Text.Trim().Length > campo.LongitudMaxima)
+                                        throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                }
+                            }
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            TextBox txtCorreo = (TextBox)divControles.FindControl(nombreControl);
+                            if (txtCorreo != null)
+                            {
+                                if (campo.Requerido)
+                                    if (txtCorreo.Text.Trim() == String.Empty)
+                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
+                                    else
+                                    {
+                                        if (txtCorreo.Text.Trim().Length < campo.LongitudMinima)
+                                            throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                        if (txtCorreo.Text.Trim().Length > campo.LongitudMaxima)
+                                            throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                    }
+                                if (!campo.Requerido && txtCorreo.Text.Trim() != string.Empty)
+                                {
+                                    if (txtCorreo.Text.Trim().Length < campo.LongitudMinima)
+                                        throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
+                                    if (txtCorreo.Text.Trim().Length > campo.LongitudMaxima)
+                                        throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
+                                }
+                                if (!BusinessCorreo.IsValidEmail(txtCorreo.Text.Trim()) || txtCorreo.Text.Trim().Contains(" "))
+                                {
+                                    throw new Exception(string.Format("Correo {0} con formato invalido", campo.Descripcion));
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void ConfirmaArchivos(int idTicket)
+        {
+            try
+            {
+
+                for (int i = 0; i < ((List<string>)Session["Files"]).Count; i++)
+                {
+                    File.Move(BusinessVariables.Directorios.RepositorioTemporalMascara + ((List<string>)Session["Files"])[i], BusinessVariables.Directorios.RepositorioTemporalMascara + ((List<string>)Session["Files"])[i].Replace("ticketid", idTicket.ToString()));
+                    ((List<string>)Session["Files"])[i] = ((List<string>)Session["Files"])[i].Replace("ticketid", idTicket.ToString());
+                }
+                if (Session["Files"] != null)
+                {
+                    BusinessFile.MoverTemporales(BusinessVariables.Directorios.RepositorioTemporalMascara, BusinessVariables.Directorios.RepositorioMascara, (List<string>)Session["Files"]);
+                    Session["Files"] = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public List<HelperCampoMascaraCaptura> ObtenerCapturaMascara()
         {
             List<HelperCampoMascaraCaptura> lstCamposCapturados;
             try
             {
                 ValidaMascaraCaptura();
-                Mascara mascara = (Mascara)Session["PreviewDataFormulario"];
+                Mascara mascara = (Mascara)Session["MascaraActiva"];
                 string nombreControl = null;
                 lstCamposCapturados = new List<HelperCampoMascaraCaptura>();
                 foreach (CampoMascara campo in mascara.CampoMascara)
@@ -215,6 +552,12 @@ namespace KiiniHelp.UserControls.Temporal
                             nombreControl = "fu" + campo.NombreCampo;
                             campoTexto = false;
                             break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            nombreControl = "txt" + campo.NombreCampo;
+                            break;
                     }
 
                     if (campoTexto && nombreControl != null)
@@ -230,7 +573,7 @@ namespace KiiniHelp.UserControls.Temporal
                                 campoCapturado = new HelperCampoMascaraCaptura
                                 {
                                     NombreCampo = campo.NombreCampo,
-                                    Valor = Convert.ToDateTime(txtFechaInicio.Text.Trim().ToUpper()).ToString("yyyy-MM-dd") + "|" + Convert.ToDateTime(txtFechaFin.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
+                                    Valor = txtFechaFin.Text.Trim() == string.Empty ? "" : Convert.ToDateTime(txtFechaInicio.Text.Trim().ToUpper()).ToString("yyyy-MM-dd") + "|" + Convert.ToDateTime(txtFechaFin.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
                                 };
                                 lstCamposCapturados.Add(campoCapturado);
                             }
@@ -241,7 +584,7 @@ namespace KiiniHelp.UserControls.Temporal
                                         campoCapturado = new HelperCampoMascaraCaptura
                                         {
                                             NombreCampo = campo.NombreCampo,
-                                            Valor = Convert.ToDateTime(txt.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
+                                            Valor = txt.Text.Trim() == string.Empty ? string.Empty : Convert.ToDateTime(txt.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
                                         };
                                         lstCamposCapturados.Add(campoCapturado);
                                         break;
@@ -252,7 +595,7 @@ namespace KiiniHelp.UserControls.Temporal
                                         campoCapturado = new HelperCampoMascaraCaptura
                                         {
                                             NombreCampo = campo.NombreCampo,
-                                            Valor = txt.Text.Trim().Replace('_', '0')
+                                            Valor = campo.Requerido ? txt.Text.Trim().Replace('_', '0') : txt.Text.Trim() == string.Empty ? "0" : txt.Text.Trim().Replace('_', '0')
                                         };
                                         lstCamposCapturados.Add(campoCapturado);
                                         break;
@@ -261,7 +604,7 @@ namespace KiiniHelp.UserControls.Temporal
                                         campoCapturado = new HelperCampoMascaraCaptura
                                         {
                                             NombreCampo = campo.NombreCampo,
-                                            Valor = txt.Text.Trim().ToUpper()
+                                            Valor = campo.Requerido ? txt.Text.Trim() : txt.Text.Trim() == string.Empty ? "0" : txt.Text.Trim()
                                         };
                                         lstCamposCapturados.Add(campoCapturado);
                                         break;
@@ -309,6 +652,15 @@ namespace KiiniHelp.UserControls.Temporal
                                         {
                                             NombreCampo = campo.NombreCampo,
                                             Valor = valores
+                                        };
+                                        lstCamposCapturados.Add(campoCapturado);
+                                    }
+                                    else
+                                    {
+                                        HelperCampoMascaraCaptura campoCapturado = new HelperCampoMascaraCaptura
+                                        {
+                                            NombreCampo = campo.NombreCampo,
+                                            Valor = string.Empty
                                         };
                                         lstCamposCapturados.Add(campoCapturado);
                                     }
@@ -361,12 +713,10 @@ namespace KiiniHelp.UserControls.Temporal
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
-                    //createDiv.InnerHtml = campo.Descripcion;
                     Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
-
                             lbl.Attributes["for"] = "txt" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             TextBox txtSimple = new TextBox
@@ -377,7 +727,6 @@ namespace KiiniHelp.UserControls.Temporal
                             };
                             txtSimple.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtSimple.Attributes["MaxLength"] = campo.TipoCampoMascara.LongitudMaxima.ToString();
-                            //txtSimple.Attributes["placeholder"] = campo.Descripcion; ecl
                             _lstControles.Add(txtSimple);
                             createDiv.Controls.Add(txtSimple);
                             break;
@@ -393,7 +742,6 @@ namespace KiiniHelp.UserControls.Temporal
                             };
                             txtMultilinea.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMultilinea.Attributes["MaxLength"] = campo.LongitudMaxima.ToString();
-                            //txtMultilinea.Attributes["placeholder"] = campo.Descripcion; ecl
                             _lstControles.Add(txtMultilinea);
                             createDiv.Controls.Add(txtMultilinea);
                             break;
@@ -428,8 +776,6 @@ namespace KiiniHelp.UserControls.Temporal
                             _lstControles.Add(lstRadio);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
-                            divControles.Controls.Add(new Literal { Text = "<hr/>" });
-
                             lbl.Attributes["for"] = "ddl" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             DropDownList ddlCatalogo = new DropDownList
@@ -498,10 +844,10 @@ namespace KiiniHelp.UserControls.Temporal
                                 CssClass = "form-control"
                             };
                             txtDecimal.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtDecimal.Attributes["placeholder"] = campo.Descripcion; ecl
-                            txtDecimal.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtDecimal.Attributes["type"] = "number";
                             txtDecimal.Attributes["step"] = "0.01";
+                            txtDecimal.Attributes["min"] = campo.ValorMinimo.ToString();
+                            txtDecimal.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtDecimal.Attributes["for"] = "DECIMAL";
                             createDiv.Controls.Add(txtDecimal);
                             _lstControles.Add(txtDecimal);
@@ -516,14 +862,14 @@ namespace KiiniHelp.UserControls.Temporal
                                 CssClass = "form-control"
                             };
                             txtEntero.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtEntero.Attributes["placeholder"] = campo.NombreCampo; ecl
                             txtEntero.Attributes["type"] = "number";
                             txtEntero.Attributes["step"] = "1";
-                            txtEntero.Attributes["min"] = "1";
+                            txtEntero.Attributes["min"] = campo.ValorMinimo.ToString();
                             txtEntero.Attributes["max"] = campo.ValorMaximo.ToString();
                             createDiv.Controls.Add(txtEntero);
                             _lstControles.Add(txtEntero);
                             break;
+
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
                             lbl.Attributes["for"] = "FECHA";
                             createDiv.Controls.Add(lbl);
@@ -539,19 +885,19 @@ namespace KiiniHelp.UserControls.Temporal
                                 Format = "dd/MM/yyyy"
                             };
                             txtFecha.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFecha.Attributes["placeholder"] = campo.Descripcion;  ecl
                             txtFecha.Attributes["for"] = "FECHA";
                             txtFecha.Attributes["MaxLength"] = "10";
                             createDiv.Controls.Add(ceeFechaOpcion);
                             createDiv.Controls.Add(txtFecha);
                             _lstControles.Add(txtFecha);
                             break;
+
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango:
                             lbl.Attributes["for"] = "FECHAINICIO";
                             createDiv.Controls.Add(lbl);
 
                             HtmlGenericControl createDivGrupoFechas = new HtmlGenericControl("DIV");
-                            createDivGrupoFechas.ID = "createDivGrupoFechas";
+                            createDivGrupoFechas.ID = "createDivGrupoFechas" + campo.NombreCampo;
                             createDivGrupoFechas.Attributes["class"] = "form-group";
 
                             Label lblDe = new Label { Text = "De:", CssClass = "" };
@@ -564,19 +910,16 @@ namespace KiiniHelp.UserControls.Temporal
                                 CssClass = "form-control"
                             };
                             CalendarExtender ceeFechaInicio = new CalendarExtender
-                           {
-                               ID = "cee" + campo.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio,
-                               TargetControlID = txtFechaInicio.ID,
-                               Format = "dd/MM/yyyy"
-                           };
+                            {
+                                ID = "cee" + campo.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio,
+                                TargetControlID = txtFechaInicio.ID,
+                                Format = "dd/MM/yyyy"
+                            };
                             txtFechaInicio.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFechaInicio.Attributes["placeholder"] = campo.Descripcion; ecl
                             txtFechaInicio.Attributes["for"] = "FECHAINICIO";
                             txtFechaInicio.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaInicio);
                             createDivGrupoFechas.Controls.Add(txtFechaInicio);
-
-
                             Label lblHasta = new Label { Text = "De:", CssClass = "" };
                             lblHasta.Attributes["for"] = "FECHAFIN";
                             createDivGrupoFechas.Controls.Add(lblHasta);
@@ -592,14 +935,12 @@ namespace KiiniHelp.UserControls.Temporal
                                 Format = "dd/MM/yyyy"
                             };
                             txtFechaFin.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
-                            //txtFechaFin.Attributes["placeholder"] = campo.Descripcion; ecl
                             txtFechaFin.Attributes["for"] = "FECHAFIN";
                             txtFechaFin.Attributes["MaxLength"] = "10";
                             createDivGrupoFechas.Controls.Add(ceeFechaFin);
                             createDivGrupoFechas.Controls.Add(txtFechaFin);
 
                             HtmlGenericControl createDivFormFechas = new HtmlGenericControl("DIV");
-                            createDivFormFechas.ID = "createDivFormFechas";
                             createDivFormFechas.Attributes["class"] = "form-inline";
                             createDivFormFechas.Controls.Add(createDivGrupoFechas);
                             createDiv.Controls.Add(createDivFormFechas);
@@ -608,11 +949,9 @@ namespace KiiniHelp.UserControls.Temporal
                             _lstControles.Add(txtFechaFin);
                             break;
 
-
-
-
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:
                             CheckBox chk = new CheckBox { ID = "chk" + campo.NombreCampo, Text = campo.Descripcion, ViewStateMode = ViewStateMode.Inherit };
+                            chk.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             _lstControles.Add(chk);
                             createDiv.Controls.Add(chk);
                             break;
@@ -623,28 +962,26 @@ namespace KiiniHelp.UserControls.Temporal
                             {
                                 ID = "txt" + campo.NombreCampo,
                                 Text = campo.Descripcion,
-                                CssClass = "form-control"
+                                CssClass = "form-control",
+                                EnableViewState = true
                             };
-                            //txtMascara.Attributes["placeholder"] = campo.Descripcion;
                             txtMascara.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             txtMascara.Attributes["max"] = campo.ValorMaximo.ToString();
                             txtMascara.Attributes["for"] = "txt" + campo.Descripcion.Replace(" ", string.Empty);
                             MaskedEditExtender meeMascara = new MaskedEditExtender
                             {
                                 ID = "mee" + campo.NombreCampo,
-                                TargetControlID = txtMascara.ID,
-                                InputDirection = MaskedEditInputDirection.LeftToRight,
                                 Mask = campo.MascaraDetalle,
-                                MaskType = MaskedEditType.Date,
-                                AcceptAMPM = false,
-                                AcceptNegative = MaskedEditShowSymbol.None,
+                                TargetControlID = txtMascara.ID,
+                                ClearMaskOnLostFocus = true,
+                                ClearTextOnInvalid = true,
                             };
-                            createDiv.Controls.Add(meeMascara);
                             createDiv.Controls.Add(txtMascara);
+                            createDiv.Controls.Add(meeMascara);
                             _lstControles.Add(txtMascara);
+                            _lstControles.Add(meeMascara);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
-                            divControles.Controls.Add(hr);
                             lbl.Attributes["for"] = "fu" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             AsyncFileUpload asyncFileUpload = new AsyncFileUpload
@@ -654,13 +991,53 @@ namespace KiiniHelp.UserControls.Temporal
                                 UploaderStyle = AsyncFileUploaderStyle.Traditional,
                                 OnClientUploadStarted = "ShowLanding",
                                 OnClientUploadComplete = "HideLanding"
-
                             };
-                            //Session[asyncFileUpload.ID] = string.Empty;
+                            asyncFileUpload.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             asyncFileUpload.Attributes["style"] = "margin-top: 25px";
                             asyncFileUpload.UploadedComplete += asyncFileUpload_UploadedComplete;
                             createDiv.Controls.Add(asyncFileUpload);
                             _lstControles.Add(asyncFileUpload);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            lbl.Attributes["for"] = "txt" + campo.NombreCampo;
+                            createDiv.Controls.Add(lbl);
+                            TextBox txtMascaraTelefono = new TextBox
+                            {
+                                ID = "txt" + campo.NombreCampo,
+                                Text = campo.Descripcion,
+                                CssClass = "form-control",
+                                EnableViewState = true,
+
+                            };
+                            txtMascaraTelefono.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
+                            MaskedEditExtender meeMascaraTelefono = new MaskedEditExtender
+                            {
+                                ID = "mee" + campo.NombreCampo,
+                                Mask = campo.MascaraDetalle,
+                                TargetControlID = txtMascaraTelefono.ID,
+                                ClearMaskOnLostFocus = true,
+                                ClearTextOnInvalid = true,
+                            };
+
+                            createDiv.Controls.Add(txtMascaraTelefono);
+                            createDiv.Controls.Add(meeMascaraTelefono);
+                            _lstControles.Add(txtMascaraTelefono);
+                            _lstControles.Add(meeMascaraTelefono);
+                            break;
+
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            lbl.Attributes["for"] = "txt" + campo.Descripcion;
+                            createDiv.Controls.Add(lbl);
+                            TextBox txtCorreo = new TextBox
+                            {
+                                ID = "txt" + campo.Descripcion,
+                                CssClass = "form-control",
+                            };
+                            txtCorreo.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
+                            txtCorreo.Attributes["MaxLength"] = campo.TipoCampoMascara.LongitudMaximaPermitida;
+                            txtCorreo.Attributes["type"] = "email";
+                            _lstControles.Add(txtCorreo);
+                            createDiv.Controls.Add(txtCorreo);
                             break;
                     }
 
@@ -674,6 +1051,28 @@ namespace KiiniHelp.UserControls.Temporal
             }
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Alerta = new List<string>();
+                if (!IsPostBack)
+                {
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+
+        }
         void asyncFileUpload_UploadedComplete(object sender, AsyncFileUploadEventArgs e)
         {
             try
@@ -703,239 +1102,6 @@ namespace KiiniHelp.UserControls.Temporal
                 Alerta = _lstError;
             }
         }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                Alerta = new List<string>();
-                if (!IsPostBack)
-                {
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-
-        }
-
-        public void ValidaMascaraCaptura()
-        {
-            try
-            {
-                Mascara mascara = (Mascara)Session["PreviewDataFormulario"];
-                foreach (CampoMascara campo in mascara.CampoMascara)
-                {
-                    string nombreControl;
-                    switch (campo.IdTipoCampoMascara)
-                    {
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
-                            nombreControl = "txt" + campo.NombreCampo;
-                            TextBox txtSimple = (TextBox)divControles.FindControl(nombreControl);
-                            if (txtSimple != null)
-                            {
-                                if (campo.Requerido)
-                                    if (txtSimple.Text.Trim() == String.Empty)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                if (txtSimple.Text.Trim().Length < campo.LongitudMinima)
-                                    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
-                                if (txtSimple.Text.Trim().Length > campo.LongitudMaxima)
-                                    throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
-
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
-                            nombreControl = "txt" + campo.NombreCampo;
-                            TextBox txtMultilinea = (TextBox)divControles.FindControl(nombreControl);
-                            if (txtMultilinea != null)
-                            {
-                                if (campo.Requerido)
-                                    if (txtMultilinea.Text.Trim() == String.Empty)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                if (txtMultilinea.Text.Trim().Length < campo.LongitudMinima)
-                                    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
-                                if (txtMultilinea.Text.Trim().Length > campo.LongitudMaxima)
-                                    throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
-
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
-                            nombreControl = "lstRadio" + campo.NombreCampo;
-                            RadioButtonList rbtnList = (RadioButtonList)divControles.FindControl(nombreControl);
-                            if (rbtnList != null)
-                            {
-                                if (campo.Requerido)
-                                    if (rbtnList.SelectedIndex < (BusinessVariables.ComboBoxCatalogo.IndexSeleccione))
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
-                            nombreControl = "ddl" + campo.NombreCampo;
-                            DropDownList ddl = (DropDownList)divControles.FindControl(nombreControl);
-                            if (ddl != null)
-                            {
-                                if (campo.Requerido)
-                                    if (ddl.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
-                            nombreControl = "chklist" + campo.NombreCampo;
-                            CheckBoxList chklist = (CheckBoxList)divControles.FindControl(nombreControl);
-                            if (chklist != null)
-                            {
-                                if (campo.Requerido)
-                                    if (!chklist.Items.Cast<ListItem>().Any(item => item.Selected))
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
-                            nombreControl = "txt" + campo.NombreCampo;
-                            TextBox txtEntero = (TextBox)divControles.FindControl(nombreControl);
-                            if (txtEntero != null)
-                            {
-                                if (campo.Requerido)
-                                    if (txtEntero.Text.Trim() == String.Empty)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                //TODO: AGREGAR VALOR MINIMO A ESQUEMA
-                                //if (txtEntero.Text.Trim().Length < campo.LongitudMinima)
-                                //    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
-                                if (int.Parse(txtEntero.Text.Trim()) > campo.ValorMaximo)
-                                    throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
-
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroDecimal:
-                            nombreControl = "txt" + campo.NombreCampo;
-                            TextBox txtDecimal = (TextBox)divControles.FindControl(nombreControl);
-                            if (txtDecimal != null)
-                            {
-                                if (campo.Requerido)
-                                    if (txtDecimal.Text.Trim() == String.Empty)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                //TODO: AGREGAR VALOR MINIMO A ESQUEMA
-                                //if (decimal.Parse(txtDecimal.Text.Trim()) < campo.LongitudMinima)
-                                //    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
-                                if (decimal.Parse(txtDecimal.Text.Trim().Replace('_', '0')) > campo.ValorMaximo)
-                                    throw new Exception(string.Format("Campo {0} debe se menor o igual a {1}", campo.Descripcion, campo.ValorMaximo));
-
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:
-
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.SelecciónCascada:
-
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
-                            nombreControl = "txt" + campo.NombreCampo;
-                            TextBox txtFecha = (TextBox)divControles.FindControl(nombreControl);
-                            if (txtFecha != null)
-                            {
-                                try
-                                {
-                                    var d = DateTime.Parse(txtFecha.Text.Trim());
-                                }
-                                catch
-                                {
-                                    throw new Exception(string.Format("Campo {0} contiene una fecha no valida", campo.Descripcion));
-                                }
-                                if (campo.Requerido)
-                                    if (txtFecha.Text.Trim() == String.Empty)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango:
-                            nombreControl = "txt" + campo.NombreCampo;
-                            TextBox txtFechaInicio = (TextBox)divControles.FindControl(nombreControl + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio);
-                            TextBox txtFechaFin = (TextBox)divControles.FindControl(nombreControl + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin);
-                            if (txtFechaInicio != null && txtFechaFin != null)
-                            {
-                                if (campo.Requerido)
-                                {
-                                    if (txtFechaInicio.Text.Trim() == String.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                    try
-                                    {
-                                        var dI = DateTime.Parse(txtFechaInicio.Text.Trim());
-                                        var dF = DateTime.Parse(txtFechaFin.Text.Trim());
-                                        if (dI > dF)
-                                            throw new Exception(string.Format("Campo {0} no es un rango de fechas valido", campo.Descripcion));
-                                    }
-                                    catch
-                                    {
-                                        throw new Exception(string.Format("Campo {0} contiene una fecha no valida", campo.Descripcion));
-                                    }
-                                }
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ExpresiónRegular:
-                            nombreControl = "txt" + campo.NombreCampo;
-                            TextBox txtMascara = (TextBox)divControles.FindControl(nombreControl);
-                            if (txtMascara != null)
-                            {
-                                if (campo.Requerido)
-                                    if (txtMascara.Text.Trim() == String.Empty)
-                                        throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
-                                if (txtMascara.Text.Trim().Length < campo.LongitudMinima)
-                                    throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
-                                if (txtMascara.Text.Trim().Length > campo.LongitudMaxima)
-                                    throw new Exception(string.Format("Campo {0} debe no puede tener mas de {1} caracteres", campo.Descripcion, campo.LongitudMaxima));
-
-                            }
-                            break;
-                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
-                            if (campo.Requerido)
-                            {
-                                if (Session["Files"] != null)
-                                {
-                                    if (!((List<string>)Session["Files"]).Any())
-                                    {
-                                        throw new Exception(string.Format("Campo {0} debe seleccionar un archivo", campo.Descripcion));
-                                    }
-                                }
-                                else
-                                    throw new Exception(string.Format("Campo {0} debe seleccionar un archivo", campo.Descripcion));
-                            }
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public void ConfirmaArchivos(int idTicket)
-        {
-            try
-            {
-
-                for (int i = 0; i < ((List<string>)Session["Files"]).Count; i++)
-                {
-                    File.Move(BusinessVariables.Directorios.RepositorioTemporalMascara + ((List<string>)Session["Files"])[i], BusinessVariables.Directorios.RepositorioTemporalMascara + ((List<string>)Session["Files"])[i].Replace("ticketid", idTicket.ToString()));
-                    ((List<string>)Session["Files"])[i] = ((List<string>)Session["Files"])[i].Replace("ticketid", idTicket.ToString());
-                }
-                if (Session["Files"] != null)
-                {
-                    BusinessFile.MoverTemporales(BusinessVariables.Directorios.RepositorioTemporalMascara, BusinessVariables.Directorios.RepositorioMascara, (List<string>)Session["Files"]);
-                    Session["Files"] = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
         protected void btnGuardar_OnClick(object sender, EventArgs e)
         {
             try
@@ -966,7 +1132,6 @@ namespace KiiniHelp.UserControls.Temporal
                 Alerta = _lstError;
             }
         }
-
         public void Limpiar()
         {
             try
@@ -983,7 +1148,6 @@ namespace KiiniHelp.UserControls.Temporal
                 throw;
             }
         }
-
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;

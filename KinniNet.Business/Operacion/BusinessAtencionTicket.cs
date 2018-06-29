@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using KiiniNet.Entities.Cat.Sistema;
@@ -464,7 +465,7 @@ namespace KinniNet.Core.Operacion
                     {
                         string cuerpo = string.Format("Hola {0},<br>" +
                                         "¡Se ha registrado un nuevo comentario en tu soicitud!" +
-                                        "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa a https://soporte.kiininet.com/requests/3127595 Gracias", usuario.Nombre);
+                                        "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
                         new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
                     }
                 }
@@ -903,6 +904,7 @@ namespace KinniNet.Core.Operacion
                         switch (idEstatus)
                         {
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto:
+                                ticket.FechaTermino = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                                 ticket.IdUsuarioResolvio = idUsuarioGeneraEvento;
                                 evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                                 {
@@ -920,6 +922,7 @@ namespace KinniNet.Core.Operacion
                                 idEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Asignado;
                                 break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.ReAbierto:
+                                ticket.FechaTermino = null;
                                 ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                                 ticket.IdNivelTicket = null;
                                 evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
@@ -938,7 +941,7 @@ namespace KinniNet.Core.Operacion
                                 idEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                                 break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado:
-                                ticket.FechaTermino = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                                //ticket.FechaTermino = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                                 ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                                 evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                                 {
@@ -1017,7 +1020,7 @@ namespace KinniNet.Core.Operacion
                         {
                             string cuerpo = string.Format("Hola {0},<br>" +
                                             "¡Se ha registrado un nuevo comentario en tu soicitud!" +
-                                            "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa a https://soporte.kiininet.com/requests/3127595 Gracias", usuario.Nombre);
+                                            "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
                             new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
                         }
                     }

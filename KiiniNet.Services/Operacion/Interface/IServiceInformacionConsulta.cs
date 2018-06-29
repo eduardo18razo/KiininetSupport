@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
+using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion;
+using KiiniNet.Entities.Reportes;
 using KinniNet.Business.Utils;
 
 namespace KiiniNet.Services.Operacion.Interface
@@ -27,13 +30,16 @@ namespace KiiniNet.Services.Operacion.Interface
         void GuardarHit(int idArbol, int idTipoUsuario, int? idUsuario);
 
         [OperationContract]
-        List<InformacionConsulta> ObtenerConsulta(string descripcion);
+        List<HelperInformacionConsulta> ObtenerConsulta(string descripcion, Dictionary<string, DateTime> fechas);
 
         [OperationContract]
         void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta);
 
         [OperationContract]
         void HabilitarInformacion(int idInformacion, bool habilitado);
+
+        [OperationContract]
+        ReporteInformacionConsulta ObtenerReporteInformacionConsulta(int idInformacionConsulta, Dictionary<string, DateTime> fechas, int tipoFecha);
 
     }
 }

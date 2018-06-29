@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using KiiniNet.Entities.Cat.Mascaras;
@@ -54,7 +55,7 @@ namespace KinniNet.Core.Operacion
             _proxy = proxy;
         }
 
-        private DateTime TiempoGeneral(List<HorarioSubGrupo> horarioSubGrupo, decimal? tiempoProceso)
+        private DateTime TiempoGeneral(List<HorarioSubGrupo> horarioSubGrupo, DateTime fechaLevanta, decimal? tiempoProceso)
         {
             DateTime result;
             try
@@ -63,36 +64,68 @@ namespace KinniNet.Core.Operacion
                 string horarioInicio = horarioSubGrupo.Min(s => s.HoraInicio);
                 string horarioFin = horarioSubGrupo.Max(s => s.HoraFin);
                 double tiempotrabajo = double.Parse(horarioFin.Replace(':', '.').Substring(0, 5)) - double.Parse(horarioInicio.Replace(':', '.').Substring(0, 5));
+                TimeSpan horasLevanta = fechaLevanta.TimeOfDay;
 
-                decimal? horasTotalSolucion = tiempoProceso;
-                int contador = 0;
-                while (horasTotalSolucion > 0)
+
+                if (tiempoProceso != null)
                 {
-                    if (horarioSubGrupo.Any(a => a.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek))
+                    double horasTotalSolucion = double.Parse(tiempoProceso.ToString());
+                    int contador = 0;
+                    while (horasTotalSolucion > 0)
                     {
-                        horarioInicio = horarioSubGrupo.Where(w => w.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek).Min(m => m.HoraInicio);
-                        horarioFin = horarioSubGrupo.Where(w => w.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek).Max(m => m.HoraFin);
-                        if (diasAsignados.Count <= 0)
+
+                        if (horarioSubGrupo.Any(a => a.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek))
                         {
-                            horasTotalSolucion -= decimal.Parse(Math.Round((DateTime.Parse(DateTime.Now.ToShortDateString() + " " + horarioFin) - DateTime.Now).TotalHours, 2, MidpointRounding.ToEven).ToString());
-                            diasAsignados.Add(horasTotalSolucion < 0 ? DateTime.Now.AddHours(double.Parse(Math.Abs(decimal.Parse(horasTotalSolucion.ToString())).ToString())) : DateTime.Now.AddDays(contador + 1));
-                        }
-                        else
-                        {
-                            if (horasTotalSolucion >= decimal.Parse(tiempotrabajo.ToString()))
+                            horarioInicio = horarioSubGrupo.Where(w => w.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek).Min(m => m.HoraInicio);
+                            horarioFin = horarioSubGrupo.Where(w => w.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek).Max(m => m.HoraFin);
+                            if (contador == 0)
+                                tiempotrabajo = double.Parse(Math.Round((DateTime.Parse(DateTime.Now.ToShortDateString() + " " + horarioFin) - fechaLevanta).TotalHours, 2, MidpointRounding.ToEven).ToString());
+                            else
+                                tiempotrabajo = double.Parse(Math.Round((DateTime.Parse(DateTime.Now.AddDays(contador).ToShortDateString() + " " + horarioInicio) - DateTime.Parse(DateTime.Now.AddDays(contador).ToShortDateString() + " " + horarioFin)).TotalHours, 2, MidpointRounding.ToEven).ToString());
+                            tiempotrabajo = Math.Abs(tiempotrabajo);
+                            if (tiempotrabajo >= horasTotalSolucion)
                             {
-                                horasTotalSolucion -= decimal.Parse(tiempotrabajo.ToString());
-                                diasAsignados.Add(DateTime.Now.AddDays(contador));
+                                if (diasAsignados.Count <= 0)
+                                {
+                                    diasAsignados.Add(fechaLevanta.AddHours(horasTotalSolucion));
+                                }
+                                else
+                                    diasAsignados.Add(diasAsignados.Last().AddHours(horasTotalSolucion));
+                                horasTotalSolucion -= horasTotalSolucion;
                             }
                             else
                             {
-                                DateTime fecha = DateTime.Parse(DateTime.Now.AddDays(contador).ToShortDateString() + " " + horarioInicio).AddHours(double.Parse(horasTotalSolucion.ToString()));
-                                horasTotalSolucion -= horasTotalSolucion;
-                                diasAsignados.Add(fecha);
+                                diasAsignados.Add(fechaLevanta.AddHours(double.Parse(tiempotrabajo.ToString())));
+                                horasTotalSolucion -= tiempotrabajo;
                             }
+
+
+
+                            //if (diasAsignados.Count <= 0)
+                            //{
+                            //    decimal hrasRestantes = decimal.Parse(Math.Round((DateTime.Parse(DateTime.Now.ToShortDateString() + " " + horarioFin) - DateTime.Now).TotalHours, 2, MidpointRounding.ToEven).ToString());
+                            //    if()
+                            //        diasAsignados.Add(horasTotalSolucion < 0 ? DateTime.Now.AddHours(double.Parse(Math.Abs(decimal.Parse(horasTotalSolucion.ToString())).ToString())) : DateTime.Now.AddDays(contador + 1));
+                            //    horasTotalSolucion -= decimal.Parse(Math.Round((DateTime.Parse(DateTime.Now.ToShortDateString() + " " + horarioFin) - DateTime.Now).TotalHours, 2, MidpointRounding.ToEven).ToString());
+
+                            //}
+                            //else
+                            //{
+                            //    if (horasTotalSolucion >= decimal.Parse(tiempotrabajo.ToString()))
+                            //    {
+                            //        horasTotalSolucion -= decimal.Parse(tiempotrabajo.ToString());
+                            //        diasAsignados.Add(DateTime.Now.AddDays(contador));
+                            //    }
+                            //    else
+                            //    {
+                            //        DateTime fecha = DateTime.Parse(DateTime.Now.AddDays(contador).ToShortDateString() + " " + horarioInicio).AddHours(double.Parse(horasTotalSolucion.ToString()));
+                            //        horasTotalSolucion -= horasTotalSolucion;
+                            //        diasAsignados.Add(fecha);
+                            //    }
+                            //}
                         }
+                        contador++;
                     }
-                    contador++;
                 }
                 if (tiempoProceso == 0)
                     diasAsignados.Add(DateTime.Now);
@@ -179,7 +212,7 @@ namespace KinniNet.Core.Operacion
                     lstHorarioGrupo.AddRange(db.HorarioSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id).ToList());
                     lstDiasFestivosGrupo.AddRange(db.DiaFestivoSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id));
                 }
-                DateTime fechaTermino = TiempoGeneral(lstHorarioGrupo, ticket.SlaEstimadoTicket.TiempoHoraProceso);
+                DateTime fechaTermino = TiempoGeneral(lstHorarioGrupo, ticket.FechaHoraAlta, ticket.SlaEstimadoTicket.TiempoHoraProceso);
                 ticket.FechaHoraFinProceso = fechaTermino;
                 ticket.SlaEstimadoTicket.FechaFinProceso = fechaTermino;
                 ticket.SlaEstimadoTicket.FechaFin = fechaTermino;
@@ -339,7 +372,7 @@ namespace KinniNet.Core.Operacion
                 {
                     string cuerpo = string.Format("Hola {0},<br>" +
                                     "¡Gracias por contactarnos! Hemos recibido su correo y nos pondremos en contacto contigo lo antes posible. " +
-                                    "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa a https://soporte.kiininet.com/requests/3127595 Gracias", usuario.Nombre);
+                                    "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo<a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "\"> aquí </a>Gracias", usuario.Nombre);
                     new BusinessTicketMailService().EnviaCorreoTicketGenerado(result.Id, result.ClaveRegistro, cuerpo, correo);
                 }
             }

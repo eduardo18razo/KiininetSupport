@@ -37,6 +37,7 @@ namespace KinniNet.Business.Utils
             public static string RepositorioTemporal = ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["CarpetaTemporal"];
             public static string RepositorioRepositorio = ConfigurationManager.AppSettings["Repositorio"];
             public static string RepositorioCorreo = ConfigurationManager.AppSettings["RepositorioCorreos"];
+            public static string RepositorioCarrusel = ConfigurationManager.AppSettings["RepositorioCarousel"] + "\\";
             public static string Carpetaemporal = HttpRuntime.AppDomainAppPath + ConfigurationManager.AppSettings["CarpetaTemporal"];
             public static string CarpetaTemporalSitio = ConfigurationManager.AppSettings["siteUrlRemporal"];
             public static string OnlyTempFolder = ConfigurationManager.AppSettings["CarpetaTemporal"];
@@ -110,6 +111,8 @@ namespace KinniNet.Business.Utils
                 FechaRango = 11,
                 ExpresiónRegular = 12,
                 AdjuntarArchivo = 13,
+                Telefono = 14,
+                CorreoElectronico = 15
             }
             public enum EnumTiempoDuracion
             {
@@ -155,6 +158,14 @@ namespace KinniNet.Business.Utils
                 General = 1,
                 Opcion = 2
             }
+            public enum EnumTipoNotificacion
+            {
+                Correo = 1,
+                Sms = 2,
+                IvrCelular = 3,
+                IvrCasa = 4,
+                Popup = 5
+            }
         }
 
         public static class Correo
@@ -185,7 +196,7 @@ namespace KinniNet.Business.Utils
             Cliente = 2,
             Proveedor = 3,
             Empleado = 4
-            
+
             //EmpleadoPersonaFisica = 7,
             //ClientaPersonaFisica = 8,
             //ProveedorPersonaFisica = 9,
@@ -210,6 +221,13 @@ namespace KinniNet.Business.Utils
             DocumentoOffice = 2,
             DireccionWeb = 3,
             Servicio = 4
+        }
+
+        public enum EnumTipoMascara
+        {
+            Ticket = 1,
+            Usuario = 2,
+            Organización = 3
         }
 
         public enum EnumTiposGrupos
@@ -302,7 +320,8 @@ namespace KinniNet.Business.Utils
         public enum EnumTipoLink
         {
             Confirmacion = 1,
-            Reset = 2
+            Reset = 2,
+            Notificacion = 3
         }
 
         public enum EnumTipoTelefono

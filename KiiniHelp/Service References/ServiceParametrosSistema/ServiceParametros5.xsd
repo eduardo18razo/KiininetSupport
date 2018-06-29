@@ -100,4 +100,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerParemtrosPassword">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerParemtrosPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerParemtrosPasswordResult" nillable="true" type="q8:ParametroPassword" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

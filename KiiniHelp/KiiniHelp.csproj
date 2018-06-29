@@ -86,6 +86,49 @@
     <Reference Include="Telerik.Web.UI.Skins">
       <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2017.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip.Extensions">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX R2 2017\Live Demos\Bin\Telerik.Windows.Zip.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Winthusiasm.HtmlEditor">
       <HintPath>..\..\Desarrollo Eduardo\KiiniHelp\bin\Winthusiasm.HtmlEditor.dll</HintPath>
     </Reference>
@@ -300,6 +343,10 @@
     <Content Include="assets\fonts\fontello.ttf" />
     <Content Include="assets\fonts\fontello.woff" />
     <Content Include="assets\fonts\fontello.woff2" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroPassword.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Mascaras.TipoMascara.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperInformacionConsulta.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Reportes.ReporteInformacionConsulta.datasource" />
     <None Include="Service References\ServiceArbolAcceso\ServiceArbolAcceso15.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -315,18 +362,27 @@
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
+    <Content Include="UserControls\Configuracion\UcUploadCarrusel.ascx" />
     <Content Include="UserControls\Consultas\UcBusqueda.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Formularios\UcReporteFormularios.ascx" />
+    <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcGraficoInformacionConsulta.ascx" />
     <Content Include="UserControls\Dashboards\UcDashboardHelpCenter.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleArbolAcceso.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoUsuarios.ascx" />
     <Content Include="UserControls\Detalles\UcDetalleGrupoOpciones.ascx" />
     <Content Include="UserControls\Detalles\UcTicketDetalleUsuario.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
+    <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
+    <Content Include="Users\ReportesGraficos\Formularios\FrmConsultaDetalleFormulario.aspx" />
     <Content Include="Users\FrmBusqueda.aspx" />
     <Content Include="Users\FrmDashboardUser.aspx" />
     <Content Include="Users\General\FrmDetalleTicketUsuario.aspx" />
     <Content Include="Users\FrmCategorias.aspx" />
+    <Content Include="Users\ReportesGraficos\Formularios\FrmFormularios.aspx" />
+    <Content Include="Users\ReportesGraficos\InformacionConsulta\FrmGraficoInformacionConsulta.aspx" />
+    <Content Include="Users\ReportesGraficos\InformacionConsulta\FrmLikeDontLike.aspx" />
     <Content Include="Xml\Notificaciones.xml" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperUsuario.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametroDatosAdicionales.datasource" />
@@ -417,6 +473,21 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceInformacionConsulta\ServiceInformacionConsulta15.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceInformacionConsulta\ServiceInformacionConsulta16.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceInformacionConsulta\ServiceInformacionConsulta17.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceInformacionConsulta\ServiceInformacionConsulta171.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMascaraAcceso\ServiceMascaras15.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceMascaraAcceso\ServiceMascaras16.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceNota\ServiceNota.wsdl" />
@@ -2934,6 +3005,13 @@
     <Compile Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx.designer.cs">
       <DependentUpon>UcAltaUsuarioRapida.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Configuracion\UcUploadCarrusel.ascx.cs">
+      <DependentUpon>UcUploadCarrusel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Configuracion\UcUploadCarrusel.ascx.designer.cs">
+      <DependentUpon>UcUploadCarrusel.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Consultas\UcBusqueda.ascx.cs">
       <DependentUpon>UcBusqueda.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2961,6 +3039,13 @@
     </Compile>
     <Compile Include="UserControls\Consultas\UcConsultaCatalogo.ascx.designer.cs">
       <DependentUpon>UcConsultaCatalogo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx.cs">
+      <DependentUpon>UcReporteDetalleFormulario.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx.designer.cs">
+      <DependentUpon>UcReporteDetalleFormulario.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Consultas\UcConsultaDiasFestivos.ascx.cs">
       <DependentUpon>UcConsultaDiasFestivos.ascx</DependentUpon>
@@ -3010,6 +3095,20 @@
     </Compile>
     <Compile Include="UserControls\Consultas\UcConsultaUbicacionesFisico.ascx.designer.cs">
       <DependentUpon>UcConsultaUbicacionesFisico.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Formularios\UcReporteFormularios.ascx.cs">
+      <DependentUpon>UcReporteFormularios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Formularios\UcReporteFormularios.ascx.designer.cs">
+      <DependentUpon>UcReporteFormularios.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\InformacionConsulta\UcGraficoInformacionConsulta.ascx.cs">
+      <DependentUpon>UcGraficoInformacionConsulta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\InformacionConsulta\UcGraficoInformacionConsulta.ascx.designer.cs">
+      <DependentUpon>UcGraficoInformacionConsulta.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Dashboards\UcDashboardHelpCenter.ascx.cs">
       <DependentUpon>UcDashboardHelpCenter.ascx</DependentUpon>
@@ -3116,6 +3215,13 @@
     <Compile Include="UserControls\Preview\UcVisorConsultainformacion.ascx.designer.cs">
       <DependentUpon>UcVisorConsultainformacion.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx.cs">
+      <DependentUpon>UcReporteInformacionConsulta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx.designer.cs">
+      <DependentUpon>UcReporteInformacionConsulta.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Seleccion\UcCategoria.ascx.cs">
       <DependentUpon>UcCategoria.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3220,6 +3326,13 @@
     </Compile>
     <Compile Include="Users\Administracion\Feriados\FrmConsultaFeriados.aspx.designer.cs">
       <DependentUpon>FrmConsultaFeriados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Formularios\FrmConsultaDetalleFormulario.aspx.cs">
+      <DependentUpon>FrmConsultaDetalleFormulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Formularios\FrmConsultaDetalleFormulario.aspx.designer.cs">
+      <DependentUpon>FrmConsultaDetalleFormulario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Administracion\Formularios\FrmEdicionFormulario.aspx.cs">
       <DependentUpon>FrmEdicionFormulario.aspx</DependentUpon>
@@ -3786,6 +3899,20 @@
     <Compile Include="FrmEncuesta.aspx.designer.cs">
       <DependentUpon>FrmEncuesta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Users\ReportesGraficos\Formularios\FrmFormularios.aspx.cs">
+      <DependentUpon>FrmFormularios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Formularios\FrmFormularios.aspx.designer.cs">
+      <DependentUpon>FrmFormularios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\InformacionConsulta\FrmGraficoInformacionConsulta.aspx.cs">
+      <DependentUpon>FrmGraficoInformacionConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\InformacionConsulta\FrmGraficoInformacionConsulta.aspx.designer.cs">
+      <DependentUpon>FrmGraficoInformacionConsulta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\Operacion\FrmLevantaTicketAgente.aspx.cs">
       <DependentUpon>FrmLevantaTicketAgente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3930,6 +4057,13 @@
     </Compile>
     <Compile Include="Users\FrmCategorias.aspx.designer.cs">
       <DependentUpon>FrmCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\InformacionConsulta\FrmLikeDontLike.aspx.cs">
+      <DependentUpon>FrmLikeDontLike.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\InformacionConsulta\FrmLikeDontLike.aspx.designer.cs">
+      <DependentUpon>FrmLikeDontLike.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Ticket\FrmTicket.aspx.cs">
       <DependentUpon>FrmTicket.aspx</DependentUpon>

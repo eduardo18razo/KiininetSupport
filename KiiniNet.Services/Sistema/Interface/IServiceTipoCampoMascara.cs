@@ -11,5 +11,8 @@ namespace KiiniNet.Services.Sistema.Interface
         List<TipoCampoMascara> ObtenerTipoCampoMascara(bool insertarSeleccion);
         [OperationContract]
         TipoCampoMascara TipoCampoMascaraId(int idTipoCampo);
+
+        [OperationContract]
+        List<TipoMascara> ObtenerTipoMascara(bool insertarSeleccion);
     }
 }

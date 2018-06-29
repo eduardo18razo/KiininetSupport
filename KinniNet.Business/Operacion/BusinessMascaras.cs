@@ -10,6 +10,7 @@ using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Tickets;
 using KinniNet.Business.Utils;
+using KinniNet.Core.Sistema;
 using KinniNet.Data.Help;
 
 namespace KinniNet.Core.Operacion
@@ -20,7 +21,7 @@ namespace KinniNet.Core.Operacion
 
         public bool ValidaEstructuraMascara(Mascara mascara)
         {
-            bool result = false;
+            bool result;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
@@ -72,12 +73,12 @@ namespace KinniNet.Core.Operacion
             _proxy = proxy;
         }
 
-        private bool CrearEstructuraMascaraBaseDatos(Mascara mascara)
+        private bool CrearEstructuraMascaraBaseDatos(Mascara mascara, string tablaLlave, string campoLlave)
         {
             try
             {
-                if (CreaTabla(mascara))
-                    if (CrearInsert(mascara))
+                if (CreaTabla(mascara, tablaLlave, campoLlave))
+                    if (CrearInsert(mascara, tablaLlave, campoLlave))
                         CreaUpdate(mascara);
             }
             catch (Exception ex)
@@ -87,7 +88,7 @@ namespace KinniNet.Core.Operacion
             return true;
         }
 
-        private bool CreaTabla(Mascara mascara)
+        private bool CreaTabla(Mascara mascara, string tablaLlave, string campoLlave)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
@@ -142,21 +143,17 @@ namespace KinniNet.Core.Operacion
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
                             queryCamposTabla += String.Format("[{0}] {1}({2}) {3},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, campoMascara.LongitudMaxima, campoMascara.Requerido ? "NOT NULL" : "NULL");
                             break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            queryCamposTabla += String.Format("[{0}] {1}({2}) {3},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, tmpTipoCampoMascara.LongitudMaximaPermitida, campoMascara.Requerido ? "NOT NULL" : "NULL");
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            queryCamposTabla += String.Format("[{0}] {1}({2}) {3},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, tmpTipoCampoMascara.LongitudMaximaPermitida, campoMascara.Requerido ? "NOT NULL" : "NULL");
+                            break;
                     }
-
-                    //switch (tmpTipoCampoMascara.TipoDatoSql)
-                    //{
-                    //    case "NVARCHAR":
-                    //        queryCamposTabla += String.Format("{0} {1}({2}) {3},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, campoMascara.LongitudMaxima, campoMascara.Requerido ? "NOT NULL" : "NULL");
-                    //        break;
-                    //    default:
-                    //        queryCamposTabla += String.Format("{0} {1} {2},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, campoMascara.Requerido ? "NOT NULL" : "NULL");
-                    //        break;
-                    //}
                 }
                 string qryCrearTablas = String.Format("CREATE TABLE {0} ( \n" +
                                                       "Id int IDENTITY(1,1) NOT NULL, \n" +
-                                                      "IdTicket int NOT NULL, \n" +
+                                                      "{3}{2} int NOT NULL, \n" +
                                                       "{1}" +
                                                       "Habilitado BIT \n" +
                                                       (mascara.Random ? ", " + BusinessVariables.ParametrosMascaraCaptura.CampoRandom + " \n" : string.Empty) +
@@ -165,10 +162,10 @@ namespace KinniNet.Core.Operacion
                                                       "\t[Id] ASC \n" +
                                                       ")WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY] \n" +
                                                       ") ON [PRIMARY] \n" +
-                                                      "ALTER TABLE [dbo].[{0}]  WITH CHECK ADD  CONSTRAINT [FK_{0}_Ticket] FOREIGN KEY([IdTicket]) \n" +
-                                                      "REFERENCES [dbo].[Ticket] ([Id])\n" +
+                                                      "ALTER TABLE [dbo].[{0}]  WITH CHECK ADD  CONSTRAINT [FK_{0}_Ticket] FOREIGN KEY([{3}{2}]) \n" +
+                                                      "REFERENCES [dbo].[{2}] ([{3}])\n" +
                                                       "ALTER TABLE [dbo].[{0}] CHECK CONSTRAINT [FK_{0}_Ticket]\n" +
-                                                      "ALTER TABLE [dbo].[{0}] ADD  CONSTRAINT [DF_{0}_habilitado]  DEFAULT ((1)) FOR [Habilitado]", mascara.NombreTabla, queryCamposTabla);
+                                                      "ALTER TABLE [dbo].[{0}] ADD  CONSTRAINT [DF_{0}_habilitado]  DEFAULT ((1)) FOR [Habilitado]", mascara.NombreTabla, queryCamposTabla, tablaLlave, campoLlave);
                 db.ExecuteStoreCommand(qryCrearTablas);
             }
             catch (Exception ex)
@@ -182,14 +179,14 @@ namespace KinniNet.Core.Operacion
             return true;
         }
 
-        private bool CrearInsert(Mascara mascara)
+        private bool CrearInsert(Mascara mascara, string tablaLlave, string campoLlave)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                string queryParametros = "@IDTICKET int, ";
-                string queryCampos = "IDTICKET, ";
-                string queryValues = "@IDTICKET, ";
+                string queryParametros = string.Format("@{0}{1} int, ", campoLlave.Trim().ToUpper(), tablaLlave.Trim().ToUpper());
+                string queryCampos = string.Format("{0}{1}, ", campoLlave.Trim().ToUpper(), tablaLlave.Trim().ToUpper());
+                string queryValues = string.Format("@{0}{1}, ", campoLlave.Trim().ToUpper(), tablaLlave.Trim().ToUpper());
                 foreach (CampoMascara campoMascara in mascara.CampoMascara)
                 {
                     TipoCampoMascara tmpTipoCampoMascara = db.TipoCampoMascara.SingleOrDefault(f => f.Id == campoMascara.IdTipoCampoMascara);
@@ -271,27 +268,17 @@ namespace KinniNet.Core.Operacion
                             queryCampos += String.Format("[{0}],\n", campoMascara.NombreCampo);
                             queryValues += String.Format("@{0},\n", campoMascara.NombreCampo);
                             break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            queryParametros += String.Format("@{0} {1}({2}),\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, tmpTipoCampoMascara.LongitudMaximaPermitida);
+                            queryCampos += String.Format("[{0}],\n", campoMascara.NombreCampo);
+                            queryValues += String.Format("@{0},\n", campoMascara.NombreCampo);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            queryParametros += String.Format("@{0} {1}({2}),\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, tmpTipoCampoMascara.LongitudMaximaPermitida);
+                            queryCampos += String.Format("[{0}],\n", campoMascara.NombreCampo);
+                            queryValues += String.Format("@{0},\n", campoMascara.NombreCampo);
+                            break;
                     }
-
-
-
-                    //switch (tmpTipoCampoMascara.TipoDatoSql)
-                    //{
-                    //    case "NVARCHAR":
-                    //        queryParametros += String.Format("@{0} {1}({2})", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql, campoMascara.LongitudMaxima);
-                    //        break;
-                    //    default:
-                    //        queryParametros += String.Format("@{0} {1}", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
-                    //        break;
-                    //}
-                    //queryCampos += String.Format("{0}", campoMascara.NombreCampo);
-                    //queryValues += String.Format("@{0}", campoMascara.NombreCampo);
-                    //if (contadorParametros < paramsCount)
-                    //{
-                    //    queryParametros += ", \n";
-                    //    queryCampos += ", \n";
-                    //    queryValues += ", \n";
-                    //}
                 }
 
                 if (mascara.Random)
@@ -357,11 +344,8 @@ namespace KinniNet.Core.Operacion
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
                             if (campoMascara.IdCatalogo != null)
-                                //foreach (CatalogoGenerico generico in new BusinessCatalogos().ObtenerRegistrosSistemaCatalogo((int)campoMascara.IdCatalogo, false))
-                                //{
                                 queryParametros += String.Format("@{0} {1},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
                             queryCamposValues += String.Format("[{0}] = @{0},\n", campoMascara.NombreCampo);
-                            //}
 
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
@@ -399,10 +383,15 @@ namespace KinniNet.Core.Operacion
                             queryParametros += String.Format("@{0} {1},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
                             queryCamposValues += String.Format("[{0}] = @{0},\n", campoMascara.NombreCampo);
                             break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                            queryParametros += String.Format("@{0} {1},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
+                            queryCamposValues += String.Format("[{0}] = @{0},\n", campoMascara.NombreCampo);
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                            queryParametros += String.Format("@{0} {1},\n", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
+                            queryCamposValues += String.Format("[{0}] = @{0},\n", campoMascara.NombreCampo);
+                            break;
                     }
-
-                    //queryParametros += String.Format("@{0} {1}", campoMascara.NombreCampo, tmpTipoCampoMascara.TipoDatoSql);
-                    //queryCamposValues += String.Format("{0} = @{0}", campoMascara.NombreCampo);
 
                 }
 
@@ -469,36 +458,41 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                
+
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 mascara.Descripcion = mascara.Descripcion.Trim();
                 if (db.Mascara.Any(a => a.Descripcion == mascara.Descripcion && a.Id != mascara.Id))
                     throw new Exception("Ya existe un Formulario con este nombre");
-                mascara.NoCampos = mascara.CampoMascara.Count;
-                foreach (CampoMascara campoMascara in mascara.CampoMascara)
-                {
-                    campoMascara.Descripcion = campoMascara.Descripcion.Trim();
-                    campoMascara.NombreCampo = BusinessCadenas.Cadenas.FormatoBaseDatos(campoMascara.Descripcion.Trim()).Replace(" ", "").ToUpper();
-                    campoMascara.SimboloMoneda = campoMascara.SimboloMoneda == null ? null : campoMascara.SimboloMoneda.Trim();
-                    campoMascara.TipoCampoMascara = null;
-                    campoMascara.Catalogos = null;
-                }
-                Guid id = Guid.NewGuid();
-                string[] words = mascara.Descripcion.Split(' ');
-                string name = words.Aggregate<string, string>(null, (current, word) => current + word.Substring(0, 1));
-                name += id.ToString();
-                mascara.NombreTabla = (BusinessVariables.ParametrosMascaraCaptura.PrefijoTabla + BusinessCadenas.Cadenas.FormatoBaseDatos(name)).ToUpper();
-                mascara.ComandoInsertar = (BusinessVariables.ParametrosMascaraCaptura.PrefijoComandoInsertar + BusinessCadenas.Cadenas.FormatoBaseDatos(name).Replace(" ", string.Empty)).ToUpper();
-                mascara.ComandoActualizar = (BusinessVariables.ParametrosMascaraCaptura.PrefijoComandoActualizar + BusinessCadenas.Cadenas.FormatoBaseDatos(name).Replace(" ", string.Empty)).ToUpper();
-                mascara.Habilitado = true;
 
-                ExisteMascara(mascara);
-                CrearEstructuraMascaraBaseDatos(mascara);
-                mascara.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                mascara.IdUsuarioModifico = null;
-                mascara.FechaModificacion = null;
-                db.Mascara.AddObject(mascara);
-                db.SaveChanges();
+                TipoMascara tipoMascara = db.TipoMascara.SingleOrDefault(s => s.Id == mascara.IdTipoMascara);
+                if (tipoMascara != null)
+                {
+                    mascara.NoCampos = mascara.CampoMascara.Count;
+                    foreach (CampoMascara campoMascara in mascara.CampoMascara)
+                    {
+                        campoMascara.Descripcion = campoMascara.Descripcion.Trim();
+                        campoMascara.NombreCampo = BusinessCadenas.Cadenas.FormatoBaseDatos(campoMascara.Descripcion.Trim()).Replace(" ", "").ToUpper();
+                        campoMascara.SimboloMoneda = campoMascara.SimboloMoneda == null ? null : campoMascara.SimboloMoneda.Trim();
+                        campoMascara.TipoCampoMascara = null;
+                        campoMascara.Catalogos = null;
+                    }
+                    Guid id = Guid.NewGuid();
+                    string[] words = mascara.Descripcion.Split(' ');
+                    string name = words.Aggregate<string, string>(null, (current, word) => current + word.Substring(0, 1));
+                    name += id.ToString();
+                    mascara.NombreTabla = (BusinessVariables.ParametrosMascaraCaptura.PrefijoTabla + BusinessCadenas.Cadenas.FormatoBaseDatos(name)).ToUpper();
+                    mascara.ComandoInsertar = (BusinessVariables.ParametrosMascaraCaptura.PrefijoComandoInsertar + BusinessCadenas.Cadenas.FormatoBaseDatos(name).Replace(" ", string.Empty)).ToUpper();
+                    mascara.ComandoActualizar = (BusinessVariables.ParametrosMascaraCaptura.PrefijoComandoActualizar + BusinessCadenas.Cadenas.FormatoBaseDatos(name).Replace(" ", string.Empty)).ToUpper();
+                    mascara.Habilitado = true;
+
+                    ExisteMascara(mascara);
+                    CrearEstructuraMascaraBaseDatos(mascara, tipoMascara.TablaLlave, tipoMascara.CampoLlave);
+                    mascara.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    mascara.IdUsuarioModifico = null;
+                    mascara.FechaModificacion = null;
+                    db.Mascara.AddObject(mascara);
+                    db.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
@@ -510,6 +504,102 @@ namespace KinniNet.Core.Operacion
             }
         }
 
+        private bool ActualizaCampoToNull(string tabla, string campo, int idTipoCampo, string tipo, int? longitud)
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+
+
+                string queryStore = string.Empty;
+                switch (idTipoCampo)
+                {
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}({1})  NULL;", tipo, longitud);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}({1})  NULL;", tipo, longitud);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL;", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL;", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL;", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL;", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroDecimal:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL;", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.SelecciónCascada:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL;", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}  NULL;", tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango:
+                        queryStore = string.Format("ALTER TABLE [{0}] ALTER COLUMN [{1}] {2} null ;\n", tabla, campo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio, tipo);
+                        queryStore += string.Format("ALTER TABLE [{0}] ALTER COLUMN [{1}] {2} null ;\n", tabla, campo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin, tipo);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ExpresiónRegular:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}({1})  NULL;", tipo, longitud);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}({1})  NULL;", tipo, longitud);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}({1})  NULL;", tipo, longitud);
+                        break;
+                    case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                        queryStore = string.Format("ALTER TABLE [{0}] \n", tabla);
+                        queryStore += string.Format("ALTER COLUMN [{0}] \n", campo);
+                        queryStore += string.Format(" {0}({1})  NULL;", tipo, longitud);
+                        break;
+                }
+                db.ExecuteStoreCommand(queryStore);
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return true;
+        }
         public void ActualizarMascara(Mascara mascara)
         {
             DataBaseModelContext db = new DataBaseModelContext();
@@ -525,6 +615,11 @@ namespace KinniNet.Core.Operacion
                     dbMascara.Descripcion = mascara.Descripcion;
                     foreach (CampoMascara campoMascara in dbMascara.CampoMascara)
                     {
+                        if (campoMascara.Requerido && !mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).Requerido)
+                        {
+                            ActualizaCampoToNull(dbMascara.NombreTabla, campoMascara.NombreCampo, campoMascara.IdTipoCampoMascara, campoMascara.TipoCampoMascara.TipoDatoSql, campoMascara.LongitudMaxima);
+                            campoMascara.Requerido = mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).Requerido;
+                        }
                         campoMascara.Descripcion = mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).Descripcion;
                         campoMascara.LongitudMinima = mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).LongitudMinima;
                         campoMascara.LongitudMaxima = mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).LongitudMaxima;
@@ -532,6 +627,7 @@ namespace KinniNet.Core.Operacion
                         campoMascara.ValorMaximo = mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).ValorMaximo;
                         campoMascara.SimboloMoneda = mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).SimboloMoneda;
                         campoMascara.MascaraDetalle = mascara.CampoMascara.Single(s => s.Id == campoMascara.Id).MascaraDetalle;
+
                     }
                     dbMascara.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                     dbMascara.IdUsuarioModifico = mascara.IdUsuarioAlta;
@@ -577,14 +673,14 @@ namespace KinniNet.Core.Operacion
         {
         }
 
-        public List<Mascara> ObtenerMascarasAcceso(bool insertarSeleccion)
+        public List<Mascara> ObtenerMascarasAcceso(int idTipoMascara, bool sistema, bool insertarSeleccion)
         {
             List<Mascara> result;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.Mascara.Where(w => w.Habilitado).OrderBy(o => o.Descripcion).ToList();
+                result = db.Mascara.Where(w => w.Habilitado && w.IdTipoMascara == idTipoMascara && w.Sistema == sistema).OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Mascara { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }
@@ -801,6 +897,253 @@ namespace KinniNet.Core.Operacion
 
                     }
 
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+
+            return result;
+        }
+
+        public DataTable ObtenerReporteMascara(int idMascara, Dictionary<string, DateTime> fechas)
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            DataTable result = null;
+            try
+            {
+                DataSet retVal = new DataSet();
+                EntityConnection entityConn = (EntityConnection)db.Connection;
+                SqlConnection sqlConn = (SqlConnection)entityConn.StoreConnection;
+                string qryCampos = "SELECT Frm.Id [Id Formulario], t.Id [Id Ticket], iaa.Descripcion [Opcion], u.Nombre [N], u.ApellidoPaterno [P], u.ApellidoMaterno [M], t.FechaHoraAlta, et.Descripcion, \n";
+                Mascara mascara = db.Mascara.SingleOrDefault(s => s.Id == idMascara);
+                if (mascara != null)
+                {
+                    db.LoadProperty(mascara, "CampoMascara");
+                    foreach (CampoMascara campoMascara in mascara.CampoMascara)
+                    {
+                        switch (campoMascara.IdTipoCampoMascara)
+                        {
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
+                                if (campoMascara.IdCatalogo != null)
+                                    qryCampos += string.Format("(select Descripcion from {0} where Id = {1}) [{2}],", new BusinessCatalogos().ObtenerCatalogo((int)campoMascara.IdCatalogo).Tabla, campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
+                                if (campoMascara.IdCatalogo != null)
+                                    qryCampos += string.Format("(select Descripcion from {0} where Id = {1}) [{2}],", new BusinessCatalogos().ObtenerCatalogo((int)campoMascara.IdCatalogo).Tabla, campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
+                                if (campoMascara.IdCatalogo != null)
+                                {
+                                    db.LoadProperty(campoMascara, "Catalogos");
+                                    string qryCamposCasilla = string.Empty;
+                                    DataTable registrosCatalogo = new BusinessCatalogos().ObtenerRegistrosArchivosCatalogo((int)campoMascara.IdCatalogo);
+                                    foreach (DataRow registro in registrosCatalogo.Rows)
+                                    {
+                                        int idRegistroCatalogo = (int)registro["Id"];
+                                        string descripcionRegistroCatalogo = (string)registro["Descripcion"];
+                                        if (idRegistroCatalogo > BusinessVariables.ComboBoxCatalogo.ValueSeleccione)
+                                        {
+                                            qryCamposCasilla += string.Format("CASE WHEN (SELECT COUNT(*) FROM MascaraSeleccionCatalogo msc WHERE IdTicket = Frm.IdTicket and IdRegistroCatalogo = {0}) > 0 then 'Si' else 'No' end [{1}] ,", idRegistroCatalogo, descripcionRegistroCatalogo);
+                                        }
+
+                                    }
+                                    qryCampos += string.Format("{0}", qryCamposCasilla);
+                                }
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroDecimal:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:
+                                qryCampos += string.Format("CASE WHEN {0} = 0 THEN 'No' ELSE 'Si' End [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.SelecciónCascada:
+                                qryCampos += string.Format("CASE WHEN {0} = 0 THEN 'No' ELSE 'Si' End [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
+                                qryCampos += string.Format("CONVERT(nvarchar(10), {0}, 103) [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango:
+                                qryCampos += string.Format("CONVERT(nvarchar(10), {0}, 103) [{1}],", campoMascara.NombreCampo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio, campoMascara.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio);
+                                qryCampos += string.Format("CONVERT(nvarchar(10), {0}, 103) [{1}],", campoMascara.NombreCampo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin, campoMascara.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ExpresiónRegular:
+                                qryCampos += string.Format("{0} {1},", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
+                                qryCampos += string.Format("CASE WHEN {0} = '' THEN 'No' ELSE 'Si' END [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                                qryCampos += string.Format("{0} {1},", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                                qryCampos += string.Format("{0} {1},", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                        }
+                    }
+                    qryCampos = qryCampos.Trim().TrimEnd(',');
+                    qryCampos += String.Format(" FROM Ticket t \n" +
+                                               "INNER JOIN ArbolAcceso aa ON T.IdArbolAcceso = aa.Id\n" +
+                                               "INNER JOIN InventarioArbolAcceso iaa ON aa.Id = iaa.IdArbolAcceso\n" +
+                                               "INNER JOIN Usuario u ON t.IdUsuarioSolicito = u.Id\n" +
+                                               "INNER JOIN EstatusTicket et ON t.IdEstatusTicket = ET.Id \n" +
+                                               "INNER JOIN {0} Frm on t.Id = Frm.IdTicket\n", mascara.NombreTabla);
+                    if (fechas != null)
+                    {
+                        string fechaInicio = string.Format("{0}-{1}-{2} 00:00:00",
+                            fechas.Single(s => s.Key == "inicio").Value.Year,
+                                fechas.Single(s => s.Key == "inicio").Value.Month,
+                                    fechas.Single(s => s.Key == "inicio").Value.Day);
+                        string fechaFin = string.Format("{0}-{1}-{2} 00:00:00",
+                            fechas.Single(s => s.Key == "fin").Value.Year,
+                                fechas.Single(s => s.Key == "fin").Value.Month,
+                                    fechas.Single(s => s.Key == "fin").Value.AddDays(1).Day);
+                        qryCampos += string.Format("WHERE t.FechaHoraAlta >= CONVERT(DATETIME, '{0}') AND t.FechaHoraAlta < CONVERT(DATETIME, '{1}')", fechaInicio, fechaFin);
+                    }
+
+                    SqlCommand cmdReport = new SqlCommand((qryCampos), sqlConn);
+                    SqlDataAdapter daReport = new SqlDataAdapter(cmdReport);
+                    using (cmdReport)
+                    {
+                        cmdReport.CommandType = CommandType.Text;
+                        daReport.Fill(retVal);
+                    }
+
+                    if (retVal.Tables.Count > 0)
+                    {
+                        result = retVal.Tables[0];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+
+            return result;
+        }
+
+        public DataTable Test(int idMascara)
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            DataTable result = null;
+            try
+            {
+                DataSet retVal = new DataSet();
+                EntityConnection entityConn = (EntityConnection)db.Connection;
+                SqlConnection sqlConn = (SqlConnection)entityConn.StoreConnection;
+                string qryCampos = "SELECT t.Id [Id Ticket], iaa.Descripcion [Opcion], u.Nombre [N], u.ApellidoPaterno [P], u.ApellidoMaterno [M], t.FechaHoraAlta, et.Descripcion, \n";
+                Mascara mascara = db.Mascara.SingleOrDefault(s => s.Id == idMascara);
+                if (mascara != null)
+                {
+                    db.LoadProperty(mascara, "CampoMascara");
+                    foreach (CampoMascara campoMascara in mascara.CampoMascara)
+                    {
+                        switch (campoMascara.IdTipoCampoMascara)
+                        {
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.TextoMultiLinea:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.RadioBoton:
+                                if (campoMascara.IdCatalogo != null)
+                                    qryCampos += string.Format("(select Descripcion from {0} where Id = {1}) [{2}],", new BusinessCatalogos().ObtenerCatalogo((int)campoMascara.IdCatalogo).Tabla, campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ListaDespledable:
+                                if (campoMascara.IdCatalogo != null)
+                                    qryCampos += string.Format("(select Descripcion from {0} where Id = {1}) [{2}],", new BusinessCatalogos().ObtenerCatalogo((int)campoMascara.IdCatalogo).Tabla, campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación:
+                                if (campoMascara.IdCatalogo != null)
+                                {
+                                    db.LoadProperty(campoMascara, "Catalogos");
+                                    string qryCamposCasilla = string.Empty;
+                                    DataTable registrosCatalogo = new BusinessCatalogos().ObtenerRegistrosArchivosCatalogo((int)campoMascara.IdCatalogo);
+                                    foreach (DataRow registro in registrosCatalogo.Rows)
+                                    {
+                                        int idRegistroCatalogo = (int)registro["Id"];
+                                        string descripcionRegistroCatalogo = (string)registro["Descripcion"];
+                                        if (idRegistroCatalogo > BusinessVariables.ComboBoxCatalogo.ValueSeleccione)
+                                        {
+                                            qryCamposCasilla += string.Format("CASE WHEN (SELECT COUNT(*) FROM MascaraSeleccionCatalogo msc WHERE IdTicket = Frm.IdTicket and IdRegistroCatalogo = {0}) > 0 then 'Si' else 'No' end [{1}] ,", idRegistroCatalogo, descripcionRegistroCatalogo);
+                                        }
+
+                                    }
+                                    qryCampos += string.Format("{0}", qryCamposCasilla);
+                                }
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroDecimal:
+                                qryCampos += string.Format("{0} [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Logico:
+                                qryCampos += string.Format("CASE WHEN {0} = 0 THEN 'No' ELSE 'Si' End [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.SelecciónCascada:
+                                qryCampos += string.Format("CASE WHEN {0} = 0 THEN 'No' ELSE 'Si' End [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Fecha:
+                                qryCampos += string.Format("CONVERT(nvarchar(10), {0}, 103) [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.FechaRango:
+                                qryCampos += string.Format("CONVERT(nvarchar(10), {0}, 103) [{1}],", campoMascara.NombreCampo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio, campoMascara.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaInicio);
+                                qryCampos += string.Format("CONVERT(nvarchar(10), {0}, 103) [{1}],", campoMascara.NombreCampo + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin, campoMascara.Descripcion + BusinessVariables.ParametrosMascaraCaptura.PrefijoFechaFin);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.ExpresiónRegular:
+                                qryCampos += string.Format("{0} {1},", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
+                                qryCampos += string.Format("CASE WHEN {0} = '' THEN 'No' ELSE 'Si' END [{1}],", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono:
+                                qryCampos += string.Format("{0} {1},", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                            case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico:
+                                qryCampos += string.Format("{0} {1},", campoMascara.NombreCampo, campoMascara.Descripcion);
+                                break;
+                        }
+                    }
+                    qryCampos = qryCampos.Trim().TrimEnd(',');
+                    qryCampos += String.Format(" FROM Ticket t \n" +
+                                               "INNER JOIN ArbolAcceso aa ON T.IdArbolAcceso = aa.Id\n" +
+                                               "INNER JOIN InventarioArbolAcceso iaa ON aa.Id = iaa.IdArbolAcceso\n" +
+                                               "INNER JOIN Usuario u ON t.IdUsuarioSolicito = u.Id\n" +
+                                               "INNER JOIN EstatusTicket et ON t.IdEstatusTicket = ET.Id \n" +
+                                               "INNER JOIN {0} Frm on t.Id = Frm.IdTicket", mascara.NombreTabla);
+                    SqlCommand cmdReport = new SqlCommand((qryCampos), sqlConn);
+                    SqlDataAdapter daReport = new SqlDataAdapter(cmdReport);
+                    using (cmdReport)
+                    {
+                        cmdReport.CommandType = CommandType.Text;
+                        daReport.Fill(retVal);
+                    }
+
+                    if (retVal.Tables.Count > 0)
+                    {
+                        result = retVal.Tables[0];
+                    }
                 }
             }
             catch (Exception ex)

@@ -108,14 +108,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KiiniNet.Entities.dll" size="284160">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KiiniNet.Entities.dll" size="291328">
       <assemblyIdentity name="KiiniNet.Entities" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>OaceSiRXQHdkNPythyHRa8tekOw=</dsig:DigestValue>
+        <dsig:DigestValue>clBITSoK/JLzO6HCCKHkbgl0Lxk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -127,43 +127,43 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Pk3TXpT5dDQnHJ5ZTQvKhHXQfl4=</dsig:DigestValue>
+        <dsig:DigestValue>KTK+s3Rez648ZzrbnMnkOzryd70=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Business.Utils.dll" size="51200">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Business.Utils.dll" size="51712">
       <assemblyIdentity name="KinniNet.Business.Utils" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Xvo/XgDH6JhZTL/wdqfo5qndlbU=</dsig:DigestValue>
+        <dsig:DigestValue>BW+JpDYDWi9RYKGBBQRlIlldOnE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Core.dll" size="1345024">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Core.dll" size="1352704">
       <assemblyIdentity name="KinniNet.Core" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>O8KU81kpUpcwHVTMx864P+NbYJI=</dsig:DigestValue>
+        <dsig:DigestValue>sXLa840yr22aFGA9W0OV/+sudBo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Data.dll" size="739840">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinniNet.Data.dll" size="765440">
       <assemblyIdentity name="KinniNet.Data" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>PEYiwjCAW5DVWGIemollE/MjV4I=</dsig:DigestValue>
+        <dsig:DigestValue>lSoY+uUDAZq4Ay0oIvytnfiNIxk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

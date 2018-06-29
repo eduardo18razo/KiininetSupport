@@ -369,6 +369,7 @@ namespace KinniNet.Core.Sistema
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
+                string connection = (((System.Data.EntityClient.EntityConnection)(db.Connection)).StoreConnection).ConnectionString;
                 int lenght = 15;
 
                 Catalogos cat = db.Catalogos.Single(s => s.Id == idCatalogo);
@@ -395,7 +396,7 @@ namespace KinniNet.Core.Sistema
                 sql = sql.TrimEnd('+').TrimEnd('\'').Trim().TrimEnd('|');
                 sql += " as Descripcion \nFROM " + cat.Tabla;
 
-                SqlConnection sqlConn = new SqlConnection(string.Format("Server={0};Database={1};Trusted_Connection=True", db.Connection.DataSource, (((System.Data.EntityClient.EntityConnection)(db.Connection)).StoreConnection).Database));
+                SqlConnection sqlConn = new SqlConnection(connection);
                 SqlCommand cmdSql = new SqlCommand(sql, sqlConn);
                 //cmdSql.Parameters.Add("@TABLENAME", SqlDbType.VarChar).Value = cat.Tabla;
                 SqlDataAdapter da = new SqlDataAdapter(cmdSql);
@@ -666,10 +667,11 @@ namespace KinniNet.Core.Sistema
             List<CamposCatalogo> result = new List<CamposCatalogo>();
             try
             {
+                string connection = (((System.Data.EntityClient.EntityConnection)(db.Connection)).StoreConnection).ConnectionString;
                 Catalogos catalogo = db.Catalogos.SingleOrDefault(w => w.Id == idCatalogo);
                 if (catalogo != null)
                 {
-                    SqlConnection sqlConn = new SqlConnection(string.Format("Server={0};Database={1};Trusted_Connection=True", db.Connection.DataSource, (((System.Data.EntityClient.EntityConnection)(db.Connection)).StoreConnection).Database));
+                    SqlConnection sqlConn = new SqlConnection(connection);
                     SqlCommand cmdSchema = new SqlCommand(string.Format("select COLUMN_NAME, DATA_TYPE from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME ='{0}'", catalogo.Tabla), sqlConn);
                     SqlDataAdapter daSchema = new SqlDataAdapter(cmdSchema);
                     daSchema.TableMappings.Add("Table", catalogo.Tabla);

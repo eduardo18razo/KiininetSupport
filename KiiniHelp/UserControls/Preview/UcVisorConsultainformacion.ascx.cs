@@ -48,6 +48,8 @@ namespace KiiniHelp.UserControls.Preview
                 if (arbol != null)
                 {
                     IdTipoUsuario = arbol.IdTipoUsuario;
+                    lblTitle.Text = arbol.InventarioArbolAcceso[0].Descripcion;
+                    lblDescripcion.Text = arbol.Descripcion;
                     MuestraPreview(_servicioInformacion.ObtenerInformacionConsultaById(arbol.InventarioArbolAcceso.First().InventarioInfConsulta.First().IdInfConsulta));
                 }
 
@@ -126,7 +128,7 @@ namespace KiiniHelp.UserControls.Preview
             try
             {
                 IdInformacionconsulta = datos.Id;
-                lblTitle.Text = datos.Descripcion;
+
                 TextPreview.InnerHtml = datos.InformacionConsultaDatos.First().Datos;
                 rptArchivos.DataSource = datos.InformacionConsultaDocumentos;
                 rptArchivos.DataBind();

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Configuration;
 using System.Web.UI;
+using KiiniHelp.ServiceSistemaTipoUsuario;
+using KiiniNet.Entities.Cat.Sistema;
 using KinniNet.Business.Utils;
-using KiiniNet.Entities.Helper;
-using System.Xml.Serialization;
-using System.IO;
 
 namespace KiiniHelp
 {
     public partial class Default1 : Page
     {
+        private readonly ServiceTipoUsuarioClient _servicioTipoUsuario = new ServiceTipoUsuarioClient();
         private List<string> _lstError = new List<string>();
 
         private List<string> Alerta
@@ -61,6 +61,21 @@ namespace KiiniHelp
                 throw new Exception(ex.Message);
             }
         }
+
+        private void HabilitaTiposDeUsuario()
+        {
+            try
+            {
+                List<TipoUsuario> tiposUsuario = _servicioTipoUsuario.ObtenerTiposUsuario(false);
+                divEmpleados.Visible = tiposUsuario.Any(s => s.Id == (int)BusinessVariables.EnumTiposUsuario.Empleado);
+                divClientes.Visible = tiposUsuario.Any(s => s.Id == (int)BusinessVariables.EnumTiposUsuario.Cliente);
+                divProveedores.Visible = tiposUsuario.Any(s => s.Id == (int)BusinessVariables.EnumTiposUsuario.Proveedor);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message) ;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -76,6 +91,8 @@ namespace KiiniHelp
                         Buscador();
                     }
                 }
+                if(!IsPostBack)
+                    HabilitaTiposDeUsuario();
             }
             catch (Exception ex)
             {

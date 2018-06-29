@@ -86,12 +86,6 @@
     <Compile Include="InstallerSettings.Designer.cs">
       <DependentUpon>InstallerSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="ServiceTicketMail.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ServiceTicketMail.Designer.cs">
-      <DependentUpon>ServiceTicketMail.cs</DependentUpon>
-    </Compile>
     <Compile Include="ServiceNotificacion.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -106,6 +100,10 @@
     <None Include="KiiniNet.Services.Windows_ClaveTemporal.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\KiiniNet.Entities\KiiniNet.Entities.csproj">
+      <Project>{C003D316-9B3C-44EF-B6B4-48C98936B0A7}</Project>
+      <Name>KiiniNet.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KinniNet.Business\KinniNet.Core.csproj">
       <Project>{7852A613-D901-44E2-9319-197C2CC9C390}</Project>
       <Name>KinniNet.Core</Name>

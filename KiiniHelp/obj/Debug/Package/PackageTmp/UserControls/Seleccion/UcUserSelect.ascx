@@ -5,8 +5,8 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li>
-                    <asp:LinkButton runat="server" OnClick="OnClick">Home</asp:LinkButton></li>
+                <li class="text-theme">
+                    <asp:LinkButton runat="server" OnClick="OnClick" Text="text-theme">Home</asp:LinkButton></li>
                 <li class="active">
                     <asp:Label runat="server" ID="lbltipoUsuario" /></li>
             </ol>

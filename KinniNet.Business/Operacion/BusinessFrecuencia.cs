@@ -82,7 +82,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
         private List<HelperFrecuencia> GeneraTopGeneralPrivado(int idTipoUsuario, int idUsuario)
         {
@@ -165,7 +165,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
         public List<HelperFrecuencia> ObtenerTopTenGeneral(int idTipoUsuario, int? idUsuario)
         {
@@ -245,7 +245,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
 
         public List<HelperFrecuencia> GeneraTopConsultaPrivado(int idTipoUsuario, int idUsuario)
@@ -330,7 +330,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
 
         public List<HelperFrecuencia> ObtenerTopTenConsulta(int idTipoUsuario, int? idUsuario)
@@ -412,7 +412,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
 
         public List<HelperFrecuencia> GeneraTopServicioPrivado(int idTipoUsuario, int idUsuario)
@@ -497,7 +497,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
 
         public List<HelperFrecuencia> ObtenerTopTenServicio(int idTipoUsuario, int? idUsuario)
@@ -578,7 +578,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
 
         public List<HelperFrecuencia> GeneraTopIncidentePrivado(int idTipoUsuario, int idUsuario)
@@ -662,7 +662,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.Dispose();
             }
-            return result;
+            return result.Take(10).ToList();
         }
 
         public List<HelperFrecuencia> ObtenerTopTenIncidente(int idTipoUsuario, int? idUsuario)
