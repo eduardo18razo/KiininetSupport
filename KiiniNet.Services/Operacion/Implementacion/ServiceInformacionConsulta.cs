@@ -101,13 +101,28 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public List<HelperInformacionConsulta> ObtenerConsulta(string descripcion, Dictionary<string, DateTime> fechas)
+        public List<InformacionConsulta> ObtenerConsulta(string descripcion)
         {
             try
             {
                 using (BusinessInformacionConsulta negocio = new BusinessInformacionConsulta())
                 {
-                    return negocio.ObtenerInformacionConsulta(descripcion, fechas);
+                    return negocio.ObtenerInformacionConsulta(descripcion);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<HelperInformacionConsulta> ObtenerInformacionReporte(string descripcion, Dictionary<string, DateTime> fechas)
+        {
+            try
+            {
+                using (BusinessInformacionConsulta negocio = new BusinessInformacionConsulta())
+                {
+                    return negocio.ObtenerInformacionReporte(descripcion, fechas);
                 }
             }
             catch (Exception ex)

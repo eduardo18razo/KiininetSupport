@@ -50,6 +50,9 @@ namespace KiiniHelp.ServiceEncuesta {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGrupos", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGruposResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Usuario.Encuesta> ObtenerEncuestaByGrupos(System.Collections.Generic.List<int> grupos, bool insertarSeleccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerReporteNps", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerReporteNpsResponse")]
+        KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -125,6 +128,10 @@ namespace KiiniHelp.ServiceEncuesta {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Usuario.Encuesta> ObtenerEncuestaByGrupos(System.Collections.Generic.List<int> grupos, bool insertarSeleccion) {
             return base.Channel.ObtenerEncuestaByGrupos(grupos, insertarSeleccion);
+        }
+        
+        public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
+            return base.Channel.ObtenerReporteNps(idArbolAcceso, fechas, tipoFecha);
         }
     }
 }

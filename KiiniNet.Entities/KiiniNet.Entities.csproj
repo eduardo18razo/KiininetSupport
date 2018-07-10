@@ -124,6 +124,7 @@
     <Compile Include="Helper\HelperTicketsUsuario.cs" />
     <Compile Include="Helper\HelperUsuario.cs" />
     <Compile Include="Helper\HelperUsuarioAgente.cs" />
+    <Compile Include="Helper\Reportes\HelperReporteEncuesta.cs" />
     <Compile Include="Operacion\Area.cs" />
     <Compile Include="Operacion\CorreoService.cs" />
     <Compile Include="Operacion\Dashboard\DashboardAdministrador.cs" />

@@ -161,7 +161,7 @@ namespace KiiniHelp.UserControls.Temporal
         {
             try
             {
-                Mascara mascara = (Mascara)Session["MascaraActiva"];
+                Mascara mascara = (Mascara)Session["DataFormularioPortal"];
                 mascara = mascara ?? _servicioMascaras.ObtenerMascaraCaptura(IdMascara);
                 foreach (CampoMascara campo in mascara.CampoMascara)
                 {
@@ -499,7 +499,7 @@ namespace KiiniHelp.UserControls.Temporal
             try
             {
                 ValidaMascaraCaptura();
-                Mascara mascara = (Mascara)Session["MascaraActiva"];
+                Mascara mascara = (Mascara)Session["DataFormularioPortal"];
                 string nombreControl = null;
                 lstCamposCapturados = new List<HelperCampoMascaraCaptura>();
                 foreach (CampoMascara campo in mascara.CampoMascara)

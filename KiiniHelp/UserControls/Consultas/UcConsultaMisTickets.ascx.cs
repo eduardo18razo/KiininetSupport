@@ -212,5 +212,44 @@ namespace KiiniHelp.UserControls.Consultas
                 Alerta = _lstError;
             }
         }
+        protected void gvTickets_OnFilterCheckListItemsRequested(object sender, GridFilterCheckListItemsRequestedEventArgs e)
+        {
+            try
+            {
+                IGridDataColumn gridDataColumn = e.Column as IGridDataColumn;
+                if (gridDataColumn != null)
+                {
+                    string dataField = gridDataColumn.GetActiveDataField();
+                    switch (dataField)
+                    {
+                        case "IdTicket":
+                            e.ListBox.DataSource = Tickets.Select(s => s.IdTicket).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "Tipificacion":
+                            e.ListBox.DataSource = Tickets.Select(s => s.Tipificacion).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "FechaHora":
+                            e.ListBox.DataSource = Tickets.Select(s => s.FechaHora).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                        case "Estatusticket.Descripcion":
+                            e.ListBox.DataSource = Tickets.Select(s => s.EstatusTicket.Descripcion).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

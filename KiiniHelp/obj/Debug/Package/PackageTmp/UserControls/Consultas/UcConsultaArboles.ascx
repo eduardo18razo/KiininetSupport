@@ -8,10 +8,10 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item active">Menú de Navegación</li>
+                <li>Help Center</li>
+                <li class=" active">Menú de Navegación</li>
             </ol>
 
             <section class="module">
@@ -32,7 +32,7 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-lg-5">
+                            <div class="col-lg-5">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Opciones de Menú:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-4 col-sm-4 col-md-4 col-lg-4 separador-vertical-derecho">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o Consulta por Categoría y Tipo de Usuario</label>
                                     <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7  no-padding-left no-margin-left">
@@ -57,7 +57,7 @@
                             </div>
 
 
-                            <div class="form col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
                                 <div class="form-group margin-top-btn-consulta">
 
                                     <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
@@ -76,7 +76,7 @@
             </section>
 
 
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
 
                     <div class="module-content collapse in" id="content-1">

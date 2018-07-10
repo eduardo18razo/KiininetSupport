@@ -5,9 +5,11 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
+using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSeguridad;
 using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp
@@ -16,6 +18,7 @@ namespace KiiniHelp
     {
         private readonly ServiceUsuariosClient _servicioUsuario = new ServiceUsuariosClient();
         private readonly ServiceSecurityClient _servicioSeguridad = new ServiceSecurityClient();
+        private readonly ServiceParametrosClient _servicioParametros = new ServiceParametrosClient();
         private List<string> _lstError = new List<string>();
 
         private List<string> Alerta
@@ -30,7 +33,31 @@ namespace KiiniHelp
                 }
             }
         }
-        
+        private void CondicioinPassword()
+        {
+            try
+            {
+                ParametrosGenerales parametrosGenerales = _servicioParametros.ObtenerParametrosGenerales();
+                if (parametrosGenerales != null)
+                {
+                    ParametroPassword parametrosPassword = _servicioParametros.ObtenerParemtrosPassword();
+                    if (parametrosPassword != null)
+                    {
+                        lblCaracteristicas.Visible = parametrosGenerales.StrongPassword;
+                        listParamtros.Visible = parametrosGenerales.StrongPassword;
+                        lblLongitud.Text = string.Format("Longitud minima de {0} caracteres", parametrosPassword.Min);
+                        lblLongitud.Text = string.Format("{0} Mayuscula", parametrosPassword.Mayusculas);
+                        paramMayuscula.Visible = parametrosPassword.Mayusculas > 0;
+                        paramNumero.Visible = parametrosPassword.Numeros;
+                        paramEspecial.Visible = parametrosPassword.Especiales;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         private void ValidaCampos()
         {
             try

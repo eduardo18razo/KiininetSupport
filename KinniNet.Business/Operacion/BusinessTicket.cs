@@ -145,7 +145,8 @@ namespace KinniNet.Core.Operacion
             try
             {
                 string correo = string.Empty;
-                Usuario usuario = new BusinessUsuarios().ObtenerUsuario(idUsuario);
+                Usuario usuarioLevanto = new BusinessUsuarios().ObtenerUsuario(idUsuario);
+                Usuario usuarioSolicito = new BusinessUsuarios().ObtenerUsuario(idUsuarioSolicito);
                 ArbolAcceso arbol = new BusinessArbolAcceso().ObtenerArbolAcceso(idArbol);
                 Mascara mascara = new BusinessMascaras().ObtenerMascaraCaptura(arbol.InventarioArbolAcceso.First().IdMascara ?? 0);
                 Encuesta encuesta = new BusinessEncuesta().ObtenerEncuestaById(arbol.InventarioArbolAcceso.First().IdEncuesta ?? 0);
@@ -154,14 +155,14 @@ namespace KinniNet.Core.Operacion
                     throw new Exception("Datos Invalidos Consulte a su administrador");
                 Ticket ticket = new Ticket
                 {
-                    IdTipoUsuario = usuario.IdTipoUsuario,
+                    IdTipoUsuario = usuarioSolicito.IdTipoUsuario,
                     IdTipoArbolAcceso = arbol.IdTipoArbolAcceso,
                     IdArbolAcceso = arbol.Id,
                     IdImpacto = (int)arbol.IdImpacto,
-                    IdUsuarioLevanto = usuario.Id,
+                    IdUsuarioLevanto = usuarioLevanto.Id,
                     IdUsuarioSolicito = idUsuarioSolicito,
-                    IdOrganizacion = usuario.IdOrganizacion,
-                    IdUbicacion = usuario.IdUbicacion,
+                    IdOrganizacion = usuarioSolicito.IdOrganizacion,
+                    IdUbicacion = usuarioSolicito.IdUbicacion,
                     IdMascara = mascara.Id,
                     IdEncuesta = encuesta != null ? encuesta.Id : (int?)null,
                     IdCanal = idCanal,
@@ -172,12 +173,12 @@ namespace KinniNet.Core.Operacion
                     IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
                     Random = campoRandom,
                     ClaveRegistro = UtilsTicket.GeneraCampoRandom(),
-                    EsTercero = usuario.Id != idUsuarioSolicito,
+                    EsTercero = usuarioLevanto.Id != idUsuarioSolicito,
                     DentroSla = true,
                     TicketCorreo = new List<TicketCorreo>(),
                     TicketGrupoUsuario = new List<TicketGrupoUsuario>(),
                 };
-                correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio).Correo;
+                correo = usuarioSolicito.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuarioSolicito.CorreoUsuario.FirstOrDefault(f => f.Obligatorio).Correo;
                 if (correo != string.Empty)
                     ticket.TicketCorreo.Add(new TicketCorreo
                     {
@@ -372,7 +373,7 @@ namespace KinniNet.Core.Operacion
                 {
                     string cuerpo = string.Format("Hola {0},<br>" +
                                     "¡Gracias por contactarnos! Hemos recibido su correo y nos pondremos en contacto contigo lo antes posible. " +
-                                    "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo<a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "\"> aquí </a>Gracias", usuario.Nombre);
+                                    "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo <a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + result.Id + "&cveRandom=" + result.ClaveRegistro + "'\"> aquí </a>Gracias", usuarioSolicito.Nombre);
                     new BusinessTicketMailService().EnviaCorreoTicketGenerado(result.Id, result.ClaveRegistro, cuerpo, correo);
                 }
             }

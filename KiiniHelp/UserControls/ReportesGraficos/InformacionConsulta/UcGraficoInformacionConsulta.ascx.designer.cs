@@ -22,6 +22,15 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta {
         protected global::System.Web.UI.WebControls.Label lblSeccion;
         
         /// <summary>
+        /// Control lblTitulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTitulo;
+        
+        /// <summary>
         /// Control rhcLikeBarra.
         /// </summary>
         /// <remarks>

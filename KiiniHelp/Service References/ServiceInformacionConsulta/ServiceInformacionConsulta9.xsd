@@ -97,14 +97,28 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
-        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q11:ArrayOfKeyValueOfstringdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ObtenerConsultaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerConsultaResult" nillable="true" type="q12:ArrayOfHelperInformacionConsulta" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="ObtenerConsultaResult" nillable="true" type="q11:ArrayOfInformacionConsulta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerInformacionReporte">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q12:ArrayOfKeyValueOfstringdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerInformacionReporteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerInformacionReporteResult" nillable="true" type="q13:ArrayOfHelperInformacionConsulta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -140,7 +154,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idInformacionConsulta" type="xs:int" />
-        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q13:ArrayOfKeyValueOfstringdateTime" />
+        <xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q14:ArrayOfKeyValueOfstringdateTime" />
         <xs:element minOccurs="0" name="tipoFecha" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -148,7 +162,7 @@
   <xs:element name="ObtenerReporteInformacionConsultaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Reportes" minOccurs="0" name="ObtenerReporteInformacionConsultaResult" nillable="true" type="q14:ReporteInformacionConsulta" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Reportes" minOccurs="0" name="ObtenerReporteInformacionConsultaResult" nillable="true" type="q15:ReporteInformacionConsulta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

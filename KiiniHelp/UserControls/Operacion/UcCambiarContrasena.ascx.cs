@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI;
+using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSeguridad;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 
 namespace KiiniHelp.UserControls.Operacion
 {
     public partial class UcCambiarContrasena : UserControl, IControllerModal
     {
         private readonly ServiceSecurityClient _servicioSeguridad = new ServiceSecurityClient();
+        private readonly ServiceParametrosClient _servicioParametros = new ServiceParametrosClient();
         private List<string> _lstError = new List<string>();
         private List<string> AlertaGeneral
         {
@@ -41,6 +44,31 @@ namespace KiiniHelp.UserControls.Operacion
                 throw new Exception(e.Message);
             }
         }
+        private void CondicioinPassword()
+        {
+            try
+            {
+                ParametrosGenerales parametrosGenerales = _servicioParametros.ObtenerParametrosGenerales();
+                if (parametrosGenerales != null)
+                {
+                    ParametroPassword parametrosPassword = _servicioParametros.ObtenerParemtrosPassword();
+                    if (parametrosPassword != null)
+                    {
+                        lblCaracteristicas.Visible = parametrosGenerales.StrongPassword;
+                        listParamtros.Visible = parametrosGenerales.StrongPassword;
+                        lblLongitud.Text = string.Format("Longitud minima de {0} caracteres", parametrosPassword.Min);
+                        lblLongitudMayus.Text = string.Format("{0} Mayuscula", parametrosPassword.Mayusculas);
+                        paramMayuscula.Visible = parametrosPassword.Mayusculas > 0;
+                        paramNumero.Visible = parametrosPassword.Numeros;
+                        paramEspecial.Visible = parametrosPassword.Especiales;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -48,6 +76,7 @@ namespace KiiniHelp.UserControls.Operacion
                 AlertaGeneral = new List<string>();
                 if (!IsPostBack)
                 {
+                    CondicioinPassword();
                 }
             }
             catch (Exception ex)

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using KiiniHelp.Funciones;
 using KiiniHelp.ServiceSistemaTipoArbolAcceso;
-using KiiniNet.Entities.Cat.Sistema;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
@@ -22,26 +22,26 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             set
             {
-                panelAlerta.Visible = value.Any();
-                if (!panelAlerta.Visible) return;
-                rptError.DataSource = value;
-                rptError.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
         public List<int> TipoArbolSeleccionados
         {
             get
             {
-                return (from RepeaterItem item in rptTipoArbolSeleccionado.Items select int.Parse(((Label)item.FindControl("lblId")).Text)).ToList();
+                return (from ListItem item in lstFiltroServicioIncidente.Items where item.Selected select int.Parse(item.Value)).ToList();
             }
-            set { }
         }
         private void LlenaTipoArbolTicket()
         {
             try
             {
-                rptTipoArbol.DataSource = _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion);
-                rptTipoArbol.DataBind();
+                Metodos.LlenaListBoxCatalogo(lstFiltroServicioIncidente, _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion));
             }
             catch (Exception e)
             {
@@ -53,8 +53,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                rptTipoArbol.DataSource = _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion);
-                rptTipoArbol.DataBind();
+                Metodos.LlenaListBoxCatalogo(lstFiltroServicioIncidente, _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion));
             }
             catch (Exception e)
             {
@@ -66,8 +65,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                rptTipoArbol.DataSource = _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false);
-                rptTipoArbol.DataBind();
+                Metodos.LlenaListBoxCatalogo(lstFiltroServicioIncidente, _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false));
             }
             catch (Exception e)
             {
@@ -107,31 +105,6 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 hfticket.Value = value.ToString();
             }
         }
-        private void LlenaTipoArbolSeleccionado()
-        {
-            try
-            {
-                rptTipoArbolSeleccionado.DataSource = Session["TipoArbolSeleccionado"];
-                rptTipoArbolSeleccionado.DataBind();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
-        private void Limpiar()
-        {
-            try
-            {
-                Session["TipoArbolSeleccionado"] = null;
-                LlenaTipoArbolSeleccionado();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -154,128 +127,5 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        protected void btnSeleccionar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                List<TipoArbolAcceso> lst = Session["TipoArbolSeleccionado"] == null ? new List<TipoArbolAcceso>() : (List<TipoArbolAcceso>)Session["TipoArbolSeleccionado"];
-                Button button = (sender as Button);
-                if (button != null)
-                {
-                    RepeaterItem item = button.NamingContainer as RepeaterItem;
-                    if (item != null)
-                    {
-                        int index = item.ItemIndex;
-                        Label lblIdGrupo = (Label)rptTipoArbol.Items[index].FindControl("lblId");
-                        Label lblDescripcion = (Label)rptTipoArbol.Items[index].FindControl("lblDescripcion");
-
-                        if (lst.Count <= 0)
-                            lst.Add(new TipoArbolAcceso
-                            {
-                                Id = Convert.ToInt32(lblIdGrupo.Text),
-                                Descripcion = lblDescripcion.Text
-                            });
-                    }
-                }
-                Session["TipoArbolSeleccionado"] = lst;
-                LlenaTipoArbolSeleccionado();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnQuitar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                List<TipoArbolAcceso> lst = Session["TipoArbolSeleccionado"] == null ? new List<TipoArbolAcceso>() : (List<TipoArbolAcceso>)Session["TipoArbolSeleccionado"];
-                Button button = (sender as Button);
-                if (button != null)
-                {
-                    RepeaterItem item = button.NamingContainer as RepeaterItem;
-                    if (item != null)
-                    {
-                        int index = item.ItemIndex;
-                        Label lblIdGrupo = (Label)rptTipoArbolSeleccionado.Items[index].FindControl("lblId");
-
-                        lst.Remove(lst.Single(s => s.Id == int.Parse(lblIdGrupo.Text)));
-                    }
-                }
-                Session["TipoArbolSeleccionado"] = lst;
-                LlenaTipoArbolSeleccionado();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnAceptar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (OnAceptarModal != null)
-                    OnAceptarModal();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnLimpiar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                Limpiar();
-                if (OnLimpiarModal != null)
-                    OnLimpiarModal();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnCancelar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (OnCancelarModal != null)
-                    OnCancelarModal();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
     }
 }

@@ -19,10 +19,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             set
             {
-                panelAlerta.Visible = value.Any();
-                if (!panelAlerta.Visible) return;
-                rptError.DataSource = value;
-                rptError.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
 
@@ -162,63 +164,6 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        protected void btnAceptar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                ValidaFechas();
-                if (OnAceptarModal != null)
-                    OnAceptarModal();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnLimpiar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                txtFechaInicio.Text = string.Empty;
-                txtFechaFin.Text = string.Empty;
-                if (OnLimpiarModal != null)
-                    OnLimpiarModal();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnCancelar_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                var valida = RangoFechas;
-                if (OnCancelarModal != null)
-                    OnCancelarModal();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
 
 
         protected void ddlTipoFiltro_OnSelectedIndexChanged(object sender, EventArgs e)

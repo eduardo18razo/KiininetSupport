@@ -245,7 +245,37 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public List<HelperInformacionConsulta> ObtenerInformacionConsulta(string descripcion, Dictionary<string, DateTime> fechas)
+        public List<InformacionConsulta> ObtenerInformacionConsulta(string descripcion)
+        {
+            List<InformacionConsulta> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                IQueryable<InformacionConsulta> qry = db.InformacionConsulta;
+                descripcion = descripcion.Trim().ToLower();
+                qry = qry.Where(w => w.Descripcion.ToLower().Contains(descripcion));
+                result = qry.ToList();
+                foreach (InformacionConsulta consulta in result)
+                {
+                    db.LoadProperty(consulta, "TipoInfConsulta");
+                    db.LoadProperty(consulta, "UsuarioAlta");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<HelperInformacionConsulta> ObtenerInformacionReporte(string descripcion, Dictionary<string, DateTime> fechas)
         {
             List<HelperInformacionConsulta> result = null;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -262,13 +292,13 @@ namespace KinniNet.Core.Operacion
                     if (fechas != null)
                     {
                         var qryJoin = from q in qry
-                            join icr in db.InformacionConsultaRate on q.Id equals icr.IdInformacionConsulta
-                            select new {q, icr};
+                                      join icr in db.InformacionConsultaRate on q.Id equals icr.IdInformacionConsulta
+                                      select new { q, icr };
                         DateTime fechaInicio = fechas.Single(s => s.Key == "inicio").Value;
                         DateTime fechaFin = fechas.Single(s => s.Key == "fin").Value.AddDays(1);
                         var infoJoin = qryJoin.ToList();
                         infoJoin = infoJoin.Where(w => DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) >= DateTime.Parse(fechaInicio.ToString("dd/MM/yyyy"))
-                                    && DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) <= DateTime.Parse(fechaFin.ToString("dd/MM/yyyy"))).ToList();
+                                    && DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) < DateTime.Parse(fechaFin.ToString("dd/MM/yyyy"))).ToList();
                         info = infoJoin.Select(s => s.q).Distinct().ToList();
                     }
 
@@ -454,10 +484,20 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
+
                 result = new ReporteInformacionConsulta { IdInformacionConsulta = idInformacionConsulta };
+                string titulo = db.InformacionConsulta.Single(s => s.Id == idInformacionConsulta).Descripcion;
+
+                string rango = string.Empty;
+                DateTime fechaInicio;
+                DateTime fechaFin;
 
                 var qry = from icr in db.InformacionConsultaRate
+                          join iic in db.InventarioInfConsulta on icr.Id equals iic.IdInfConsulta
+                          join iaa in db.InventarioArbolAcceso on iic.IdInventario equals iaa.Id
+                          join aa in db.ArbolAcceso on iaa.IdArbolAcceso equals aa.Id
                           where icr.IdInformacionConsulta == idInformacionConsulta
+                          && aa.Evaluacion
                           select icr;
 
                 DataTable dtBarras = new DataTable("dt");
@@ -468,8 +508,8 @@ namespace KinniNet.Core.Operacion
 
                 if (fechas != null)
                 {
-                    DateTime fechaInicio = fechas.Single(s => s.Key == "inicio").Value;
-                    DateTime fechaFin = fechas.Single(s => s.Key == "fin").Value.AddDays(1);
+                    fechaInicio = fechas.Single(s => s.Key == "inicio").Value;
+                    fechaFin = fechas.Single(s => s.Key == "fin").Value.AddDays(1);
                     if (fechaInicio > fechaFin)
                         throw new Exception("Fechas incorrectas");
 
@@ -487,6 +527,7 @@ namespace KinniNet.Core.Operacion
                                 }
                                 else
                                     continua = false;
+                                rango = "Diario";
                                 break;
                             case 2:
                                 if (tmpFecha < fechaFin)
@@ -497,6 +538,7 @@ namespace KinniNet.Core.Operacion
                                 }
                                 else
                                     continua = false;
+                                rango = "Semanal";
                                 break;
                             case 3:
                                 if (tmpFecha < fechaFin)
@@ -507,6 +549,7 @@ namespace KinniNet.Core.Operacion
                                 }
                                 else
                                     continua = false;
+                                rango = "Mensual";
                                 break;
                             case 4:
                                 if (tmpFecha < fechaFin)
@@ -517,6 +560,7 @@ namespace KinniNet.Core.Operacion
                                 }
                                 else
                                     continua = false;
+                                rango = "Anual";
                                 break;
                         }
 
@@ -585,6 +629,8 @@ namespace KinniNet.Core.Operacion
                 {
                     var rate = qry.Distinct().ToList();
                     List<string> lstFechas = rate.OrderBy(o => o.FechaModificacion).Distinct().ToList().Select(s => s.FechaModificacion.ToString("dd/MM/yyyy")).Distinct().ToList();
+                    fechaInicio = DateTime.Parse(lstFechas.First());
+                    fechaFin = DateTime.Parse(lstFechas.Last());
                     switch (tipoFecha)
                     {
                         case 1:
@@ -622,6 +668,8 @@ namespace KinniNet.Core.Operacion
                 dtPie.Rows[0][1] = totalLike;
                 dtPie.Rows[1][1] = totaldontLike;
                 result.GraficoPie = dtPie;
+                titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToShortDateString(), fechaFin.ToShortDateString());
+                result.Titulo = titulo;
             }
             catch (Exception ex)
             {

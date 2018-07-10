@@ -178,7 +178,7 @@ namespace KiiniHelp.UserControls.Detalles
                     lblTituloTicket.Text = ticket.Tipificacion;
 
                     lblNombreCorreo.Text = string.Format("{0} &#60;{1}&#62;", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
-                    lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto;
+                    lblNombreU.Text = ticket.UsuarioSolicito.NombreCompleto;
                     lblFechaAlta.Text = ticket.FechaLevanto;
                     lblFecha.Text = ticket.FechaLevanto;
                     lblAsignacion.Text = ticket.DescripcionEstatusAsignacion;
@@ -192,7 +192,7 @@ namespace KiiniHelp.UserControls.Detalles
                     IdNivelAsignacion = ticket.IdNivelAsignacion;
                     IdUsuarioLevanto = ticket.UsuarioLevanto.IdUsuario;
 
-                    LlenaDatosUsuario(ticket.UsuarioLevanto);
+                    LlenaDatosUsuario(ticket.UsuarioSolicito);
                     ConversacionTicketActivo = ticket.Conversaciones;
                     EventosTicket = ticket.Eventos;
                     LlenaConversacion(0);

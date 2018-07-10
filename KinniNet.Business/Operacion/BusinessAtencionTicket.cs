@@ -149,7 +149,7 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
-        private List<EstatusTicket> CambiaEstatus( int idEstatusActualTicket, int idGrupoUsuarioTicket, int? subRolPertenece)
+        private List<EstatusTicket> CambiaEstatus(int idEstatusActualTicket, int idGrupoUsuarioTicket, int? subRolPertenece)
         {
             List<EstatusTicket> result = null;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -295,7 +295,8 @@ namespace KinniNet.Core.Operacion
             {
                 Ticket ticket = db.Ticket.SingleOrDefault(t => t.Id == idTicket);
                 int? idEstatusAsignacion = null;
-                //int? idNivelAsignado = null;
+                string correo;
+                bool enviaCorreo = false;
                 if (ticket != null)
                 {
                     db.LoadProperty(ticket, "TicketGrupoUsuario");
@@ -363,6 +364,7 @@ namespace KinniNet.Core.Operacion
                                 }
                             });
                             idEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Asignado;
+                            enviaCorreo = true;
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.ReAbierto:
                             ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
@@ -415,8 +417,39 @@ namespace KinniNet.Core.Operacion
                         ticket.IdEstatusAsignacion = (int)idEstatusAsignacion;
                     }
 
+                    db.LoadProperty(ticket, "TicketCorreo");
+                    correo = db.CorreoUsuario.FirstOrDefault(f => f.Obligatorio && f.IdUsuario == ticket.IdUsuarioSolicito) == null ? string.Empty : db.CorreoUsuario.First(f => f.Obligatorio && f.IdUsuario == ticket.IdUsuarioSolicito).Correo;
+                    if (correo != string.Empty)
+                    {
+                        if (ticket.TicketCorreo != null)
+                            ticket.TicketCorreo.Add(new TicketCorreo
+                            {
+                                Correo = correo
+                            });
+                        else
+                        {
+                            ticket.TicketCorreo = new List<TicketCorreo>
+                            {
+                                new TicketCorreo
+                                {
+                                    Correo = correo
+                                }
+                            };
+                        }
+                    }
                     db.TicketEvento.AddObject(evento);
                     db.SaveChanges();
+
+                    if (correo != string.Empty && enviaCorreo)
+                    {
+                        int idUsuarioSolicito = ticket.IdUsuarioSolicito;
+                        string cve = ticket.ClaveRegistro;
+                        Usuario usuario = new BusinessUsuarios().ObtenerUsuario(idUsuarioSolicito);
+                        string cuerpo = string.Format("Hola {0},<br>" +
+                                    "¡Tu solicitud ha sido resuelta! Te invitamos a cerrar tu solicitud. <br>" +
+                                    "<a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + idTicket + "&cveRandom=" + cve + "'\"> cerrar solicitud </a>Gracias", usuario.Nombre);
+                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(idTicket, cve, cuerpo, correo);
+                    }
                 }
 
             }
@@ -628,7 +661,7 @@ namespace KinniNet.Core.Operacion
                         result.IdGrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().IdGrupoUsuario;
                         result.IdGrupoUsuario = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Distinct().First().IdGrupoUsuario;
                         result.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
-                        result.EstatusDisponibles = CambiaEstatus( ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
+                        result.EstatusDisponibles = CambiaEstatus(ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                         result.TieneEncuesta = ticket.ArbolAcceso.InventarioArbolAcceso.First().IdEncuesta != null;
                         result.EncuestaRespondida = ticket.EncuestaRespondida;
                         #region Usuario Levanto
@@ -678,6 +711,54 @@ namespace KinniNet.Core.Operacion
                             result.UsuarioLevanto.UltimaActualizacion = DateTime.Now.AddDays(-21).ToString("dd/MM/yyyy HH:mm");
                         }
                         #endregion Usuario Levanto
+
+                        #region Usuario Solicito
+                        if (ticket.UsuarioSolicito != null)
+                        {
+                            result.UsuarioSolicito = new HelperUsuario();
+
+                            result.UsuarioSolicito.IdUsuario = ticket.IdUsuarioSolicito;
+                            result.UsuarioSolicito.NombreCompleto = string.Format("{0} {1} {2}", ticket.UsuarioSolicito.Nombre, ticket.UsuarioSolicito.ApellidoPaterno, ticket.UsuarioSolicito.ApellidoMaterno);
+                            result.UsuarioSolicito.TipoUsuarioDescripcion = ticket.UsuarioSolicito.TipoUsuario.Descripcion;
+                            result.UsuarioSolicito.TipoUsuarioColor = ticket.UsuarioSolicito.TipoUsuario.Color;
+                            result.UsuarioSolicito.Vip = ticket.UsuarioSolicito.Vip;
+                            result.UsuarioSolicito.FechaUltimoLogin = ticket.UsuarioSolicito.BitacoraAcceso != null && ticket.UsuarioSolicito.BitacoraAcceso.Count > 0 ? ticket.UsuarioSolicito.BitacoraAcceso.Last().Fecha.ToString("dd/MM/yyyy HH:mm") : "";
+                            result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null ? ticket.UsuarioSolicito.TicketsLevantados.Count : 0;
+                            result.UsuarioSolicito.TicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null && ticket.UsuarioSolicito.TicketsLevantados.Count > 0 ? new List<HelperTicketsUsuario>() : null;
+                            if (ticket.UsuarioSolicito.TicketsLevantados != null)
+                                if (ticket.UsuarioSolicito.TicketsLevantados != null)
+                                {
+                                    result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null ? ticket.UsuarioSolicito.TicketsLevantados.Count : 0;
+                                    result.UsuarioSolicito.TicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados.Count > 0 ? new List<HelperTicketsUsuario>() : null;
+                                    result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null ? ticket.UsuarioSolicito.TicketsLevantados.Count : 0;
+                                    result.UsuarioSolicito.TicketsAbiertos = new List<HelperTicketsUsuario>();
+                                    if (ticket.UsuarioSolicito.TicketsLevantados != null)
+                                        if (result.UsuarioSolicito.TicketsAbiertos != null)
+                                            foreach (Ticket t in ticket.UsuarioSolicito.TicketsLevantados)
+                                            {
+                                                result.UsuarioSolicito.TicketsAbiertos.Add(new HelperTicketsUsuario
+                                                {
+                                                    IdTicket = t.Id,
+                                                    Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(t.IdArbolAcceso),
+                                                    IdEstatusTicket = t.IdEstatusTicket,
+                                                    DescripcionEstatusTicket = t.EstatusTicket.Descripcion,
+                                                    FechaCreacion = t.FechaHoraAlta,
+                                                    FechaCreacionFormato = FormatearFecha(t.FechaHoraAlta),
+                                                    PuedeVer = PuedeAbrirTicket(t.Id, idUsuario)
+                                                });
+                                            }
+                                }
+                            result.UsuarioSolicito.TicketsAbiertos.Insert(0, new HelperTicketsUsuario { IdTicket = BusinessVariables.ComboBoxCatalogo.IndexSeleccione, Tipificacion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione });
+
+                            result.UsuarioSolicito.Puesto = ticket.UsuarioSolicito.Puesto != null ? ticket.UsuarioLevanto.Puesto.Descripcion : string.Empty;
+                            result.UsuarioSolicito.Correos = ticket.UsuarioSolicito.CorreoUsuario != null ? ticket.UsuarioSolicito.CorreoUsuario.Select(s => s.Correo).ToList() : null;
+                            result.UsuarioSolicito.Telefonos = ticket.UsuarioSolicito.TelefonoUsuario.Select(s => s.Numero).ToList(); result.UsuarioSolicito.Organizacion = new BusinessOrganizacion().ObtenerDescripcionOrganizacionById(ticket.UsuarioSolicito.IdOrganizacion, true);
+                            result.UsuarioSolicito.Ubicacion = new BusinessUbicacion().ObtenerDescripcionUbicacionById(ticket.UsuarioLevanto.IdUbicacion, true);
+                            TimeSpan ts = DateTime.Now - DateTime.Now.AddDays(-50);
+                            result.UsuarioSolicito.Creado = ts.Days.ToString();
+                            result.UsuarioSolicito.UltimaActualizacion = DateTime.Now.AddDays(-21).ToString("dd/MM/yyyy HH:mm");
+                        }
+                        #endregion Usuario Solicito
 
                         #region Eventos
                         List<HelperEvento> eventos = new List<HelperEvento>();
@@ -816,6 +897,7 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
+                bool resolvio = false;
                 Ticket ticket = db.Ticket.SingleOrDefault(t => t.Id == idTicket);
                 int idTicketGrupoUsuario = db.TicketGrupoUsuario.First(s => s.IdTicket == idTicket && s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).IdGrupoUsuario;
                 GrupoUsuario ticketGrupoUsuario = db.GrupoUsuario.SingleOrDefault(s => s.Id == idTicketGrupoUsuario);
@@ -920,6 +1002,7 @@ namespace KinniNet.Core.Operacion
                                     }
                                 });
                                 idEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Asignado;
+                                resolvio = true;
                                 break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.ReAbierto:
                                 ticket.FechaTermino = null;
@@ -1023,6 +1106,17 @@ namespace KinniNet.Core.Operacion
                                             "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
                             new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
                         }
+                    }
+                    if (resolvio)
+                    {
+                        int idUsuarioSolicito = ticket.IdUsuarioSolicito;
+                        string cve = ticket.ClaveRegistro;
+                        Usuario usuario = new BusinessUsuarios().ObtenerUsuario(idUsuarioSolicito);
+                        string correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.First(f => f.Obligatorio).Correo;
+                        string cuerpo = string.Format("Hola {0},<br>" +
+                                    "¡Tu solicitud ha sido resuelta! Te invitamos a cerrar tu solicitud. <br>" +
+                                    "<a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + idTicket + "&cveRandom=" + cve + "'\"> cerrar solicitud </a>Gracias", usuario.Nombre);
+                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(idTicket, cve, cuerpo, correo);
                     }
                 }
             }

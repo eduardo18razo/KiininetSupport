@@ -1058,6 +1058,65 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
+        public List<ArbolAcceso> ObtenerArbolesAccesoAllReporte(int? idArea, int? idTipoUsuario, int? idTipoArbol, int idTipoEncuesta, Dictionary<string, DateTime> fechas)
+        {
+            List<ArbolAcceso> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                
+                var qry = from re in db.RespuestaEncuesta
+                    join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                    join t in db.Ticket on re.IdTicket equals t.Id
+                    join aa in db.ArbolAcceso on t.IdArbolAcceso equals aa.Id
+                    where te.IdEstatus == (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                          && !aa.Sistema && re.Encuesta.IdTipoEncuesta == idTipoEncuesta
+                    select new {re, te, aa};
+
+                if (idArea.HasValue)
+                    qry = qry.Where(w => w.aa.IdArea == idArea);
+                if (idTipoUsuario.HasValue)
+                    qry = qry.Where(w => w.aa.IdTipoUsuario == idTipoUsuario);
+                if (idTipoArbol.HasValue)
+                    qry = qry.Where(w => w.aa.IdTipoArbolAcceso == idTipoArbol);
+                if (fechas != null)
+                {
+                    DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
+                    DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                    qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
+                }
+                result = qry.Select(s=>s.aa).Distinct().ToList();
+
+                
+
+                foreach (ArbolAcceso arbol in result)
+                {
+                    db.LoadProperty(arbol, "Area");
+                    db.LoadProperty(arbol, "TipoUsuario");
+                    db.LoadProperty(arbol, "TipoArbolAcceso");
+                    db.LoadProperty(arbol, "Nivel1");
+                    db.LoadProperty(arbol, "Nivel2");
+                    db.LoadProperty(arbol, "Nivel3");
+                    db.LoadProperty(arbol, "Nivel4");
+                    db.LoadProperty(arbol, "Nivel5");
+                    db.LoadProperty(arbol, "Nivel6");
+                    db.LoadProperty(arbol, "Nivel7");
+                    arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
+                    arbol.Nivel = ObtenerNivel(arbol.Id);
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al Obtener Arboles");
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
         public List<ArbolAcceso> ObtenerArbolesAccesoTerminalAll(int? idArea, int? idTipoUsuario, int? idTipoArbol, int? nivel1, int? nivel2, int? nivel3, int? nivel4, int? nivel5, int? nivel6, int? nivel7)
         {
             List<ArbolAcceso> result;
@@ -1985,16 +2044,16 @@ namespace KinniNet.Core.Operacion
                           select q;
                 }
                 var qryIds = from q in qry
-                    select q.aa.Id;
+                             select q.aa.Id;
                 List<int> arbolesServicioProblema = (from q in qryIds select q).OrderBy(o => o).Distinct().ToList();
 
                 int skip = (page - 1) * pagesize;
                 int totalResults = int.Parse(Math.Ceiling(arbolesServicioProblema.Count() / decimal.Parse(pagesize.ToString())).ToString());
-                
+
                 if (arbolesServicioProblema.Any())
                 {
                     result = new List<HelperBusquedaArbolAcceso>();
-                    foreach (ArbolAcceso arbol in db.ArbolAcceso.Where(w => arbolesServicioProblema.Contains(w.Id) && w.EsTerminal).OrderBy(o=>o.Id).Skip(skip).Take(pagesize).Distinct())
+                    foreach (ArbolAcceso arbol in db.ArbolAcceso.Where(w => arbolesServicioProblema.Contains(w.Id) && w.EsTerminal).OrderBy(o => o.Id).Skip(skip).Take(pagesize).Distinct())
                     {
                         if (arbol.EsTerminal)
                         {

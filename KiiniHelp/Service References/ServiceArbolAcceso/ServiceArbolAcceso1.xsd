@@ -16,6 +16,7 @@
       <xs:element minOccurs="0" name="FechaModificacion" nillable="true" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdTipoMascara" type="xs:int" />
       <xs:element minOccurs="0" name="IdUsuarioAlta" type="xs:int" />
       <xs:element minOccurs="0" name="IdUsuarioModifico" nillable="true" type="xs:int" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="InventarioArbolAcceso" nillable="true" type="q1:ArrayOfInventarioArbolAcceso" />
@@ -25,6 +26,7 @@
       <xs:element minOccurs="0" name="Random" type="xs:boolean" />
       <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />
       <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q3:ArrayOfTicket" />
+      <xs:element minOccurs="0" name="TipoMascara" nillable="true" type="tns:TipoMascara" />
       <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioAlta" nillable="true" type="q4:Usuario" />
       <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioModifico" nillable="true" type="q5:Usuario" />
     </xs:sequence>
@@ -89,6 +91,7 @@
       <xs:element minOccurs="0" name="CampoMascara" nillable="true" type="tns:ArrayOfCampoMascara" />
       <xs:element minOccurs="0" name="Catalogo" type="xs:boolean" />
       <xs:element minOccurs="0" name="Checkbox" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Correo" type="xs:boolean" />
       <xs:element minOccurs="0" name="Decimal" type="xs:boolean" />
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="DescripcionTexto" nillable="true" type="xs:string" />
@@ -103,6 +106,7 @@
       <xs:element minOccurs="0" name="Multiple" type="xs:boolean" />
       <xs:element minOccurs="0" name="RadioButton" type="xs:boolean" />
       <xs:element minOccurs="0" name="SimboloMoneda" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Telefono" type="xs:boolean" />
       <xs:element minOccurs="0" name="TipoDatoSql" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UploadFile" type="xs:boolean" />
       <xs:element minOccurs="0" name="ValorMaximo" type="xs:boolean" />
@@ -118,4 +122,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfMascara" nillable="true" type="tns:ArrayOfMascara" />
+  <xs:complexType name="TipoMascara">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CampoLlave" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Mascara" nillable="true" type="tns:ArrayOfMascara" />
+      <xs:element minOccurs="0" name="TablaLlave" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TipoMascara" nillable="true" type="tns:TipoMascara" />
 </xs:schema>

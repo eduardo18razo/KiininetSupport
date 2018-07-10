@@ -349,6 +349,22 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
+        public List<ArbolAcceso> ObtenerArbolesAccesoAllReporte(int? idArea, int? idTipoUsuario, int? idTipoArbol, int idTipoEncuesta,
+            Dictionary<string, DateTime> fechas)
+        {
+            try
+            {
+                using (BusinessArbolAcceso negocio = new BusinessArbolAcceso())
+                {
+                    return negocio.ObtenerArbolesAccesoAllReporte(idArea, idTipoUsuario, idTipoArbol, idTipoEncuesta, fechas);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public void HabilitarArbol(int idArbol, bool habilitado)
         {
             try

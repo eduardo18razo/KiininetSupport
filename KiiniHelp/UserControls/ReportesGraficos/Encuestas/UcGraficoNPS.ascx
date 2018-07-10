@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcGraficoInformacionConsulta.ascx.cs" Inherits="KiiniHelp.UserControls.Consultas.UcGraficoInformacionConsulta" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcGraficoNPS.ascx.cs" Inherits="KiiniHelp.UserControls.ReportesGraficos.Encuestas.UcGraficoNPS" %>
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 <div class="heigth100">
     <asp:UpdatePanel runat="server" class="heigth100">
@@ -17,7 +17,7 @@
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Grafico Like Dont Like" /></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="Grafico Like, Dont Like: " /><asp:Label runat="server" ID="lblTitulo"></asp:Label></h3>
                             </div>
                         </div>
 

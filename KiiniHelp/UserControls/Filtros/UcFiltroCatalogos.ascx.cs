@@ -44,7 +44,7 @@ namespace KiiniHelp.UserControls.Filtros
         {
             base.OnInit(e);
             _lstControles = new List<Control>();
-            int? idCatalogo = ((FrmTest)Page).IdCatalogo;
+            int? idCatalogo = 1;//((FrmTest)Page).IdCatalogo;
             if (idCatalogo != null) IdCatalogo = (int)idCatalogo;
             Mascara mascara = _servicioMascaras.ObtenerMascaraCaptura(IdCatalogo);
             if (mascara != null)

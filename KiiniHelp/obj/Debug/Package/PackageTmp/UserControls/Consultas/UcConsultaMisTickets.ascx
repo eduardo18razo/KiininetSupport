@@ -50,24 +50,24 @@
                                     FilterType="HeaderContext" EnableHeaderContextMenu="true" EnableHeaderContextFilterMenu="true"
                                     PagerStyle-AlwaysVisible="true"
                                     OnNeedDataSource="gvTickets_OnNeedDataSource" AllowFilteringByColumn="True" OnItemCommand="gvTickets_OnItemCommand"
-                                    PageSize="14" PagerStyle-PageButtonCount="10"
+                                    PageSize="14" PagerStyle-PageButtonCount="10" OnFilterCheckListItemsRequested="gvTickets_OnFilterCheckListItemsRequested"
                                     AllowPaging="True" AllowSorting="true" ShowGroupPanel="False" RenderMode="Classic">
                                     <GroupingSettings ShowUnGroupButton="False" CaseSensitive="False" />
 
                                     <ExportSettings ExportOnlyData="true" IgnorePaging="true"></ExportSettings>
                                     <MasterTableView AutoGenerateColumns="False" TableLayout="Fixed" ShowHeadersWhenNoRecords="True" CommandItemDisplay="None"
                                         DataKeyNames="IdTicket" NoDetailRecordsText="No hay Registros" HeaderStyle-CssClass="textoTabla" HeaderStyle-Font-Bold="true"
-                                        HeaderStyle-Font-Names="Proxima Nova" HeaderStyle-ForeColor="#6E6E6E"
+                                        HeaderStyle-Font-Names="Proxima Nova" HeaderStyle-ForeColor="#6E6E6E" 
                                         ItemStyle-Font-Names="Proxima Nova" ItemStyle-ForeColor="#6E6E6E"
                                         AlternatingItemStyle-Font-Names="Proxima Nova" AlternatingItemStyle-ForeColor="#6E6E6E"
                                         FooterStyle-BackColor="White">
 
                                         <CommandItemSettings ShowAddNewRecordButton="False" ShowRefreshButton="False"></CommandItemSettings>
                                         <Columns>
-                                            <tc:GridBoundColumn DataField="IdTicket" HeaderText="Ticket" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
-                                            <tc:GridBoundColumn DataField="Tipificacion" HeaderText="Asunto" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
-                                            <tc:GridBoundColumn DataField="FechaHora" HeaderText="Solicitado" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
-                                            <tc:GridBoundColumn DataField="Estatusticket.Descripcion" HeaderText="Estatus" Display="True" UniqueName="EsPropietario"></tc:GridBoundColumn>
+                                            <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" DataField="IdTicket" HeaderText="Ticket" Display="True" UniqueName="IdTicket"/>
+                                            <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" DataField="Tipificacion" HeaderText="Asunto" Display="True" UniqueName="Tipificacion"/>
+                                            <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="False" EnableHeaderContextMenu="False" DataField="FechaHora" HeaderText="Solicitado" Display="True" UniqueName="FechaHora"/>
+                                            <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" DataField="Estatusticket.Descripcion" HeaderText="Estatus" Display="True" UniqueName="Estatusticket"/>
                                         </Columns>
                                     </MasterTableView>
                                     <ClientSettings EnableAlternatingItems="True" EnableRowHoverStyle="True" EnablePostBackOnRowClick="True">

@@ -29,6 +29,7 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="_x003C_IdInformacionConsulta_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Titulo_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReporteInformacionConsulta" nillable="true" type="tns:ReporteInformacionConsulta" />

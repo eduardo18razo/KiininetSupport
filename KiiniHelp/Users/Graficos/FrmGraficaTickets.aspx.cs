@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -7,6 +9,8 @@ using KiiniHelp.ServiceConsultas;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using Telerik.Web.UI;
+using Telerik.Web.UI.HtmlChart;
 
 namespace KiiniHelp.Users.Graficos
 {
@@ -20,10 +24,12 @@ namespace KiiniHelp.Users.Graficos
         {
             set
             {
-                pnlAlertaGeneral.Visible = value.Any();
-                if (!pnlAlertaGeneral.Visible) return;
-                rptErrorGeneral.DataSource = value;
-                rptErrorGeneral.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
 
@@ -38,11 +44,11 @@ namespace KiiniHelp.Users.Graficos
                 if (Convert.ToBoolean(hfGraficaGenerada.Value))
                     UcFiltrosGraficoOnAceptarModal(false);
                 cGrafico.Click += CGraficoOnClick;
-               
-                ucFiltrosGraficas.OnAceptarModal +=ucFiltrosGraficas_OnAceptarModal;
-                    
-                    
-                    //.OnAceptarModal += ucFiltrosGraficasHits_OnAceptarModal;
+
+                ucFiltrosGraficas.OnAceptarModal += ucFiltrosGraficas_OnAceptarModal;
+
+
+                //.OnAceptarModal += ucFiltrosGraficasHits_OnAceptarModal;
             }
             catch (Exception ex)
             {
@@ -55,7 +61,7 @@ namespace KiiniHelp.Users.Graficos
             }
         }
 
-       
+
         private void CGraficoOnClick(object sender, ImageMapEventArgs imageMapEventArgs)
         {
             try
@@ -218,6 +224,9 @@ namespace KiiniHelp.Users.Graficos
                 }
                 gvResult.DataSource = lstConsulta;
                 gvResult.DataBind();
+                rhcTickets.DataSource = lstConsulta;
+                rhcTickets.DataBind();
+
                 upDetalleGrafico.Update();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalDetalleGrafico\");", true);
             }
@@ -277,6 +286,13 @@ namespace KiiniHelp.Users.Graficos
                         frameGeoCharts.Visible = false;
                         cGrafico.Visible = true;
                         upGrafica.Visible = true;
+                        GeneraGraficaPareto(rhcTickets, _servicioConsultas.GraficarConsultaTicket(((Usuario)Session["UserData"]).Id, ucFiltrosGraficas.FiltroGrupos, ucFiltrosGraficas.FiltroTipoUsuario,
+                            ucFiltrosGrafico.OrganizacionesGraficar.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.UbicacionesGraficar.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.TipoTicket.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.TipificacionesGraficar.Select(s => s.Id).ToList(),
+                            ucFiltrosGraficas.FiltroPrioridad, ucFiltrosGrafico.EstatusStack.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.SlaGraficar.Select(s => (bool?)s.Key).ToList(), ucFiltrosGraficas.FiltroVip, ucFiltrosGraficas.FiltroFechas, ucFiltrosGrafico.FiltroStack, ucFiltrosGrafico.Stack, ucFiltrosGraficas.TipoPeriodo), ucFiltrosGrafico.Stack);
                         break;
                     case "Tendencia Stack":
                         BusinessGraficoStack.Stack.GenerarGrafica(cGrafico, _servicioConsultas.GraficarConsultaTicket(((Usuario)Session["UserData"]).Id, ucFiltrosGraficas.FiltroGrupos, ucFiltrosGraficas.FiltroTipoUsuario,
@@ -289,6 +305,13 @@ namespace KiiniHelp.Users.Graficos
                         frameGeoCharts.Visible = false;
                         cGrafico.Visible = true;
                         upGrafica.Visible = true;
+                        GeneraGraficaStackedColumn(rhcTickets, _servicioConsultas.GraficarConsultaTicket(((Usuario)Session["UserData"]).Id, ucFiltrosGraficas.FiltroGrupos, ucFiltrosGraficas.FiltroTipoUsuario,
+                            ucFiltrosGrafico.OrganizacionesGraficar.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.UbicacionesGraficar.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.TipoTicket.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.TipificacionesGraficar.Select(s => s.Id).ToList(),
+                            ucFiltrosGraficas.FiltroPrioridad, ucFiltrosGrafico.EstatusStack.Select(s => s.Id).ToList(),
+                            ucFiltrosGrafico.SlaGraficar.Select(s => (bool?)s.Key).ToList(), ucFiltrosGraficas.FiltroVip, ucFiltrosGraficas.FiltroFechas, ucFiltrosGrafico.FiltroStack, ucFiltrosGrafico.Stack, ucFiltrosGraficas.TipoPeriodo));
                         break;
                     case "Tendencia Barra Comparativa":
                         BusinessGraficoStack.ColumnsClustered.GenerarGrafica(cGrafico, _servicioConsultas.GraficarConsultaTicket(((Usuario)Session["UserData"]).Id, ucFiltrosGraficas.FiltroGrupos, ucFiltrosGraficas.FiltroTipoUsuario,
@@ -308,6 +331,7 @@ namespace KiiniHelp.Users.Graficos
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalFiltroParametros\");", true);
 
             }
+
             catch (Exception ex)
             {
                 if (_lstError == null)
@@ -319,6 +343,152 @@ namespace KiiniHelp.Users.Graficos
             }
         }
 
+        private static DataTable ConvertToDataTable<T>(IList<T> data)
+        {
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+            foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            foreach (T item in data)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(row);
+            }
+            return table;
+
+        }
+        private class ParetoArry
+        {
+            public int Id { get; set; }
+            public string Descripcion { get; set; }
+            public decimal Total { get; set; }
+            public decimal Acumulado { get; set; }
+        }
+
+        private void GeneraGraficaPareto(RadHtmlChart grafico, DataTable dt, string stack)
+        {
+            try
+            {
+                List<ParetoArry> lstPareto = (dt.Rows.Cast<DataRow>().Select(dataRow => new ParetoArry { Id = int.Parse(dataRow[0].ToString()), Descripcion = dataRow[1].ToString() })).ToList();
+
+                for (int row = 0; row < dt.Rows.Count; row++)
+                {
+                    decimal total = 0;
+                    for (int i = 2; i < dt.Columns.Count; i++)
+                    {
+                        total += decimal.Parse(dt.Rows[row][i].ToString());
+                    }
+                    lstPareto.Single(s => s.Descripcion == dt.Rows[row][1].ToString()).Total = total;
+                }
+
+                lstPareto = lstPareto.OrderByDescending(o => o.Total).ToList();
+                decimal acumuladoAnterior = 0;
+                foreach (ParetoArry data in lstPareto)
+                {
+                    data.Acumulado = ((data.Total / lstPareto.Sum(s => s.Total)) * 100) + acumuladoAnterior;
+                    acumuladoAnterior += data.Acumulado;
+                }
+
+                DataTable dtData = ConvertToDataTable(lstPareto);
+                grafico.Width = Unit.Percentage(100);
+                grafico.Height = Unit.Pixel(500);
+                grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+                grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Vertical;
+                ColumnSeries column = new ColumnSeries();
+                column.Name = stack;
+                column.Stacked = false;
+                column.TooltipsAppearance.ClientTemplate = "#= series.name# Total: #= dataItem.value#";
+                column.LabelsAppearance.Visible = false;
+                foreach (DataRow row in dtData.Rows)
+                {
+                    
+                    column.SeriesItems.Add(int.Parse(row[2].ToString()));
+                    
+                }
+                grafico.PlotArea.Series.Add(column);
+
+                grafico.PlotArea.XAxis.Items.Add(dtData.Columns[2].ColumnName);
+                
+                MakePareto(grafico, dtData, stack);
+
+                grafico.PlotArea.XAxis.LabelsAppearance.RotationAngle = 270;
+                grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
+                grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
+                grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
+                grafico.PlotArea.YAxis.MinorGridLines.Width = 0;
+                grafico.DataSource = dtData;
+                grafico.DataBind();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private void MakePareto(RadHtmlChart grafico, DataTable dt, string name)
+        {
+            try
+            {
+                grafico.PlotArea.AdditionalYAxes.Add(new AxisY {Name = "Lines"});
+                LineSeries lineSerie = new LineSeries();
+                lineSerie.Name = name;
+                lineSerie.AxisName = "Lines";
+                foreach (DataRow row in dt.Rows)
+                {
+                    //for (int c = 1; c < dt.Columns.Count; c++)
+                    //{
+                        lineSerie.SeriesItems.Add((decimal)row[3]);
+                    //}
+                }
+
+                grafico.PlotArea.Series.Add(lineSerie);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        private void GeneraGraficaStackedColumn(RadHtmlChart grafico, DataTable dt)
+        {
+            try
+            {
+                grafico.Width = Unit.Percentage(100);
+                grafico.Height = Unit.Pixel(500);
+                grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+                grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Vertical;
+                foreach (DataRow row in dt.Rows)
+                {
+                    ColumnSeries column = new ColumnSeries();
+                    column.Name = row[1].ToString();
+                    column.GroupName = "Stacked";
+                    column.Stacked = true;
+                    column.TooltipsAppearance.ClientTemplate = "#= series.name# Total: #= dataItem.value#";
+                    column.LabelsAppearance.Visible = false;
+                    for (int c = 2; c < dt.Columns.Count; c++)
+                    {
+                        column.SeriesItems.Add(int.Parse(row[c].ToString()));
+                    }
+                    grafico.PlotArea.Series.Add(column);
+                }
+                for (int c = 2; c < dt.Columns.Count; c++)
+                {
+                    grafico.PlotArea.XAxis.Items.Add(dt.Columns[c].ColumnName);
+                }
+                grafico.PlotArea.XAxis.LabelsAppearance.RotationAngle = 270;
+                grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
+                grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
+                grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
+                grafico.PlotArea.YAxis.MinorGridLines.Width = 0;
+                grafico.DataSource = dt;
+                grafico.DataBind();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         private void UcFiltrosGraficoOnAceptarModal(bool cierraModal)
         {
             try

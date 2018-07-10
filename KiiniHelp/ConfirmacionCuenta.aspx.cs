@@ -82,10 +82,9 @@ namespace KiiniHelp
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                throw new Exception(ex.Message);
             }
         }
         private void CargaTelefonosObligatorios(int idUsuario)

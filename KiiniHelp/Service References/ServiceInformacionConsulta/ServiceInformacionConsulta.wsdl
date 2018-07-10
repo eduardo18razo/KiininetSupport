@@ -65,6 +65,12 @@
   <wsdl:message name="IServiceInformacionConsulta_ObtenerConsulta_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerConsultaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceInformacionConsulta_ObtenerInformacionReporte_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerInformacionReporte" />
+  </wsdl:message>
+  <wsdl:message name="IServiceInformacionConsulta_ObtenerInformacionReporte_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerInformacionReporteResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceInformacionConsulta_RateConsulta_InputMessage">
     <wsdl:part name="parameters" element="tns:RateConsulta" />
   </wsdl:message>
@@ -111,6 +117,10 @@
     <wsdl:operation name="ObtenerConsulta">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsulta" message="tns:IServiceInformacionConsulta_ObtenerConsulta_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsultaResponse" message="tns:IServiceInformacionConsulta_ObtenerConsulta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerInformacionReporte">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerInformacionReporte" message="tns:IServiceInformacionConsulta_ObtenerInformacionReporte_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerInformacionReporteResponse" message="tns:IServiceInformacionConsulta_ObtenerInformacionReporte_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RateConsulta">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceInformacionConsulta/RateConsulta" message="tns:IServiceInformacionConsulta_RateConsulta_InputMessage" />
@@ -183,6 +193,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerConsulta">
       <soap:operation soapAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsulta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerInformacionReporte">
+      <soap:operation soapAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerInformacionReporte" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

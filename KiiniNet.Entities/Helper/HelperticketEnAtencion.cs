@@ -36,7 +36,8 @@ namespace KiiniNet.Entities.Helper
         public List<EstatusTicket> EstatusDisponibles { get; set; }
 
         public bool GrupoConSupervisor { get; set; }
-        
+
+        public HelperUsuario UsuarioSolicito { get; set; }
         public HelperUsuario UsuarioLevanto { get; set; }
         public List<HelperConversacionDetalle> Conversaciones { get; set; }
 

@@ -30,7 +30,10 @@ namespace KiiniNet.Services.Operacion.Interface
         void GuardarHit(int idArbol, int idTipoUsuario, int? idUsuario);
 
         [OperationContract]
-        List<HelperInformacionConsulta> ObtenerConsulta(string descripcion, Dictionary<string, DateTime> fechas);
+        List<InformacionConsulta> ObtenerConsulta(string descripcion);
+
+        [OperationContract]
+        List<HelperInformacionConsulta> ObtenerInformacionReporte(string descripcion, Dictionary<string, DateTime> fechas);
 
         [OperationContract]
         void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta);

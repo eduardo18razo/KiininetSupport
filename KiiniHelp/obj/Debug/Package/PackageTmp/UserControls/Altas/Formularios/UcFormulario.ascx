@@ -11,6 +11,7 @@
         <br>
         <asp:HiddenField runat="server" ID="hfTicketGenerado" />
         <asp:HiddenField runat="server" ID="hfRandomGenerado" />
+        
         <section class="module no-border">
             <div class="row">
                 <div class="module-inner">
@@ -46,10 +47,6 @@
                 </div>
             </div>
         </section>
-
-
-
-
     </ContentTemplate>
 </asp:UpdatePanel>
 

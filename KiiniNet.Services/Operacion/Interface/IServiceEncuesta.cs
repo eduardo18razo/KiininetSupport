@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Helper;
+using KiiniNet.Entities.Helper.Reportes;
 using KiiniNet.Entities.Operacion;
 
 namespace KiiniNet.Services.Operacion.Interface
@@ -42,6 +44,9 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<Encuesta> ObtenerEncuestaByGrupos(List<int> grupos, bool insertarSeleccion);
+
+        [OperationContract]
+        HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
 
     }
 }

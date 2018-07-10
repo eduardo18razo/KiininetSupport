@@ -4,6 +4,7 @@
   <xs:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
   <xs:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
   <xs:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" />
   <xs:element name="ObtenerEncuestas">
     <xs:complexType>
       <xs:sequence>
@@ -164,6 +165,22 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" minOccurs="0" name="ObtenerEncuestaByGruposResult" nillable="true" type="q12:ArrayOfEncuesta" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerReporteNps">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q13:ArrayOfKeyValueOfstringdateTime" />
+        <xs:element minOccurs="0" name="tipoFecha" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerReporteNpsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" minOccurs="0" name="ObtenerReporteNpsResult" nillable="true" type="q14:HelperReporteEncuesta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -11,134 +11,37 @@
     <ContentTemplate>
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
-                <header class="modal-header" id="panelAlerta" runat="server" visible="false">
-                    <div class="alert alert-danger">
-                        <div>
-                            <div class="float-left">
-                                <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
-                            </div>
-                            <div class="float-left">
-                                <h3>Error</h3>
-                            </div>
-                            <div class="clearfix clear-fix" />
-                        </div>
-                        <hr />
-                        <asp:Repeater runat="server" ID="rptError">
-                            <ItemTemplate>
-                                <ul>
-                                    <li><%# Container.DataItem %></li>
-                                </ul>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                <div class="panel panel-primary">
+                    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <uc1:UcFiltroFechasGrafico runat="server" ID="ucFiltroFechasGrafico" />
                     </div>
-                </header>
-                <div class="panel panel-primary">                    
-
-                   <%-- <div class="modal-header">
-                        <h2 class="modal-title">Filtros</h2>
-                        <hr class="bordercolor">
-                    </div>--%>
+                    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-lg-1">
+                            <uc1:UcFiltroGrupo runat="server" ID="ucFiltroGrupo" />
+                        </div>
+                        <div class="col-lg-1">
+                            <uc1:UcFiltroTipoUsuario runat="server" ID="ucFiltroTipoUsuario" />
+                        </div>
+                        <div class="col-lg-1">
+                            <uc1:UcFiltroOrganizacion runat="server" ID="ucFiltroOrganizacion" />
+                        </div>
+                        <div class="col-lg-1">
+                            <uc1:UcFiltroUbicacion runat="server" ID="ucFiltroUbicacion" />
+                        </div>
+                        <div class="col-lg-1">
+                            <uc1:UcFiltroTipificacion runat="server" ID="ucFiltroTipificacion" />
+                        </div>
+                        <div class="col-lg-1">
+                            <uc1:UcFiltroVip runat="server" ID="ucFiltroVip" />
+                        </div>
+                    </div>
 
                     <div class="panel-body text-center">
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroGrupo" Text="Grupo" OnClick="btnFiltroGrupo_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroTipoUsuario" Text="Tipo Usuario" OnClick="btnFiltroTipoUsuario_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroOrganizacion" Text="Organización" OnClick="btnFiltroOrganizacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroUbicacion" Text="Ubicación" OnClick="btnFiltroUbicacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary disabled" ID="btnFiltroTipificacion" Text="Tipificación" OnClick="btnFiltroTipificacion_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroVip" Text="Vip" OnClick="btnFiltroVip_OnClick" />
-                        <asp:Button runat="server" CssClass="btn btn-primary" ID="btnFiltroFechas" Text="Fechas" OnClick="btnFiltroFechas_OnClick" />
-                        <asp:Label runat="server" Width="120px"></asp:Label>
                         <asp:Button runat="server" CssClass="btn btn-success" ID="btnGraficar" Text="Graficar" OnClick="btnGraficar_Click" />
                     </div>
-                    <%--<div class="panel-footer">
-                    </div>--%>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </ContentTemplate>
 </asp:UpdatePanel>
-
-<div class="modal fade" id="modalFiltroGrupo" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <asp:UpdatePanel ID="upFiltroGpo" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <uc1:UcFiltroGrupo runat="server" ID="ucFiltroGrupo" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
-
-<div class="modal fade" id="modalFiltroTipoUsuario" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <asp:UpdatePanel ID="upFiltroTipoUsuario" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <uc1:UcFiltroTipoUsuario runat="server" id="ucFiltroTipoUsuario" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
-
-<div class="modal fade" id="modalFiltroOrganizacion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <asp:UpdatePanel ID="upFiltroOrganizacion" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <uc1:UcFiltroOrganizacion runat="server" ID="ucFiltroOrganizacion" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
-
-<div class="modal fade" id="modalFiltroUbicacion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <asp:UpdatePanel ID="upFiltroUbicacion" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <uc1:UcFiltroUbicacion runat="server" ID="ucFiltroUbicacion" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
-
-<div class="modal fade" id="modalFiltroTipificacion" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <asp:UpdatePanel ID="upFiltroTipificacion" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <uc1:UcFiltroTipificacion runat="server" ID="ucFiltroTipificacion" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
-
-<div class="modal fade" id="modalFiltroVip" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <asp:UpdatePanel ID="upFiltroVip" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <uc1:UcFiltroVip runat="server" id="ucFiltroVip" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
-
-<div class="modal fade" id="modalFiltroFechas" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <asp:UpdatePanel ID="upFiltroFechas" runat="server" UpdateMode="Conditional">
-        <ContentTemplate>
-            <div class="modal-dialog modal-lg widht450px">
-                <div class="modal-content widht450px">
-                    <uc1:UcFiltroFechasGrafico runat="server" ID="ucFiltroFechasGrafico" />
-                </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-</div>
 

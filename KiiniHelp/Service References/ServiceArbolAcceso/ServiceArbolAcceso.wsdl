@@ -158,6 +158,12 @@
   <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoAllResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoAllReporte_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoAllReporte" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoAllReporte_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoAllReporteResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceArbolAcceso_HabilitarArbol_InputMessage">
     <wsdl:part name="parameters" element="tns:HabilitarArbol" />
   </wsdl:message>
@@ -292,6 +298,10 @@
     <wsdl:operation name="ObtenerArbolesAccesoAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoAllReporte">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllReporte" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAllReporte_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllReporteResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAllReporte_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="HabilitarArbol">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/HabilitarArbol" message="tns:IServiceArbolAcceso_HabilitarArbol_InputMessage" />
@@ -524,6 +534,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerArbolesAccesoAll">
       <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoAllReporte">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllReporte" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

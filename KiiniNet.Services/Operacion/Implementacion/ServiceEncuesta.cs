@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Helper;
+using KiiniNet.Entities.Helper.Reportes;
 using KiiniNet.Entities.Operacion;
 using KiiniNet.Services.Operacion.Interface;
 using KinniNet.Core.Operacion;
@@ -182,6 +183,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessEncuesta negocio = new BusinessEncuesta())
                 {
                     return negocio.ObtenerEncuestaByGrupos(grupos, insertarSeleccion);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerReporteNps(idArbolAcceso, fechas, tipoFecha);
                 }
             }
             catch (Exception ex)

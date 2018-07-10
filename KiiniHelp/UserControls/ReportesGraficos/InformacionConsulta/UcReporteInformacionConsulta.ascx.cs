@@ -36,7 +36,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
             try
             {
                 string filtro = txtFiltro.Text;
-                tblResults.DataSource = SortList(_servicioInformacionConsulta.ObtenerConsulta(filtro, Metodos.ManejoFechas.ObtenerFechas(int.Parse(ddlTipoFiltro.SelectedValue), txtFechaInicio.Text.Trim(), txtFechaFin.Text.Trim())), isPageIndexChanging); ;
+                tblResults.DataSource = SortList(_servicioInformacionConsulta.ObtenerInformacionReporte(filtro, Metodos.ManejoFechas.ObtenerFechas(int.Parse(ddlTipoFiltro.SelectedValue), txtFechaInicio.Text.Trim(), txtFechaFin.Text.Trim())), isPageIndexChanging); ;
                 tblResults.DataBind();
             }
             catch (Exception e)
@@ -203,8 +203,10 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
         {
             try
             {
+                string url = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+                string path = string.Empty;
                 if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                    Response.Redirect("~/Users/ReportesGraficos/InformacionConsulta/FrmGraficoInformacionConsulta.aspx?idInformacion=" + int.Parse(((LinkButton)sender).CommandArgument) + "&tipoFecha=" + ddlTipoFiltro.SelectedValue);
+                    path = "Users/ReportesGraficos/InformacionConsulta/FrmGraficoInformacionConsulta.aspx?idInformacion=" + int.Parse(((LinkButton)sender).CommandArgument) + "&tipoFecha=" + ddlTipoFiltro.SelectedValue;
                 else
                 {
                     DateTime fechainicio, fechafin;
@@ -217,8 +219,9 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
                     {
                         throw new Exception("Verifique fechas");
                     }
-                    Response.Redirect("~/Users/ReportesGraficos/InformacionConsulta/FrmGraficoInformacionConsulta.aspx?idInformacion=" + int.Parse(((LinkButton)sender).CommandArgument) + "&tipoFecha=" + ddlTipoFiltro.SelectedValue + "&fi=" + txtFechaInicio.Text + "&ff=" + txtFechaFin.Text);
+                    path = "Users/ReportesGraficos/InformacionConsulta/FrmGraficoInformacionConsulta.aspx?idInformacion=" + int.Parse(((LinkButton)sender).CommandArgument) + "&tipoFecha=" + ddlTipoFiltro.SelectedValue + "&fi=" + txtFechaInicio.Text + "&ff=" + txtFechaFin.Text;
                 }
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + path + "','_blank');", true);
             }
             catch (Exception ex)
             {

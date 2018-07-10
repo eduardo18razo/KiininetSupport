@@ -85,6 +85,9 @@ namespace KiiniHelp.ServiceArbolAcceso {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoAll(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, System.Nullable<int> nivel1, System.Nullable<int> nivel2, System.Nullable<int> nivel3, System.Nullable<int> nivel4, System.Nullable<int> nivel5, System.Nullable<int> nivel6, System.Nullable<int> nivel7);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllReporte", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllReporteResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoAllReporte(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, int idTipoEncuesta, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/HabilitarArbol", ReplyAction="http://tempuri.org/IServiceArbolAcceso/HabilitarArbolResponse")]
         void HabilitarArbol(int idArbol, bool habilitado);
         
@@ -229,6 +232,10 @@ namespace KiiniHelp.ServiceArbolAcceso {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoAll(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, System.Nullable<int> nivel1, System.Nullable<int> nivel2, System.Nullable<int> nivel3, System.Nullable<int> nivel4, System.Nullable<int> nivel5, System.Nullable<int> nivel6, System.Nullable<int> nivel7) {
             return base.Channel.ObtenerArbolesAccesoAll(idArea, idTipoUsuario, idTipoArbol, nivel1, nivel2, nivel3, nivel4, nivel5, nivel6, nivel7);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoAllReporte(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, int idTipoEncuesta, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerArbolesAccesoAllReporte(idArea, idTipoUsuario, idTipoArbol, idTipoEncuesta, fechas);
         }
         
         public void HabilitarArbol(int idArbol, bool habilitado) {

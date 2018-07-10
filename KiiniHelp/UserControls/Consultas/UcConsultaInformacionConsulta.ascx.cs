@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceInformacionConsulta;
-using KiiniHelp.ServiceSistemaTipoInformacionConsulta;
-using KiiniNet.Entities.Helper;
+using KiiniNet.Entities.Operacion;
 using KinniNet.Business.Utils;
-using Calendar = System.Globalization.Calendar;
 
 namespace KiiniHelp.UserControls.Consultas
 {
     public partial class UcConsultaInformacionConsulta : UserControl
     {
-        private readonly ServiceTipoInfConsultaClient _servicioSistemaTipoInformacion = new ServiceTipoInfConsultaClient();
         private readonly ServiceInformacionConsultaClient _servicioInformacionConsulta = new ServiceInformacionConsultaClient();
 
         private List<string> _lstError = new List<string>();
@@ -41,7 +35,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 string filtro = txtFiltro.Text;
-                tblResults.DataSource = SortList(_servicioInformacionConsulta.ObtenerConsulta(filtro, null), isPageIndexChanging); ;
+                tblResults.DataSource = SortList(_servicioInformacionConsulta.ObtenerConsulta(filtro), isPageIndexChanging); 
                 tblResults.DataBind();
             }
             catch (Exception e)
@@ -145,16 +139,15 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 string filtro = txtFiltro.Text.Trim().ToUpper();
-                List<HelperInformacionConsulta> lstInformacion = _servicioInformacionConsulta.ObtenerConsulta(filtro, null);
+                List<InformacionConsulta> lstInformacion = _servicioInformacionConsulta.ObtenerConsulta(filtro);
 
                 Response.Clear();
-                string ultimaEdicion = "Últ. edición";
                 MemoryStream ms = new MemoryStream(BusinessFile.ExcelManager.ListToExcel(lstInformacion.Select(
                                 s => new
                                 {
-                                    Nombre = s.Titulo,
-                                    Creación = s.Creacion.ToShortDateString().ToString(),
-                                    ultimaEdicion = s.UltEdicion == null ? "" : s.UltEdicion.Value.ToShortDateString().ToString(),
+                                    Nombre = s.Descripcion,
+                                    Creación = s.FechaAlta.ToShortDateString().ToString(),
+                                    ultimaEdicion = s.FechaModificacion == null ? "" : s.FechaModificacion.Value.ToShortDateString().ToString(),
                                     Habilitado = s.Habilitado ? "Si" : "No"
                                 })
                                 .ToList()).GetAsByteArray());
@@ -184,7 +177,7 @@ namespace KiiniHelp.UserControls.Consultas
 
         #endregion
 
-        bool _sorted = false;
+        bool _sorted;
         private string GridViewSortDirection
         {
             get
@@ -216,9 +209,9 @@ namespace KiiniHelp.UserControls.Consultas
             }
 
         }
-        protected List<HelperInformacionConsulta> SortList(List<HelperInformacionConsulta> data, bool isPageIndexChanging)
+        protected List<InformacionConsulta> SortList(List<InformacionConsulta> data, bool isPageIndexChanging)
         {
-            List<HelperInformacionConsulta> result = data;
+            List<InformacionConsulta> result = data;
             if (data != null)
             {
                 if (GridViewSortExpression != string.Empty)

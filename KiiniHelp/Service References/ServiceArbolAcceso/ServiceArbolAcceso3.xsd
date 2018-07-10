@@ -436,6 +436,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerArbolesAccesoAllReporte">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idArea" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idTipoUsuario" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idTipoArbol" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="idTipoEncuesta" type="xs:int" />
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q20:ArrayOfKeyValueOfstringdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerArbolesAccesoAllReporteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ObtenerArbolesAccesoAllReporteResult" nillable="true" type="q21:ArrayOfArbolAcceso" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="HabilitarArbol">
     <xs:complexType>
       <xs:sequence>
@@ -453,7 +471,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="arbolAcceso" nillable="true" type="q20:ArbolAcceso" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="arbolAcceso" nillable="true" type="q22:ArbolAcceso" />
         <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -482,7 +500,7 @@
   <xs:element name="ObtenerArbolesAccesoTerminalAllResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ObtenerArbolesAccesoTerminalAllResult" nillable="true" type="q21:ArrayOfArbolAcceso" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ObtenerArbolesAccesoTerminalAllResult" nillable="true" type="q23:ArrayOfArbolAcceso" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -505,7 +523,7 @@
   <xs:element name="ObtenerArbolesAccesoTerminalAllTipificacionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerArbolesAccesoTerminalAllTipificacionResult" nillable="true" type="q22:ArrayOfHelperArbolAcceso" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerArbolesAccesoTerminalAllTipificacionResult" nillable="true" type="q24:ArrayOfHelperArbolAcceso" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -520,7 +538,7 @@
   <xs:element name="ObtenerArbolesAccesoTerminalByIdUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerArbolesAccesoTerminalByIdUsuarioResult" nillable="true" type="q23:ArrayOfHelperArbolAcceso" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerArbolesAccesoTerminalByIdUsuarioResult" nillable="true" type="q25:ArrayOfHelperArbolAcceso" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -534,7 +552,7 @@
   <xs:element name="ObtenerArbolesAccesoTerminalByGrupoUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerArbolesAccesoTerminalByGrupoUsuarioResult" nillable="true" type="q24:ArrayOfHelperArbolAcceso" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="ObtenerArbolesAccesoTerminalByGrupoUsuarioResult" nillable="true" type="q26:ArrayOfHelperArbolAcceso" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -543,7 +561,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="idUsuario" nillable="true" type="xs:int" />
         <xs:element minOccurs="0" name="filter" nillable="true" type="xs:string" />
-        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="tipoUsuario" nillable="true" type="q25:ArrayOfint" />
+        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="tipoUsuario" nillable="true" type="q27:ArrayOfint" />
         <xs:element minOccurs="0" name="idTipoArbol" nillable="true" type="xs:int" />
         <xs:element minOccurs="0" name="idCategoria" nillable="true" type="xs:int" />
         <xs:element minOccurs="0" name="page" type="xs:int" />
@@ -554,7 +572,7 @@
   <xs:element name="BusquedaGeneralResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="BusquedaGeneralResult" nillable="true" type="q26:ArrayOfHelperBusquedaArbolAcceso" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" minOccurs="0" name="BusquedaGeneralResult" nillable="true" type="q28:ArrayOfHelperBusquedaArbolAcceso" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

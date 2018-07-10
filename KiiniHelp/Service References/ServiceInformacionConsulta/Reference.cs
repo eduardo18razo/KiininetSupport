@@ -39,7 +39,10 @@ namespace KiiniHelp.ServiceInformacionConsulta {
         void GuardarHit(int idArbol, int idTipoUsuario, System.Nullable<int> idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsulta", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerConsultaResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperInformacionConsulta> ObtenerConsulta(string descripcion, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
+        System.Collections.Generic.List<KiiniNet.Entities.Operacion.InformacionConsulta> ObtenerConsulta(string descripcion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/ObtenerInformacionReporte", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/ObtenerInformacionReporteResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperInformacionConsulta> ObtenerInformacionReporte(string descripcion, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceInformacionConsulta/RateConsulta", ReplyAction="http://tempuri.org/IServiceInformacionConsulta/RateConsultaResponse")]
         void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta);
@@ -103,8 +106,12 @@ namespace KiiniHelp.ServiceInformacionConsulta {
             base.Channel.GuardarHit(idArbol, idTipoUsuario, idUsuario);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperInformacionConsulta> ObtenerConsulta(string descripcion, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
-            return base.Channel.ObtenerConsulta(descripcion, fechas);
+        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.InformacionConsulta> ObtenerConsulta(string descripcion) {
+            return base.Channel.ObtenerConsulta(descripcion);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Helper.HelperInformacionConsulta> ObtenerInformacionReporte(string descripcion, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerInformacionReporte(descripcion, fechas);
         }
         
         public void RateConsulta(int idArbol, int idConsulta, int idUsuario, bool meGusta) {

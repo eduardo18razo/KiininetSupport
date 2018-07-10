@@ -66,37 +66,37 @@
                             <div class="table-responsive">
 
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
-                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25" AllowSorting="True" OnSorting="tblResults_OnSorting"
+                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Titulo" HeaderStyle-Width="40%" ItemStyle-CssClass="altoFijo" SortExpression="Titulo">
+                                        <asp:TemplateField HeaderText="Titulo" HeaderStyle-Width="40%" ItemStyle-CssClass="altoFijo">
                                             <ItemTemplate>
                                                 <div>
-                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Titulo")%>'><%# Eval("Titulo")%></label>
+                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Autor" HeaderStyle-Width="22%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Autor")%>'><%# Eval("Autor")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("UsuarioAlta.NombreCompleto")%>'><%# Eval("UsuarioAlta.NombreCompleto")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("Creacion")%>'><%# Eval("Creacion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta")%>'><%# Eval("FechaAlta")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("UltEdicion")%>'><%# Eval("UltEdicion")%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion")%>'><%# Eval("FechaModificacion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
+                                         <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenEditar">
                                                     <li>

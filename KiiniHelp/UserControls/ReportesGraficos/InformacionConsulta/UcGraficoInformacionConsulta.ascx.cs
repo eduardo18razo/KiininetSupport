@@ -56,6 +56,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
             {
                 grafico.PlotArea.XAxis.Items.Add(dt.Columns[c].ColumnName);
             }
+            grafico.PlotArea.XAxis.LabelsAppearance.RotationAngle = 270;
             grafico.DataSource = dt;
             grafico.DataBind();
         }
@@ -84,7 +85,9 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
         {
             try
             {
+
                 ReporteInformacionConsulta reporte = _servicioInformacionConsulta.ObtenerReporteInformacionConsulta(idInformacion, Metodos.ManejoFechas.ObtenerFechas(idTipoFecha, fechaInicio, fechafin), idTipoFecha);
+                lblTitulo.Text = reporte.Titulo;
                 GeneraGraficaStackedColumn(rhcLikeBarra, reporte.GraficoBarras);
                 GeneraGraficaPie(rhcLikePie, reporte.GraficoPie);
             }

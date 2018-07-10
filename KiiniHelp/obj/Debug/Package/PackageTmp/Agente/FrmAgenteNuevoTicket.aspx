@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="col-lg-10 col-md-12 col-sm-12">
                                             <asp:Label runat="server" ID="lblNombreDetalle" Text="gabriela Vega" CssClass="TitulosAzul" /><br />
-                                            <span class="btn btn-square-usuario empleado btn-circle" style="padding-top: 6px; width: 23px; height: 23px;">
+                                            <span class="btn btn-square-usuario btn-circle" style="padding-top: 6px; width: 23px; height: 23px;">
                                                 <asp:Label runat="server" ID="lblTipoUsuarioDetalle" /></span>
                                             <asp:Image runat="server" ImageUrl="~/assets/images/icons/vip.png" Width="25px" ID="imgVip" />
                                         </div>
@@ -45,7 +45,7 @@
                                     <hr />
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <asp:Image runat="server" ImageUrl="~/assets/images/icons/ojo.png" Width="25px" CssClass="margin-right-15" />
+                                            <asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" Width="25" CssClass="margin-right-15" />
                                             <asp:Label runat="server" Text="6 de abril 2017" ID="lblFechaUltimaconexion"  /> 
                                         </div>
                                     </div>

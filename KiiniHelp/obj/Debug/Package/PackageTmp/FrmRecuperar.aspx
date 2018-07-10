@@ -35,7 +35,7 @@
                 <asp:HiddenField runat="server" ID="hfParametrosConfirmados" Value="false" />
                 <asp:HiddenField runat="server" ID="hfValueNotivicacion" Value="false" />
                 <asp:Button runat="server" ID="btncontinuar" Text="Continuar" OnClick="btncontinuar_OnClick" CssClass="btn btn-block btn-primary widthCanelar" Visible="False" />
-                
+
                 <div runat="server" id="divQuestion" class="heigth100">
                     <section class="panelsectionbacground panelsection">
                         <div class="container">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2">
-                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
+                                <img src="assets/images/logo_kinninet_blanco.png"><br />
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -112,8 +112,8 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar" Text="Cancelar"  OnClick="btnCancelar_Click" />
-                                                        <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick"  />
+                                                        <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar" Text="Cancelar" OnClick="btnCancelar_Click" />
+                                                        <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarCodigo" Text="Continuar" OnClick="btncontinuar_OnClick" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2">
-                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
+                                <img src="assets/images/logo_kinninet_blanco.png"><br />
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                                                     <asp:Label runat="server" Text='<%# Eval("Pregunta") %>' class="col-xs-12 col-md-12 text-left" ID="lblPregunta" />
 
                                                                     <div class="col-sm-12">
-                                                                        <asp:TextBox runat="server" ID="txtRespuesta" CssClass="form-control text-no-transform"/>
+                                                                        <asp:TextBox runat="server" ID="txtRespuesta" CssClass="form-control text-no-transform" />
                                                                     </div>
                                                                 </div>
                                                             </ItemTemplate>
@@ -156,8 +156,8 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar2" Text="Cancelar"  OnClick="btnCancelar_Click" />
-                                                        <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarPreguntas" Text="Continuar" OnClick="btncontinuar_OnClick"  />
+                                                        <asp:Button runat="server" CssClass="btn btn-default widthCanelar" ID="btnCancelar2" Text="Cancelar" OnClick="btnCancelar_Click" />
+                                                        <asp:Button runat="server" CssClass="btn btn-primary widthCanelar" ID="btnContinuarPreguntas" Text="Continuar" OnClick="btncontinuar_OnClick" />
                                                     </div>
 
                                                 </div>
@@ -167,7 +167,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2">
-                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
+                                <img src="assets/images/logo_kinninet_blanco.png"><br />
                                 &copy; 2018                       
                             </div>
                         </div>
@@ -187,18 +187,31 @@
                                             <div class="col-md-6 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="row">
                                                     <asp:Label runat="server" Text="Ingresa tu nueva contraseña" CssClass="col-lg-12 text-left" />
-                                                    <br/>
+                                                    <br />
+                                                    <div class="form-group no-margin-bottom text-left">
+                                                        <asp:Label runat="server" ID="lblCaracteristicas" Text="La contraseña debe tener:" CssClass="control-label text-bold2" />
+                                                        <ul runat="server" id="listParamtros" class="list styleList text-bold2">
+                                                            <li runat="server" id="paramLongitud">
+                                                                <asp:Label runat="server" ID="lblLongitud" Text="Longitud minima de 8 caracteres"></asp:Label></li>
+                                                            <li runat="server" id="paramMayuscula">
+                                                                <asp:Label runat="server" ID="Label3" Text="1 Mayuscula"></asp:Label></li>
+                                                            <li runat="server" id="paramNumero">
+                                                                <asp:Label runat="server" ID="Label6" Text="1 Numero"></asp:Label></li>
+                                                            <li runat="server" id="paramEspecial">
+                                                                <asp:Label runat="server" ID="Label7" Text="1 Caracter especial"></asp:Label></li>
+                                                        </ul>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label class="sr-only" for="txtContrasena">Password</label>
                                                         <span class="fa fa-lock icon"></span>
                                                         <asp:TextBox runat="server" ID="txtContrasena" type="password" CssClass="form-control text-no-transform" />
                                                     </div>
-                                                    <asp:Label runat="server" Text="Confirma tu contraseña" CssClass="col-lg-12 text-left"/>
-                                                    <br/>
+                                                    <asp:Label runat="server" Text="Confirma tu contraseña" CssClass="col-lg-12 text-left" />
+                                                    <br />
                                                     <div class="form-group">
                                                         <label class="sr-only" for="txtConfirmar">Password</label>
                                                         <span class="fa fa-lock icon"></span>
-                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control text-no-transform"/>
+                                                        <asp:TextBox runat="server" ID="txtConfirmar" type="password" CssClass="form-control text-no-transform" />
                                                     </div>
                                                     <div class="form-group">
                                                         <asp:Button class="btn btn-block btn-primary" runat="server" Text="Cambiar contraseña" OnClick="btncontinuar_OnClick" />
@@ -218,7 +231,7 @@
                                 </div>
                             </div>
                             <div class="row copyright2">
-                                <img src="assets/images/logo_kinninet_blanco.png"><br/>
+                                <img src="assets/images/logo_kinninet_blanco.png"><br />
                                 &copy; 2018                       
                             </div>
                         </div>

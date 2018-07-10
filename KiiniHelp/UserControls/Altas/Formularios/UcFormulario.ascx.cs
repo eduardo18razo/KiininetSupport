@@ -85,6 +85,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     hfRandom.Value = mascara.Random.ToString();
                     PintaControles(mascara.CampoMascara);
                     Session["MascaraActiva"] = mascara;
+                    Session["ArbolAcceso"] = arbol;
                 }
             }
         }
@@ -979,6 +980,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             _lstControles.Add(meeMascara);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
+
                             lbl.Attributes["for"] = "fu" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             AsyncFileUpload asyncFileUpload = new AsyncFileUpload
@@ -989,7 +991,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 OnClientUploadStarted = "ShowLanding",
                                 OnClientUploadComplete = "HideLanding"
                             };
-                            asyncFileUpload.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
+
                             asyncFileUpload.Attributes["style"] = "margin-top: 25px";
                             asyncFileUpload.UploadedComplete += asyncFileUpload_UploadedComplete;
                             createDiv.Controls.Add(asyncFileUpload);
@@ -1048,7 +1050,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             }
         }
 
-        void asyncFileUpload_UploadedComplete(object sender, AsyncFileUploadEventArgs e)
+        public void asyncFileUpload_UploadedComplete(object sender, AsyncFileUploadEventArgs e)
         {
             try
             {

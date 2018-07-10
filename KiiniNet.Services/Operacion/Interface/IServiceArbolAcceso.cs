@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using KiiniNet.Entities.Cat.Arbol.Nodos;
 using KiiniNet.Entities.Cat.Operacion;
@@ -59,6 +60,9 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<ArbolAcceso> ObtenerArbolesAccesoAll(int? idArea, int? idTipoUsuario, int? idTipoArbol, int? nivel1, int? nivel2, int? nivel3, int? nivel4, int? nivel5, int? nivel6, int? nivel7);
+
+        [OperationContract]
+        List<ArbolAcceso> ObtenerArbolesAccesoAllReporte(int? idArea, int? idTipoUsuario, int? idTipoArbol, int idTipoEncuesta, Dictionary<string, DateTime> fechas);
 
         [OperationContract]
         void HabilitarArbol(int idArbol, bool habilitado);

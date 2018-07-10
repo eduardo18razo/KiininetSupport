@@ -2,6 +2,7 @@
 <%@ Register Src="~/UserControls/Filtros/Graficos/UcFiltrosGraficasTicket.ascx" TagPrefix="uc1" TagName="UcFiltrosGraficasTicket" %>
 <%@ Register Src="~/UserControls/Filtros/Graficos/UcFiltrosParametrosGraficoTicket.ascx" TagPrefix="uc1" TagName="UcFiltrosParametrosGraficoTicket" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleGeograficoTickets.ascx" TagPrefix="uc1" TagName="UcDetalleGeograficoTickets" %>
+<%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
@@ -52,6 +53,7 @@
                                         <asp:ChartArea Name="ChartArea1" BorderWidth="0" />
                                     </ChartAreas>
                                 </asp:Chart>
+                                <tc:RadHtmlChart runat="server" ID="rhcTickets"></tc:RadHtmlChart>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>

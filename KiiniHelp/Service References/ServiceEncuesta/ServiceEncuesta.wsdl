@@ -10,14 +10,16 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd16" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd17" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceEncuesta_ObtenerEncuestas_InputMessage">
@@ -92,6 +94,12 @@
   <wsdl:message name="IServiceEncuesta_ObtenerEncuestaByGrupos_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerEncuestaByGruposResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerReporteNps_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerReporteNps" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerReporteNps_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerReporteNpsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceEncuesta">
     <wsdl:operation name="ObtenerEncuestas">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerEncuestas" message="tns:IServiceEncuesta_ObtenerEncuestas_InputMessage" />
@@ -140,6 +148,10 @@
     <wsdl:operation name="ObtenerEncuestaByGrupos">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGrupos" message="tns:IServiceEncuesta_ObtenerEncuestaByGrupos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGruposResponse" message="tns:IServiceEncuesta_ObtenerEncuestaByGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerReporteNps">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerReporteNps" message="tns:IServiceEncuesta_ObtenerReporteNps_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerReporteNpsResponse" message="tns:IServiceEncuesta_ObtenerReporteNps_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointAdministracion" type="tns:IServiceEncuesta">
@@ -245,6 +257,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerEncuestaByGrupos">
       <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerReporteNps">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerReporteNps" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

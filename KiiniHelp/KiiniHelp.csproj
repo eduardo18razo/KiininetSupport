@@ -347,6 +347,7 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Mascaras.TipoMascara.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.HelperInformacionConsulta.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Reportes.ReporteInformacionConsulta.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta.datasource" />
     <None Include="Service References\ServiceArbolAcceso\ServiceArbolAcceso15.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -364,6 +365,8 @@
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
     <Content Include="UserControls\Configuracion\UcUploadCarrusel.ascx" />
     <Content Include="UserControls\Consultas\UcBusqueda.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestas.ascx" />
     <Content Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx" />
     <Content Include="UserControls\ReportesGraficos\Formularios\UcReporteFormularios.ascx" />
     <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcGraficoInformacionConsulta.ascx" />
@@ -375,6 +378,8 @@
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmEncuestas.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaNPS.aspx" />
     <Content Include="Users\ReportesGraficos\Formularios\FrmConsultaDetalleFormulario.aspx" />
     <Content Include="Users\FrmBusqueda.aspx" />
     <Content Include="Users\FrmDashboardUser.aspx" />
@@ -460,6 +465,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceDiasHorario\ServiceDiasHorario9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceEncuesta\ServiceEncuesta16.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceEncuesta\ServiceEncuesta161.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceFrecuencia\ServiceFrecuencia.wsdl" />
@@ -3040,6 +3051,20 @@
     <Compile Include="UserControls\Consultas\UcConsultaCatalogo.ascx.designer.cs">
       <DependentUpon>UcConsultaCatalogo.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx.cs">
+      <DependentUpon>UcGraficoNPS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx.designer.cs">
+      <DependentUpon>UcGraficoNPS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestas.ascx.cs">
+      <DependentUpon>UcReporteEncuestas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestas.ascx.designer.cs">
+      <DependentUpon>UcReporteEncuestas.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx.cs">
       <DependentUpon>UcReporteDetalleFormulario.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3326,6 +3351,20 @@
     </Compile>
     <Compile Include="Users\Administracion\Feriados\FrmConsultaFeriados.aspx.designer.cs">
       <DependentUpon>FrmConsultaFeriados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestas.aspx.cs">
+      <DependentUpon>FrmEncuestas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestas.aspx.designer.cs">
+      <DependentUpon>FrmEncuestas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaNPS.aspx.cs">
+      <DependentUpon>FrmGraficoEncuestaNPS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaNPS.aspx.designer.cs">
+      <DependentUpon>FrmGraficoEncuestaNPS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\ReportesGraficos\Formularios\FrmConsultaDetalleFormulario.aspx.cs">
       <DependentUpon>FrmConsultaDetalleFormulario.aspx</DependentUpon>
