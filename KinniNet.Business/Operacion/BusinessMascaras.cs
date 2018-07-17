@@ -1009,8 +1009,8 @@ namespace KinniNet.Core.Operacion
                                 fechas.Single(s => s.Key == "inicio").Value.Month,
                                     fechas.Single(s => s.Key == "inicio").Value.Day);
                         string fechaFin = string.Format("{0}-{1}-{2} 00:00:00",
-                            fechas.Single(s => s.Key == "fin").Value.Year,
-                                fechas.Single(s => s.Key == "fin").Value.Month,
+                            fechas.Single(s => s.Key == "fin").Value.AddDays(1).Year,
+                                fechas.Single(s => s.Key == "fin").Value.AddDays(1).Month,
                                     fechas.Single(s => s.Key == "fin").Value.AddDays(1).Day);
                         qryCampos += string.Format("WHERE t.FechaHoraAlta >= CONVERT(DATETIME, '{0}') AND t.FechaHoraAlta < CONVERT(DATETIME, '{1}')", fechaInicio, fechaFin);
                     }

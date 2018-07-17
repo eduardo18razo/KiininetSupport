@@ -59,6 +59,9 @@ namespace KiiniNet.Services.Operacion.Interface
         ArbolAcceso ObtenerArbolAcceso(int idArbol);
 
         [OperationContract]
+        List<ArbolAcceso> ObtenerArbolesAccesoSeccion(int? idArea, int? idTipoUsuario, int? idTipoArbol, int? nivel1,int? nivel2, int? nivel3, int? nivel4, int? nivel5, int? nivel6, int? nivel7);
+
+        [OperationContract]
         List<ArbolAcceso> ObtenerArbolesAccesoAll(int? idArea, int? idTipoUsuario, int? idTipoArbol, int? nivel1, int? nivel2, int? nivel3, int? nivel4, int? nivel5, int? nivel6, int? nivel7);
 
         [OperationContract]
@@ -66,6 +69,9 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         void HabilitarArbol(int idArbol, bool habilitado);
+
+        [OperationContract]
+        void ActualizarSeccion(int idArbolAcceso, ArbolAcceso arbolAccesoActualizar, string descripcion);
         [OperationContract]
         void ActualizardArbol(int idArbolAcceso, ArbolAcceso arbolAcceso, string descripcion);
 

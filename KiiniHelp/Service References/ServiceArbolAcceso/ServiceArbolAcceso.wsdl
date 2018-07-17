@@ -152,6 +152,12 @@
   <wsdl:message name="IServiceArbolAcceso_ObtenerArbolAcceso_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerArbolAccesoResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoSeccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoSeccion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoSeccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoSeccionResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceArbolAcceso_ObtenerArbolesAccesoAll_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerArbolesAccesoAll" />
   </wsdl:message>
@@ -169,6 +175,12 @@
   </wsdl:message>
   <wsdl:message name="IServiceArbolAcceso_HabilitarArbol_OutputMessage">
     <wsdl:part name="parameters" element="tns:HabilitarArbolResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ActualizarSeccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarSeccion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceArbolAcceso_ActualizarSeccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarSeccionResponse" />
   </wsdl:message>
   <wsdl:message name="IServiceArbolAcceso_ActualizardArbol_InputMessage">
     <wsdl:part name="parameters" element="tns:ActualizardArbol" />
@@ -295,6 +307,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolAcceso" message="tns:IServiceArbolAcceso_ObtenerArbolAcceso_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolAccesoResponse" message="tns:IServiceArbolAcceso_ObtenerArbolAcceso_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoSeccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoSeccion" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoSeccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoSeccionResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoSeccion_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ObtenerArbolesAccesoAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllResponse" message="tns:IServiceArbolAcceso_ObtenerArbolesAccesoAll_OutputMessage" />
@@ -306,6 +322,10 @@
     <wsdl:operation name="HabilitarArbol">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/HabilitarArbol" message="tns:IServiceArbolAcceso_HabilitarArbol_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/HabilitarArbolResponse" message="tns:IServiceArbolAcceso_HabilitarArbol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSeccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ActualizarSeccion" message="tns:IServiceArbolAcceso_ActualizarSeccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ActualizarSeccionResponse" message="tns:IServiceArbolAcceso_ActualizarSeccion_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ActualizardArbol">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceArbolAcceso/ActualizardArbol" message="tns:IServiceArbolAcceso_ActualizardArbol_InputMessage" />
@@ -532,6 +552,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerArbolesAccesoSeccion">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoSeccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerArbolesAccesoAll">
       <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll" style="document" />
       <wsdl:input>
@@ -552,6 +581,15 @@
     </wsdl:operation>
     <wsdl:operation name="HabilitarArbol">
       <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/HabilitarArbol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarSeccion">
+      <soap:operation soapAction="http://tempuri.org/IServiceArbolAcceso/ActualizarSeccion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

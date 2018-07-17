@@ -31,9 +31,9 @@
                 <asp:HiddenField runat="server" ID="hfConsultas" Value="false" />
                 <!--MIGAS DE PAN-->
                 <div class="row">
-                    <div >
+                    <div>
                         <ol class="breadcrumb">
-                            <li >
+                            <li>
                                 <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
                             <li class="active">Mi perfil</li>
                         </ol>
@@ -48,7 +48,7 @@
                             <!--DATOS GENERALES-->
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading panel-heading-theme-1 ">
+                                    <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <asp:HyperLink data-toggle="collapse" ID="pnlPrincipal" runat="server" CssClass="panel-toggle no-underline" NavigateUrl="#faq5_1">
 
@@ -188,7 +188,7 @@
                                                                 <ItemTemplate>
                                                                     <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
                                                                         <div class="row">
-                                                                            <div class="col-lg-3 col-md-3 no-padding-left">
+                                                                            <div class="col-lg-3 col-md-4 no-padding-left">
                                                                                 <asp:DropDownList runat="server" ID="ddlTipoTelefono" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoTelefono_OnSelectedIndexChanged" />
                                                                             </div>
 
@@ -307,8 +307,8 @@
                                                                     </tr>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    </tbody>
-                                            </table>
+                                                                        </tbody>
+                                                                    </table>
                                                                 </FooterTemplate>
                                                             </asp:Repeater>
                                                         </div>
@@ -321,13 +321,84 @@
                                 </div>
                             </div>
 
-                            <!--GRUPO UBICACIÓN -->
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
+                            <!--GRUPO UBICACIÓN DOMICILIO-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" runat="server" id="divDomicilio" visible="False">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading panel-heading-theme-1">
+                                    <div class="panel-heading">
                                         <h4 class="panel-title">
+                                            <div class="row">
+                                                <a data-toggle="collapse" class="panel-toggle no-underline" href="#faq_domicilio">
+                                                    <div class="col-lg-10 col-md-8 col-sm-8">
+                                                        <h3 class="TitulosAzul">Domicilio</h3>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </h4>
+                                    </div>
 
+                                    <asp:Panel runat="server" CssClass="panel-collapse collapse" ID="faq_domicilio" ClientIDMode="Static">
+                                        <div class="panel-body">
+                                            <div class="panel-group panel-group-theme-1">
+                                                <div class="row">
+
+                                                    <div class="row">
+                                                        <!--CALLE-->
+                                                        <div class="form-group margin-top col-lg-6 col-md-8">
+                                                            Calle*<br />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtCalle" onkeydown="return (event.keyCode!=13);" MaxLength="99"></asp:TextBox>
+                                                        </div>
+
+                                                        <!--NUM EXT-->
+                                                        <div class="form-group margin-top col-lg-2 col-md-2">
+                                                            Número Exterior*<br />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtNoExt" onkeydown="return (event.keyCode!=13);" MaxLength="20"></asp:TextBox>
+                                                        </div>
+                                                        <!--NUM INT-->
+                                                        <div class="form-group margin-top col-lg-2 col-md-2">
+                                                            Número Interior<br />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtNoInt" onkeydown="return (event.keyCode!=13);" MaxLength="20"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <!--CP-->
+                                                        <div class="form-group margin-top col-lg-2 col-md-2">
+                                                            CP*<br />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtCp" MaxLength="5" onkeydown="return (event.keyCode!=13);" AutoPostBack="True" OnTextChanged="txtCp_OnTextChanged" onkeypress="return ValidaCampo(this,2)"></asp:TextBox>
+                                                        </div>
+
+                                                        <!--Ingresar datos-->
+                                                        <div class="form-group margin-top col-lg-2 col-md-3" runat="server" visible="False">
+                                                            <asp:CheckBox runat="server" ID="chkDatosManual" Text="Ingresar datos de forma manual" AutoPostBack="True" />
+                                                        </div>
+
+                                                        <!--COLONIA-->
+                                                        <div class="form-group margin-top col-lg-2 col-md-3">
+                                                            Colonia*<br />
+                                                            <asp:DropDownList runat="server" ID="ddlColonia" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlColonia_OnSelectedIndexChanged" />
+                                                        </div>
+
+                                                        <!--MUNICIPIO-->
+                                                        <div class="form-group margin-top col-lg-2 col-md-3">
+                                                            Municipio*<br />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtMunicipio" onkeydown="return (event.keyCode!=13);" ReadOnly="True"></asp:TextBox>
+                                                        </div>
+                                                        <!--ESTADO-->
+                                                        <div class="form-group margin-top col-lg-2 col-md-3">
+                                                            Estado*<br />
+                                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtEstado" onkeydown="return (event.keyCode!=13);" ReadOnly="True" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </asp:Panel>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" runat="server" id="divUbicacion" visible="True">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
                                             <div class="row">
                                                 <a data-toggle="collapse" class="panel-toggle no-underline" href="#faq5_4">
                                                     <div class="col-lg-10 col-md-8 col-sm-8">
@@ -399,17 +470,16 @@
                                         </div>
                                     </asp:Panel>
                                 </div>
-
                             </div>
 
                             <!-- ROLES Y GRUPOS -->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading panel-heading-theme-1">
+                                    <div class="panel-heading">
                                         <h4 class="panel-title">
 
                                             <div class="row">
-                                                <a data-toggle="collapse" class="panel-toggle no-underline" href="#faq5_5">
+                                                <a data-toggle="collapse" class="no-underline" href="#faq5_5">
                                                     <div class="col-lg-10 col-md-8 col-sm-8">
 
                                                         <h3 class="TitulosAzul">Roles y Grupos</h3>
@@ -476,9 +546,10 @@
                                     </asp:Panel>
                                 </div>
                             </div>
-                            
+
                             <!--Formularios -->
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none">>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display: none">
+                                >
                                 <div class="panel panel-default">
                                     <div class="panel-heading panel-heading-theme-1">
                                         <h4 class="panel-title">
@@ -489,7 +560,7 @@
                                                     </div>
                                                 </a>
                                                 <div class="col-lg-2 col-md-4 col-sm-4 text-right">
-                                                    <asp:Button ID="btnModalFormulario" CssClass="btn btn-primary" runat="server" Text="Agregar"  />
+                                                    <asp:Button ID="btnModalFormulario" CssClass="btn btn-primary" runat="server" Text="Agregar" />
                                                 </div>
                                             </div>
                                         </h4>
@@ -502,7 +573,6 @@
                                                 <div class="row">
                                                     <div>
                                                         <div class="table-responsive">
-                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -516,7 +586,6 @@
                         </div>
                     </div>
                 </section>
-
                 <section class="module" id="divBtnGuardar" runat="server" visible="true">
                     <div class="module-inner">
                         <div class="row widht100 text-center">
@@ -527,7 +596,6 @@
                     </div>
                     <br />
                 </section>
-
             </ContentTemplate>
         </asp:UpdatePanel>
         <%--PUESTOS--%>

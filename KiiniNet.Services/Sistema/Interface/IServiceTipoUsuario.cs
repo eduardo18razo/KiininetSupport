@@ -8,7 +8,7 @@ namespace KiiniNet.Services.Sistema.Interface
     public interface IServiceTipoUsuario
     {
         [OperationContract]
-        List<TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion);
+        List<TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion, bool filtraDomicilio);
         [OperationContract]
         List<TipoUsuario> ObtenerTiposUsuarioInvitados(bool insertarSeleccion);
 

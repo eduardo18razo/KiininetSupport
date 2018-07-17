@@ -49,7 +49,7 @@ namespace KiiniHelp.ServiceUbicacion {
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Ubicacion> ObtenerUbicaciones(System.Nullable<int> idTipoUsuario, System.Nullable<int> idPais, System.Nullable<int> idCampus, System.Nullable<int> idTorre, System.Nullable<int> idPiso, System.Nullable<int> idZona, System.Nullable<int> idSubZona, System.Nullable<int> idSiteRack);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUbicacion/BuscarPorPalabra", ReplyAction="http://tempuri.org/IServiceUbicacion/BuscarPorPalabraResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Ubicacion> BuscarPorPalabra(System.Nullable<int> idTipoUsuario, System.Nullable<int> idPais, System.Nullable<int> idCampus, System.Nullable<int> idTorre, System.Nullable<int> idPiso, System.Nullable<int> idZona, System.Nullable<int> idSubZona, System.Nullable<int> idSiteRack, string filtro);
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Ubicacion> BuscarPorPalabra(System.Nullable<int> idTipoUsuario, System.Nullable<int> idPais, System.Nullable<int> idCampus, System.Nullable<int> idTorre, System.Nullable<int> idPiso, System.Nullable<int> idZona, System.Nullable<int> idSubZona, System.Nullable<int> idSiteRack, string filtro, bool filtraCliente);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUbicacion/ActualizarUbicacion", ReplyAction="http://tempuri.org/IServiceUbicacion/ActualizarUbicacionResponse")]
         void ActualizarUbicacion(KiiniNet.Entities.Cat.Operacion.Ubicacion ub);
@@ -144,8 +144,8 @@ namespace KiiniHelp.ServiceUbicacion {
             return base.Channel.ObtenerUbicaciones(idTipoUsuario, idPais, idCampus, idTorre, idPiso, idZona, idSubZona, idSiteRack);
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Ubicacion> BuscarPorPalabra(System.Nullable<int> idTipoUsuario, System.Nullable<int> idPais, System.Nullable<int> idCampus, System.Nullable<int> idTorre, System.Nullable<int> idPiso, System.Nullable<int> idZona, System.Nullable<int> idSubZona, System.Nullable<int> idSiteRack, string filtro) {
-            return base.Channel.BuscarPorPalabra(idTipoUsuario, idPais, idCampus, idTorre, idPiso, idZona, idSubZona, idSiteRack, filtro);
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Ubicacion> BuscarPorPalabra(System.Nullable<int> idTipoUsuario, System.Nullable<int> idPais, System.Nullable<int> idCampus, System.Nullable<int> idTorre, System.Nullable<int> idPiso, System.Nullable<int> idZona, System.Nullable<int> idSubZona, System.Nullable<int> idSiteRack, string filtro, bool filtraCliente) {
+            return base.Channel.BuscarPorPalabra(idTipoUsuario, idPais, idCampus, idTorre, idPiso, idZona, idSubZona, idSiteRack, filtro, filtraCliente);
         }
         
         public void ActualizarUbicacion(KiiniNet.Entities.Cat.Operacion.Ubicacion ub) {

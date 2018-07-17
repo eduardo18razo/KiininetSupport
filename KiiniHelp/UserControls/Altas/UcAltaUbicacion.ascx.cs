@@ -134,7 +134,7 @@ namespace KiiniHelp.UserControls.Altas
         {
             try
             {
-                List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
+                List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true, true);
                 if (!FromModal)
                     Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
                 Metodos.LlenaComboCatalogo(ddlTipoUsuarioCatalogo, lstTipoUsuario);
@@ -399,17 +399,22 @@ namespace KiiniHelp.UserControls.Altas
         {
             try
             {
-                if (Metodos.ValidaCapturaCatalogoCampus(Convert.ToInt32(ddlTipoUsuarioCampus.SelectedValue), txtDescripcionCampus.Text, ddlColonia.SelectedValue == "" ? 0 : Convert.ToInt32(ddlColonia.SelectedValue), txtCalle.Text.Trim(), txtNoExt.Text.Trim(), txtNoInt.Text.Trim()))
+                List<string> sb = Metodos.ValidaCapturaCatalogoCampus(Convert.ToInt32(ddlTipoUsuarioCampus.SelectedValue), txtDescripcionCampus.Text, ddlColonia.SelectedValue == "" ? 0 : Convert.ToInt32(ddlColonia.SelectedValue), txtCalle.Text.Trim(), txtNoExt.Text.Trim(), txtNoInt.Text.Trim());
+                if (sb.Count > 0)
                 {
-                    Ubicacion ubicacion = new Ubicacion
+                    sb.Insert(0, "<h3>Datos Generales</h3>");
+                    _lstError = sb;
+                    throw new Exception("");
+                }
+                Ubicacion ubicacion = new Ubicacion
+                {
+                    IdTipoUsuario = IdTipoUsuario,
+                    IdPais = Convert.ToInt32(ddlpais.SelectedValue),
+                    Campus = new Campus
                     {
-                        IdTipoUsuario = IdTipoUsuario,
-                        IdPais = Convert.ToInt32(ddlpais.SelectedValue),
-                        Campus = new Campus
-                        {
-                            IdTipoUsuario = Convert.ToInt32(ddlTipoUsuarioCampus.SelectedValue),
-                            Descripcion = txtDescripcionCampus.Text.Trim(),
-                            Domicilio = new List<Domicilio>
+                        IdTipoUsuario = Convert.ToInt32(ddlTipoUsuarioCampus.SelectedValue),
+                        Descripcion = txtDescripcionCampus.Text.Trim(),
+                        Domicilio = new List<Domicilio>
                             {
                                 new Domicilio
                                 {
@@ -419,15 +424,14 @@ namespace KiiniHelp.UserControls.Altas
                                     NoInt = txtNoInt.Text.Trim()
                                 }
                             },
-                            Habilitado = chkHabilitado.Checked
-                        }
-                    };
-                    _servicioUbicacion.GuardarUbicacion(ubicacion);
-                    LimpiaCampus();
-                    ddlpais_OnSelectedIndexChanged(ddlpais, null);
-                    upUbicacion.Update();
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#editCampus\");", true);
-                }
+                        Habilitado = chkHabilitado.Checked
+                    }
+                };
+                _servicioUbicacion.GuardarUbicacion(ubicacion);
+                LimpiaCampus();
+                ddlpais_OnSelectedIndexChanged(ddlpais, null);
+                upUbicacion.Update();
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#editCampus\");", true);
             }
             catch (Exception ex)
             {
@@ -474,7 +478,7 @@ namespace KiiniHelp.UserControls.Altas
             switch (command)
             {
                 case "2":
-                    result += ddlpais.SelectedItem.Text ;
+                    result += ddlpais.SelectedItem.Text;
                     break;
                 case "3":
                     result += ddlpais.SelectedItem.Text + ">" + ddlCampus.SelectedItem.Text;

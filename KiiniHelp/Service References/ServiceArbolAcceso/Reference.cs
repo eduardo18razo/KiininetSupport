@@ -82,6 +82,9 @@ namespace KiiniHelp.ServiceArbolAcceso {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolAcceso", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolAccesoResponse")]
         KiiniNet.Entities.Cat.Operacion.ArbolAcceso ObtenerArbolAcceso(int idArbol);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoSeccion", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoSeccionResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoSeccion(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, System.Nullable<int> nivel1, System.Nullable<int> nivel2, System.Nullable<int> nivel3, System.Nullable<int> nivel4, System.Nullable<int> nivel5, System.Nullable<int> nivel6, System.Nullable<int> nivel7);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAll", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ObtenerArbolesAccesoAllResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoAll(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, System.Nullable<int> nivel1, System.Nullable<int> nivel2, System.Nullable<int> nivel3, System.Nullable<int> nivel4, System.Nullable<int> nivel5, System.Nullable<int> nivel6, System.Nullable<int> nivel7);
         
@@ -90,6 +93,9 @@ namespace KiiniHelp.ServiceArbolAcceso {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/HabilitarArbol", ReplyAction="http://tempuri.org/IServiceArbolAcceso/HabilitarArbolResponse")]
         void HabilitarArbol(int idArbol, bool habilitado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ActualizarSeccion", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ActualizarSeccionResponse")]
+        void ActualizarSeccion(int idArbolAcceso, KiiniNet.Entities.Cat.Operacion.ArbolAcceso arbolAccesoActualizar, string descripcion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceArbolAcceso/ActualizardArbol", ReplyAction="http://tempuri.org/IServiceArbolAcceso/ActualizardArbolResponse")]
         void ActualizardArbol(int idArbolAcceso, KiiniNet.Entities.Cat.Operacion.ArbolAcceso arbolAcceso, string descripcion);
@@ -230,6 +236,10 @@ namespace KiiniHelp.ServiceArbolAcceso {
             return base.Channel.ObtenerArbolAcceso(idArbol);
         }
         
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoSeccion(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, System.Nullable<int> nivel1, System.Nullable<int> nivel2, System.Nullable<int> nivel3, System.Nullable<int> nivel4, System.Nullable<int> nivel5, System.Nullable<int> nivel6, System.Nullable<int> nivel7) {
+            return base.Channel.ObtenerArbolesAccesoSeccion(idArea, idTipoUsuario, idTipoArbol, nivel1, nivel2, nivel3, nivel4, nivel5, nivel6, nivel7);
+        }
+        
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.ArbolAcceso> ObtenerArbolesAccesoAll(System.Nullable<int> idArea, System.Nullable<int> idTipoUsuario, System.Nullable<int> idTipoArbol, System.Nullable<int> nivel1, System.Nullable<int> nivel2, System.Nullable<int> nivel3, System.Nullable<int> nivel4, System.Nullable<int> nivel5, System.Nullable<int> nivel6, System.Nullable<int> nivel7) {
             return base.Channel.ObtenerArbolesAccesoAll(idArea, idTipoUsuario, idTipoArbol, nivel1, nivel2, nivel3, nivel4, nivel5, nivel6, nivel7);
         }
@@ -240,6 +250,10 @@ namespace KiiniHelp.ServiceArbolAcceso {
         
         public void HabilitarArbol(int idArbol, bool habilitado) {
             base.Channel.HabilitarArbol(idArbol, habilitado);
+        }
+        
+        public void ActualizarSeccion(int idArbolAcceso, KiiniNet.Entities.Cat.Operacion.ArbolAcceso arbolAccesoActualizar, string descripcion) {
+            base.Channel.ActualizarSeccion(idArbolAcceso, arbolAccesoActualizar, descripcion);
         }
         
         public void ActualizardArbol(int idArbolAcceso, KiiniNet.Entities.Cat.Operacion.ArbolAcceso arbolAcceso, string descripcion) {

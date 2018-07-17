@@ -60,7 +60,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-lg-offset-6 col-md-offset-6 col-sm-offset-6 col-xs-offset-6 text-center">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                 <div class="form-group margin-top-btn-consulta">
                                     <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
                                  <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>

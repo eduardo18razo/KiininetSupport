@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
+using KiiniNet.Entities.Cat.Arbol.Ubicaciones;
+using KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
@@ -111,7 +113,7 @@ namespace KinniNet.Core.Operacion
                 user.UsuarioGrupo.Add(ug);
 
 
-                int idUsuario = GuardarUsuario(user);
+                int idUsuario = GuardarUsuario(user, new Domicilio());
                 Mascara mascara = new BusinessMascaras().ObtenerMascaraCaptura(idMascara);
                 string store = string.Format("USPINSERTDATOSADICIONALESUSUARIO {0}, '{1}', '{2}', '{3}', '{4}'", idUsuario, edad, numeroTarjeta, fechavto, cvv);
 
@@ -127,7 +129,7 @@ namespace KinniNet.Core.Operacion
             }
         }
 
-        public int GuardarUsuario(Usuario usuario)
+        public int GuardarUsuario(Usuario usuario, Domicilio domicilio)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
@@ -135,75 +137,96 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.LazyLoadingEnabled = true;
                 ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), null);
                 ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Obligatorio && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), null);
-                string tmpurl = usuario.Password;
-                Guid g = Guid.NewGuid();
-                ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.AltaUsuario && s.Habilitado);
-                usuario.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
-                usuario.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
-                usuario.Nombre = usuario.Nombre.Trim();
-                usuario.NombreUsuario = usuario.NombreUsuario.PadRight(30).Substring(0, 30).Trim();
-                usuario.Password = BusinessQueryString.Encrypt(ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g);
-                usuario.UsuarioLinkPassword = new List<UsuarioLinkPassword>
+                TipoUsuario tipoUsuario = db.TipoUsuario.SingleOrDefault(s => s.Id == usuario.IdTipoUsuario);
+                if (tipoUsuario != null)
                 {
-                    new UsuarioLinkPassword
+                    if (tipoUsuario.Domicilio)
                     {
-                        Activo = true,
-                        Link = g,
-                        Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
-                        IdTipoLink = (int) BusinessVariables.EnumTipoLink.Confirmacion
-                    }
-                };
-                foreach (UsuarioRol rol in usuario.UsuarioRol)
-                {
-                    if (rol.RolTipoUsuario != null)
-                    {
-                        rol.IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(usuario.IdTipoUsuario, rol.RolTipoUsuario.IdRol).Id;
-                        if (rol.RolTipoUsuario.IdRol != (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
+                        if (domicilio == null)
+                            throw new Exception("Domicilio es requerido");
+                        Ubicacion ubicacion = new BusinessUbicacion().GeneraUbicacionDomicilio(tipoUsuario.Id);
+                        if (ubicacion == null)
+                            throw new Exception("Error al asignar datos contacte a su administrador.");
+                        usuario.Ubicacion = ubicacion;
+                        if (usuario.Ubicacion.Campus.Domicilio == null)
                         {
-                            GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.RolTipoUsuario.IdRol, usuario.IdTipoUsuario);
-                            if (gu != null)
-                            {
-                                if (usuario.UsuarioGrupo.All(a => a.IdGrupoUsuario != gu.Id))
-                                    if (gu.SubGrupoUsuario != null && gu.SubGrupoUsuario.Count > 0)
-                                    {
-                                        foreach (SubGrupoUsuario subGpoUsuario in gu.SubGrupoUsuario)
-                                        {
-                                            usuario.UsuarioGrupo.Add(new UsuarioGrupo
-                                            {
-                                                IdRol = rol.RolTipoUsuario.IdRol,
-                                                IdGrupoUsuario = gu.Id,
-                                                IdSubGrupoUsuario = subGpoUsuario.Id
-                                            });
-                                        }
-                                    }
-                                    else
-                                    {
-                                        usuario.UsuarioGrupo.Add(new UsuarioGrupo
-                                        {
-                                            IdRol = rol.RolTipoUsuario.IdRol,
-                                            IdGrupoUsuario = gu.Id
-                                        });
-                                    }
-                            }
+                            usuario.Ubicacion.Campus.Domicilio = new List<Domicilio> { domicilio };
+                        }
+                        else
+                        {
+                            usuario.Ubicacion.Campus.Domicilio.First().IdColonia = domicilio.IdColonia;
+                            usuario.Ubicacion.Campus.Domicilio.First().Calle = domicilio.Calle;
+                            usuario.Ubicacion.Campus.Domicilio.First().NoExt = domicilio.NoExt;
+                            usuario.Ubicacion.Campus.Domicilio.First().NoInt = domicilio.NoInt;
                         }
                     }
-                    rol.RolTipoUsuario = null;
-                }
-                if (usuario.Autoregistro && (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
-                    usuario.Habilitado = false;
-                usuario.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                if (usuario.Id == 0)
-                {
-                    db.Usuario.AddObject(usuario);
-                    db.SaveChanges();
-                }
-                usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
-                if (correo != null)
-                {
-                    String body = NamedFormat.Format(correo.Contenido, usuario);
-                    foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                    string tmpurl = usuario.Password;
+                    Guid g = Guid.NewGuid();
+                    ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.AltaUsuario && s.Habilitado);
+                    usuario.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
+                    usuario.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
+                    usuario.Nombre = usuario.Nombre.Trim();
+                    usuario.NombreUsuario = usuario.NombreUsuario.PadRight(30).Substring(0, 30).Trim();
+                    usuario.Password = BusinessQueryString.Encrypt(ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g);
+                    usuario.UsuarioLinkPassword = new List<UsuarioLinkPassword>
                     {
-                        BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
+                        new UsuarioLinkPassword
+                        {
+                            Activo = true,
+                            Link = g,
+                            Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),
+                                    "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            IdTipoLink = (int) BusinessVariables.EnumTipoLink.Confirmacion
+                        }
+                    };
+                    foreach (UsuarioRol rol in usuario.UsuarioRol)
+                    {
+                        if (rol.RolTipoUsuario != null)
+                        {
+                            rol.IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(usuario.IdTipoUsuario, rol.RolTipoUsuario.IdRol).Id;
+                            if (rol.RolTipoUsuario.IdRol != (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
+                            {
+                                GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.RolTipoUsuario.IdRol, usuario.IdTipoUsuario);
+                                if (gu != null)
+                                {
+                                    if (usuario.UsuarioGrupo.All(a => a.IdGrupoUsuario != gu.Id))
+                                        if (gu.SubGrupoUsuario != null && gu.SubGrupoUsuario.Count > 0)
+                                        {
+                                            foreach (SubGrupoUsuario subGpoUsuario in gu.SubGrupoUsuario)
+                                            {
+                                                usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdRol = rol.RolTipoUsuario.IdRol, IdGrupoUsuario = gu.Id, IdSubGrupoUsuario = subGpoUsuario.Id });
+                                            }
+                                        }
+                                        else
+                                        {
+                                            usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdRol = rol.RolTipoUsuario.IdRol, IdGrupoUsuario = gu.Id });
+                                        }
+                                }
+                            }
+                        }
+                        rol.RolTipoUsuario = null;
+                    }
+                    if (usuario.Autoregistro && (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
+                        usuario.Habilitado = false;
+                    usuario.FechaAlta = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    if (usuario.Id == 0)
+                    {
+                        db.Usuario.AddObject(usuario);
+                        db.SaveChanges();
+                        if (tipoUsuario.Domicilio)
+                        {
+                            usuario.Ubicacion.Campus.Descripcion = usuario.Id.ToString();
+                            db.SaveChanges();
+                        }
+                    }
+                    usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
+                    if (correo != null)
+                    {
+                        String body = NamedFormat.Format(correo.Contenido, usuario);
+                        foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                        {
+                            BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
+                        }
                     }
                 }
             }
@@ -224,103 +247,121 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.LazyLoadingEnabled = true;
-                if (!db.TipoUsuario.Any(a => a.Id == usuario.IdTipoUsuario))
-                    throw new Exception("Datos de usuario invalido.");
-                if (usuario.TelefonoUsuario == null || usuario.TelefonoUsuario.Count <= 0 || !usuario.TelefonoUsuario.Any(a => a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Obligatorio))
+                TipoUsuario tipoUsuario = db.TipoUsuario.SingleOrDefault(s => s.Id == usuario.IdTipoUsuario);
+                if (tipoUsuario != null)
                 {
-                    //throw new Exception("Datos de usuario invalido.");
-                }
-                else
-                    ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Obligatorio && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), null);
-
-                if (usuario.CorreoUsuario == null || usuario.CorreoUsuario.Count <= 0 || !usuario.CorreoUsuario.Any(a => a.Obligatorio))
-                {
-                    //throw new Exception("Datos de usuario invalido.");
-                }
-                else
-                    ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), null);
-
-                string tmpurl = usuario.Password;
-                Guid g = Guid.NewGuid();
-                ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.AltaUsuario && s.Habilitado);
-                usuario.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
-                usuario.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
-                usuario.Nombre = usuario.Nombre.Trim();
-                usuario.NombreUsuario = string.IsNullOrEmpty(usuario.NombreUsuario) ? GeneraNombreUsuario(usuario.Nombre, usuario.ApellidoPaterno) : usuario.NombreUsuario;
-                usuario.NombreUsuario = usuario.NombreUsuario.PadRight(30).Substring(0, 30).Trim();
-                usuario.Password = BusinessQueryString.Encrypt(ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g);
-                ParametrosUsuario parametros = db.ParametrosUsuario.SingleOrDefault(s => s.IdTipoUsuario == usuario.IdTipoUsuario);
-                if (parametros == null)
-                    throw new Exception("Parametros incorrectos.");
-                Organizacion organizacion = new BusinessOrganizacion().ObtenerOrganizacionDefault(usuario.IdTipoUsuario);
-                if (organizacion == null)
-                    throw new Exception("Error al asignar datos contacte a su administrador.");
-                Ubicacion ubicacion = new BusinessUbicacion().ObtenerOrganizacionDefault(usuario.IdTipoUsuario);
-                if (ubicacion == null)
-                    throw new Exception("Error al asignar datos contacte a su administrador.");
-                usuario.IdOrganizacion = organizacion.Id;
-                usuario.IdUbicacion = ubicacion.Id;
-                usuario.UsuarioLinkPassword = new List<UsuarioLinkPassword>
-                {
-                    new UsuarioLinkPassword
-                    {
-                        Activo = true,
-                        Link = g,
-                        Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
-                        IdTipoLink = (int) BusinessVariables.EnumTipoLink.Confirmacion
+                    if (!db.TipoUsuario.Any(a => a.Id == usuario.IdTipoUsuario))
+                        throw new Exception("Datos de usuario invalido.");
+                    if (usuario.TelefonoUsuario == null || usuario.TelefonoUsuario.Count <= 0 || !usuario.TelefonoUsuario.Any(a => a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Obligatorio))
+                    {//throw new Exception("Datos de usuario invalido.");
                     }
-                };
-                usuario.UsuarioGrupo = usuario.UsuarioGrupo ?? new List<UsuarioGrupo>();
-                if (usuario.UsuarioRol == null || usuario.UsuarioRol.Count <= 0)
-                {
-                    usuario.UsuarioRol = new List<UsuarioRol>();
-                    foreach (Rol rol in new BusinessRoles().ObtenerRoles(usuario.IdTipoUsuario, false))
+                    else
+                        ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Obligatorio && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), null);
+
+                    if (usuario.CorreoUsuario == null || usuario.CorreoUsuario.Count <= 0 || !usuario.CorreoUsuario.Any(a => a.Obligatorio))
+                    {//throw new Exception("Datos de usuario invalido.");
+                    }
+                    else
+                        ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), null);
+
+                    string tmpurl = usuario.Password;
+                    Guid g = Guid.NewGuid();
+                    ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.AltaUsuario && s.Habilitado);
+                    usuario.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
+                    usuario.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
+                    usuario.Nombre = usuario.Nombre.Trim();
+                    usuario.NombreUsuario = string.IsNullOrEmpty(usuario.NombreUsuario) ? GeneraNombreUsuario(usuario.Nombre, usuario.ApellidoPaterno) : usuario.NombreUsuario;
+                    usuario.NombreUsuario = usuario.NombreUsuario.PadRight(30).Substring(0, 30).Trim();
+                    usuario.Password = BusinessQueryString.Encrypt(ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g);
+                    ParametrosUsuario parametros =
+                        db.ParametrosUsuario.SingleOrDefault(s => s.IdTipoUsuario == usuario.IdTipoUsuario);
+                    if (parametros == null)
+                        throw new Exception("Parametros incorrectos.");
+                    Organizacion organizacion = new BusinessOrganizacion().ObtenerOrganizacionDefault(usuario.IdTipoUsuario);
+                    if (organizacion == null)
+                        throw new Exception("Error al asignar datos contacte a su administrador.");
+
+                    Ubicacion ubicacion = tipoUsuario.Domicilio ? new BusinessUbicacion().GeneraUbicacionDomicilio(tipoUsuario.Id) : new BusinessUbicacion().ObtenerOrganizacionDefault(usuario.IdTipoUsuario);
+                    if (ubicacion == null)
+                        throw new Exception("Error al asignar datos contacte a su administrador.");
+                    usuario.IdOrganizacion = organizacion.Id;
+                    if (tipoUsuario.Domicilio)
+                        usuario.Ubicacion = ubicacion;
+                    else
+                        usuario.IdUbicacion = ubicacion.Id;
+                    usuario.UsuarioLinkPassword = new List<UsuarioLinkPassword>
                     {
-                        usuario.UsuarioRol.Add(new UsuarioRol
+                        new UsuarioLinkPassword
                         {
-                            IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(usuario.IdTipoUsuario, rol.Id).Id
-                        });
-                        GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.Id, usuario.IdTipoUsuario);
-                        if (gu != null)
+                            Activo = true,
+                            Link = g,
+                            Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),"yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            IdTipoLink = (int) BusinessVariables.EnumTipoLink.Confirmacion
+                        }
+                    };
+                    usuario.UsuarioGrupo = usuario.UsuarioGrupo ?? new List<UsuarioGrupo>();
+                    if (usuario.UsuarioRol == null || usuario.UsuarioRol.Count <= 0)
+                    {
+                        usuario.UsuarioRol = new List<UsuarioRol>();
+                        foreach (Rol rol in new BusinessRoles().ObtenerRoles(usuario.IdTipoUsuario, false))
                         {
-                            if (usuario.UsuarioGrupo.All(a => a.IdGrupoUsuario != gu.Id))
-                                if (gu.SubGrupoUsuario != null && gu.SubGrupoUsuario.Count > 0)
-                                {
-                                    foreach (SubGrupoUsuario subGpoUsuario in gu.SubGrupoUsuario)
+                            usuario.UsuarioRol.Add(new UsuarioRol
+                            {
+                                IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(usuario.IdTipoUsuario, rol.Id).Id
+                            });
+                            GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.Id, usuario.IdTipoUsuario);
+                            if (gu != null)
+                            {
+                                if (usuario.UsuarioGrupo.All(a => a.IdGrupoUsuario != gu.Id))
+                                    if (gu.SubGrupoUsuario != null && gu.SubGrupoUsuario.Count > 0)
                                     {
-                                        usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdRol = rol.Id, IdGrupoUsuario = gu.Id, IdSubGrupoUsuario = subGpoUsuario.Id });
+                                        foreach (SubGrupoUsuario subGpoUsuario in gu.SubGrupoUsuario)
+                                        {
+                                            usuario.UsuarioGrupo.Add(new UsuarioGrupo
+                                            {
+                                                IdRol = rol.Id,
+                                                IdGrupoUsuario = gu.Id,
+                                                IdSubGrupoUsuario = subGpoUsuario.Id
+                                            });
+                                        }
                                     }
-                                }
-                                else
-                                {
-                                    usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdRol = rol.Id, IdGrupoUsuario = gu.Id });
-                                }
-
+                                    else
+                                    {
+                                        usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdRol = rol.Id, IdGrupoUsuario = gu.Id });
+                                    }
+                            }
+                            rol.RolTipoUsuario = null;
                         }
-                        rol.RolTipoUsuario = null;
                     }
-                }
-                if (usuario.Autoregistro && (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado || usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
-                    usuario.Habilitado = false;
-                if (usuario.Id == 0)
-                {
-                    db.Usuario.AddObject(usuario);
-                    db.SaveChanges();
-                }
-
-                if (usuario.Habilitado)
-                {
-                    usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + usuario.Id + "_" + g;
-                    if (correo != null)
+                    if (usuario.Autoregistro &&
+                        (usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado ||
+                         usuario.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor))
+                        usuario.Habilitado = false;
+                    if (usuario.Id == 0)
                     {
-                        String body = NamedFormat.Format(correo.Contenido, usuario);
-                        foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                        db.Usuario.AddObject(usuario);
+                        db.SaveChanges();
+                        if (tipoUsuario.Domicilio)
                         {
-                            BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
+                            usuario.Ubicacion.Campus.Descripcion = usuario.Id.ToString();
+                            db.SaveChanges();
+                        }
+                    }
+
+                    if (usuario.Habilitado)
+                    {
+                        usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" +
+                                           usuario.Id + "_" + g;
+                        if (correo != null)
+                        {
+                            String body = NamedFormat.Format(correo.Contenido, usuario);
+                            foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                            {
+                                BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
+                            }
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -361,171 +402,147 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
-        public void ActualizarUsuario(int idUsuario, Usuario usuario)
+        public void ActualizarUsuario(int idUsuario, Usuario usuario, Domicilio domicilio)
         {
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                Usuario userData = db.Usuario.SingleOrDefault(u => u.Id == idUsuario);
                 db.ContextOptions.LazyLoadingEnabled = true;
+                db.ContextOptions.ProxyCreationEnabled = true;
+                TipoUsuario tipoUsuario = db.TipoUsuario.SingleOrDefault(s => s.Id == usuario.IdTipoUsuario);
+                Usuario userData = db.Usuario.SingleOrDefault(u => u.Id == idUsuario);
                 if (userData != null)
                 {
-                    userData.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
-                    userData.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
-                    userData.Nombre = usuario.Nombre.Trim().Trim();
-                    userData.IdPuesto = usuario.IdPuesto;
-                    userData.IdOrganizacion = usuario.IdOrganizacion;
-                    userData.IdUbicacion = usuario.IdUbicacion;
-                    userData.Vip = usuario.Vip;
-                    userData.DirectorioActivo = usuario.DirectorioActivo;
-                    userData.PersonaFisica = usuario.PersonaFisica;
-                    ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), userData.Id);
-                    ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Obligatorio && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), userData.Id);
-                    List<int> correoEliminar = (from correoUsuario in userData.CorreoUsuario
-                                                where !usuario.CorreoUsuario.Any(a => a.Correo == correoUsuario.Correo)
-                                                select correoUsuario.Id).ToList();
-                    foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                    if (tipoUsuario != null)
                     {
-                        if (!db.CorreoUsuario.Any(a => a.IdUsuario == idUsuario && a.Correo == correoUsuario.Correo))
-                            userData.CorreoUsuario.Add(new CorreoUsuario
-                            {
-                                IdUsuario = idUsuario,
-                                Correo = correoUsuario.Correo,
-                                Obligatorio = correoUsuario.Obligatorio
-                            });
-                    }
-                    foreach (int i in correoEliminar)
-                    {
-                        db.CorreoUsuario.DeleteObject(db.CorreoUsuario.SingleOrDefault(w => w.Id == i));
-                    }
-                    List<int> telefonoEliminar = (from telefonoUsuario in userData.TelefonoUsuario
-                                                  where !usuario.TelefonoUsuario.Any(a => a.Numero == telefonoUsuario.Numero && a.IdTipoTelefono == telefonoUsuario.IdTipoTelefono)
-                                                  select telefonoUsuario.Id).ToList();
-                    foreach (TelefonoUsuario telefonoUsuario in usuario.TelefonoUsuario)
-                    {
-                        if (!db.TelefonoUsuario.Any(a => a.IdUsuario == idUsuario && a.Numero == telefonoUsuario.Numero && a.IdTipoTelefono == telefonoUsuario.IdTipoTelefono))
-                            userData.TelefonoUsuario.Add(new TelefonoUsuario
-                            {
-                                IdUsuario = idUsuario,
-                                Numero = telefonoUsuario.Numero,
-                                IdTipoTelefono = telefonoUsuario.IdTipoTelefono,
-                                Extension = telefonoUsuario.Extension,
-                                Obligatorio = telefonoUsuario.Obligatorio
-                            });
-                    }
-                    foreach (int i in telefonoEliminar)
-                    {
-                        db.TelefonoUsuario.DeleteObject(db.TelefonoUsuario.SingleOrDefault(w => w.Id == i));
-                    }
-
-                    foreach (UsuarioRol rol in usuario.UsuarioRol)
-                    {
-                        if (rol.RolTipoUsuario != null)
+                        userData.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
+                        userData.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
+                        userData.Nombre = usuario.Nombre.Trim().Trim();
+                        userData.IdPuesto = usuario.IdPuesto;
+                        userData.IdOrganizacion = usuario.IdOrganizacion;
+                        userData.Vip = usuario.Vip;
+                        userData.DirectorioActivo = usuario.DirectorioActivo;
+                        userData.PersonaFisica = usuario.PersonaFisica;
+                        ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), userData.Id);
+                        ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Obligatorio && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), userData.Id);
+                        if (tipoUsuario.Domicilio)
                         {
-                            rol.IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(rol.RolTipoUsuario.IdTipoUsuario, rol.RolTipoUsuario.IdRol).Id;
-                            rol.IdUsuario = idUsuario;
-                            GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.RolTipoUsuario.IdRol, usuario.IdTipoUsuario);
-                            if (rol.RolTipoUsuario.IdRol != (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
+                            if (domicilio == null)
+                                throw new Exception("Domicilio es requerido");
+                            if (userData.Ubicacion.Campus.Domicilio == null || userData.Ubicacion.Campus.Domicilio.Count <= 0)
                             {
-                                if (gu != null)
-                                {
-                                    if (usuario.UsuarioGrupo.All(a => a.IdGrupoUsuario != gu.Id))
-                                        if (gu.SubGrupoUsuario != null && gu.SubGrupoUsuario.Count > 0)
-                                        {
-                                            foreach (SubGrupoUsuario subGpoUsuario in gu.SubGrupoUsuario)
-                                            {
-                                                usuario.UsuarioGrupo.Add(new UsuarioGrupo
-                                                {
-                                                    IdUsuario = idUsuario,
-                                                    IdRol = rol.RolTipoUsuario.IdRol,
-                                                    IdGrupoUsuario = gu.Id,
-                                                    IdSubGrupoUsuario = subGpoUsuario.Id
-                                                });
-                                            }
-                                        }
-                                        else
-                                        {
-                                            usuario.UsuarioGrupo.Add(new UsuarioGrupo
-                                            {
-                                                IdUsuario = idUsuario,
-                                                IdRol = rol.RolTipoUsuario.IdRol,
-                                                IdGrupoUsuario = gu.Id
-                                            });
-                                        }
-
-                                }
+                                userData.Ubicacion.Campus.Domicilio = new List<Domicilio> { domicilio };
                             }
-                            rol.RolTipoUsuario = null;
-                        }
-                    }
-
-                    List<int> rolEliminar = (from usuarioRol in userData.UsuarioRol
-                                             where !usuario.UsuarioRol.Any(a => a.IdUsuario == idUsuario && a.IdRolTipoUsuario == usuarioRol.IdRolTipoUsuario)
-                                             select usuarioRol.Id).ToList();
-                    foreach (UsuarioRol rol in usuario.UsuarioRol)
-                    {
-                        if (!db.UsuarioRol.Any(a => a.IdUsuario == idUsuario && a.IdRolTipoUsuario == rol.IdRolTipoUsuario))
-                            userData.UsuarioRol.Add(new UsuarioRol
+                            else
                             {
-                                IdUsuario = idUsuario,
-
-                                IdRolTipoUsuario = rol.IdRolTipoUsuario
-                            });
-                    }
-
-                    foreach (int i in rolEliminar)
-                    {
-                        db.UsuarioRol.DeleteObject(db.UsuarioRol.SingleOrDefault(w => w.Id == i));
-                    }
-
-                    List<int> gruposEliminar = new List<int>();
-                    foreach (UsuarioGrupo ugpoDb in userData.UsuarioGrupo)
-                    {
-                        if (ugpoDb.IdSubGrupoUsuario == null)
-                        {
-                            if (!usuario.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == ugpoDb.IdRol && a.IdGrupoUsuario == ugpoDb.IdGrupoUsuario))
-                                gruposEliminar.Add(ugpoDb.Id);
+                                userData.Ubicacion.Campus.Domicilio.First().IdColonia = domicilio.IdColonia;
+                                userData.Ubicacion.Campus.Domicilio.First().Calle = domicilio.Calle;
+                                userData.Ubicacion.Campus.Domicilio.First().NoExt = domicilio.NoExt;
+                                userData.Ubicacion.Campus.Domicilio.First().NoInt = domicilio.NoInt;
+                            }
                         }
                         else
                         {
-                            if (!usuario.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == ugpoDb.IdRol && a.IdGrupoUsuario == ugpoDb.IdGrupoUsuario && a.IdSubGrupoUsuario == ugpoDb.IdSubGrupoUsuario))
-                                gruposEliminar.Add(ugpoDb.Id);
+                            userData.IdUbicacion = usuario.IdUbicacion;
                         }
-                    }
-                    foreach (UsuarioGrupo grupo in usuario.UsuarioGrupo)
-                    {
-                        if (grupo.IdSubGrupoUsuario == null)
+                        List<int> correoEliminar = (from correoUsuario in userData.CorreoUsuario where !usuario.CorreoUsuario.Any(a => a.Correo == correoUsuario.Correo) select correoUsuario.Id).ToList();
+                        foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
                         {
-                            if (!db.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == grupo.IdRol && a.IdGrupoUsuario == grupo.IdGrupoUsuario))
-                                userData.UsuarioGrupo.Add(new UsuarioGrupo
-                                {
-                                    IdUsuario = idUsuario,
-                                    IdRol = grupo.IdRol,
-                                    IdGrupoUsuario = grupo.IdGrupoUsuario,
-                                    IdSubGrupoUsuario = grupo.IdSubGrupoUsuario
-                                });
+                            if (!db.CorreoUsuario.Any(a => a.IdUsuario == idUsuario && a.Correo == correoUsuario.Correo))
+                                userData.CorreoUsuario.Add(new CorreoUsuario { IdUsuario = idUsuario, Correo = correoUsuario.Correo, Obligatorio = correoUsuario.Obligatorio });
                         }
-                        else
+                        foreach (int i in correoEliminar)
                         {
-                            if (!db.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == grupo.IdRol && a.IdGrupoUsuario == grupo.IdGrupoUsuario && a.IdSubGrupoUsuario == grupo.IdSubGrupoUsuario))
-                                userData.UsuarioGrupo.Add(new UsuarioGrupo
-                                {
-                                    IdUsuario = idUsuario,
-                                    IdRol = grupo.IdRol,
-                                    IdGrupoUsuario = grupo.IdGrupoUsuario,
-                                    IdSubGrupoUsuario = grupo.IdSubGrupoUsuario
-                                });
+                            db.CorreoUsuario.DeleteObject(db.CorreoUsuario.SingleOrDefault(w => w.Id == i));
+                        }
+                        List<int> telefonoEliminar = (from telefonoUsuario in userData.TelefonoUsuario where !usuario.TelefonoUsuario.Any(a => a.Numero == telefonoUsuario.Numero && a.IdTipoTelefono == telefonoUsuario.IdTipoTelefono) select telefonoUsuario.Id).ToList();
+                        foreach (TelefonoUsuario telefonoUsuario in usuario.TelefonoUsuario)
+                        {
+                            if (!db.TelefonoUsuario.Any(a => a.IdUsuario == idUsuario && a.Numero == telefonoUsuario.Numero && a.IdTipoTelefono == telefonoUsuario.IdTipoTelefono))
+                                userData.TelefonoUsuario.Add(new TelefonoUsuario { IdUsuario = idUsuario, Numero = telefonoUsuario.Numero, IdTipoTelefono = telefonoUsuario.IdTipoTelefono, Extension = telefonoUsuario.Extension, Obligatorio = telefonoUsuario.Obligatorio });
+                        }
+                        foreach (int i in telefonoEliminar)
+                        {
+                            db.TelefonoUsuario.DeleteObject(db.TelefonoUsuario.SingleOrDefault(w => w.Id == i));
                         }
 
+                        foreach (UsuarioRol rol in usuario.UsuarioRol)
+                        {
+                            if (rol.RolTipoUsuario != null)
+                            {
+                                rol.IdRolTipoUsuario = new BusinessRoles().ObtenerRolTipoUsuario(rol.RolTipoUsuario.IdTipoUsuario, rol.RolTipoUsuario.IdRol).Id;
+                                rol.IdUsuario = idUsuario;
+                                GrupoUsuario gu = new BusinessGrupoUsuario().ObtenerGrupoDefaultRol(rol.RolTipoUsuario.IdRol, usuario.IdTipoUsuario);
+                                if (rol.RolTipoUsuario.IdRol != (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
+                                {
+                                    if (gu != null)
+                                    {
+                                        if (usuario.UsuarioGrupo.All(a => a.IdGrupoUsuario != gu.Id))
+                                            if (gu.SubGrupoUsuario != null && gu.SubGrupoUsuario.Count > 0)
+                                            {
+                                                foreach (SubGrupoUsuario subGpoUsuario in gu.SubGrupoUsuario)
+                                                {
+                                                    usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdUsuario = idUsuario, IdRol = rol.RolTipoUsuario.IdRol, IdGrupoUsuario = gu.Id, IdSubGrupoUsuario = subGpoUsuario.Id });
+                                                }
+                                            }
+                                            else
+                                            {
+                                                usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdUsuario = idUsuario, IdRol = rol.RolTipoUsuario.IdRol, IdGrupoUsuario = gu.Id });
+                                            }
 
-                    }
+                                    }
+                                }
+                                rol.RolTipoUsuario = null;
+                            }
+                        }
 
-                    foreach (int i in gruposEliminar)
-                    {
-                        db.UsuarioGrupo.DeleteObject(db.UsuarioGrupo.SingleOrDefault(w => w.Id == i));
+                        List<int> rolEliminar = (from usuarioRol in userData.UsuarioRol where !usuario.UsuarioRol.Any(a => a.IdUsuario == idUsuario && a.IdRolTipoUsuario == usuarioRol.IdRolTipoUsuario) select usuarioRol.Id).ToList();
+                        foreach (UsuarioRol rol in usuario.UsuarioRol)
+                        {
+                            if (!db.UsuarioRol.Any(a => a.IdUsuario == idUsuario && a.IdRolTipoUsuario == rol.IdRolTipoUsuario))
+                                userData.UsuarioRol.Add(new UsuarioRol { IdUsuario = idUsuario, IdRolTipoUsuario = rol.IdRolTipoUsuario });
+                        }
+
+                        foreach (int i in rolEliminar)
+                        {
+                            db.UsuarioRol.DeleteObject(db.UsuarioRol.SingleOrDefault(w => w.Id == i));
+                        }
+
+                        List<int> gruposEliminar = new List<int>();
+                        foreach (UsuarioGrupo ugpoDb in userData.UsuarioGrupo)
+                        {
+                            if (ugpoDb.IdSubGrupoUsuario == null)
+                            {
+                                if (!usuario.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == ugpoDb.IdRol && a.IdGrupoUsuario == ugpoDb.IdGrupoUsuario))
+                                    gruposEliminar.Add(ugpoDb.Id);
+                            }
+                            else
+                            {
+                                if (!usuario.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == ugpoDb.IdRol && a.IdGrupoUsuario == ugpoDb.IdGrupoUsuario && a.IdSubGrupoUsuario == ugpoDb.IdSubGrupoUsuario))
+                                    gruposEliminar.Add(ugpoDb.Id);
+                            }
+                        }
+                        foreach (UsuarioGrupo grupo in usuario.UsuarioGrupo)
+                        {
+                            if (grupo.IdSubGrupoUsuario == null)
+                            {
+                                if (!db.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == grupo.IdRol && a.IdGrupoUsuario == grupo.IdGrupoUsuario))
+                                    userData.UsuarioGrupo.Add(new UsuarioGrupo { IdUsuario = idUsuario, IdRol = grupo.IdRol, IdGrupoUsuario = grupo.IdGrupoUsuario, IdSubGrupoUsuario = grupo.IdSubGrupoUsuario });
+                            }
+                            else
+                            {
+                                if (!db.UsuarioGrupo.Any(a => a.IdUsuario == idUsuario && a.IdRol == grupo.IdRol && a.IdGrupoUsuario == grupo.IdGrupoUsuario && a.IdSubGrupoUsuario == grupo.IdSubGrupoUsuario))
+                                    userData.UsuarioGrupo.Add(new UsuarioGrupo { IdUsuario = idUsuario, IdRol = grupo.IdRol, IdGrupoUsuario = grupo.IdGrupoUsuario, IdSubGrupoUsuario = grupo.IdSubGrupoUsuario });
+                            }
+                        }
+
+                        foreach (int i in gruposEliminar)
+                        {
+                            db.UsuarioGrupo.DeleteObject(db.UsuarioGrupo.SingleOrDefault(w => w.Id == i));
+                        }
+                        userData.FechaActualizacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture); 
+                        db.SaveChanges();
                     }
-                    userData.FechaActualizacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                    db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -1330,7 +1347,7 @@ namespace KinniNet.Core.Operacion
                     url += "/FrmRecuperar.aspx?confirmacionCodigo=" + BusinessQueryString.Encrypt(idUsuario + "_" + g) +
                            "&correo=" + BusinessQueryString.Encrypt(idCorreo.ToString()) + "&code=" +
                            BusinessQueryString.Encrypt(codigo);
-                    String body = string.Format(correo.Contenido, usuario.NombreCompleto, url , codigo);
+                    String body = string.Format(correo.Contenido, usuario.NombreCompleto, url, codigo);
                     BusinessCorreo.SendMail(to, correo.TipoCorreo.Descripcion, body);
                     usuario.UsuarioLinkPassword = new List<UsuarioLinkPassword>
                     {

@@ -78,12 +78,24 @@ namespace KiiniHelp.UserControls.Consultas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            UcAltaAbrolAcceso.OnCancelarModal += UcAltaAbrolAccesoOnOnCancelarModal;
-            ucDetalleArbolAcceso.OnCancelarModal += ucDetalleArbolAcceso_OnCancelarModal;
-            if (!IsPostBack)
+            try
             {
-                LlenaCombos();
-                LlenaArboles();
+                UcAltaAbrolAcceso.OnCancelarModal += UcAltaAbrolAccesoOnOnCancelarModal;
+                ucDetalleArbolAcceso.OnCancelarModal += ucDetalleArbolAcceso_OnCancelarModal;
+                if (!IsPostBack)
+                {
+                    LlenaCombos();
+                    LlenaArboles();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
 

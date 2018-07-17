@@ -10,7 +10,7 @@ using KiiniNet.Entities.Parametros;
 namespace KiiniNet.Entities.Cat.Operacion
 {
     [DataContract(IsReference = true)]
-    public class Ubicacion : IDisposable
+    public class Ubicacion
     {
         [DataMember]
         public int Id { get; set; }
@@ -63,9 +63,5 @@ namespace KiiniNet.Entities.Cat.Operacion
         public virtual NivelUbicacion NivelUbicacion { get; set; }
         [DataMember]
         public virtual List<ParametrosUsuario> ParametrosUsuario { get; set; }
-        public void Dispose()
-        {
-            
-        }
     }
 }

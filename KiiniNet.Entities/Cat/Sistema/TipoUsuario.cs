@@ -31,6 +31,10 @@ namespace KiiniNet.Entities.Cat.Sistema
         [DataMember]
         public int CorreosObligatorios { get; set; }
         [DataMember]
+        public bool Domicilio { get; set; }
+        [DataMember]
+        public bool UbicacionDomicilio { get; set; }
+        [DataMember]
         public bool Habilitado { get; set; }
 
 

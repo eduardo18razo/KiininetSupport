@@ -280,6 +280,14 @@
     <Content Include="ConfirmacionCuenta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <None Include="Service References\ServiceUbicacion\ServiceUbicacion.disco" />
+    <None Include="Service References\ServiceUbicacion\configuration91.svcinfo" />
+    <None Include="Service References\ServiceUbicacion\configuration.svcinfo" />
+    <None Include="Service References\ServiceUbicacion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Preview\FrmPreview.aspx" />
     <Content Include="TerminosyCondiciones.aspx" />
     <Content Include="Images\orderedList2.png" />
     <Content Include="PoliticasPrivacidad.aspx" />
@@ -362,9 +370,11 @@
     <Content Include="UserControls\Agentes\UcAsignacionUsuario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaFormulario.ascx" />
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
+    <Content Include="UserControls\Altas\ArbolesAcceso\UcAltaSeccion.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
     <Content Include="UserControls\Configuracion\UcUploadCarrusel.ascx" />
     <Content Include="UserControls\Consultas\UcBusqueda.ascx" />
+    <Content Include="UserControls\Consultas\UcConsultaSecciones.ascx" />
     <Content Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx" />
     <Content Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestas.ascx" />
     <Content Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx" />
@@ -377,6 +387,7 @@
     <Content Include="UserControls\Detalles\UcTicketDetalleUsuario.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx" />
+    <Content Include="Users\Administracion\ArbolesAcceso\FrmConsultaSecciones.aspx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
     <Content Include="Users\ReportesGraficos\Encuestas\FrmEncuestas.aspx" />
     <Content Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaNPS.aspx" />
@@ -2141,52 +2152,6 @@
     <None Include="Service References\ServiceTicket\ServiceTicket5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceUbicacion\Arrays.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Arbol.Nodos1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Arbol.Organizacion1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Arbol.Ubicaciones1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Mascaras1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Operacion1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Sistema1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Cat.Usuario1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Operacion.Tickets1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Operacion.Usuarios1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Operacion1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\KiiniNet.Entities.Parametros1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\service1.wsdl" />
-    <None Include="Service References\ServiceUbicacion\service2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUbicacion\service3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceUbicacion\ServiceUbicacion.wsdl" />
     <None Include="Service References\ServiceUbicacion\ServiceUbicacion.xsd">
       <SubType>Designer</SubType>
@@ -2201,6 +2166,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceUbicacion\ServiceUbicacion12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUbicacion\ServiceUbicacion13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUbicacion\ServiceUbicacion14.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceUbicacion\ServiceUbicacion2.xsd">
@@ -2231,13 +2202,6 @@
     <None Include="Service References\ServiceUsuario\configuration91.svcinfo" />
     <None Include="Service References\ServiceUsuario\configuration.svcinfo" />
     <None Include="Service References\ServiceUsuario\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\ServiceUbicacion\ServiceUbicacion.disco" />
-    <None Include="Service References\ServiceUbicacion\configuration91.svcinfo" />
-    <None Include="Service References\ServiceUbicacion\configuration.svcinfo" />
-    <None Include="Service References\ServiceUbicacion\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -2377,7 +2341,6 @@
     <Content Include="UserControls\Temporal\UcCatalogoNiveles.ascx" />
     <Content Include="UserControls\Altas\Formularios\UcAltaFormulario.ascx" />
     <Content Include="UserControls\Temporal\UcMascaraCaptura.ascx" />
-    <Content Include="Users\Administracion\Usuarios\FrmUsuarios.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2701,6 +2664,18 @@
     <Compile Include="DisplayImages.ashx.cs">
       <DependentUpon>DisplayImages.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Preview\FrmPreview.aspx.cs">
+      <DependentUpon>FrmPreview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Preview\FrmPreview.aspx.designer.cs">
+      <DependentUpon>FrmPreview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceUbicacion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="TerminosyCondiciones.aspx.cs">
       <DependentUpon>TerminosyCondiciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2897,6 +2872,13 @@
     <Compile Include="UserControls\Altas\ArbolesAcceso\UcAltaConsulta.ascx.designer.cs">
       <DependentUpon>UcAltaConsulta.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Altas\ArbolesAcceso\UcAltaSeccion.ascx.cs">
+      <DependentUpon>UcAltaSeccion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Altas\ArbolesAcceso\UcAltaSeccion.ascx.designer.cs">
+      <DependentUpon>UcAltaSeccion.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Altas\ArbolesAcceso\UcAltaServicio.ascx.cs">
       <DependentUpon>UcAltaServicio.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3050,6 +3032,13 @@
     </Compile>
     <Compile Include="UserControls\Consultas\UcConsultaCatalogo.ascx.designer.cs">
       <DependentUpon>UcConsultaCatalogo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultas\UcConsultaSecciones.ascx.cs">
+      <DependentUpon>UcConsultaSecciones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Consultas\UcConsultaSecciones.ascx.designer.cs">
+      <DependentUpon>UcConsultaSecciones.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx.cs">
       <DependentUpon>UcGraficoNPS.ascx</DependentUpon>
@@ -3295,6 +3284,13 @@
     </Compile>
     <Compile Include="UserControls\UcLogCopia.ascx.designer.cs">
       <DependentUpon>UcLogCopia.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Administracion\ArbolesAcceso\FrmConsultaSecciones.aspx.cs">
+      <DependentUpon>FrmConsultaSecciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Administracion\ArbolesAcceso\FrmConsultaSecciones.aspx.designer.cs">
+      <DependentUpon>FrmConsultaSecciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx.cs">
       <DependentUpon>FrmDetalleOpcion.aspx</DependentUpon>
@@ -4080,11 +4076,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\ServiceUbicacion\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\ServiceUsuario\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4335,13 +4326,6 @@
     <Compile Include="UserControls\Temporal\UcMascaraCaptura.ascx.designer.cs">
       <DependentUpon>UcMascaraCaptura.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Users\Administracion\Usuarios\FrmUsuarios.aspx.cs">
-      <DependentUpon>FrmUsuarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Users\Administracion\Usuarios\FrmUsuarios.aspx.designer.cs">
-      <DependentUpon>FrmUsuarios.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4430,7 +4414,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

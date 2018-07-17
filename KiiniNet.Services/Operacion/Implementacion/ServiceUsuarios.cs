@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniNet.Services.Operacion.Interface;
@@ -9,13 +10,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
 {
     public class ServiceUsuarios : IServiceUsuarios
     {
-        public void GuardarUsuario(Usuario usuario)
+        public void GuardarUsuario(Usuario usuario, Domicilio domicilio)
         {
             try
             {
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
-                    negocio.GuardarUsuario(usuario);
+                    negocio.GuardarUsuario(usuario, domicilio);
                 }
             }
             catch (Exception ex)
@@ -147,13 +148,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public void ActualizarUsuario(int idUsuario, Usuario usuario)
+        public void ActualizarUsuario(int idUsuario, Usuario usuario, Domicilio domicilio)
         {
             try
             {
-                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                using (BusinessUsuarios negocio = new BusinessUsuarios(true))
                 {
-                    negocio.ActualizarUsuario(idUsuario, usuario);
+                    negocio.ActualizarUsuario(idUsuario, usuario, domicilio);
                 }
             }
             catch (Exception ex)

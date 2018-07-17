@@ -48,9 +48,6 @@
             }, 1000);
             setTimeout(function () {
                 //Show Popup before 20 seconds of timeout.
-                $('#modalSession').on('shown.bs.modal', function () {
-                    $(this).find('[autofocus]').focus();
-                });
                 $('#modalSession').modal({ backdrop: 'static', keyboard: false });
                 $('#modalSession').modal('show');
             }, timeout - 20 * 1000);

@@ -16,7 +16,7 @@ namespace KiiniHelp.ServiceSistemaTipoUsuario {
     public interface IServiceTipoUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTipoUsuario/ObtenerTiposUsuarioResidentes", ReplyAction="http://tempuri.org/IServiceTipoUsuario/ObtenerTiposUsuarioResidentesResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion);
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion, bool filtraDomicilio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTipoUsuario/ObtenerTiposUsuarioInvitados", ReplyAction="http://tempuri.org/IServiceTipoUsuario/ObtenerTiposUsuarioInvitadosResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.TipoUsuario> ObtenerTiposUsuarioInvitados(bool insertarSeleccion);
@@ -55,8 +55,8 @@ namespace KiiniHelp.ServiceSistemaTipoUsuario {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion) {
-            return base.Channel.ObtenerTiposUsuarioResidentes(insertarSeleccion);
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion, bool filtraDomicilio) {
+            return base.Channel.ObtenerTiposUsuarioResidentes(insertarSeleccion, filtraDomicilio);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.TipoUsuario> ObtenerTiposUsuarioInvitados(bool insertarSeleccion) {

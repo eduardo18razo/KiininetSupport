@@ -420,7 +420,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                List<Ticket> lstTickets = db.Ticket.Where(w => w.IdUsuarioLevanto == idUsuario).ToList();
+                List<Ticket> lstTickets = db.Ticket.Where(w => w.IdUsuarioSolicito == idUsuario).ToList();
 
                 bool supervisor = db.SubGrupoUsuario.Join(db.UsuarioGrupo, sgu => sgu.Id, ug => ug.IdSubGrupoUsuario, (sgu, ug) => new { sgu, ug })
                         .Any(@t => @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor && @t.ug.IdUsuario == idUsuario);

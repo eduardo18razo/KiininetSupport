@@ -993,6 +993,71 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
+        public List<ArbolAcceso> ObtenerArbolesAccesoSeccion(int? idArea, int? idTipoUsuario, int? idTipoArbol, int? nivel1, int? nivel2, int? nivel3, int? nivel4, int? nivel5, int? nivel6, int? nivel7)
+        {
+            List<ArbolAcceso> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                IQueryable<ArbolAcceso> qry = db.ArbolAcceso.Where(w => !w.Sistema && !w.EsTerminal);
+                if (idArea.HasValue)
+                    qry = qry.Where(w => w.IdArea == idArea);
+                if (idTipoUsuario.HasValue)
+                    qry = qry.Where(w => w.IdTipoUsuario == idTipoUsuario);
+                if (idTipoArbol.HasValue)
+                    qry = qry.Where(w => w.IdTipoArbolAcceso == idTipoArbol);
+
+                if (nivel1.HasValue)
+                    qry = qry.Where(w => w.IdNivel1 == nivel1);
+
+                if (nivel2.HasValue)
+                    qry = qry.Where(w => w.IdNivel2 == nivel2);
+
+                if (nivel3.HasValue)
+                    qry = qry.Where(w => w.IdNivel3 == nivel3);
+
+                if (nivel4.HasValue)
+                    qry = qry.Where(w => w.IdNivel4 == nivel4);
+
+                if (nivel5.HasValue)
+                    qry = qry.Where(w => w.IdNivel5 == nivel5);
+
+                if (nivel6.HasValue)
+                    qry = qry.Where(w => w.IdNivel6 == nivel6);
+
+                if (nivel7.HasValue)
+                    qry = qry.Where(w => w.IdNivel7 == nivel7);
+
+                result = qry.ToList();
+
+                foreach (ArbolAcceso arbol in result)
+                {
+                    db.LoadProperty(arbol, "Area");
+                    db.LoadProperty(arbol, "TipoUsuario");
+                    db.LoadProperty(arbol, "TipoArbolAcceso");
+                    db.LoadProperty(arbol, "Nivel1");
+                    db.LoadProperty(arbol, "Nivel2");
+                    db.LoadProperty(arbol, "Nivel3");
+                    db.LoadProperty(arbol, "Nivel4");
+                    db.LoadProperty(arbol, "Nivel5");
+                    db.LoadProperty(arbol, "Nivel6");
+                    db.LoadProperty(arbol, "Nivel7");
+                    arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
+                    arbol.Nivel = ObtenerNivel(arbol.Id);
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al Obtener Arboles");
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
         public List<ArbolAcceso> ObtenerArbolesAccesoAll(int? idArea, int? idTipoUsuario, int? idTipoArbol, int? nivel1, int? nivel2, int? nivel3, int? nivel4, int? nivel5, int? nivel6, int? nivel7)
         {
             List<ArbolAcceso> result;
@@ -1737,6 +1802,44 @@ namespace KinniNet.Core.Operacion
                 //    }
                 //}
                 //db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+        }
+
+        public void ActualizarSeccion(int idArbolAcceso, ArbolAcceso arbolAccesoActualizar, string descripcion)
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.LazyLoadingEnabled = true;
+                ArbolAcceso arbol = db.ArbolAcceso.SingleOrDefault(s => s.Id == idArbolAcceso);
+                if (arbol != null)
+                {
+                    
+                    if (arbol.Nivel7 != null)
+                        arbol.Nivel7.Descripcion = descripcion.Trim();
+                    else if (arbol.Nivel6 != null)
+                        arbol.Nivel6.Descripcion = descripcion.Trim();
+                    else if (arbol.Nivel5 != null)
+                        arbol.Nivel5.Descripcion = descripcion.Trim();
+                    else if (arbol.Nivel4 != null)
+                        arbol.Nivel4.Descripcion = descripcion.Trim();
+                    else if (arbol.Nivel3 != null)
+                        arbol.Nivel3.Descripcion = descripcion.Trim();
+                    else if (arbol.Nivel2 != null)
+                        arbol.Nivel2.Descripcion = descripcion.Trim();
+                    else if (arbol.Nivel1 != null)
+                        arbol.Nivel1.Descripcion = descripcion.Trim();
+
+                    db.SaveChanges();
+                }
             }
             catch (Exception ex)
             {

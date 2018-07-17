@@ -14,13 +14,11 @@ namespace KiiniHelp.UserControls.Detalles
         {
             set
             {
-                using (Ubicacion ub = new ServiceUbicacionClient().ObtenerUbicacionById(value))
-                {
-                    if (ub == null) return;
-                    List<Ubicacion> source = new List<Ubicacion> {ub};
-                    rptUbicacion.DataSource = source;
-                    rptUbicacion.DataBind();
-                }
+                Ubicacion ub = new ServiceUbicacionClient().ObtenerUbicacionById(value);
+                if (ub == null) return;
+                List<Ubicacion> source = new List<Ubicacion> { ub };
+                rptUbicacion.DataSource = source;
+                rptUbicacion.DataBind();
             }
         }
 

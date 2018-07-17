@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
@@ -30,7 +29,6 @@ namespace KiiniHelp.UserControls.Consultas
         readonly ServiceOrganizacionClient _servicioOrganizacion = new ServiceOrganizacionClient();
         readonly ServiceParametrosClient _servicioParametros = new ServiceParametrosClient();
         private List<string> _lstError = new List<string>();
-        private int PageSize = 10;
 
         public bool Modal
         {
@@ -83,15 +81,14 @@ namespace KiiniHelp.UserControls.Consultas
         }
         protected void Page_Changed(object sender, EventArgs e)
         {
-            int pageIndex = int.Parse((sender as LinkButton).CommandArgument);
-            this.LlenaOrganizaciones();
+            LlenaOrganizaciones();
         }
 
         private void LlenaCombos()
         {
             try
             {
-                List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
+                List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true, false);
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
 
 
@@ -116,18 +113,6 @@ namespace KiiniHelp.UserControls.Consultas
                     lstOrganizaciones = lstOrganizaciones.Where(w => w.Habilitado == Modal).ToList();
 
                 tblResults.DataSource = lstOrganizaciones;
-                tblResults.DataBind();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-        private void LimpiarOrganizaciones()
-        {
-            try
-            {
-                tblResults.DataSource = null;
                 tblResults.DataBind();
             }
             catch (Exception e)
@@ -274,47 +259,11 @@ namespace KiiniHelp.UserControls.Consultas
         {
 
         }
-        protected void rptResultados_OnItemCreated(object sender, RepeaterItemEventArgs e)
-        {
-            try
-            {
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    if (e.Item.ItemType == ListItemType.Header)
-                    {
-                        List<AliasOrganizacion> alias = _servicioParametros.ObtenerAliasOrganizacion(IdTipoUsuario);
-                        if (alias.Count != 7) return;
-                        ((Label)e.Item.FindControl("lblHolding")).Text = alias.Single(s => s.Nivel == 1).Descripcion;
-                        ((Label)e.Item.FindControl("lblCompania")).Text = alias.Single(s => s.Nivel == 2).Descripcion;
-                        ((Label)e.Item.FindControl("lblDireccion")).Text = alias.Single(s => s.Nivel == 3).Descripcion;
-                        ((Label)e.Item.FindControl("lblSubDireccion")).Text = alias.Single(s => s.Nivel == 4).Descripcion;
-                        ((Label)e.Item.FindControl("lblGerencia")).Text = alias.Single(s => s.Nivel == 5).Descripcion;
-                        ((Label)e.Item.FindControl("lblSubGerencia")).Text = alias.Single(s => s.Nivel == 6).Descripcion;
-                        ((Label)e.Item.FindControl("lblJefatura")).Text = alias.Single(s => s.Nivel == 7).Descripcion;
-                    }
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
         protected void btnBuscar_OnClick(object sender, EventArgs e)
         {
             try
             {
                 LlenaOrganizaciones();
-                //int? idTipoUsuario = null;
-                //if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos)
-                //    idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
-
-                //tblResults.DataSource = _servicioOrganizacion.BuscarPorPalabra(idTipoUsuario, null, null, null, null, null, null, null, txtFiltroDecripcion.Text.Trim());
-                //tblResults.DataBind();
-
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception ex)
             {
@@ -381,6 +330,35 @@ namespace KiiniHelp.UserControls.Consultas
                 Response.Buffer = true;
                 ms.WriteTo(Response.OutputStream);
                 Response.End();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void tblResults_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (e.Row.RowType == DataControlRowType.Header)
+                    {
+                        List<AliasOrganizacion> alias = _servicioParametros.ObtenerAliasOrganizacion(IdTipoUsuario);
+                        if (alias.Count != 7) return;
+                        e.Row.Cells[1].Text = alias.Single(s => s.Nivel == 1).Descripcion;
+                        e.Row.Cells[2].Text = alias.Single(s => s.Nivel == 2).Descripcion;
+                        e.Row.Cells[3].Text = alias.Single(s => s.Nivel == 3).Descripcion;
+                        e.Row.Cells[4].Text = alias.Single(s => s.Nivel == 4).Descripcion;
+                        e.Row.Cells[5].Text = alias.Single(s => s.Nivel == 5).Descripcion;
+                        e.Row.Cells[6].Text = alias.Single(s => s.Nivel == 6).Descripcion;
+                        e.Row.Cells[7].Text = alias.Single(s => s.Nivel == 7).Descripcion;
+                    }
             }
             catch (Exception ex)
             {

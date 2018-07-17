@@ -197,7 +197,7 @@ namespace KiiniHelp.UserControls.Altas
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    Metodos.LlenaComboCatalogo(ddlTipoUsuario, _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true));
+                    Metodos.LlenaComboCatalogo(ddlTipoUsuario, _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true, false));
                 }
             }
             catch (Exception ex)

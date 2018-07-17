@@ -236,7 +236,8 @@ namespace KiiniHelp
                 HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                 if (myCookie == null || Session["UserData"] == null)
                 {
-                    Response.Redirect(ResolveUrl("~/Default.aspx"));
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalSession\");", true);
+                    //Response.Redirect(ResolveUrl("~/Default.aspx"));
                 }
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;

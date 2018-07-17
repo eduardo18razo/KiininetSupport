@@ -1436,6 +1436,8 @@
     <Property Name="EsMoral" Type="bit" Nullable="false" />
     <Property Name="NumeroCorreos" Type="int" Nullable="false" />
     <Property Name="CorreosObligatorios" Type="int" Nullable="false" />
+    <Property Name="Domicilio" Type="bit" />
+    <Property Name="UbicacionDomicilio" Type="bit" />
     <Property Name="Habilitado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Torre">

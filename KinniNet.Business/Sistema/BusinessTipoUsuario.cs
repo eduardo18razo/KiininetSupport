@@ -18,14 +18,17 @@ namespace KinniNet.Core.Sistema
         public void Dispose()
         { }
 
-        public List<TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion)
+        public List<TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion, bool filtraDomicilio)
         {
             List<TipoUsuario> result;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.TipoUsuario.Where(w => w.Habilitado && w.EsResidente).ToList();
+                if(filtraDomicilio)
+                    result = db.TipoUsuario.Where(w => w.Habilitado && w.EsResidente && w.Domicilio == !filtraDomicilio).ToList();
+                else
+                    result = db.TipoUsuario.Where(w => w.Habilitado && w.EsResidente).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new TipoUsuario { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione, Habilitado = BusinessVariables.ComboBoxCatalogo.Habilitado });
             }

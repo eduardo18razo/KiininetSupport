@@ -333,9 +333,11 @@
     <EntitySetMapping Name="TipoUsuario">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoUsuario">
         <MappingFragment StoreEntitySet="TipoUsuario">
+          <ScalarProperty Name="EsMoral" ColumnName="EsMoral" />
+          <ScalarProperty Name="UbicacionDomicilio" ColumnName="UbicacionDomicilio" />
+          <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
-          <ScalarProperty Name="EsMoral" ColumnName="EsMoral" />
           <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
           <ScalarProperty Name="CorreosObligatorios" ColumnName="CorreosObligatorios" />
           <ScalarProperty Name="NumeroCorreos" ColumnName="NumeroCorreos" />

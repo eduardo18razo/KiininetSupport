@@ -173,7 +173,8 @@ namespace KiiniHelp
                 HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                 if (myCookie == null || Session["UserData"] == null || (((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Operador && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Empleado && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Cliente && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Proveedor))
                 {
-                    Response.Redirect(ResolveUrl("~/Default.aspx"));
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalSession\");", true);
+                    //Response.Redirect(ResolveUrl("~/Default.aspx"));
                 }
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;

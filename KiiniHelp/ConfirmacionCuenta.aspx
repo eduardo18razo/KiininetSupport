@@ -41,6 +41,7 @@
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
+        <asp:HiddenField runat="server" ID="hfNumeroInicial"/>
         <asp:UpdatePanel ID="upGeneral" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <section class="panelsectionbacground panelsection">
@@ -117,7 +118,7 @@
                                                         <asp:Label runat="server" Text="Código de confirmación" class="text-left col-lg-10 no-padding-left" />
                                                         <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upReenvio">
                                                             <ContentTemplate>
-                                                                <asp:Timer runat="server" ID="timebtn" Interval="5000" OnTick="timebtn_OnTick" Enabled="False"></asp:Timer>
+                                                                <asp:Timer runat="server" ID="timebtn" Interval="1000" OnTick="timebtn_OnTick" Enabled="False"></asp:Timer>
                                                                 <asp:Button runat="server" ID="btnReenviarcodigo" CssClass="btn btn-primary col-lg-2" Text="Reenviar código" />
                                                             </ContentTemplate>
                                                         </asp:UpdatePanel>

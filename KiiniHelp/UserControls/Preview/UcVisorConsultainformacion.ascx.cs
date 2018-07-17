@@ -182,8 +182,9 @@ namespace KiiniHelp.UserControls.Preview
             {
                 LinkButton btn = (LinkButton)sender;
                 BusinessFile.CopiarSitioTemporal(BusinessVariables.Directorios.RepositorioInformacionConsulta, BusinessVariables.Directorios.Carpetaemporal, new List<string> { btn.CommandArgument });
-
-                string script = string.Format("window.open('https://docs.google.com/viewer?url={0}{1}','_blank')", BusinessVariables.Directorios.CarpetaTemporalSitio, btn.CommandArgument);
+                string url = string.Format("https://docs.google.com/viewer?url={0}{1}", BusinessVariables.Directorios.CarpetaTemporalSitio, btn.CommandArgument);
+                url = Page.ResolveUrl("~/Preview/FrmPreview.aspx?urlGoogle=" + url);
+                string script = string.Format("window.open('{0}','_blank')", url);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptViewer", script, true);
             }
             catch (Exception ex)

@@ -625,7 +625,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 lblAliasNivel5.Text = "Nivel 5";
                 lblAliasNivel6.Text = "Nivel 6";
                 lblAliasNivel7.Text = "Nivel 7";
-                if (ddlTipoUsuario.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexTodos) return;
+                if (ddlTipoUsuario.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione) return;
                 List<AliasUbicacion> alias = _servicioParametros.ObtenerAliasUbicacion(int.Parse(ddlTipoUsuario.SelectedValue));
                 if (alias.Count != 7)
                 {
@@ -663,7 +663,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
         {
             try
             {
-                List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true);
+                List<TipoUsuario> lstTipoUsuario = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true, true);
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
             }
             catch (Exception e)
@@ -1165,7 +1165,14 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                     }
                     else
                     {
-                        if (Metodos.ValidaCapturaCatalogoCampus(Convert.ToInt32(ddlTipoUsuario.SelectedValue), txtDescripcionCatalogo.Text, ddlColonia.SelectedValue == "" ? 0 : Convert.ToInt32(ddlColonia.SelectedValue), txtCalle.Text.Trim(), txtNoExt.Text.Trim(), txtNoInt.Text.Trim()))
+                        List<string> sb = Metodos.ValidaCapturaCatalogoCampus(Convert.ToInt32(ddlTipoUsuario.SelectedValue), txtDescripcionCatalogo.Text, ddlColonia.SelectedValue == "" ? 0 : Convert.ToInt32(ddlColonia.SelectedValue), txtCalle.Text.Trim(), txtNoExt.Text.Trim(), txtNoInt.Text.Trim());
+                        if (sb.Count > 0)
+                        {
+                            sb.Insert(0, "<h3>Datos Generales</h3>");
+                            _lstError = sb;
+                            throw new Exception("");
+                        }
+                        if (sb.Count <= 0)
                         {
                             ubicacion = (Ubicacion)Session["UbicacionSeleccionada"];
                             ubicacion.Campus.Descripcion = txtDescripcionCatalogo.Text.Trim();

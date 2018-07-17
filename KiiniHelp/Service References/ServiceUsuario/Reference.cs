@@ -16,7 +16,7 @@ namespace KiiniHelp.ServiceUsuario {
     public interface IServiceUsuarios {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/GuardarUsuarioResponse")]
-        void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario);
+        void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Domicilio domicilio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/RegistrarCliente", ReplyAction="http://tempuri.org/IServiceUsuarios/RegistrarClienteResponse")]
         int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario);
@@ -43,7 +43,7 @@ namespace KiiniHelp.ServiceUsuario {
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ActualizarUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/ActualizarUsuarioResponse")]
-        void ActualizarUsuario(int idUsuario, KiiniNet.Entities.Operacion.Usuarios.Usuario usuario);
+        void ActualizarUsuario(int idUsuario, KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Domicilio domicilio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GuardarFoto", ReplyAction="http://tempuri.org/IServiceUsuarios/GuardarFotoResponse")]
         void GuardarFoto(int idUsuario, byte[] imagen);
@@ -130,8 +130,8 @@ namespace KiiniHelp.ServiceUsuario {
                 base(binding, remoteAddress) {
         }
         
-        public void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario) {
-            base.Channel.GuardarUsuario(usuario);
+        public void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Domicilio domicilio) {
+            base.Channel.GuardarUsuario(usuario, domicilio);
         }
         
         public int RegistrarCliente(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario) {
@@ -166,8 +166,8 @@ namespace KiiniHelp.ServiceUsuario {
             return base.Channel.ObtenerUsuariosByGrupoAtencion(idGrupo, insertarSeleccion);
         }
         
-        public void ActualizarUsuario(int idUsuario, KiiniNet.Entities.Operacion.Usuarios.Usuario usuario) {
-            base.Channel.ActualizarUsuario(idUsuario, usuario);
+        public void ActualizarUsuario(int idUsuario, KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Domicilio domicilio) {
+            base.Channel.ActualizarUsuario(idUsuario, usuario, domicilio);
         }
         
         public void GuardarFoto(int idUsuario, byte[] imagen) {

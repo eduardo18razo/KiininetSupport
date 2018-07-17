@@ -205,24 +205,26 @@ namespace KiiniHelp.Funciones
             }
         }
 
-        public static bool ValidaCapturaCatalogoCampus(int idTipoUsuario, string descripcion, int idColonia, string calle, string noExt, string noInt)
+        public static List<string> ValidaCapturaCatalogoCampus(int idTipoUsuario, string descripcion, int idColonia, string calle, string noExt, string noInt)
         {
-            StringBuilder sb = new StringBuilder();
+            List<string> sb = new List<string>();
             if (idTipoUsuario == BusinessVariables.ComboBoxCatalogo.ValueSeleccione)
-                sb.AppendLine("Tipo de usuario es un campo obligatorio.<br>");
+                sb.Add("Tipo de usuario es un campo obligatorio.");
             if (descripcion == string.Empty)
-                sb.AppendLine("Descripción es un campo obligatorio.<br>");
+                sb.Add("Descripción es un campo obligatorio.");
             if (idColonia == BusinessVariables.ComboBoxCatalogo.ValueSeleccione)
-                sb.AppendLine("Colonia es un campo obligatorio.<br>");
+                sb.Add("Colonia es un campo obligatorio.");
             if (calle == string.Empty)
-                sb.AppendLine("Calle es un campo obligatorio.<br>");
+                sb.Add("Calle es un campo obligatorio.");
             if (noExt == string.Empty)
-                sb.AppendLine("Número Exterior es un campo obligatorio.<br>");
+                sb.Add("Número Exterior es un campo obligatorio.");
             //if (noInt == string.Empty)
             //    sb.AppendLine("Número Interior es un campo obligatorio.<br>");
-            if (sb.ToString() != string.Empty)
-                throw new Exception(sb.ToString());
-            return true;
+            //if (sb.Count<=0)
+            //{
+            //    sb = null;
+            //}
+            return sb;
         }
 
         public static bool ValidaCapturaCatalogo(string descripcion)

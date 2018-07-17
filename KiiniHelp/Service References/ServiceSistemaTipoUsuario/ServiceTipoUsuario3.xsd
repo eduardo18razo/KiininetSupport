@@ -5,6 +5,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="insertarSeleccion" type="xs:boolean" />
+        <xs:element minOccurs="0" name="filtraDomicilio" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

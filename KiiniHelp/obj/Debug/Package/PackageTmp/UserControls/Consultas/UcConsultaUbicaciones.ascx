@@ -72,7 +72,7 @@
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
                                 <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
-                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
+                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25" OnRowDataBound="tblResults_OnRowDataBound"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                     <Columns>
@@ -89,7 +89,7 @@
                                                 <label runat="server" class="ocultaTexto " title='<%# Eval("Pais.Descripcion")%>'><%# Eval("Pais.Descripcion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Nivel 2" HeaderStyle-Width="13%">
+                                        <asp:TemplateField HeaderText="Domicilio <br> Nivel 2" HeaderStyle-Width="13%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto " title='<%# Eval("Campus.Descripcion")%>'><%# Eval("Campus.Descripcion")%></label>
                                             </ItemTemplate>

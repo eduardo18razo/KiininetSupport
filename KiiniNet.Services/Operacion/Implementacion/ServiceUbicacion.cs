@@ -175,13 +175,13 @@ namespace KiiniNet.Services.Operacion.Implementacion
         }
 
         public List<Ubicacion> BuscarPorPalabra(int? idTipoUsuario, int? idPais, int? idCampus, int? idTorre, int? idPiso, int? idZona,
-            int? idSubZona, int? idSiteRack, string filtro)
+            int? idSubZona, int? idSiteRack, string filtro, bool filtraCliente)
         {
             try
             {
                 using (BusinessUbicacion negocio = new BusinessUbicacion())
                 {
-                    return negocio.BuscarPorPalabra(idTipoUsuario, idPais, idCampus, idTorre, idPiso, idZona, idSubZona, idSiteRack, filtro);
+                    return negocio.BuscarPorPalabra(idTipoUsuario, idPais, idCampus, idTorre, idPiso, idZona, idSubZona, idSiteRack, filtro, filtraCliente);
                 }
             }
             catch (Exception ex)

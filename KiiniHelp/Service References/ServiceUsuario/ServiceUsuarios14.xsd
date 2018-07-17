@@ -33,6 +33,7 @@
       <xs:element minOccurs="0" name="Puesto" nillable="true" type="xs:string" />
       <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Telefonos" nillable="true" type="q2:ArrayOfstring" />
       <xs:element minOccurs="0" name="TicketsAbiertos" nillable="true" type="tns:ArrayOfHelperTicketsUsuario" />
+      <xs:element minOccurs="0" name="TipoUsuarioColor" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TipoUsuarioDescripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Ubicacion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UltimaActualizacion" nillable="true" type="xs:string" />

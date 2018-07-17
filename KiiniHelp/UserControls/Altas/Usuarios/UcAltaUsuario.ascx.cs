@@ -6,9 +6,11 @@ using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServicePuesto;
+using KiiniHelp.ServiceSistemaDomicilio;
 using KiiniHelp.ServiceSistemaTipoTelefono;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniHelp.ServiceUsuario;
+using KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Helper;
@@ -30,6 +32,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
         private readonly ServicePuestoClient _servicioPuesto = new ServicePuestoClient();
         private readonly ServiceTipoTelefonoClient _servicioTipoTelefono = new ServiceTipoTelefonoClient();
+        private readonly ServiceDomicilioSistemaClient _servicioSistemaDomicilio = new ServiceDomicilioSistemaClient();
         private List<string> _lstError = new List<string>();
         UsuariosMaster mp;
 
@@ -212,7 +215,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 if (!IsPostBack)
                 {
                     List<TipoUsuario> lstTipoUsuario = usuariosResidentes
-                        ? _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true)
+                        ? _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(true, false)
                         : _servicioSistemaTipoUsuario.ObtenerTiposUsuario(true);
                     Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
                 }
@@ -273,6 +276,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 Usuario user = _servicioUsuarios.ObtenerDetalleUsuario(IdUsuario);
                 if (user != null)
                 {
+
                     LlenaCombos(false);
 
                     ddlTipoUsuario.SelectedValue = user.IdTipoUsuario.ToString();
@@ -325,8 +329,33 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     }
                     ucAltaOrganizaciones.OrganizacionSeleccionada = user.Organizacion;
                     MuestraOrganizacion(new List<Organizacion>());
+
+
                     ucAltaUbicaciones.UbicacionSeleccionada = user.Ubicacion;
-                    MuestraUbicacion(new List<Ubicacion>());
+                    TipoUsuario tipoUsuario = _servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(Convert.ToInt32(ddlTipoUsuario.SelectedValue));
+                    if (tipoUsuario.Domicilio)
+                    {
+                        divDomicilio.Visible = true;
+                        divUbicacion.Visible = false;
+                        if (user.Ubicacion.Campus.Domicilio.Any())
+                        {
+                            txtCalle.Text = user.Ubicacion.Campus.Domicilio.First().Calle;
+                            txtNoExt.Text = user.Ubicacion.Campus.Domicilio.First().NoExt;
+                            txtNoInt.Text = user.Ubicacion.Campus.Domicilio.First().NoInt;
+                            txtCp.Text = user.Ubicacion.Campus.Domicilio.First().Colonia.CP.ToString();
+                            txtCp_OnTextChanged(null, null);
+                            ddlColonia.SelectedValue = user.Ubicacion.Campus.Domicilio.First().IdColonia.ToString();
+                            ddlColonia_OnSelectedIndexChanged(ddlColonia, null);
+                        }
+
+                    }
+                    else
+                    {
+                        divDomicilio.Visible = false;
+                        divUbicacion.Visible = true;
+                        MuestraUbicacion(new List<Ubicacion>());
+                    }
+
 
                     List<HelperAsignacionRol> lstRoles = user.UsuarioGrupo.Select(s => new { s.IdRol, s.Rol.Descripcion }).Distinct().Select(typeAnonymous => new HelperAsignacionRol { IdRol = typeAnonymous.IdRol, DescripcionRol = typeAnonymous.Descripcion, Grupos = new List<HelperAsignacionGrupoUsuarios>() }).ToList();
                     foreach (UsuarioGrupo usuarioGrupo in user.UsuarioGrupo)
@@ -411,7 +440,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
         #region Validaciones
 
-        private void ValidaCapturaDatosGenerales()
+        private void ValidaCapturaDatosGenerales(bool domicilio)
         {
             List<string> sb = new List<string>();
 
@@ -472,11 +501,11 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     sb.Add(string.Format("Correo {0} con formato invalido", correo.Text.Trim()));
                 }
             }
-            
+
             List<CorreoUsuario> correos = rptCorreos.Items.Cast<RepeaterItem>().Select(item => (TextBox)item.FindControl("txtCorreo")).Where(correo => correo != null & correo.Text.Trim() != string.Empty).Select(correo => new CorreoUsuario { Correo = correo.Text.Trim() }).ToList();
 
             //TODO: Implementar metodo unico
-            TipoUsuario paramCorreos = _servicioSistemaTipoUsuario.ObtenerTiposUsuarioResidentes(false).SingleOrDefault(s => s.Id == int.Parse(ddlTipoUsuario.SelectedValue));
+            TipoUsuario paramCorreos = _servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(int.Parse(ddlTipoUsuario.SelectedValue));
             if (paramCorreos != null && (correos.Count(c => c.Correo != string.Empty) < paramCorreos.CorreosObligatorios))
                 sb.Add(String.Format("Debe captura al menos {0} correo(s).", paramCorreos.CorreosObligatorios));
 
@@ -488,7 +517,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
             if (ucAltaOrganizaciones.OrganizacionSeleccionada.Id == 0)
                 sb.Add(String.Format("Debe Seleccionar una organización."));
-            if (ucAltaUbicaciones.UbicacionSeleccionada.Id == 0)
+            if (ucAltaUbicaciones.UbicacionSeleccionada.Id == 0 && !domicilio)
                 sb.Add(String.Format("Debe Seleccionar una Ubicación."));
 
             if (sb.Count > 0)
@@ -499,6 +528,23 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             }
         }
 
+        private void ValidaCapturaDomicilio(int idTipoUsuario)
+        {
+            try
+            {
+                List<string> sb = Metodos.ValidaCapturaCatalogoCampus(idTipoUsuario, "Id", ddlColonia.SelectedValue == "" ? 0 : Convert.ToInt32(ddlColonia.SelectedValue), txtCalle.Text.Trim(), txtNoExt.Text.Trim(), txtNoInt.Text.Trim());
+                if (sb.Count > 0)
+                {
+                    sb.Insert(0, "<h3>Datos Generales</h3>");
+                    _lstError = sb;
+                    throw new Exception("");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         private void ValidaCapturaRoles()
         {
             List<string> sb = new List<string>();
@@ -545,9 +591,16 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             txtAm.ReadOnly = habilitado;
             txtUserName.ReadOnly = true;
             ddlPuesto.Enabled = !habilitado && !EditarDetalle;
-            btnAddPuesto.Visible = !habilitado && !EditarDetalle;            
+            btnAddPuesto.Visible = !habilitado && !EditarDetalle;
             FileUpload1.Enabled = !habilitado && !EditarDetalle && !Alta;
             btnCambiarImagen.Visible = !habilitado && !EditarDetalle && !Alta;
+
+            txtCalle.ReadOnly = habilitado;
+            txtNoExt.ReadOnly = habilitado;
+            txtNoInt.ReadOnly = habilitado;
+            txtCp.ReadOnly = habilitado;
+            ddlColonia.Enabled = !habilitado;
+
             chkVip.Enabled = !habilitado;
             chkDirectoriActivo.Enabled = !habilitado;
             chkPersonaFisica.Enabled = !habilitado;
@@ -610,7 +663,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         }
 
         protected void btnCambiarImagen_OnClick(object sender, EventArgs e)
-        {            
+        {
         }
 
         protected void btnEditar_OnClick(object sender, EventArgs e)
@@ -663,6 +716,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 faq5_1.CssClass = "panel-collapse collapse in";
                 faq5_2.CssClass = "panel-collapse collapse in";
                 faq5_3.CssClass = "panel-collapse collapse in";
+                faq_domicilio.CssClass = "panel-collapse collapse in";
                 faq5_4.CssClass = "panel-collapse collapse in";
                 faq5_5.CssClass = "panel-collapse collapse in";
                 mp = (UsuariosMaster)Page.Master;
@@ -787,43 +841,49 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 if (ddlTipoUsuario.SelectedIndex != BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     int idTipoUsuario = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
-                    ucAltaOrganizaciones.EsSeleccion = true;
-                    ucAltaOrganizaciones.EsAlta = true;
-                    ucAltaOrganizaciones.IdTipoUsuario = idTipoUsuario;
-
-                    ucAltaUbicaciones.EsSeleccion = true;
-                    ucAltaUbicaciones.EsAlta = true;
-                    ucAltaUbicaciones.IdTipoUsuario = idTipoUsuario;
-                    ucAltaUbicaciones.Title = "Establecer Ubicación";
-
-
-                    Session["TelefonosUsuario"] = _servicioParametros.ObtenerTelefonosParametrosIdTipoUsuario(idTipoUsuario, false);
-                    LlenaTelefonosUsuarios();
-
-                    rptCorreos.DataSource = _servicioParametros.ObtenerCorreosParametrosIdTipoUsuario(idTipoUsuario, false);
-                    rptCorreos.DataBind();
-
-                    ucRolGrupo.IdTipoUsuario = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
-                    Session["UsuarioTemporal"] = new Usuario();
-                    LimpiarPantalla();
-
-                    Metodos.LlenaComboCatalogo(ddlPuesto,
-                        _servicioPuesto.ObtenerPuestosByTipoUsuario(IdTipoUsuario, true));
-                    if (
-                        _servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(int.Parse(ddlTipoUsuario.SelectedValue))
-                            .EsMoral)
+                    TipoUsuario tipoUsuario = _servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(idTipoUsuario);
+                    if (tipoUsuario != null)
                     {
-                        divPuesto.Visible = true;
-                        btnModalOrganizacion.Text = "Editar";
-                        btnModalUbicacion.Text = "Editar";
-                        btnModalRoles.Text = "Editar";
+                        ucAltaOrganizaciones.EsSeleccion = true;
+                        ucAltaOrganizaciones.EsAlta = true;
+                        ucAltaOrganizaciones.IdTipoUsuario = idTipoUsuario;
+
+                        ucAltaUbicaciones.EsSeleccion = true;
+                        ucAltaUbicaciones.EsAlta = true;
+                        if (!tipoUsuario.Domicilio)
+                            ucAltaUbicaciones.IdTipoUsuario = idTipoUsuario;
+                        ucAltaUbicaciones.Title = "Establecer Ubicación";
+
+
+                        Session["TelefonosUsuario"] = _servicioParametros.ObtenerTelefonosParametrosIdTipoUsuario(idTipoUsuario, false);
+                        LlenaTelefonosUsuarios();
+
+                        rptCorreos.DataSource = _servicioParametros.ObtenerCorreosParametrosIdTipoUsuario(idTipoUsuario, false);
+                        rptCorreos.DataBind();
+
+                        ucRolGrupo.IdTipoUsuario = Convert.ToInt32(ddlTipoUsuario.SelectedValue);
+                        Session["UsuarioTemporal"] = new Usuario();
+                        LimpiarPantalla();
+                        divDomicilio.Visible = tipoUsuario.Domicilio;
+                        divUbicacion.Visible = !tipoUsuario.Domicilio;
+                        Metodos.LlenaComboCatalogo(ddlPuesto, _servicioPuesto.ObtenerPuestosByTipoUsuario(IdTipoUsuario, true));
+                        if (_servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(int.Parse(ddlTipoUsuario.SelectedValue)).EsMoral)
+                        {
+                            divPuesto.Visible = true;
+                            btnAddPuesto.Visible = true;
+                            btnModalOrganizacion.Text = "Editar";
+                            btnModalUbicacion.Text = "Editar";
+                            btnModalRoles.Text = "Editar";
+                        }
+                        else
+                        {
+                            divPuesto.Visible = false;
+                            btnAddPuesto.Visible = false;
+                            btnModalOrganizacion.Text = "Actividad";
+                            btnModalUbicacion.Text = "Direccion";
+                        }
                     }
-                    else
-                    {
-                        divPuesto.Visible = false;
-                        btnModalOrganizacion.Text = "Actividad";
-                        btnModalUbicacion.Text = "Direccion";
-                    }
+
                 }
                 else
                 {
@@ -1038,7 +1098,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             }
         }
 
-        
+
         private void DesbloqueaBotones()
         {
             btnAddCorreo.Visible = true;
@@ -1500,7 +1560,30 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             {
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     throw new Exception("Seleccione un tipo de usuario.<br>");
-                ValidaCapturaDatosGenerales();
+                TipoUsuario tipoUsuario = _servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(Convert.ToInt32(ddlTipoUsuario.SelectedValue));
+                ValidaCapturaDatosGenerales(tipoUsuario.Domicilio);
+
+                if (tipoUsuario.Domicilio)
+                {
+                    ValidaCapturaDomicilio(tipoUsuario.Id);
+                }
+
+                //    Ubicacion ubicacion = new Ubicacion();
+                //     if (Metodos.ValidaCapturaCatalogoCampus(Convert.ToInt32(ddlTipoUsuario.SelectedValue), "Id", ddlColonia.SelectedValue == "" ? 0 : Convert.ToInt32(ddlColonia.SelectedValue), txtCalle.Text.Trim(), txtNoExt.Text.Trim(), txtNoInt.Text.Trim()))
+                //        {
+                //            ubicacion = (Ubicacion)Session["UbicacionSeleccionada"];
+                //            ubicacion.Campus.Descripcion = txtDescripcionCatalogo.Text.Trim();
+                //            ubicacion.Campus.Domicilio = ubicacion.Campus.Domicilio ?? new List<Domicilio>();
+                //            if (ubicacion.Campus.Domicilio.Count == 0)
+                //                ubicacion.Campus.Domicilio.Add(new Domicilio());
+                //            ubicacion.Campus.Domicilio[0].IdColonia = Convert.ToInt32(ddlColonia.SelectedValue);
+                //            ubicacion.Campus.Domicilio[0].Calle = txtCalle.Text.Trim();
+                //            ubicacion.Campus.Domicilio[0].NoExt = txtNoExt.Text.Trim();
+                //            ubicacion.Campus.Domicilio[0].NoInt = txtNoInt.Text.Trim();
+                //            _servicioUbicacion.ActualizarUbicacion(ubicacion);
+                //            LlenaComboDinamico(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerCampus(int.Parse(ddlTipoUsuario.SelectedValue), int.Parse(hfNivel1.Value), true));
+                //        }
+                //}
 
                 ValidaCapturaRoles();
                 ValidaCapturaGrupos();
@@ -1511,10 +1594,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     ApellidoMaterno = txtAm.Text.Trim(),
                     Nombre = txtNombre.Text.Trim(),
                     DirectorioActivo = chkDirectoriActivo.Checked,
-                    IdPuesto =
-                        ddlPuesto.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione
-                            ? (int?)null
-                            : Convert.ToInt32(ddlPuesto.SelectedValue),
+                    IdPuesto = ddlPuesto.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione ? (int?)null : Convert.ToInt32(ddlPuesto.SelectedValue),
                     Vip = chkVip.Checked,
                     PersonaFisica = chkPersonaFisica.Checked,
                     NombreUsuario = txtUserName.Text.Trim(),
@@ -1582,9 +1662,18 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         Obligatorio = correo.CssClass.Contains("obligatorio")
                     });
                 }
-
+                Domicilio domicilio = null;
                 usuario.IdOrganizacion = ucAltaOrganizaciones.OrganizacionSeleccionada.Id;
-                usuario.IdUbicacion = ucAltaUbicaciones.UbicacionSeleccionada.Id;
+                if (tipoUsuario.Domicilio)
+                {
+                    domicilio = new Domicilio();
+                    domicilio.IdColonia = int.Parse(ddlColonia.SelectedValue);
+                    domicilio.Calle = txtCalle.Text.Trim();
+                    domicilio.NoExt = txtNoExt.Text.Trim();
+                    domicilio.NoInt = txtNoInt.Text.Trim();
+                }
+                else
+                    usuario.IdUbicacion = ucAltaUbicaciones.UbicacionSeleccionada.Id;
 
                 #region Rol
 
@@ -1644,11 +1733,11 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
                 if (Alta)
                 {
-                    _servicioUsuarios.GuardarUsuario(usuario);
+                    _servicioUsuarios.GuardarUsuario(usuario, domicilio);
                 }
                 else
                 {
-                    _servicioUsuarios.ActualizarUsuario(IdUsuario, usuario);
+                    _servicioUsuarios.ActualizarUsuario(IdUsuario, usuario, domicilio);
                 }
 
                 LimpiarPantalla();
@@ -1682,6 +1771,51 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 ddlTipoUsuario_OnSelectedIndexChanged(ddlTipoUsuario, null);
                 if (OnCancelarModal != null)
                     OnCancelarModal();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void txtCp_OnTextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Metodos.LlenaComboCatalogo(ddlColonia, _servicioSistemaDomicilio.ObtenerColoniasCp(int.Parse(txtCp.Text.Trim()), true));
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void ddlColonia_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ddlColonia.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                {
+                    txtMunicipio.Text = string.Empty;
+                    txtEstado.Text = string.Empty;
+                    return;
+                }
+                Colonia col = _servicioSistemaDomicilio.ObtenerDetalleColonia(int.Parse(ddlColonia.SelectedValue));
+                if (col != null)
+                {
+                    txtMunicipio.Text = col.Municipio.Descripcion;
+                    txtEstado.Text = col.Municipio.Estado.Descripcion;
+                }
             }
             catch (Exception ex)
             {

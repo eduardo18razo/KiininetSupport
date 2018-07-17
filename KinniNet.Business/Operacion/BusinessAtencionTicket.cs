@@ -498,7 +498,7 @@ namespace KinniNet.Core.Operacion
                     {
                         string cuerpo = string.Format("Hola {0},<br>" +
                                         "¡Se ha registrado un nuevo comentario en tu soicitud!" +
-                                        "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
+                                        "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
                         new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
                     }
                 }
@@ -723,18 +723,18 @@ namespace KinniNet.Core.Operacion
                             result.UsuarioSolicito.TipoUsuarioColor = ticket.UsuarioSolicito.TipoUsuario.Color;
                             result.UsuarioSolicito.Vip = ticket.UsuarioSolicito.Vip;
                             result.UsuarioSolicito.FechaUltimoLogin = ticket.UsuarioSolicito.BitacoraAcceso != null && ticket.UsuarioSolicito.BitacoraAcceso.Count > 0 ? ticket.UsuarioSolicito.BitacoraAcceso.Last().Fecha.ToString("dd/MM/yyyy HH:mm") : "";
-                            result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null ? ticket.UsuarioSolicito.TicketsLevantados.Count : 0;
-                            result.UsuarioSolicito.TicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null && ticket.UsuarioSolicito.TicketsLevantados.Count > 0 ? new List<HelperTicketsUsuario>() : null;
-                            if (ticket.UsuarioSolicito.TicketsLevantados != null)
-                                if (ticket.UsuarioSolicito.TicketsLevantados != null)
+                            result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsSolicitados != null ? ticket.UsuarioSolicito.TicketsSolicitados.Count : 0;
+                            result.UsuarioSolicito.TicketsAbiertos = ticket.UsuarioSolicito.TicketsSolicitados != null && ticket.UsuarioSolicito.TicketsSolicitados.Count > 0 ? new List<HelperTicketsUsuario>() : null;
+                            if (ticket.UsuarioSolicito.TicketsSolicitados != null)
+                                if (ticket.UsuarioSolicito.TicketsSolicitados != null)
                                 {
-                                    result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null ? ticket.UsuarioSolicito.TicketsLevantados.Count : 0;
-                                    result.UsuarioSolicito.TicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados.Count > 0 ? new List<HelperTicketsUsuario>() : null;
-                                    result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsLevantados != null ? ticket.UsuarioSolicito.TicketsLevantados.Count : 0;
+                                    result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsSolicitados != null ? ticket.UsuarioSolicito.TicketsSolicitados.Count : 0;
+                                    result.UsuarioSolicito.TicketsAbiertos = ticket.UsuarioSolicito.TicketsSolicitados.Count > 0 ? new List<HelperTicketsUsuario>() : null;
+                                    result.UsuarioSolicito.NumeroTicketsAbiertos = ticket.UsuarioSolicito.TicketsSolicitados != null ? ticket.UsuarioSolicito.TicketsSolicitados.Count : 0;
                                     result.UsuarioSolicito.TicketsAbiertos = new List<HelperTicketsUsuario>();
-                                    if (ticket.UsuarioSolicito.TicketsLevantados != null)
+                                    if (ticket.UsuarioSolicito.TicketsSolicitados != null)
                                         if (result.UsuarioSolicito.TicketsAbiertos != null)
-                                            foreach (Ticket t in ticket.UsuarioSolicito.TicketsLevantados)
+                                            foreach (Ticket t in ticket.UsuarioSolicito.TicketsSolicitados)
                                             {
                                                 result.UsuarioSolicito.TicketsAbiertos.Add(new HelperTicketsUsuario
                                                 {
@@ -1103,7 +1103,7 @@ namespace KinniNet.Core.Operacion
                         {
                             string cuerpo = string.Format("Hola {0},<br>" +
                                             "¡Se ha registrado un nuevo comentario en tu soicitud!" +
-                                            "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
+                                            "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
                             new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
                         }
                     }
@@ -1115,7 +1115,7 @@ namespace KinniNet.Core.Operacion
                         string correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.First(f => f.Obligatorio).Correo;
                         string cuerpo = string.Format("Hola {0},<br>" +
                                     "¡Tu solicitud ha sido resuelta! Te invitamos a cerrar tu solicitud. <br>" +
-                                    "<a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + idTicket + "&cveRandom=" + cve + "'\"> cerrar solicitud </a>Gracias", usuario.Nombre);
+                                    "<a href='{1}'> cerrar solicitud </a>Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + idTicket + "&cveRandom=" + cve );
                         new BusinessTicketMailService().EnviaCorreoTicketGenerado(idTicket, cve, cuerpo, correo);
                     }
                 }

@@ -8,10 +8,10 @@
             <asp:HiddenField runat="server" ID="hfId" />
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li >
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Atención</li>
-                <li class="breadcrumb-item active">Horarios</li>
+                <li >Atención</li>
+                <li class="active">Horarios</li>
             </ol>
 
             <section class="module">
@@ -30,7 +30,7 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-lg-6 separador-vertical-derecho">
+                            <div class="col-lg-6 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Horarios:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -43,7 +43,7 @@
                             </div>
 
 
-                            <div class="form col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
                                 <div class="form-group margin-top-btn-consulta">
                                     <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
                                  <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
@@ -61,7 +61,7 @@
             </section>
 
 
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
 
                     <div class="module-content collapse in" id="content-1">

@@ -1441,6 +1441,8 @@
           <Property Name="EsMoral" Type="bit" Nullable="false" />
           <Property Name="NumeroCorreos" Type="int" Nullable="false" />
           <Property Name="CorreosObligatorios" Type="int" Nullable="false" />
+          <Property Name="Domicilio" Type="bit" />
+          <Property Name="UbicacionDomicilio" Type="bit" />
           <Property Name="Habilitado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Torre">
@@ -7366,7 +7368,6 @@
           <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_TipoUsuario" FromRole="TipoUsuario" ToRole="Ticket" />
           <NavigationProperty Name="AliasOrganizacion" Relationship="KiiniNet_v2Model.FK_AliasOrganizacion_TipoUsuario" FromRole="TipoUsuario" ToRole="AliasOrganizacion" />
           <NavigationProperty Name="AliasUbicacion" Relationship="KiiniNet_v2Model.FK_AliasUbicacion_TipoUsuario" FromRole="TipoUsuario" ToRole="AliasUbicacion" />
-          <Property Name="EsMoral" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Frecuencia" Relationship="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario" FromRole="TipoUsuario" ToRole="Frecuencia" />
           <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
           <NavigationProperty Name="RolMenu" Relationship="KiiniNet_v2Model.FK_RolMenu_TipoUsuario" FromRole="TipoUsuario" ToRole="RolMenu" />
@@ -7374,6 +7375,9 @@
           <NavigationProperty Name="ParametroDatosAdicionales" Relationship="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario" FromRole="TipoUsuario" ToRole="ParametroDatosAdicionales" />
           <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" FromRole="TipoUsuario" ToRole="HitConsulta" />
           <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario" FromRole="TipoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
+          <Property Name="Domicilio" Type="Boolean" />
+          <Property Name="UbicacionDomicilio" Type="Boolean" />
+          <Property Name="EsMoral" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Torre">
           <Key>
@@ -12423,9 +12427,11 @@
           <EntitySetMapping Name="TipoUsuario">
             <EntityTypeMapping TypeName="KiiniNet_v2Model.TipoUsuario">
               <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="EsMoral" ColumnName="EsMoral" />
+                <ScalarProperty Name="UbicacionDomicilio" ColumnName="UbicacionDomicilio" />
+                <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Abreviacion" ColumnName="Abreviacion" />
-                <ScalarProperty Name="EsMoral" ColumnName="EsMoral" />
                 <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
                 <ScalarProperty Name="CorreosObligatorios" ColumnName="CorreosObligatorios" />
                 <ScalarProperty Name="NumeroCorreos" ColumnName="NumeroCorreos" />

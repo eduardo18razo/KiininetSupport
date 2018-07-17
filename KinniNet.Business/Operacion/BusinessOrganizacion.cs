@@ -331,7 +331,7 @@ namespace KinniNet.Core.Operacion
                 try
                 {
                     db.ContextOptions.ProxyCreationEnabled = _proxy;
-                    IQueryable<Organizacion> qry = db.Organizacion.Where(w => !w.Sistema);
+                    IQueryable<Organizacion> qry = db.Organizacion.Where(w => !w.Sistema && w.TipoUsuario.Habilitado);
                     if (idTipoUsuario.HasValue)
                         qry = qry.Where(w => w.IdTipoUsuario == idTipoUsuario);
 
@@ -732,7 +732,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                IQueryable<Organizacion> qry = db.Organizacion.Where(w => !w.Sistema);
+                IQueryable<Organizacion> qry = db.Organizacion.Where(w => !w.Sistema && w.TipoUsuario.Habilitado);
                 if (idTipoUsuario.HasValue)
                     qry = qry.Where(w => w.IdTipoUsuario == idTipoUsuario);
 
@@ -797,7 +797,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 IQueryable<Organizacion> qry = from o in db.Organizacion
                                                join gu in db.GrupoUsuario on o.IdTipoUsuario equals gu.IdTipoUsuario
-                                               where grupos.Contains(gu.Id) && !o.Sistema
+                                               where grupos.Contains(gu.Id) && !o.Sistema && o.TipoUsuario.Habilitado
                                                select o;
 
                 result = qry.Distinct().ToList();

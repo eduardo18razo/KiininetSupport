@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
+using KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 
@@ -9,7 +10,7 @@ namespace KiiniNet.Services.Operacion.Interface
     public interface IServiceUsuarios
     {
         [OperationContract]
-        void GuardarUsuario(Usuario usuario);
+        void GuardarUsuario(Usuario usuario, Domicilio domicilio);
 
         [OperationContract]
         int RegistrarCliente(Usuario usuario);
@@ -36,7 +37,7 @@ namespace KiiniNet.Services.Operacion.Interface
         List<Usuario> ObtenerUsuariosByGrupoAtencion(int idGrupo, bool insertarSeleccion);
 
         [OperationContract]
-        void ActualizarUsuario(int idUsuario, Usuario usuario);
+        void ActualizarUsuario(int idUsuario, Usuario usuario, Domicilio domicilio);
 
         [OperationContract]
         void GuardarFoto(int idUsuario, byte[] imagen);

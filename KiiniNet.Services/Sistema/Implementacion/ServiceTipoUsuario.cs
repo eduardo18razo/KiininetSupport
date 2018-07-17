@@ -8,13 +8,13 @@ namespace KiiniNet.Services.Sistema.Implementacion
 {
     public class ServiceTipoUsuario : IServiceTipoUsuario
     {
-        public List<TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion)
+        public List<TipoUsuario> ObtenerTiposUsuarioResidentes(bool insertarSeleccion, bool filtraDomicilio)
         {
             try
             {
                 using (BusinessTipoUsuario negocio = new BusinessTipoUsuario())
                 {
-                    return negocio.ObtenerTiposUsuarioResidentes(insertarSeleccion);
+                    return negocio.ObtenerTiposUsuarioResidentes(insertarSeleccion, filtraDomicilio);
                 }
             }
             catch (Exception ex)

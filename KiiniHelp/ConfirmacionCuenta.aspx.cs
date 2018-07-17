@@ -99,6 +99,9 @@ namespace KiiniHelp
                     lblTelefono.Text = telefono.Numero;
                     lblIdUsuario.Text = telefono.IdUsuario.ToString();
                     txtNumeroEdit.Text = telefono.Numero;
+                    hfNumeroInicial.Value = telefono.Numero;
+                    if (telefono.Numero.Trim() == string.Empty)
+                        btnChangeNumber.CommandArgument = "1";
                 }
             }
             catch (Exception ex)
@@ -184,6 +187,11 @@ namespace KiiniHelp
                 {
                     txtNumeroEdit.Enabled = false;
                     txtNumeroConfirmEdit.Enabled = false;
+                    if (hfNumeroInicial.Value != txtNumeroEdit.Text.Trim())
+                    {
+                        _servicioUsuarios.ActualizarTelefono(int.Parse(lblIdUsuario.Text), int.Parse(lblId.Text), txtNumeroEdit.Text);
+                        hfNumeroInicial.Value = txtNumeroEdit.Text.Trim();
+                    }
                     SendNotificacion(int.Parse(lblIdUsuario.Text), int.Parse(lblId.Text));
                     ((Button)sender).Enabled = false;
                     timebtn.Enabled = true;
@@ -236,14 +244,14 @@ namespace KiiniHelp
             try
             {
                 if (btnReenviarcodigo.Text == "Reenviar código")
-                    btnReenviarcodigo.Text = "45";
+                    btnReenviarcodigo.Text = "60";
                 else
                     btnReenviarcodigo.Text = (int.Parse(btnReenviarcodigo.Text) - 1).ToString();
                 if (btnReenviarcodigo.Text == "0")
                 {
                     btnReenviarcodigo.Text = "Reenviar Código";
+                    timebtn.Enabled = false;
                     btnReenviarcodigo.Enabled = true;
-                    btnReenviarcodigo.Enabled = false;
                 }
                 upReenvio.Update();
             }

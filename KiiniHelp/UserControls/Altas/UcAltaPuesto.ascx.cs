@@ -94,7 +94,7 @@ namespace KiiniHelp.UserControls.Altas
         {
             try
             {
-                List<TipoUsuario> lstTipoUsuario = _servicioTipoUsuario.ObtenerTiposUsuarioResidentes(true);
+                List<TipoUsuario> lstTipoUsuario = _servicioTipoUsuario.ObtenerTiposUsuarioResidentes(true, false);
                 Metodos.LlenaComboCatalogo(ddlTipoUsuario, lstTipoUsuario);
 
             }

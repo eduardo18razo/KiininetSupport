@@ -99,7 +99,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         {
             try
             {
-                Alerta = new List<string>();
+                
+                  Alerta = new List<string>();
                 if (Request.Params["userType"] != null)
                     IdTipoUsuario = int.Parse(Request.Params["userType"]);
                 else
@@ -143,10 +144,9 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     throw new Exception(string.Format("Correo {0} con formato invalido", txtCorreoRapido.Text.Trim()));
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -206,7 +206,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         Autoregistro = true,
                         Habilitado = true
                     };
-                    //if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
                     datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
                         {
                             new TelefonoUsuario

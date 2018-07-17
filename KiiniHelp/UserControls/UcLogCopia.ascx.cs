@@ -127,7 +127,7 @@ namespace KiiniHelp.UserControls
                     throw new Exception(sb.ToString());
                 }
                 
-                int tiempoSesion = int.Parse(ConfigurationManager.AppSettings["TiempoSession"]);
+                int tiempoSesion = int.Parse(ConfigurationManager.AppSettings["TiempoSession"]) + 5;
                 if (!_servicioSeguridad.Autenticate(txtUsuario.Text.Trim(), txtpwd.Text.Trim())) throw new Exception("Usuario y/o contraseña no validos");
 
 
