@@ -287,8 +287,11 @@ namespace KinniNet.Core.Operacion
                 descripcion = descripcion.Trim().ToLower();
                 qry = qry.Where(w => w.Descripcion.ToLower().Contains(descripcion));
                 List<InformacionConsulta> info = qry.ToList();
+
                 if (qry.Any())
                 {
+                    List<InformacionConsultaRate> qryLike = db.InformacionConsultaRate.ToList();
+
                     if (fechas != null)
                     {
                         var qryJoin = from q in qry
@@ -300,6 +303,8 @@ namespace KinniNet.Core.Operacion
                         infoJoin = infoJoin.Where(w => DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) >= DateTime.Parse(fechaInicio.ToString("dd/MM/yyyy"))
                                     && DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) < DateTime.Parse(fechaFin.ToString("dd/MM/yyyy"))).ToList();
                         info = infoJoin.Select(s => s.q).Distinct().ToList();
+
+                        qryLike = qryLike.Where(w => DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= DateTime.Parse(fechaInicio.ToString("dd/MM/yyyy")) && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) < DateTime.Parse(fechaFin.ToString("dd/MM/yyyy"))).Distinct().ToList();
                     }
 
                     result = new List<HelperInformacionConsulta>();
@@ -307,9 +312,7 @@ namespace KinniNet.Core.Operacion
                     {
                         db.LoadProperty(consulta, "TipoInfConsulta");
                         db.LoadProperty(consulta, "UsuarioAlta");
-                        var qryLike = from icr in db.InformacionConsultaRate
-                                      where icr.IdInformacionConsulta == consulta.Id
-                                      select icr;
+
                         result.Add(new HelperInformacionConsulta
                         {
                             Id = consulta.Id,
@@ -317,8 +320,8 @@ namespace KinniNet.Core.Operacion
                             Autor = consulta.UsuarioAlta.NombreCompleto,
                             Creacion = consulta.FechaAlta,
                             UltEdicion = consulta.FechaModificacion,
-                            MeGusta = qryLike.Count(c => c.MeGusta),
-                            NoMeGusta = qryLike.Count(c => c.NoMeGusta),
+                            MeGusta = qryLike.Count(c => c.MeGusta && c.IdInformacionConsulta == consulta.Id),
+                            NoMeGusta = qryLike.Count(c => c.NoMeGusta && c.IdInformacionConsulta == consulta.Id),
                             Habilitado = consulta.Habilitado
                         });
                     }
@@ -418,8 +421,7 @@ namespace KinniNet.Core.Operacion
                             MeGusta = meGusta
                         };
                         rate.NoMeGusta = !rate.MeGusta;
-                        rate.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),
-                            "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                        rate.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                         db.InformacionConsultaRate.AddObject(rate);
                         if (meGusta)
                             arbol.MeGusta++;
@@ -483,6 +485,7 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
+                bool restaMes = false;
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
 
                 result = new ReporteInformacionConsulta { IdInformacionConsulta = idInformacionConsulta };
@@ -493,7 +496,7 @@ namespace KinniNet.Core.Operacion
                 DateTime fechaFin;
 
                 var qry = from icr in db.InformacionConsultaRate
-                          join iic in db.InventarioInfConsulta on icr.Id equals iic.IdInfConsulta
+                          join iic in db.InventarioInfConsulta on icr.IdInformacionConsulta equals iic.IdInfConsulta
                           join iaa in db.InventarioArbolAcceso on iic.IdInventario equals iaa.Id
                           join aa in db.ArbolAcceso on iaa.IdArbolAcceso equals aa.Id
                           where icr.IdInformacionConsulta == idInformacionConsulta
@@ -508,6 +511,7 @@ namespace KinniNet.Core.Operacion
 
                 if (fechas != null)
                 {
+                    restaMes = true;
                     fechaInicio = fechas.Single(s => s.Key == "inicio").Value;
                     fechaFin = fechas.Single(s => s.Key == "fin").Value.AddDays(1);
                     if (fechaInicio > fechaFin)
@@ -627,6 +631,7 @@ namespace KinniNet.Core.Operacion
                 }
                 else
                 {
+                    restaMes = false;
                     var rate = qry.Distinct().ToList();
                     List<string> lstFechas = rate.OrderBy(o => o.FechaModificacion).Distinct().ToList().Select(s => s.FechaModificacion.ToString("dd/MM/yyyy")).Distinct().ToList();
                     fechaInicio = DateTime.Parse(lstFechas.First());
@@ -639,11 +644,57 @@ namespace KinniNet.Core.Operacion
                                 dtBarras.Columns.Add(fecha, typeof(int));
                             }
                             break;
+                        case 2:
+                            foreach (string fecha in lstFechas)
+                            {
+                                if (!dtBarras.Columns.Contains("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()))
+                                    dtBarras.Columns.Add(new DataColumn("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString(), typeof(int)));
+                            }
+                            rango = "Semanal";
+                            break;
+                        case 3:
+                            foreach (string fecha in lstFechas)
+                            {
+                                if (!dtBarras.Columns.Contains(DateTime.Parse(fecha).Month.ToString()))
+                                    dtBarras.Columns.Add(new DataColumn(DateTime.Parse(fecha).Month.ToString(), typeof(int)));
+                            }
+                            rango = "Mensual";
+                            break;
+                        case 4:
+                            foreach (string fecha in lstFechas)
+                            {
+                                if (!dtBarras.Columns.Contains(DateTime.Parse(fecha).Year.ToString()))
+                                    dtBarras.Columns.Add(new DataColumn(DateTime.Parse(fecha).Year.ToString(), typeof(int)));
+                            }
+                            rango = "Anual";
+                            break;
                     }
                     foreach (string fecha in lstFechas)
                     {
-                        dtBarras.Rows[0][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.MeGusta);
-                        dtBarras.Rows[1][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.NoMeGusta);
+                        switch (tipoFecha)
+                        {
+                            case 1:
+                                dtBarras.Rows[0][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.MeGusta);
+                                dtBarras.Rows[1][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.NoMeGusta);
+                                break;
+                            case 2:
+                                dtBarras.Rows[0]["SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1]))
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1])));
+                                dtBarras.Rows[1]["SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()] =
+                                     rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1]))
+                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1])));
+                                break;
+                            case 3:
+                                dtBarras.Rows[0][DateTime.Parse(fecha).Month.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("MM") == DateTime.Parse(fecha.ToString()).ToString("MM") && w.MeGusta);
+                                dtBarras.Rows[1][DateTime.Parse(fecha).Month.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("MM") == DateTime.Parse(fecha.ToString()).ToString("MM") && w.NoMeGusta);
+                                break;
+                            case 4:
+                                dtBarras.Rows[0][DateTime.Parse(fecha).Year.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("yy") == DateTime.Parse(fecha.ToString()).ToString("yy") && w.MeGusta);
+                                dtBarras.Rows[1][DateTime.Parse(fecha).Year.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("yy") == DateTime.Parse(fecha.ToString()).ToString("yy") && w.NoMeGusta);
+                                break;
+                        }
                     }
                 }
                 result.GraficoBarras = dtBarras;
@@ -668,7 +719,23 @@ namespace KinniNet.Core.Operacion
                 dtPie.Rows[0][1] = totalLike;
                 dtPie.Rows[1][1] = totaldontLike;
                 result.GraficoPie = dtPie;
-                titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToShortDateString(), fechaFin.ToShortDateString());
+                switch (tipoFecha)
+                {
+                    case 1:
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToShortDateString(), fechaFin.ToShortDateString());
+                        break;
+                    case 2:
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToShortDateString(), fechaFin.ToShortDateString());
+                        break;
+                    case 3:
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("MMM"), restaMes ? fechaFin.AddDays(-1).ToString("MMM") : fechaFin.ToString("MMM"));
+                        break;
+                    case 4:
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("yyyy"), restaMes ? fechaFin.AddDays(-1).ToString("yyyy") : fechaFin.ToString("yyyy"));
+                        break;
+                }
+
+
                 result.Titulo = titulo;
             }
             catch (Exception ex)

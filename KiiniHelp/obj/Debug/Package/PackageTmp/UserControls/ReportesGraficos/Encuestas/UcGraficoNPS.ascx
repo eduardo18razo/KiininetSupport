@@ -8,7 +8,7 @@
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
                 <li>Help Center</li>
-                <li class="active">Artículos</li>
+                <li class="active">Grafico Eficiencia NPS</li>
             </ol>
 
             <section class="module">
@@ -17,7 +17,7 @@
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Grafico Like, Dont Like: " /><asp:Label runat="server" ID="lblTitulo"></asp:Label></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="NPS: " /><asp:Label runat="server" ID="lblTitulo"></asp:Label></h3>
                             </div>
                         </div>
 

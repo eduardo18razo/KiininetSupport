@@ -7,8 +7,8 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
@@ -66,6 +66,18 @@
   <wsdl:message name="IServiceParametros_ObtenerParemtrosPassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerParemtrosPasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerParametrosGraficoDefault_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerParametrosGraficoDefault" />
+  </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerParametrosGraficoDefault_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerParametrosGraficoDefaultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerFrecuenciasFecha_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFrecuenciasFecha" />
+  </wsdl:message>
+  <wsdl:message name="IServiceParametros_ObtenerFrecuenciasFecha_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFrecuenciasFechaResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceParametros">
     <wsdl:operation name="TelefonosObligatorios">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/TelefonosObligatorios" message="tns:IServiceParametros_TelefonosObligatorios_InputMessage" />
@@ -98,6 +110,14 @@
     <wsdl:operation name="ObtenerParemtrosPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerParemtrosPassword" message="tns:IServiceParametros_ObtenerParemtrosPassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerParemtrosPasswordResponse" message="tns:IServiceParametros_ObtenerParemtrosPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerParametrosGraficoDefault">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerParametrosGraficoDefault" message="tns:IServiceParametros_ObtenerParametrosGraficoDefault_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerParametrosGraficoDefaultResponse" message="tns:IServiceParametros_ObtenerParametrosGraficoDefault_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFrecuenciasFecha">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerFrecuenciasFecha" message="tns:IServiceParametros_ObtenerFrecuenciasFecha_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceParametros/ObtenerFrecuenciasFechaResponse" message="tns:IServiceParametros_ObtenerFrecuenciasFecha_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceParametros" type="tns:IServiceParametros">
@@ -167,6 +187,24 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerParemtrosPassword">
       <soap:operation soapAction="http://tempuri.org/IServiceParametros/ObtenerParemtrosPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerParametrosGraficoDefault">
+      <soap:operation soapAction="http://tempuri.org/IServiceParametros/ObtenerParametrosGraficoDefault" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFrecuenciasFecha">
+      <soap:operation soapAction="http://tempuri.org/IServiceParametros/ObtenerFrecuenciasFecha" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

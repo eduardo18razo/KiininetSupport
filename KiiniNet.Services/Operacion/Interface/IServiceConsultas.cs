@@ -28,6 +28,9 @@ namespace KiiniNet.Services.Operacion.Interface
         DataTable GraficarConsultaTicket(int idUsuario, List<int> grupos, List<int> tiposUsuario, List<int> organizaciones, List<int> ubicaciones, List<int> tipoArbol, List<int> tipificacion, List<int> prioridad, List<int> estatus, List<bool?> sla, List<bool?> vip, Dictionary<string, DateTime> fechas, List<int> filtroStackColumn, string stack, int tipoFecha);
 
         [OperationContract]
+        DataTable GraficarConsultaTicketEficiencia(int idUsuario, List<int> tipoUsuario, List<int> area, List<int> grupos, List<int> agentes, List<int> estatusAsignacion, List<int> canal, List<int> tipoArbol, List<int> opciones, List<int> estatus, List<int> prioridad, List<bool?> sla, List<bool?> vip, List<int> organizaciones, List<int> ubicaciones, Dictionary<string, DateTime> fechas, List<int> filtroStackColumn, string stack, int tipoFecha);
+
+        [OperationContract]
         string GraficarConsultaTicketGeografico(int idUsuario, List<int> grupos, List<int> tiposUsuario, List<int> organizaciones, List<int> ubicaciones, List<int> tipoArbol, List<int> tipificacion, List<int> prioridad, List<int> estatus, List<bool?> sla, List<bool?> vip, Dictionary<string, DateTime> fechas, List<int> filtroStackColumn, string stack, int tipoFecha);
 
         [OperationContract]

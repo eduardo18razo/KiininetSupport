@@ -795,21 +795,53 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                IQueryable<Organizacion> qry = from o in db.Organizacion
-                                               join gu in db.GrupoUsuario on o.IdTipoUsuario equals gu.IdTipoUsuario
-                                               where grupos.Contains(gu.Id) && !o.Sistema && o.TipoUsuario.Habilitado
-                                               select o;
-
-                result = qry.Distinct().ToList();
+                var qry = from o in db.Organizacion
+                          join gu in db.GrupoUsuario on o.IdTipoUsuario equals gu.IdTipoUsuario
+                          where grupos.Contains(gu.Id) && !o.Sistema && o.TipoUsuario.Habilitado && o.IdNivelOrganizacion == 2
+                          select new { o, gu };
+                if (grupos != null && grupos.Any())
+                    qry = from q in qry
+                          where grupos.Contains(q.gu.Id)
+                          select q;
+                result = qry.Select(s => s.o).Distinct().ToList();
                 foreach (Organizacion organizacion in result)
                 {
                     db.LoadProperty(organizacion, "Holding");
                     db.LoadProperty(organizacion, "Compania");
-                    db.LoadProperty(organizacion, "Direccion");
-                    db.LoadProperty(organizacion, "SubDireccion");
-                    db.LoadProperty(organizacion, "Gerencia");
-                    db.LoadProperty(organizacion, "SubGerencia");
-                    db.LoadProperty(organizacion, "Jefatura");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<Organizacion> ObtenerOrganizacionesTipoUsuario(List<int> tiposUsuario)
+        {
+            List<Organizacion> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                var qry = from o in db.Organizacion
+                          where !o.Sistema && o.TipoUsuario.Habilitado && o.IdNivelOrganizacion == 2
+                          select new { o };
+                
+                if (tiposUsuario != null && tiposUsuario.Any())
+                    qry = from q in qry
+                          where tiposUsuario.Contains(q.o.IdTipoUsuario)
+                          select q;
+
+                result = qry.Select(s => s.o).Distinct().ToList();
+                foreach (Organizacion organizacion in result)
+                {
+                    db.LoadProperty(organizacion, "Holding");
+                    db.LoadProperty(organizacion, "Compania");
                 }
             }
             catch (Exception ex)
@@ -1377,6 +1409,25 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(result, "Jefatura");
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<int> ObtenerUbicacionesByCompañia(List<int> idCompañia)
+        {
+            List<int> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                result = db.Organizacion.Where(w => idCompañia.Contains((int)w.IdCompania)).Select(s => s.Id).ToList();
             }
             catch (Exception ex)
             {

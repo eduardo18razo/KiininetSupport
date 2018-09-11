@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceSistemaCanal;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -34,14 +33,17 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroCanalApertura.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroCanalApertura.CheckedItems select int.Parse(item.Value)).ToList();
             }
         }
         private void LlenaCanal()
         {
             try
             {
-                Metodos.LlenaListBoxCatalogo(lstFiltroCanalApertura, _servicioCanal.ObtenerCanalesAll(false));
+                rcbFiltroCanalApertura.DataSource = _servicioCanal.ObtenerCanalesAll(false);
+                rcbFiltroCanalApertura.DataTextField = "Descripcion";
+                rcbFiltroCanalApertura.DataValueField = "Id";
+                rcbFiltroCanalApertura.DataBind();
             }
             catch (Exception e)
             {

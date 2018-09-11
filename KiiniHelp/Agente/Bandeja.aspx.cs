@@ -194,7 +194,7 @@ namespace KiiniHelp.Agente
 
                 fechaInicio = DateTime.Now.AddMinutes(-60);
 
-                ((Label)rBtnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio ).ToString();
+                ((Label)rBtnRecienActualizados.FindControl("lblTicketsRecienActualizados")).Text = lst.Count(w => w.FechaUltimoEvento >= fechaInicio).ToString();
 
                 lblTicketAbiertosHeader.Text = "Todos";
                 lblcontadorTicketHeader.Text = lst.Count().ToString();
@@ -244,7 +244,6 @@ namespace KiiniHelp.Agente
         {
             try
             {
-
                 List<HelperTickets> lst = _servicioTickets.ObtenerTickets(((Usuario)Session["UserData"]).Id, null, 0, 100000);
                 if (lst != null)
                 {

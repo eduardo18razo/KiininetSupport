@@ -245,12 +245,31 @@ namespace KiiniHelp
                 if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
                     if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
                         Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx"));
+                
+                var js = string.Format("var IdealTimeOut = {0} * 1000 * 60;" +
+                                           "var idleSecondsTimer = null;" +
+                                           "var idleSecondsCounter = 0;" +
+                                           "document.onclick = function () {{ idleSecondsCounter = 0; }};" +
+                                           "document.onmousemove = function () {{ idleSecondsCounter = 0; }};" +
+                                           "document.onkeypress = function () {{ idleSecondsCounter = 0; }};" +
+                                           "idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);" +
+
+                                           "function CheckIdleTime() {{" +
+                                           "idleSecondsCounter++;" +
+                                           "var oPanel = document.getElementById(\"timeOut\");" +
+                                           "if (oPanel) {{" +
+                                           "oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);" +
+                                           "}}" +
+                                           "if (idleSecondsCounter >= IdealTimeOut) {{" +
+                                           "window.clearInterval(idleSecondsTimer);" +
+                                           "$('#modalSession').modal({{ backdrop: 'static', keyboard: false }});" +
+                                           "$('#modalSession').modal('show');" +
+                                           "}}" +
+                                           "}}", ConfigurationManager.AppSettings["TiempoSession"]);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", js, true);
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
-                    int timeout = int.Parse(ConfigurationManager.AppSettings["TiempoSession"]) * 1000 * 60;
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", "SessionExpireAlert(" + timeout + ");", true);
-
                     bool administrador = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
                     if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Agente))

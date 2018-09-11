@@ -24,7 +24,6 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="ServiceOrganizacion.xsd" MetadataType="Schema" ID="555bfa46-fe22-40aa-a6e7-ca34c69f0fad" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd5" />
-    <MetadataFile FileName="ServiceOrganizacion1.xsd" MetadataType="Schema" ID="e51a35f6-4ab7-41df-be5d-38d29890a78b" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd9" />
     <MetadataFile FileName="ServiceOrganizacion14.xsd" MetadataType="Schema" ID="9b45302f-7fcf-4006-9d27-f0e28f12b5ed" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd14" />
     <MetadataFile FileName="ServiceOrganizacion2.xsd" MetadataType="Schema" ID="8fd6b200-65e3-41ef-9209-e4b11e3b25b6" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd3" />
     <MetadataFile FileName="ServiceOrganizacion11.xsd" MetadataType="Schema" ID="0cd5a247-3747-48af-8dd7-ff2ae2e4088b" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd8" />
@@ -34,10 +33,11 @@
     <MetadataFile FileName="ServiceOrganizacion6.xsd" MetadataType="Schema" ID="daca6da8-f8b0-4551-9fc7-eac355eadc7c" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd7" />
     <MetadataFile FileName="ServiceOrganizacion7.xsd" MetadataType="Schema" ID="fe193ed9-c2d7-42b5-8195-770965fa358a" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd11" />
     <MetadataFile FileName="ServiceOrganizacion8.xsd" MetadataType="Schema" ID="e4f511e4-8c09-4d8d-b359-16e76b624541" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceOrganizacion3.xsd" MetadataType="Schema" ID="3bab4cf4-e6bc-4aea-aa6c-73e73ea313e7" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd0" />
     <MetadataFile FileName="ServiceOrganizacion13.xsd" MetadataType="Schema" ID="90f4d426-2545-4bb1-a8b4-973a2466d831" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd13" />
     <MetadataFile FileName="ServiceOrganizacion.disco" MetadataType="Disco" ID="acee277a-a1fa-43d5-841a-eb188a16f408" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?disco" />
     <MetadataFile FileName="ServiceOrganizacion9.xsd" MetadataType="Schema" ID="cfb74d49-d514-4e17-a8ea-bace26d8ce45" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd1" />
-    <MetadataFile FileName="ServiceOrganizacion3.xsd" MetadataType="Schema" ID="3bab4cf4-e6bc-4aea-aa6c-73e73ea313e7" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceOrganizacion1.xsd" MetadataType="Schema" ID="e51a35f6-4ab7-41df-be5d-38d29890a78b" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd9" />
     <MetadataFile FileName="ServiceOrganizacion10.xsd" MetadataType="Schema" ID="96027505-447b-46b0-a615-9859c95f9a98" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd6" />
     <MetadataFile FileName="ServiceOrganizacion12.xsd" MetadataType="Schema" ID="8b84987a-8fba-4cd7-a4ac-9fb4cfa3fe86" SourceId="1" SourceUrl="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd4" />
   </Metadata>

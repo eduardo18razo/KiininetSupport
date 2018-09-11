@@ -133,8 +133,6 @@ namespace KiiniHelp.UserControls.Filtros.Graficos
                 btnFiltroGrupo.CssClass = ucFiltroGrupo.GruposSeleccionados.Count > 0 ? "btn btn-success" : "btn btn-primary";
                 ucFiltroServicioIncidente.Grupos = ucFiltroGrupo.GruposSeleccionados;
                 ucFiltroResponsablesEncuesta.LlenaGrupos(ucFiltroGrupo.GruposSeleccionados, ucFiltroServicioIncidente.TipoArbolSeleccionados);
-                ucFiltroOrganizacion.Grupos = ucFiltroGrupo.GruposSeleccionados;
-                ucFiltroUbicacion.Grupos = ucFiltroGrupo.GruposSeleccionados;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalFiltroGrupo\");", true);
             }
             catch (Exception ex)
@@ -206,7 +204,7 @@ namespace KiiniHelp.UserControls.Filtros.Graficos
             {
                 btnFiltroServicioIncidente.CssClass = ucFiltroServicioIncidente.TipoArbolSeleccionados.Count > 0 ? "btn btn-success" : "btn btn-primary";
                 btnFiltroTipificacion.CssClass = ucFiltroServicioIncidente.TipoArbolSeleccionados.Count > 0 ? ucFiltroTipificacion.TipificacionesSeleccionadas.Count > 0 ? "btn btn-success" : "btn btn-primary" : "btn btn-primary disabled";
-                ucFiltroTipificacion.TipoArbol = ucFiltroServicioIncidente.TipoArbolSeleccionados.First();
+                ucFiltroTipificacion.TipoArbol = ucFiltroServicioIncidente.TipoArbolSeleccionados;
                 upFiltroTipificacion.Update();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalFiltroServicioIncidente\");", true);
             }

@@ -484,10 +484,10 @@
             </div>
 
             <script>
-                $(document).ready(function () {
-                    $('[data-toggle="tooltip"]').tooltip();
-                    SessionExpireAlert(1);
-                });
+                //$(document).ready(function () {
+                //    $('[data-toggle="tooltip"]').tooltip();
+                //    SessionExpireAlert(1);
+                //});
                 new mlPushMenu(document.getElementById('pMenu'), document.getElementById('trigger'), {
                     type: 'overlap'
                 });

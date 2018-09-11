@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -32,8 +33,10 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             try
             {
                 Dictionary<int, string> lst = new Dictionary<int, string> { { 1, "DENTRO" }, { 0, "FUERA" } };
-                lstFiltroSla.DataSource = lst.ToList();
-                lstFiltroSla.DataBind();
+                rcbFiltroSla.DataSource = lst.ToList();
+                rcbFiltroSla.DataTextField = "Value";
+                rcbFiltroSla.DataValueField = "Key";
+                rcbFiltroSla.DataBind();
             }
             catch (Exception e)
             {
@@ -45,7 +48,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroSla.Items where item.Selected select item.Value == "1").Select(dummy => (bool?)dummy).ToList();
+                return (from RadComboBoxItem item in rcbFiltroSla.CheckedItems select item.Value == "1").Select(dummy => (bool?)dummy).ToList();
             }
         }
 

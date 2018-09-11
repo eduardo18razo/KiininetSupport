@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.ServiceModel;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Helper;
@@ -46,7 +47,24 @@ namespace KiiniNet.Services.Operacion.Interface
         List<Encuesta> ObtenerEncuestaByGrupos(List<int> grupos, bool insertarSeleccion);
 
         [OperationContract]
-        HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
+        HelperReporteEncuesta ObtenerGraficoNps(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
+
+        [OperationContract]
+        HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
+
+        [OperationContract]
+        DataTable ObtenerGraficoCalificacionDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas);
+
+        [OperationContract]
+        HelperReporteEncuesta ObtenerGraficoSatisfaccion(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
+        [OperationContract]
+        DataTable ObtenerGraficoSatisfaccionDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas);
+
+        [OperationContract]
+        HelperReporteEncuesta ObtenerGraficoLogica(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
+
+        [OperationContract]
+        DataTable ObtenerGraficoLogicaDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas);
 
     }
 }

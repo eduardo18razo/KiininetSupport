@@ -9,12 +9,12 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceOrganizacion.svc?xsd=xsd14" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
@@ -151,6 +151,12 @@
   <wsdl:message name="IServiceOrganizacion_ObtenerOrganizacionesGrupos_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerOrganizacionesGruposResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceOrganizacion_ObtenerOrganizacionesTipoUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerOrganizacionesTipoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceOrganizacion_ObtenerOrganizacionesTipoUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerOrganizacionesTipoUsuarioResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceOrganizacion_ObtenerOrganizacionesByIdOrganizacion_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerOrganizacionesByIdOrganizacion" />
   </wsdl:message>
@@ -251,6 +257,10 @@
     <wsdl:operation name="ObtenerOrganizacionesGrupos">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesGrupos" message="tns:IServiceOrganizacion_ObtenerOrganizacionesGrupos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesGruposResponse" message="tns:IServiceOrganizacion_ObtenerOrganizacionesGrupos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerOrganizacionesTipoUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesTipoUsuario" message="tns:IServiceOrganizacion_ObtenerOrganizacionesTipoUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesTipoUsuarioResponse" message="tns:IServiceOrganizacion_ObtenerOrganizacionesTipoUsuario_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ObtenerOrganizacionesByIdOrganizacion">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesByIdOrganizacion" message="tns:IServiceOrganizacion_ObtenerOrganizacionesByIdOrganizacion_InputMessage" />
@@ -454,6 +464,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerOrganizacionesGrupos">
       <soap:operation soapAction="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesGrupos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerOrganizacionesTipoUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesTipoUsuario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

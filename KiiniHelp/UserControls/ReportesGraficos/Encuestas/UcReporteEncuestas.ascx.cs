@@ -10,7 +10,6 @@ using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Operacion;
 using KinniNet.Business.Utils;
-using Calendar = System.Web.UI.WebControls.Calendar;
 
 namespace KiiniHelp.UserControls.ReportesGraficos.Encuestas
 {

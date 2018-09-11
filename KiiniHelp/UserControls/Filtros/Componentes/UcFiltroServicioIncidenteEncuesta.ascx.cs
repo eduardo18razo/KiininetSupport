@@ -21,10 +21,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             set
             {
-                panelAlerta.Visible = value.Any();
-                if (!panelAlerta.Visible) return;
-                rptError.DataSource = value;
-                rptError.DataBind();
+                if (value.Any())
+                {
+                    string error = value.Aggregate("<ul>", (current, s) => current + ("<li>" + s + "</li>"));
+                    error += "</ul>";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
+                }
             }
         }
         public List<int> TipoArbolSeleccionados

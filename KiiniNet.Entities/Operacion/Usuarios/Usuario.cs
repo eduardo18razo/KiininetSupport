@@ -143,6 +143,12 @@ namespace KiiniNet.Entities.Operacion.Usuarios
 
         [DataMember]
         public virtual List<TicketNotificacion> TicketNotificacion { get; set; }
+        [DataMember]
+        public virtual List<GraficosFavoritos> GraficosFavoritos { get; set; }
+        [DataMember]
+        public virtual List<Ticket> TicketsUltimoMovimiento { get; set; }
+        [DataMember]
+        public virtual List<Ticket> UltimosTicketsAsignados { get; set; }
         #endregion Mapeo
 
         [DataMember]

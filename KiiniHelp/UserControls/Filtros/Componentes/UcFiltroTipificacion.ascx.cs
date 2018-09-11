@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniNet.Entities.Cat.Operacion;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -30,13 +30,22 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 }
             }
         }
-
-        public int TipoArbol
+        public List<int> TipoUsuario
         {
-            get { return Convert.ToInt32(hfTipoArbol.Value); }
+            get { return Session["TipoUsuarioFiltroTipificacion"] == null ? null : (List<int>)Session["TipoUsuarioFiltroTipificacion"]; }
             set
             {
-                hfTipoArbol.Value = value.ToString();
+                Session["TipoUsuarioFiltroTipificacion"] = value;
+                LlenaArbol();
+            }
+        }
+
+        public List<int> TipoArbol
+        {
+            get { return Session["TipoArbolFiltroTipificacion"] == null ? null : (List<int>) Session["TipoArbolFiltroTipificacion"]; }
+            set
+            {
+                Session["TipoArbolFiltroTipificacion"] = value;
                 LlenaArbol();
             }
         }
@@ -44,24 +53,22 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroTipificacion.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroTipificacion.CheckedItems select int.Parse(item.Value)).ToList();
             }
         }
         private void LlenaArbol()
         {
             try
             {
-                lstFiltroTipificacion.DataSource = _servicioArbolAcceso.ObtenerArbolesAccesoTerminalAll(null, null, TipoArbol, null, null, null, null, null, null, null);
-                lstFiltroTipificacion.DataTextField = string.Format("{0} {1} {2} {3} {4} {5} {6}",
-                    "Nivel1.Descripcion",
-                    "Nivel2.Descripcion",
-                    "Nivel3.Descripcion",
-                    "Nivel4.Descripcion",
-                    "Nivel5.Descripcion",
-                    "Nivel6.Descripcion",
-                    "Nivel7.Descripcion");
-                lstFiltroTipificacion.DataValueField = "Id";
-                lstFiltroTipificacion.DataBind(); 
+                List<ArbolAcceso> lst = _servicioArbolAcceso.ObtenerArbolesAccesoTerminalAll(null, null, null, null, null, null, null, null, null, null);
+                if (TipoUsuario != null && TipoUsuario.Count > 0)
+                    lst = lst.Where(w => TipoUsuario.Contains(w.IdTipoUsuario)).ToList();
+                if (TipoArbol != null && TipoArbol.Any())
+                    lst = lst.Where(w => TipoArbol.Contains(w.IdTipoArbolAcceso)).ToList();
+                rcbFiltroTipificacion.DataSource = lst;
+                rcbFiltroTipificacion.DataTextField = "Tipificacion";
+                rcbFiltroTipificacion.DataValueField = "Id";
+                rcbFiltroTipificacion.DataBind();
             }
             catch (Exception e)
             {
@@ -76,7 +83,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    //LlenaArbol();
+                    LlenaArbol();
                 }
             }
             catch (Exception ex)
@@ -90,7 +97,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        protected void lstFiltroTipificacion_OnSelectedIndexChanged(object sender, EventArgs e)
+        protected void rdcFiltroTipificacion_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {

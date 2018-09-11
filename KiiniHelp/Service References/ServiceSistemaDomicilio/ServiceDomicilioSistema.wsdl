@@ -10,11 +10,11 @@
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceDomicilioSistema.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
     </xsd:schema>
   </wsdl:types>
@@ -30,6 +30,12 @@
   <wsdl:message name="IServiceDomicilioSistema_ObtenerDetalleColonia_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerDetalleColoniaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceDomicilioSistema_ObtenerEstados_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstados" />
+  </wsdl:message>
+  <wsdl:message name="IServiceDomicilioSistema_ObtenerEstados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerEstadosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceDomicilioSistema">
     <wsdl:operation name="ObtenerColoniasCp">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDomicilioSistema/ObtenerColoniasCp" message="tns:IServiceDomicilioSistema_ObtenerColoniasCp_InputMessage" />
@@ -38,6 +44,10 @@
     <wsdl:operation name="ObtenerDetalleColonia">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceDomicilioSistema/ObtenerDetalleColonia" message="tns:IServiceDomicilioSistema_ObtenerDetalleColonia_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceDomicilioSistema/ObtenerDetalleColoniaResponse" message="tns:IServiceDomicilioSistema_ObtenerDetalleColonia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceDomicilioSistema/ObtenerEstados" message="tns:IServiceDomicilioSistema_ObtenerEstados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceDomicilioSistema/ObtenerEstadosResponse" message="tns:IServiceDomicilioSistema_ObtenerEstados_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceDomicilioSistema">
@@ -53,6 +63,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerDetalleColonia">
       <soap:operation soapAction="http://tempuri.org/IServiceDomicilioSistema/ObtenerDetalleColonia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerEstados">
+      <soap:operation soapAction="http://tempuri.org/IServiceDomicilioSistema/ObtenerEstados" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

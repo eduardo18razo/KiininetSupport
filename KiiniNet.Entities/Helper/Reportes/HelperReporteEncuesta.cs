@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 
 namespace KiiniNet.Entities.Helper.Reportes
 {
@@ -13,5 +11,6 @@ namespace KiiniNet.Entities.Helper.Reportes
         public string Titulo { get; set; }
         public DataTable GraficoBarras { get; set; }
         public DataTable GraficoPie { get; set; }
+        public List<DataTable> Preguntas { get; set; }
     }
 }

@@ -13,12 +13,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes {
     public partial class UcFiltroUbicacion {
         
         /// <summary>
-        /// Control lstFiltroUbicacion.
+        /// Control rcbFiltroUbicacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstFiltroUbicacion;
+        protected global::Telerik.Web.UI.RadComboBox rcbFiltroUbicacion;
     }
 }

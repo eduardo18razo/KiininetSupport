@@ -70,6 +70,7 @@
       <xs:element name="_x003C_CveRegistro_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_EstatusActual_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_EstatusDetalle_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperEstatusDetalle" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusDisponibles_x003E_k__BackingField" nillable="true" type="q4:ArrayOfEstatusTicket" />
       <xs:element name="_x003C_FechaCreacion_x003E_k__BackingField" type="xs:dateTime" />
       <xs:element name="_x003C_IdEstatusAsignacion_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_IdEstatusTicket_x003E_k__BackingField" type="xs:int" />
@@ -149,14 +150,14 @@
       <xs:element name="_x003C_CambiaEstatus_x003E_k__BackingField" type="xs:boolean" />
       <xs:element name="_x003C_ConversacionDetalle_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperConversacionDetalle" />
       <xs:element name="_x003C_CorreoUsuarioPrincipal_x003E_k__BackingField" nillable="true" type="xs:string" />
-      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" name="_x003C_DetalleUsuarioLevanto_x003E_k__BackingField" nillable="true" type="q4:Usuario" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" name="_x003C_DetalleUsuarioLevanto_x003E_k__BackingField" nillable="true" type="q5:Usuario" />
       <xs:element name="_x003C_DiferenciaSla_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_EsPropietario_x003E_k__BackingField" type="xs:boolean" />
       <xs:element name="_x003C_Escala_x003E_k__BackingField" type="xs:boolean" />
-      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusAsignacion_x003E_k__BackingField" nillable="true" type="q5:EstatusAsignacion" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusTicket_x003E_k__BackingField" nillable="true" type="q6:EstatusTicket" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusAsignacion_x003E_k__BackingField" nillable="true" type="q6:EstatusAsignacion" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusTicket_x003E_k__BackingField" nillable="true" type="q7:EstatusTicket" />
       <xs:element name="_x003C_FechaSolicitud_x003E_k__BackingField" type="xs:dateTime" />
-      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" name="_x003C_GrupoAsignado_x003E_k__BackingField" nillable="true" type="q7:GrupoUsuario" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" name="_x003C_GrupoAsignado_x003E_k__BackingField" nillable="true" type="q8:GrupoUsuario" />
       <xs:element name="_x003C_IdImpacto_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
       <xs:element name="_x003C_IdUsuarioAsignado_x003E_k__BackingField" type="xs:int" />
@@ -166,7 +167,7 @@
       <xs:element name="_x003C_Reasigna_x003E_k__BackingField" type="xs:boolean" />
       <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
       <xs:element name="_x003C_UltimaActualizacion_x003E_k__BackingField" type="xs:dateTime" />
-      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" name="_x003C_UsuarioAsignado_x003E_k__BackingField" nillable="true" type="q8:Usuario" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" name="_x003C_UsuarioAsignado_x003E_k__BackingField" nillable="true" type="q9:Usuario" />
       <xs:element name="_x003C_UsuarioLevanto_x003E_k__BackingField" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

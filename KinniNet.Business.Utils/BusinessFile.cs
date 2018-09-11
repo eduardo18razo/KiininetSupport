@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.Office.Core;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using OfficeOpenXml.Style;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -504,6 +505,36 @@ namespace KinniNet.Business.Utils
                 return dtSet;
             }
 
+            public static ExcelPackage DatatableToExcel(DataTable dt)
+            {
+                ExcelPackage result = null;
+                try
+                {
+                    ExcelPackage pck = new ExcelPackage();
+                    
+                    //Create the worksheet
+                    ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Result");
+                    ws.Cells["A1"].LoadFromDataTable(dt, true);
+                    string celdaFinHeader = ws.Cells[1, dt.Columns.Count].Address;
+                    
+                    using (ExcelRange rng = ws.Cells[string.Format("A1:{0}", celdaFinHeader)])
+                    {
+                        rng.AutoFitColumns();
+                        rng.Style.Font.Bold = true;
+                        rng.Style.Fill.PatternType = ExcelFillStyle.Solid;                      //Set Pattern for the background to Solid
+                        rng.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(79, 129, 189));  //Set color to dark blue
+                        rng.Style.Font.Color.SetColor(Color.White);
+                    }
+                    ws.Cells.AutoFitColumns();
+                    result = pck;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                return result;
+            }
+
             public static ExcelPackage ListToExcel<T>(List<T> query)
             {
                 ExcelPackage result = null;
@@ -532,7 +563,6 @@ namespace KinniNet.Business.Utils
                     //populate our Data
                     if (query.Any())
                     {
-
                         ws.Cells["A2"].LoadFromCollection(query);
                         //ws.Cells["A2"].LoadFromCollection(query, false, TableStyles.Custom, BindingFlags.Public, mi);
 

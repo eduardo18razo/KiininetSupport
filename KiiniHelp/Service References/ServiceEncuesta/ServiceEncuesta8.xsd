@@ -232,6 +232,7 @@
       <xs:element minOccurs="0" name="CorreosObligatorios" type="xs:int" />
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" minOccurs="0" name="Direccion" nillable="true" type="q49:ArrayOfDireccion" />
+      <xs:element minOccurs="0" name="Domicilio" type="xs:boolean" />
       <xs:element minOccurs="0" name="EsMoral" type="xs:boolean" />
       <xs:element minOccurs="0" name="EsResidente" type="xs:boolean" />
       <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="Frecuencia" nillable="true" type="q50:ArrayOfFrecuencia" />
@@ -267,6 +268,7 @@
       <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q75:ArrayOfTicket" />
       <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" minOccurs="0" name="Torre" nillable="true" type="q76:ArrayOfTorre" />
       <xs:element xmlns:q77="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="Ubicacion" nillable="true" type="q77:ArrayOfUbicacion" />
+      <xs:element minOccurs="0" name="UbicacionDomicilio" type="xs:boolean" />
       <xs:element xmlns:q78="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="Usuario" nillable="true" type="q78:ArrayOfUsuario" />
       <xs:element xmlns:q79="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" minOccurs="0" name="Zona" nillable="true" type="q79:ArrayOfZona" />
     </xs:sequence>
@@ -333,6 +335,8 @@
   <xs:complexType name="Menu">
     <xs:sequence>
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="GraficosDefault" nillable="true" type="q84:ArrayOfGraficosDefault" />
+      <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="GraficosFavoritos" nillable="true" type="q85:ArrayOfGraficosFavoritos" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IdPadre" nillable="true" type="xs:int" />
@@ -365,7 +369,7 @@
       <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
       <xs:element minOccurs="0" name="Rol" nillable="true" type="tns:Rol" />
       <xs:element minOccurs="0" name="TipoUsuario" nillable="true" type="tns:TipoUsuario" />
-      <xs:element xmlns:q84="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioRol" nillable="true" type="q84:ArrayOfUsuarioRol" />
+      <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioRol" nillable="true" type="q86:ArrayOfUsuarioRol" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -376,7 +380,7 @@
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element xmlns:q85="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q85:ArrayOfTicket" />
+      <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q87:ArrayOfTicket" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -387,8 +391,8 @@
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element xmlns:q86="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="SmsService" nillable="true" type="q86:ArrayOfSmsService" />
-      <xs:element xmlns:q87="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioLinkPassword" nillable="true" type="q87:ArrayOfUsuarioLinkPassword" />
+      <xs:element xmlns:q88="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="SmsService" nillable="true" type="q88:ArrayOfSmsService" />
+      <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="UsuarioLinkPassword" nillable="true" type="q89:ArrayOfUsuarioLinkPassword" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -399,8 +403,8 @@
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element xmlns:q88="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="TicketNotificacion" nillable="true" type="q88:ArrayOfTicketNotificacion" />
-      <xs:element xmlns:q89="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="TiempoInformeArbol" nillable="true" type="q89:ArrayOfTiempoInformeArbol" />
+      <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="TicketNotificacion" nillable="true" type="q90:ArrayOfTicketNotificacion" />
+      <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="TiempoInformeArbol" nillable="true" type="q91:ArrayOfTiempoInformeArbol" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -409,12 +413,12 @@
   <xs:complexType name="TipoGrupo">
     <xs:sequence>
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
-      <xs:element xmlns:q90="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" minOccurs="0" name="GrupoUsuario" nillable="true" type="q90:ArrayOfGrupoUsuario" />
-      <xs:element xmlns:q91="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="GrupoUsuarioDefaultOpcion" nillable="true" type="q91:ArrayOfGrupoUsuarioDefaultOpcion" />
+      <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" minOccurs="0" name="GrupoUsuario" nillable="true" type="q92:ArrayOfGrupoUsuario" />
+      <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="GrupoUsuarioDefaultOpcion" nillable="true" type="q93:ArrayOfGrupoUsuarioDefaultOpcion" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="RolTipoGrupo" nillable="true" type="tns:ArrayOfRolTipoGrupo" />
-      <xs:element xmlns:q92="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="TiempoInformeArbol" nillable="true" type="q92:ArrayOfTiempoInformeArbol" />
+      <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="TiempoInformeArbol" nillable="true" type="q94:ArrayOfTiempoInformeArbol" />
       <xs:element minOccurs="0" name="TipoSubGrupo" nillable="true" type="tns:ArrayOfSubRol" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
@@ -450,9 +454,9 @@
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element xmlns:q93="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaGeneral" nillable="true" type="q93:ArrayOfNotaGeneral" />
-      <xs:element xmlns:q94="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionGrupo" nillable="true" type="q94:ArrayOfNotaOpcionGrupo" />
-      <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionUsuario" nillable="true" type="q95:ArrayOfNotaOpcionUsuario" />
+      <xs:element xmlns:q95="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaGeneral" nillable="true" type="q95:ArrayOfNotaGeneral" />
+      <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionGrupo" nillable="true" type="q96:ArrayOfNotaOpcionGrupo" />
+      <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionUsuario" nillable="true" type="q97:ArrayOfNotaOpcionUsuario" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -467,7 +471,7 @@
       <xs:element minOccurs="0" name="EsUrl" type="xs:boolean" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element xmlns:q96="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="InformacionConsulta" nillable="true" type="q96:ArrayOfInformacionConsulta" />
+      <xs:element xmlns:q98="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="InformacionConsulta" nillable="true" type="q98:ArrayOfInformacionConsulta" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -476,7 +480,7 @@
   <xs:complexType name="TipoEncuesta">
     <xs:sequence>
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
-      <xs:element xmlns:q97="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" minOccurs="0" name="Encuesta" nillable="true" type="q97:ArrayOfEncuesta" />
+      <xs:element xmlns:q99="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" minOccurs="0" name="Encuesta" nillable="true" type="q99:ArrayOfEncuesta" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="RespuestaTipoEncuesta" nillable="true" type="tns:ArrayOfRespuestaTipoEncuesta" />

@@ -153,6 +153,7 @@ namespace KinniNet.Core.Operacion
                 Sla sla = new BusinessSla().ObtenerSla(arbol.InventarioArbolAcceso.First().IdSla ?? 0);
                 if (!new BusinessMascaras().ValidaEstructuraMascara(mascara))
                     throw new Exception("Datos Invalidos Consulte a su administrador");
+                DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                 Ticket ticket = new Ticket
                 {
                     IdTipoUsuario = usuarioSolicito.IdTipoUsuario,
@@ -167,9 +168,7 @@ namespace KinniNet.Core.Operacion
                     IdEncuesta = encuesta != null ? encuesta.Id : (int?)null,
                     IdCanal = idCanal,
                     IdEstatusTicket = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Abierto,
-                    FechaHoraAlta =
-                        DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff",
-                            CultureInfo.InvariantCulture),
+                    FechaHoraAlta = fechaMovimiento,
                     IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
                     Random = campoRandom,
                     ClaveRegistro = UtilsTicket.GeneraCampoRandom(),
@@ -177,6 +176,9 @@ namespace KinniNet.Core.Operacion
                     DentroSla = true,
                     TicketCorreo = new List<TicketCorreo>(),
                     TicketGrupoUsuario = new List<TicketGrupoUsuario>(),
+                    IdUsuarioUltimoMovimiento = usuarioLevanto.Id,
+                    FechaUltimoMovimiento = fechaMovimiento,
+                    FechaUltimoAgenteAsignado = fechaMovimiento
                 };
                 correo = usuarioSolicito.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuarioSolicito.CorreoUsuario.FirstOrDefault(f => f.Obligatorio).Correo;
                 if (correo != string.Empty)
@@ -237,18 +239,18 @@ namespace KinniNet.Core.Operacion
                 ticket.TicketEvento.Add(new TicketEvento
                 {
                     IdUsuarioRealizo = idUsuarioSolicito,
-                    FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                    FechaHora = fechaMovimiento,
                     TicketEventoEstatus = new List<TicketEventoEstatus>()
                     {
                         
                         new TicketEventoEstatus
                         {
-                            FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            FechaHora = fechaMovimiento,
                             TicketEstatus = new TicketEstatus
                             {
                                 IdEstatus = ticket.IdEstatusTicket,
                                 IdUsuarioMovimiento = idUsuario,
-                                FechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                FechaMovimiento = fechaMovimiento,
 
                             }
                         }
@@ -257,11 +259,11 @@ namespace KinniNet.Core.Operacion
                     {
                         new TicketEventoAsignacion
                         {
-                            FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            FechaHora =fechaMovimiento,
                             TicketAsignacion = new TicketAsignacion
                             {
                                 IdEstatusAsignacion = (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
-                                FechaAsignacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                FechaAsignacion =fechaMovimiento,
                             }
                         }
                     }
@@ -269,7 +271,7 @@ namespace KinniNet.Core.Operacion
                 });
 
 
-                DateTime fechaTicket = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd"), "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime fechaTicket = fechaMovimiento;
 
                 List<Frecuencia> frecuencias = db.Frecuencia.Where(s => s.IdTipoUsuario == ticket.IdTipoUsuario && s.IdTipoArbolAcceso == ticket.IdTipoArbolAcceso && s.IdArbolAcceso == ticket.IdArbolAcceso && s.Fecha == fechaTicket).ToList();
                 Frecuencia frecuencia = (frecuencias.Count > 0) ? frecuencias.LastOrDefault() : null;
@@ -282,14 +284,14 @@ namespace KinniNet.Core.Operacion
                         IdArbolAcceso = ticket.IdArbolAcceso,
                         NumeroVisitas = 1,
                         Fecha = fechaTicket,
-                        UltimaVisita = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture)
+                        UltimaVisita = fechaMovimiento
                     };
                     db.Frecuencia.AddObject(frecuencia);
                 }
                 else
                 {
                     frecuencia.NumeroVisitas++;
-                    frecuencia.UltimaVisita = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    frecuencia.UltimaVisita = fechaMovimiento;
                 }
                 if (mascara.CampoMascara.Any(a => a.IdTipoCampoMascara == (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CasillaDeVerificación))
                 {
@@ -517,8 +519,11 @@ namespace KinniNet.Core.Operacion
             try
             {
                 int totalRegistros = lstTickets.Count;
+                
                 if (totalRegistros > 0)
                 {
+                    List<EstatusTicket> lstEstatusEstatusTicket = new BusinessEstatus().ObtenerEstatusTicket(false);
+                    List<EstatusAsignacion> lstEstatusAsignaciones = new BusinessEstatus().ObtenerEstatusAsignacion(false);
                     result = new List<HelperTickets>();
                     foreach (Ticket ticket in lstTickets.Skip(pageIndex * pageSize).Take(pageSize))
                     {
@@ -527,78 +532,66 @@ namespace KinniNet.Core.Operacion
                         db.LoadProperty(ticket, "UsuarioSolicito");
                         db.LoadProperty(ticket.UsuarioSolicito, "TipoUsuario");
 
-                        db.LoadProperty(ticket, "EstatusTicket");
-                        db.LoadProperty(ticket, "EstatusAsignacion");
-                        db.LoadProperty(ticket, "TicketEstatus");
-                        db.LoadProperty(ticket, "TicketAsignacion");
+                        //db.LoadProperty(ticket, "EstatusTicket");
+                        //db.LoadProperty(ticket, "EstatusAsignacion");
+
                         db.LoadProperty(ticket, "Impacto");
                         db.LoadProperty(ticket, "TipoArbolAcceso");
                         db.LoadProperty(ticket, "Canal");
-                        db.LoadProperty(ticket, "TicketGrupoUsuario");
-                        db.LoadProperty(ticket, "TicketEvento");
-                        foreach (TicketGrupoUsuario ticketGrupoUsuario in ticket.TicketGrupoUsuario)
-                        {
-                            db.LoadProperty(ticketGrupoUsuario, "GrupoUsuario");
-                        }
-                        foreach (TicketAsignacion asignacion in ticket.TicketAsignacion)
-                        {
 
-                            db.LoadProperty(asignacion, "UsuarioAsignado");
-                            if (asignacion.UsuarioAsignado != null)
-                            {
-                                db.LoadProperty(asignacion.UsuarioAsignado, "UsuarioGrupo");
-                                foreach (UsuarioGrupo uGrupo in asignacion.UsuarioAsignado.UsuarioGrupo)
-                                {
-                                    db.LoadProperty(uGrupo, "GrupoUsuario");
-                                    db.LoadProperty(uGrupo, "SubGrupoUsuario");
-                                    if (uGrupo.SubGrupoUsuario != null)
-                                        db.LoadProperty(uGrupo.SubGrupoUsuario, "SubRol");
-                                }
-                            }
-                        }
-                        db.LoadProperty(ticket, "ArbolAcceso");
-                        db.LoadProperty(ticket.ArbolAcceso, "InventarioArbolAcceso");
-                        db.LoadProperty(ticket.ArbolAcceso.InventarioArbolAcceso.First(), "GrupoUsuarioInventarioArbol");
-                        foreach (GrupoUsuarioInventarioArbol grupoinv in ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol)
-                        {
-                            db.LoadProperty(grupoinv, "GrupoUsuario");
-                        }
+
+                        db.LoadProperty(ticket, "UsuarioUltimoMovimiento");
+                        db.LoadProperty(ticket, "UltimoAgenteAsignado");
+
+                        //foreach (TicketGrupoUsuario ticketGrupoUsuario in ticket.TicketGrupoUsuario)
+                        //{
+                        //    db.LoadProperty(ticketGrupoUsuario, "GrupoUsuario");
+                        //}
+                        //db.LoadProperty(ticket, "ArbolAcceso");
+                        //db.LoadProperty(ticket.ArbolAcceso, "InventarioArbolAcceso");
 
                         HelperTickets hticket = new HelperTickets();
                         hticket.IdTicket = ticket.Id;
                         hticket.IdUsuario = ticket.IdUsuarioLevanto;
-                        hticket.IdGrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().GrupoUsuario.Id;
+                        var gpoAgenteAtencion = (db.TicketGrupoUsuario.Where(w => w.IdTicket == ticket.Id).Join(db.GrupoUsuario.Where(
+                            w => w.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente),
+                            tgu => tgu.IdGrupoUsuario, gu => gu.Id, (tgu, gu) => gu)).Distinct().First();
+
                         hticket.FechaHora = ticket.FechaHoraAlta;
                         hticket.NumeroTicket = ticket.Id;
                         hticket.NombreUsuario = ticket.UsuarioLevanto.NombreCompleto;
                         hticket.Tipificacion = new BusinessArbolAcceso().ObtenerTipificacion(ticket.IdArbolAcceso);
-                        hticket.GrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().GrupoUsuario.Descripcion;
-                        hticket.FechaUltimoEvento = ticket.TicketEvento != null && ticket.TicketEvento.Count > 0 ? ticket.TicketEvento.Last().FechaHora : (DateTime?)null;
-                        hticket.EstatusTicket = ticket.EstatusTicket;
-                        hticket.EstatusAsignacion = ticket.EstatusAsignacion;
-                        hticket.FechaCambioEstatusAsignacion = ticket.TicketAsignacion.Last().FechaAsignacion;
-                        hticket.IdUsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.Id : 0;
-                        hticket.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
+
+                        hticket.FechaUltimoEvento = ticket.FechaUltimoMovimiento;
+                        hticket.EstatusTicket = lstEstatusEstatusTicket.Single(s=>s.Id == ticket.IdEstatusTicket);
+                        hticket.EstatusAsignacion = lstEstatusAsignaciones.Single(s=>s.Id == ticket.IdEstatusAsignacion);
+                        hticket.FechaCambioEstatusAsignacion = ticket.FechaUltimoAgenteAsignado;
+                        hticket.IdUsuarioAsignado = ticket.IdUsuarioUltimoAgenteAsignado != null ? ticket.UltimoAgenteAsignado.Id : 0;
+                        hticket.UsuarioAsignado = ticket.IdUsuarioUltimoAgenteAsignado != null ? ticket.UltimoAgenteAsignado.NombreCompleto : "";
                         hticket.IdSubRolAsignado = ObtenerSubRolAsignadoTicket(ticket.IdNivelTicket);
                         hticket.IdNivelAsignado = ticket.IdNivelTicket == null ? 0 : (int)ticket.IdNivelTicket;
                         hticket.TieneEncuesta = ticket.IdEncuesta.HasValue;
                         hticket.NivelUsuarioAsignado = ticket.IdNivelTicket != null ? ((BusinessVariables.EnumeradoresKiiniNet.EnumeradorNivelAsignacion)ticket.IdNivelTicket).ToString() : string.Empty;
                         hticket.NivelUsuarioAsignado = ticket.IdNivelTicket != null ? ((BusinessVariables.EnumeradoresKiiniNet.EnumeradorNivelAsignacion)ticket.IdNivelTicket).ToString() : string.Empty;
-                        hticket.EsPropietario = ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar ? false : idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
+                        //hticket.EsPropietario = ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar ? false : idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
+                        hticket.EsPropietario = ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar ? false : idUsuario == ticket.IdUsuarioUltimoAgenteAsignado;
                         hticket.CambiaEstatus = hticket.IdUsuarioAsignado == idUsuario;
-                        GrupoUsuario gpoAgenteTicket = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Select(s => s.GrupoUsuario).Distinct().FirstOrDefault();
-                        if (gpoAgenteTicket != null)
+                        if (gpoAgenteAtencion != null)
+                        {
+                            hticket.IdGrupoAsignado = gpoAgenteAtencion.Id;
+                            hticket.GrupoAsignado = gpoAgenteAtencion.Descripcion;
+
                             if (!hticket.EsPropietario)
                             {
                                 List<EstatusAsignacionSubRolGeneral> estatusPermitidos;
-                                if (gpoAgenteTicket.TieneSupervisor)
-                                    estatusPermitidos = db.EstatusAsignacionSubRolGeneral.Where(easrg => easrg.IdGrupoUsuario == gpoAgenteTicket.Id
+                                if (gpoAgenteAtencion.TieneSupervisor)
+                                    estatusPermitidos = db.EstatusAsignacionSubRolGeneral.Where(easrg => easrg.IdGrupoUsuario == gpoAgenteAtencion.Id
                                                      && easrg.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor
                                                      && easrg.IdEstatusAsignacionActual == ticket.IdEstatusAsignacion
                                                      && easrg.Propietario == hticket.EsPropietario
                                                      && easrg.Habilitado).Distinct().ToList();
                                 else
-                                    estatusPermitidos = db.EstatusAsignacionSubRolGeneral.Where(easrg => easrg.IdGrupoUsuario == gpoAgenteTicket.Id
+                                    estatusPermitidos = db.EstatusAsignacionSubRolGeneral.Where(easrg => easrg.IdGrupoUsuario == gpoAgenteAtencion.Id
                                                      && easrg.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel
                                                      && easrg.IdEstatusAsignacionActual == ticket.IdEstatusAsignacion
                                                      && easrg.Propietario == hticket.EsPropietario
@@ -607,14 +600,19 @@ namespace KinniNet.Core.Operacion
                             }
                             else
                             {
-                                hticket.Asigna = gpoAgenteTicket.TieneSupervisor
+                                //hticket.Asigna = gpoAgenteAtencion.TieneSupervisor
+                                //        ? (ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar && supervisor ? true
+                                //            : idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado)
+                                //        : lstEstatusPermitidos.Contains((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar);
+                                hticket.Asigna = gpoAgenteAtencion.TieneSupervisor
                                         ? (ticket.IdEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar && supervisor ? true
-                                            : idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado)
+                                            : idUsuario == ticket.IdUsuarioUltimoAgenteAsignado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado)
                                         : lstEstatusPermitidos.Contains((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar);
                             }
-                        hticket.ImagenPrioridad = ticket.Impacto.Descripcion == "ALTO" ? "~/assets/images/icons/prioridadalta.png" : ticket.Impacto.Descripcion == "MEDIO"
-                                            ? "~/assets/images/icons/prioridadmedia.png"
-                                            : "~/assets/images/icons/prioridadbaja.png";
+                        }
+                        hticket.ImagenPrioridad = ticket.Impacto.Descripcion == "ALTO"
+                            ? "~/assets/images/icons/prioridadalta.png"
+                            : ticket.Impacto.Descripcion == "MEDIO" ? "~/assets/images/icons/prioridadmedia.png" : "~/assets/images/icons/prioridadbaja.png";
                         hticket.ImagenSla = ticket.DentroSla ? "~/assets/images/icons/SLA_verde.png" : "~/assets/images/icons/SLA_rojo.png";
                         hticket.Total = totalRegistros;
                         hticket.IdImpacto = ticket.IdImpacto;
@@ -646,7 +644,7 @@ namespace KinniNet.Core.Operacion
                 ActualizaSla();
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 List<Ticket> lstTickets;
-
+                List<int> lstPrueba = new List<int>();
                 List<GrupoUsuario> gruposPertenece = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Select(s => s.GrupoUsuario).Distinct().ToList();
                 List<int?> lstEstatusPermitidos;
                 result = new List<HelperTickets>();
@@ -679,6 +677,7 @@ namespace KinniNet.Core.Operacion
                                         .Select(@t1 => @t1.@t1.t).Distinct().ToList();
                             }
                             lstTickets = lstTickets.Distinct().ToList();
+                            lstPrueba.AddRange(lstTickets.Select(s => s.Id));
                             if (lstTickets.Count > 0)
                                 result.AddRange(GeneraTicketsBandeja(db, lstTickets, lstEstatusPermitidos, idUsuario, grupoConSupervisor, supervisor, pageIndex, pageSize));
                         }
@@ -694,17 +693,15 @@ namespace KinniNet.Core.Operacion
                         bool supervisor = grupoConSupervisor ?
                                              db.SubGrupoUsuario.Join(db.UsuarioGrupo, sgu => sgu.Id, ug => ug.IdSubGrupoUsuario, (sgu, ug) => new { sgu, ug }).Any(@t => @t.sgu.IdGrupoUsuario == grupo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.Supervisor && @t.ug.IdUsuario == idUsuario)
                                              : db.SubGrupoUsuario.Join(db.UsuarioGrupo, sgu => sgu.Id, ug => ug.IdSubGrupoUsuario, (sgu, ug) => new { sgu, ug }).Any(@t => @t.sgu.IdGrupoUsuario == grupo.Id && @t.sgu.IdSubRol == (int)BusinessVariables.EnumSubRoles.PrimererNivel && @t.ug.IdUsuario == idUsuario);
+
                         var qryAsignacionPermitida = from easrg in db.EstatusAsignacionSubRolGeneral
                                                      join ug in db.UsuarioGrupo on easrg.IdGrupoUsuario equals ug.IdGrupoUsuario
                                                      join gu in db.GrupoUsuario on new { joingpoeasrg = easrg.IdGrupoUsuario, joingpoug = ug.IdGrupoUsuario } equals new { joingpoeasrg = gu.Id, joingpoug = gu.Id }
                                                      join sgu in db.SubGrupoUsuario on new { joinsreasrg = (int)easrg.IdSubRol, joingpoeasrgsgu = easrg.IdGrupoUsuario, joingpoug = ug.IdGrupoUsuario, joinidsguug = (int)ug.IdSubGrupoUsuario } equals new { joinsreasrg = sgu.IdSubRol, joingpoeasrgsgu = sgu.IdGrupoUsuario, joingpoug = sgu.IdGrupoUsuario, joinidsguug = sgu.Id }
                                                      where easrg.Habilitado && easrg.TieneSupervisor == grupoConSupervisor && gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && ug.IdUsuario == idUsuario
                                                      select easrg;
-                        if (!supervisor)
-                            qryAsignacionPermitida = from q in qryAsignacionPermitida
-                                                     where q.Propietario
-                                                     select q;
-                        List<int> lstEstatusAsignacionPermitidos = qryAsignacionPermitida.Select(s => s.IdEstatusAsignacionActual).Distinct().ToList();
+                       
+                        
                         var qryEstatusticket = from etsrg in db.EstatusTicketSubRolGeneral
                                                join ug in db.UsuarioGrupo on etsrg.IdGrupoUsuario equals ug.IdGrupoUsuario
                                                join gu in db.GrupoUsuario on new { joingpoeasrg = etsrg.IdGrupoUsuario, joingpoug = ug.IdGrupoUsuario } equals new { joingpoeasrg = gu.Id, joingpoug = gu.Id }
@@ -713,9 +710,15 @@ namespace KinniNet.Core.Operacion
                                                where etsrg.Habilitado && etsrg.TieneSupervisor == grupoConSupervisor && gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente && ug.IdUsuario == idUsuario
                                                select etsrg;
                         if (!supervisor)
+                        {
                             qryEstatusticket = from qe in qryEstatusticket
-                                               where (bool)qe.Propietario
-                                               select qe;
+                                where (bool) qe.Propietario
+                                select qe;
+                            qryAsignacionPermitida = from q in qryAsignacionPermitida
+                                where q.Propietario
+                                select q;
+                        }
+                        List<int> lstEstatusAsignacionPermitidos = qryAsignacionPermitida.Select(s => s.IdEstatusAsignacionActual).Distinct().ToList();
                         lstEstatusPermitidos = qryEstatusticket.Select(s => s.IdEstatusTicketActual).Distinct().ToList();
                         foreach (int? estatusAsignacionPermitido in lstEstatusAsignacionPermitidos)
                         {
@@ -750,11 +753,13 @@ namespace KinniNet.Core.Operacion
                             if (estatus != null && estatus.Count > 0)
                                 lstTickets = lstTickets.Where(w => estatus.Contains(w.IdEstatusTicket)).Distinct().ToList();
                             lstTickets = lstTickets.Distinct().ToList();
+                            lstPrueba.AddRange(lstTickets.Select(s => s.Id));
                             if (lstTickets.Count > 0)
                                 result.AddRange(GeneraTicketsBandeja(db, lstTickets, lstEstatusPermitidos, idUsuario, grupoConSupervisor, supervisor, pageIndex, pageSize));
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {

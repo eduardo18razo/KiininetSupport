@@ -99,6 +99,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
+        public DataTable GraficarConsultaTicketEficiencia(int idUsuario, List<int> tipoUsuario, List<int> area, List<int> grupos, List<int> agentes, List<int> estatusAsignacion, List<int> canal, List<int> tipoArbol, List<int> opciones, List<int> estatus, List<int> prioridad, List<bool?> sla, List<bool?> vip, List<int> organizaciones, List<int> ubicaciones, Dictionary<string, DateTime> fechas, List<int> filtroStackColumn, string stack, int tipoFecha)
+        {
+            try
+            {
+                using (BusinessConsultas negocio = new BusinessConsultas())
+                {
+                    return negocio.GraficarConsultaTicketEficiencia(idUsuario, tipoUsuario, area, grupos, agentes, estatusAsignacion, canal, tipoArbol, opciones, estatus, prioridad,sla, vip, organizaciones, ubicaciones, fechas, filtroStackColumn, stack, tipoFecha);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public string GraficarConsultaTicketGeografico(int idUsuario, List<int> grupos, List<int> tiposUsuario, List<int> organizaciones, List<int> ubicaciones, List<int> tipoArbol, List<int> tipificacion, List<int> prioridad, List<int> estatus, List<bool?> sla, List<bool?> vip, Dictionary<string, DateTime> fechas, List<int> filtroStackColumn, string stack, int tipoFecha)
         {
             try

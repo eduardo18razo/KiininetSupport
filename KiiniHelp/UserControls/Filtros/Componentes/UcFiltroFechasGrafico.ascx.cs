@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.UI;
+using KiiniHelp.Funciones;
+using KiiniHelp.ServiceParametrosSistema;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
     public partial class UcFiltroFechasGrafico : UserControl, IControllerModal
     {
+        private readonly ServiceParametrosClient _servicioParametros = new ServiceParametrosClient();
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
@@ -33,67 +37,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             get { return Convert.ToInt32(ddlTipoFiltro.SelectedValue); }
             set { ddlTipoFiltro.SelectedValue = value.ToString(); }
         }
+
         public Dictionary<string, DateTime> RangoFechas
         {
             get
             {
-                Dictionary<string, DateTime> result = null;
-
-                switch (ddlTipoFiltro.SelectedValue)
-                {
-                    case "1":
-                        if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                            throw new Exception("Debe Seleccionar un rango de fechas");
-                        if (DateTime.Parse(txtFechaInicio.Text) > DateTime.Parse(txtFechaFin.Text))
-                            throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
-                        result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", Convert.ToDateTime(txtFechaInicio.Text)},
-                            {"fin", Convert.ToDateTime(txtFechaFin.Text)}
-                        };
-                        break;
-                    case "2":
-                        int anioInicialSemana = Convert.ToInt32(txtFechaInicio.Text.Split('-')[0]);
-                        int semanaInicialSemana = Convert.ToInt32(txtFechaInicio.Text.Split('-')[1].Substring(1));
-                        int anioFinSemana = Convert.ToInt32(txtFechaFin.Text.Split('-')[0]);
-                        int semanaFinSemana = Convert.ToInt32(txtFechaFin.Text.Split('-')[1].Substring(1));
-
-                        result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anioInicialSemana, semanaInicialSemana)},
-                            {"fin", BusinessCadenas.Fechas.ObtenerFechaFinSemana(anioFinSemana, semanaFinSemana)}
-                        };
-
-                        break;
-                    case "3":
-
-                        int anioInicialMes = Convert.ToInt32(txtFechaInicio.Text.Split('-')[0]);
-                        int mesInicialMes = Convert.ToInt32(txtFechaInicio.Text.Split('-')[1]);
-                        int anioFinMes = Convert.ToInt32(txtFechaFin.Text.Split('-')[0]);
-                        int mesFinMes = Convert.ToInt32(txtFechaFin.Text.Split('-')[1]);
-                        if ((anioInicialMes > anioFinMes) || (mesInicialMes > mesFinMes))
-                            throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
-
-                        result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", new DateTime(anioInicialMes, mesInicialMes, 1)},
-                            {"fin", new DateTime(anioFinMes, mesFinMes, DateTime.DaysInMonth(anioFinMes, mesFinMes))}
-                        };
-
-                        break;
-                    case "4":
-                        if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                            throw new Exception("Debe Seleccionar un rango de fechas");
-                        if (int.Parse(txtFechaInicio.Text) > int.Parse(txtFechaFin.Text))
-                            throw new Exception("Año Inicio no puede se mayor a año Fin");
-                        result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", new DateTime(int.Parse(txtFechaInicio.Text), 01, 1)},
-                            {"fin", new DateTime(int.Parse(txtFechaFin.Text), 12, DateTime.DaysInMonth(int.Parse(txtFechaFin.Text), 12))}
-                        };
-                        break;
-                }
-                return result;
+                return Metodos.ManejoFechas.ObtenerFechas(int.Parse(ddlTipoFiltro.SelectedValue), txtFechaInicio.Text.Trim(), txtFechaFin.Text.Trim());
             }
         }
 
@@ -147,11 +96,64 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
+        private void LlenaFrecuencias()
+        {
+            try
+            {
+                Metodos.LlenaComboCatalogo(ddlTipoFiltro, _servicioParametros.ObtenerFrecuenciasFecha());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void ObtenerFechasParametro()
+        {
+            try
+            {
+                GraficosDefault parametrosGrafico = _servicioParametros.ObtenerParametrosGraficoDefault();
+                if (parametrosGrafico != null)
+                {
+                    ddlTipoFiltro.SelectedValue = parametrosGrafico.IdFrecuenciaFecha.ToString();
+                    ddlTipoFiltro_OnSelectedIndexChanged(ddlTipoFiltro, null);
+                    switch (parametrosGrafico.IdFrecuenciaFecha)
+                    {
+                        case 1:
+                            txtFechaInicio.Text = DateTime.Now.AddDays(-parametrosGrafico.Periodo).ToString("yyyy-MM-dd");
+                            txtFechaFin.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                            break;
+                        case 2:
+                            txtFechaInicio.Text = string.Format("{0}-W{1}", DateTime.Now.AddDays(-(parametrosGrafico.Periodo * 7)).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Now.AddDays(-(parametrosGrafico.Periodo* 7)), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday));
+                            txtFechaFin.Text = string.Format("{0}-W{1}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday));
+                            break;
+                        case 3:
+                            txtFechaInicio.Text = string.Format("{0}-{1}", DateTime.Now.AddMonths(-parametrosGrafico.Periodo).Year, DateTime.Now.AddDays(-parametrosGrafico.Periodo).Month);
+                            txtFechaFin.Text = string.Format("{0}-{1}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).Year, DateTime.Now.Month);
+                            break;
+                        case 4:
+                            txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddYears(-parametrosGrafico.Periodo).Year);
+                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.Year);
+                            break;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-
+                if (!IsPostBack)
+                {
+                    LlenaFrecuencias();
+                    ObtenerFechasParametro();
+                }
             }
             catch (Exception ex)
             {
@@ -163,8 +165,6 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 Alerta = _lstError;
             }
         }
-
-
 
         protected void ddlTipoFiltro_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -192,7 +192,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                         txtFechaFin.Attributes["type"] = "week";
                         DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
                         DateTime date1 = new DateTime(DateTime.Now.Year, 12, 31);
-                        Calendar cal = dfi.Calendar;
+                        System.Globalization.Calendar cal = dfi.Calendar;
                         txtFechaInicio.Attributes["min"] = string.Format("{0}-W{1}", DateTime.Now.Year, "01");
                         txtFechaInicio.Attributes["max"] = string.Format("{0}-W{1}", DateTime.Now.Year, cal.GetWeekOfYear(date1, dfi.CalendarWeekRule, dfi.FirstDayOfWeek));
 

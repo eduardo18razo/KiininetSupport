@@ -1,27 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcFiltroServicioIncidenteEncuesta.ascx.cs" Inherits="KiiniHelp.UserControls.Filtros.Componentes.UcFiltroServicioIncidenteEncuesta" %>
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
-        <header class="modal-header" id="panelAlerta" runat="server" visible="false">
-            <div class="alert alert-danger">
-                <div>
-                    <div class="float-left">
-                        <asp:Image runat="server" ImageUrl="~/Images/error.jpg" />
-                    </div>
-                    <div class="float-left">
-                        <h3>Error</h3>
-                    </div>
-                    <div class="clearfix clear-fix" />
-                </div>
-                <hr />
-                <asp:Repeater runat="server" ID="rptError">
-                    <ItemTemplate>
-                        <ul>
-                            <li><%# Container.DataItem %></li>
-                        </ul>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
-        </header>
 
 
         <div class="modal-header">

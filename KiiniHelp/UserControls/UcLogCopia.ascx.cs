@@ -127,19 +127,19 @@ namespace KiiniHelp.UserControls
                     throw new Exception(sb.ToString());
                 }
                 
-                int tiempoSesion = int.Parse(ConfigurationManager.AppSettings["TiempoSession"]) + 5;
+                double tiempoSesion = double.Parse(ConfigurationManager.AppSettings["TiempoSession"]) + 5;
                 if (!_servicioSeguridad.Autenticate(txtUsuario.Text.Trim(), txtpwd.Text.Trim())) throw new Exception("Usuario y/o contraseña no validos");
 
 
                 Usuario user = _servicioSeguridad.GetUserDataAutenticate(txtUsuario.Text.Trim(), txtpwd.Text.Trim());
                 
                 Session["UserData"] = user;
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.NombreUsuario, DateTime.Now, DateTime.Now.AddMinutes(tiempoSesion), true, Session["UserData"].ToString(), FormsAuthentication.FormsCookiePath);
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, user.NombreUsuario, DateTime.Now, DateTime.Now.AddDays(5), true, Session["UserData"].ToString(), FormsAuthentication.FormsCookiePath);
                 string encTicket = FormsAuthentication.Encrypt(ticket);
                 Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName)
                 {
                     Name = FormsAuthentication.FormsCookieName,
-                    Expires = DateTime.Now.AddMinutes(tiempoSesion),
+                    Expires = DateTime.Now.AddDays(tiempoSesion),
                     Value = encTicket
                 });
                 List<int> roles = user.UsuarioRol.Select(s => s.RolTipoUsuario.IdRol).ToList();

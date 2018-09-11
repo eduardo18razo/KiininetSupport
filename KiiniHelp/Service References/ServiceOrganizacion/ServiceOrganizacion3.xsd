@@ -318,6 +318,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerOrganizacionesTipoUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="tiposUsuario" nillable="true" type="q23:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerOrganizacionesTipoUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="ObtenerOrganizacionesTipoUsuarioResult" nillable="true" type="q24:ArrayOfOrganizacion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ObtenerOrganizacionesByIdOrganizacion">
     <xs:complexType>
       <xs:sequence>
@@ -328,7 +342,7 @@
   <xs:element name="ObtenerOrganizacionesByIdOrganizacionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ObtenerOrganizacionesByIdOrganizacionResult" nillable="true" type="q23:ArrayOfint" />
+        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ObtenerOrganizacionesByIdOrganizacionResult" nillable="true" type="q25:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -350,7 +364,7 @@
   <xs:element name="BuscarPorPalabraResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="BuscarPorPalabraResult" nillable="true" type="q24:ArrayOfOrganizacion" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="BuscarPorPalabraResult" nillable="true" type="q26:ArrayOfOrganizacion" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

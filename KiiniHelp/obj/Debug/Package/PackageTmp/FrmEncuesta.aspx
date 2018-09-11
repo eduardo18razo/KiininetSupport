@@ -27,8 +27,15 @@
             <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
                 <Scripts>
                     <asp:ScriptReference Path="~/assets/js/jquery.js" />
-                    <asp:ScriptReference Path="~/assets/js/bootstrap.js" />
-                    <asp:ScriptReference Path="~/assets/js/Notificaciones.js" />
+                <asp:ScriptReference Path="~/assets/js/bootstrap.js" />
+                <asp:ScriptReference Path="~/assets/js/bootstrap-markdown.js" />
+                <asp:ScriptReference Path="assets/js/imagesloaded.js" />
+                <asp:ScriptReference Path="assets/js/masonry.js" />
+                <asp:ScriptReference Path="assets/js/main.js" />
+                <asp:ScriptReference Path="~/assets/js/bootstrap-notify.js" />
+                <asp:ScriptReference Path="~/assets/js/bootstrap-notify.min.js" />
+                <asp:ScriptReference Path="~/assets/js/Notificaciones.js" />
+                <asp:ScriptReference Path="~/assets/js/validation.js" />
                 </Scripts>
             </asp:ScriptManager>
             <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">

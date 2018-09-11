@@ -219,6 +219,42 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="ParametrosUsuario" nillable="true" type="tns:ParametrosUsuario" />
+  <xs:complexType name="ArrayOfGraficosDefault">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GraficosDefault" nillable="true" type="tns:GraficosDefault" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGraficosDefault" nillable="true" type="tns:ArrayOfGraficosDefault" />
+  <xs:complexType name="GraficosDefault">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FrecuenciaFecha" nillable="true" type="tns:FrecuenciaFecha" />
+      <xs:element minOccurs="0" name="Geografico" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdFrecuenciaFecha" type="xs:int" />
+      <xs:element minOccurs="0" name="IdMenu" type="xs:int" />
+      <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="Menu" nillable="true" type="q33:Menu" />
+      <xs:element minOccurs="0" name="Pareto" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Periodo" type="xs:int" />
+      <xs:element minOccurs="0" name="Pie" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Stack" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="GraficosDefault" nillable="true" type="tns:GraficosDefault" />
+  <xs:complexType name="FrecuenciaFecha">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GraficosDefault" nillable="true" type="tns:ArrayOfGraficosDefault" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="PeriodoMaximo" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="FrecuenciaFecha" nillable="true" type="tns:FrecuenciaFecha" />
   <xs:complexType name="ArrayOfSubRolEscalacionPermitida">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="SubRolEscalacionPermitida" nillable="true" type="tns:SubRolEscalacionPermitida" />
@@ -227,19 +263,20 @@
   <xs:element name="ArrayOfSubRolEscalacionPermitida" nillable="true" type="tns:ArrayOfSubRolEscalacionPermitida" />
   <xs:complexType name="SubRolEscalacionPermitida">
     <xs:sequence>
-      <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusAsignacion" nillable="true" type="q33:EstatusAsignacion" />
+      <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusAsignacion" nillable="true" type="q34:EstatusAsignacion" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IdEstatusAsignacion" type="xs:int" />
       <xs:element minOccurs="0" name="IdSubRol" type="xs:int" />
       <xs:element minOccurs="0" name="IdSubRolPermitido" type="xs:int" />
-      <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRol" nillable="true" type="q34:SubRol" />
-      <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRolPermitido" nillable="true" type="q35:SubRol" />
+      <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRol" nillable="true" type="q35:SubRol" />
+      <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRolPermitido" nillable="true" type="q36:SubRol" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SubRolEscalacionPermitida" nillable="true" type="tns:SubRolEscalacionPermitida" />
   <xs:complexType name="ParametrosGenerales">
     <xs:sequence>
+      <xs:element minOccurs="0" name="DiasCierreTicket" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="FormularioPortal" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FrecuenciaDemonioSegundos" type="xs:int" />
       <xs:element minOccurs="0" name="FrecuenciaNotificacionMinutos" type="xs:int" />
@@ -278,4 +315,10 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="ParametroPassword" nillable="true" type="tns:ParametroPassword" />
+  <xs:complexType name="ArrayOfFrecuenciaFecha">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FrecuenciaFecha" nillable="true" type="tns:FrecuenciaFecha" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFrecuenciaFecha" nillable="true" type="tns:ArrayOfFrecuenciaFecha" />
 </xs:schema>

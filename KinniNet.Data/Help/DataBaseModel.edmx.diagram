@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="274a177c190245e2b35a53a2cf71a3b9" Name="Diagram1" ZoomLevel="75" ShowGrid="true">
+      <Diagram DiagramId="274a177c190245e2b35a53a2cf71a3b9" Name="Diagram1" ZoomLevel="92" ShowGrid="true">
         <EntityTypeShape EntityType="KiiniNet_v2Model.TipoSubGrupo" Width="1.5" PointX="5.875" PointY="58.25" IsExpanded="true" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TipoSubGrupo_TipoGrupo" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.Campus" Width="1.5" PointX="3" PointY="134.875" IsExpanded="true" />
@@ -186,7 +186,43 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_GrupoUsuarioInventarioArbol_GrupoUsuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_SubGrupoUsuario_GrupoUsuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketGrupoUsuario_GrupoUsuario" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_UsuarioGrupo_GrupoUsuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_UsuarioGrupo_GrupoUsuario" ManuallyRouted="true" >
+          <ConnectorPoint PointX="8.0859405" PointY="99.124410807291667" />
+          <ConnectorPoint PointX="8.0859405" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="8.2291666666666661" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="8.3958333333333339" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="8.5416666666666661" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="8.8333333333333339" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="9.6666666666666661" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="9.8333333333333339" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="10.072918666666666" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="10.239585333333334" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="10.556666666666667" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="10.723333333333335" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="10.744166666666667" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="10.910833333333335" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="10.924166666666666" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="11.208333333333334" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="12.548597893297236" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="12.833333333333334" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="13.895112281528748" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="14.061778948195416" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="18.322916666666668" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="18.739583333333332" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="20.729166666666668" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="20.895833333333332" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="21.072914166666667" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="21.239580833333331" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="21.260414166666667" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="21.708333333333332" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="22.557292666666669" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="22.723959333333333" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="23.125" PointY="98.603445614862082" />
+          <ConnectorPoint PointX="23.125" PointY="94.499746093749991" />
+          <ConnectorPoint PointX="23.322916666666668" PointY="94.499746093749991" />
+          <ConnectorPoint PointX="23.552083333333332" PointY="94.499746093749991" />
+          <ConnectorPoint PointX="23.75" PointY="94.499746093749991" />
+        </AssociationConnector>
         <EntityTypeShape EntityType="KiiniNet_v2Model.PreTicket" Width="2.125" PointX="29.25" PointY="100.875" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_PreTicket_ArbolAcceso" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_PreTicket_UsuarioLevanto" />
@@ -212,29 +248,52 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_EstatusAsignacionSubRolGeneral_GrupoUsuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_EstatusAsignacionSubRolGeneral_Rol" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_EstatusAsignacionSubRolGeneral_SubRol1" />
-        <EntityTypeShape EntityType="KiiniNet_v2Model.Ticket" Width="3.625" PointX="18.75" PointY="92.75" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_tblTicket_tblArbolAcceso" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Canal" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_EstatusAsignacion" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_EstatusTicket" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Prioridad" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Organizacion" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_tblRespuestaEncuesta_tblTicket" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_tblTicket_tblSLAEstimadoTicket" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_TipoUsuario" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Ubicacion" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketAsignacion_Ticket" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketGrupoUsuario_Ticket" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEstatus" Width="1.5" PointX="29.125" PointY="96.375" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEstatus_EstatusTicket" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEstatus_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEstatus_EstatusTicket" ManuallyRouted="true" >
+          <ConnectorPoint PointX="8.25" PointY="91.138561808238762" />
+          <ConnectorPoint PointX="8.2703139771708951" PointY="91.173167892037981" />
+          <ConnectorPoint PointX="8.3546860228291067" PointY="91.316900754283267" />
+          <ConnectorPoint PointX="8.4265639771709022" PointY="91.4393491793426" />
+          <ConnectorPoint PointX="8.7921860228291013" PointY="92.062208358736228" />
+          <ConnectorPoint PointX="10.597813977170896" PointY="95.138204347727779" />
+          <ConnectorPoint PointX="10.682186022829107" PointY="95.281937209973066" />
+          <ConnectorPoint PointX="10.965313977170895" PointY="95.764262735468279" />
+          <ConnectorPoint PointX="11.049686022829107" PointY="95.907995597713565" />
+          <ConnectorPoint PointX="12.75" PointY="98.804582882612181" />
+          <ConnectorPoint PointX="12.75" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="18.322916666666668" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="18.739583333333332" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="20.729166666666668" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="20.895833333333332" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="21.260414166666667" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="21.708333333333332" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="22.557292666666669" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="22.723959333333333" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="23.041666666666668" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="23.708333333333332" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="23.721249999999998" PointY="97.187019995524352" />
+          <ConnectorPoint PointX="25.615289154558525" PointY="113.32992752327972" />
+          <ConnectorPoint PointX="25.634710845441475" PointY="113.49545871581161" />
+          <ConnectorPoint PointX="25.709039154558525" PointY="114.12895935801485" />
+          <ConnectorPoint PointX="25.728460845441475" PointY="114.29449055054674" />
+          <ConnectorPoint PointX="25.834039154558525" PointY="115.1943351376617" />
+          <ConnectorPoint PointX="25.853460845441475" PointY="115.35986633019358" />
+          <ConnectorPoint PointX="26.758261797990993" PointY="123.07149049217468" />
+          <ConnectorPoint PointX="28.367202826402735" PointY="105.95115516459485" />
+          <ConnectorPoint PointX="28.382797173597265" PointY="105.7852196526833" />
+          <ConnectorPoint PointX="28.492202826402735" PointY="104.62106171918127" />
+          <ConnectorPoint PointX="28.507797173597265" PointY="104.45512620726971" />
+          <ConnectorPoint PointX="28.867202826402735" PointY="100.63078138294047" />
+          <ConnectorPoint PointX="28.882797173597265" PointY="100.46484587102891" />
+          <ConnectorPoint PointX="29.125" PointY="97.8876267361575" />
+        </AssociationConnector>
         <EntityTypeShape EntityType="KiiniNet_v2Model.Menu" Width="1.5" PointX="6.75" PointY="47.125" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Menu_Menu" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.AliasOrganizacion" Width="1.5" PointX="3" PointY="143.875" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_AliasOrganizacion_TipoUsuario" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.AliasUbicacion" Width="1.5" PointX="3" PointY="74.5" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_AliasUbicacion_TipoUsuario" />
-        <EntityTypeShape EntityType="KiiniNet_v2Model.CorreoUsuario" Width="1.5" PointX="18.75" PointY="103.875" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.CorreoUsuario" Width="1.5" PointX="17.375" PointY="104.375" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.UsuarioRol" Width="1.5" PointX="23.75" PointY="100" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Estado_Pais" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_UsuarioRol_RolTipoUsuario" />
@@ -255,7 +314,6 @@
         <EntityTypeShape EntityType="KiiniNet_v2Model.ConversacionArchivo" Width="1.5" PointX="29.375" PointY="88.875" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketConversacion" Width="1.5" PointX="27.125" PointY="88.25" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_ConversacionArchivo_TicketConversacion" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketConversacion_Ticket" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.Frecuencia" Width="1.5" PointX="23.25" PointY="106.75" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Frecuencia_ArbolAcceso" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario" />
@@ -278,9 +336,6 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_Usuario_Puesto" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Sms_Service_Usuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TelefonoUsuario_Usuario" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario1" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario2" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketAsignacion_UsuarioAsignado" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketAsignacion_UsuarioAsigno" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketConversacion_Usuario" />
@@ -311,20 +366,16 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_tblInventarioArbolAcceso_tblMascara" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Mascara_Usuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Mascara_UsuarioAlta" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Mascara" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TipoCampoMascara" Width="1.5" PointX="0.75" PointY="9" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.Catalogos" Width="1.5" PointX="5.375" PointY="9" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Catalogos_Usuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Catalogos_Usuario1" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.MascaraSeleccionCatalogo" Width="1.5" PointX="23.125" PointY="123" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_MascaraSeleccionCatalogo_Ticket" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TipoArbolAcceso" Width="1.5" PointX="7.375" PointY="9" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoArbolAcceso" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_Frecuencia_TipoArbolAcceso" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_HitConsulta_TipoArbolAcceso" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_TipoArbolAcceso" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.NivelTicket" Width="1.5" PointX="17.5" PointY="4.75" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_NivelTicket" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.CampoMascara" Width="1.5" PointX="21" PointY="38.125" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_tblCampoMascara_tblCatCatalogos" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_tblCampoMascara_tblCatTipoCampoMascara" />
@@ -336,11 +387,82 @@
         <EntityTypeShape EntityType="KiiniNet_v2Model.InformacionConsultaRate" Width="1.5" PointX="30" PointY="92" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_InformacionConsultaRate_InformacionConsulta" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_InformacionConsultaRate_Usuario" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_HitGrupoUsuario_GrupoUsuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_HitGrupoUsuario_GrupoUsuario" ManuallyRouted="true" >
+          <ConnectorPoint PointX="6.9843735" PointY="99.124410807291667" />
+          <ConnectorPoint PointX="6.9843735" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="7.2838534166666671" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="7.4505200833333332" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="7.5738964791666668" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="7.7405631458333328" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="8.8333333333333339" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="9.6666666666666661" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="9.8333333333333339" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="10.8275" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="10.8275" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="10.924166666666666" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="11.090833333333334" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="11.107728377486156" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="11.274395044152824" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="18.322916666666668" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="18.739583333333332" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="21.260414166666667" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="21.708333333333332" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="22.557292666666669" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="22.723959333333333" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="23.239583333333336" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="23.489583333333336" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="23.515" PointY="96.148837598499867" />
+          <ConnectorPoint PointX="23.515" PointY="97.5142956888021" />
+          <ConnectorPoint PointX="23.541666666666668" PointY="97.5142956888021" />
+          <ConnectorPoint PointX="23.842982424472115" PointY="97.5142956888021" />
+          <ConnectorPoint PointX="25.479166666666668" PointY="97.5142956888021" />
+          <ConnectorPoint PointX="25.927083333333332" PointY="97.5142956888021" />
+          <ConnectorPoint PointX="26" PointY="97.5142956888021" />
+        </AssociationConnector>
         <AssociationConnector Association="KiiniNet_v2Model.FK_HitGrupoUsuario_Rol" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TiempoInformeArbol" Width="1.5" PointX="32.25" PointY="91.375" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TiempoInformeArbol_ArbolAcceso" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TiempoInformeArbol_GrupoUsuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TiempoInformeArbol_GrupoUsuario" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.884767875" PointY="99.124410807291667" />
+          <ConnectorPoint PointX="7.884767875" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="8.8333333333333339" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="9.6666666666666661" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="9.8333333333333339" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="10.64" PointY="99.499410807291667" />
+          <ConnectorPoint PointX="10.64" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="10.924166666666666" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="11.090833333333334" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="18.322916666666668" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="18.739583333333332" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="21.166666666666668" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="21.708333333333332" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="22.557292666666669" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="22.723959333333333" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="23.322916666666668" PointY="94.723242361671737" />
+          <ConnectorPoint PointX="23.322916666666668" PointY="96.535" />
+          <ConnectorPoint PointX="23.354166666666668" PointY="96.535" />
+          <ConnectorPoint PointX="23.598333333333333" PointY="96.535" />
+          <ConnectorPoint PointX="25.479166666666668" PointY="96.535" />
+          <ConnectorPoint PointX="25.927083333333332" PointY="96.535" />
+          <ConnectorPoint PointX="26.666666666666668" PointY="96.535" />
+          <ConnectorPoint PointX="26.833333333333332" PointY="96.535" />
+          <ConnectorPoint PointX="27.791666666666668" PointY="96.535" />
+          <ConnectorPoint PointX="27.958333333333332" PointY="96.535" />
+          <ConnectorPoint PointX="28.416666666666668" PointY="96.535" />
+          <ConnectorPoint PointX="28.583333333333332" PointY="96.535" />
+          <ConnectorPoint PointX="28.791666666666668" PointY="96.535" />
+          <ConnectorPoint PointX="28.958333333333332" PointY="96.535" />
+          <ConnectorPoint PointX="31.291666666666668" PointY="96.535" />
+          <ConnectorPoint PointX="31.458333333333332" PointY="96.535" />
+          <ConnectorPoint PointX="31.541666666666668" PointY="96.535" />
+          <ConnectorPoint PointX="31.802083333333332" PointY="96.535" />
+          <ConnectorPoint PointX="31.947916666666668" PointY="96.535" />
+          <ConnectorPoint PointX="32.114583333333336" PointY="96.535" />
+          <ConnectorPoint PointX="32.593748" PointY="96.535" />
+          <ConnectorPoint PointX="32.593748" PointY="95.470602213541667" />
+        </AssociationConnector>
         <AssociationConnector Association="KiiniNet_v2Model.FK_TiempoInformeArbol_TipoGrupo" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TiempoInformeArbol_TipoNotificacion" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.DiasFeriados" Width="1.5" PointX="9" PointY="99.75" />
@@ -358,7 +480,6 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_InventarioArbolAcceso_Encuesta" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_tblEncuesta_tblCatTipoEncuesta" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_tblRespuestaEncuesta_tblEncuesta" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Encuesta" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.ParametrosUsuario" Width="1.5" PointX="13.5" PointY="106.75" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_ParametrosUsuario_Organizacion" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario" />
@@ -368,12 +489,10 @@
         <AssociationConnector Association="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketCorreo" Width="1.5" PointX="23.125" PointY="74.375" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketCorreo_Ticket" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEvento" Width="1.5" PointX="32.125" PointY="99.875" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoAsignacion" Width="1.5" PointX="31.875" PointY="96.875" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoConversacion" Width="1.5" PointX="32.375" PointY="87.875" />
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketEventoEstatus" Width="1.5" PointX="34.375" PointY="96.75" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEvento_Ticket" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoAsignacion_TicketAsignacion" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoConversacion_TicketConversacion" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEventoEstatus_TicketEstatus" />
@@ -398,9 +517,43 @@
         <EntityTypeShape EntityType="KiiniNet_v2Model.TicketNotificacion" Width="1.5" PointX="33.25" PointY="104" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_SmsService" />
-        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_Ticket" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_TipoNotificacion" />
         <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_Usuario" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.FrecuenciaFecha" Width="1.5" PointX="11.375" PointY="1.5" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.GraficosDefault" Width="1.5" PointX="13.625" PointY="24.375" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.GraficosFavoritos" Width="1.5" PointX="21.75" PointY="68.875" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GraficosDefault_FrecuenciaFecha" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GraficosDefault_Menu" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GraficosFavoritos_Menu" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_GraficosFavoritos_Usuario" />
+        <EntityTypeShape EntityType="KiiniNet_v2Model.Ticket" Width="4.125" PointX="25.625" PointY="55.75" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_tblTicket_tblArbolAcceso" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Canal" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Encuesta" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_EstatusAsignacion" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_EstatusTicket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Prioridad" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Mascara" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_MascaraSeleccionCatalogo_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_NivelTicket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Organizacion" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_tblRespuestaEncuesta_tblTicket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_tblTicket_tblSLAEstimadoTicket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_TipoArbolAcceso" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_TipoUsuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Ubicacion" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario1" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario2" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketAsignacion_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketConversacion_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketCorreo_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEstatus_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketEvento_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketGrupoUsuario_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_TicketNotificacion_Ticket" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario_UltimoAgente" />
+        <AssociationConnector Association="KiiniNet_v2Model.FK_Ticket_Usuario_UltimoMovimiento" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

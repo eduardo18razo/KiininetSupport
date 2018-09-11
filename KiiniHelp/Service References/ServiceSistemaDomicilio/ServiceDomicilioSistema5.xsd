@@ -73,4 +73,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfMunicipio" nillable="true" type="tns:ArrayOfMunicipio" />
+  <xs:complexType name="ArrayOfEstado">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Estado" nillable="true" type="tns:Estado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEstado" nillable="true" type="tns:ArrayOfEstado" />
 </xs:schema>

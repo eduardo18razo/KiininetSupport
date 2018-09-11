@@ -34,8 +34,8 @@
             // serviceInstaller1
             // 
             this.serviceInstaller1.Description = "Servicio controlador envio de notificaciones 2020";
-            this.serviceInstaller1.DisplayName = "KiiniNet Notification 2020";
-            this.serviceInstaller1.ServiceName = "Notificaciones Kiininet 2020";
+            this.serviceInstaller1.DisplayName = "KiiniNet Notification 5050";
+            this.serviceInstaller1.ServiceName = "Notificaciones Kiininet 5050";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // serviceProcessInstaller1

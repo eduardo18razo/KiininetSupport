@@ -79,6 +79,9 @@ namespace KinniNet.Data.Help
                 _parametrosGenerales = CreateObjectSet<ParametrosGenerales>();
                 _parametroPassword = CreateObjectSet<ParametroPassword>();
                 _parametrosUsuario = CreateObjectSet<ParametrosUsuario>();
+                _frecuenciaFechas = CreateObjectSet<FrecuenciaFecha>();
+                _graficosDefault = CreateObjectSet<GraficosDefault>();
+                _graficosFavoritos = CreateObjectSet<GraficosFavoritos>();
 
                 //Ubicacion
                 _pais = CreateObjectSet<Pais>();
@@ -1183,6 +1186,28 @@ namespace KinniNet.Data.Help
                 return _parametrosUsuario;
             }
         }
+        public ObjectSet<FrecuenciaFecha> FrecuenciaFecha
+        {
+            get
+            {
+                return _frecuenciaFechas;
+            }
+        }
+        public ObjectSet<GraficosDefault> GraficosDefault
+        {
+            get
+            {
+                return _graficosDefault;
+            }
+        }
+        public ObjectSet<GraficosFavoritos> GraficosFavoritos
+        {
+            get
+            {
+                return _graficosFavoritos;
+            }
+        }
+
         public ObjectSet<ParametroDatosAdicionales> ParametroDatosAdicionales
         {
             get
@@ -1197,6 +1222,9 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<ParametrosGenerales> _parametrosGenerales;
         private readonly ObjectSet<ParametroPassword> _parametroPassword;
         private readonly ObjectSet<ParametrosUsuario> _parametrosUsuario;
+        private readonly ObjectSet<FrecuenciaFecha> _frecuenciaFechas;
+        private readonly ObjectSet<GraficosDefault> _graficosDefault;
+        private readonly ObjectSet<GraficosFavoritos> _graficosFavoritos;
 
         #region Usuario
 

@@ -166,7 +166,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
                                     else
                                     {
                                         result = data.OrderBy(key =>
-                                        p.GetValue(key, null)).ToList();
+                                            p.GetValue(key, null)).ToList();
                                         GridViewSortDirection = "DESC";
                                     }
                                 }
@@ -175,7 +175,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
                                     if (isPageIndexChanging)
                                     {
                                         result = data.OrderBy(key =>
-                                        p.GetValue(key, null)).ToList();
+                                            p.GetValue(key, null)).ToList();
                                     }
                                     else
                                     {
@@ -187,6 +187,10 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
                             }
                         }
                     }
+                }
+                else
+                {
+                    result = data.OrderBy(o => o.Titulo).ToList();
                 }
             }
             _sorted = true;

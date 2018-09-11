@@ -97,12 +97,12 @@ namespace KiiniHelp
                 if (Session["UserData"] != null)
                 {
                     Usuario userData = (Usuario)Session["UserData"];
-                    ((Usuario) Session["UserData"]).Foto = _servicioUsuarios.ObtenerFoto(userData.Id);
+                    ((Usuario)Session["UserData"]).Foto = _servicioUsuarios.ObtenerFoto(userData.Id);
                     userData = (Usuario)Session["UserData"];
                     imgPerfil.ImageUrl = userData.Foto != null ? "~/DisplayImages.ashx?id=" + userData : "~/assets/images/profiles/profile-1.png";
                 }
-                
-                
+
+
             }
             catch (Exception ex)
             {
@@ -183,12 +183,30 @@ namespace KiiniHelp
                     if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
                         Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx?confirmaCuenta=true"));
 
+                var js = string.Format("var IdealTimeOut = {0} * 1000 * 60;" +
+                                           "var idleSecondsTimer = null;" +
+                                           "var idleSecondsCounter = 0;" +
+                                           "document.onclick = function () {{ idleSecondsCounter = 0; }};" +
+                                           "document.onmousemove = function () {{ idleSecondsCounter = 0; }};" +
+                                           "document.onkeypress = function () {{ idleSecondsCounter = 0; }};" +
+                                           "idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);" +
+
+                                           "function CheckIdleTime() {{" +
+                                           "idleSecondsCounter++;" +
+                                           "var oPanel = document.getElementById(\"timeOut\");" +
+                                           "if (oPanel) {{" +
+                                           "oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);" +
+                                           "}}" +
+                                           "if (idleSecondsCounter >= IdealTimeOut) {{" +
+                                           "window.clearInterval(idleSecondsTimer);" +
+                                           "$('#modalSession').modal({{ backdrop: 'static', keyboard: false }});" +
+                                           "$('#modalSession').modal('show');" +
+                                           "}}" +
+                                           "}}", ConfigurationManager.AppSettings["TiempoSession"]);
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", js, true);
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
-                    int timeout = int.Parse(ConfigurationManager.AppSettings["TiempoSession"]) * 1000 * 60;
-                    Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", "SessionExpireAlert(" + timeout + ");", true);
-
                     bool administrador = false, agente = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
                     if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Administrador))
@@ -607,7 +625,7 @@ namespace KiiniHelp
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }

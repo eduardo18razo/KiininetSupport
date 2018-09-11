@@ -124,7 +124,7 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
                             divControles.Controls.Add(createDiv);
                             createDiv = new HtmlGenericControl("DIV");
                             createDiv.Attributes["class"] = "form-group";
-                            for (int i = 1; i <= 10; i++)
+                            for (int i = 0; i <= 10; i++)
                             {
 
                                 RadioButton rb = new RadioButton();

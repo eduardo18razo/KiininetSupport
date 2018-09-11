@@ -40,12 +40,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes {
         protected global::System.Web.UI.WebControls.HiddenField hfticket;
         
         /// <summary>
-        /// Control lstFiltroServicioIncidente.
+        /// Control rcbFiltroServicioIncidente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstFiltroServicioIncidente;
+        protected global::Telerik.Web.UI.RadComboBox rcbFiltroServicioIncidente;
     }
 }

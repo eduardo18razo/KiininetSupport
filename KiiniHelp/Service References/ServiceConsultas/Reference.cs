@@ -33,6 +33,28 @@ namespace KiiniHelp.ServiceConsultas {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceConsultas/GraficarConsultaTicket", ReplyAction="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketResponse")]
         System.Data.DataTable GraficarConsultaTicket(int idUsuario, System.Collections.Generic.List<int> grupos, System.Collections.Generic.List<int> tiposUsuario, System.Collections.Generic.List<int> organizaciones, System.Collections.Generic.List<int> ubicaciones, System.Collections.Generic.List<int> tipoArbol, System.Collections.Generic.List<int> tipificacion, System.Collections.Generic.List<int> prioridad, System.Collections.Generic.List<int> estatus, System.Collections.Generic.List<System.Nullable<bool>> sla, System.Collections.Generic.List<System.Nullable<bool>> vip, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, System.Collections.Generic.List<int> filtroStackColumn, string stack, int tipoFecha);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketEficiencia", ReplyAction="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketEficienciaResponse")]
+        System.Data.DataTable GraficarConsultaTicketEficiencia(
+                    int idUsuario, 
+                    System.Collections.Generic.List<int> tipoUsuario, 
+                    System.Collections.Generic.List<int> area, 
+                    System.Collections.Generic.List<int> grupos, 
+                    System.Collections.Generic.List<int> agentes, 
+                    System.Collections.Generic.List<int> estatusAsignacion, 
+                    System.Collections.Generic.List<int> canal, 
+                    System.Collections.Generic.List<int> tipoArbol, 
+                    System.Collections.Generic.List<int> opciones, 
+                    System.Collections.Generic.List<int> estatus, 
+                    System.Collections.Generic.List<int> prioridad, 
+                    System.Collections.Generic.List<System.Nullable<bool>> sla, 
+                    System.Collections.Generic.List<System.Nullable<bool>> vip, 
+                    System.Collections.Generic.List<int> organizaciones, 
+                    System.Collections.Generic.List<int> ubicaciones, 
+                    System.Collections.Generic.Dictionary<string, System.DateTime> fechas, 
+                    System.Collections.Generic.List<int> filtroStackColumn, 
+                    string stack, 
+                    int tipoFecha);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketGeografico", ReplyAction="http://tempuri.org/IServiceConsultas/GraficarConsultaTicketGeograficoResponse")]
         string GraficarConsultaTicketGeografico(int idUsuario, System.Collections.Generic.List<int> grupos, System.Collections.Generic.List<int> tiposUsuario, System.Collections.Generic.List<int> organizaciones, System.Collections.Generic.List<int> ubicaciones, System.Collections.Generic.List<int> tipoArbol, System.Collections.Generic.List<int> tipificacion, System.Collections.Generic.List<int> prioridad, System.Collections.Generic.List<int> estatus, System.Collections.Generic.List<System.Nullable<bool>> sla, System.Collections.Generic.List<System.Nullable<bool>> vip, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, System.Collections.Generic.List<int> filtroStackColumn, string stack, int tipoFecha);
         
@@ -113,6 +135,29 @@ namespace KiiniHelp.ServiceConsultas {
         
         public System.Data.DataTable GraficarConsultaTicket(int idUsuario, System.Collections.Generic.List<int> grupos, System.Collections.Generic.List<int> tiposUsuario, System.Collections.Generic.List<int> organizaciones, System.Collections.Generic.List<int> ubicaciones, System.Collections.Generic.List<int> tipoArbol, System.Collections.Generic.List<int> tipificacion, System.Collections.Generic.List<int> prioridad, System.Collections.Generic.List<int> estatus, System.Collections.Generic.List<System.Nullable<bool>> sla, System.Collections.Generic.List<System.Nullable<bool>> vip, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, System.Collections.Generic.List<int> filtroStackColumn, string stack, int tipoFecha) {
             return base.Channel.GraficarConsultaTicket(idUsuario, grupos, tiposUsuario, organizaciones, ubicaciones, tipoArbol, tipificacion, prioridad, estatus, sla, vip, fechas, filtroStackColumn, stack, tipoFecha);
+        }
+        
+        public System.Data.DataTable GraficarConsultaTicketEficiencia(
+                    int idUsuario, 
+                    System.Collections.Generic.List<int> tipoUsuario, 
+                    System.Collections.Generic.List<int> area, 
+                    System.Collections.Generic.List<int> grupos, 
+                    System.Collections.Generic.List<int> agentes, 
+                    System.Collections.Generic.List<int> estatusAsignacion, 
+                    System.Collections.Generic.List<int> canal, 
+                    System.Collections.Generic.List<int> tipoArbol, 
+                    System.Collections.Generic.List<int> opciones, 
+                    System.Collections.Generic.List<int> estatus, 
+                    System.Collections.Generic.List<int> prioridad, 
+                    System.Collections.Generic.List<System.Nullable<bool>> sla, 
+                    System.Collections.Generic.List<System.Nullable<bool>> vip, 
+                    System.Collections.Generic.List<int> organizaciones, 
+                    System.Collections.Generic.List<int> ubicaciones, 
+                    System.Collections.Generic.Dictionary<string, System.DateTime> fechas, 
+                    System.Collections.Generic.List<int> filtroStackColumn, 
+                    string stack, 
+                    int tipoFecha) {
+            return base.Channel.GraficarConsultaTicketEficiencia(idUsuario, tipoUsuario, area, grupos, agentes, estatusAsignacion, canal, tipoArbol, opciones, estatus, prioridad, sla, vip, organizaciones, ubicaciones, fechas, filtroStackColumn, stack, tipoFecha);
         }
         
         public string GraficarConsultaTicketGeografico(int idUsuario, System.Collections.Generic.List<int> grupos, System.Collections.Generic.List<int> tiposUsuario, System.Collections.Generic.List<int> organizaciones, System.Collections.Generic.List<int> ubicaciones, System.Collections.Generic.List<int> tipoArbol, System.Collections.Generic.List<int> tipificacion, System.Collections.Generic.List<int> prioridad, System.Collections.Generic.List<int> estatus, System.Collections.Generic.List<System.Nullable<bool>> sla, System.Collections.Generic.List<System.Nullable<bool>> vip, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, System.Collections.Generic.List<int> filtroStackColumn, string stack, int tipoFecha) {

@@ -11,11 +11,11 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
-      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
       <xsd:import schemaLocation="http://localhost:15277/ServiceTicket.svc?xsd=xsd15" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>

@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcFiltroServicioIncidente.ascx.cs" Inherits="KiiniHelp.UserControls.Filtros.Componentes.UcFiltroServicioIncidente" %>
+<%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfConsulta" />
@@ -7,23 +8,13 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 Servicio/Incidente<br />
-                <asp:ListBox ID="lstFiltroServicioIncidente" SelectionMode="Multiple" runat="server" />
+                <tc:RadComboBox ID="rcbFiltroServicioIncidente" runat="server" RenderMode="Lightweight"  CheckBoxes="true" EnableCheckAllItemsCheckBox="true" OnClientDropDownClosing="doPostback" />
             </div>
         </div>
         <script type="text/javascript">
-            $(function () {
-                $('[id*=lstFiltroServicioIncidente]').multiselect({
-                    includeSelectAllOption: true
-                });
-            });
-            var prm = Sys.WebForms.PageRequestManager.getInstance();
-
-            prm.add_endRequest(function () {
-                $('[id*=lstFiltroServicioIncidente]').multiselect({
-                    includeSelectAllOption: true
-                });
-            });
-
+            function doPostback() {
+                __doPostBack('Seleccion', 'OnKeyPress');
+            };
         </script>
     </ContentTemplate>
 </asp:UpdatePanel>

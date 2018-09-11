@@ -117,7 +117,7 @@ namespace KinniNet.Core.Sistema
                               where etsrg.IdEstatusTicketActual == idEstatusActual
                                     && etsrg.Propietario == esPropietario
                                     && etsrg.Habilitado
-                              select new { etsrg, et};
+                              select new { etsrg, et };
                     if (idSubRol != null)
                         qry = from q in qry
                               where q.etsrg.IdSubRolPertenece == idSubRol
@@ -245,7 +245,7 @@ namespace KinniNet.Core.Sistema
             return result;
         }
 
-        public bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int estatusAsignar, bool esPropietario, bool publico)
+        public bool HasCambioEstatusComentarioObligatorio(int? idUsuario, int idTicket, int idEstatusTickteAsignar, bool esPropietario, bool publico)
         {
             bool result = false;
             DataBaseModelContext db = new DataBaseModelContext();
@@ -262,20 +262,28 @@ namespace KinniNet.Core.Sistema
                     {
                         db.LoadProperty(tgu, "GrupoUsuario");
                     }
-                    GrupoUsuario gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.GrupoUsuario).SingleOrDefault();
+                    GrupoUsuario gpo;
+                    if (idUsuario == ticket.IdUsuarioSolicito)
+                        gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.GrupoUsuario).SingleOrDefault();
+                    else
+                        gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Select(s => s.GrupoUsuario).FirstOrDefault();
                     if (gpo != null)
                     {
-                        int? rolPertenece = UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket);
+                        int? subRolPertenece = UtilsTicket.ObtenerSubRolAsignacionByIdNivel(ticket.IdNivelTicket);
                         var qry = from etsrg in db.EstatusTicketSubRolGeneral
-                            where etsrg.IdGrupoUsuario == gpo.Id
-                                  && etsrg.TieneSupervisor == gpo.TieneSupervisor
-                                  && etsrg.IdEstatusTicketActual == ticket.IdEstatusTicket
-                                  && etsrg.IdEstatusTicketAccion == estatusAsignar
-                            select etsrg;
-                        if (!publico)
+                                  where etsrg.IdGrupoUsuario == gpo.Id
+                                        && etsrg.TieneSupervisor == gpo.TieneSupervisor
+                                        && etsrg.IdEstatusTicketActual == ticket.IdEstatusTicket
+                                        && etsrg.IdEstatusTicketAccion == idEstatusTickteAsignar
+                                  select etsrg;
+                        if (!publico && idUsuario == ticket.IdUsuarioSolicito)
                             qry = from q in qry
-                                where q.IdRolPertenece == rolPertenece
-                                select q;
+                                  where q.IdRolPertenece == (int)BusinessVariables.EnumRoles.Usuario
+                                  select q;
+                        else
+                            qry = from q in qry
+                                  where q.IdSubRolPertenece == subRolPertenece
+                                  select q;
                         var res = (from q in qry
                                    select q.ComentarioObligado).FirstOrDefault();
                         if (res == false)

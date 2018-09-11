@@ -34,7 +34,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroPrioridad.Items where item.Selected select int.Parse(item.Value)).ToList();
+                List<int>result = new List<int>();
+                foreach (ListItem item in lstFiltroPrioridad.Items.Cast<ListItem>().Where(item => item.Selected))
+                {
+                    result.AddRange(_servicioImpacto.ObtenerAll(false).Where(w => w.Descripcion == item.Text).Select(s => s.Id).Distinct());
+                }
+                return result;
             }
             set { }
         }
@@ -42,7 +47,9 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                Metodos.LlenaListBoxCatalogo(lstFiltroPrioridad, _servicioImpacto.ObtenerAll(false));
+                lstFiltroPrioridad.Items.Add("Alto");
+                lstFiltroPrioridad.Items.Add("Medio");
+                lstFiltroPrioridad.Items.Add("Bajo");
             }
             catch (Exception e)
             {

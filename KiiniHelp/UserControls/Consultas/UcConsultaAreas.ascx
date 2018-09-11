@@ -6,10 +6,10 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li >
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item active">Categorías</li>
+                <li >Help Center</li>
+                <li class="active">Categorías</li>
             </ol>
 
             <section class="module">

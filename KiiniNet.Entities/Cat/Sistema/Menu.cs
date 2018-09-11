@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using KiiniNet.Entities.Operacion;
+using KiiniNet.Entities.Parametros;
 
 namespace KiiniNet.Entities.Cat.Sistema
 {
@@ -25,5 +27,9 @@ namespace KiiniNet.Entities.Cat.Sistema
         public virtual Menu Menu2 { get; set; }
         [DataMember]
         public virtual List<RolMenu> RolMenu { get; set; }
+        [DataMember]
+        public virtual List<GraficosDefault> GraficosDefault { get; set; }
+        [DataMember]
+        public virtual List<GraficosFavoritos> GraficosFavoritos { get; set; }
     }
 }

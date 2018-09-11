@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using KiiniNet.Entities.Cat.Arbol.Ubicaciones;
 using KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio;
 using KiiniNet.Entities.Cat.Operacion;
@@ -65,6 +66,28 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
+
+        public List<int> ObtenerUbicacionesByEstado(List<int> idEstado)
+        {
+            List<int> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                List<int> campusList = db.Domicilio.Where(w => idEstado.Contains((int) w.Colonia.Municipio.IdEstado)).Select(s=>s.IdCampus).Distinct().ToList();
+                result = db.Ubicacion.Where(w => campusList.Contains((int) w.IdCampus)).Select(s=>s.Id).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
         public List<Torre> ObtenerTorres(int idTipoUsuario, int idCampus, bool insertarSeleccion)
         {
             List<Torre> result;

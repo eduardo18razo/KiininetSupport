@@ -1125,19 +1125,19 @@ namespace KinniNet.Core.Operacion
 
         public List<ArbolAcceso> ObtenerArbolesAccesoAllReporte(int? idArea, int? idTipoUsuario, int? idTipoArbol, int idTipoEncuesta, Dictionary<string, DateTime> fechas)
         {
-            List<ArbolAcceso> result;
+            List<ArbolAcceso> result = null;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                
+
                 var qry = from re in db.RespuestaEncuesta
-                    join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
-                    join t in db.Ticket on re.IdTicket equals t.Id
-                    join aa in db.ArbolAcceso on t.IdArbolAcceso equals aa.Id
-                    where te.IdEstatus == (int) BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
-                          && !aa.Sistema && re.Encuesta.IdTipoEncuesta == idTipoEncuesta
-                    select new {re, te, aa};
+                          join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                          join t in db.Ticket on re.IdTicket equals t.Id
+                          join aa in db.ArbolAcceso on t.IdArbolAcceso equals aa.Id
+                          where te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                                && !aa.Sistema && re.Encuesta.IdTipoEncuesta == idTipoEncuesta
+                          select new { re, te, aa };
 
                 if (idArea.HasValue)
                     qry = qry.Where(w => w.aa.IdArea == idArea);
@@ -1145,30 +1145,312 @@ namespace KinniNet.Core.Operacion
                     qry = qry.Where(w => w.aa.IdTipoUsuario == idTipoUsuario);
                 if (idTipoArbol.HasValue)
                     qry = qry.Where(w => w.aa.IdTipoArbolAcceso == idTipoArbol);
-                if (fechas != null)
-                {
-                    DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
-                    DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
-                    qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
-                }
-                result = qry.Select(s=>s.aa).Distinct().ToList();
 
-                
-
-                foreach (ArbolAcceso arbol in result)
+                switch (idTipoEncuesta)
                 {
-                    db.LoadProperty(arbol, "Area");
-                    db.LoadProperty(arbol, "TipoUsuario");
-                    db.LoadProperty(arbol, "TipoArbolAcceso");
-                    db.LoadProperty(arbol, "Nivel1");
-                    db.LoadProperty(arbol, "Nivel2");
-                    db.LoadProperty(arbol, "Nivel3");
-                    db.LoadProperty(arbol, "Nivel4");
-                    db.LoadProperty(arbol, "Nivel5");
-                    db.LoadProperty(arbol, "Nivel6");
-                    db.LoadProperty(arbol, "Nivel7");
-                    arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
-                    arbol.Nivel = ObtenerNivel(arbol.Id);
+                    case (int)BusinessVariables.EnumTipoEncuesta.PromotorScore:
+                        var qryPromotores = from re in db.RespuestaEncuesta
+                                            join aa in db.ArbolAcceso on re.IdArbol equals aa.Id
+                                            join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                                            where re.Encuesta.IdTipoEncuesta == (int)BusinessVariables.EnumTipoEncuesta.PromotorScore
+                                                  && te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                                                  && re.ValorRespuesta >= 9
+                                            select new { re, te };
+
+                        List<int> neutros = new List<int> { 7, 8 };
+                        var qryNeutros = from re in db.RespuestaEncuesta
+                                         join aa in db.ArbolAcceso on re.IdArbol equals aa.Id
+                                         join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                                         where re.Encuesta.IdTipoEncuesta == (int)BusinessVariables.EnumTipoEncuesta.PromotorScore
+                                               && te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                                               && neutros.Contains(re.ValorRespuesta)
+                                         select new { re, te };
+
+                        var qryDetractores = from re in db.RespuestaEncuesta
+                                             join aa in db.ArbolAcceso on re.IdArbol equals aa.Id
+                                             join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                                             where re.Encuesta.IdTipoEncuesta == (int)BusinessVariables.EnumTipoEncuesta.PromotorScore
+                                                   && te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                                                   && re.ValorRespuesta <= 6
+                                             select new { re, te };
+
+                        if (fechas != null)
+                        {
+                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
+                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
+
+                            qryPromotores = from q in qryPromotores
+                                            where q.te.FechaMovimiento >= fechaInicio
+                                                   && q.te.FechaMovimiento < fechaFin
+                                            select q;
+
+                            qryNeutros = from q in qryNeutros
+                                         where q.te.FechaMovimiento >= fechaInicio
+                                                   && q.te.FechaMovimiento < fechaFin
+                                         select q;
+
+                            qryDetractores = from q in qryDetractores
+                                             where q.te.FechaMovimiento >= fechaInicio
+                                                   && q.te.FechaMovimiento < fechaFin
+                                             select q;
+                        }
+                        result = qry.Select(s => s.aa).Distinct().ToList();
+
+                        var ratePromotores = qryPromotores.Distinct().ToList();
+                        var rateNeutros = qryNeutros.Distinct().ToList();
+                        var rateDetractores = qryDetractores.Distinct().ToList();
+
+                        foreach (ArbolAcceso arbol in result)
+                        {
+                            db.LoadProperty(arbol, "Area");
+                            db.LoadProperty(arbol, "TipoUsuario");
+                            db.LoadProperty(arbol, "TipoArbolAcceso");
+                            db.LoadProperty(arbol, "Nivel1");
+                            db.LoadProperty(arbol, "Nivel2");
+                            db.LoadProperty(arbol, "Nivel3");
+                            db.LoadProperty(arbol, "Nivel4");
+                            db.LoadProperty(arbol, "Nivel5");
+                            db.LoadProperty(arbol, "Nivel6");
+                            db.LoadProperty(arbol, "Nivel7");
+                            arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
+                            arbol.Nivel = ObtenerNivel(arbol.Id);
+                            arbol.Promotores = ratePromotores.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.Neutros = rateNeutros.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.Detractores = rateDetractores.Count(w => w.re.IdArbol == arbol.Id);
+                        }
+                        break;
+                    case (int)BusinessVariables.EnumTipoEncuesta.Calificacion:
+                        var qryFiltroCalificacion = from re in db.RespuestaEncuesta
+                                                    join aa in db.ArbolAcceso on re.IdArbol equals aa.Id
+                                                    join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                                                    where re.Encuesta.IdTipoEncuesta == (int)BusinessVariables.EnumTipoEncuesta.Calificacion
+                                                          && te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                                                    select new { re, te };
+
+                        var qryCeroCinco = from q in qryFiltroCalificacion
+                                           where q.re.ValorRespuesta <= 5
+                                           select q;
+
+                        var qrySeisSiete = from q in qryFiltroCalificacion
+                                           where q.re.ValorRespuesta >= 6 && q.re.ValorRespuesta <= 7
+                                           select q;
+
+                        var qryOchoNueve = from q in qryFiltroCalificacion
+                                           where q.re.ValorRespuesta >= 8 && q.re.ValorRespuesta <= 9
+                                           select q;
+
+                        var qryDiez = from q in qryFiltroCalificacion
+                                      where q.re.ValorRespuesta == 10
+                                      select q;
+
+                        if (fechas != null)
+                        {
+                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
+                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
+
+                            qryCeroCinco = from q in qryCeroCinco
+                                           where q.te.FechaMovimiento >= fechaInicio
+                                                  && q.te.FechaMovimiento < fechaFin
+                                           select q;
+
+                            qrySeisSiete = from q in qrySeisSiete
+                                           where q.te.FechaMovimiento >= fechaInicio
+                                                     && q.te.FechaMovimiento < fechaFin
+                                           select q;
+
+                            qryOchoNueve = from q in qryOchoNueve
+                                           where q.te.FechaMovimiento >= fechaInicio
+                                                 && q.te.FechaMovimiento < fechaFin
+                                           select q;
+                            qryDiez = from q in qryDiez
+                                      where q.te.FechaMovimiento >= fechaInicio
+                                            && q.te.FechaMovimiento < fechaFin
+                                      select q;
+                        }
+                        result = qry.Select(s => s.aa).Distinct().ToList();
+
+                        var rateCeroCinco = qryCeroCinco.Distinct().ToList();
+                        var rateSeisSiete = qrySeisSiete.Distinct().ToList();
+                        var rateOchoNueve = qryOchoNueve.Distinct().ToList();
+                        var rateDiez = qryDiez.Distinct().ToList();
+
+                        foreach (ArbolAcceso arbol in result)
+                        {
+                            db.LoadProperty(arbol, "Area");
+                            db.LoadProperty(arbol, "TipoUsuario");
+                            db.LoadProperty(arbol, "TipoArbolAcceso");
+                            db.LoadProperty(arbol, "InventarioArbolAcceso");
+                            db.LoadProperty(arbol, "Nivel1");
+                            db.LoadProperty(arbol, "Nivel2");
+                            db.LoadProperty(arbol, "Nivel3");
+                            db.LoadProperty(arbol, "Nivel4");
+                            db.LoadProperty(arbol, "Nivel5");
+                            db.LoadProperty(arbol, "Nivel6");
+                            db.LoadProperty(arbol, "Nivel7");
+                            arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
+                            arbol.Nivel = ObtenerNivel(arbol.Id);
+                            arbol.NumeroEncuestas = qryFiltroCalificacion.Where(w => w.re.IdArbol == arbol.Id).Select(s => s.re.IdTicket).Distinct().Count();
+                            int idEncuesta = (int)arbol.InventarioArbolAcceso.First().IdEncuesta;
+                            arbol.NumeroPreguntasEncuesta = db.EncuestaPregunta.Count(c => c.IdEncuesta == idEncuesta);
+                            arbol.CeroCinco = rateCeroCinco.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.SeisSiete = rateSeisSiete.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.OchoNueve = rateOchoNueve.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.Diez = rateDiez.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.PromedioPonderado = qryFiltroCalificacion.Where(w => w.re.IdArbol == arbol.Id).Average(a => a.re.ValorRespuesta);
+                        }
+                        break;
+                    case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
+                        var qryFiltroSatisfaccion = from re in db.RespuestaEncuesta
+                                                    join aa in db.ArbolAcceso on re.IdArbol equals aa.Id
+                                                    join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                                                    where re.Encuesta.IdTipoEncuesta == (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente
+                                                          && te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                                                    select new { re, te };
+
+                        var qryPesimo = from q in qryFiltroSatisfaccion
+                                        where q.re.ValorRespuesta == 1
+                                        select q;
+
+                        var qryMalo = from q in qryFiltroSatisfaccion
+                                      where q.re.ValorRespuesta == 2
+                                      select q;
+
+                        var qryRegular = from q in qryFiltroSatisfaccion
+                                         where q.re.ValorRespuesta == 3
+                                         select q;
+
+                        var qryBueno = from q in qryFiltroSatisfaccion
+                                       where q.re.ValorRespuesta == 4
+                                       select q;
+                        var qryExcelente = from q in qryFiltroSatisfaccion
+                                           where q.re.ValorRespuesta == 5
+                                           select q;
+
+                        if (fechas != null)
+                        {
+                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
+                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
+
+                            qryPesimo = from q in qryPesimo
+                                        where q.te.FechaMovimiento >= fechaInicio
+                                               && q.te.FechaMovimiento < fechaFin
+                                        select q;
+
+                            qryMalo = from q in qryMalo
+                                      where q.te.FechaMovimiento >= fechaInicio
+                                                && q.te.FechaMovimiento < fechaFin
+                                      select q;
+
+                            qryRegular = from q in qryRegular
+                                         where q.te.FechaMovimiento >= fechaInicio
+                                               && q.te.FechaMovimiento < fechaFin
+                                         select q;
+                            qryBueno = from q in qryBueno
+                                       where q.te.FechaMovimiento >= fechaInicio
+                                             && q.te.FechaMovimiento < fechaFin
+                                       select q;
+                            qryExcelente = from q in qryExcelente
+                                           where q.te.FechaMovimiento >= fechaInicio
+                                                 && q.te.FechaMovimiento < fechaFin
+                                           select q;
+                        }
+                        result = qry.Select(s => s.aa).Distinct().ToList();
+
+                        var ratePesimo = qryPesimo.Distinct().ToList();
+                        var rateMalo = qryMalo.Distinct().ToList();
+                        var rateRegular = qryRegular.Distinct().ToList();
+                        var rateBueno = qryBueno.Distinct().ToList();
+                        var rateExcelente = qryExcelente.Distinct().ToList();
+
+                        foreach (ArbolAcceso arbol in result)
+                        {
+                            db.LoadProperty(arbol, "Area");
+                            db.LoadProperty(arbol, "TipoUsuario");
+                            db.LoadProperty(arbol, "TipoArbolAcceso");
+                            db.LoadProperty(arbol, "InventarioArbolAcceso");
+                            db.LoadProperty(arbol, "Nivel1");
+                            db.LoadProperty(arbol, "Nivel2");
+                            db.LoadProperty(arbol, "Nivel3");
+                            db.LoadProperty(arbol, "Nivel4");
+                            db.LoadProperty(arbol, "Nivel5");
+                            db.LoadProperty(arbol, "Nivel6");
+                            db.LoadProperty(arbol, "Nivel7");
+                            arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
+                            arbol.Nivel = ObtenerNivel(arbol.Id);
+                            arbol.NumeroEncuestas = qryFiltroSatisfaccion.Where(w => w.re.IdArbol == arbol.Id).Select(s => s.re.IdTicket).Distinct().Count();
+                            int idEncuesta = (int)arbol.InventarioArbolAcceso.First().IdEncuesta;
+                            arbol.NumeroPreguntasEncuesta = db.EncuestaPregunta.Count(c => c.IdEncuesta == idEncuesta);
+                            arbol.Pesimo = ratePesimo.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.Malo = rateMalo.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.Regular = rateRegular.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.Bueno = rateBueno.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.Diez = rateExcelente.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.PromedioPonderado = qryFiltroSatisfaccion.Where(w => w.re.IdArbol == arbol.Id).Average(a => a.re.ValorRespuesta);
+                        }
+                        break;
+                    case (int)BusinessVariables.EnumTipoEncuesta.SiNo:
+                        var qryFiltroLogica = from re in db.RespuestaEncuesta
+                                              join aa in db.ArbolAcceso on re.IdArbol equals aa.Id
+                                              join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
+                                              where re.Encuesta.IdTipoEncuesta == (int)BusinessVariables.EnumTipoEncuesta.SiNo
+                                                    && te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
+                                              select new { re, te };
+
+                        var qrySi = from q in qryFiltroLogica
+                                    where q.re.ValorRespuesta == 1
+                                    select q;
+
+                        var qryNo = from q in qryFiltroLogica
+                                    where q.re.ValorRespuesta == 0
+                                    select q;
+
+                        if (fechas != null)
+                        {
+                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
+                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
+
+                            qrySi = from q in qrySi
+                                    where q.te.FechaMovimiento >= fechaInicio
+                                           && q.te.FechaMovimiento < fechaFin
+                                    select q;
+
+                            qryNo = from q in qryNo
+                                    where q.te.FechaMovimiento >= fechaInicio
+                                              && q.te.FechaMovimiento < fechaFin
+                                    select q;
+                        }
+                        result = qry.Select(s => s.aa).Distinct().ToList();
+
+
+                        var rateSi = qrySi.Distinct().ToList();
+                        var rateNo = qryNo.Distinct().ToList();
+
+                        foreach (ArbolAcceso arbol in result)
+                        {
+                            db.LoadProperty(arbol, "Area");
+                            db.LoadProperty(arbol, "TipoUsuario");
+                            db.LoadProperty(arbol, "TipoArbolAcceso");
+                            db.LoadProperty(arbol, "InventarioArbolAcceso");
+                            db.LoadProperty(arbol, "Nivel1");
+                            db.LoadProperty(arbol, "Nivel2");
+                            db.LoadProperty(arbol, "Nivel3");
+                            db.LoadProperty(arbol, "Nivel4");
+                            db.LoadProperty(arbol, "Nivel5");
+                            db.LoadProperty(arbol, "Nivel6");
+                            db.LoadProperty(arbol, "Nivel7");
+                            arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
+                            arbol.Nivel = ObtenerNivel(arbol.Id);
+                            arbol.NumeroEncuestas = qryFiltroLogica.Where(w => w.re.IdArbol == arbol.Id).Select(s => s.re.IdTicket).Distinct().Count();
+                            int idEncuesta = (int)arbol.InventarioArbolAcceso.First().IdEncuesta;
+                            arbol.NumeroPreguntasEncuesta = db.EncuestaPregunta.Count(c => c.IdEncuesta == idEncuesta);
+                            arbol.Si = rateSi.Count(w => w.re.IdArbol == arbol.Id);
+                            arbol.No = rateNo.Count(w => w.re.IdArbol == arbol.Id);
+                        }
+                        break;
                 }
             }
             catch (Exception)
@@ -1223,6 +1505,7 @@ namespace KinniNet.Core.Operacion
 
                 foreach (ArbolAcceso arbol in result)
                 {
+                    arbol.Tipificacion = ObtenerTipificacion(arbol.Id);
                     db.LoadProperty(arbol, "Area");
                     db.LoadProperty(arbol, "TipoUsuario");
                     db.LoadProperty(arbol, "TipoArbolAcceso");
@@ -1408,9 +1691,16 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                db.ContextOptions.LazyLoadingEnabled = true;
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
                 ArbolAcceso arbol = db.ArbolAcceso.SingleOrDefault(w => w.Id == idArbol);
                 if (arbol == null) return null;
+                db.LoadProperty(arbol, "Nivel1");
+                db.LoadProperty(arbol, "Nivel2");
+                db.LoadProperty(arbol, "Nivel3");
+                db.LoadProperty(arbol, "Nivel4");
+                db.LoadProperty(arbol, "Nivel5");
+                db.LoadProperty(arbol, "Nivel6");
+                db.LoadProperty(arbol, "Nivel7");
                 if (arbol.Nivel1 != null)
                     result = arbol.Nivel1.Descripcion;
                 if (arbol.Nivel2 != null)
@@ -1425,6 +1715,8 @@ namespace KinniNet.Core.Operacion
                     result = arbol.Nivel6.Descripcion;
                 if (arbol.Nivel7 != null)
                     result = arbol.Nivel7.Descripcion;
+                if (db.InventarioArbolAcceso.Any(w => w.IdArbolAcceso == idArbol))
+                    result = db.InventarioArbolAcceso.First(w => w.IdArbolAcceso == idArbol).Descripcion;
             }
             catch (Exception ex)
             {
@@ -1822,7 +2114,7 @@ namespace KinniNet.Core.Operacion
                 ArbolAcceso arbol = db.ArbolAcceso.SingleOrDefault(s => s.Id == idArbolAcceso);
                 if (arbol != null)
                 {
-                    
+
                     if (arbol.Nivel7 != null)
                         arbol.Nivel7.Descripcion = descripcion.Trim();
                     else if (arbol.Nivel6 != null)
@@ -1892,11 +2184,6 @@ namespace KinniNet.Core.Operacion
                             arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.TiempoHoraProceso;
                         arbol.InventarioArbolAcceso.First().Sla.Detallado =
                             arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Detallado;
-                        List<SlaDetalle> slaDetalleRemove = new List<SlaDetalle>();
-                        foreach (SlaDetalle detRemove in arbol.InventarioArbolAcceso.First().Sla.SlaDetalle)
-                        {
-
-                        }
                         if (arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Detallado)
                         {
                             if (arbol.InventarioArbolAcceso.First().Sla.SlaDetalle == null)
@@ -1909,8 +2196,7 @@ namespace KinniNet.Core.Operacion
                                 switch (informeArbol.IdTipoGrupo)
                                 {
                                     case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido:
-                                        TiempoInformeArbol tInformeMto = db.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
-                                        tInformeMto = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
+                                        TiempoInformeArbol tInformeMto = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
                                         if (tInformeMto != null)
                                         {
                                             arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Dias = informeArbol.Dias;
@@ -1921,8 +2207,7 @@ namespace KinniNet.Core.Operacion
                                         }
                                         break;
                                     case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo:
-                                        TiempoInformeArbol tInformeDev = db.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
-                                        tInformeDev = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
+                                        TiempoInformeArbol tInformeDev = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
                                         if (tInformeDev != null)
                                         {
                                             arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Dias = informeArbol.Dias;
@@ -1934,8 +2219,7 @@ namespace KinniNet.Core.Operacion
                                         break;
 
                                     case (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales:
-                                        TiempoInformeArbol tInformeCons = db.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
-                                        tInformeCons = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
+                                        TiempoInformeArbol tInformeCons = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
                                         if (tInformeCons != null)
                                         {
                                             arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Dias = informeArbol.Dias;

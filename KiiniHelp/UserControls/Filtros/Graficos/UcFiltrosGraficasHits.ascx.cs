@@ -65,7 +65,7 @@ namespace KiiniHelp.UserControls.Filtros.Graficos
                 ucFiltroGrupo.OnAceptarModal += ucFiltroGrupo_OnAceptarModal;
                 if (!IsPostBack)
                 {
-                    ucFiltroTipificacion.TipoArbol = (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion;
+                    ucFiltroTipificacion.TipoArbol = new List<int> {(int) BusinessVariables.EnumTipoArbol.ConsultarInformacion};
                 }
             }
             catch (Exception ex)
@@ -84,8 +84,6 @@ namespace KiiniHelp.UserControls.Filtros.Graficos
         {
             try
             {
-                ucFiltroOrganizacion.Grupos = ucFiltroGrupo.GruposSeleccionados;
-                ucFiltroUbicacion.Grupos = ucFiltroGrupo.GruposSeleccionados;
             }
             catch (Exception ex)
             {

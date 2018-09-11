@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using KiiniHelp.ServiceSistemaDomicilio;
 using KiiniHelp.ServiceUbicacion;
-using KiiniNet.Entities.Cat.Operacion;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -16,6 +16,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         public event DelegateTerminarModal OnTerminarModal;
 
         private readonly ServiceUbicacionClient _servicioUbicacion = new ServiceUbicacionClient();
+        private readonly ServiceDomicilioSistemaClient _servicioDomicilio = new ServiceDomicilioSistemaClient();
         private List<string> _lstError = new List<string>();
         private List<string> Alerta
         {
@@ -29,35 +30,23 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 }
             }
         }
-        public List<int> Grupos
-        {
-            set
-            {
-                LlenaUbicaciones(value);
-            }
-        }
+        
         public List<int> UbicacionesSeleccionadas
         {
             get
             {
-                return (from ListItem item in lstFiltroUbicacion.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroUbicacion.CheckedItems select int.Parse(item.Value)).ToList();
             }
         }
-        private void LlenaUbicaciones(List<int> grupos)
+        private void LlenaUbicaciones()
         {
             try
             {
-                lstFiltroUbicacion.DataSource = _servicioUbicacion.ObtenerUbicacionesGrupos(grupos);
-                lstFiltroUbicacion.DataTextField = string.Format("{0} {1} {2} {3} {4} {5} {6}",
-                    "Pais.Descripcion",
-                    "Campus.Descripcion",
-                    "Torre.Descripcion",
-                    "Piso.Descripcion",
-                    "Zona.Descripcion",
-                    "SubZona.Descripcion",
-                    "SiteRack.Descripcion");
-                lstFiltroUbicacion.DataValueField = "Id";
-                lstFiltroUbicacion.DataBind();          
+
+                rcbFiltroUbicacion.DataSource = _servicioDomicilio.ObtenerEstados(false);
+                rcbFiltroUbicacion.DataTextField = "Descripcion";
+                rcbFiltroUbicacion.DataValueField = "Id";
+                rcbFiltroUbicacion.DataBind();
             }
             catch (Exception e)
             {
@@ -72,7 +61,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    //LlenaUbicaciones();
+                    LlenaUbicaciones();
                 }
             }
             catch (Exception ex)

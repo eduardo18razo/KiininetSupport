@@ -280,6 +280,45 @@
     <Content Include="ConfirmacionCuenta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.FrecuenciaFecha.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Estado.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.GraficosDefault.datasource" />
+    <None Include="Service References\ServiceConsultas\ServiceConsultas.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas12.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas13.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas16.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas17.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceConsultas\ServiceConsultas9.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceUbicacion\ServiceUbicacion.disco" />
     <None Include="Service References\ServiceUbicacion\configuration91.svcinfo" />
     <None Include="Service References\ServiceUbicacion\configuration.svcinfo" />
@@ -375,8 +414,24 @@
     <Content Include="UserControls\Configuracion\UcUploadCarrusel.ascx" />
     <Content Include="UserControls\Consultas\UcBusqueda.ascx" />
     <Content Include="UserControls\Consultas\UcConsultaSecciones.ascx" />
+    <Content Include="UserControls\Filtros\Componentes\UcFiltroCategoria.ascx" />
+    <Content Include="UserControls\Filtros\Componentes\UcFiltroEstatusAsignacion.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketUbicacion.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketOrganizacion.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketCanal.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketEstatusAsignacion.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketTipificacion.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketSla.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketTipoTicket.ascx" />
+    <Content Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketEstatusAtencion.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcGraficoCalificaciones.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcGraficoLogica.ascx" />
     <Content Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcGraficoSatisfaccion.ascx" />
     <Content Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestas.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasCalificacion.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasLogica.ascx" />
+    <Content Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasSatisfaccion.ascx" />
     <Content Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx" />
     <Content Include="UserControls\ReportesGraficos\Formularios\UcReporteFormularios.ascx" />
     <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcGraficoInformacionConsulta.ascx" />
@@ -389,8 +444,22 @@
     <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmConsultaSecciones.aspx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAsignacion.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsCanal.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsUbicacion.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsOrganizacion.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsTipificacion.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsSla.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsTipoTicket.aspx" />
+    <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAtencion.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmEncuestaCalificacion.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmEncuestaLogica.aspx" />
     <Content Include="Users\ReportesGraficos\Encuestas\FrmEncuestas.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmEncuestaSatisfaccion.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmGraficoCalificacion.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaLogica.aspx" />
     <Content Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaNPS.aspx" />
+    <Content Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaSatisfaccion.aspx" />
     <Content Include="Users\ReportesGraficos\Formularios\FrmConsultaDetalleFormulario.aspx" />
     <Content Include="Users\FrmBusqueda.aspx" />
     <Content Include="Users\FrmDashboardUser.aspx" />
@@ -981,7 +1050,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Test\FrmTest.aspx" />
     <Content Include="UserControls\Altas\UcAltaDiasFestivos.ascx" />
     <Content Include="UserControls\Altas\UcAltaPuesto.ascx" />
     <Content Include="UserControls\Altas\UcAltaHorario.ascx" />
@@ -3040,6 +3108,90 @@
     <Compile Include="UserControls\Consultas\UcConsultaSecciones.ascx.designer.cs">
       <DependentUpon>UcConsultaSecciones.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Filtros\Componentes\UcFiltroCategoria.ascx.cs">
+      <DependentUpon>UcFiltroCategoria.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Componentes\UcFiltroCategoria.ascx.designer.cs">
+      <DependentUpon>UcFiltroCategoria.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Componentes\UcFiltroEstatusAsignacion.ascx.cs">
+      <DependentUpon>UcFiltroEstatusAsignacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Componentes\UcFiltroEstatusAsignacion.ascx.designer.cs">
+      <DependentUpon>UcFiltroEstatusAsignacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketUbicacion.ascx.cs">
+      <DependentUpon>UcFiltrosTicketUbicacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketUbicacion.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketUbicacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketOrganizacion.ascx.cs">
+      <DependentUpon>UcFiltrosTicketOrganizacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketOrganizacion.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketOrganizacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketCanal.ascx.cs">
+      <DependentUpon>UcFiltrosTicketCanal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketCanal.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketCanal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketEstatusAsignacion.ascx.cs">
+      <DependentUpon>UcFiltrosTicketEstatusAsignacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketEstatusAsignacion.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketEstatusAsignacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketTipificacion.ascx.cs">
+      <DependentUpon>UcFiltrosTicketTipificacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketTipificacion.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketTipificacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketSla.ascx.cs">
+      <DependentUpon>UcFiltrosTicketSla.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketSla.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketSla.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketTipoTicket.ascx.cs">
+      <DependentUpon>UcFiltrosTicketTipoTicket.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketTipoTicket.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketTipoTicket.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketEstatusAtencion.ascx.cs">
+      <DependentUpon>UcFiltrosTicketEstatusAtencion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Filtros\Graficos\Eficiencia\UcFiltrosTicketEstatusAtencion.ascx.designer.cs">
+      <DependentUpon>UcFiltrosTicketEstatusAtencion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoCalificaciones.ascx.cs">
+      <DependentUpon>UcGraficoCalificaciones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoCalificaciones.ascx.designer.cs">
+      <DependentUpon>UcGraficoCalificaciones.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoLogica.ascx.cs">
+      <DependentUpon>UcGraficoLogica.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoLogica.ascx.designer.cs">
+      <DependentUpon>UcGraficoLogica.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx.cs">
       <DependentUpon>UcGraficoNPS.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3047,12 +3199,40 @@
     <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoNPS.ascx.designer.cs">
       <DependentUpon>UcGraficoNPS.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoSatisfaccion.ascx.cs">
+      <DependentUpon>UcGraficoSatisfaccion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcGraficoSatisfaccion.ascx.designer.cs">
+      <DependentUpon>UcGraficoSatisfaccion.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestas.ascx.cs">
       <DependentUpon>UcReporteEncuestas.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestas.ascx.designer.cs">
       <DependentUpon>UcReporteEncuestas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasCalificacion.ascx.cs">
+      <DependentUpon>UcReporteEncuestasCalificacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasCalificacion.ascx.designer.cs">
+      <DependentUpon>UcReporteEncuestasCalificacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasLogica.ascx.cs">
+      <DependentUpon>UcReporteEncuestasLogica.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasLogica.ascx.designer.cs">
+      <DependentUpon>UcReporteEncuestasLogica.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasSatisfaccion.ascx.cs">
+      <DependentUpon>UcReporteEncuestasSatisfaccion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportesGraficos\Encuestas\UcReporteEncuestasSatisfaccion.ascx.designer.cs">
+      <DependentUpon>UcReporteEncuestasSatisfaccion.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ReportesGraficos\Formularios\UcReporteDetalleFormulario.ascx.cs">
       <DependentUpon>UcReporteDetalleFormulario.ascx</DependentUpon>
@@ -3348,6 +3528,76 @@
     <Compile Include="Users\Administracion\Feriados\FrmConsultaFeriados.aspx.designer.cs">
       <DependentUpon>FrmConsultaFeriados.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAsignacion.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsEstatusAsignacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAsignacion.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsEstatusAsignacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsCanal.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsCanal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsCanal.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsCanal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsUbicacion.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsUbicacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsUbicacion.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsUbicacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsOrganizacion.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsOrganizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsOrganizacion.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsOrganizacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsTipificacion.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsTipificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsTipificacion.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsTipificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsSla.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsSla.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsSla.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsSla.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsTipoTicket.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsTipoTicket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsTipoTicket.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsTipoTicket.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAtencion.aspx.cs">
+      <DependentUpon>FrmGraficoTicketsEstatusAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAtencion.aspx.designer.cs">
+      <DependentUpon>FrmGraficoTicketsEstatusAtencion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestaCalificacion.aspx.cs">
+      <DependentUpon>FrmEncuestaCalificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestaCalificacion.aspx.designer.cs">
+      <DependentUpon>FrmEncuestaCalificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestaLogica.aspx.cs">
+      <DependentUpon>FrmEncuestaLogica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestaLogica.aspx.designer.cs">
+      <DependentUpon>FrmEncuestaLogica.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestas.aspx.cs">
       <DependentUpon>FrmEncuestas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3355,12 +3605,40 @@
     <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestas.aspx.designer.cs">
       <DependentUpon>FrmEncuestas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestaSatisfaccion.aspx.cs">
+      <DependentUpon>FrmEncuestaSatisfaccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmEncuestaSatisfaccion.aspx.designer.cs">
+      <DependentUpon>FrmEncuestaSatisfaccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoCalificacion.aspx.cs">
+      <DependentUpon>FrmGraficoCalificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoCalificacion.aspx.designer.cs">
+      <DependentUpon>FrmGraficoCalificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaLogica.aspx.cs">
+      <DependentUpon>FrmGraficoEncuestaLogica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaLogica.aspx.designer.cs">
+      <DependentUpon>FrmGraficoEncuestaLogica.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaNPS.aspx.cs">
       <DependentUpon>FrmGraficoEncuestaNPS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaNPS.aspx.designer.cs">
       <DependentUpon>FrmGraficoEncuestaNPS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaSatisfaccion.aspx.cs">
+      <DependentUpon>FrmGraficoEncuestaSatisfaccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ReportesGraficos\Encuestas\FrmGraficoEncuestaSatisfaccion.aspx.designer.cs">
+      <DependentUpon>FrmGraficoEncuestaSatisfaccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\ReportesGraficos\Formularios\FrmConsultaDetalleFormulario.aspx.cs">
       <DependentUpon>FrmConsultaDetalleFormulario.aspx</DependentUpon>
@@ -3542,13 +3820,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Test\FrmTest.aspx.cs">
-      <DependentUpon>FrmTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Test\FrmTest.aspx.designer.cs">
-      <DependentUpon>FrmTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Altas\UcAltaDiasFestivos.ascx.cs">
       <DependentUpon>UcAltaDiasFestivos.ascx</DependentUpon>

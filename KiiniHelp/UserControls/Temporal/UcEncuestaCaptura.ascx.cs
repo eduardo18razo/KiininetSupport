@@ -16,7 +16,7 @@ namespace KiiniHelp.UserControls.Temporal
         readonly ServiceEncuestaClient _servicioEncuesta = new ServiceEncuestaClient();
         private List<Control> _lstControles;
         private List<string> _lstError = new List<string>();
-
+        
         private List<string> Alerta
         {
             set
@@ -54,6 +54,7 @@ namespace KiiniHelp.UserControls.Temporal
                 Alerta = _lstError;
             }
         }
+        
         protected override void OnInit(EventArgs e)
         {
             try
@@ -77,7 +78,7 @@ namespace KiiniHelp.UserControls.Temporal
 
                 if (encuesta != null)
                 {
-                    lbltitulo.Text = encuesta.TituloCliente;
+                    lbltitulo.Text = string.Format("{0} {1}", encuesta.TituloCliente, encuesta.Tipificacion);
                     lblDescripcionCliente.Text = encuesta.Descripcion;
                     PintaControles(encuesta.EncuestaPregunta, encuesta.IdTipoEncuesta);
                     Session["EncuestaActiva"] = encuesta;
@@ -146,13 +147,28 @@ namespace KiiniHelp.UserControls.Temporal
                                 {
                                     if (!divGrupo.Controls.Cast<Control>().Any(control => ((RadioButton)control).Checked))
                                     {
-                                        throw new Exception("Debe contestar todas las pregunats");
+                                        throw new Exception("Debe contestar todas las preguntas");
                                     }
                                 }
                             }
                         }
                         break;
                     case (int)BusinessVariables.EnumTipoEncuesta.SiNo:
+                        foreach (EncuestaPregunta pregunta in encuesta.EncuestaPregunta)
+                        {
+                            HtmlGenericControl divControl = (HtmlGenericControl)divControles.FindControl("createDiv" + pregunta.Id);
+                            if (divControl != null)
+                            {
+                                HtmlGenericControl divGrupo = (HtmlGenericControl)divControl.FindControl("createDivs" + pregunta.Id);
+                                if (divGrupo != null)
+                                {
+                                    if (!divGrupo.Controls.Cast<Control>().Any(control => ((RadioButton)control).Checked))
+                                    {
+                                        throw new Exception("Debe contestar todas las preguntas");
+                                    }
+                                }
+                            }
+                        }
                         break;
                     case (int)BusinessVariables.EnumTipoEncuesta.Calificacion:
                         foreach (EncuestaPregunta pregunta in encuesta.EncuestaPregunta)
@@ -165,13 +181,28 @@ namespace KiiniHelp.UserControls.Temporal
                                 {
                                     if (!divGrupo.Controls.Cast<Control>().Any(control => ((RadioButton)control).Checked))
                                     {
-                                        throw new Exception("Debe contestar todas las pregunats");
+                                        throw new Exception("Debe contestar todas las preguntas");
                                     }
                                 }
                             }
                         }
                         break;
                     case (int)BusinessVariables.EnumTipoEncuesta.CalificacionPesimoMaloRegularBuenoExcelente:
+                        foreach (EncuestaPregunta pregunta in encuesta.EncuestaPregunta)
+                        {
+                            HtmlGenericControl divControl = (HtmlGenericControl)divControles.FindControl("createDiv" + pregunta.Id);
+                            if (divControl != null)
+                            {
+                                HtmlGenericControl divGrupo = (HtmlGenericControl)divControl.FindControl("createDivs" + pregunta.Id);
+                                if (divGrupo != null)
+                                {
+                                    if (!divGrupo.Controls.Cast<Control>().Any(control => ((RadioButton)control).Checked))
+                                    {
+                                        throw new Exception("Debe contestar todas las preguntas");
+                                    }
+                                }
+                            }
+                        }
                         break;
                 }
 
@@ -261,7 +292,7 @@ namespace KiiniHelp.UserControls.Temporal
                                 HtmlGenericControl divGrupo = (HtmlGenericControl)divControl.FindControl("createDivs" + pregunta.Id);
                                 if (divGrupo != null)
                                 {
-                                    for (int i = 1; i <= 10; i++)
+                                    for (int i = 0; i <= 10; i++)
                                     {
                                         RadioButton rbtn = (RadioButton)divGrupo.FindControl("rbtn" + pregunta.Id + i);
                                         if (rbtn.Checked)
@@ -373,7 +404,7 @@ namespace KiiniHelp.UserControls.Temporal
                             createDiv.Controls.Add(rbNo);
                             RadioButton rbSi = new RadioButton();
                             rbSi.ID = "rbtn" + pregunta.Id + "1";
-                            rbSi.Text = "SI";
+                            rbSi.Text = "Si";
                             rbSi.GroupName = "EncuestaLogica" + pregunta.Id;
                             rbSi.Style.Add("padding", "10px");
                             createDiv.Controls.Add(rbSi);
@@ -391,7 +422,7 @@ namespace KiiniHelp.UserControls.Temporal
                             divControles.Controls.Add(createDiv);
                             createDiv = new HtmlGenericControl("DIV") { ID = "createDivs" + pregunta.Id };
                             createDiv.Attributes["class"] = "form-group";
-                            for (int i = 1; i <= 10; i++)
+                            for (int i = 0; i <= 10; i++)
                             {
 
                                 RadioButton rb = new RadioButton();
@@ -432,21 +463,21 @@ namespace KiiniHelp.UserControls.Temporal
                             RadioButton rbtnBuena = new RadioButton();
                             rbtnBuena.ID = "rbtn" + pregunta.Id + "3";
                             rbtnBuena.Text = "REGULAR";
-                            rbtnBuena.GroupName = "EncuestaLogica" + pregunta.Id;
+                            rbtnBuena.GroupName = "EncuestaMultiple" + pregunta.Id;
                             rbtnBuena.Style.Add("padding", "10px");
                             createDiv.Controls.Add(rbtnBuena);
 
                             RadioButton rbtnMuyBuena = new RadioButton();
                             rbtnMuyBuena.ID = "rbtn" + pregunta.Id + "4";
                             rbtnMuyBuena.Text = "BUENO";
-                            rbtnMuyBuena.GroupName = "EncuestaLogica" + pregunta.Id;
+                            rbtnMuyBuena.GroupName = "EncuestaMultiple" + pregunta.Id;
                             rbtnMuyBuena.Style.Add("padding", "10px");
                             createDiv.Controls.Add(rbtnMuyBuena);
 
                             RadioButton rbtnExelente = new RadioButton();
                             rbtnExelente.ID = "rbtn" + pregunta.Id + "5";
                             rbtnExelente.Text = "EXCELENTE";
-                            rbtnExelente.GroupName = "EncuestaLogica" + pregunta.Id;
+                            rbtnExelente.GroupName = "EncuestaMultiple" + pregunta.Id;
                             rbtnExelente.Style.Add("padding", "10px");
                             createDiv.Controls.Add(rbtnExelente);
                             divControles.Controls.Add(createDiv);
@@ -461,6 +492,7 @@ namespace KiiniHelp.UserControls.Temporal
                 throw new Exception(ex.Message);
             }
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

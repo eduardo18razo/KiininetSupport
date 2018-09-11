@@ -339,6 +339,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
+        public List<Organizacion> ObtenerOrganizacionesTipoUsuario(List<int> tiposUsuario)
+        {
+            try
+            {
+                using (BusinessOrganizacion negocio = new BusinessOrganizacion())
+                {
+                    return negocio.ObtenerOrganizacionesTipoUsuario(tiposUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public List<int> ObtenerOrganizacionesByIdOrganizacion(int idOrganizacion)
         {
             try

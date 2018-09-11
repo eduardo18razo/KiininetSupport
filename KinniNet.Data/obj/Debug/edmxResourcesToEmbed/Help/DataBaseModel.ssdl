@@ -383,6 +383,15 @@
     <Property Name="NumeroVisitas" Type="int" Nullable="false" />
     <Property Name="UltimaVisita" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="FrecuenciaFecha">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="PeriodoMaximo" Type="int" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
   <EntityType Name="Gerencia">
     <Key>
       <PropertyRef Name="Id" />
@@ -391,6 +400,41 @@
     <Property Name="IdTipoUsuario" Type="int" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Habilitado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GraficosDefault">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMenu" Type="int" />
+    <Property Name="IdFrecuenciaFecha" Type="int" />
+    <Property Name="Periodo" Type="int" />
+    <Property Name="Stack" Type="bit" />
+    <Property Name="Pareto" Type="bit" />
+    <Property Name="Pie" Type="bit" />
+    <Property Name="Geografico" Type="bit" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="GraficosFavoritos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" />
+    <Property Name="IdMenu" Type="int" />
+    <Property Name="TipoUsuario" Type="nvarchar(max)" />
+    <Property Name="Categoria" Type="nvarchar(max)" />
+    <Property Name="GrupoAtencion" Type="nvarchar(max)" />
+    <Property Name="Agentes" Type="nvarchar(max)" />
+    <Property Name="Canal" Type="nvarchar(max)" />
+    <Property Name="TipoTicket" Type="nvarchar(max)" />
+    <Property Name="EstatusTicket" Type="nvarchar(max)" />
+    <Property Name="Prioridad" Type="nvarchar(max)" />
+    <Property Name="Sla" Type="nvarchar(max)" />
+    <Property Name="Vip" Type="nvarchar(max)" />
+    <Property Name="Organizacion" Type="nvarchar(max)" />
+    <Property Name="Estados" Type="nvarchar(max)" />
+    <Property Name="Habilitado" Type="bit" />
   </EntityType>
   <EntityType Name="GrupoUsuario">
     <Key>
@@ -1175,6 +1219,10 @@
     <Property Name="TiempoEspera" Type="nvarchar(max)" />
     <Property Name="FechaInicioEspera" Type="datetime" />
     <Property Name="FechaFinEspera" Type="datetime" />
+    <Property Name="IdUsuarioUltimoMovimiento" Type="int" />
+    <Property Name="FechaUltimoMovimiento" Type="datetime" />
+    <Property Name="IdUsuarioUltimoAgenteAsignado" Type="int" />
+    <Property Name="FechaUltimoAgenteAsignado" Type="datetime" />
   </EntityType>
   <EntityType Name="TicketAsignacion">
     <Key>
@@ -1289,11 +1337,11 @@
     <Property Name="IdArbol" Type="int" />
     <Property Name="IdTipoGrupo" Type="int" />
     <Property Name="IdGrupoUsuario" Type="int" />
-    <Property Name="Dias" Type="decimal" Precision="18" Scale="9" />
-    <Property Name="Horas" Type="decimal" Precision="18" Scale="9" />
-    <Property Name="Minutos" Type="decimal" Precision="18" Scale="9" />
-    <Property Name="Segundos" Type="decimal" Precision="18" Scale="9" />
-    <Property Name="TiempoNotificacion" Type="decimal" Precision="18" Scale="9" />
+    <Property Name="Dias" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Horas" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Minutos" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Segundos" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="TiempoNotificacion" Type="decimal" Precision="18" Scale="15" />
     <Property Name="IdTipoNotificacion" Type="int" />
     <Property Name="AntesVencimiento" Type="bit" />
     <Property Name="Habilitado" Type="bit" />
@@ -2277,6 +2325,54 @@
       </Principal>
       <Dependent Role="Gerencia">
         <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficosDefault_FrecuenciaFecha">
+    <End Role="FrecuenciaFecha" Type="Self.FrecuenciaFecha" Multiplicity="0..1" />
+    <End Role="GraficosDefault" Type="Self.GraficosDefault" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FrecuenciaFecha">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosDefault">
+        <PropertyRef Name="IdFrecuenciaFecha" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficosDefault_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="GraficosDefault" Type="Self.GraficosDefault" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosDefault">
+        <PropertyRef Name="IdMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficosFavoritos_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="GraficosFavoritos" Type="Self.GraficosFavoritos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosFavoritos">
+        <PropertyRef Name="IdMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficosFavoritos_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="GraficosFavoritos" Type="Self.GraficosFavoritos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosFavoritos">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3924,6 +4020,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Ticket_Usuario_UltimoAgente">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="IdUsuarioUltimoAgenteAsignado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ticket_Usuario_UltimoMovimiento">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="IdUsuarioUltimoMovimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Ticket_Usuario1">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
     <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
@@ -4257,54 +4377,6 @@
       </Principal>
       <Dependent Role="TicketNotificacion">
         <PropertyRef Name="IdUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TiempoInformeArbol_ArbolAcceso">
-    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="0..1" />
-    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ArbolAcceso">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TiempoInformeArbol">
-        <PropertyRef Name="IdArbol" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TiempoInformeArbol_GrupoUsuario">
-    <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="0..1" />
-    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GrupoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TiempoInformeArbol">
-        <PropertyRef Name="IdGrupoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TiempoInformeArbol_TipoGrupo">
-    <End Role="TipoGrupo" Type="Self.TipoGrupo" Multiplicity="0..1" />
-    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoGrupo">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TiempoInformeArbol">
-        <PropertyRef Name="IdTipoGrupo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_TiempoInformeArbol_TipoNotificacion">
-    <End Role="TipoNotificacion" Type="Self.TipoNotificacion" Multiplicity="0..1" />
-    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoNotificacion">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TiempoInformeArbol">
-        <PropertyRef Name="IdTipoNotificacion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4652,7 +4724,10 @@
     <EntitySet Name="EstatusTicketSubRolGeneral" EntityType="Self.EstatusTicketSubRolGeneral" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EstatusTicketSubRolGeneralDefault" EntityType="Self.EstatusTicketSubRolGeneralDefault" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Frecuencia" EntityType="Self.Frecuencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FrecuenciaFecha" EntityType="Self.FrecuenciaFecha" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gerencia" EntityType="Self.Gerencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GraficosDefault" EntityType="Self.GraficosDefault" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GraficosFavoritos" EntityType="Self.GraficosFavoritos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GrupoUsuario" EntityType="Self.GrupoUsuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GrupoUsuarioDefaultOpcion" EntityType="Self.GrupoUsuarioDefaultOpcion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GrupoUsuarioInventarioArbol" EntityType="Self.GrupoUsuarioInventarioArbol" Schema="dbo" store:Type="Tables" />
@@ -4996,6 +5071,22 @@
     <AssociationSet Name="FK_Gerencia_TipoUsuario" Association="Self.FK_Gerencia_TipoUsuario">
       <End Role="TipoUsuario" EntitySet="TipoUsuario" />
       <End Role="Gerencia" EntitySet="Gerencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficosDefault_FrecuenciaFecha" Association="Self.FK_GraficosDefault_FrecuenciaFecha">
+      <End Role="FrecuenciaFecha" EntitySet="FrecuenciaFecha" />
+      <End Role="GraficosDefault" EntitySet="GraficosDefault" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficosDefault_Menu" Association="Self.FK_GraficosDefault_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="GraficosDefault" EntitySet="GraficosDefault" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficosFavoritos_Menu" Association="Self.FK_GraficosFavoritos_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="GraficosFavoritos" EntitySet="GraficosFavoritos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficosFavoritos_Usuario" Association="Self.FK_GraficosFavoritos_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="GraficosFavoritos" EntitySet="GraficosFavoritos" />
     </AssociationSet>
     <AssociationSet Name="FK_GrupoUsuario_TipoGrupo1" Association="Self.FK_GrupoUsuario_TipoGrupo1">
       <End Role="TipoGrupo" EntitySet="TipoGrupo" />
@@ -5545,6 +5636,14 @@
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
+    <AssociationSet Name="FK_Ticket_Usuario_UltimoAgente" Association="Self.FK_Ticket_Usuario_UltimoAgente">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ticket_Usuario_UltimoMovimiento" Association="Self.FK_Ticket_Usuario_UltimoMovimiento">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
     <AssociationSet Name="FK_Ticket_Usuario1" Association="Self.FK_Ticket_Usuario1">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Ticket" EntitySet="Ticket" />
@@ -5656,22 +5755,6 @@
     <AssociationSet Name="FK_TicketNotificacion_Usuario" Association="Self.FK_TicketNotificacion_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TiempoInformeArbol_ArbolAcceso" Association="Self.FK_TiempoInformeArbol_ArbolAcceso">
-      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
-      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TiempoInformeArbol_GrupoUsuario" Association="Self.FK_TiempoInformeArbol_GrupoUsuario">
-      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
-      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TiempoInformeArbol_TipoGrupo" Association="Self.FK_TiempoInformeArbol_TipoGrupo">
-      <End Role="TipoGrupo" EntitySet="TipoGrupo" />
-      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
-    </AssociationSet>
-    <AssociationSet Name="FK_TiempoInformeArbol_TipoNotificacion" Association="Self.FK_TiempoInformeArbol_TipoNotificacion">
-      <End Role="TipoNotificacion" EntitySet="TipoNotificacion" />
-      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
     </AssociationSet>
     <AssociationSet Name="FK_Torre_TipoUsuario" Association="Self.FK_Torre_TipoUsuario">
       <End Role="TipoUsuario" EntitySet="TipoUsuario" />

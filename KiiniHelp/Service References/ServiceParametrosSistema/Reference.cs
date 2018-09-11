@@ -40,6 +40,12 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerParemtrosPassword", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerParemtrosPasswordResponse")]
         KiiniNet.Entities.Parametros.ParametroPassword ObtenerParemtrosPassword();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerParametrosGraficoDefault", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerParametrosGraficoDefaultResponse")]
+        KiiniNet.Entities.Parametros.GraficosDefault ObtenerParametrosGraficoDefault();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerFrecuenciasFecha", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerFrecuenciasFechaResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Parametros.FrecuenciaFecha> ObtenerFrecuenciasFecha();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -99,6 +105,14 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         public KiiniNet.Entities.Parametros.ParametroPassword ObtenerParemtrosPassword() {
             return base.Channel.ObtenerParemtrosPassword();
+        }
+        
+        public KiiniNet.Entities.Parametros.GraficosDefault ObtenerParametrosGraficoDefault() {
+            return base.Channel.ObtenerParametrosGraficoDefault();
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Parametros.FrecuenciaFecha> ObtenerFrecuenciasFecha() {
+            return base.Channel.ObtenerFrecuenciasFecha();
         }
     }
 }

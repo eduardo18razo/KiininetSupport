@@ -12,5 +12,8 @@ namespace KiiniNet.Services.Sistema.Interface
 
         [OperationContract]
         Colonia ObtenerDetalleColonia(int idColonia);
+
+        [OperationContract]
+        List<Estado> ObtenerEstados(bool insertarSeleccion);
     }
 }

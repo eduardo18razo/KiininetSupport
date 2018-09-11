@@ -51,8 +51,26 @@ namespace KiiniHelp.ServiceEncuesta {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGrupos", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGruposResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Usuario.Encuesta> ObtenerEncuestaByGrupos(System.Collections.Generic.List<int> grupos, bool insertarSeleccion);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerReporteNps", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerReporteNpsResponse")]
-        KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNps", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsResponse")]
+        KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacion", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionResponse")]
+        KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionDescarga", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionDescargaResponse")]
+        System.Data.DataTable ObtenerGraficoCalificacionDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccion", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccionResponse")]
+        KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoSatisfaccion(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccionDescarga", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccionDescargaResponse")]
+        System.Data.DataTable ObtenerGraficoSatisfaccionDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogica", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogicaResponse")]
+        KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoLogica(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogicaDescarga", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogicaDescargaResponse")]
+        System.Data.DataTable ObtenerGraficoLogicaDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -130,8 +148,32 @@ namespace KiiniHelp.ServiceEncuesta {
             return base.Channel.ObtenerEncuestaByGrupos(grupos, insertarSeleccion);
         }
         
-        public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
-            return base.Channel.ObtenerReporteNps(idArbolAcceso, fechas, tipoFecha);
+        public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
+            return base.Channel.ObtenerGraficoNps(idArbolAcceso, fechas, tipoFecha);
+        }
+        
+        public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
+            return base.Channel.ObtenerGraficoCalificacion(idArbolAcceso, fechas, tipoFecha);
+        }
+        
+        public System.Data.DataTable ObtenerGraficoCalificacionDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerGraficoCalificacionDescarga(idArbolAcceso, fechas);
+        }
+        
+        public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoSatisfaccion(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
+            return base.Channel.ObtenerGraficoSatisfaccion(idArbolAcceso, fechas, tipoFecha);
+        }
+        
+        public System.Data.DataTable ObtenerGraficoSatisfaccionDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerGraficoSatisfaccionDescarga(idArbolAcceso, fechas);
+        }
+        
+        public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoLogica(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
+            return base.Channel.ObtenerGraficoLogica(idArbolAcceso, fechas, tipoFecha);
+        }
+        
+        public System.Data.DataTable ObtenerGraficoLogicaDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerGraficoLogicaDescarga(idArbolAcceso, fechas);
         }
     }
 }

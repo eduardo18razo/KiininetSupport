@@ -128,5 +128,35 @@ namespace KiiniNet.Services.Parametros.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public GraficosDefault ObtenerParametrosGraficoDefault()
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerParametrosGraficoDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<FrecuenciaFecha> ObtenerFrecuenciasFecha()
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerFrecuenciasFecha();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

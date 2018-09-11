@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceSistemaTipoArbolAcceso;
 using KinniNet.Business.Utils;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -34,14 +35,17 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroServicioIncidente.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroServicioIncidente.CheckedItems select int.Parse(item.Value)).ToList();
             }
         }
         private void LlenaTipoArbolTicket()
         {
             try
             {
-                Metodos.LlenaListBoxCatalogo(lstFiltroServicioIncidente, _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion));
+                rcbFiltroServicioIncidente.DataSource = _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion);
+                rcbFiltroServicioIncidente.DataTextField = "Descripcion";
+                rcbFiltroServicioIncidente.DataValueField = "Id";
+                rcbFiltroServicioIncidente.DataBind();
             }
             catch (Exception e)
             {
@@ -53,7 +57,10 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                Metodos.LlenaListBoxCatalogo(lstFiltroServicioIncidente, _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion));
+                rcbFiltroServicioIncidente.DataSource = _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false).Where(w => w.Id == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion);
+                rcbFiltroServicioIncidente.DataTextField = "Descripcion";
+                rcbFiltroServicioIncidente.DataValueField = "Id";
+                rcbFiltroServicioIncidente.DataBind();
             }
             catch (Exception e)
             {
@@ -65,7 +72,10 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                Metodos.LlenaListBoxCatalogo(lstFiltroServicioIncidente, _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false));
+                rcbFiltroServicioIncidente.DataSource = _servicioGrupoUsuario.ObtenerTiposArbolAcceso(false);
+                rcbFiltroServicioIncidente.DataTextField = "Descripcion";
+                rcbFiltroServicioIncidente.DataValueField = "Id";
+                rcbFiltroServicioIncidente.DataBind();
             }
             catch (Exception e)
             {
@@ -106,15 +116,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void CerroListBox()
         {
             try
             {
-                Alerta = new List<string>();
-                if (!IsPostBack)
-                {
-                    Session["TipoArbolSeleccionado"] = null;
-                }
+                if (OnAceptarModal != null)
+                    OnAceptarModal();
             }
             catch (Exception ex)
             {
@@ -127,5 +134,28 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                Alerta = new List<string>();
+                if (IsPostBack)
+                {
+                    if (Page.Request.Params["__EVENTTARGET"] == "Seleccion")
+                    {
+                        CerroListBox();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

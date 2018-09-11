@@ -37,5 +37,20 @@ namespace KiiniNet.Services.Sistema.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<Estado> ObtenerEstados(bool insertarSeleccion)
+        {
+            try
+            {
+                using (BusinessDomicilioSistema negocio = new BusinessDomicilioSistema())
+                {
+                    return negocio.ObtenerEstados(insertarSeleccion);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

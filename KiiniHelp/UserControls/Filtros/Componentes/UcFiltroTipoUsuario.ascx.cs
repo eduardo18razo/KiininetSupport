@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceSistemaTipoUsuario;
-using KiiniNet.Entities.Cat.Sistema;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -35,7 +33,10 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                Metodos.LlenaListBoxCatalogo(lstFiltroTipoUsuario, _serviciotipoUsuario.ObtenerTiposUsuario(false).OrderBy(s => s.Descripcion));
+                rcbFiltroTipoUsuario.DataSource = _serviciotipoUsuario.ObtenerTiposUsuario(false).OrderBy(s => s.Descripcion);
+                rcbFiltroTipoUsuario.DataTextField = "Descripcion";
+                rcbFiltroTipoUsuario.DataValueField = "Id";
+                rcbFiltroTipoUsuario.DataBind();
             }
             catch (Exception e)
             {
@@ -47,7 +48,25 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroTipoUsuario.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroTipoUsuario.CheckedItems select int.Parse(item.Value)).ToList();
+            }
+        }
+
+        private void CerroListBox()
+        {
+            try
+            {
+                if (OnAceptarModal != null)
+                    OnAceptarModal();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
 
@@ -59,6 +78,13 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 if (!IsPostBack)
                 {
                     LlenaTipoUsuario();
+                }
+                if (IsPostBack)
+                {
+                    if (Page.Request.Params["__EVENTTARGET"] == "Seleccion")
+                    {
+                        CerroListBox();
+                    }
                 }
             }
             catch (Exception ex)

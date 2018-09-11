@@ -284,7 +284,8 @@ namespace KiiniHelp.Funciones
                             {"inicio", BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anioInicialSemana, semanaInicialSemana)},
                             {"fin", BusinessCadenas.Fechas.ObtenerFechaFinSemana(anioFinSemana, semanaFinSemana)}
                         };
-
+                            if (result.Single(s => s.Key == "inicio").Value > result.Single(s => s.Key == "fin").Value)
+                                throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
                             break;
                         case 3:
                             if (fechaInicio.Trim() == string.Empty || fechaInicio.Trim() == string.Empty)
@@ -293,14 +294,14 @@ namespace KiiniHelp.Funciones
                             int mesInicialMes = Convert.ToInt32(fechaInicio.Split('-')[1]);
                             int anioFinMes = Convert.ToInt32(fechaFin.Split('-')[0]);
                             int mesFinMes = Convert.ToInt32(fechaFin.Split('-')[1]);
-                            if ((anioInicialMes > anioFinMes) || (mesInicialMes > mesFinMes))
-                                throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
 
                             result = new Dictionary<string, DateTime>
                         {
                             {"inicio", new DateTime(anioInicialMes, mesInicialMes, 1)},
                             {"fin", new DateTime(anioFinMes, mesFinMes, DateTime.DaysInMonth(anioFinMes, mesFinMes))}
                         };
+                            if (result.Single(s => s.Key == "inicio").Value > result.Single(s => s.Key == "fin").Value)
+                                throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
 
                             break;
                         case 4:
@@ -313,6 +314,9 @@ namespace KiiniHelp.Funciones
                             {"inicio", new DateTime(int.Parse(fechaInicio), 01, 1)},
                             {"fin", new DateTime(int.Parse(fechaFin), 12, DateTime.DaysInMonth(int.Parse(fechaFin), 12))}
                         };
+                            if (result.Single(s => s.Key == "inicio").Value > result.Single(s => s.Key == "fin").Value)
+                                throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
+
                             break;
                     }
                     return result;

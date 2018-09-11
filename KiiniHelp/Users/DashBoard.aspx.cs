@@ -6,8 +6,6 @@ using System.Data;
 using System.Web.UI.WebControls;
 using KiiniHelp.ServiceDashboard;
 using KiiniNet.Entities.Operacion.Dashboard;
-using KinniNet.Business.Utils;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using Telerik.Web.UI;
 using Telerik.Web.UI.HtmlChart;
 

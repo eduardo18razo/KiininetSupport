@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="rD77au0i/hAPrawL0XPw7RrSChA=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="pKzFMqiI4SlZaKTv0LM+adp6q3I=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="EndPointAdministracion7">
+    <bindingConfiguration bindingType="basicHttpBinding" name="EndPointAdministracion1">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>EndPointAdministracion7</serializedValue>
+          <serializedValue>EndPointAdministracion1</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,7 +112,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="EndPointAdministracion7" contract="ServiceOrganizacion.IServiceOrganizacion" bindingType="basicHttpBinding" address="http://localhost:15277/ServiceOrganizacion.svc" bindingConfiguration="EndPointAdministracion7">
+    <endpoint name="EndPointAdministracion7" contract="ServiceOrganizacion.IServiceOrganizacion" bindingType="basicHttpBinding" address="http://localhost:15277/ServiceOrganizacion.svc" bindingConfiguration="EndPointAdministracion1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:15277/ServiceOrganizacion.svc</serializedValue>
@@ -124,7 +124,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>EndPointAdministracion7</serializedValue>
+          <serializedValue>EndPointAdministracion1</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>ServiceOrganizacion.IServiceOrganizacion</serializedValue>

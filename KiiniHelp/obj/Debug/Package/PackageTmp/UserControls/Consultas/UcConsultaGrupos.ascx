@@ -8,16 +8,16 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Atención</li>
-                <li class="breadcrumb-item active">Grupos</li>
+                <li>Atención</li>
+                <li class="active">Grupos</li>
             </ol>
 
             <section class="module">
                 <div class="row">
                     <div class="module-inner">
-                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="module-heading">
                                 <h3 class="module-title">
                                     <asp:Label runat="server" ID="lblOrganización" Text="Grupos" /></h3>
@@ -29,7 +29,7 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="form col-lg-5">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Grupos:</label>
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">

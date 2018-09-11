@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using KiiniNet.Entities.Cat.Sistema;
+using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
@@ -317,6 +318,45 @@ namespace KinniNet.Core.Parametros
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.ParametroPassword.First();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public GraficosDefault ObtenerParametrosGraficoDefault()
+        {
+            GraficosDefault result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.GraficosDefault.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+        public List<FrecuenciaFecha> ObtenerFrecuenciasFecha()
+        {
+            List<FrecuenciaFecha> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.FrecuenciaFecha.ToList();
             }
             catch (Exception ex)
             {

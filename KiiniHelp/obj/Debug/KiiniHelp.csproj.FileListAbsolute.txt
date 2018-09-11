@@ -1,3 +1,5 @@
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.csprojResolveAssemblyReference.cache
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.dll.config
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\KiiniHelp.pdb
@@ -32,7 +34,5 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\Telerik.Windo
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.xml
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\Telerik.Windows.Zip.xml
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\bin\Telerik.Windows.Zip.Extensions.xml
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.csprojResolveAssemblyReference.cache
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll.licenses
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniHelp\obj\Debug\KiiniHelp.pdb

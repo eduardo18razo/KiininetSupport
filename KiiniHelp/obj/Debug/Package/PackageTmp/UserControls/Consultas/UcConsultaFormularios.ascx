@@ -98,13 +98,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Datos" HeaderStyle-Width="4%">
-                                            <ItemTemplate>
-                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnDetalle" OnClick="btnDetalle_OnClick" Text="Ver"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-
                                         <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenClonar">

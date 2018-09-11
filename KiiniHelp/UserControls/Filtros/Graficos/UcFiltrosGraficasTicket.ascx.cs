@@ -105,8 +105,6 @@ namespace KiiniHelp.UserControls.Filtros.Graficos
         {
             try
             {
-                ucFiltroOrganizacion.Grupos = ucFiltroGrupo.GruposSeleccionados;
-                ucFiltroUbicacion.Grupos = ucFiltroGrupo.GruposSeleccionados;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalFiltroGrupo\");", true);
             }
             catch (Exception ex)
@@ -124,7 +122,7 @@ namespace KiiniHelp.UserControls.Filtros.Graficos
         {
             try
             {
-                ucFiltroTipificacion.TipoArbol = ucFiltroServicioIncidente.TipoArbolSeleccionados.First();
+                ucFiltroTipificacion.TipoArbol = ucFiltroServicioIncidente.TipoArbolSeleccionados;
             }
             catch (Exception ex)
             {

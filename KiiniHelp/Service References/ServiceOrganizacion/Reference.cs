@@ -81,6 +81,9 @@ namespace KiiniHelp.ServiceOrganizacion {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesGrupos", ReplyAction="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesGruposResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Organizacion> ObtenerOrganizacionesGrupos(System.Collections.Generic.List<int> grupos);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesTipoUsuario", ReplyAction="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesTipoUsuarioResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Organizacion> ObtenerOrganizacionesTipoUsuario(System.Collections.Generic.List<int> tiposUsuario);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesByIdOrganizacion", ReplyAction="http://tempuri.org/IServiceOrganizacion/ObtenerOrganizacionesByIdOrganizacionResp" +
             "onse")]
         System.Collections.Generic.List<int> ObtenerOrganizacionesByIdOrganizacion(int idOrganizacion);
@@ -202,6 +205,10 @@ namespace KiiniHelp.ServiceOrganizacion {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Organizacion> ObtenerOrganizacionesGrupos(System.Collections.Generic.List<int> grupos) {
             return base.Channel.ObtenerOrganizacionesGrupos(grupos);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Operacion.Organizacion> ObtenerOrganizacionesTipoUsuario(System.Collections.Generic.List<int> tiposUsuario) {
+            return base.Channel.ObtenerOrganizacionesTipoUsuario(tiposUsuario);
         }
         
         public System.Collections.Generic.List<int> ObtenerOrganizacionesByIdOrganizacion(int idOrganizacion) {

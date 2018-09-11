@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
   <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
   <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
-  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
   <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
   <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
@@ -15,6 +15,7 @@
     <xs:sequence>
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="Area" nillable="true" type="q1:Area" />
       <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Detractores" type="xs:int" />
       <xs:element minOccurs="0" name="EsTerminal" type="xs:boolean" />
       <xs:element minOccurs="0" name="Evaluacion" type="xs:boolean" />
       <xs:element minOccurs="0" name="FechaAlta" type="xs:dateTime" />
@@ -38,6 +39,7 @@
       <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="Impacto" nillable="true" type="q4:Impacto" />
       <xs:element minOccurs="0" name="InventarioArbolAcceso" nillable="true" type="tns:ArrayOfInventarioArbolAcceso" />
       <xs:element minOccurs="0" name="MeGusta" type="xs:int" />
+      <xs:element minOccurs="0" name="Neutros" type="xs:int" />
       <xs:element minOccurs="0" name="Nivel" type="xs:int" />
       <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" minOccurs="0" name="Nivel1" nillable="true" type="q5:Nivel1" />
       <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" minOccurs="0" name="Nivel2" nillable="true" type="q6:Nivel2" />
@@ -50,6 +52,7 @@
       <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionGrupo" nillable="true" type="q12:ArrayOfNotaOpcionGrupo" />
       <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="NotaOpcionUsuario" nillable="true" type="q13:ArrayOfNotaOpcionUsuario" />
       <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="PreTicket" nillable="true" type="q14:ArrayOfPreTicket" />
+      <xs:element minOccurs="0" name="Promotores" type="xs:int" />
       <xs:element minOccurs="0" name="Publico" type="xs:boolean" />
       <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="RespuestaEncuesta" nillable="true" type="q15:ArrayOfRespuestaEncuesta" />
       <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />

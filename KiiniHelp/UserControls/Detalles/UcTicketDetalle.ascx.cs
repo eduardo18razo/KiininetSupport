@@ -498,7 +498,6 @@ namespace KiiniHelp.UserControls.Detalles
                 string mensajeConversacion = string.Empty;
                 bool conversacionPrivada = false, enviaCorreo = false;
                 const bool sistema = false;
-                string comentarioAsignacion = string.Empty;
                 int idUsuarioGeneraEvento = (((Usuario)Session["UserData"]).Id);
 
                 ValidaCaptura();
@@ -509,35 +508,35 @@ namespace KiiniHelp.UserControls.Detalles
                     idEstatusAsignacion = int.Parse(ddlCambiarAsignar.SelectedValue);
 
                 if (ddlCambiarAsignar.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    if (_servicioEstatus.HasComentarioObligatorio(idUsuarioGeneraEvento, IdGrupoAsignado, IdSubRolActual, IdEstatusTicket, (int)idEstatusAsignacion, EsPropietario))
+                    if (idEstatusAsignacion != null && _servicioEstatus.HasComentarioObligatorio(idUsuarioGeneraEvento, IdGrupoAsignado, IdSubRolActual, IdEstatusAsignacion, (int)idEstatusAsignacion, EsPropietario))
                         if (txtComentarioAsignacion.Text.Trim() == string.Empty)
                         {
 
                             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalComentarioObligado\");", true);
                             return;
                         }
-                comentarioAsignacion = txtComentarioAsignacion.Text.Trim();
-                idNivelAsignado = IdNivelParaAsignacion;
-                idUsuarioAsignado = IdUsuarioAsignacion;
-                //if (divUsuariosAsignacion.Visible)
-                //{
-                //    if (_servicioEstatus.HasComentarioObligatorio(idUsuarioGeneraEvento, IdGrupoAsignado, IdSubRolActual, IdEstatusTicket, (int)idEstatusAsignacion, EsPropietario))
-                //        if (txtComentarioAsignacion.Text.Trim() == string.Empty)
-                //        {
 
-                //            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalComentarioObligado\");", true);
-                //            return;
-                //        }
-                //    comentarioAsignacion = txtComentarioAsignacion.Text.Trim();
-                //    idNivelAsignado = IdNivelParaAsignacion;
-                //    idUsuarioAsignado = IdUsuarioAsignacion;
-                //}
                 if (!string.IsNullOrEmpty(txtConversacion.Text.Trim()))
                 {
                     mensajeConversacion = txtConversacion.Text.Trim();
                     conversacionPrivada = rbtnPrivate.Checked;
                     enviaCorreo = !rbtnPrivate.Checked;
                 }
+
+                if (ddlCambiarEstatus.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                    if (idEstatusTicket != null && _servicioEstatus.HasCambioEstatusComentarioObligatorio(Session["UserData"] != null ? idUsuarioGeneraEvento : (int?) null, IdTicket, (int)idEstatusTicket, EsPropietario, false))
+                        if (txtComentarioAsignacion.Text.Trim() == string.Empty)
+                        {
+
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalComentarioObligado\");", true);
+                            return;
+                        }
+
+                string comentarioAsignacion = txtComentarioAsignacion.Text.Trim();
+                idNivelAsignado = IdNivelParaAsignacion;
+                idUsuarioAsignado = IdUsuarioAsignacion;
+
+                
 
                 _servicioAtencionTicket.GenerarEvento(IdTicket, idUsuarioGeneraEvento, idEstatusTicket, idEstatusAsignacion, idNivelAsignado, idUsuarioAsignado, mensajeConversacion, conversacionPrivada, enviaCorreo, sistema, null, comentarioAsignacion, EsPropietario);
 

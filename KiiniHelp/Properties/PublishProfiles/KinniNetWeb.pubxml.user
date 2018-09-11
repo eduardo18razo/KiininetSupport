@@ -9,10 +9,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="Agente.Master">
-      <publishTime>07/12/2018 15:33:40</publishTime>
+      <publishTime>09/10/2018 16:07:59</publishTime>
     </File>
     <File Include="Agente/Bandeja.aspx">
-      <publishTime>04/19/2018 10:22:27</publishTime>
+      <publishTime>09/07/2018 12:05:34</publishTime>
     </File>
     <File Include="Agente/DashBoardAgente.aspx">
       <publishTime>05/22/2018 13:37:26</publishTime>
@@ -57,7 +57,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/21/2018 16:30:20</publishTime>
     </File>
     <File Include="assets/css/divs.css">
-      <publishTime>04/16/2018 18:30:39</publishTime>
+      <publishTime>08/15/2018 17:44:37</publishTime>
     </File>
     <File Include="assets/css/elegant-icons.css">
       <publishTime>12/13/2017 13:33:04</publishTime>
@@ -576,22 +576,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/18/2018 13:55:40</publishTime>
     </File>
     <File Include="bin/KiiniHelp.dll">
-      <publishTime>07/17/2018 11:41:21</publishTime>
+      <publishTime>09/11/2018 09:30:11</publishTime>
     </File>
     <File Include="bin/KiiniHelp.pdb">
-      <publishTime>07/17/2018 11:41:21</publishTime>
+      <publishTime>09/11/2018 09:30:11</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>07/17/2018 11:40:51</publishTime>
+      <publishTime>09/10/2018 12:04:37</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>07/17/2018 11:40:51</publishTime>
+      <publishTime>09/10/2018 12:04:37</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>07/17/2018 11:40:54</publishTime>
+      <publishTime>09/10/2018 12:04:40</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>07/17/2018 11:40:54</publishTime>
+      <publishTime>09/10/2018 12:04:40</publishTime>
     </File>
     <File Include="bin/MSCaptcha.dll">
       <publishTime>11/08/2017 15:25:11</publishTime>
@@ -633,10 +633,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/08/2017 15:24:35</publishTime>
     </File>
     <File Include="ConfirmacionCuenta.aspx">
-      <publishTime>07/13/2018 09:10:11</publishTime>
+      <publishTime>07/17/2018 11:44:31</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>06/18/2018 10:46:28</publishTime>
+      <publishTime>09/10/2018 15:37:26</publishTime>
     </File>
     <File Include="DisplayImages.ashx">
       <publishTime>12/13/2017 13:32:58</publishTime>
@@ -654,7 +654,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:32:59</publishTime>
     </File>
     <File Include="FrmEncuesta.aspx">
-      <publishTime>06/13/2018 16:47:39</publishTime>
+      <publishTime>09/06/2018 16:53:46</publishTime>
     </File>
     <File Include="FrmRecuperar.aspx">
       <publishTime>07/04/2018 15:06:52</publishTime>
@@ -741,7 +741,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/13/2018 16:39:11</publishTime>
     </File>
     <File Include="Preview/FrmPreview.aspx">
-      <publishTime>07/16/2018 12:12:26</publishTime>
+      <publishTime>07/17/2018 11:44:31</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Arbol.Nodos.Nivel1.datasource">
       <publishTime>12/13/2017 13:32:59</publishTime>
@@ -790,6 +790,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Colonia.datasource">
       <publishTime>12/13/2017 13:32:59</publishTime>
+    </File>
+    <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Estado.datasource">
+      <publishTime>08/06/2018 10:32:23</publishTime>
     </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Pais.datasource">
       <publishTime>12/13/2017 13:32:59</publishTime>
@@ -1142,6 +1145,12 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneralDefault1.datasource">
       <publishTime>12/13/2017 13:32:59</publishTime>
     </File>
+    <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.FrecuenciaFecha.datasource">
+      <publishTime>07/31/2018 16:22:28</publishTime>
+    </File>
+    <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.GraficosDefault.datasource">
+      <publishTime>08/16/2018 09:32:35</publishTime>
+    </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Parametros.HorarioDefault.datasource">
       <publishTime>12/13/2017 13:32:59</publishTime>
     </File>
@@ -1167,7 +1176,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:32:59</publishTime>
     </File>
     <File Include="Public.Master">
-      <publishTime>06/13/2018 16:38:19</publishTime>
+      <publishTime>09/10/2018 15:28:48</publishTime>
     </File>
     <File Include="Publico/Consultas/FrmConsultaTicket.aspx">
       <publishTime>05/22/2018 15:59:03</publishTime>
@@ -1200,7 +1209,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>06/13/2018 16:35:22</publishTime>
     </File>
     <File Include="Test/FrmTest.aspx">
-      <publishTime>07/05/2018 15:39:26</publishTime>
+      <publishTime>07/31/2018 10:56:17</publishTime>
     </File>
     <File Include="Test/FrmTestTelerik.aspx">
       <publishTime>04/19/2018 16:06:22</publishTime>
@@ -1230,7 +1239,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/08/2018 10:50:42</publishTime>
     </File>
     <File Include="UserControls/Altas/ArbolesAcceso/UcAltaSeccion.ascx">
-      <publishTime>07/12/2018 05:44:36</publishTime>
+      <publishTime>07/17/2018 11:44:31</publishTime>
     </File>
     <File Include="UserControls/Altas/ArbolesAcceso/UcAltaServicio.ascx">
       <publishTime>06/14/2018 17:11:42</publishTime>
@@ -1308,7 +1317,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>04/19/2018 11:09:04</publishTime>
     </File>
     <File Include="UserControls/Altas/Usuarios/UcAltaUsuario.ascx">
-      <publishTime>07/11/2018 14:53:42</publishTime>
+      <publishTime>07/17/2018 11:44:31</publishTime>
     </File>
     <File Include="UserControls/Altas/Usuarios/UcAltaUsuarioRapida.ascx">
       <publishTime>05/15/2018 17:31:20</publishTime>
@@ -1323,7 +1332,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/02/2018 14:39:20</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaAreas.ascx">
-      <publishTime>04/09/2018 16:38:36</publishTime>
+      <publishTime>07/31/2018 13:16:33</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaCatalogo.ascx">
       <publishTime>04/09/2018 16:38:36</publishTime>
@@ -1344,13 +1353,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/23/2018 10:53:16</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaFormularios.ascx">
-      <publishTime>06/21/2018 03:18:00</publishTime>
+      <publishTime>08/16/2018 11:40:44</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaGrupos.ascx">
-      <publishTime>04/09/2018 16:38:36</publishTime>
+      <publishTime>09/07/2018 11:39:02</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaHorario.ascx">
-      <publishTime>07/10/2018 12:31:07</publishTime>
+      <publishTime>07/17/2018 11:44:31</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaInformacionConsulta.ascx">
       <publishTime>07/02/2018 15:00:44</publishTime>
@@ -1365,19 +1374,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/23/2018 10:53:16</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaOrganizacion.ascx">
-      <publishTime>07/10/2018 12:07:39</publishTime>
+      <publishTime>07/17/2018 11:44:31</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaPuestos.ascx">
       <publishTime>04/09/2018 16:38:36</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaSecciones.ascx">
-      <publishTime>07/12/2018 15:20:56</publishTime>
+      <publishTime>07/17/2018 11:44:31</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaTicketUsuario.ascx">
       <publishTime>04/09/2018 16:38:57</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaUbicaciones.ascx">
-      <publishTime>07/11/2018 17:32:37</publishTime>
+      <publishTime>07/17/2018 11:44:32</publishTime>
     </File>
     <File Include="UserControls/Consultas/UcConsultaUbicacionesFisico.ascx">
       <publishTime>03/23/2018 10:53:16</publishTime>
@@ -1434,31 +1443,37 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/23/2018 12:56:55</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroAtendedores.ascx">
-      <publishTime>03/23/2018 10:53:16</publishTime>
+      <publishTime>08/14/2018 16:45:00</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroCanalApertura.ascx">
-      <publishTime>06/29/2018 16:01:49</publishTime>
+      <publishTime>08/14/2018 16:47:53</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Componentes/UcFiltroCategoria.ascx">
+      <publishTime>08/14/2018 16:41:11</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroEncuesta.ascx">
       <publishTime>03/23/2018 10:53:16</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroEstatus.ascx">
-      <publishTime>07/02/2018 10:37:30</publishTime>
+      <publishTime>08/15/2018 09:53:10</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Componentes/UcFiltroEstatusAsignacion.ascx">
+      <publishTime>09/03/2018 11:04:43</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroFechasConsultas.ascx">
-      <publishTime>03/23/2018 10:53:16</publishTime>
+      <publishTime>08/08/2018 12:49:15</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroFechasGrafico.ascx">
       <publishTime>07/03/2018 08:57:02</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroGrupo.ascx">
-      <publishTime>07/02/2018 10:10:08</publishTime>
+      <publishTime>09/07/2018 13:38:18</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroGrupoEncuesta.ascx">
       <publishTime>05/29/2018 02:04:17</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroOrganizacion.ascx">
-      <publishTime>06/29/2018 16:01:40</publishTime>
+      <publishTime>08/14/2018 16:51:06</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroPrioridad.ascx">
       <publishTime>07/02/2018 10:37:23</publishTime>
@@ -1467,37 +1482,61 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/23/2018 10:53:16</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroServicioIncidente.ascx">
-      <publishTime>06/29/2018 16:19:03</publishTime>
+      <publishTime>08/15/2018 09:51:09</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroServicioIncidenteEncuesta.ascx">
-      <publishTime>03/23/2018 10:53:16</publishTime>
+      <publishTime>08/08/2018 13:04:19</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroSla.ascx">
-      <publishTime>07/02/2018 10:37:36</publishTime>
+      <publishTime>08/14/2018 16:50:34</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroStack.ascx">
       <publishTime>03/23/2018 10:53:16</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroTipificacion.ascx">
-      <publishTime>07/02/2018 10:13:12</publishTime>
+      <publishTime>09/10/2018 11:01:58</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroTipoUsuario.ascx">
-      <publishTime>06/29/2018 16:01:45</publishTime>
+      <publishTime>08/20/2018 18:50:16</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroUbicacion.ascx">
-      <publishTime>06/29/2018 16:18:28</publishTime>
+      <publishTime>08/14/2018 16:51:18</publishTime>
     </File>
     <File Include="UserControls/Filtros/Componentes/UcFiltroVip.ascx">
       <publishTime>07/02/2018 10:37:45</publishTime>
     </File>
     <File Include="UserControls/Filtros/Consultas/UcFiltrosConsulta.ascx">
-      <publishTime>05/28/2018 17:44:53</publishTime>
+      <publishTime>08/08/2018 13:17:29</publishTime>
     </File>
     <File Include="UserControls/Filtros/Consultas/UcFiltrosEncuestas.ascx">
-      <publishTime>05/28/2018 16:35:31</publishTime>
+      <publishTime>08/08/2018 13:12:01</publishTime>
     </File>
     <File Include="UserControls/Filtros/Consultas/UcFiltrosTicket.ascx">
-      <publishTime>05/28/2018 17:37:16</publishTime>
+      <publishTime>08/08/2018 12:48:04</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketCanal.ascx">
+      <publishTime>09/10/2018 12:20:56</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketEstatusAsignacion.ascx">
+      <publishTime>09/10/2018 12:01:13</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketEstatusAtencion.ascx">
+      <publishTime>09/10/2018 11:45:36</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketOrganizacion.ascx">
+      <publishTime>09/10/2018 12:16:58</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketSla.ascx">
+      <publishTime>09/10/2018 11:09:34</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketTipificacion.ascx">
+      <publishTime>09/10/2018 12:52:27</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketTipoTicket.ascx">
+      <publishTime>09/10/2018 11:09:35</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketUbicacion.ascx">
+      <publishTime>09/10/2018 12:18:38</publishTime>
     </File>
     <File Include="UserControls/Filtros/Graficos/UcFiltrosEficienciaTickets.ascx">
       <publishTime>03/23/2018 10:53:16</publishTime>
@@ -1522,6 +1561,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="UserControls/Filtros/Graficos/UcFiltrosParametrosGraficoTicket.ascx">
       <publishTime>03/23/2018 10:53:16</publishTime>
+    </File>
+    <File Include="UserControls/Filtros/Graficos/UcFiltrosTicketEstatusAtencion.ascx">
+      <publishTime>08/28/2018 16:33:04</publishTime>
     </File>
     <File Include="UserControls/Filtros/UcFiltroCatalogos.ascx">
       <publishTime>12/13/2017 13:33:01</publishTime>
@@ -1556,14 +1598,32 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="UserControls/Preview/UcVisorConsultainformacion.ascx">
       <publishTime>06/13/2018 10:23:32</publishTime>
     </File>
+    <File Include="UserControls/ReportesGraficos/Encuestas/UcGraficoCalificaciones.ascx">
+      <publishTime>09/06/2018 12:27:16</publishTime>
+    </File>
+    <File Include="UserControls/ReportesGraficos/Encuestas/UcGraficoLogica.ascx">
+      <publishTime>09/06/2018 13:04:36</publishTime>
+    </File>
     <File Include="UserControls/ReportesGraficos/Encuestas/UcGraficoNPS.ascx">
-      <publishTime>07/02/2018 18:03:53</publishTime>
+      <publishTime>09/04/2018 09:46:07</publishTime>
+    </File>
+    <File Include="UserControls/ReportesGraficos/Encuestas/UcGraficoSatisfaccion.ascx">
+      <publishTime>09/06/2018 13:03:47</publishTime>
     </File>
     <File Include="UserControls/ReportesGraficos/Encuestas/UcReporteEncuestas.ascx">
-      <publishTime>07/02/2018 17:54:07</publishTime>
+      <publishTime>09/04/2018 09:49:29</publishTime>
+    </File>
+    <File Include="UserControls/ReportesGraficos/Encuestas/UcReporteEncuestasCalificacion.ascx">
+      <publishTime>09/05/2018 17:02:25</publishTime>
+    </File>
+    <File Include="UserControls/ReportesGraficos/Encuestas/UcReporteEncuestasLogica.ascx">
+      <publishTime>09/04/2018 15:42:47</publishTime>
+    </File>
+    <File Include="UserControls/ReportesGraficos/Encuestas/UcReporteEncuestasSatisfaccion.ascx">
+      <publishTime>09/04/2018 13:22:26</publishTime>
     </File>
     <File Include="UserControls/ReportesGraficos/Formularios/UcReporteDetalleFormulario.ascx">
-      <publishTime>07/13/2018 09:42:41</publishTime>
+      <publishTime>07/17/2018 11:44:32</publishTime>
     </File>
     <File Include="UserControls/ReportesGraficos/Formularios/UcReporteFormularios.ascx">
       <publishTime>06/29/2018 10:43:39</publishTime>
@@ -1596,7 +1656,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/23/2018 10:53:16</publishTime>
     </File>
     <File Include="UserControls/Temporal/UcEncuestaCaptura.ascx">
-      <publishTime>12/13/2017 13:33:01</publishTime>
+      <publishTime>09/06/2018 16:58:41</publishTime>
     </File>
     <File Include="UserControls/Temporal/UcMascaraCaptura.ascx">
       <publishTime>12/13/2017 13:33:01</publishTime>
@@ -1617,7 +1677,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:33:01</publishTime>
     </File>
     <File Include="Users/Administracion/ArbolesAcceso/FrmConsultaSecciones.aspx">
-      <publishTime>07/12/2018 02:43:24</publishTime>
+      <publishTime>07/17/2018 11:44:32</publishTime>
     </File>
     <File Include="Users/Administracion/ArbolesAcceso/FrmDetalleOpcion.aspx">
       <publishTime>01/18/2018 12:07:08</publishTime>
@@ -1739,6 +1799,30 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Users/General/Web.config">
       <publishTime>12/13/2017 13:33:04</publishTime>
     </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsCanal.aspx">
+      <publishTime>09/10/2018 15:20:17</publishTime>
+    </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsEstatusAsignacion.aspx">
+      <publishTime>09/10/2018 15:20:18</publishTime>
+    </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsEstatusAtencion.aspx">
+      <publishTime>09/10/2018 15:20:18</publishTime>
+    </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsOrganizacion.aspx">
+      <publishTime>09/10/2018 15:19:34</publishTime>
+    </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsSla.aspx">
+      <publishTime>09/10/2018 15:19:35</publishTime>
+    </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsTipificacion.aspx">
+      <publishTime>09/10/2018 15:19:11</publishTime>
+    </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsTipoTicket.aspx">
+      <publishTime>09/10/2018 15:18:59</publishTime>
+    </File>
+    <File Include="Users/Graficos/Eficiencia/FrmGraficoTicketsUbicacion.aspx">
+      <publishTime>09/10/2018 15:18:25</publishTime>
+    </File>
     <File Include="Users/Graficos/FrmGeoChart.aspx">
       <publishTime>12/13/2017 13:33:04</publishTime>
     </File>
@@ -1760,14 +1844,35 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Users/Graficos/FrmGraficoInformacionConsulta.aspx">
       <publishTime>06/27/2018 14:39:57</publishTime>
     </File>
+    <File Include="Users/Graficos/FrmGraficoTicketsEstatusAtencion.aspx">
+      <publishTime>09/07/2018 13:07:36</publishTime>
+    </File>
     <File Include="Users/Operacion/FrmLevantaTicketAgente.aspx">
       <publishTime>03/23/2018 10:53:16</publishTime>
     </File>
+    <File Include="Users/ReportesGraficos/Encuestas/FrmEncuestaCalificacion.aspx">
+      <publishTime>08/17/2018 09:27:54</publishTime>
+    </File>
+    <File Include="Users/ReportesGraficos/Encuestas/FrmEncuestaLogica.aspx">
+      <publishTime>09/03/2018 13:38:29</publishTime>
+    </File>
     <File Include="Users/ReportesGraficos/Encuestas/FrmEncuestas.aspx">
-      <publishTime>07/02/2018 14:44:12</publishTime>
+      <publishTime>08/17/2018 09:16:34</publishTime>
+    </File>
+    <File Include="Users/ReportesGraficos/Encuestas/FrmEncuestaSatisfaccion.aspx">
+      <publishTime>09/03/2018 13:38:30</publishTime>
+    </File>
+    <File Include="Users/ReportesGraficos/Encuestas/FrmGraficoCalificacion.aspx">
+      <publishTime>09/03/2018 10:34:49</publishTime>
+    </File>
+    <File Include="Users/ReportesGraficos/Encuestas/FrmGraficoEncuestaLogica.aspx">
+      <publishTime>09/03/2018 13:45:12</publishTime>
     </File>
     <File Include="Users/ReportesGraficos/Encuestas/FrmGraficoEncuestaNPS.aspx">
       <publishTime>07/02/2018 22:26:45</publishTime>
+    </File>
+    <File Include="Users/ReportesGraficos/Encuestas/FrmGraficoEncuestaSatisfaccion.aspx">
+      <publishTime>09/03/2018 13:44:23</publishTime>
     </File>
     <File Include="Users/ReportesGraficos/Formularios/FrmConsultaDetalleFormulario.aspx">
       <publishTime>06/29/2018 10:34:47</publishTime>
@@ -1791,10 +1896,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:33:04</publishTime>
     </File>
     <File Include="Usuarios.Master">
-      <publishTime>07/12/2018 15:33:40</publishTime>
+      <publishTime>09/11/2018 08:45:45</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/13/2018 12:28:44</publishTime>
+      <publishTime>09/10/2018 17:19:50</publishTime>
     </File>
     <File Include="Xml/Notificaciones.xml">
       <publishTime>12/13/2017 13:33:04</publishTime>

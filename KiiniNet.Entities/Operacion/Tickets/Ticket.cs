@@ -73,6 +73,15 @@ namespace KiiniNet.Entities.Operacion.Tickets
         public DateTime? FechaFinEspera { get; set; }
 
         [DataMember]
+        public int IdUsuarioUltimoMovimiento { get; set; }
+        [DataMember]
+        public DateTime FechaUltimoMovimiento { get; set; }
+        [DataMember]
+        public int? IdUsuarioUltimoAgenteAsignado { get; set; }
+        [DataMember]
+        public DateTime? FechaUltimoAgenteAsignado { get; set; }
+
+        [DataMember]
         public virtual TipoUsuario TipoUsuario { get; set; }
         [DataMember]
         public virtual TipoArbolAcceso TipoArbolAcceso { get; set; }
@@ -123,6 +132,10 @@ namespace KiiniNet.Entities.Operacion.Tickets
         public virtual List<TicketEvento> TicketEvento { get; set; }
         [DataMember]
         public virtual List<TicketNotificacion> TicketNotificacion { get; set; }
+        [DataMember]
+        public virtual Usuario UltimoAgenteAsignado { get; set; }
+        [DataMember]
+        public virtual Usuario UsuarioUltimoMovimiento { get; set; }
 
     }
 }

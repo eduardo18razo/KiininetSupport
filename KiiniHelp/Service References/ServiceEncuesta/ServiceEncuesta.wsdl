@@ -94,11 +94,47 @@
   <wsdl:message name="IServiceEncuesta_ObtenerEncuestaByGrupos_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerEncuestaByGruposResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceEncuesta_ObtenerReporteNps_InputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerReporteNps" />
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoNps_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoNps" />
   </wsdl:message>
-  <wsdl:message name="IServiceEncuesta_ObtenerReporteNps_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerReporteNpsResponse" />
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoNps_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoNpsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoCalificacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoCalificacion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoCalificacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoCalificacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoCalificacionDescarga_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoCalificacionDescarga" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoCalificacionDescarga_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoCalificacionDescargaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoSatisfaccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoSatisfaccion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoSatisfaccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoSatisfaccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoSatisfaccionDescarga_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoSatisfaccionDescarga" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoSatisfaccionDescarga_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoSatisfaccionDescargaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoLogica_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoLogica" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoLogica_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoLogicaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoLogicaDescarga_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoLogicaDescarga" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoLogicaDescarga_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoLogicaDescargaResponse" />
   </wsdl:message>
   <wsdl:portType name="IServiceEncuesta">
     <wsdl:operation name="ObtenerEncuestas">
@@ -149,9 +185,33 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGrupos" message="tns:IServiceEncuesta_ObtenerEncuestaByGrupos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerEncuestaByGruposResponse" message="tns:IServiceEncuesta_ObtenerEncuestaByGrupos_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ObtenerReporteNps">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerReporteNps" message="tns:IServiceEncuesta_ObtenerReporteNps_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerReporteNpsResponse" message="tns:IServiceEncuesta_ObtenerReporteNps_OutputMessage" />
+    <wsdl:operation name="ObtenerGraficoNps">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNps" message="tns:IServiceEncuesta_ObtenerGraficoNps_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsResponse" message="tns:IServiceEncuesta_ObtenerGraficoNps_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoCalificacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacion" message="tns:IServiceEncuesta_ObtenerGraficoCalificacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionResponse" message="tns:IServiceEncuesta_ObtenerGraficoCalificacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoCalificacionDescarga">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionDescarga" message="tns:IServiceEncuesta_ObtenerGraficoCalificacionDescarga_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionDescargaResponse" message="tns:IServiceEncuesta_ObtenerGraficoCalificacionDescarga_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoSatisfaccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccion" message="tns:IServiceEncuesta_ObtenerGraficoSatisfaccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccionResponse" message="tns:IServiceEncuesta_ObtenerGraficoSatisfaccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoSatisfaccionDescarga">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccionDescarga" message="tns:IServiceEncuesta_ObtenerGraficoSatisfaccionDescarga_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccionDescargaResponse" message="tns:IServiceEncuesta_ObtenerGraficoSatisfaccionDescarga_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoLogica">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogica" message="tns:IServiceEncuesta_ObtenerGraficoLogica_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogicaResponse" message="tns:IServiceEncuesta_ObtenerGraficoLogica_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoLogicaDescarga">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogicaDescarga" message="tns:IServiceEncuesta_ObtenerGraficoLogicaDescarga_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogicaDescargaResponse" message="tns:IServiceEncuesta_ObtenerGraficoLogicaDescarga_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointAdministracion" type="tns:IServiceEncuesta">
@@ -264,8 +324,62 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ObtenerReporteNps">
-      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerReporteNps" style="document" />
+    <wsdl:operation name="ObtenerGraficoNps">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoCalificacion">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoCalificacionDescarga">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionDescarga" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoSatisfaccion">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoSatisfaccionDescarga">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoSatisfaccionDescarga" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoLogica">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogica" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoLogicaDescarga">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoLogicaDescarga" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

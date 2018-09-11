@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceGrupoUsuario;
-using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
+using OfficeOpenXml;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -33,21 +32,23 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 }
             }
         }
+
         public List<int> GruposSeleccionados
         {
             get
             {
-                if (lstFiltroGrupos.Items.Count <= 0)
-                    throw new Exception("Debe seleccionar un grupo");
-                return (from ListItem item in lstFiltroGrupos.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroGrupos.CheckedItems select int.Parse(item.Value)).ToList();
             }
         }
         private void LlenaGrupos()
         {
             try
             {
-                List<GrupoUsuario> lst = _servicioGrupoUsuario.ObtenerGruposByIdUsuario(((Usuario)Session["UserData"]).Id, false).Where(w => w.IdTipoGrupo != (int)BusinessVariables.EnumTiposGrupos.Usuario).ToList();
-                Metodos.LlenaListBoxCatalogo(lstFiltroGrupos, lst);
+                List<GrupoUsuario> lst = _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRol((int)BusinessVariables.EnumRoles.Agente, false).OrderBy(o => o.Descripcion).ToList();
+                rcbFiltroGrupos.DataSource = lst;
+                rcbFiltroGrupos.DataTextField = "Descripcion";
+                rcbFiltroGrupos.DataValueField = "Id";
+                rcbFiltroGrupos.DataBind();
             }
             catch (Exception e)
             {
@@ -55,15 +56,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void CerroListBox()
         {
             try
             {
-                Alerta = new List<string>();                
-                if (!IsPostBack)
-                {
-                    LlenaGrupos();
-                }
+                if (OnAceptarModal != null)
+                    OnAceptarModal();
             }
             catch (Exception ex)
             {
@@ -76,12 +74,22 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        protected void lstFiltroGrupos_OnSelectedIndexChanged(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                if (OnAceptarModal != null)
-                    OnAceptarModal();
+                Alerta = new List<string>();
+                if (!IsPostBack)
+                {
+                    LlenaGrupos();
+                }
+                if (IsPostBack)
+                {
+                    if (Page.Request.Params["__EVENTTARGET"] == "Seleccion")
+                    {
+                        CerroListBox();
+                    }
+                }
             }
             catch (Exception ex)
             {

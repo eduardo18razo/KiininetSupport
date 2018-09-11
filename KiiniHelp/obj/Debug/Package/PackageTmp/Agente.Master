@@ -41,17 +41,17 @@
             }
         }, false);
 
-        function SessionExpireAlert(timeout) {
-            var seconds = timeout / 1000;
-            setInterval(function () {
-                seconds--;
-            }, 1000);
-            setTimeout(function () {
-                //Show Popup before 20 seconds of timeout.
-                $('#modalSession').modal({ backdrop: 'static', keyboard: false });
-                $('#modalSession').modal('show');
-            }, timeout - 20 * 1000);
-        };
+        //function SessionExpireAlert(timeout) {
+        //    var seconds = timeout / 1000;
+        //    setInterval(function () {
+        //        seconds--;
+        //    }, 1000);
+        //    setTimeout(function () {
+        //        //Show Popup before 20 seconds of timeout.
+        //        $('#modalSession').modal({ backdrop: 'static', keyboard: false });
+        //        $('#modalSession').modal('show');
+        //    }, timeout - 20 * 1000);
+        //};
     </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -251,8 +251,7 @@
                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upTabsTickets">
                     <ContentTemplate>
                         <div class="row">
-                            <div class="col-lg-9">
-
+                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
                                 <asp:Repeater runat="server" ID="rptTicketsAbiertos">
                                     <HeaderTemplate>
                                         <ul class="nav nav-tabs no-border" role="tablist">
@@ -281,7 +280,7 @@
                                 </asp:Repeater>
                             </div>
 
-                            <div class="col-lg-1">
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="upMasTickets" Visible="false">
                                     <ContentTemplate>
                                         <div class="item item-notifications">

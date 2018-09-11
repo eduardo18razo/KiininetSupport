@@ -16,17 +16,14 @@ namespace KiiniHelp.UserControls.Dashboards
 
         protected void rbtnConConsultas_OnCheckedChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         protected void rbtnServicios_OnCheckedChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         protected void rbtnproblemas_OnCheckedChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
     }
 }

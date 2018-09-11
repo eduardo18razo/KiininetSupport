@@ -20,6 +20,9 @@ namespace KiiniHelp.ServiceSistemaDomicilio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDomicilioSistema/ObtenerDetalleColonia", ReplyAction="http://tempuri.org/IServiceDomicilioSistema/ObtenerDetalleColoniaResponse")]
         KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Colonia ObtenerDetalleColonia(int idColonia);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceDomicilioSistema/ObtenerEstados", ReplyAction="http://tempuri.org/IServiceDomicilioSistema/ObtenerEstadosResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Estado> ObtenerEstados(bool insertarSeleccion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +58,10 @@ namespace KiiniHelp.ServiceSistemaDomicilio {
         
         public KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Colonia ObtenerDetalleColonia(int idColonia) {
             return base.Channel.ObtenerDetalleColonia(idColonia);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Estado> ObtenerEstados(bool insertarSeleccion) {
+            return base.Channel.ObtenerEstados(insertarSeleccion);
         }
     }
 }

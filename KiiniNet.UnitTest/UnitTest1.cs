@@ -109,42 +109,43 @@ namespace KiiniNet.UnitTest
         {
             try
             {
-                new BusinessDashboards().GetDashboardAgente(null, null);
-                DataTable dt = new DataTable("dt");
-                dt.Columns.Add(new DataColumn("Ocupado"));
-                dt.Columns.Add(new DataColumn("Libre"));
-                dt.Rows.Add(350, 1000);
-                BusinessGraficosDasboard.Administrador.GeneraGraficoBarraApilada(new Chart(), dt);
-                DirectoryInfo dInfo = new DirectoryInfo(@"C:\Users\Eduardo Cerritos\Desktop\Repositorio\");
-                var z = BusinessFile.DirectorySize(dInfo, true);
-                var y = BusinessFile.DirectoryFilesCount(dInfo, true);
-                DashboardAdministrador variable = new BusinessDashboards().GetDashboardAdministrador();
-                //Parámetros del compilador
-                CompilerParameters objParametros = new CompilerParameters()
-                {
-                    GenerateInMemory = true,
-                    GenerateExecutable = false,
-                    IncludeDebugInformation = false
-                };
+                new BusinessDemonio().EnvioNotificacion();
+                //new BusinessDashboards().GetDashboardAgente(null, null);
+                //DataTable dt = new DataTable("dt");
+                //dt.Columns.Add(new DataColumn("Ocupado"));
+                //dt.Columns.Add(new DataColumn("Libre"));
+                //dt.Rows.Add(350, 1000);
+                //BusinessGraficosDasboard.Administrador.GeneraGraficoBarraApilada(new Chart(), dt);
+                //DirectoryInfo dInfo = new DirectoryInfo(@"C:\Users\Eduardo Cerritos\Desktop\Repositorio\");
+                //var z = BusinessFile.DirectorySize(dInfo, true);
+                //var y = BusinessFile.DirectoryFilesCount(dInfo, true);
+                //DashboardAdministrador variable = new BusinessDashboards().GetDashboardAdministrador();
+                ////Parámetros del compilador
+                //CompilerParameters objParametros = new CompilerParameters()
+                //{
+                //    GenerateInMemory = true,
+                //    GenerateExecutable = false,
+                //    IncludeDebugInformation = false
+                //};
 
-                //Clase
-                string strClase =
-                    "using System;" +
-                    "namespace Scientia {" +
-                    "public class Formula {" +
-                    "public int IdPrueba = 5;" +
-                        "public object Ejecutar() {" +
-                            "return IdPrueba" +
-                    ";}}}";
-                //"return " + formula +
+                ////Clase
+                //string strClase =
+                //    "using System;" +
+                //    "namespace Scientia {" +
+                //    "public class Formula {" +
+                //    "public int IdPrueba = 5;" +
+                //        "public object Ejecutar() {" +
+                //            "return IdPrueba" +
+                //    ";}}}";
+                ////"return " + formula +
 
-                //Compilo todo y ejecuto el método
-                CodeDomProvider objCompiler = CodeDomProvider.CreateProvider("CSharp");
-                //En .NET 1.1 usaba esta linea:
-                //ICodeCompiler ICC = (new CSharpCodeProvider()).CreateCompiler();
-                CompilerResults objResultados = objCompiler.CompileAssemblyFromSource(objParametros, strClase);
-                object objClase = objResultados.CompiledAssembly.CreateInstance("Scientia.Formula", false, BindingFlags.CreateInstance, null, null, null, null);
-                var x = objClase.GetType().InvokeMember("Ejecutar", BindingFlags.InvokeMethod, null, objClase, null);
+                ////Compilo todo y ejecuto el método
+                //CodeDomProvider objCompiler = CodeDomProvider.CreateProvider("CSharp");
+                ////En .NET 1.1 usaba esta linea:
+                ////ICodeCompiler ICC = (new CSharpCodeProvider()).CreateCompiler();
+                //CompilerResults objResultados = objCompiler.CompileAssemblyFromSource(objParametros, strClase);
+                //object objClase = objResultados.CompiledAssembly.CreateInstance("Scientia.Formula", false, BindingFlags.CreateInstance, null, null, null, null);
+                //var x = objClase.GetType().InvokeMember("Ejecutar", BindingFlags.InvokeMethod, null, objClase, null);
             }
             catch (Exception)
             {

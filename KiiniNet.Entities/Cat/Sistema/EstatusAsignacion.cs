@@ -14,6 +14,9 @@ namespace KiiniNet.Entities.Cat.Sistema
         public int Id { get; set; }
         [DataMember]
         public string Descripcion { get; set; }
+
+        [DataMember]
+        public string Color { get; set; }
         [DataMember]
         public int Orden { get; set; }
         [DataMember]

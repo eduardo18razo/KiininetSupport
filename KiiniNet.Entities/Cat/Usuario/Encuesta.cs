@@ -46,5 +46,9 @@ namespace KiiniNet.Entities.Cat.Usuario
 
         [DataMember]
         public virtual List<RespuestaEncuesta> RespuestaEncuesta { get; set; }
+
+        [DataMember]
+
+        public string Tipificacion { get; set; }
     }
 }

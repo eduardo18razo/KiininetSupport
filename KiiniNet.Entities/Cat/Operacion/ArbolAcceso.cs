@@ -108,5 +108,48 @@ namespace KiiniNet.Entities.Cat.Operacion
         public string Tipificacion { get; set; }
         [DataMember]
         public int Nivel { get; set; }
+
+
+        [DataMember]
+        public int Promotores { get; set; }
+        [DataMember]
+        public int Neutros { get; set; }
+        [DataMember]
+        public int Detractores { get; set; }
+
+
+        [DataMember]
+        public int NumeroEncuestas { get; set; }
+        [DataMember]
+        public int NumeroPreguntasEncuesta { get; set; }
+        [DataMember]
+        public int CeroCinco { get; set; }
+        [DataMember]
+        public int SeisSiete { get; set; }
+        [DataMember]
+        public int OchoNueve { get; set; }
+        [DataMember]
+        public int Diez { get; set; }
+        [DataMember]
+        public double PromedioPonderado { get; set; }
+
+
+        [DataMember]
+        public int Pesimo { get; set; }
+        [DataMember]
+        public int Malo { get; set; }
+        [DataMember]
+        public int Regular { get; set; }
+        [DataMember]
+        public int Bueno { get; set; }
+        [DataMember]
+        public int Excelente { get; set; }
+
+        [DataMember]
+        public int Si { get; set; }
+        [DataMember]
+        public int No { get; set; }
+
+
     }
 }

@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceSistemaEstatus;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -34,7 +35,10 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                Metodos.LlenaListBoxCatalogo(lstFiltroEstatus, _servicioEstatus.ObtenerEstatusTicket(false));
+                rcbFiltroEstatus.DataSource = _servicioEstatus.ObtenerEstatusTicket(false);
+                rcbFiltroEstatus.DataTextField = "Descripcion";
+                rcbFiltroEstatus.DataValueField = "Id";
+                rcbFiltroEstatus.DataBind();
             }
             catch (Exception e)
             {
@@ -46,9 +50,8 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroEstatus.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroEstatus.CheckedItems select int.Parse(item.Value)).ToList();
             }
-            set { }
         }
 
         protected void Page_Load(object sender, EventArgs e)

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using KiiniHelp.ServiceOrganizacion;
+using KiiniNet.Entities.Cat.Operacion;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -28,11 +29,13 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 }
             }
         }
-
-        public List<int> Grupos
+        
+        public List<int> TipoUsuario
         {
+            get { return Session["TipoUsuarioFiltroOrganizacion"] == null ? null : (List<int>)Session["TipoUsuarioFiltroOrganizacion"]; }
             set
             {
+                Session["TipoUsuarioFiltroOrganizacion"] = value;
                 LlenaOrganizaciones(value);
             }
         }
@@ -40,26 +43,24 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                return (from ListItem item in lstFiltroOrganizacion.Items where item.Selected select int.Parse(item.Value)).ToList();
+                return (from RadComboBoxItem item in rcbFiltroOrganizacion.CheckedItems select int.Parse(item.Value)).ToList();
             }
         }
 
-        private void LlenaOrganizaciones(List<int> grupos)
+        private void LlenaOrganizaciones(List<int> tiposUsuario )
         {
             try
             {
-
-                lstFiltroOrganizacion.DataSource = _servicioOrganizacion.ObtenerOrganizacionesGrupos(grupos);
-                lstFiltroOrganizacion.DataTextField = string.Format("{0} {1} {2} {3} {4} {5} {6}",
-                    "Holding.Descripcion",
-                    "Compania.Descripcion",
-                    "Direccion.Descripcion",
-                    "SubDireccion.Descripcion",
-                    "Gerencia.Descripcion",
-                    "SubGerencia.Descripcion",
-                    "Jefatura.Descripcion");
-                lstFiltroOrganizacion.DataValueField = "Id";
-                lstFiltroOrganizacion.DataBind();
+                List<Organizacion> lst = _servicioOrganizacion.ObtenerOrganizacionesTipoUsuario(tiposUsuario);
+                if (TipoUsuario != null && TipoUsuario.Count > 0)
+                    lst = lst.Where(w => TipoUsuario.Contains(w.IdTipoUsuario)).ToList();
+                rcbFiltroOrganizacion.Items.Clear();
+                foreach (Organizacion organizacion in lst)
+                {
+                    rcbFiltroOrganizacion.Items.Add(new RadComboBoxItem(string.Format("{0} {1}",
+                        organizacion.Holding.Descripcion,
+                        organizacion.IdCompania != null ? organizacion.Compania.Descripcion : string.Empty), organizacion.Id.ToString()));
+                }
             }
             catch (Exception e)
             {
@@ -74,7 +75,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 Alerta = new List<string>();
                 if (!IsPostBack)
                 {
-                    //LlenaOrganizaciones();
+                    LlenaOrganizaciones(null);
                 }
             }
             catch (Exception ex)

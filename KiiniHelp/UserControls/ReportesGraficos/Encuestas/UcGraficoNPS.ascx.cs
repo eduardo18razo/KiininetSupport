@@ -88,7 +88,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Encuestas
             try
             {
 
-                HelperReporteEncuesta  reporte = _servicioEncuesta.ObtenerReporteNps(idArbol, Metodos.ManejoFechas.ObtenerFechas(idTipoFecha, fechaInicio, fechafin), idTipoFecha);
+                HelperReporteEncuesta  reporte = _servicioEncuesta.ObtenerGraficoNps(idArbol, Metodos.ManejoFechas.ObtenerFechas(idTipoFecha, fechaInicio, fechafin), idTipoFecha);
                 lblTitulo.Text = reporte.Titulo;
                 GeneraGraficaStackedColumn(rhcLikeBarra, reporte.GraficoBarras);
                 GeneraGraficaPie(rhcLikePie, reporte.GraficoPie);

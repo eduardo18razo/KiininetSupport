@@ -25,7 +25,7 @@ namespace KiiniNet.Entities.Helper
         public EstatusTicket EstatusTicket { get; set; }
         public DateTime FechaCambioEstatusTicket { get; set; }
         public EstatusAsignacion EstatusAsignacion { get; set; }
-        public DateTime FechaCambioEstatusAsignacion { get; set; }
+        public DateTime? FechaCambioEstatusAsignacion { get; set; }
         public DateTime? FechaUltimoEvento { get; set; }
         public int Total { get; set; }
         public bool TieneEncuesta { get; set; }

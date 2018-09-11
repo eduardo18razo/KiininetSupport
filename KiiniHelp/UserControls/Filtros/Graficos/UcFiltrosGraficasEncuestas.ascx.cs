@@ -141,8 +141,6 @@ namespace KiiniHelp.UserControls.Filtros.Graficos
                 ucFiltroServicioIncidenteEncuesta.Grupos = ucFiltroGrupoEncuesta.GruposSeleccionados;
                 ucFiltroResponsablesEncuesta.LlenaGrupos(ucFiltroGrupoEncuesta.GruposSeleccionados, ucFiltroServicioIncidenteEncuesta.TipoArbolSeleccionados);
                 ucFiltroEncuesta.Grupos = ucFiltroGrupoEncuesta.GruposSeleccionados;
-                ucFiltroOrganizacion.Grupos = ucFiltroGrupoEncuesta.GruposSeleccionados;
-                ucFiltroUbicacion.Grupos = ucFiltroGrupoEncuesta.GruposSeleccionados;
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalFiltroGrupo\");", true);
             }
             catch (Exception ex)

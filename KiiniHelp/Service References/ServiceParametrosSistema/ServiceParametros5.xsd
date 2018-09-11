@@ -112,4 +112,28 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerParametrosGraficoDefault">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerParametrosGraficoDefaultResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerParametrosGraficoDefaultResult" nillable="true" type="q9:GraficosDefault" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerFrecuenciasFecha">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerFrecuenciasFechaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerFrecuenciasFechaResult" nillable="true" type="q10:ArrayOfFrecuenciaFecha" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

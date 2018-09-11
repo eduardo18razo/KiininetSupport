@@ -64,5 +64,29 @@ namespace KinniNet.Core.Sistema
             }
             return result;
         }
+
+        public List<Estado> ObtenerEstados(bool insertarSeleccion)
+        {
+            List<Estado> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.Estado.OrderBy(o => o.Descripcion).ToList();
+                if (insertarSeleccion)
+                    result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione, new Estado { Id = BusinessVariables.ComboBoxCatalogo.ValueSeleccione, Descripcion = BusinessVariables.ComboBoxCatalogo.DescripcionSeleccione });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        
     }
 }

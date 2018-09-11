@@ -1,3 +1,4 @@
+C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTestData.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\KiiniNet.UnitTest.dll.config
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\KiiniNet.UnitTest.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\KiiniNet.UnitTest.pdb
@@ -12,6 +13,5 @@ C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\KinniNet.Business.Utils.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\KinniNet.Core.pdb
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\bin\Debug\KinniNet.Data.pdb
-C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTestData.csprojResolveAssemblyReference.cache
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.dll
 C:\Users\Eduardo Cerritos\Desktop\Control Codigo\Git\KiiniNet.UnitTest\obj\Debug\KiiniNet.UnitTest.pdb

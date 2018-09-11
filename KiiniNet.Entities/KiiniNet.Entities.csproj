@@ -132,6 +132,7 @@
     <Compile Include="Operacion\Dashboard\GraficoConteo.cs" />
     <Compile Include="Operacion\Dashboard\HelperMetricas.cs" />
     <Compile Include="Operacion\Frecuencia.cs" />
+    <Compile Include="Operacion\GraficosFavoritos.cs" />
     <Compile Include="Operacion\HitConsulta.cs" />
     <Compile Include="Operacion\HitGrupoUsuario.cs" />
     <Compile Include="Operacion\InformacionConsulta.cs" />
@@ -193,6 +194,8 @@
     <Compile Include="Parametros\EstatusTicketSubRolGeneral.cs" />
     <Compile Include="Parametros\EstatusTicketSubRolGeneralDefault.cs" />
     <Compile Include="Cat\Usuario\HorarioDetalle.cs" />
+    <Compile Include="Parametros\FrecuenciaFecha.cs" />
+    <Compile Include="Parametros\GraficosDefault.cs" />
     <Compile Include="Parametros\ParametroCorreo.cs" />
     <Compile Include="Parametros\ParametroDatosAdicionales.cs" />
     <Compile Include="Parametros\ParametroPassword.cs" />

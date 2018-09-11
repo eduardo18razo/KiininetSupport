@@ -22,12 +22,12 @@ namespace KiiniHelp.UserControls.Filtros.Componentes {
         protected global::System.Web.UI.WebControls.HiddenField hfTipoArbol;
         
         /// <summary>
-        /// Control lstFiltroTipificacion.
+        /// Control rcbFiltroTipificacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstFiltroTipificacion;
+        protected global::Telerik.Web.UI.RadComboBox rcbFiltroTipificacion;
     }
 }

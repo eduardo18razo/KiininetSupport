@@ -30,4 +30,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerEstados">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="insertarSeleccion" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerEstadosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" minOccurs="0" name="ObtenerEstadosResult" nillable="true" type="q3:ArrayOfEstado" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

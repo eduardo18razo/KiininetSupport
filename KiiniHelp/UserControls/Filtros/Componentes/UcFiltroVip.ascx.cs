@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
-    public partial class UcFiltroVip : System.Web.UI.UserControl, IControllerModal
+    public partial class UcFiltroVip : UserControl, IControllerModal
     {
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
@@ -33,6 +33,8 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             {
                 Dictionary<int, string> lst = new Dictionary<int, string> { { 1, "VIP" }, { 0, "NO VIP" } };
                 lstFiltroVip.DataSource = lst.ToList();
+                lstFiltroVip.DataTextField = "Value";
+                lstFiltroVip.DataValueField = "Key";
                 lstFiltroVip.DataBind();
             }
             catch (Exception e)

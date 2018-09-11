@@ -196,13 +196,18 @@ namespace KinniNet.Core.Operacion
                 Ticket ticket = db.Ticket.SingleOrDefault(t => t.Id == idTicket);
                 if (ticket != null)
                 {
+                    DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    ticket.IdUsuarioUltimoMovimiento = idUsuario;
+                    ticket.FechaUltimoMovimiento = fechaMovimiento;
+                    ticket.IdUsuarioUltimoAgenteAsignado = idUsuario;
+                    ticket.FechaUltimoAgenteAsignado = fechaMovimiento;
                     TicketGrupoUsuario ticketGrupoUsuario = db.TicketGrupoUsuario.FirstOrDefault(f => f.IdTicket == idTicket && f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente);
                     if (ticketGrupoUsuario != null)
                     {
                         int idGpoAtencion = ticketGrupoUsuario.IdGrupoUsuario;
 
                         ticket.IdNivelTicket = ObtenerNivelAutoAsignacion(idUsuario, idGpoAtencion, false) - 2;
-                        ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado; DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                        ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado; 
                         TicketEvento evento = new TicketEvento
                         {
                             IdTicket = idTicket,
@@ -250,6 +255,10 @@ namespace KinniNet.Core.Operacion
                 if (ticket != null)
                 {
                     DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    ticket.IdUsuarioUltimoMovimiento = idUsuarioAsigna;
+                    ticket.FechaUltimoMovimiento = fechaMovimiento;
+                    ticket.IdUsuarioUltimoAgenteAsignado = idUsuarioAsignado;
+                    ticket.FechaUltimoAgenteAsignado = fechaMovimiento;
                     TicketEvento evento = new TicketEvento
                     {
                         IdTicket = idTicket,
@@ -301,6 +310,8 @@ namespace KinniNet.Core.Operacion
                 {
                     db.LoadProperty(ticket, "TicketGrupoUsuario");
                     DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    ticket.IdUsuarioUltimoMovimiento = idUsuario;
+                    ticket.FechaUltimoMovimiento = fechaMovimiento;
                     TicketEvento evento = new TicketEvento
                     {
                         IdTicket = idTicket,
@@ -349,6 +360,7 @@ namespace KinniNet.Core.Operacion
                     switch (idEstatus)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto:
+                            ticket.FechaTermino = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                             ticket.IdUsuarioResolvio = idUsuario;
                             evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                             {
@@ -385,7 +397,6 @@ namespace KinniNet.Core.Operacion
                             idEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado:
-                            ticket.FechaTermino = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                             ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                             evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                             {
@@ -905,6 +916,8 @@ namespace KinniNet.Core.Operacion
                 {
                     int idGpoAtencion = ticketGrupoUsuario.Id;
                     DateTime fechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    ticket.IdUsuarioUltimoMovimiento = idUsuarioGeneraEvento;
+                    ticket.FechaUltimoMovimiento = fechaMovimiento;
                     TicketEvento evento = new TicketEvento
                     {
                         IdTicket = idTicket,
@@ -928,12 +941,14 @@ namespace KinniNet.Core.Operacion
                             idNivelAsignado = ObtenerNivelAutoAsignacion(idUsuarioGeneraEvento, idGpoAtencion, esPropietario);
                         else if (idNivelAsignado == null)
                             throw new Exception("Error al actualizar nivel de asignacion.");
+                        ticket.IdUsuarioUltimoAgenteAsignado = idUsuarioAsignado;
+                        ticket.FechaUltimoAgenteAsignado = fechaMovimiento;
                         evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                         {
-                            FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            FechaHora = fechaMovimiento,
                             TicketAsignacion = new TicketAsignacion
                             {
-                                FechaAsignacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                FechaAsignacion = fechaMovimiento,
                                 IdEstatusAsignacion = (int)idEstatusAsignacion,
                                 IdUsuarioAsignado = idUsuarioAsignado,
                                 IdUsuarioAsigno = idUsuarioGeneraEvento,
@@ -965,7 +980,7 @@ namespace KinniNet.Core.Operacion
                                 lstDiasFestivosGrupo.AddRange(db.DiaFestivoSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id));
                             }
 
-                            ticket.FechaFinEspera = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                            ticket.FechaFinEspera = fechaMovimiento;
                             if (ticket.FechaInicioEspera != null)
                             {
                                 DateTime oldDate = (DateTime)ticket.FechaInicioEspera;
@@ -977,7 +992,7 @@ namespace KinniNet.Core.Operacion
                         }
                         cambioEstatus = new TicketEstatus
                         {
-                            FechaMovimiento = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            FechaMovimiento = fechaMovimiento,
                             IdTicket = idTicket,
                             IdEstatus = idEstatus,
                             IdUsuarioMovimiento = idUsuarioGeneraEvento,
@@ -986,18 +1001,18 @@ namespace KinniNet.Core.Operacion
                         switch (idEstatus)
                         {
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto:
-                                ticket.FechaTermino = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                                ticket.FechaTermino = fechaMovimiento;
                                 ticket.IdUsuarioResolvio = idUsuarioGeneraEvento;
                                 evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                                 {
-                                    FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                    FechaHora = fechaMovimiento,
                                     TicketAsignacion = new TicketAsignacion
                                     {
                                         IdTicket = idTicket,
                                         IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Asignado,
                                         IdUsuarioAsigno = idUsuarioGeneraEvento,
                                         IdUsuarioAsignado = ticket.IdUsuarioLevanto,
-                                        FechaAsignacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                        FechaAsignacion = fechaMovimiento,
                                         Comentarios = comentarioAsignacion.Trim()
                                     }
                                 });
@@ -1010,14 +1025,14 @@ namespace KinniNet.Core.Operacion
                                 ticket.IdNivelTicket = null;
                                 evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                                 {
-                                    FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                    FechaHora = fechaMovimiento,
                                     TicketAsignacion = new TicketAsignacion
                                     {
                                         IdTicket = idTicket,
                                         IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
                                         IdUsuarioAsigno = idUsuarioGeneraEvento,
                                         IdUsuarioAsignado = null,
-                                        FechaAsignacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                        FechaAsignacion = fechaMovimiento,
                                         Comentarios = comentarioAsignacion.Trim()
                                     }
                                 });
@@ -1028,14 +1043,14 @@ namespace KinniNet.Core.Operacion
                                 ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                                 evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                                 {
-                                    FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                    FechaHora = fechaMovimiento,
                                     TicketAsignacion = new TicketAsignacion
                                     {
                                         IdTicket = idTicket,
                                         IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar,
                                         IdUsuarioAsigno = idUsuarioGeneraEvento,
                                         IdUsuarioAsignado = null,
-                                        FechaAsignacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                                        FechaAsignacion = fechaMovimiento,
                                         Comentarios = comentarioAsignacion.Trim()
                                     }
                                 });
@@ -1043,7 +1058,7 @@ namespace KinniNet.Core.Operacion
                                 break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera:
                                 ticket.Espera = true;
-                                ticket.FechaInicioEspera = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                                ticket.FechaInicioEspera = fechaMovimiento;
                                 ticket.FechaFinEspera = null;
                                 break;
                         }
@@ -1061,7 +1076,7 @@ namespace KinniNet.Core.Operacion
                             IdTicket = idTicket,
                             IdUsuario = idUsuarioGeneraEvento,
                             Mensaje = mensajeConversacion.Trim(),
-                            FechaGeneracion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                            FechaGeneracion = fechaMovimiento,
                             Sistema = sistema,
                             Leido = false,
                             Privado = conversacionPrivada,
@@ -1082,7 +1097,7 @@ namespace KinniNet.Core.Operacion
 
                     if (cambioEstatus != null)
                     {
-                        evento.TicketEventoEstatus.Add(new TicketEventoEstatus { TicketEstatus = cambioEstatus, FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture) });
+                        evento.TicketEventoEstatus.Add(new TicketEventoEstatus { TicketEstatus = cambioEstatus, FechaHora = fechaMovimiento });
                         ticket.IdEstatusTicket = (int)idEstatusTicket;
                     }
                     if (idEstatusAsignacion != null)
@@ -1091,7 +1106,7 @@ namespace KinniNet.Core.Operacion
                         ticket.IdNivelTicket = idNivelAsignado - 2;
                     }
                     if (conversacion != null)
-                        evento.TicketEventoConversacion.Add(new TicketEventoConversacion { TicketConversacion = conversacion, FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture) });
+                        evento.TicketEventoConversacion.Add(new TicketEventoConversacion { TicketConversacion = conversacion, FechaHora = fechaMovimiento });
 
                     db.TicketEvento.AddObject(evento);
                     db.SaveChanges();

@@ -38,6 +38,40 @@ namespace KinniNet.Business.Utils
             }
             return result;
         }
+        public static int? ObtenerSubRolAsignacionByIdNivel(int? idNivel)
+        {
+            int? result = null;
+            try
+            {
+                switch (idNivel)
+                {
+                    case null:
+                        result = null;
+                        break;
+                    case 1:
+                        result = (int)BusinessVariables.EnumSubRoles.Supervisor;
+                        break;
+                    case 2:
+                        result = (int)BusinessVariables.EnumSubRoles.PrimererNivel;
+                        break;
+                    case 3:
+                        result = (int)BusinessVariables.EnumSubRoles.SegundoNivel;
+                        break;
+                    case 4:
+                        result = (int)BusinessVariables.EnumSubRoles.TercerNivel;
+                        break;
+                    case 5:
+                        result = (int)BusinessVariables.EnumSubRoles.CuartoNivel;
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+            return result;
+        }
 
         public static string GeneraCampoRandom()
         {

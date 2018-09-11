@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Helper.Reportes;
@@ -191,13 +192,103 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-        public HelperReporteEncuesta ObtenerReporteNps(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha)
+        public HelperReporteEncuesta ObtenerGraficoNps(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha)
         {
             try
             {
                 using (BusinessEncuesta negocio = new BusinessEncuesta())
                 {
-                    return negocio.ObtenerReporteNps(idArbolAcceso, fechas, tipoFecha);
+                    return negocio.ObtenerGraficoNps(idArbolAcceso, fechas, tipoFecha);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerGraficoCalificacion(idArbolAcceso, fechas, tipoFecha);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerGraficoCalificacionDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerGraficoCalificacionDescarga(idArbolAcceso, fechas);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public HelperReporteEncuesta ObtenerGraficoSatisfaccion(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerGraficoSatisfaccion(idArbolAcceso, fechas, tipoFecha);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerGraficoSatisfaccionDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerGraficoSatisfaccionDescarga(idArbolAcceso, fechas);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public HelperReporteEncuesta ObtenerGraficoLogica(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerGraficoLogica(idArbolAcceso, fechas, tipoFecha);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public DataTable ObtenerGraficoLogicaDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerGraficoLogicaDescarga(idArbolAcceso, fechas);
                 }
             }
             catch (Exception ex)
