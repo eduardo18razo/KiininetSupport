@@ -1676,38 +1676,70 @@ namespace KinniNet.Core.Operacion
 
                         #region Ubicacion
                         case "Ubicaciones":
-                            foreach (int idUbicacion in lstTickets.Select(s => s.IdUbicacion).Distinct())
+                            List<KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Estado> lstEstado = new BusinessDomicilioSistema().ObtenerEstados(false);
+                            foreach (KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Estado estado in lstEstado)
                             {
-                                result.Rows.Add(idUbicacion, new BusinessUbicacion().ObtenerDescripcionUbicacionById(idUbicacion, false));
-                                for (int i = 3; i < result.Columns.Count; i++)
+                                List<int> lstUbicaciones = new BusinessUbicacion().ObtenerUbicacionesByEstado(new List<int>{estado.Id});
+
+                                if (lstTickets.Any(c => lstUbicaciones.Contains(c.IdUbicacion)))
                                 {
-                                    switch (tipoFecha)
+                                    result.Rows.Add(estado.Id, estado.Descripcion);
+                                    for (int i = 3; i < result.Columns.Count; i++)
                                     {
-                                        case 1:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("dd/MM/yyyy") == result.Columns[i].ColumnName && c.IdUbicacion == idUbicacion);
-                                            break;
-                                        case 2:
+                                        switch (tipoFecha)
+                                        {
+                                            case 1:
+                                                result.Rows[row][i] =lstTickets.Count(c =>c.FechaUltimoMovimiento.ToString("dd/MM/yyyy") ==result.Columns[i].ColumnName &&lstUbicaciones.Contains(c.IdUbicacion));
+                                                break;
+                                            case 2:
 
-                                            result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(result.Columns[i].ColumnName.Split(' ')[3]), int.Parse(result.Columns[i].ColumnName.Split(' ')[1]))
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(result.Columns[i].ColumnName.Split(' ')[3]), int.Parse(result.Columns[i].ColumnName.Split(' ')[1]))
-                                                && c.IdUbicacion == idUbicacion);
-                                            break;
-                                        case 3:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == result.Columns[i].ColumnName.PadLeft(2, '0') && c.IdUbicacion == idUbicacion);
-                                            break;
-                                        case 4:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == result.Columns[i].ColumnName.PadLeft(4, '0') && c.IdUbicacion == idUbicacion);
-                                            break;
+                                                result.Rows[row][i] = lstTickets.Count(c =>DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >=BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(result.Columns[i].ColumnName.Split(' ')[3]),int.Parse(result.Columns[i].ColumnName.Split(' ')[1]))&&
+                                                    DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) <=BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(result.Columns[i].ColumnName.Split(' ')[3]),int.Parse(result.Columns[i].ColumnName.Split(' ')[1]))
+                                                    && lstUbicaciones.Contains(c.IdUbicacion));
+                                                break;
+                                            case 3:
+                                                result.Rows[row][i] =lstTickets.Count(c =>c.FechaUltimoMovimiento.ToString("MM") ==result.Columns[i].ColumnName.PadLeft(2, '0') &&lstUbicaciones.Contains(c.IdUbicacion));
+                                                break;
+                                            case 4:
+                                                result.Rows[row][i] =lstTickets.Count(c =>c.FechaUltimoMovimiento.ToString("yyyy") ==result.Columns[i].ColumnName.PadLeft(4, '0') &&lstUbicaciones.Contains(c.IdUbicacion));
+                                                break;
+                                        }
                                     }
-
+                                    row++;
                                 }
-                                row++;
+
+
+                                //foreach (int idUbicacion in lstTickets.Select(s => s.IdUbicacion).Distinct())
+                            //{
+                            //    result.Rows.Add(idUbicacion, new BusinessUbicacion().ObtenerDescripcionUbicacionById(idUbicacion, false));
+                            //    for (int i = 3; i < result.Columns.Count; i++)
+                            //    {
+                            //        switch (tipoFecha)
+                            //        {
+                            //            case 1:
+                            //                result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("dd/MM/yyyy") == result.Columns[i].ColumnName && c.IdUbicacion == idUbicacion);
+                            //                break;
+                            //            case 2:
+
+                            //                result.Rows[row][i] = lstTickets.Count(c =>
+                            //                    DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(result.Columns[i].ColumnName.Split(' ')[3]), int.Parse(result.Columns[i].ColumnName.Split(' ')[1]))
+                            //                    && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(result.Columns[i].ColumnName.Split(' ')[3]), int.Parse(result.Columns[i].ColumnName.Split(' ')[1]))
+                            //                    && c.IdUbicacion == idUbicacion);
+                            //                break;
+                            //            case 3:
+                            //                result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == result.Columns[i].ColumnName.PadLeft(2, '0') && c.IdUbicacion == idUbicacion);
+                            //                break;
+                            //            case 4:
+                            //                result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == result.Columns[i].ColumnName.PadLeft(4, '0') && c.IdUbicacion == idUbicacion);
+                            //                break;
+                            //        }
+
+                            //    }
+                            //    row++;
                             }
                             break;
                         #endregion Ubicacion
                     }
-
                 }
             }
             catch (Exception ex)

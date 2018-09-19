@@ -255,7 +255,10 @@ namespace KinniNet.Core.Operacion
                 try
                 {
                     db.ContextOptions.ProxyCreationEnabled = _proxy;
-                    result = db.Area.Where(w=> !w.Sistema && w.Habilitado && db.ArbolAcceso.Where(wa=>wa.IdTipoUsuario == idTipoUsuario && wa.Habilitado).Select(s=>s.IdArea).Contains(w.Id)).ToList();
+                    List<int> areas = (db.Area.Join(db.ArbolAcceso, a => a.Id, aa => aa.IdArea, (a, aa) => new { a, aa })
+                        .Where(@t => @t.aa.Publico && @t.aa.EsTerminal && @t.aa.IdTipoUsuario == idTipoUsuario
+                                     && !@t.a.Sistema && @t.a.Habilitado).Select(@t => @t.a.Id)).Distinct().ToList();
+                    result = db.Area.Where(w => !w.Sistema && w.Habilitado && areas.Contains(w.Id)).ToList();
                     if (insertarSeleccion)
                         result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                             new Area

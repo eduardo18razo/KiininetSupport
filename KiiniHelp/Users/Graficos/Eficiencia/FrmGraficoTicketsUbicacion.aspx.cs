@@ -184,7 +184,8 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                         {
                             total += decimal.Parse(dt.Rows[row][i].ToString());
                         }
-                        lstPareto.Single(s => s.Descripcion == dt.Rows[row][1].ToString()).Total = total;
+                        if (lstPareto.Any(s => s.Id == int.Parse(dt.Rows[row][0].ToString())))
+                            lstPareto.Single(s => s.Id == int.Parse(dt.Rows[row][0].ToString())).Total = total;
                     }
 
                     lstPareto = lstPareto.OrderByDescending(o => o.Total).ToList();
@@ -263,7 +264,6 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                 throw new Exception(ex.Message);
             }
         }
-        
         private void GeneraGraficaStackedColumn(RadHtmlChart grafico, DataTable dt)
         {
             try
@@ -315,7 +315,7 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                     grafico.Width = Unit.Percentage(100);
                     grafico.Height = Unit.Pixel(500);
                     grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
-                    grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Vertical;
+                    grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Horizontal;
                     foreach (DataRow row in dt.Rows)
                     {
                         ColumnSeries column = new ColumnSeries();
@@ -391,7 +391,7 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                         {
                             total += decimal.Parse(dt.Rows[row][i].ToString());
                         }
-                        lstPareto.Single(s => s.Descripcion == dt.Rows[row][1].ToString()).Total = total;
+                        lstPareto.Single(s => s.Id == int.Parse(dt.Rows[row][0].ToString())).Total = total;
                     }
 
                     lstPareto = lstPareto.OrderByDescending(o => o.Total).ToList();

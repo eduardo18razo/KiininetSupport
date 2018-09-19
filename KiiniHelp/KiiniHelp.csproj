@@ -233,7 +233,9 @@
     <Content Include="assets\js\bootstrap.js" />
     <Content Include="assets\js\functions.js" />
     <Content Include="assets\js\imagesloaded.js" />
+    <Content Include="assets\css\jquery-ui.css" />
     <Content Include="assets\js\jquery.js" />
+    <Content Include="assets\js\jquery-ui.js" />
     <Content Include="assets\js\main.js" />
     <Content Include="assets\js\markdown-js.js" />
     <Content Include="assets\js\masonry.js" />
@@ -411,6 +413,7 @@
     <Content Include="UserControls\Agentes\UcBusquedaUsuario.ascx" />
     <Content Include="UserControls\Altas\ArbolesAcceso\UcAltaSeccion.ascx" />
     <Content Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx" />
+    <Content Include="UserControls\Configuracion\UcParametrosGenerales.ascx" />
     <Content Include="UserControls\Configuracion\UcUploadCarrusel.ascx" />
     <Content Include="UserControls\Consultas\UcBusqueda.ascx" />
     <Content Include="UserControls\Consultas\UcConsultaSecciones.ascx" />
@@ -444,6 +447,7 @@
     <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmConsultaSecciones.aspx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
+    <Content Include="Users\Administracion\Configuracion\FrmParametrosGenerales.aspx" />
     <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAsignacion.aspx" />
     <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsCanal.aspx" />
     <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsUbicacion.aspx" />
@@ -3066,6 +3070,13 @@
     <Compile Include="UserControls\Altas\Usuarios\UcAltaUsuarioRapida.ascx.designer.cs">
       <DependentUpon>UcAltaUsuarioRapida.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Configuracion\UcParametrosGenerales.ascx.cs">
+      <DependentUpon>UcParametrosGenerales.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Configuracion\UcParametrosGenerales.ascx.designer.cs">
+      <DependentUpon>UcParametrosGenerales.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Configuracion\UcUploadCarrusel.ascx.cs">
       <DependentUpon>UcUploadCarrusel.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3513,6 +3524,13 @@
     </Compile>
     <Compile Include="Users\Administracion\Catalogos\FrmConsultaCatalogos.aspx.designer.cs">
       <DependentUpon>FrmConsultaCatalogos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Administracion\Configuracion\FrmParametrosGenerales.aspx.cs">
+      <DependentUpon>FrmParametrosGenerales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Administracion\Configuracion\FrmParametrosGenerales.aspx.designer.cs">
+      <DependentUpon>FrmParametrosGenerales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Administracion\Encuestas\FrmPreview.aspx.cs">
       <DependentUpon>FrmPreview.aspx</DependentUpon>
@@ -4685,7 +4703,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

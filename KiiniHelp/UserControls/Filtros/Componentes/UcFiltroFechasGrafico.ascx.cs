@@ -120,20 +120,20 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                     switch (parametrosGrafico.IdFrecuenciaFecha)
                     {
                         case 1:
-                            txtFechaInicio.Text = DateTime.Now.AddDays(-parametrosGrafico.Periodo).ToString("yyyy-MM-dd");
-                            txtFechaFin.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                            txtFechaInicio.Text = DateTime.Now.AddDays(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy");
+                            txtFechaFin.Text = DateTime.Now.ToString("dd/MM/yyyy");
                             break;
                         case 2:
-                            txtFechaInicio.Text = string.Format("{0}-W{1}", DateTime.Now.AddDays(-(parametrosGrafico.Periodo * 7)).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Now.AddDays(-(parametrosGrafico.Periodo* 7)), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday));
-                            txtFechaFin.Text = string.Format("{0}-W{1}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Now, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday));
+                            txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddDays(-(parametrosGrafico.Periodo * 7)).ToString("dd/MM/yyyy"));
+                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));
                             break;
                         case 3:
-                            txtFechaInicio.Text = string.Format("{0}-{1}", DateTime.Now.AddMonths(-parametrosGrafico.Periodo).Year, DateTime.Now.AddDays(-parametrosGrafico.Periodo).Month);
-                            txtFechaFin.Text = string.Format("{0}-{1}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).Year, DateTime.Now.Month);
+                            txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddMonths(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));
+                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));
                             break;
                         case 4:
-                            txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddYears(-parametrosGrafico.Periodo).Year);
-                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.Year);
+                            txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddYears(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));
+                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.ToString("dd/MM/yyyy"));
                             break;
                     }
 
@@ -170,49 +170,49 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                if (txtFechaInicio.Attributes["type"] != null)
-                    txtFechaInicio.Attributes.Remove("type");
-                if (txtFechaFin.Attributes["type"] != null)
-                    txtFechaFin.Attributes.Remove("type");
+                //if (txtFechaInicio.Attributes["type"] != null)
+                //    txtFechaInicio.Attributes.Remove("type");
+                //if (txtFechaFin.Attributes["type"] != null)
+                //    txtFechaFin.Attributes.Remove("type");
 
-                if (txtFechaInicio.Attributes["min"] != null)
-                    txtFechaInicio.Attributes.Remove("type");
-                if (txtFechaFin.Attributes["max"] != null)
-                    txtFechaFin.Attributes.Remove("max");
+                //if (txtFechaInicio.Attributes["min"] != null)
+                //    txtFechaInicio.Attributes.Remove("type");
+                //if (txtFechaFin.Attributes["max"] != null)
+                //    txtFechaFin.Attributes.Remove("max");
 
-                switch (ddlTipoFiltro.SelectedValue)
-                {
-                    case "1":
-                        txtFechaInicio.Attributes["type"] = "date";
-                        txtFechaFin.Attributes["type"] = "date";
-                        txtFechaFin.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
-                        break;
-                    case "2":
-                        txtFechaInicio.Attributes["type"] = "week";
-                        txtFechaFin.Attributes["type"] = "week";
-                        DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-                        DateTime date1 = new DateTime(DateTime.Now.Year, 12, 31);
-                        System.Globalization.Calendar cal = dfi.Calendar;
-                        txtFechaInicio.Attributes["min"] = string.Format("{0}-W{1}", DateTime.Now.Year, "01");
-                        txtFechaInicio.Attributes["max"] = string.Format("{0}-W{1}", DateTime.Now.Year, cal.GetWeekOfYear(date1, dfi.CalendarWeekRule, dfi.FirstDayOfWeek));
+                //switch (ddlTipoFiltro.SelectedValue)
+                //{
+                //    case "1":
+                //        txtFechaInicio.Attributes["type"] = "date";
+                //        txtFechaFin.Attributes["type"] = "date";
+                //        txtFechaFin.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
+                //        break;
+                //    case "2":
+                //        txtFechaInicio.Attributes["type"] = "week";
+                //        txtFechaFin.Attributes["type"] = "week";
+                //        DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+                //        DateTime date1 = new DateTime(DateTime.Now.Year, 12, 31);
+                //        System.Globalization.Calendar cal = dfi.Calendar;
+                //        txtFechaInicio.Attributes["min"] = string.Format("{0}-W{1}", DateTime.Now.Year, "01");
+                //        txtFechaInicio.Attributes["max"] = string.Format("{0}-W{1}", DateTime.Now.Year, cal.GetWeekOfYear(date1, dfi.CalendarWeekRule, dfi.FirstDayOfWeek));
 
-                        break;
-                    case "3":
-                        txtFechaInicio.Attributes["type"] = "month";
-                        txtFechaFin.Attributes["type"] = "month";
-                        txtFechaInicio.Attributes["min"] = new DateTime(DateTime.Now.Year, 1, 1).ToString("yyyy-MM");
-                        txtFechaInicio.Attributes["max"] = new DateTime(DateTime.Now.Year, 12, 31).ToString("yyyy-MM");
+                //        break;
+                //    case "3":
+                //        txtFechaInicio.Attributes["type"] = "month";
+                //        txtFechaFin.Attributes["type"] = "month";
+                //        txtFechaInicio.Attributes["min"] = new DateTime(DateTime.Now.Year, 1, 1).ToString("yyyy-MM");
+                //        txtFechaInicio.Attributes["max"] = new DateTime(DateTime.Now.Year, 12, 31).ToString("yyyy-MM");
 
-                        break;
-                    case "4":
-                        txtFechaInicio.Attributes["type"] = "number";
-                        txtFechaFin.Attributes["type"] = "number";
-                        txtFechaInicio.Attributes["min"] = "2000";
-                        txtFechaInicio.Attributes["max"] = DateTime.Now.Year.ToString();
-                        txtFechaInicio.Text = DateTime.Now.AddYears(-1).Year.ToString();
-                        txtFechaFin.Text = DateTime.Now.Year.ToString();
-                        break;
-                }
+                //        break;
+                //    case "4":
+                //        txtFechaInicio.Attributes["type"] = "number";
+                //        txtFechaFin.Attributes["type"] = "number";
+                //        txtFechaInicio.Attributes["min"] = "2000";
+                //        txtFechaInicio.Attributes["max"] = DateTime.Now.Year.ToString();
+                //        txtFechaInicio.Text = DateTime.Now.AddYears(-1).Year.ToString();
+                //        txtFechaFin.Text = DateTime.Now.Year.ToString();
+                //        break;
+                //}
             }
             catch (Exception ex)
             {

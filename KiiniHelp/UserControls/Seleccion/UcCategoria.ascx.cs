@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.ServiceArea;
+using KiiniHelp.ServiceSistemaTipoUsuario;
+using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 
@@ -13,6 +15,7 @@ namespace KiiniHelp.UserControls.Seleccion
     public partial class UcCategoria : UserControl
     {
         private readonly ServiceAreaClient _servicioArea = new ServiceAreaClient();
+        private readonly ServiceTipoUsuarioClient _servicioTipoUsuario = new ServiceTipoUsuarioClient();
 
         private List<string> _lstError = new List<string>();
 
@@ -32,24 +35,19 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                switch (int.Parse(Request.Params["userType"]))
+                if (Request.Params["userType"] != null)
                 {
-                    case (int)BusinessVariables.EnumTiposUsuario.Operador:
-                        lnkbtnTipoUsuario.Text = "Operador";
-                        break;
-                    case (int)BusinessVariables.EnumTiposUsuario.Cliente:
-                        lnkbtnTipoUsuario.Text = "Cliente";
-                        break;
-                    case (int)BusinessVariables.EnumTiposUsuario.Proveedor:
-                        lnkbtnTipoUsuario.Text = "Proveedor";
-                        break;
-                    case (int)BusinessVariables.EnumTiposUsuario.Empleado:
-                        lnkbtnTipoUsuario.Text = "Empleado";
-                        break;
-                }
+                    TipoUsuario tipoUsuario = _servicioTipoUsuario.ObtenerTipoUsuarioById(int.Parse(Request.Params["userType"]));
 
-                rptAreas.DataSource = Session["UserData"] == null ? _servicioArea.ObtenerAreasTipoUsuario(int.Parse(Request.Params["userType"]), false).Where(w => !w.Sistema) : _servicioArea.ObtenerAreasUsuario(((Usuario)Session["UserData"]).Id, false).Where(w => !w.Sistema);
-                rptAreas.DataBind();
+                    lnkbtnTipoUsuario.Text = tipoUsuario != null ? tipoUsuario.Descripcion : "N/A";
+
+                    rptAreas.DataSource = Session["UserData"] == null
+                        ? _servicioArea.ObtenerAreasTipoUsuario(int.Parse(Request.Params["userType"]), false)
+                            .Where(w => !w.Sistema)
+                        : _servicioArea.ObtenerAreasUsuario(((Usuario)Session["UserData"]).Id, false)
+                            .Where(w => !w.Sistema);
+                    rptAreas.DataBind();
+                }
             }
             catch (Exception ex)
             {
@@ -91,7 +89,7 @@ namespace KiiniHelp.UserControls.Seleccion
             {
                 string tipoUsuario = Request.Params["userType"];
                 if (Session["UserData"] == null)
-                Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario);
+                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + tipoUsuario);
                 else
                     Response.Redirect("~/Users/FrmDashboardUser.aspx");
             }
