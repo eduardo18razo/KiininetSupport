@@ -62,7 +62,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
         {
             try
             {
-                Lista = _servicioMascara.ObtenerReporteMascara(IdMascara, Metodos.ManejoFechas.ObtenerFechas(int.Parse(ddlTipoFiltro.SelectedValue), txtFechaInicio.Text.Trim(), txtFechaFin.Text.Trim()));
+                Lista = _servicioMascara.ObtenerReporteMascara(IdMascara, ucFiltroFechasGrafico.RangoFechas);
                 return Lista;
             }
             catch (Exception ex)
@@ -310,65 +310,6 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
                             cell.Text = (cell.Text).Substring(0, 20) + "...";
                         }
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void ddlTipoFiltro_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txtFechaInicio.Attributes["type"] != null)
-                    txtFechaInicio.Attributes.Remove("type");
-                if (txtFechaFin.Attributes["type"] != null)
-                    txtFechaFin.Attributes.Remove("type");
-
-                if (txtFechaInicio.Attributes["min"] != null)
-                    txtFechaInicio.Attributes.Remove("type");
-                if (txtFechaFin.Attributes["max"] != null)
-                    txtFechaFin.Attributes.Remove("max");
-
-                switch (ddlTipoFiltro.SelectedValue)
-                {
-                    case "1":
-                        txtFechaInicio.Attributes["type"] = "date";
-                        txtFechaFin.Attributes["type"] = "date";
-                        txtFechaFin.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
-                        break;
-                    case "2":
-                        txtFechaInicio.Attributes["type"] = "week";
-                        txtFechaFin.Attributes["type"] = "week";
-                        DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-                        DateTime date1 = new DateTime(DateTime.Now.Year, 12, 31);
-                        System.Globalization.Calendar cal = dfi.Calendar;
-                        txtFechaInicio.Attributes["min"] = string.Format("{0}-W{1}", DateTime.Now.Year, "01");
-                        txtFechaInicio.Attributes["max"] = string.Format("{0}-W{1}", DateTime.Now.Year, cal.GetWeekOfYear(date1, dfi.CalendarWeekRule, dfi.FirstDayOfWeek));
-
-                        break;
-                    case "3":
-                        txtFechaInicio.Attributes["type"] = "month";
-                        txtFechaFin.Attributes["type"] = "month";
-                        txtFechaInicio.Attributes["min"] = new DateTime(DateTime.Now.Year, 1, 1).ToString("yyyy-MM");
-                        txtFechaInicio.Attributes["max"] = new DateTime(DateTime.Now.Year, 12, 31).ToString("yyyy-MM");
-
-                        break;
-                    case "4":
-                        txtFechaInicio.Attributes["type"] = "number";
-                        txtFechaFin.Attributes["type"] = "number";
-                        txtFechaInicio.Attributes["min"] = "2000";
-                        txtFechaInicio.Attributes["max"] = DateTime.Now.Year.ToString();
-                        txtFechaInicio.Text = DateTime.Now.AddYears(-1).Year.ToString();
-                        txtFechaFin.Text = DateTime.Now.Year.ToString();
-                        break;
                 }
             }
             catch (Exception ex)

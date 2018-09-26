@@ -76,6 +76,29 @@
             //Redirect to refresh Session.
             window.location = window.location.href;
         }
+
+
+        function SessionExpireAlert(timeout) {
+            var seconds = timeout / 1000;
+            document.getElementsByName("secondsIdle").innerHTML = seconds;
+            document.getElementsByName("seconds").innerHTML = seconds;
+            setInterval(function () {
+                seconds--;
+                document.getElementById("seconds").innerHTML = seconds;
+                document.getElementById("secondsIdle").innerHTML = seconds;
+            }, 1000);
+            setTimeout(function () {
+                //Show Popup before 20 seconds of timeout.
+                $find("modalSession").show();
+            }, timeout - 20 * 1000);
+            setTimeout(function () {
+                window.location = "Expired.aspx";
+            }, timeout);
+        };
+        function ResetSession() {
+            //Redirect to refresh Session.
+            window.location = window.location.href;
+        }
     </script>
     <style>
         body {
@@ -384,6 +407,7 @@
                         <span class="glyphicon glyphicon-remove"></span>
                             </asp:LinkButton>--%>
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                               
                             </asp:ContentPlaceHolder>
                         </div>
                     </div>
@@ -450,7 +474,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="modal fade" id="modalSession" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -491,8 +515,8 @@
                 new mlPushMenu(document.getElementById('pMenu'), document.getElementById('trigger'), {
                     type: 'overlap'
                 });
-                
-                
+
+
             </script>
         </form>
     </div>

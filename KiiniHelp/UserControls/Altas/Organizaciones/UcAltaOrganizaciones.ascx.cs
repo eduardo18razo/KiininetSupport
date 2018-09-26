@@ -729,7 +729,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 divData.Visible = true;
                 divStep1.Visible = true;
                 int level = hfCatalogo.Value == string.Empty ? 0 : int.Parse(hfCatalogo.Value);
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && (int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Operador || level > 1))
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && (int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agente || level > 1))
                 {
                     pnlAlta.Visible = true;
                     LlenaComboDinamico(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerHoldings(int.Parse(ddlTipoUsuario.SelectedValue), true));

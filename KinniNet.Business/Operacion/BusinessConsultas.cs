@@ -167,9 +167,9 @@ namespace KinniNet.Core.Operacion
                             TipoUsuario = ticket.TipoUsuario
                         };
 
-                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales))
-                            if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).IdGrupoUsuario))
-                                hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).GrupoUsuario.Descripcion;
+                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos))
+                            if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).IdGrupoUsuario))
+                                hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).GrupoUsuario.Descripcion;
 
                         if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente))
                             if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).IdGrupoUsuario))
@@ -490,9 +490,9 @@ namespace KinniNet.Core.Operacion
                             TipoUsuario = ticket.TipoUsuario
                         };
 
-                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales))
-                            if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).IdGrupoUsuario))
-                                hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).GrupoUsuario.Descripcion;
+                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos))
+                            if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).IdGrupoUsuario))
+                                hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).GrupoUsuario.Descripcion;
 
                         if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente))
                             if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).IdGrupoUsuario))
@@ -672,9 +672,9 @@ namespace KinniNet.Core.Operacion
                             TipoUsuario = ticket.TipoUsuario
                         };
 
-                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales))
-                            if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).IdGrupoUsuario))
-                                hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).GrupoUsuario.Descripcion;
+                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos))
+                            if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).IdGrupoUsuario))
+                                hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).GrupoUsuario.Descripcion;
 
                         if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente))
                             if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).IdGrupoUsuario))
@@ -822,9 +822,9 @@ namespace KinniNet.Core.Operacion
                             TipoUsuario = ticket.TipoUsuario
                         };
 
-                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales))
+                        if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos))
                             //    if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.EspecialDeConsulta).IdGrupoUsuario))
-                            hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).GrupoUsuario.Descripcion;
+                            hticket.GrupoEspecialConsulta = ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).GrupoUsuario.Descripcion;
 
                         if (ticket.TicketGrupoUsuario.Any(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente))
                             //    if (grupos.Contains(ticket.TicketGrupoUsuario.First(f => f.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ResponsableDeAtención).IdGrupoUsuario))

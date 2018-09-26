@@ -445,9 +445,11 @@
     <Content Include="UserControls\Detalles\UcTicketDetalleUsuario.ascx" />
     <Content Include="UserControls\Preview\UcVisorConsultainformacion.ascx" />
     <Content Include="UserControls\ReportesGraficos\InformacionConsulta\UcReporteInformacionConsulta.ascx" />
+    <Content Include="UserControls\Seleccion\UcReportSelect.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmConsultaSecciones.aspx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmDetalleOpcion.aspx" />
     <Content Include="Users\Administracion\Configuracion\FrmParametrosGenerales.aspx" />
+    <Content Include="Users\FrmReportes.aspx" />
     <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAsignacion.aspx" />
     <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsCanal.aspx" />
     <Content Include="Users\Graficos\Eficiencia\FrmGraficoTicketsUbicacion.aspx" />
@@ -3434,6 +3436,13 @@
     <Compile Include="UserControls\Seleccion\UcCategoria.ascx.designer.cs">
       <DependentUpon>UcCategoria.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Seleccion\UcReportSelect.ascx.cs">
+      <DependentUpon>UcReportSelect.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Seleccion\UcReportSelect.ascx.designer.cs">
+      <DependentUpon>UcReportSelect.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Seleccion\UcRolGrupo.ascx.cs">
       <DependentUpon>UcRolGrupo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3545,6 +3554,13 @@
     </Compile>
     <Compile Include="Users\Administracion\Feriados\FrmConsultaFeriados.aspx.designer.cs">
       <DependentUpon>FrmConsultaFeriados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\FrmReportes.aspx.cs">
+      <DependentUpon>FrmReportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\FrmReportes.aspx.designer.cs">
+      <DependentUpon>FrmReportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Graficos\Eficiencia\FrmGraficoTicketsEstatusAsignacion.aspx.cs">
       <DependentUpon>FrmGraficoTicketsEstatusAsignacion.aspx</DependentUpon>
@@ -4703,7 +4719,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+      <UserProperties UseJQuerySupport="False" UseAjaxifiedTemplates="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

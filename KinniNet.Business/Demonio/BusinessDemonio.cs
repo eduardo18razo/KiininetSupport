@@ -74,7 +74,7 @@ namespace KinniNet.Core.Demonio
                     tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.Agente);
                     tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido);
                     tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo);
-                    tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales);
+                    tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos);
 
                     DateTime fechaConsulta = DateTime.Now;
                     List<TiempoInformeArbol> lstTiempoInforme = (from tia in db.TiempoInformeArbol
@@ -170,7 +170,7 @@ namespace KinniNet.Core.Demonio
                                     case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo:
                                         informeDesarrolloCorreo.AddRange(tickets.ToList().Distinct());
                                         break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales:
+                                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
                                         informeConsultaCorreo.AddRange(tickets.ToList().Distinct());
                                         break;
                                 }
@@ -187,7 +187,7 @@ namespace KinniNet.Core.Demonio
                                     case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo:
                                         informeDesarrolloSms.AddRange(tickets.ToList().Distinct());
                                         break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales:
+                                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
                                         informeConsultaSms.AddRange(tickets.ToList().Distinct());
                                         break;
                                 }
@@ -203,7 +203,7 @@ namespace KinniNet.Core.Demonio
                     if (informeDesarrolloCorreo.Any())
                         EnviaNotificacion(informeDesarrolloCorreo, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
                     if (informeConsultaCorreo.Any())
-                        EnviaNotificacion(informeConsultaCorreo, (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
+                        EnviaNotificacion(informeConsultaCorreo, (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
 
                     //Envia Notificacion SMS
                     if (informeDueñoSms.Any())
@@ -213,7 +213,7 @@ namespace KinniNet.Core.Demonio
                     if (informeDesarrolloSms.Any())
                         EnviaNotificacion(informeDesarrolloSms, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
                     if (informeConsultaSms.Any())
-                        EnviaNotificacion(informeConsultaSms, (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
+                        EnviaNotificacion(informeConsultaSms, (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
                 }
             }
             catch (Exception e)

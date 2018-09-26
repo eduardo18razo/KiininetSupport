@@ -552,9 +552,9 @@ namespace KinniNet.Core.Security
 
                     result = result.Distinct().ToList();
                     result = result.OrderBy(o => o.Orden).ToList();
-                    if (result.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Admin))
+                    if (result.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Administración))
                     {
-                        result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.Admin).Menu1 = result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.Admin).Menu1.OrderBy(o => o.Orden).ToList();
+                        result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.Administración).Menu1 = result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.Administración).Menu1.OrderBy(o => o.Orden).ToList();
                     }
                     if (result.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Atención))
                     {
@@ -645,7 +645,7 @@ namespace KinniNet.Core.Security
                     //result = qry.OrderBy(o => o.Id).Distinct().ToList();
                     result = qry.Where(w => w.Id != (int)BusinessVariables.EnumMenu.Consultas && w.Id != (int)BusinessVariables.EnumMenu.Servicio
                                            && w.Id != (int)BusinessVariables.EnumMenu.Incidentes).OrderBy(o => o.Id).Distinct().ToList();
-                    List<Area> areas = new BusinessArea().ObtenerAreasUsuarioPublicoByIdRol((int)BusinessVariables.EnumRoles.Usuario, false).Where(w => !w.Sistema).Distinct().ToList();
+                    List<Area> areas = new BusinessArea().ObtenerAreasUsuarioPublicoByIdRol((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, false).Where(w => !w.Sistema).Distinct().ToList();
 
                     result.AddRange(areas.Select(s => new Menu { Id = s.Id, Descripcion = s.Descripcion, Url = "DELSYSTEM" }).Distinct().ToList());
                     if (arboles)

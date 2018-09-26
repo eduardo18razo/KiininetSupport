@@ -49,31 +49,13 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Encuestas {
         protected global::System.Web.UI.WebControls.DropDownList ddlTipoUsuario;
         
         /// <summary>
-        /// Control ddlTipoFiltro.
+        /// Control ucFiltroFechasGrafico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoFiltro;
-        
-        /// <summary>
-        /// Control txtFechaInicio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaInicio;
-        
-        /// <summary>
-        /// Control txtFechaFin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
+        protected global::KiiniHelp.UserControls.Filtros.Componentes.UcFiltroFechasGrafico ucFiltroFechasGrafico;
         
         /// <summary>
         /// Control tblResults.

@@ -817,7 +817,7 @@ namespace KinniNet.Core.Operacion
                 if (arbol.EsTerminal)
                 {
                     // TODO: ESTE FRAGMENTO AGREGA LOS GRUPOS ESPECIALES DE CONSULTA ESPECIFICOS AL TIPO DE USUARIO
-                    List<GrupoUsuario> gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales, arbol.IdTipoUsuario);
+                    List<GrupoUsuario> gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos, arbol.IdTipoUsuario);
                     foreach (GrupoUsuario grupoUsuario in gpoEspCons)
                     {
                         if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
@@ -856,7 +856,7 @@ namespace KinniNet.Core.Operacion
                                               join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
                                               join ug in db.UsuarioGrupo on new { guia.IdRol, guia.IdGrupoUsuario, guia.IdSubGrupoUsuario, tu = ac.IdTipoUsuario } equals new { ug.IdRol, ug.IdGrupoUsuario, ug.IdSubGrupoUsuario, tu = ug.Usuario.IdTipoUsuario }
                                               where ug.IdUsuario == idUsuario && ac.IdTipoArbolAcceso == idTipoArbol && ac.IdArea == idArea && ac.Habilitado
-                                              && (guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario)
+                                              && (guia.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte)
                                               select ac;
                 result = qry.ToList();
                 foreach (ArbolAcceso arbol in result)
@@ -893,7 +893,7 @@ namespace KinniNet.Core.Operacion
                                               join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
                                               join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
                                               join ug in db.UsuarioGrupo on new { guia.IdRol, guia.IdGrupoUsuario, guia.IdSubGrupoUsuario } equals new { ug.IdRol, ug.IdGrupoUsuario, ug.IdSubGrupoUsuario }
-                                              where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
+                                              where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                                               select ac;
                 result = qry.ToList();
                 foreach (ArbolAcceso arbol in result)
@@ -930,7 +930,7 @@ namespace KinniNet.Core.Operacion
                                               join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
                                               join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
                                               join ug in db.UsuarioGrupo on new { guia.IdRol, guia.IdGrupoUsuario, guia.IdSubGrupoUsuario } equals new { ug.IdRol, ug.IdGrupoUsuario, ug.IdSubGrupoUsuario }
-                                              where lstGrupos.Contains(guia.IdGrupoUsuario) && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
+                                              where lstGrupos.Contains(guia.IdGrupoUsuario) && guia.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                                               select ac;
                 result = qry.ToList();
                 foreach (ArbolAcceso arbol in result)
@@ -967,7 +967,7 @@ namespace KinniNet.Core.Operacion
                                               join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
                                               join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
                                               where ac.IdTipoUsuario == idTipoUsuario && ac.IdTipoArbolAcceso == idTipoArbol && ac.Habilitado && ac.IdArea == idArea
-                                              && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
+                                              && guia.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                                               select ac;
                 result = qry.ToList();
                 foreach (ArbolAcceso arbol in result)
@@ -2218,7 +2218,7 @@ namespace KinniNet.Core.Operacion
                                         }
                                         break;
 
-                                    case (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales:
+                                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
                                         TiempoInformeArbol tInformeCons = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
                                         if (tInformeCons != null)
                                         {
@@ -2276,7 +2276,7 @@ namespace KinniNet.Core.Operacion
                                               join iac in db.InventarioArbolAcceso on ac.Id equals iac.IdArbolAcceso
                                               join guia in db.GrupoUsuarioInventarioArbol on iac.Id equals guia.IdInventarioArbolAcceso
                                               join ug in db.UsuarioGrupo on new { guia.IdRol, guia.IdGrupoUsuario, guia.IdSubGrupoUsuario } equals new { ug.IdRol, ug.IdGrupoUsuario, ug.IdSubGrupoUsuario }
-                                              where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
+                                              where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                                               select ac;
 
                 result = qry.ToList().Select(arbol => new HelperArbolAcceso { Id = arbol.Id, DescripcionTipificacion = ObtenerTipificacion(arbol.Id) }).ToList();

@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcReporteDetalleFormulario.ascx.cs" Inherits="KiiniHelp.UserControls.ReportesGraficos.Formularios.UcReporteDetalleFormulario" %>
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
-<%@ Register TagPrefix="atk" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register Src="~/UserControls/Filtros/Componentes/UcFiltroFechasGrafico.ascx" TagPrefix="uc1" TagName="UcFiltroFechasGrafico" %>
+
 <div class="heigth100">
     <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
@@ -27,36 +28,9 @@
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             
-                            <div class="col-lg-1">
+                            <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Visualizar:</label>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">
-                                        <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
-                                            <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Semanal" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="Mensual" Value="3"></asp:ListItem>
-                                            <asp:ListItem Text="Anual" Value="4"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 ">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Inicio:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                                        <asp:TextBox runat="server" CssClass="form-control" type="date" step="1" ID="txtFechaInicio" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 separador-vertical-derecho">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Fin:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                                        <asp:TextBox runat="server" CssClass="form-control" type="date" step="1" ID="txtFechaFin" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
-                                    </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
-                                        <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" ID="btnBuscar" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
-                                    </div>
+                                    <uc1:UcFiltroFechasGrafico runat="server" ID="ucFiltroFechasGrafico" />
                                 </div>
                             </div>
 

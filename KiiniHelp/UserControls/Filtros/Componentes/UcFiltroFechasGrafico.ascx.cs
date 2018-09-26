@@ -38,6 +38,28 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             set { ddlTipoFiltro.SelectedValue = value.ToString(); }
         }
 
+        public string FechaInicio
+        {
+            get
+            {
+                DateTime result;
+                ValidaFechas();
+                DateTime.TryParse(txtFechaInicio.Text, out result);
+                return result.ToShortDateString();
+            }
+        }
+
+        public string FechaFin
+        {
+            get
+            {
+                DateTime result;
+                ValidaFechas();
+                DateTime.TryParse(txtFechaFin.Text, out result);
+                return result.ToShortDateString();
+            }
+        }
+
         public Dictionary<string, DateTime> RangoFechas
         {
             get

@@ -768,7 +768,7 @@ namespace KiiniHelp.UserControls.Altas
 
                                         });
                                         break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales:
+                                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
                                         arbol.TiempoInformeArbol.Add(new TiempoInformeArbol
                                         {
                                             IdTipoGrupo = gpo.IdTipoGrupo,
@@ -952,7 +952,7 @@ namespace KiiniHelp.UserControls.Altas
                 btnModalSla.Visible = chkNivelTerminal.Checked && Convert.ToInt32(hfIdTipoArbol.Value) != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion;
                 btnModalInforme.Visible = chkNivelTerminal.Checked && Convert.ToInt32(hfIdTipoArbol.Value) != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion;
                 btnModalEncuesta.Visible = chkNivelTerminal.Checked && Convert.ToInt32(hfIdTipoArbol.Value) != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion;
-                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Usuario, false);
+                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, false);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeContenido, false);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeOperación, false);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, false);
@@ -960,7 +960,7 @@ namespace KiiniHelp.UserControls.Altas
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ConsultasEspeciales, false);
                 if (hfIdTipoArbol.Value == ((int)BusinessVariables.EnumTipoArbol.ConsultarInformacion).ToString())
                 {
-                    AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Usuario, true);
+                    AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, true);
                     //Información de Consulta
                     List<InformacionConsulta> infoCons = _servicioSistemaTipoInformacionConsulta.ObtenerTipoInformacionConsulta(false).Select(tipoInf => new InformacionConsulta { TipoInfConsulta = tipoInf }).ToList();
                     rptInformacion.DataSource = infoCons;
@@ -970,7 +970,7 @@ namespace KiiniHelp.UserControls.Altas
                 }
 
                 //Grupos
-                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Usuario, true);
+                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeContenido, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeOperación, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, true);

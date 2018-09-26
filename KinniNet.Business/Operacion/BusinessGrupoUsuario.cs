@@ -866,7 +866,7 @@ namespace KinniNet.Core.Operacion
                                     });
                 else if (grupo.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario)
                 {
-                    int idRol = (int)BusinessVariables.EnumRoles.Usuario;
+                    int idRol = (int)BusinessVariables.EnumRoles.AccesoCentroSoporte;
                     var qry = from statusDefault in db.EstatusTicketSubRolGeneralDefault.Where(
                                 w => w.IdRolSolicita == idRol)
                               select statusDefault;

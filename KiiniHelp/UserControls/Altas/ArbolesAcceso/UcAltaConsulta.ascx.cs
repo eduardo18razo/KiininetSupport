@@ -136,16 +136,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             }
             set { ddlNivel6.SelectedValue = value.ToString(); }
         }
-        //public int IdNivel7
-        //{
-        //    get
-        //    {
-        //        if (ddlNivel7.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-        //            throw new Exception("Seleccione nivel 7.");
-        //        return int.Parse(ddlNivel7.SelectedValue);
-        //    }
-        //    set { ddlNivel7.SelectedValue = value.ToString(); }
-        //}
+        
         public string Catalogo
         {
             get
@@ -424,7 +415,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         Metodos.LimpiarCombo(ddlNivel4);
                         Metodos.LimpiarCombo(ddlNivel5);
                         Metodos.LimpiarCombo(ddlNivel6);
-                        //Metodos.LimpiarCombo(ddlNivel7);
                         Metodos.LlenaComboCatalogo(ddlArea, _servicioArea.ObtenerAreas(true).Where(w => !w.Sistema).ToList());
                         btnPreview.Visible = false;
                         btnSaveAll.Visible = false;
@@ -437,10 +427,10 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         divStep2Data.Visible = false;
                         divStep3.Visible = true;
                         divStep3Data.Visible = true;
-                        Metodos.LlenaComboCatalogo(ddlGrupoAcceso, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.Usuario, IdTipoUsuario, true));
-                        Metodos.LlenaComboCatalogo(ddlDuenoServicio, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Operador, true));
-                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableMantenimiento, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeContenido, (int)BusinessVariables.EnumTiposUsuario.Operador, true));
-                        Metodos.LlenaListBoxCatalogo(lstGrupoEspecialConsulta, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ConsultasEspeciales, (int)BusinessVariables.EnumTiposUsuario.Operador, false).Where(w=> !w.Sistema));
+                        Metodos.LlenaComboCatalogo(ddlGrupoAcceso, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, IdTipoUsuario, true));
+                        Metodos.LlenaComboCatalogo(ddlDuenoServicio, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Agente, true));
+                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableMantenimiento, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeContenido, (int)BusinessVariables.EnumTiposUsuario.Agente, true));
+                        Metodos.LlenaListBoxCatalogo(lstGrupoEspecialConsulta, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AccesoAnalíticos, (int)BusinessVariables.EnumTiposUsuario.Agente, false).Where(w=> !w.Sistema));
                         btnPreview.Visible = true;
                         btnSaveAll.Visible = true;
                         btnSiguiente.Visible = false;
@@ -857,23 +847,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         txtDescripcionN6.Text = string.Empty;
                         ddlNivel5_OnSelectedIndexChanged(ddlNivel5, null);
                         break;
-                    //case 7:
-                    //    arbol.IdNivel1 = IdNivel1;
-                    //    arbol.IdNivel2 = IdNivel2;
-                    //    arbol.IdNivel3 = IdNivel3;
-                    //    arbol.IdNivel4 = IdNivel4;
-                    //    arbol.IdNivel5 = IdNivel5;
-                    //    arbol.IdNivel6 = IdNivel6;
-                    //    arbol.Nivel7 = new Nivel7
-                    //    {
-                    //        IdTipoUsuario = IdTipoUsuario,
-                    //        Descripcion = txtDescripcionN7.Text.Trim(),
-                    //        Habilitado = chkNivelHabilitado.Checked
-                    //    };
-                    //    _servicioArbolAcceso.GuardarArbol(arbol);
-                    //    txtDescripcionN7.Text = string.Empty;
-                    //    ddlNivel6_OnSelectedIndexChanged(ddlNivel6, null);
-                    //    break;
                 }
             }
             catch (Exception ex)
@@ -928,7 +901,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                 {
                     IdGrupoUsuario = gpo.Id,
-                    IdRol = (int)BusinessVariables.EnumRoles.Usuario,
+                    IdRol = (int)BusinessVariables.EnumRoles.AccesoCentroSoporte,
                     IdSubGrupoUsuario = null
                 });
 
@@ -959,7 +932,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                         {
                             IdGrupoUsuario = gpo.Id,
-                            IdRol = (int)BusinessVariables.EnumRoles.ConsultasEspeciales,
+                            IdRol = (int)BusinessVariables.EnumRoles.AccesoAnalíticos,
                             IdSubGrupoUsuario = null
                         });
                     }
@@ -1059,7 +1032,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 if (OnAceptarModal != null)
                     OnAceptarModal();
 
-                //agregado
                 if (OnCancelarModal != null)
                     OnCancelarModal();
             }

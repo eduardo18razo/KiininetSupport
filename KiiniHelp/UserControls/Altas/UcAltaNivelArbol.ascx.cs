@@ -615,7 +615,7 @@ namespace KiiniHelp.UserControls.Altas
                 Metodos.LlenaComboCatalogo(ddlEncuesta, _servicioEncuesta.ObtenerEncuestas(true));
                 if (IdTipoArbol == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
                 {
-                    AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Usuario, true);
+                    AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, true);
                     AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, true);
                     AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeContenido, true);
                     AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ConsultasEspeciales, true);
@@ -630,7 +630,7 @@ namespace KiiniHelp.UserControls.Altas
                 UcImpactoUrgencia.Limpiar();
                 ucAltaTiempoEstimado.LimpiarCampos();
                 //Grupos
-                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Usuario, true);
+                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeContenido, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeOperación, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, true);
@@ -764,7 +764,7 @@ namespace KiiniHelp.UserControls.Altas
 
                                                 });
                                             break;
-                                        case (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales:
+                                        case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
                                             if (ucAltaTiempoEstimado.TieneTiempoConsulta)
                                                 arbol.TiempoInformeArbol.Add(new TiempoInformeArbol
                                                 {

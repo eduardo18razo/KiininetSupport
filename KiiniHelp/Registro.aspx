@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="KiiniHelp.Registro" %>
 
 <%@ Register Src="~/UserControls/Altas/Usuarios/UcAltaUsuarioRapida.ascx" TagPrefix="uc1" TagName="UcAltaUsuarioRapida" %>
+<%@ Register TagPrefix="ms" Namespace="MSCaptcha" Assembly="MSCaptcha, Version=2.0.1.36094, Culture=neutral, PublicKeyToken=b9ff12f28cdcf412" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -61,23 +63,48 @@
                                     <asp:Label runat="server" ID="lblBrandingModal" Visible="false" /></span> </h1>
                                 <div class="form-box-inner2">
                                     <div class="row">
-                                        <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div data-parsley-validate class="form-horizontal">
                                                 <div class="form-group top15">
                                                     <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
                                                 </div>
-                                                <div class="form-group top15">
-                                                    <asp:Button CssClass="btn btn-default margin-top-15 margin-bottom-15" Width="73px" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="False" />
-                                                    <asp:Button CssClass="btn btn-primary margin-top-15 margin-bottom-15" Width="73px" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
+                                                <div class="row">
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                                <asp:CustomValidator ErrorMessage="" OnServerValidate="OnServerValidate" runat="server" />
+                                                                <ms:CaptchaControl ID="captchaTicket" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="4" CssClass="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                                                                    CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
+                                                                    FontColor="#D20B0C" NoiseColor="white" BackColor="transparent" />
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12 col-md-2 col-lg-2 col-lg-offset-5 col-md-offset-5">
+                                                                <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);"/>
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group top15">
+                                                        <asp:Button CssClass="btn btn-default margin-top-15 margin-bottom-15" Width="73px" ID="btnCancelar" Text="Cancelar" runat="server" OnClick="btnCancelar_Click" CausesValidation="False" />
+                                                        <asp:Button CssClass="btn btn-primary margin-top-15 margin-bottom-15" Width="73px" Text="Enviar" runat="server" OnClick="btnRegistrar_OnClick" />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="copyright2 text-center">&copy; 2017 - Powered by Kiininet</div>
                         </div>
-                        <div class="copyright2 text-center">&copy; 2017 - Powered by Kiininet</div>
-                    </div>
                 </section>
             </ContentTemplate>
         </asp:UpdatePanel>
@@ -87,8 +114,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                        <h6 id="modal-new-ticket-label" class="modal-title">
-                            Registro Exitoso
+                        <h6 id="modal-new-ticket-label" class="modal-title">Registro Exitoso
                         </h6>
                     </div>
                     <div class="modal-body">

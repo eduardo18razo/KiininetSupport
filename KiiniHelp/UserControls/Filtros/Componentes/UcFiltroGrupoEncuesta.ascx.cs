@@ -64,7 +64,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                     (int) BusinessVariables.EnumTiposGrupos.Agente,
                     (int) BusinessVariables.EnumTiposGrupos.ResponsableDeOperación,
                     (int) BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo,
-                    (int) BusinessVariables.EnumTiposGrupos.ConsultasEspeciales
+                    (int) BusinessVariables.EnumTiposGrupos.AccesoAnalíticos
                 };
 
                 rptGpos.DataSource = _servicioGrupoUsuario.ObtenerGruposByIdUsuario(((Usuario)Session["UserData"]).Id, false).Where(w => w.IdTipoGrupo != (int)BusinessVariables.EnumTiposGrupos.Usuario && filtroGrupos.Contains(w.IdTipoGrupo));

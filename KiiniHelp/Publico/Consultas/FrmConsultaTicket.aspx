@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Consulta Ticket" Language="C#" MasterPageFile="~/Public.Master" ValidateRequest="false" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="FrmConsultaTicket.aspx.cs" Inherits="KiiniHelp.Publico.Consultas.FrmConsultaTicket" %>
-
 <%@ Register Src="~/UserControls/Detalles/UcTicketDetalleUsuario.ascx" TagPrefix="uc1" TagName="UcTicketDetalleUsuario" %>
+<%@ Register TagPrefix="ms" Namespace="MSCaptcha" Assembly="MSCaptcha, Version=2.0.1.36094, Culture=neutral, PublicKeyToken=b9ff12f28cdcf412" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -31,19 +31,30 @@
                                 <div class="module-content-inner no-padding-bottom">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="txtTicket">No. de ticket</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label" for="txtTicket">No. de ticket</label>
+                                            <div class="col-lg-10 col-md-10 col-sm-10">
                                                 <asp:TextBox runat="server" CssClass="form-control" ID="txtTicket" onkeydown="return (event.keyCode!=13);" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="txtClave">Clave de registro</label>
-                                            <div class="col-sm-10">
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label" for="txtClave">Clave de registro</label>
+                                            <div class="col-lg-10 col-md-10 col-sm-10">
                                                 <asp:TextBox type="text" CssClass="form-control text-uppercase" runat="server" ID="txtClave" onkeydown="return (event.keyCode!=13);" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
+                                            <asp:CustomValidator ErrorMessage="" OnServerValidate="OnServerValidate" runat="server" />
+                                            <ms:captchacontrol id="captchaTicket" runat="server" captchabackgroundnoise="Low" captchalength="4" cssclass="col-lg-10 col-md-10 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 "
+                                                captchaheight="60" captchawidth="200" captchamintimeout="5" captchamaxtimeout="240"
+                                                fontcolor="#D20B0C" noisecolor="#B1B1B1" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-1 col-md-2 col-sm-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                                                <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-lg-10 col-md-10 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                                                 <asp:LinkButton CssClass="btn btn-primary" runat="server" ID="btnConsultar" OnClick="btnConsultar_OnClick">Consultar</asp:LinkButton>
                                             </div>
                                         </div>

@@ -278,7 +278,7 @@ namespace KinniNet.Core.Sistema
                                   select etsrg;
                         if (!publico && idUsuario == ticket.IdUsuarioSolicito)
                             qry = from q in qry
-                                  where q.IdRolPertenece == (int)BusinessVariables.EnumRoles.Usuario
+                                  where q.IdRolPertenece == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                                   select q;
                         else
                             qry = from q in qry

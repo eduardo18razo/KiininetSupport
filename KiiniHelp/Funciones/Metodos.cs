@@ -351,6 +351,22 @@ namespace KiiniHelp.Funciones
                     throw new Exception(e.Message);
                 }
             }
+
+            public static bool ValidaFechas(string fechaInicio, string fechaFin)
+            {
+                bool result;
+                try
+                {
+                    if (DateTime.Parse(fechaInicio) > DateTime.Parse(fechaFin))
+                        throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
+                    result = true;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+                return result;
+            }
         }
     }
 }

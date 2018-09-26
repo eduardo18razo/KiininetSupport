@@ -151,6 +151,7 @@
     <Compile Include="Operacion\SmsService.cs" />
     <Compile Include="Operacion\Tickets\ConversacionArchivo.cs" />
     <Compile Include="Operacion\Tickets\PreTicket.cs" />
+    <Compile Include="Operacion\Tickets\PreTicketCorreo.cs" />
     <Compile Include="Operacion\Tickets\SlaEstimadoTicket.cs" />
     <Compile Include="Operacion\Tickets\SlaEstimadoTicketDetalle.cs" />
     <Compile Include="Operacion\Tickets\Ticket.cs" />

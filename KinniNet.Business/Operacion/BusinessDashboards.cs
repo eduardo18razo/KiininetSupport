@@ -47,7 +47,7 @@ namespace KinniNet.Core.Operacion
                 results.UsuariosRegistrados = db.Usuario.Count(c => userFilters.Contains(c.IdTipoUsuario));
                 results.UsuariosActivos = db.Usuario.Count(c => userFilters.Contains(c.IdTipoUsuario) && c.Habilitado && c.Activo);
                 results.TicketsCreados = db.Ticket.Count();
-                results.Operadores = db.Usuario.Count(c => c.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador && c.Habilitado && c.Activo);
+                results.Operadores = db.Usuario.Count(c => c.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agente && c.Habilitado && c.Activo);
 
                 DataTable dtTickets = new DataTable("dt");
                 dtTickets.Columns.Add(new DataColumn("Id", typeof(int)));
@@ -105,10 +105,10 @@ namespace KinniNet.Core.Operacion
                 results.Articulos = db.InformacionConsulta.Count();
                 results.Formularios = db.Mascara.Count();
                 results.Catalogos = db.Catalogos.Count(c => !c.Sistema);
-                results.OperadorRol = db.Rol.Where(w => w.Id != (int)BusinessVariables.EnumRoles.Usuario)
+                results.OperadorRol = db.Rol.Where(w => w.Id != (int)BusinessVariables.EnumRoles.AccesoCentroSoporte)
                     .Join(db.RolTipoUsuario, rol => rol.Id, roltipousuario => roltipousuario.IdRol, (rol, roltipousuario) => new { r = rol, rtu = roltipousuario })
                     .Join(db.UsuarioRol, roltu => roltu.rtu.Id, usuariorol => usuariorol.IdRolTipoUsuario, (roltipousuario, usuariorol) => new { rtu = roltipousuario, ur = usuariorol })
-                    .GroupJoin(db.Usuario.Where(w => w.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador), ur => ur.ur.IdUsuario, users => users.Id, (usuariorol, usuarios) => new { ur = usuariorol, u = usuarios })
+                    .GroupJoin(db.Usuario.Where(w => w.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agente), ur => ur.ur.IdUsuario, users => users.Id, (usuariorol, usuarios) => new { ur = usuariorol, u = usuarios })
                     .Select(s => new { s.ur.rtu.r })
                     .GroupBy(g => g.r)
                     .Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }).ToList();

@@ -33,7 +33,7 @@ namespace KinniNet.Core.Operacion
                                       join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
                                       join gu in db.GrupoUsuario on guia.IdGrupoUsuario equals gu.Id
                                       join ug in db.UsuarioGrupo on gu.Id equals ug.IdGrupoUsuario
-                                      where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
+                                      where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                                       select a.Id).Distinct().ToList();
                 result = db.Area.Where(w => lstAreas.Contains(w.Id)).ToList();
                 if (insertarSeleccion)
@@ -134,7 +134,7 @@ namespace KinniNet.Core.Operacion
                                       join guia in db.GrupoUsuarioInventarioArbol on iaa.Id equals guia.IdInventarioArbolAcceso
                                       join gu in db.GrupoUsuario on guia.IdGrupoUsuario equals gu.Id
                                       join ug in db.UsuarioGrupo on gu.Id equals ug.IdGrupoUsuario
-                                      where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.Usuario
+                                      where ug.IdUsuario == idUsuario && guia.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                                       select a.Id).Distinct().ToList();
                 result = db.Area.Where(w => lstAreas.Contains(w.Id)).ToList();
                 if (insertarSeleccion)

@@ -245,7 +245,7 @@ namespace KiiniHelp.UserControls.Altas
                     case (int)BusinessVariables.EnumTiposGrupos.Usuario:
                         lblTitle.Text += "Usuario";
                         break;
-                    case (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales:
+                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
                         lblTitle.Text += "Consultas Especiales";
                         break;
                     case (int)BusinessVariables.EnumTiposGrupos.Agente:

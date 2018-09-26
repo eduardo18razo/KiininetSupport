@@ -355,7 +355,7 @@ namespace KiiniHelp
         {
             try
             {
-                int areaSeleccionada = (int)BusinessVariables.EnumRoles.Usuario;
+                int areaSeleccionada = (int)BusinessVariables.EnumRoles.AccesoCentroSoporte;
                 Session["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico(idUsuario, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();

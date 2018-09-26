@@ -192,7 +192,7 @@ namespace KinniNet.Business.Utils
 
         public enum EnumTiposUsuario
         {
-            Operador = 1,
+            Agente = 1,
             Cliente = 2,
             Proveedor = 3,
             Empleado = 4
@@ -233,27 +233,29 @@ namespace KinniNet.Business.Utils
         public enum EnumTiposGrupos
         {
             Administrador = 1,
-            Usuario = 2,
-            ConsultasEspeciales = 3,
+            AccesoCentroSoporte = 2,
+            AccesoAnalíticos = 3,
             Agente = 4,
             ResponsableDeContenido = 5,
             ResponsableDeOperación = 6,
             ResponsableDeDesarrollo = 7,
             ResponsableDeCategoría = 8,
-            AgenteUniversal = 9
+            AgenteUniversal = 9,
+            Notificaciones = 10
         }
 
         public enum EnumRoles
         {
             Administrador = 1,
-            Usuario = 2,
-            ConsultasEspeciales = 3,
+            AccesoCentroSoporte = 2,
+            AccesoAnalíticos = 3,
             Agente = 4,
             ResponsableDeContenido = 5,
             ResponsableDeOperación = 6,
             ResponsableDeDesarrollo = 7,
             ResponsableDeCategoría = 8,
-            AgenteUniversal = 9
+            AgenteUniversal = 9,
+            Notificaciones = 10
         }
 
         public enum EnumSubRoles
@@ -285,7 +287,7 @@ namespace KinniNet.Business.Utils
         {
             Dashboard = 1,
             MisTickets = 2,
-            Admin = 3,
+            Administración = 3,
             Atención = 4,
             HelpCenter = 5,
             Tickets = 6,
@@ -295,8 +297,8 @@ namespace KinniNet.Business.Utils
             View = 10,
             Chat = 11,
             CambiarContraseña = 12,
-            SolicitudMantenimiento = 13,
-            Notificaciones = 14,
+            SolicitudDeMantenimiento = 13,
+            Notificaciones = 14
 
 
         }

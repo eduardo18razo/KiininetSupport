@@ -162,7 +162,7 @@ namespace KiiniHelp
         {
             try
             {
-                List<Rol> lstRoles = _servicioSeguridad.ObtenerRolesUsuario(((Usuario)Session["UserData"]).Id);
+                List<Rol> lstRoles = _servicioSeguridad.ObtenerRolesUsuario(((Usuario)Session["UserData"]).Id).Where(w => w.Id != (int)BusinessVariables.EnumRoles.AccesoAnalíticos).ToList();
                 if (lstRoles.Count == 1)
                 {
                     RolSeleccionado = lstRoles.First().Id;
@@ -234,10 +234,10 @@ namespace KiiniHelp
             try
             {
                 HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-                if (myCookie == null || Session["UserData"] == null)
+                if (myCookie == null || Session["UserData"] == null || bool.Parse(hfSesionExpiro.Value))
                 {
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalSession\");", true);
-                    //Response.Redirect(ResolveUrl("~/Default.aspx"));
+                    //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalSession\");", true);
+                    Response.Redirect(ResolveUrl("~/Default.aspx"));
                 }
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
@@ -245,31 +245,14 @@ namespace KiiniHelp
                 if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
                     if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
                         Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx"));
-                
-                var js = string.Format("var IdealTimeOut = {0} * 1000 * 60;" +
-                                           "var idleSecondsTimer = null;" +
-                                           "var idleSecondsCounter = 0;" +
-                                           "document.onclick = function () {{ idleSecondsCounter = 0; }};" +
-                                           "document.onmousemove = function () {{ idleSecondsCounter = 0; }};" +
-                                           "document.onkeypress = function () {{ idleSecondsCounter = 0; }};" +
-                                           "idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);" +
-
-                                           "function CheckIdleTime() {{" +
-                                           "idleSecondsCounter++;" +
-                                           "var oPanel = document.getElementById(\"timeOut\");" +
-                                           "if (oPanel) {{" +
-                                           "oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);" +
-                                           "}}" +
-                                           "if (idleSecondsCounter >= IdealTimeOut) {{" +
-                                           "window.clearInterval(idleSecondsTimer);" +
-                                           "$('#modalSession').modal({{ backdrop: 'static', keyboard: false }});" +
-                                           "$('#modalSession').modal('show');" +
-                                           "}}" +
-                                           "}}", ConfigurationManager.AppSettings["TiempoSession"]);
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "SessionAlert", js, true);
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
+                    Session["Reset"] = true;
+                    double tiempoSesion = double.Parse(ConfigurationManager.AppSettings["TiempoSession"]);
+                    double timeout = (double)tiempoSesion * 1000 * 60;
+                    Page.ClientScript.RegisterStartupScript(GetType(), "SessionAlertAgent", "SessionExpireAlertAgent(" + timeout + ");", true);
+
                     bool administrador = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
                     if (usuario.UsuarioRol.Any(rol => rol.RolTipoUsuario.IdRol == (int)BusinessVariables.EnumRoles.Agente))
@@ -523,7 +506,6 @@ namespace KiiniHelp
                     rptMenu.DataSource = Session["MenuRol"];
                     rptMenu.DataBind();
                     Session["CargaInicialModal"] = "True";
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalRol\");", true);
                     switch (RolSeleccionado)
                     {
                         case (int)BusinessVariables.EnumRoles.Agente:
@@ -562,7 +544,6 @@ namespace KiiniHelp
         {
             try
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalRol\");", true);
             }
             catch (Exception ex)
             {

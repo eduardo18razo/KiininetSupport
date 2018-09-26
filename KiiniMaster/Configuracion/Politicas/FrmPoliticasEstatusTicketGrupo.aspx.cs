@@ -258,7 +258,7 @@ namespace KiiniMaster.Configuracion.Politicas
                 List<int> rolespermitidos = new List<int>();
                 rolespermitidos.Add(BusinessVariables.ComboBoxCatalogo.ValueSeleccione);
                 rolespermitidos.Add((int)BusinessVariables.EnumRoles.Agente);
-                rolespermitidos.Add((int)BusinessVariables.EnumRoles.Usuario);
+                rolespermitidos.Add((int)BusinessVariables.EnumRoles.AccesoCentroSoporte);
 
 
                 ddlGrupoUsuario.DataSource = _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRol((int)BusinessVariables.EnumTiposGrupos.Agente, true);
@@ -267,12 +267,12 @@ namespace KiiniMaster.Configuracion.Politicas
                 ddlGrupoUsuario.DataBind();
 
                 
-                ddlRolSolicita.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(w => rolespermitidos.Contains(w.Id));
+                ddlRolSolicita.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(w => rolespermitidos.Contains(w.Id));
                 ddlRolSolicita.DataTextField = "Descripcion";
                 ddlRolSolicita.DataValueField = "Id";
                 ddlRolSolicita.DataBind();
 
-                ddlRolPertenece.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(w => rolespermitidos.Contains(w.Id));
+                ddlRolPertenece.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(w => rolespermitidos.Contains(w.Id));
                 ddlRolPertenece.DataTextField = "Descripcion";
                 ddlRolPertenece.DataValueField = "Id";
                 ddlRolPertenece.DataBind();

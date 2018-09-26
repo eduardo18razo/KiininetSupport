@@ -21,7 +21,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Usuarios" /></h3>
                             </div>
                             <p>
-                                Los usuarios son las personas que tienen un registro en tu cuenta. Aquí se incluyen los usuarios finales que son los solicitantes de eventos (clientes, proveedores y empleados) así como los operadores que son las personas designadas a resolverlos.
+                                Los usuarios son las personas que tienen un registro en tu cuenta. Aquí se incluyen los usuarios finales que son los solicitantes de eventos (clientes, proveedores y empleados) así como los agentes que son las personas designadas a resolverlos.
                             </p>
                         </div>
 

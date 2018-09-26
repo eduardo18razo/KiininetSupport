@@ -48,7 +48,7 @@
 
                                     <div class="col-lg-3 col-md-3 col-sm-3">
                                         <div class="form-group padding-10-top">
-                                            <label class="no-padding-right textoCabecera"><i class="fa fa-user margin-right-4"></i>Operadores (actual)</label>
+                                            <label class="no-padding-right textoCabecera"><i class="fa fa-user margin-right-4"></i>Agentes (actual)</label>
                                             <br />
                                             <asp:Label runat="server" ID="lblOperadoresAcumulados" CssClass="contadores">10</asp:Label>
                                         </div>
@@ -158,7 +158,7 @@
                                             <div class="row center-content-div">
                                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                                                     <div class="form-group text-center">
-                                                        <label class="col-lg-12 col-md-12 col-sm-12 h5">Operador por rol</label>
+                                                        <label class="col-lg-12 col-md-12 col-sm-12 h5">Agente por rol</label>
                                                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold" />
                                                     </div>
 

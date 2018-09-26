@@ -833,7 +833,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 }
                 divData.Visible = true;
                 divStep1.Visible = true;
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Operador)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agente)
                 {
                     LlenaComboDinamico(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerPais(int.Parse(ddlTipoUsuario.SelectedValue), true));
                 }

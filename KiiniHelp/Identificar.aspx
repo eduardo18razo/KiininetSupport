@@ -58,7 +58,7 @@
 
                                                     <div class="form-group">
                                                         <label class="sr-only" for="login-email">Email or username</label>
-                                                        <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control text-no-transform" />
+                                                        <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control text-no-transform" onkeydown="return (event.keyCode!=13);"/>
                                                     </div>
 
                                                     <div class="form-group">
@@ -68,7 +68,7 @@
                                                             CaptchaHeight="60" CaptchaWidth="150" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
                                                             FontColor="#D20B0C" NoiseColor="#B1B1B1" />
                                                         <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa el texto de la imagen:</asp:Label>
-                                                        <asp:TextBox class="form-control text-uppercase" ID="txtCaptcha" runat="server" />
+                                                        <asp:TextBox class="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);"/>
                                                     </div>
 
                                                     <div class="form-group">

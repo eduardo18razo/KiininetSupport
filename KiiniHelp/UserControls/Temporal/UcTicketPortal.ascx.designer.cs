@@ -76,6 +76,24 @@ namespace KiiniHelp.UserControls.Temporal {
         protected global::KiiniHelp.UserControls.Altas.Usuarios.UcAltaUsuarioRapida ucAltaUsuarioRapida;
         
         /// <summary>
+        /// Control captchaTicket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::MSCaptcha.CaptchaControl captchaTicket;
+        
+        /// <summary>
+        /// Control txtCaptcha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCaptcha;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>

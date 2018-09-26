@@ -93,7 +93,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
 
-                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte).Select(s => s.IdGrupoUsuario).ToList();
                 var frecuencias = (
                         from f in db.Frecuencia
                         join aa in db.ArbolAcceso on new { idarbol = f.IdArbolAcceso, idtu = f.IdTipoUsuario } equals new { idarbol = aa.Id, idtu = aa.IdTipoUsuario }
@@ -256,7 +256,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
-                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte).Select(s => s.IdGrupoUsuario).ToList();
                 var frecuencias = (
                         from f in db.Frecuencia
                         join aa in db.ArbolAcceso on new { idarbol = f.IdArbolAcceso, idtu = f.IdTipoUsuario } equals new { idarbol = aa.Id, idtu = aa.IdTipoUsuario }
@@ -423,7 +423,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
-                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte).Select(s => s.IdGrupoUsuario).ToList();
 
                 var frecuencias = (
                         from f in db.Frecuencia
@@ -589,7 +589,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
-                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.Usuario).Select(s => s.IdGrupoUsuario).ToList();
+                List<int> gpos = db.UsuarioGrupo.Where(w => w.IdUsuario == idUsuario && w.IdRol == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte).Select(s => s.IdGrupoUsuario).ToList();
                 var frecuencias = (
                         from f in db.Frecuencia
                         join aa in db.ArbolAcceso on new { idarbol = f.IdArbolAcceso, idtu = f.IdTipoUsuario } equals new { idarbol = aa.Id, idtu = aa.IdTipoUsuario }

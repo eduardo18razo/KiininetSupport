@@ -715,14 +715,14 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         divStep2Data.Visible = false;
                         divStep3.Visible = true;
                         divStep3Data.Visible = true;
-                        Metodos.LlenaComboCatalogo(ddlGrupoAcceso, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.Usuario, IdTipoUsuario, true));
-                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableMantenimiento, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeContenido, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
-                        Metodos.LlenaComboCatalogo(ddlGruporesponsableOperacion, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeOperación, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
-                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableDesarrollo, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
-                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableAtencion, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.Agente, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
-                        Metodos.LlenaListBoxCatalogo(lstGruposEc, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ConsultasEspeciales, (int)BusinessVariables.EnumTiposUsuario.Operador, false).Where(w => !w.Sistema));
-                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableCategoria, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Operador, true).Where(s => s.Habilitado));
-                        Metodos.LlenaListBoxCatalogo(lstGruposAu, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AgenteUniversal, (int)BusinessVariables.EnumTiposUsuario.Operador, false).Where(s => s.Habilitado));
+                        Metodos.LlenaComboCatalogo(ddlGrupoAcceso, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, IdTipoUsuario, true));
+                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableMantenimiento, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeContenido, (int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(s => s.Habilitado));
+                        Metodos.LlenaComboCatalogo(ddlGruporesponsableOperacion, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeOperación, (int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(s => s.Habilitado));
+                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableDesarrollo, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, (int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(s => s.Habilitado));
+                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableAtencion, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.Agente, (int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(s => s.Habilitado));
+                        Metodos.LlenaListBoxCatalogo(lstGruposEc, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ConsultasEspeciales, (int)BusinessVariables.EnumTiposUsuario.Agente, false).Where(w => !w.Sistema));
+                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableCategoria, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(s => s.Habilitado));
+                        Metodos.LlenaListBoxCatalogo(lstGruposAu, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AgenteUniversal, (int)BusinessVariables.EnumTiposUsuario.Agente, false).Where(s => s.Habilitado));
                         //imgImpacto.ImageUrl = "";
                         btnPreview.Visible = false;
                         btnSaveAll.Visible = false;
@@ -1553,7 +1553,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                 {
                     IdGrupoUsuario = gpo.Id,
-                    IdRol = (int)BusinessVariables.EnumRoles.Usuario,
+                    IdRol = (int)BusinessVariables.EnumRoles.AccesoCentroSoporte,
                     IdSubGrupoUsuario = null
                 });
 

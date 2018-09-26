@@ -98,7 +98,7 @@ namespace KinniNet.Core.Operacion
                 user.UsuarioRol = new List<UsuarioRol>();
                 user.UsuarioRol.Add(new UsuarioRol
                 {
-                    RolTipoUsuario = (new BusinessRoles().ObtenerRolTipoUsuario((int)BusinessVariables.EnumTiposUsuario.Cliente, (int)BusinessVariables.EnumRoles.Usuario)),
+                    RolTipoUsuario = (new BusinessRoles().ObtenerRolTipoUsuario((int)BusinessVariables.EnumTiposUsuario.Cliente, (int)BusinessVariables.EnumRoles.AccesoCentroSoporte)),
                 });
 
                 user.UsuarioGrupo = new List<UsuarioGrupo>();
@@ -106,9 +106,9 @@ namespace KinniNet.Core.Operacion
                 UsuarioGrupo ug = new UsuarioGrupo
                 {
                     IdGrupoUsuario = (new BusinessGrupoUsuario().ObtenerGruposUsuarioByIdRolTipoUsuario(
-                        (int)BusinessVariables.EnumRoles.Usuario, (int)BusinessVariables.EnumTiposUsuario.Cliente,
+                        (int)BusinessVariables.EnumRoles.AccesoCentroSoporte, (int)BusinessVariables.EnumTiposUsuario.Cliente,
                         false)).First().Id,
-                    IdRol = (int)BusinessVariables.EnumRoles.Usuario
+                    IdRol = (int)BusinessVariables.EnumRoles.AccesoCentroSoporte
                 };
                 user.UsuarioGrupo.Add(ug);
 
@@ -717,7 +717,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 List<int> idsUsuarios = (from u in db.Usuario
                                          join ug in db.UsuarioGrupo on u.Id equals ug.IdUsuario
-                                         where u.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Operador
+                                         where u.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agente
                                          && ug.IdRol == (int)BusinessVariables.EnumRoles.Agente && u.Habilitado
                                          select u.Id).Distinct().ToList();
                 result = db.Usuario.Where(w => idsUsuarios.Contains(w.Id)).OrderBy(o => o.ApellidoPaterno).ThenBy(tb => tb.ApellidoMaterno).ThenBy(tb => tb.Nombre).ToList();

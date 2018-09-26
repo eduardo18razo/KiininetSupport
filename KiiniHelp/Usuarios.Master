@@ -38,27 +38,6 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <script type="text/javascript">
-        //var IdealTimeOut = 5 * 1000 * 60;// * 1000 * 60; //10 seconds
-        //var idleSecondsTimer = null;
-        //var idleSecondsCounter = 0;
-        //document.onclick = function () { idleSecondsCounter = 0; };
-        //document.onmousemove = function () { idleSecondsCounter = 0; };
-        //document.onkeypress = function () { idleSecondsCounter = 0; };
-        //idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
-
-        //function CheckIdleTime() {
-        //    idleSecondsCounter++;
-        //    var oPanel = document.getElementById("timeOut");
-        //    if (oPanel) {
-        //        oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
-        //    }
-        //    if (idleSecondsCounter >= IdealTimeOut) {
-        //        window.clearInterval(idleSecondsTimer);
-        //        $('#modalSession').modal({ backdrop: 'static', keyboard: false });
-        //        $('#modalSession').modal('show');
-        //    }
-        //}
-
         window.addEventListener("pageshow", function (evt) {
             if (evt.persisted) {
                 setTimeout(function () {
@@ -67,11 +46,28 @@
             }
         }, false);
 
+        function SessionExpireAlert(timeout) {
+            var time = timeout / 1000;
+            var seconds = timeout / 1000;
+            document.getElementsByName("secondsIdle").innerHTML = seconds;
+            document.getElementsByName("seconds").innerHTML = seconds;
+            document.onmousemove = function () { seconds = time; };
+            document.onclick = function () { seconds = time; };
+            document.onscroll = function () { seconds = time; };
+            document.onkeydown = function () { seconds = time; };
+            setInterval(function () { seconds--; }, 1000);
+            setTimeout(function () {
+                document.getElementById("hfSesionExpiro").value = 'True';
+                $('#modalSession').modal({ backdrop: 'static', keyboard: false });
+                $('#modalSession').modal('show');
+            }, timeout - 20 * 1000);
+        };
     </script>
 </head>
 <body class="preload layout_no_leftnav">
     <form runat="server" enctype="multipart/form-data">
         <asp:HiddenField runat="server" ID="hfAreaSeleccionada" />
+        <asp:HiddenField runat="server" ID="hfSesionExpiro" ClientIDMode="Static" Value="False" />
         <asp:ScriptManager ID="scripMain" runat="server" EnablePageMethods="true">
             <Scripts>
                 <asp:ScriptReference Path="~/assets/js/jquery.js" />
@@ -153,9 +149,6 @@
                                 </asp:LinkButton>
                             </li>
                         </div>
-
-
-
                     </div>
 
 
@@ -480,13 +473,6 @@
         </div>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-
-                var elementId = document.getElementById("<%= FindControl("hfCargaInicial").ClientID %>");
-                if (elementId.value === "False") {
-                    $('#side-panel-toggle').click();
-                }
-            });
             new mlPushMenu(document.getElementById('pMenu'), document.getElementById('trigger'), {
                 type: 'overlap'
             });
@@ -508,7 +494,6 @@
         </script>
 
     </form>
-    <%--</div>--%>
 </body>
 </html>
 

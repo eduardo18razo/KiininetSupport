@@ -10,7 +10,6 @@ using AjaxControlToolkit;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceMascaraAcceso;
 using KiiniHelp.ServiceParametrosSistema;
-using KiiniHelp.ServiceSeguridad;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KiiniHelp.ServiceTicket;
 using KiiniHelp.ServiceUsuario;
@@ -25,15 +24,22 @@ namespace KiiniHelp.UserControls.Temporal
 {
     public partial class UcTicketPortal : UserControl, IControllerModal
     {
+
+
+        public event DelegateAceptarModal OnAceptarModal;
+        public event DelegateLimpiarModal OnLimpiarModal;
+        public event DelegateCancelarModal OnCancelarModal;
+        public event DelegateTerminarModal OnTerminarModal;
+
         private readonly ServiceCatalogosClient _servicioCatalogos = new ServiceCatalogosClient();
         private readonly ServiceMascarasClient _servicioMascaras = new ServiceMascarasClient();
         private readonly ServiceTicketClient _servicioTicket = new ServiceTicketClient();
-        private readonly ServiceSecurityClient _servicioSeguridad = new ServiceSecurityClient();
         private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         private readonly ServiceArbolAccesoClient _servicioArbolAccesoClient = new ServiceArbolAccesoClient();
         private readonly ServiceUsuariosClient _servicioUsuariosClient = new ServiceUsuariosClient();
         private List<Control> _lstControles;
         private List<string> _lstError = new List<string>();
+        private bool ValidCaptcha = false;
         private List<string> Alerta
         {
             set
@@ -1108,6 +1114,11 @@ namespace KiiniHelp.UserControls.Temporal
         {
             try
             {
+                if (!ValidCaptcha)
+                {
+                    txtCaptcha.Text = string.Empty;
+                    throw new Exception("Captcha incorrecto");
+                }
                 List<HelperCampoMascaraCaptura> capturaMascara = ObtenerCapturaMascara();
                 if (ucAltaUsuarioRapida.Visible)
                     ucAltaUsuarioRapida.RegistraUsuario();
@@ -1160,10 +1171,29 @@ namespace KiiniHelp.UserControls.Temporal
                 throw;
             }
         }
+        protected void OnServerValidate(object source, ServerValidateEventArgs e)
+        {
+            try
+            {
+                if (txtCaptcha.Text.Trim() == string.Empty) return;
+                captchaTicket.ValidateCaptcha(txtCaptcha.Text.Trim());
+                e.IsValid = captchaTicket.UserValidated;
+                ValidCaptcha = e.IsValid;
+                if (!e.IsValid)
+                {
+                    throw new Exception("Captcha incorrecto.");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                    _lstError.Add(ex.Message);
+                }
 
-        public event DelegateAceptarModal OnAceptarModal;
-        public event DelegateLimpiarModal OnLimpiarModal;
-        public event DelegateCancelarModal OnCancelarModal;
-        public event DelegateTerminarModal OnTerminarModal;
+                Alerta = _lstError;
+            }
+        }
     }
 }

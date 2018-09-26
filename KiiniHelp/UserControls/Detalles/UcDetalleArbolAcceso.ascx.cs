@@ -78,7 +78,7 @@ namespace KiiniHelp.UserControls.Detalles
                         rptAtencion.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Select(s => s.GrupoUsuario).Distinct().ToList();
                         rptAtencion.DataBind();
 
-                        rptConsulta.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).Select(s => s.GrupoUsuario).Distinct().ToList();
+                        rptConsulta.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).Select(s => s.GrupoUsuario).Distinct().ToList();
                         rptConsulta.DataBind();
 
                         rptCategoria.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ResponsableDeCategoría).Select(s => s.GrupoUsuario).Distinct().ToList();

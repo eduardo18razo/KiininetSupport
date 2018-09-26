@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using KiiniHelp.ServiceTicket;
 using KiiniNet.Entities.Helper;
 
@@ -12,6 +13,7 @@ namespace KiiniHelp.Publico.Consultas
         private readonly ServiceTicketClient _servicioticket = new ServiceTicketClient();
 
         private List<string> _lstError = new List<string>();
+        private bool ValidCaptcha = false;
 
         private List<string> Alerta
         {
@@ -53,6 +55,11 @@ namespace KiiniHelp.Publico.Consultas
         {
             try
             {
+                if (!ValidCaptcha)
+                {
+                    txtCaptcha.Text = string.Empty;
+                    throw new Exception("Captcha incorrecto");
+                }
                 if (txtTicket.Text.Trim() == string.Empty)
                     throw new Exception("Ingrese número de ticket");
                 if (txtClave.Text.Trim() == string.Empty)
@@ -76,6 +83,30 @@ namespace KiiniHelp.Publico.Consultas
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        protected void OnServerValidate(object source, ServerValidateEventArgs e)
+        {
+            try
+            {
+                if (txtCaptcha.Text.Trim() == string.Empty) return;
+                captchaTicket.ValidateCaptcha(txtCaptcha.Text.Trim());
+                e.IsValid = captchaTicket.UserValidated;
+                ValidCaptcha = e.IsValid;
+                if (!e.IsValid)
+                {
+                    throw new Exception("Captcha incorrecto.");
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                    _lstError.Add(ex.Message);
+                }
+
                 Alerta = _lstError;
             }
         }

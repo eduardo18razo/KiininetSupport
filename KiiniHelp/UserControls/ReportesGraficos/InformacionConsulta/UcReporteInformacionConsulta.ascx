@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcReporteInformacionConsulta.ascx.cs" Inherits="KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta.UcReporteInformacionConsulta" %>
-
+<%@ Register Src="~/UserControls/Filtros/Componentes/UcFiltroFechasGrafico.ascx" TagPrefix="uc1" TagName="UcFiltroFechasGrafico" %>
 
 <div class="heigth100">
     <asp:UpdatePanel runat="server" class="heigth100">
@@ -32,43 +32,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-1">
+                            <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Visualizar:</label>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">
-                                        <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
-                                            <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Semanal" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="Mensual" Value="3"></asp:ListItem>
-                                            <asp:ListItem Text="Anual" Value="4"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
+                                    <uc1:ucfiltrofechasgrafico runat="server" id="ucFiltroFechasGrafico" />
                                 </div>
                             </div>
-                            <div class="col-lg-2 ">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Inicio:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                                        <asp:TextBox runat="server" CssClass="form-control" type="date" step="1" ID="txtFechaInicio" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 separador-vertical-derecho">
-                                <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Fin:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                                        <asp:TextBox runat="server" CssClass="form-control" type="date" step="1" ID="txtFechaFin" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
-                                    </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
-                                        <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
-                                    </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                                <div class="form-group margin-top-btn-consulta">
+                                    <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            
+
             <section class="module">
                 <div class="module-inner">
                     <div class="module-content collapse in" id="content-1">
@@ -104,7 +82,7 @@
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("UltEdicion")%>'><%# Eval("UltEdicion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        
+
                                         <asp:TemplateField HeaderText="Gusta" HeaderStyle-Width="4%" ItemStyle-CssClass="altoFijo" SortExpression="Gusta">
                                             <ItemTemplate>
                                                 <div>
@@ -131,7 +109,7 @@
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Enabled="False" CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>'/>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Enabled="False" CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' />
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>

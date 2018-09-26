@@ -43,7 +43,7 @@
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="col-lg-1">
+            <div class="col-lg-4">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Visualizar:</label>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Inicio:</label>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-4">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Fin:</label>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
@@ -107,7 +107,7 @@
                         var datePartsYear = dateStringYear.split("/");
                         var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
                         var yearYear = dateObjectYear.getUTCFullYear();
-                        $('#<%= txtFechaInicio.ClientID %>').val('01/01' + yearYear);
+                        $('#<%= txtFechaInicio.ClientID %>').val('01/01/' + yearYear);
                         break;
                 }
                     }

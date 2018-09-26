@@ -102,7 +102,7 @@ namespace KiiniHelp.UserControls.Altas
                 {
                     TiempoDesarrollo = tiempo;
                 }
-                foreach (TiempoInformeArbol tiempo in tiemposInforme.Where(w => w.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ConsultasEspeciales).ToList())
+                foreach (TiempoInformeArbol tiempo in tiemposInforme.Where(w => w.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos).ToList())
                 {
                     TiempoConsulta = tiempo;
                 }

@@ -356,7 +356,7 @@ namespace KiiniHelp.UserControls.Consultas
                 }
                 else
                 {
-                    if (int.Parse(ddlTipoUsuario.SelectedValue) == (int)BusinessVariables.EnumTiposUsuario.Operador)
+                    if (int.Parse(ddlTipoUsuario.SelectedValue) == (int)BusinessVariables.EnumTiposUsuario.Agente)
                     {
                         btnNew.Visible = false;
                     }
