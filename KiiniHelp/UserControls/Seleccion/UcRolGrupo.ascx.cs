@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using KiiniHelp.ServiceGrupoUsuario;
 using KiiniHelp.ServiceSistemaRol;
 using KiiniHelp.ServiceSubGrupoUsuario;
+using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
 using KiiniNet.Entities.Helper;
 using KinniNet.Business.Utils;
@@ -95,6 +96,40 @@ namespace KiiniHelp.UserControls.Seleccion
             }
         }
 
+        public void CargaGrupoAccesoDefault()
+        {
+            try
+            {
+                List<HelperAsignacionRol> lstFinal = GruposSeleccionados;
+                Rol rolAcceso = _serviciosRoles.ObtenerRoles(IdTipoUsuario, false).Single(s => s.Id == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte);
+                HelperAsignacionRol rol = lstFinal.SingleOrDefault(s => s.IdRol == rolAcceso.Id) ?? new HelperAsignacionRol
+                {
+                    IdRol = rolAcceso.Id,
+                    DescripcionRol = rolAcceso.Descripcion,
+                    Grupos = new List<HelperAsignacionGrupoUsuarios>()
+                };
+                foreach (GrupoUsuario grupo in _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, IdTipoUsuario, false).Where(w => w.Sistema))
+                {
+                    HelperAsignacionGrupoUsuarios grupos = new HelperAsignacionGrupoUsuarios
+                    {
+                        IdGrupo = grupo.Id,
+                        IdTipoGrupo = grupo.IdTipoGrupo,
+                        DescripcionGrupo = grupo.Descripcion,
+                    };
+                    rol.Grupos.Add(grupos);
+                }
+                if (rol.Grupos.Any())
+                    lstFinal.Add(rol);
+                GruposSeleccionados = lstFinal;
+                if (OnTerminarModal != null)
+                    OnTerminarModal();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public bool ValidaCapturaGrupos()
         {
             StringBuilder sb = new StringBuilder();
@@ -132,7 +167,6 @@ namespace KiiniHelp.UserControls.Seleccion
             try
             {
                 ddlRol.SelectedIndex = BusinessVariables.ComboBoxCatalogo.IndexSeleccione;
-                ViewState["GruposSeleccionados"] = null;
                 GruposSeleccionados = null;
             }
             catch (Exception e)
@@ -162,7 +196,7 @@ namespace KiiniHelp.UserControls.Seleccion
                 }
                 if (eliminaRol)
                     roles.Remove(roles.Single(s => s.IdRol == idRolPadre));
-                ViewState["GruposSeleccionados"] = roles;
+                GruposSeleccionados = roles;
             }
             catch (Exception)
             {
@@ -289,7 +323,7 @@ namespace KiiniHelp.UserControls.Seleccion
         {
             try
             {
-                List<HelperAsignacionRol> lstFinal = ViewState["GruposSeleccionados"] == null ? new List<HelperAsignacionRol>() : (List<HelperAsignacionRol>)ViewState["GruposSeleccionados"];
+                List<HelperAsignacionRol> lstFinal = GruposSeleccionados;
                 List<HelperAsignacionRol> tmplst = new List<HelperAsignacionRol>();
                 HelperAsignacionRol rol = tmplst.SingleOrDefault(s => s.IdRol == int.Parse(ddlRol.SelectedValue)) ?? new HelperAsignacionRol
                 {
@@ -330,7 +364,7 @@ namespace KiiniHelp.UserControls.Seleccion
                         if (!grupo.SubGrupos.Any())
                             throw new Exception("Seleccione un subGrupo");
                     }
-                    if (rol.Grupos != null) 
+                    if (rol.Grupos != null)
                         rol.Grupos.Add(grupo);
                 }
                 if (rol.Grupos == null || rol.Grupos.Count <= 0)
@@ -344,7 +378,7 @@ namespace KiiniHelp.UserControls.Seleccion
                     }
                 }
                 lstFinal.AddRange(tmplst);
-                ViewState["GruposSeleccionados"] = lstFinal;
+                GruposSeleccionados = lstFinal;
                 LimpiarSeleccion();
                 if (OnTerminarModal != null)
                     OnTerminarModal();

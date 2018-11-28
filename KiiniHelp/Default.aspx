@@ -15,7 +15,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Kiinisupport</title>
+    <title>Kiininet CXP</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
 
     <link rel='stylesheet' href="assets/css/font.css" />
@@ -37,25 +37,6 @@
                 }, 10);
             }
         }, false);
-        //var IdealTimeOut = 5; //10 seconds
-        //var idleSecondsTimer = null;
-        //var idleSecondsCounter = 0;
-        //document.onclick = function () { idleSecondsCounter = 0; };
-        //document.onmousemove = function () { idleSecondsCounter = 0; };
-        //document.onkeypress = function () { idleSecondsCounter = 0; };
-        //idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
- 
-        //function CheckIdleTime() {
-        //    idleSecondsCounter++;
-        //    var oPanel = document.getElementById("timeOut");
-        //    if (oPanel) {
-        //        oPanel.innerHTML = (IdealTimeOut - idleSecondsCounter);
-        //    }
-        //    if (idleSecondsCounter >= IdealTimeOut) {
-        //        window.clearInterval(idleSecondsTimer);
-        //        alert("Your Session has expired. Please login again.");
-        //    }
-        //}
     </script>
 </head>
 <body class="layout_no_leftnav">
@@ -86,7 +67,7 @@
             <div class="branding">
                 <h1 class="logo text-center">
                     <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
-                        <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
+                        <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logo.png" alt="icon" runat="server" />
                         <asp:Label runat="server" ID="lblBranding" Visible="false" />
                     </asp:HyperLink>
                 </h1>
@@ -217,8 +198,7 @@
                                             <asp:LinkButton runat="server" ID="lnkBtnEmpleado" CssClass="text-theme" OnClick="lnkBtnEmpleado_OnClick">
                                             <img class="img-responsive margin-auto" src="assets/images/users_icon/usuario_2.jpg" alt="Iconos de usuarios" />
                                             <h4 class="text-center">EMPLEADO</h4>
-                                                
-                                            <h6 class="text-center " runat="server">Click para continuar</h6> 
+                                            <%--<h6 class="text-center " runat="server">Click para continuar</h6> --%>
                                             </asp:LinkButton>
                                         </div>
                                     </div>
@@ -233,7 +213,7 @@
                                             <asp:LinkButton runat="server" ID="lnkBtnCliente" CssClass="text-theme" OnClick="lnkBtnCliente_OnClick">
                                             <img class="img-responsive  margin-auto" src="assets/images/users_icon/usuario_1.jpg" alt="Iconos de usuarios" />
                                             <h4 class="text-center">CLIENTE</h4>
-                                            <h6 class="text-center " runat="server">Click para continuar</h6> 
+                                            <%--<h6 class="text-center " runat="server">Click para continuar</h6> --%>
                                             </asp:LinkButton>
                                         </div>
                                     </div>
@@ -248,7 +228,7 @@
                                             <asp:LinkButton runat="server" ID="lnkBtnProveedor" CssClass="text-theme" OnClick="lnkBtnProveedor_OnClick">
                                             <img class="img-responsive  margin-auto" src="assets/images/users_icon/usuario_3.jpg" alt="Iconos de usuarios" />
                                             <h4 class="text-center">PROVEEDOR</h4>
-                                            <h6 class="text-center " runat="server">Click para continuar</h6> 
+                                            <%--<h6 class="text-center " runat="server">Click para continuar</h6> --%>
                                             </asp:LinkButton>
                                         </div>
                                     </div>
@@ -296,8 +276,36 @@
                                     Clave de registro:
                                     <asp:Label runat="server" ID="lblRandom" />
                                 </p>
+                                <p class="h4">
+                                    En breve recibirás un correo con los datos de tu ticket.
+                                </p>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalSessionAbierta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <asp:LinkButton class="close" runat="server" ID="btnCerramodalSessionAbierta" OnClick="btnCerramodalSessionAbierta_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
+                        <h6 class="modal-title" id="myModalLabel">Sesion abierta </h6>
+                    </div>
+                    <div class="modal-body">
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <p class="h4">
+                                    Tu sesión no fue cerrada correctamente o se encuentra abierta en otro equipo
+                            <br />
+                                    ¿Quieres continuar aquí?
+                                    <br>
+                                </p>
                                 <p>
-                                    En breve recibirás un correo con los datos de tu ticket para que puedas dar seguimiento.
+                                    <div class="row widht100 text-center">
+                                        <asp:Button runat="server" CssClass="btn btn-primary margin-auto" Text="Aceptar" OnClick="OnClick"/>
+                                    </div>
                                 </p>
                             </ContentTemplate>
                         </asp:UpdatePanel>
@@ -309,11 +317,11 @@
 
         <div class="row">
             <footer id="footer" class="site-footer">
-                <div class="copyright">&copy; 2017 Kiininet. Todos los derechos reservados </div>
+                <div class="copyright">&copy; Todos los derechos reservados </div>
                 <div class="politicas-Privacidad">
-                    <asp:HyperLink runat="server" NavigateUrl="~/PoliticasPrivacidad.aspx">Políticas de Privacidad </asp:HyperLink>
-                    <asp:Label runat="server" Text="  |  "></asp:Label>
-                    <asp:HyperLink runat="server" NavigateUrl="~/TerminosyCondiciones.aspx"> Términos y Condiciones</asp:HyperLink>
+                    <asp:HyperLink runat="server" NavigateUrl="~/PoliticasPrivacidad.aspx">Aviso de Privacidad</asp:HyperLink>
+                    <asp:Label runat="server" Text="  |  " Visible="False"></asp:Label>
+                    <asp:HyperLink runat="server" NavigateUrl="~/TerminosyCondiciones.aspx" Visible="False"> Términos y Condiciones</asp:HyperLink>
                 </div>
             </footer>
         </div>

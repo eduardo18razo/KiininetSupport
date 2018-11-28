@@ -2,6 +2,7 @@
 
 namespace KiiniNet.Entities.Operacion.Usuarios
 {
+    [DataContract(IsReference = true)]
     public class PreguntaReto
     {
         [DataMember]

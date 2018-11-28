@@ -136,6 +136,26 @@ namespace KiiniHelp.UserControls.Altas
                 hfIdInformacionConsulta.Value = value.ToString();
             }
         }
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
+
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
+            }
+        }
 
         private void LlenaArchivosCargados()
         {
@@ -232,6 +252,15 @@ namespace KiiniHelp.UserControls.Altas
                 AlertaGeneral = new List<string>();
                 if (!IsPostBack)
                 {
+                    ParametrosGenerales parametros = _servicioParametros.ObtenerParametrosGenerales();
+                    if (parametros != null)
+                    {
+                        foreach (ArchivosPermitidos alowedFile in _servicioParametros.ObtenerArchivosPermitidos())
+                        {
+                            ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                        }
+                        TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                    }
                     LlenaCombos();
                     Session["FileSize"] = 0;
                     Session["selectedFiles"] = new List<HelperFiles>();

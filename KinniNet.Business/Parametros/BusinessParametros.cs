@@ -22,31 +22,7 @@ namespace KinniNet.Core.Parametros
         {
 
         }
-
-        public List<ParametrosTelefonos> TelefonosObligatorios(int idTipoUsuario)
-        {
-            List<ParametrosTelefonos> result;
-            DataBaseModelContext db = new DataBaseModelContext();
-            try
-            {
-                db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.ParametrosTelefonos.Where(w => w.IdTipoUsuario == idTipoUsuario).ToList();
-                foreach (ParametrosTelefonos param in result)
-                {
-                    db.LoadProperty(param, "TipoTelefono");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                db.Dispose();
-            }
-            return result;
-        }
-
+        
         public List<TelefonoUsuario> ObtenerTelefonosParametrosIdTipoUsuario(int idTipoUsuario, bool insertarSeleccion)
         {
             List<TelefonoUsuario> result;
@@ -56,15 +32,6 @@ namespace KinniNet.Core.Parametros
                 int obligatorios = 0;
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = new List<TelefonoUsuario>();
-                foreach (ParametrosTelefonos parametrosTelefonose in db.ParametrosTelefonos.Where(w => w.IdTipoUsuario == idTipoUsuario))
-                {
-                    db.LoadProperty(parametrosTelefonose, "TipoTelefono");
-                    obligatorios = parametrosTelefonose.Obligatorios;
-                    for (int i = 0; i < parametrosTelefonose.NumeroTelefonos; i++)
-                    {
-                        result.Add(new TelefonoUsuario { IdTipoTelefono = parametrosTelefonose.IdTipoTelefono, TipoTelefono = parametrosTelefonose.TipoTelefono, Obligatorio = i + 1 <= obligatorios });
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -86,14 +53,6 @@ namespace KinniNet.Core.Parametros
                 int obligatorios = 0;
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = new List<CorreoUsuario>();
-                foreach (TipoUsuario tipoUsuario in db.TipoUsuario.Where(w => w.Id == idTipoUsuario))
-                {
-                    obligatorios = tipoUsuario.CorreosObligatorios;
-                    for (int i = 0; i < tipoUsuario.NumeroCorreos; i++)
-                    {
-                        result.Add(new CorreoUsuario { Obligatorio = i + 1 <= obligatorios });
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -357,6 +316,86 @@ namespace KinniNet.Core.Parametros
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.FrecuenciaFecha.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<ColoresTop> ObtenerColoresTop()
+        {
+            List<ColoresTop> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.ColoresTop.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public ParametrosUsuario ObtenerParametrosUsuario(int idTipoUsuario)
+        {
+            ParametrosUsuario result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.ParametrosUsuario.SingleOrDefault(s => s.IdTipoUsuario == idTipoUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<ColoresSla> ObtenerColoresSla()
+        {
+            List<ColoresSla> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.ColoresSla.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<ArchivosPermitidos> ObtenerArchivosPermitidos()
+        {
+            List<ArchivosPermitidos> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.ArchivosPermitidos.ToList();
             }
             catch (Exception ex)
             {

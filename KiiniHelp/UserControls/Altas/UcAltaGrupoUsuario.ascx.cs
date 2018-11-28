@@ -242,7 +242,7 @@ namespace KiiniHelp.UserControls.Altas
                     case (int)BusinessVariables.EnumTiposGrupos.Administrador:
                         lblTitle.Text += "Administrador";
                         break;
-                    case (int)BusinessVariables.EnumTiposGrupos.Usuario:
+                    case (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte:
                         lblTitle.Text += "Usuario";
                         break;
                     case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:

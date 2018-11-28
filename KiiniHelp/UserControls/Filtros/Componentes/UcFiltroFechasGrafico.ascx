@@ -43,11 +43,11 @@
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Visualizar:</label>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">
-                        <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="form-control" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
+                        <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="form-control widht204" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
                             <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Semanal" Value="2"></asp:ListItem>
                             <asp:ListItem Text="Mensual" Value="3"></asp:ListItem>
@@ -56,19 +56,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Inicio:</label>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtFechaInicio" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                        <asp:TextBox runat="server" CssClass="form-control widht204" ID="txtFechaInicio" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Fin:</label>
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                        <asp:TextBox runat="server" CssClass="form-control" ID="txtFechaFin" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                        <asp:TextBox runat="server" CssClass="form-control widht204" ID="txtFechaFin" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                     </div>
                 </div>
             </div>

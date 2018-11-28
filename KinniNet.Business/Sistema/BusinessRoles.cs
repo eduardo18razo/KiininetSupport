@@ -24,11 +24,7 @@ namespace KinniNet.Core.Sistema
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result =
-                    db.RolTipoUsuario.Where(w => w.IdTipoUsuario == idTipoUsuario && w.Rol.Habilitado)
-                        .OrderBy(o => o.Rol.Descripcion)
-                        .Select(s => s.Rol).Distinct()
-                        .ToList();
+                result = db.RolTipoUsuario.Where(w => w.IdTipoUsuario == idTipoUsuario && w.Rol.Habilitado).OrderBy(o => o.Rol.Descripcion).Select(s => s.Rol).Distinct().ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new Rol
@@ -62,6 +58,26 @@ namespace KinniNet.Core.Sistema
                     db.RolTipoUsuario.AddObject(result);
                     db.SaveChanges();
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+
+        public List<RolTipoArbolAcceso> ObtenerRolesArbolAcceso(int idTipoArbolAcceso)
+        {
+            List<RolTipoArbolAcceso> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                result = db.RolTipoArbolAcceso.Where(w => w.IdTipoArbolAcceso == idTipoArbolAcceso && w.Rol.Habilitado && w.Habilitado).ToList();
             }
             catch (Exception ex)
             {

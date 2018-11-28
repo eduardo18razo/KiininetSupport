@@ -9,13 +9,13 @@ namespace KiiniNet.Services.Security.Implementacion
 {
     public class ServiceSecurity : IServiceSecurity
     {
-        public bool Autenticate(string user, string password)
+        public bool Autenticate(string user, string password, string activeNavigator)
         {
             try
             {
                 using (BusinessSecurity.Autenticacion negocio = new BusinessSecurity.Autenticacion())
                 {
-                    return negocio.Autenticate(user, password);
+                    return negocio.Autenticate(user, password, activeNavigator);
                 }
             }
             catch (Exception ex)
@@ -151,6 +151,81 @@ namespace KiiniNet.Services.Security.Implementacion
                 using (BusinessSecurity.Autenticacion negocio = new BusinessSecurity.Autenticacion())
                 {
                     return negocio.CaducaPassword(idUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool UsuariorActivo(string user, string password, string activeNavigator)
+        {
+            try
+            {
+                using (BusinessSecurity.Autenticacion negocio = new BusinessSecurity.Autenticacion())
+                {
+                    return negocio.UsuariorActivo(user, password, activeNavigator);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void CerrarSessionActiva(string user, string password)
+        {
+            try
+            {
+                using (BusinessSecurity.Autenticacion negocio = new BusinessSecurity.Autenticacion())
+                {
+                    negocio.CerrarSessionActiva(user, password);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void TerminarSesion(int idUsuario, string activeNavigator)
+        {
+            try
+            {
+                using (BusinessSecurity.Autenticacion negocio = new BusinessSecurity.Autenticacion())
+                {
+                    negocio.TerminarSesion(idUsuario, activeNavigator);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool ValidaSesion(int idUsuario, string activeNavigator)
+        {
+            try
+            {
+                using (BusinessSecurity.Autenticacion negocio = new BusinessSecurity.Autenticacion())
+                {
+                    return negocio.ValidaSesion(idUsuario, activeNavigator);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public string GeneraLlaveMaquina()
+        {
+            try
+            {
+                using (BusinessSecurity.Autenticacion negocio = new BusinessSecurity.Autenticacion())
+                {
+                    return negocio.GeneraLlaveMaquina();
                 }
             }
             catch (Exception ex)

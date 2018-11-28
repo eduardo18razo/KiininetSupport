@@ -86,7 +86,7 @@ namespace KinniNet.Core.Sistema
                 result = (from tg in db.TipoGrupo
                           join rtg in db.RolTipoGrupo on tg.Id equals rtg.IdTipoGrupo
                           join rtu in db.RolTipoUsuario on rtg.IdRol equals rtu.IdRol
-                          where rtu.IdTipoUsuario == idTipoUsuario
+                          where rtu.IdTipoUsuario == idTipoUsuario && tg.Habilitado
                           select tg).Distinct().OrderBy(o => o.Descripcion).ToList();
 
                 if (insertarSeleccion)

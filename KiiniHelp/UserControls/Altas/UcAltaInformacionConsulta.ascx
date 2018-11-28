@@ -3,8 +3,47 @@
 <%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 <%@ Register TagPrefix="ctrlExterno" Namespace="Winthusiasm.HtmlEditor" Assembly="Winthusiasm.HtmlEditor" %>
 <script>
-    function uploadComplete() {
-        $get("<%=ReloadThePanel.ClientID %>").click();
+    var uploadCustomerError = "";
+    function UploadStart(sender, args) {
+        debugger;
+        if (sender._inputFile.files.length > 0) {
+            var filesize = ((sender._inputFile.files[0].size) / 1024) / 1024;
+            var fileId = sender.get_id();
+            var container = document.getElementById('AjaxFileUpload1_FileInfoContainer_' + fileId);
+            var sizeallow = document.getElementById("<%= FindControl("hfMaxSizeAllow").ClientID %>").value;
+            var validFilesTypes = document.getElementById("<%= FindControl("hfFileTypes").ClientID %>").value.split('|');
+
+            var ext = "." + sender._inputFile.files[0].name.split('.').pop().toLowerCase();
+
+            var isValidFile = false;
+            for (var i = 0; i < validFilesTypes.length; i++) {
+                if (ext == validFilesTypes[i]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if (!isValidFile) {
+                ErrorAlert('', 'Archivo con formato no valido');
+                args.set_cancel(true);
+                return false;
+            }
+
+
+            if (filesize > sizeallow) {
+                ErrorAlert('', 'Archivo demasiado grande');
+                args.set_cancel(true);
+                return false;
+            }
+        }
+        ShowLanding();
+        return true;
+    };
+    function uploadError(sender, args) {
+        //alert("You have selected a file: " + args._fileName);
+        //if (uploadCustomerError != "") {
+        //    alert(+ "The ErrorMessage is " + uploadCustomerError);
+        //    uploadCustomerError = "";
+        //}
     }
 </script>
 <asp:HiddenField runat="server" ID="hfFileName" />
@@ -13,16 +52,18 @@
 <asp:HiddenField runat="server" ID="hfValueText" />
 
 <ol class="breadcrumb">
-    <li class="breadcrumb-item">
+    <li>
         <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-    <li class="breadcrumb-item">Help Center</li>
-    <li class="breadcrumb-item">Artículos</li>
-    <li class="breadcrumb-item active">Nuevo</li>
+    <li>Help Center</li>
+    <li>Artículos</li>
+    <li class="active">Nuevo</li>
 </ol>
 
 <asp:UpdatePanel runat="server" ID="upAltaInformacionConsulta" UpdateMode="Conditional">
     <ContentTemplate>
         <asp:HiddenField runat="server" ID="hfComentario" />
+        <asp:HiddenField runat="server" ID="hfFileTypes" />
+        <asp:HiddenField runat="server" ID="hfMaxSizeAllow" Value="0" />
         <section class="module">
             <div class="row">
                 <div class="col-lg-8 col-md-8">
@@ -87,7 +128,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span class="span-upload">
-                                        <ajax:AsyncFileUpload ID="afuArchivo" runat="server" CssClass="FileUploadClass" UploaderStyle="Traditional" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadComplete="uploadComplete" OnClientUploadStarted="ShowLanding" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
+                                        <ajax:AsyncFileUpload ID="afuArchivo" runat="server" CssClass="FileUploadClass" UploaderStyle="Traditional" OnClientUploadStarted="UploadStart" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadError="uploadError" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
                                         Cargar archivos (max 10 MB)
                                                 <br />
                                         <br />

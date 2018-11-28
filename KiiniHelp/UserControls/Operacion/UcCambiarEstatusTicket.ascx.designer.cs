@@ -67,13 +67,13 @@ namespace KiiniHelp.UserControls.Operacion {
         protected global::System.Web.UI.WebControls.Label lblIdticket;
         
         /// <summary>
-        /// Control ddlEstatus.
+        /// Control rbtnLstEstatus.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEstatus;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnLstEstatus;
         
         /// <summary>
         /// Control txtComentarios.

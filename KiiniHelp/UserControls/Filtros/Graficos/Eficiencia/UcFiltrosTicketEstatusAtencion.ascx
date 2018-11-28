@@ -48,12 +48,15 @@
                     <div class="col-lg-1">
                         <uc:UcFiltroTipoUsuario runat="server" ID="ucFiltroTipoUsuario" />
                     </div>
+                    
                     <div class="col-lg-1">
                         <uc:UcFiltroCategoria runat="server" ID="ucFiltroCategoria" />
                     </div>
+                    
                     <div class="col-lg-1">
                         <uc:UcFiltroGrupo runat="server" ID="ucFiltroGrupo" />
                     </div>
+
                     <div class="col-lg-1">
                         <uc:UcFiltroAtendedores runat="server" ID="ucFiltroAtendedores" />
                     </div>
@@ -65,6 +68,7 @@
                     <div class="col-lg-1">
                         <uc:UcFiltroCanalApertura runat="server" ID="ucFiltroCanalApertura" />
                     </div>
+
                     <div class="col-lg-1">
                         <uc:UcFiltroServicioIncidente runat="server" ID="ucFiltroServicioIncidente" />
                     </div>
@@ -76,9 +80,11 @@
                     <div class="col-lg-1">
                         <uc:UcFiltroSla runat="server" ID="ucFiltroSla" />
                     </div>
+
                     <div class="col-lg-1">
                         <uc:UcFiltroOrganizacion runat="server" ID="ucFiltroOrganizacion" />
                     </div>
+
                     <div class="col-lg-1">
                         <uc:UcFiltroUbicacion runat="server" ID="ucFiltroUbicacion" />
                     </div>

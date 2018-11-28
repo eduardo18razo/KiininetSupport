@@ -104,10 +104,10 @@ namespace KiiniHelp.UserControls.Operacion
             {
                 int subRol = (int)BusinessVariables.EnumSubRoles.Supervisor;
                 GrupoUsuario gpo = _servicioGrupo.ObtenerGrupoUsuarioById(IdGrupo);
-                if (IdSubRolActual <= 2)
+                if (IdNivelEstatusAsignacionActual <= 2)
                     subRol = gpo.TieneSupervisor ? (int)BusinessVariables.EnumSubRoles.Supervisor : (int)BusinessVariables.EnumSubRoles.PrimererNivel;
                 else
-                    subRol = IdSubRolActual;
+                    subRol = IdNivelEstatusAsignacionActual;
                 ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdEstatusAsignacionActual, EsPropietario, subRol, true);
                 ddlEstatus.DataTextField = "Descripcion";
                 ddlEstatus.DataValueField = "Id";

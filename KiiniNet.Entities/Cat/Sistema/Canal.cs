@@ -12,9 +12,10 @@ namespace KiiniNet.Entities.Cat.Sistema
         [DataMember]
         public string Descripcion { get; set; }
         [DataMember]
+        public string ColorGrafico { get; set; }
+        [DataMember]
         public bool Habilitado { get; set; }
         [DataMember]
         public virtual List<Ticket> Ticket { get; set; }
-        
     }
 }

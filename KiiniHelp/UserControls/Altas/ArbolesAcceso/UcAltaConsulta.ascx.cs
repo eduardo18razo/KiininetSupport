@@ -8,6 +8,7 @@ using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceGrupoUsuario;
 using KiiniHelp.ServiceInformacionConsulta;
+using KiiniHelp.ServiceSistemaRol;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Arbol.Nodos;
 using KiiniNet.Entities.Cat.Operacion;
@@ -31,6 +32,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         private readonly ServiceAreaClient _servicioArea = new ServiceAreaClient();
         private readonly ServiceGrupoUsuarioClient _servicioGrupoUsuario = new ServiceGrupoUsuarioClient();
         private readonly ServiceArbolAccesoClient _servicioArbolAcceso = new ServiceArbolAccesoClient();
+        private readonly ServiceRolesClient _servicioRoles = new ServiceRolesClient();
         private List<string> _lstError = new List<string>();
         private UsuariosMaster _mp;
         private List<string> Alerta
@@ -56,6 +58,14 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 return int.Parse(ddlTipoUsuario.SelectedValue);
             }
             set { ddlTipoUsuario.SelectedValue = value.ToString(); }
+        }
+
+        private List<RolTipoArbolAcceso> RolesActivos
+        {
+            get
+            {
+                return _servicioRoles.ObtenerRolesArbolAcceso((int)BusinessVariables.EnumTipoArbol.ConsultarInformacion);
+            }
         }
         private int TipoArbol
         {
@@ -136,7 +146,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             }
             set { ddlNivel6.SelectedValue = value.ToString(); }
         }
-        
+
         public string Catalogo
         {
             get
@@ -154,8 +164,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     result = "6";
                 if (ddlNivel6.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                     result = "7";
-                //if (ddlNivel7.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                //    result = "7";
                 return result;
             }
         }
@@ -213,21 +221,17 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             try
             {
                 List<string> errors = new List<string>();
-                if (ddlGrupoAcceso.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                if (ddlGrupoAccesoCentroSoporte.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     errors.Add("Seleeccione grupo de acceso.");
                 }
-                if (ddlDuenoServicio.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                if (divGpoResponsableCategoria.Visible && ddlGrupoResponsableCategoria.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
-                    errors.Add("Seleeccione grupo Responsable del Servicio.");
+                    errors.Add("Seleeccione grupo Responsable de Categoría.");
                 }
-                if (ddlGrupoResponsableMantenimiento.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
+                if (divGpoResponsableContenido.Visible && ddlGrupoResponsableContenido.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
                     errors.Add("Seleeccione grupo Responsable del contenido.");
-                }
-                if (!lstGrupoEspecialConsulta.Items.Cast<ListItem>().Any(a => a.Selected))
-                {
-                    errors.Add("Seleccione al menos un grupo Especial de consulta.");
                 }
                 _lstError = errors;
                 if (!_lstError.Any()) return;
@@ -264,9 +268,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     case 6:
                         txt = txtDescripcionN6;
                         break;
-                    //case 7:
-                    //    txt = txtDescripcionN7;
-                    //    break;
                 }
                 if (txt != null && txt.Text.Trim() == string.Empty)
                     throw new Exception("Debe capturar una descripción");
@@ -321,8 +322,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 {
                     LlenaCombos();
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -352,7 +351,6 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         Metodos.LimpiarCombo(ddlNivel4);
                         Metodos.LimpiarCombo(ddlNivel5);
                         Metodos.LimpiarCombo(ddlNivel6);
-                        //Metodos.LimpiarCombo(ddlNivel7);
                         btnPreview.Visible = false;
                         btnSaveAll.Visible = false;
                         btnSiguiente.Visible = true;
@@ -380,23 +378,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 Alerta = _lstError;
             }
         }
-        protected void ddlTipoUsuarioNivel_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
 
-
-
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null || !_lstError.Any())
-                {
-                    _lstError = new List<string> { ex.Message };
-                }
-                Alerta = _lstError;
-            }
-        }
         protected void btnSiguiente_OnClick(object sender, EventArgs e)
         {
             try
@@ -427,10 +409,22 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         divStep2Data.Visible = false;
                         divStep3.Visible = true;
                         divStep3Data.Visible = true;
-                        Metodos.LlenaComboCatalogo(ddlGrupoAcceso, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, IdTipoUsuario, true));
-                        Metodos.LlenaComboCatalogo(ddlDuenoServicio, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Agente, true));
-                        Metodos.LlenaComboCatalogo(ddlGrupoResponsableMantenimiento, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeContenido, (int)BusinessVariables.EnumTiposUsuario.Agente, true));
-                        Metodos.LlenaListBoxCatalogo(lstGrupoEspecialConsulta, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AccesoAnalíticos, (int)BusinessVariables.EnumTiposUsuario.Agente, false).Where(w=> !w.Sistema));
+
+                        divGpoResponsableCategoria.Visible = false;
+                        divGpoResponsableContenido.Visible = false;
+                        
+                        Metodos.LlenaComboCatalogo(ddlGrupoAccesoCentroSoporte, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, IdTipoUsuario, true));
+                        if (RolesActivos.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeCategoría))
+                        {
+                            divGpoResponsableCategoria.Visible = true;
+                            Metodos.LlenaComboCatalogo(ddlGrupoResponsableCategoria, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, (int)BusinessVariables.EnumTiposUsuario.Agentes, true));
+                        }
+                        if (RolesActivos.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeContenido))
+                        {
+                            divGpoResponsableContenido.Visible = true;
+                            Metodos.LlenaComboCatalogo(ddlGrupoResponsableContenido, _servicioGrupoUsuario.ObtenerGruposUsuarioByIdRolTipoUsuario((int)BusinessVariables.EnumRoles.ResponsableDeContenido, (int)BusinessVariables.EnumTiposUsuario.Agentes, true));
+                        }
+
                         btnPreview.Visible = true;
                         btnSaveAll.Visible = true;
                         btnSiguiente.Visible = false;
@@ -746,7 +740,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 Alerta = _lstError;
             }
         }
-        
+
         protected void btnAgregarNivel_OnClick(object sender, EventArgs e)
         {
             try
@@ -897,7 +891,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 arbol.InventarioArbolAcceso = new List<InventarioArbolAcceso> { new InventarioArbolAcceso() };
                 arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol = new List<GrupoUsuarioInventarioArbol>();
 
-                var gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoAcceso.SelectedValue));
+                var gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoAccesoCentroSoporte.SelectedValue));
                 arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                 {
                     IdGrupoUsuario = gpo.Id,
@@ -905,38 +899,33 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     IdSubGrupoUsuario = null
                 });
 
-                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlDuenoServicio.SelectedValue));
-                arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                {
-                    IdGrupoUsuario = gpo.Id,
-                    IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeCategoría,
-                    IdSubGrupoUsuario = null
-                });
 
-                gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoResponsableMantenimiento.SelectedValue));
-                foreach (SubGrupoUsuario subGrupoUsuario in gpo.SubGrupoUsuario)
+                if (RolesActivos.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeCategoría))
                 {
+                    gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoResponsableCategoria.SelectedValue));
                     arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                     {
-                        IdGrupoUsuario = subGrupoUsuario.IdGrupoUsuario,
-                        IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeContenido,
-                        IdSubGrupoUsuario = subGrupoUsuario.Id
+                        IdGrupoUsuario = gpo.Id,
+                        IdRol = (int) BusinessVariables.EnumRoles.ResponsableDeCategoría,
+                        IdSubGrupoUsuario = null
                     });
                 }
 
-                foreach (ListItem item in lstGrupoEspecialConsulta.Items)
+                if (RolesActivos.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeContenido))
                 {
-                    if (item.Selected)
+                    gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(ddlGrupoResponsableContenido.SelectedValue));
+                    foreach (SubGrupoUsuario subGrupoUsuario in gpo.SubGrupoUsuario)
                     {
-                        gpo = _servicioGrupoUsuario.ObtenerGrupoUsuarioById(int.Parse(item.Value));
                         arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
                         {
-                            IdGrupoUsuario = gpo.Id,
-                            IdRol = (int)BusinessVariables.EnumRoles.AccesoAnalíticos,
-                            IdSubGrupoUsuario = null
+                            IdGrupoUsuario = subGrupoUsuario.IdGrupoUsuario,
+                            IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeContenido,
+                            IdSubGrupoUsuario = subGrupoUsuario.Id
                         });
                     }
                 }
+
+                
                 arbol.InventarioArbolAcceso.First().Descripcion = txtDescripcionNivel.Text.Trim();
                 arbol.InventarioArbolAcceso.First().InventarioInfConsulta = new List<InventarioInfConsulta>();
                 arbol.InventarioArbolAcceso.First().InventarioInfConsulta.Add(new InventarioInfConsulta { IdInfConsulta = Convert.ToInt32(ddlConsultas.SelectedValue) });

@@ -83,8 +83,23 @@ namespace KinniNet.Business.Utils
             public const string Medio = "Medio";
             public const string Bajo = "Bajo";
         }
+
+
         public static class EnumeradoresKiiniNet
         {
+            public enum EnumUrgencia
+            {
+                Urgente = 1,
+                ConformePlazo = 2,
+                NoUrgente = 3
+            }
+
+            public enum EnumPrioridad
+            {
+                Alto = 1,
+                Medio = 2,
+                Bajo = 3
+            }
             public enum EnumeradorNivelAsignacion
             {
                 Supervisor = 1,
@@ -192,7 +207,7 @@ namespace KinniNet.Business.Utils
 
         public enum EnumTiposUsuario
         {
-            Agente = 1,
+            Agentes = 1,
             Cliente = 2,
             Proveedor = 3,
             Empleado = 4
@@ -294,7 +309,7 @@ namespace KinniNet.Business.Utils
             Consultas = 7,
             Servicio = 8,
             Incidentes = 9,
-            View = 10,
+            Analiticos = 10,
             Chat = 11,
             CambiarContraseña = 12,
             SolicitudDeMantenimiento = 13,
@@ -316,7 +331,8 @@ namespace KinniNet.Business.Utils
             AltaUsuario = 1,
             RecuperarCuenta = 2,
             GenerarTicket = 3,
-            ResponderTicket = 4
+            ResponderTicket = 4,
+            ConfirmacionCorreo = 5
         }
 
         public enum EnumTipoLink

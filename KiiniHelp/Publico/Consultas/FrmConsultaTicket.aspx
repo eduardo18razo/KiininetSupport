@@ -8,6 +8,7 @@
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <asp:HiddenField runat="server" ID="hfMuestraEncuesta" />
+            <asp:HiddenField runat="server" ID="hfLink" Value="false" />
             <ol class="breadcrumb">
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink></li>
@@ -44,13 +45,13 @@
                                         </div>
                                         <div class="form-group">
                                             <asp:CustomValidator ErrorMessage="" OnServerValidate="OnServerValidate" runat="server" />
-                                            <ms:captchacontrol id="captchaTicket" runat="server" captchabackgroundnoise="Low" captchalength="4" cssclass="col-lg-10 col-md-10 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 "
+                                            <ms:CaptchaControl id="captchaTicket" runat="server" captchabackgroundnoise="Low" captchalength="4" cssclass="col-lg-10 col-md-10 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 "
                                                 captchaheight="60" captchawidth="200" captchamintimeout="5" captchamaxtimeout="240"
                                                 fontcolor="#D20B0C" noisecolor="#B1B1B1" />
                                         </div>
                                         <div class="form-group">
                                             <div class="col-lg-1 col-md-2 col-sm-12 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
-                                                <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);" />
+                                                <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);" autocomplete="off"/>
                                             </div>
                                         </div>
                                         <div class="form-group">

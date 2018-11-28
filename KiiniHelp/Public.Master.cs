@@ -69,6 +69,12 @@ namespace KiiniHelp
         {
             try
             {
+                HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (myCookie != null && Session["UserData"] != null)
+                {
+                    Response.Redirect("~/Users/DashBoard.aspx");
+                }
+
                 divMenuBtn.Visible = false;
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 UcLogIn.OnAceptarModal += UcLogInOnOnCancelarModal;
@@ -482,6 +488,39 @@ namespace KiiniHelp
             {
                 CargaPerfil((int)BusinessVariables.EnumTiposUsuario.Cliente);
                 Response.Redirect("~/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        protected void btnCerramodalSessionAbierta_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                UcLogIn.ResetCaptcha();
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptClose", "CierraPopup(\"#modalSessionAbierta\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+        protected void OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                UcLogIn.DesbloquearUsuario();
             }
             catch (Exception ex)
             {

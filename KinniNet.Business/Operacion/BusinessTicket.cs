@@ -373,9 +373,9 @@ namespace KinniNet.Core.Operacion
 
                 if (correo != string.Empty && !esMail)
                 {
-                    string cuerpo = string.Format("Hola {0},<br>" +
-                                    "¡Gracias por contactarnos! Hemos recibido su correo y nos pondremos en contacto contigo lo antes posible. " +
-                                    "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo <a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + result.Id + "&cveRandom=" + result.ClaveRegistro + "'\"> aquí </a>Gracias", usuarioSolicito.Nombre);
+                    string cuerpo = string.Format("Hola {0},<br><br>" +
+                                    "Hemos recibido tu solicitud, los datos de tu ticket son:<br> ~replaceTicket~ <br><br>" +
+                                    "Nuestro personal de atención lo está revisando, si requieres hacer una actualización a tu solicitud por favor contesta este correo electrónico o ingresa a tu <a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + result.Id + "&cveRandom=" + result.ClaveRegistro + "'\">cuenta</a>.", usuarioSolicito.Nombre);
                     new BusinessTicketMailService().EnviaCorreoTicketGenerado(result.Id, result.ClaveRegistro, cuerpo, correo);
                 }
             }
@@ -651,7 +651,7 @@ namespace KinniNet.Core.Operacion
                 #region Usuario
                 if (gruposPertenece.Count <= 0)
                 {
-                    gruposPertenece = db.UsuarioGrupo.Where(ug => ug.IdUsuario == idUsuario && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.GrupoUsuario).Distinct().ToList();
+                    gruposPertenece = db.UsuarioGrupo.Where(ug => ug.IdUsuario == idUsuario && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).Select(s => s.GrupoUsuario).Distinct().ToList();
                     foreach (GrupoUsuario grupo in gruposPertenece)
                     {
                         lstEstatusPermitidos = (from etsrg in db.EstatusTicketSubRolGeneral
@@ -923,7 +923,7 @@ namespace KinniNet.Core.Operacion
                         ConversacionDetalle = new List<HelperConversacionDetalle>()
                     };
 
-                    result.EstatusDisponibles = CambiaEstatus(ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
+                    result.EstatusDisponibles = CambiaEstatus(ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                     foreach (HelperEstatusDetalle detalle in ticket.TicketEstatus.Select(movEstatus => new HelperEstatusDetalle { Descripcion = movEstatus.EstatusTicket.Descripcion, UsuarioMovimiento = movEstatus.Usuario.NombreCompleto, FechaMovimiento = movEstatus.FechaMovimiento, Comentarios = movEstatus.Comentarios }))
                     {
                         result.EstatusDetalle.Add(detalle);
@@ -1062,7 +1062,7 @@ namespace KinniNet.Core.Operacion
 
                     if (lstGrupos.Count <= 0)
                     {
-                        lstGrupos = db.UsuarioGrupo.Where(ug => ug.IdUsuario == idUsuario && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.IdGrupoUsuario).Distinct().ToList();
+                        lstGrupos = db.UsuarioGrupo.Where(ug => ug.IdUsuario == idUsuario && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).Select(s => s.IdGrupoUsuario).Distinct().ToList();
                         foreach (int idGrupo in lstGrupos)
                         {
                             lstEstatusPermitidos.AddRange((from etsrg in db.EstatusTicketSubRolGeneral

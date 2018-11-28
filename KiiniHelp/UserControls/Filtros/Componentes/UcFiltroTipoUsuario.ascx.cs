@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Services;
 using System.Web.UI;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using Telerik.Web.UI;
@@ -97,5 +98,6 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 Alerta = _lstError;
             }
         }
+
     }
 }

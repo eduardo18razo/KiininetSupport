@@ -46,7 +46,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <asp:Image runat="server" ImageUrl="~/assets/images/icons/editar.png" Width="25" CssClass="margin-right-15" />
-                                            <asp:Label runat="server" Text="6 de abril 2017" ID="lblFechaUltimaconexion"  /> 
+                                            <asp:Label runat="server" ID="lblFechaUltimaconexion"  /> 
                                         </div>
                                     </div>
                                     <hr />

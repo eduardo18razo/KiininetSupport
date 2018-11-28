@@ -670,16 +670,15 @@ namespace KinniNet.Core.Operacion
                         result.PuedeAsignar = propietarioTicket && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto;
                         result.EsPropietario = idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
                         result.IdGrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().IdGrupoUsuario;
-                        result.IdGrupoUsuario = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Distinct().First().IdGrupoUsuario;
+                        result.IdGrupoUsuario = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).Distinct().First().IdGrupoUsuario;
                         result.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
-                        result.EstatusDisponibles = CambiaEstatus(ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
+                        result.EstatusDisponibles = CambiaEstatus(ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                         result.TieneEncuesta = ticket.ArbolAcceso.InventarioArbolAcceso.First().IdEncuesta != null;
                         result.EncuestaRespondida = ticket.EncuestaRespondida;
                         #region Usuario Levanto
                         if (ticket.UsuarioLevanto != null)
                         {
                             result.UsuarioLevanto = new HelperUsuario();
-
                             result.UsuarioLevanto.IdUsuario = ticket.IdUsuarioLevanto;
                             result.UsuarioLevanto.NombreCompleto = string.Format("{0} {1} {2}", ticket.UsuarioLevanto.Nombre, ticket.UsuarioLevanto.ApellidoPaterno, ticket.UsuarioLevanto.ApellidoMaterno);
                             result.UsuarioLevanto.TipoUsuarioDescripcion = ticket.UsuarioLevanto.TipoUsuario.Descripcion;
@@ -727,7 +726,7 @@ namespace KinniNet.Core.Operacion
                         if (ticket.UsuarioSolicito != null)
                         {
                             result.UsuarioSolicito = new HelperUsuario();
-
+                            result.IdUsuarioSolicito = ticket.IdUsuarioSolicito;
                             result.UsuarioSolicito.IdUsuario = ticket.IdUsuarioSolicito;
                             result.UsuarioSolicito.NombreCompleto = string.Format("{0} {1} {2}", ticket.UsuarioSolicito.Nombre, ticket.UsuarioSolicito.ApellidoPaterno, ticket.UsuarioSolicito.ApellidoMaterno);
                             result.UsuarioSolicito.TipoUsuarioDescripcion = ticket.UsuarioSolicito.TipoUsuario.Descripcion;
@@ -940,7 +939,7 @@ namespace KinniNet.Core.Operacion
                         if (idEstatusAsignacion == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado)
                             idNivelAsignado = ObtenerNivelAutoAsignacion(idUsuarioGeneraEvento, idGpoAtencion, esPropietario);
                         else if (idNivelAsignado == null)
-                            throw new Exception("Error al actualizar nivel de asignacion.");
+                            throw new Exception("Revisar datos de asignación.");
                         ticket.IdUsuarioUltimoAgenteAsignado = idUsuarioAsignado;
                         ticket.FechaUltimoAgenteAsignado = fechaMovimiento;
                         evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion

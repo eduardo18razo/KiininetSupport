@@ -19,6 +19,8 @@ namespace KiiniNet.Entities.Cat.Sistema
         [DataMember]
         public string Color { get; set; }
         [DataMember]
+        public string ColorGrafico { get; set; }
+        [DataMember]
         public bool Habilitado { get; set; }
         [DataMember]
         public List<Ticket> Ticket { get; set; }

@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceMascaraAcceso;
+using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KiiniHelp.ServiceTicket;
 using KiiniHelp.ServiceUsuario;
@@ -16,6 +17,7 @@ using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using RepeatDirection = System.Web.UI.WebControls.RepeatDirection;
 
@@ -31,10 +33,12 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         private readonly ServiceCatalogosClient _servicioCatalogos = new ServiceCatalogosClient();
         private readonly ServiceMascarasClient _servicioMascaras = new ServiceMascarasClient();
         private readonly ServiceTicketClient _servicioTicket = new ServiceTicketClient();
+        private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         private readonly ServiceArbolAccesoClient _servicioArbolAccesoClient = new ServiceArbolAccesoClient();
         private readonly ServiceUsuariosClient _servicioUsuariosClient = new ServiceUsuariosClient();
         private List<Control> _lstControles;
         private List<string> _lstError = new List<string>();
+        private bool ValidCaptcha = false;
         private List<string> Alerta
         {
             set
@@ -45,6 +49,26 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     error += "</ul>";
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
                 }
+            }
+        }
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
+
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
             }
         }
 
@@ -83,6 +107,15 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     hfComandoInsertar.Value = mascara.ComandoInsertar;
                     hfComandoActualizar.Value = mascara.ComandoInsertar;
                     hfRandom.Value = mascara.Random.ToString();
+                    ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
+                    if (parametros != null)
+                    {
+                        foreach (ArchivosPermitidos alowedFile in _serviciosParametros.ObtenerArchivosPermitidos())
+                        {
+                            ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                        }
+                        TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                    }
                     PintaControles(mascara.CampoMascara);
                     Session["MascaraActiva"] = mascara;
                     Session["ArbolAcceso"] = arbol;
@@ -416,7 +449,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                         throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
                                     else
                                     {
-                                        
+
                                         if (txtTelefono.Text.Trim().Length < campo.LongitudMinima)
                                             throw new Exception(string.Format("Campo {0} debe tener al menos {1} caracteres", campo.Descripcion, campo.LongitudMinima));
                                         if (txtTelefono.Text.Trim().Length > campo.LongitudMaxima)
@@ -711,7 +744,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
-                    Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label" };
+                    Label lbl = new Label { Text = campo.Descripcion + (campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty), CssClass = "col-sm-12 control-label proxima12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
@@ -980,7 +1013,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                             _lstControles.Add(meeMascara);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
-
+                            lbl.Text = string.Format("{0} (max {1}MB). {2}", campo.Descripcion, TamañoArchivo, campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty);
                             lbl.Attributes["for"] = "fu" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             AsyncFileUpload asyncFileUpload = new AsyncFileUpload
@@ -991,7 +1024,8 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 OnClientUploadStarted = "ShowLanding",
                                 OnClientUploadComplete = "HideLanding"
                             };
-
+                            asyncFileUpload.OnClientUploadStarted = "UploadStart";
+                            asyncFileUpload.OnClientUploadError = "uploadError";
                             asyncFileUpload.Attributes["style"] = "margin-top: 25px";
                             asyncFileUpload.UploadedComplete += asyncFileUpload_UploadedComplete;
                             createDiv.Controls.Add(asyncFileUpload);
@@ -1006,7 +1040,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 Text = campo.Descripcion,
                                 CssClass = "form-control",
                                 EnableViewState = true,
-                                
+
                             };
                             txtMascaraTelefono.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             MaskedEditExtender meeMascaraTelefono = new MaskedEditExtender
@@ -1084,6 +1118,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 if (!IsPostBack)
                 {
                     divRegistraUsuario.Visible = Session["UserData"] == null;
+                    divCaptcha.Visible = Session["UserData"] == null;
                 }
             }
             catch (Exception ex)
@@ -1100,6 +1135,12 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             try
             {
+                if (divCaptcha.Visible)
+                    if (!ValidCaptcha)
+                    {
+                        txtCaptcha.Text = string.Empty;
+                        throw new Exception("Captcha incorrecto");
+                    }
                 ValidaMascaraCaptura();
                 //TODO: Cambiar id arbol por parametro
                 if (divRegistraUsuario.Visible)
@@ -1183,6 +1224,37 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     _lstError = new List<string>();
                 }
                 _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void OnServerValidate(object source, ServerValidateEventArgs e)
+        {
+            try
+            {
+                if (txtCaptcha.Text.Trim() == string.Empty) return;
+                Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
+                e.IsValid = Captcha1.UserValidated;
+                ValidCaptcha = e.IsValid;
+                if (!e.IsValid)
+                {
+                    List<string> sb = new List<string>();
+                    sb.Add("Captcha incorrecto.");
+                    if (sb.Count > 0)
+                    {
+                        _lstError = sb;
+                        throw new Exception("");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                    _lstError.Add(ex.Message);
+                }
+
                 Alerta = _lstError;
             }
         }

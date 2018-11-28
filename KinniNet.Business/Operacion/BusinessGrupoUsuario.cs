@@ -303,7 +303,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                if (idRol == (int)BusinessVariables.EnumRoles.ConsultasEspeciales)
+                if (idRol == (int)BusinessVariables.EnumRoles.AccesoAnalíticos)
                     result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).Where(w => w.IdTipoUsuario == idTipoUsuario && w.Habilitado).ToList();
                 else
                     result = db.RolTipoGrupo.Where(w => w.Rol.Habilitado && w.IdRol == idRol).SelectMany(s => s.TipoGrupo.GrupoUsuario).Where(w => w.IdTipoUsuario == idTipoUsuario && w.Habilitado).ToList();
@@ -864,7 +864,7 @@ namespace KinniNet.Core.Operacion
                                         LevantaTicket = statusDefault.LevantaTicket,
                                         Habilitado = statusDefault.Habilitado
                                     });
-                else if (grupo.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario)
+                else if (grupo.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte)
                 {
                     int idRol = (int)BusinessVariables.EnumRoles.AccesoCentroSoporte;
                     var qry = from statusDefault in db.EstatusTicketSubRolGeneralDefault.Where(

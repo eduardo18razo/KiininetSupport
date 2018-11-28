@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
 using System.Web.UI;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServicePuesto;
@@ -9,9 +8,6 @@ using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
 using KinniNet.Business.Utils;
-using System.Resources;
-using System.IO;
-using System.Reflection;
 
 namespace KiiniHelp.UserControls.Altas
 {
@@ -26,13 +22,7 @@ namespace KiiniHelp.UserControls.Altas
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
-
-        //Assembly _assembly;   
-        //Stream _imageStream;   
-        //StreamReader _textStreamReader;
-
-        //ResourceManager _rM = new ResourceManager("Notificaciones", Assembly.GetExecutingAssembly());
-
+        
         public bool EsAlta
         {
             get { return Convert.ToBoolean(hfEsAlta.Value); }
@@ -78,17 +68,6 @@ namespace KiiniHelp.UserControls.Altas
             }
         }
 
-        //private string AlertaSucces ()
-        //{
-        //    //set
-        //    //{
-        //    //    if (value.Trim() != string.Empty)
-        //    //    {
-        //            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "SuccsessAlert('"+ value + "');", true);                    
-        //            //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "SuccsessAlert('Exito','" + value + "');", true);
-        //    //    }
-        //    //}
-        //}
 
         private void LlenaCombos()
         {
@@ -145,9 +124,9 @@ namespace KiiniHelp.UserControls.Altas
             try
             {
                 if (ddlTipoUsuario.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
-                    mp.AlertaError(BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.FaltaTipoUsuario));
+                    throw new Exception(BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.FaltaTipoUsuario));
                 if (txtDescripcionPuesto.Text.Trim() == string.Empty)
-                    mp.AlertaError(BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.FaltaDescripcion));
+                    throw new Exception(BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.FaltaDescripcion));
                 Puesto puesto = new Puesto { IdTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue), Descripcion = txtDescripcionPuesto.Text.Trim(), Habilitado = true };
                 if (EsAlta)
                 {

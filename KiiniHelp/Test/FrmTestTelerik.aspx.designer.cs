@@ -22,30 +22,48 @@ namespace KiiniHelp.Test {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control RadDatePicker1.
+        /// Control scripMain.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker RadDatePicker1;
+        protected global::System.Web.UI.ScriptManager scripMain;
         
         /// <summary>
-        /// Control RadMonthYearPicker1.
+        /// Control lblMaquina.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMonthYearPicker RadMonthYearPicker1;
+        protected global::System.Web.UI.WebControls.Label lblMaquina;
         
         /// <summary>
-        /// Control UcBusqueda.
+        /// Control RadDropDownTree1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::KiiniHelp.UserControls.Consultas.UcBusqueda UcBusqueda;
+        protected global::Telerik.Web.UI.RadDropDownTree RadDropDownTree1;
+        
+        /// <summary>
+        /// Control RadComboBoxProduct.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox RadComboBoxProduct;
+        
+        /// <summary>
+        /// Control BarChart.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart BarChart;
     }
 }

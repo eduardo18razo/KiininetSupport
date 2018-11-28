@@ -427,40 +427,49 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divStep3Data;
         
         /// <summary>
-        /// Control ddlGrupoAcceso.
+        /// Control ddlGrupoAccesoCentroSoporte.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoAcceso;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoAccesoCentroSoporte;
         
         /// <summary>
-        /// Control ddlDuenoServicio.
+        /// Control divGpoResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDuenoServicio;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGpoResponsableCategoria;
         
         /// <summary>
-        /// Control ddlGrupoResponsableMantenimiento.
+        /// Control ddlGrupoResponsableCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoResponsableMantenimiento;
+        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoResponsableCategoria;
         
         /// <summary>
-        /// Control lstGrupoEspecialConsulta.
+        /// Control divGpoResponsableContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lstGrupoEspecialConsulta;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divGpoResponsableContenido;
+        
+        /// <summary>
+        /// Control ddlGrupoResponsableContenido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGrupoResponsableContenido;
         
         /// <summary>
         /// Control btnPreview.

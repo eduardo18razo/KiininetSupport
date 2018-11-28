@@ -202,6 +202,7 @@
     <Content Include="assets\images\icons\SLA_verde.png" />
     <Content Include="assets\images\icons\vip.png" />
     <Content Include="assets\images\logo-icon.svg" />
+    <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\logoBlanco.jpg" />
     <Content Include="assets\images\logo_kinninet_blanco.png" />
     <Content Include="assets\images\profiles\perfil.png" />
@@ -282,9 +283,15 @@
     <Content Include="ConfirmacionCuenta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="FrmConfirmacionCorreo.aspx" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.FrecuenciaFecha.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Estado.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.GraficosDefault.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Sistema.RolTipoArbolAcceso.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ColoresTop.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ArchivosPermitidos.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ColoresSla.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.ParametrosUsuario.datasource" />
     <None Include="Service References\ServiceConsultas\ServiceConsultas.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -1092,7 +1099,6 @@
     <Content Include="UserControls\Filtros\Componentes\UcFiltroVip.ascx" />
     <Content Include="UserControls\Seleccion\UcImpactoUrgencia.ascx" />
     <Content Include="UserControls\Temporal\UcEncuestaCaptura.ascx" />
-    <Content Include="UserControls\UcLogIn.ascx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmAltaArbolAcceso.aspx" />
     <Content Include="Users\Administracion\ArbolesAcceso\FrmConsultaArbolAcceso.aspx" />
     <Content Include="Users\Consultas\FrmConsultaTickets.aspx" />
@@ -2738,6 +2744,13 @@
     <Compile Include="DisplayImages.ashx.cs">
       <DependentUpon>DisplayImages.ashx</DependentUpon>
     </Compile>
+    <Compile Include="FrmConfirmacionCorreo.aspx.cs">
+      <DependentUpon>FrmConfirmacionCorreo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrmConfirmacionCorreo.aspx.designer.cs">
+      <DependentUpon>FrmConfirmacionCorreo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Preview\FrmPreview.aspx.cs">
       <DependentUpon>FrmPreview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4106,13 +4119,6 @@
     </Compile>
     <Compile Include="UserControls\Temporal\UcEncuestaCaptura.ascx.designer.cs">
       <DependentUpon>UcEncuestaCaptura.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\UcLogIn.ascx.cs">
-      <DependentUpon>UcLogIn.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControls\UcLogIn.ascx.designer.cs">
-      <DependentUpon>UcLogIn.ascx</DependentUpon>
     </Compile>
     <Compile Include="Users\Administracion\ArbolesAcceso\FrmAltaArbolAcceso.aspx.cs">
       <DependentUpon>FrmAltaArbolAcceso.aspx</DependentUpon>

@@ -127,7 +127,8 @@ namespace KiiniHelp.UserControls.Detalles
                     
                     lblNoticket.Text = ticket.IdTicket.ToString();
                     lblTituloTicket.Text = ticket.Tipificacion;
-
+                    imgProfileNewComment.ImageUrl = new ServiceUsuariosClient().ObtenerFoto(ticket.IdUsuarioSolicito) != null ? "~/DisplayImages.ashx?id=" + ticket.IdUsuarioSolicito : "~/assets/images/profiles/profile-1.png";
+                    imgUsuarioTicket.ImageUrl = new ServiceUsuariosClient().ObtenerFoto(ticket.IdUsuarioSolicito) != null ? "~/DisplayImages.ashx?id=" + ticket.IdUsuarioSolicito : "~/assets/images/profiles/profile-1.png";
                     lblNombreCorreo.Text = string.Format("{0} &#60;{1}&#62;", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
                     lblNombreU.Text = ticket.UsuarioLevanto.NombreCompleto;
                     lblFechaAlta.Text = ticket.FechaLevanto;

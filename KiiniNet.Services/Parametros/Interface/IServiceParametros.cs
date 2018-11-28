@@ -8,8 +8,6 @@ namespace KiiniNet.Services.Parametros.Interface
     [ServiceContract]
     public interface IServiceParametros
     {
-        [OperationContract]
-        List<ParametrosTelefonos> TelefonosObligatorios(int idTipoUsuario);
 
         [OperationContract]
         List<TelefonoUsuario> ObtenerTelefonosParametrosIdTipoUsuario(int idTipoUsuario, bool insertarSeleccion);
@@ -19,6 +17,8 @@ namespace KiiniNet.Services.Parametros.Interface
 
         [OperationContract]
         ParametrosGenerales ObtenerParametrosGenerales();
+        [OperationContract]
+        ParametrosUsuario ObtenerParametrosUsuario(int idTipoUsuario);
 
         [OperationContract]
         List<AliasOrganizacion> ObtenerAliasOrganizacion(int idTipoUsuario);
@@ -36,5 +36,13 @@ namespace KiiniNet.Services.Parametros.Interface
         GraficosDefault ObtenerParametrosGraficoDefault();
         [OperationContract]
         List<FrecuenciaFecha> ObtenerFrecuenciasFecha();
+
+        [OperationContract]
+        List<ColoresTop> ObtenerColoresTop();
+
+        [OperationContract]
+        List<ColoresSla> ObtenerColoresSla();
+        [OperationContract]
+        List<ArchivosPermitidos> ObtenerArchivosPermitidos();
     }
 }

@@ -26,6 +26,7 @@
                 <asp:HiddenField runat="server" ID="hfAlta" />
                 <asp:HiddenField runat="server" ID="hfEsMoral" />
                 <asp:HiddenField runat="server" ID="hdEsDetalle" />
+                <asp:HiddenField runat="server" ID="hfHabilitado" />
                 <asp:HiddenField runat="server" ID="hfEditaDetalle" />
                 <asp:HiddenField runat="server" ID="hfGeneraUsuario" Value="true" />
                 <asp:HiddenField runat="server" ID="hfConsultas" Value="false" />
@@ -102,12 +103,12 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-3 col-md-3 padding-20-left">
-                                                                <label>Nombre</label>
+                                                                <label>Nombre <span style="color: red">*</span></label>
                                                                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                                             </div>
 
                                                             <div class="col-lg-3 col-md-3 padding-20-left">
-                                                                <label>Apellido Paterno</label>
+                                                                <label>Apellido Paterno <span style="color: red">*</span></label>
                                                                 <asp:TextBox ID="txtAp" runat="server" CssClass="form-control" onkeypress="return ValidaCampo(this,1)" AutoPostBack="true" MaxLength="32" OnTextChanged="txtAp_OnTextChanged" />
                                                             </div>
 
@@ -125,7 +126,7 @@
 
                                                         <div class="row">
                                                             <div class="col-lg-3 col-md-3 padding-20-left" runat="server" id="divPuesto">
-                                                                <label>Puesto*</label>
+                                                                <label>Puesto</label>
                                                                 <asp:DropDownList runat="server" ID="ddlPuesto" CssClass="form-control" />
                                                             </div>
                                                             <div class="col-lg-1 col-md-1 margin-top-30">
@@ -173,7 +174,8 @@
                                                 <div class="row">
                                                     <h3 class="TitulosAzul">Datos de Contacto</h3>
                                                 </div>
-                                            </a></h4>
+                                            </a>
+                                        </h4>
                                     </div>
                                     <asp:Panel runat="server" CssClass="panel-collapse  collapse" ID="faq5_2" ClientIDMode="Static">
                                         <div class="panel-body">
@@ -181,55 +183,145 @@
 
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6">
-                                                        <label>Teléfono(s)</label>
+                                                        <div class="col-lg-7 col-md-8 no-padding-left" runat="server">
+                                                            <div class="row">
+                                                                <asp:Label runat="server" ID="Label2"></asp:Label>
+                                                                <div class="col-lg-3 col-md-4 no-padding-left">
+                                                                    <label>Tipo Teléfono</label>
+                                                                </div>
+
+                                                                <div class="col-lg-5 col-md-6 no-padding-left">
+                                                                    <label>Teléfono</label>
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-3 no-padding-left" runat="server" id="divExtensionTitulo" visible="False">
+                                                                    <label>Extensión</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         <br />
-                                                        <div class="col-lg-8 col-md-8 no-padding-left">
-                                                            <asp:Repeater ID="rptTelefonos" runat="server" OnItemDataBound="rptTelefonos_OnItemDataBound">
-                                                                <ItemTemplate>
-                                                                    <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
-                                                                        <div class="row">
-                                                                            <div class="col-lg-3 col-md-4 no-padding-left">
-                                                                                <asp:DropDownList runat="server" ID="ddlTipoTelefono" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoTelefono_OnSelectedIndexChanged" />
-                                                                            </div>
+                                                        <div class="col-lg-7 col-md-8 no-padding-left" runat="server">
+                                                            <div class="row">
+                                                                <asp:Label runat="server" ID="lblNuevoTelefonoEdicion" Text="true" Visible="False"></asp:Label>
+                                                                <asp:Label runat="server" ID="lblTipoTelefonoAnteriorEdicion" Text="true" Visible="False"></asp:Label>
+                                                                <asp:Label runat="server" ID="lblTelefonoAnteriorEdicion" Text="true" Visible="False"></asp:Label>
+                                                                <asp:Label runat="server" ID="lblExtensionAnteriorEdicion" Text="true" Visible="False"></asp:Label>
+                                                                <asp:Label runat="server" ID="lblPrincipal" Visible="False"></asp:Label>
+                                                                <div class="col-lg-3 col-md-4 no-padding-left">
+                                                                    <asp:DropDownList runat="server" ID="ddlTipoTelefono" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoTelefono_OnSelectedIndexChanged" />
+                                                                </div>
 
-                                                                            <asp:Label runat="server" Text='<%# bool.Parse(Eval("Obligatorio").ToString()) %>' ID="lblObligatorio" Visible="False"></asp:Label>
-                                                                            <div class="col-lg-6 col-md-6 no-padding-left">
-                                                                                <asp:TextBox runat="server" ID="txtNumero" Text='<%# Eval("Numero") %>' CssClass="form-control" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
-                                                                            </div>
-
-                                                                            <div class="col-lg-3 col-md-3 no-padding-left" runat="server" id="divExtension">
-                                                                                <asp:TextBox runat="server" ID="txtExtension" Text='<%# Eval("Extension") %>' CssClass="form-control" onkeypress="return ValidaCampo(this,15)" MaxLength="40" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </ItemTemplate>
-                                                            </asp:Repeater>
+                                                                <div class="col-lg-5 col-md-6 no-padding-left">
+                                                                    <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-3 no-padding-left" runat="server" id="divExtension" visible="False">
+                                                                    <asp:TextBox runat="server" ID="txtExtension" Text='<%# Eval("Extension") %>' CssClass="form-control" onkeypress="return ValidaCampo(this,15)" MaxLength="10" />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="col-lg-4 col-md-4">
                                                             <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-9" ID="btnAddTelefono" OnClick="btnAddTelefono_OnClick" Visible="false"></asp:LinkButton>
+                                                            <asp:LinkButton runat="server" ID="lbtnCancelarEdicionTelefono" Text="Cancelar" Visible="False" OnClick="lblCancelarEdicionTelefono_OnClick"></asp:LinkButton>
                                                         </div>
+                                                        <br />
+
+                                                        <asp:Repeater ID="rptTelefonos" runat="server" OnItemDataBound="rptTelefonos_OnItemDataBound">
+                                                            <ItemTemplate>
+                                                                <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-7 col-md-8 no-padding-left" runat="server">
+
+                                                                            <asp:Label runat="server" Text='<%# bool.Parse(Eval("Principal").ToString()) %>' ID="lblPrincipal" Visible="False"></asp:Label>
+
+                                                                            <div class="col-lg-3 col-md-4 no-padding-left">
+                                                                                <asp:DropDownList runat="server" ID="ddlTipoTelefonoRepeater" CssClass="form-control" Enabled="False" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoTelefonoRepeater_OnSelectedIndexChanged" />
+                                                                            </div>
+
+                                                                            <div class="col-lg-5 col-md-6 no-padding-left">
+                                                                                <asp:TextBox runat="server" ID="txtNumero" ReadOnly="True" Text='<%# Eval("Numero") %>' CssClass="form-control" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
+                                                                            </div>
+
+                                                                            <div class="col-lg-3 col-md-2 no-padding-left" runat="server" id="divExtension">
+                                                                                <asp:TextBox runat="server" ID="txtExtension" ReadOnly="True" Text='<%# Eval("Extension") %>' CssClass="form-control" onkeypress="return ValidaCampo(this,15)" MaxLength="40" />
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4">
+                                                                            <div class="col-lg-2 col-md-6 no-padding-left">
+                                                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="lbtnEditarTelefono" Visible="False" OnClick="lbtnEditarTelefono_OnClick">
+                                                                                <asp:Image runat="server" CssClass="margin-top-9" ImageUrl="~/assets/images/icons/editar.png" />  
+                                                                                </asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-lg-3 col-md-6 no-padding-left margin-top-9">
+                                                                                <asp:LinkButton runat="server" Text="Eliminar" CommandArgument='<%# Eval("Numero") %>' CommandName='<%# Eval("Extension") %>' ID="lbtnEliminarTelefono" OnClick="lbtnEliminarTelefono_OnClick"></asp:LinkButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
                                                     </div>
                                                     <!--/GRUPO TELÉFONOS DE CONTACTO -->
                                                     <!--CORREOS DE CONTACTO -->
                                                     <div class="col-lg-6 col-md-6">
-                                                        <label>Correo(s)</label>
+                                                        <asp:Label runat="server" ID="lblNuevoCorreoEdicion" Text="true" Visible="False"></asp:Label>
+                                                        <asp:Label runat="server" ID="lblCorreoAnteriorEdicion" Text="true" Visible="False"></asp:Label>
+                                                        <asp:Label runat="server" ID="lblCorreoPrincipalEdicion" Text="true" Visible="False"></asp:Label>
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 no-padding-left">
+                                                                    <label>Correo <span style="color: red">*</span></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 no-padding-left">
+                                                            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 no-padding-left">
+                                                                <asp:TextBox runat="server" ID="txtCorreoPrincipal" type="email" CssClass="form-control text-lowercase" onkeypress="return ValidaCampo(this,13)" />
+                                                            </div>
+                                                        </div>
+
                                                         <br />
-                                                        <div class="col-lg-8 col-md-8 no-padding-left">
-                                                            <asp:Repeater ID="rptCorreos" runat="server">
-                                                                <ItemTemplate>
-                                                                    <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
-                                                                        <div class="row">
-                                                                            <div class="col-lg-12 col-md-12 no-padding-left">
-                                                                                <asp:TextBox runat="server" ID="txtCorreo" Text='<%# Eval("Correo") %>' type="email" CssClass='<%# bool.Parse(Eval("Obligatorio").ToString()) ? "form-control obligatorio text-lowercase"  : "form-control text-lowercase"  %>' onkeypress="return ValidaCampo(this,13)" />
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-9" ID="btnAddCorreo" OnClick="btnAddCorreo_OnClick" Visible="false"></asp:LinkButton>
+                                                            <asp:LinkButton runat="server" ID="lbtnCancelarEdicionCorreo" Text="Cancelar" Visible="False" OnClick="lbtnCancelarEdicionCorreo_OnClick"></asp:LinkButton>
+                                                        </div>
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 no-padding-left">
+                                                                    <label>Confirmar correo</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 no-padding-left">
+                                                            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 no-padding-left">
+                                                                <asp:TextBox runat="server" ID="txtCorreoPrincipalConfirmacion" type="email" CssClass="form-control text-lowercase" onkeypress="return ValidaCampo(this,13)" />
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <asp:Repeater ID="rptCorreos" runat="server" OnItemDataBound="rptCorreos_OnItemDataBound">
+                                                            <ItemTemplate>
+                                                                <div style="border-radius: 20px; margin-bottom: 5px; height: auto">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 no-padding-left">
+                                                                            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 no-padding-left">
+                                                                                <asp:Label runat="server" Visible="False" ID="lblCorreoPrincipal" Text='<%# Eval("Obligatorio") %>'></asp:Label>
+                                                                                <asp:TextBox runat="server" ID="txtCorreo" ReadOnly="True" Text='<%# Eval("Correo") %>' type="email" CssClass="form-control text-lowercase" onkeypress="return ValidaCampo(this,13)" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-md-8">
+                                                                            <div class="col-lg-3 col-md-6 no-padding-left">
+                                                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="lbtnEditarCorreo" OnClick="lbtnEditarCorreo_OnClick" Visible="False">
+                                                                                        <asp:Image CssClass="margin-top-9" runat="server" ImageUrl="~/assets/images/icons/editar.png" />
+                                                                                </asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-lg-3 col-md-6 no-padding-left margin-top-9">
+                                                                                <asp:LinkButton runat="server" Text="Eliminar" CommandArgument='<%# Eval("Correo") %>' CommandName='<%# Eval("Obligatorio") %>' ID="lbtnEliminarCorreo" OnClick="lbtnEliminarCorreo_OnClick"></asp:LinkButton>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </ItemTemplate>
-                                                            </asp:Repeater>
-                                                        </div>
-                                                        <div class="col-lg-4 col-md-4">
-                                                            <asp:LinkButton runat="server" CssClass="fa fa-plus-circle margin-top-9" ID="btnAddCorreo" OnClick="btnAddCorreo_OnClick" Visible="false"></asp:LinkButton>
-                                                        </div>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
                                                     </div>
                                                     <!--/CORREOS DE CONTACTO -->
                                                 </div>
@@ -307,7 +399,7 @@
                                                                     </tr>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                        </tbody>
+                                                                    </tbody>
                                                                     </table>
                                                                 </FooterTemplate>
                                                             </asp:Repeater>

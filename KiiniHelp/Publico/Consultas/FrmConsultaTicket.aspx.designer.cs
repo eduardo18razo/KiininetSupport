@@ -22,6 +22,15 @@ namespace KiiniHelp.Publico.Consultas {
         protected global::System.Web.UI.WebControls.HiddenField hfMuestraEncuesta;
         
         /// <summary>
+        /// Control hfLink.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfLink;
+        
+        /// <summary>
         /// Control divTitle.
         /// </summary>
         /// <remarks>

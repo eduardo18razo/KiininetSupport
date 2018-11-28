@@ -310,6 +310,19 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
             }
         }
 
+        public void UbicacionDefault(int idUbicacion)
+        {
+            try
+            {
+                IdUbicacion = idUbicacion;
+                SetUbicacionSeleccion();
+                btnTerminar_OnClick(btnTerminar, null);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public void SetUbicacionSeleccion() //Estilos actualizados
         {
             try
@@ -833,7 +846,7 @@ namespace KiiniHelp.UserControls.Altas.Ubicaciones
                 }
                 divData.Visible = true;
                 divStep1.Visible = true;
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agente)
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agentes)
                 {
                     LlenaComboDinamico(ddlNivelSeleccionModal, _servicioUbicacion.ObtenerPais(int.Parse(ddlTipoUsuario.SelectedValue), true));
                 }

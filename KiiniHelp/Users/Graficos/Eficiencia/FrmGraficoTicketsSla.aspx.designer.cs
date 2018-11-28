@@ -76,13 +76,13 @@ namespace KiiniHelp.Users.Graficos.Eficiencia {
         protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsPie;
         
         /// <summary>
-        /// Control rhcTicketsStack.
+        /// Control lblPieGeneral.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsStack;
+        protected global::System.Web.UI.WebControls.Label lblPieGeneral;
         
         /// <summary>
         /// Control rhcTicketsPareto.
@@ -92,6 +92,33 @@ namespace KiiniHelp.Users.Graficos.Eficiencia {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsPareto;
+        
+        /// <summary>
+        /// Control lblPiePareto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPiePareto;
+        
+        /// <summary>
+        /// Control rhcTicketsStack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcTicketsStack;
+        
+        /// <summary>
+        /// Control lblPieTendencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPieTendencia;
         
         /// <summary>
         /// Control upDetalleGeografico.

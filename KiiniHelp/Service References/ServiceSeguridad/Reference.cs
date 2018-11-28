@@ -16,7 +16,7 @@ namespace KiiniHelp.ServiceSeguridad {
     public interface IServiceSecurity {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/Autenticate", ReplyAction="http://tempuri.org/IServiceSecurity/AutenticateResponse")]
-        bool Autenticate(string user, string password);
+        bool Autenticate(string user, string password, string activeNavigator);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/ObtenerRolesUsuario", ReplyAction="http://tempuri.org/IServiceSecurity/ObtenerRolesUsuarioResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.Rol> ObtenerRolesUsuario(int idUsuario);
@@ -44,6 +44,21 @@ namespace KiiniHelp.ServiceSeguridad {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/CaducaPassword", ReplyAction="http://tempuri.org/IServiceSecurity/CaducaPasswordResponse")]
         bool CaducaPassword(int idUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/UsuariorActivo", ReplyAction="http://tempuri.org/IServiceSecurity/UsuariorActivoResponse")]
+        bool UsuariorActivo(string user, string password, string activeNavigator);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/CerrarSessionActiva", ReplyAction="http://tempuri.org/IServiceSecurity/CerrarSessionActivaResponse")]
+        void CerrarSessionActiva(string user, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/TerminarSesion", ReplyAction="http://tempuri.org/IServiceSecurity/TerminarSesionResponse")]
+        void TerminarSesion(int idUsuario, string activeNavigator);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/ValidaSesion", ReplyAction="http://tempuri.org/IServiceSecurity/ValidaSesionResponse")]
+        bool ValidaSesion(int idUsuario, string activeNavigator);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceSecurity/GeneraLlaveMaquina", ReplyAction="http://tempuri.org/IServiceSecurity/GeneraLlaveMaquinaResponse")]
+        string GeneraLlaveMaquina();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -73,8 +88,8 @@ namespace KiiniHelp.ServiceSeguridad {
                 base(binding, remoteAddress) {
         }
         
-        public bool Autenticate(string user, string password) {
-            return base.Channel.Autenticate(user, password);
+        public bool Autenticate(string user, string password, string activeNavigator) {
+            return base.Channel.Autenticate(user, password, activeNavigator);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.Rol> ObtenerRolesUsuario(int idUsuario) {
@@ -111,6 +126,26 @@ namespace KiiniHelp.ServiceSeguridad {
         
         public bool CaducaPassword(int idUsuario) {
             return base.Channel.CaducaPassword(idUsuario);
+        }
+        
+        public bool UsuariorActivo(string user, string password, string activeNavigator) {
+            return base.Channel.UsuariorActivo(user, password, activeNavigator);
+        }
+        
+        public void CerrarSessionActiva(string user, string password) {
+            base.Channel.CerrarSessionActiva(user, password);
+        }
+        
+        public void TerminarSesion(int idUsuario, string activeNavigator) {
+            base.Channel.TerminarSesion(idUsuario, activeNavigator);
+        }
+        
+        public bool ValidaSesion(int idUsuario, string activeNavigator) {
+            return base.Channel.ValidaSesion(idUsuario, activeNavigator);
+        }
+        
+        public string GeneraLlaveMaquina() {
+            return base.Channel.GeneraLlaveMaquina();
         }
     }
 }

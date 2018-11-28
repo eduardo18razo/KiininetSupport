@@ -29,7 +29,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 }
             }
         }
-        
+
         public List<int> TipoUsuario
         {
             get { return Session["TipoUsuarioFiltroOrganizacion"] == null ? null : (List<int>)Session["TipoUsuarioFiltroOrganizacion"]; }
@@ -47,7 +47,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        private void LlenaOrganizaciones(List<int> tiposUsuario )
+        private void LlenaOrganizaciones(List<int> tiposUsuario)
         {
             try
             {
@@ -57,9 +57,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 rcbFiltroOrganizacion.Items.Clear();
                 foreach (Organizacion organizacion in lst)
                 {
-                    rcbFiltroOrganizacion.Items.Add(new RadComboBoxItem(string.Format("{0} {1}",
-                        organizacion.Holding.Descripcion,
-                        organizacion.IdCompania != null ? organizacion.Compania.Descripcion : string.Empty), organizacion.Id.ToString()));
+                    rcbFiltroOrganizacion.Items.Add(new RadComboBoxItem(string.Format("{0}", organizacion.Holding.Descripcion), organizacion.IdHolding.ToString()));
                 }
             }
             catch (Exception e)

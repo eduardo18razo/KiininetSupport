@@ -107,7 +107,7 @@ namespace KinniNet.Core.Sistema
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = new List<EstatusTicket>();
-                var gpoTicket = db.TicketGrupoUsuario.SingleOrDefault(s => s.IdTicket == idTicket && s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario);
+                var gpoTicket = db.TicketGrupoUsuario.SingleOrDefault(s => s.IdTicket == idTicket && s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte);
                 if (gpoTicket != null)
                 {
                     if (gpoTicket.IdGrupoUsuario != idGrupo)
@@ -264,7 +264,7 @@ namespace KinniNet.Core.Sistema
                     }
                     GrupoUsuario gpo;
                     if (idUsuario == ticket.IdUsuarioSolicito)
-                        gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.GrupoUsuario).SingleOrDefault();
+                        gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).Select(s => s.GrupoUsuario).SingleOrDefault();
                     else
                         gpo = ticket.TicketGrupoUsuario.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Select(s => s.GrupoUsuario).FirstOrDefault();
                     if (gpo != null)

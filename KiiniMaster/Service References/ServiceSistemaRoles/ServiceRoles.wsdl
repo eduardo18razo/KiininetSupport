@@ -9,12 +9,12 @@
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
-      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
       <xsd:import schemaLocation="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
     </xsd:schema>
   </wsdl:types>
@@ -24,16 +24,35 @@
   <wsdl:message name="IServiceRoles_ObtenerRoles_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerRolesResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceRoles_ObtenerRolesArbolAcceso_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerRolesArbolAcceso" />
+  </wsdl:message>
+  <wsdl:message name="IServiceRoles_ObtenerRolesArbolAcceso_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerRolesArbolAccesoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceRoles">
     <wsdl:operation name="ObtenerRoles">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceRoles/ObtenerRoles" message="tns:IServiceRoles_ObtenerRoles_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceRoles/ObtenerRolesResponse" message="tns:IServiceRoles_ObtenerRoles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRolesArbolAcceso">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceRoles/ObtenerRolesArbolAcceso" message="tns:IServiceRoles_ObtenerRolesArbolAcceso_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceRoles/ObtenerRolesArbolAccesoResponse" message="tns:IServiceRoles_ObtenerRolesArbolAcceso_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceRoles">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="ObtenerRoles">
       <soap:operation soapAction="http://tempuri.org/IServiceRoles/ObtenerRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRolesArbolAcceso">
+      <soap:operation soapAction="http://tempuri.org/IServiceRoles/ObtenerRolesArbolAcceso" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

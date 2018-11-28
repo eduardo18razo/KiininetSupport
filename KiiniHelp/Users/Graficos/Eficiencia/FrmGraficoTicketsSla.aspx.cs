@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -11,6 +12,7 @@ using KiiniHelp.ServiceSistemaEstatus;
 using KiiniNet.Entities.Operacion.Usuarios;
 using Telerik.Web.UI;
 using Telerik.Web.UI.HtmlChart;
+using Telerik.Web.UI.HtmlChart.Enums;
 
 namespace KiiniHelp.Users.Graficos.Eficiencia
 {
@@ -150,25 +152,26 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
         {
             try
             {
+                grafico.ChartTitle.Appearance.Visible = false;
                 switch (ucFiltrosTicketSla.TipoPeriodo)
                 {
                     case 1:
-                        grafico.ChartTitle.Text = string.Format("Pareto diario: {0} - {1}",
+                        lblPiePareto.Text = string.Format("Diario: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
                     case 2:
-                        grafico.ChartTitle.Text = string.Format("Pareto semanal: {0} - {1}",
+                        lblPiePareto.Text = string.Format("Semanal: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
                     case 3:
-                        grafico.ChartTitle.Text = string.Format("Pareto mensual: {0} - {1}",
+                        lblPiePareto.Text = string.Format("Mensual: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToString("MMM"),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToString("MMM"));
                         break;
                     case 4:
-                        grafico.ChartTitle.Text = string.Format("Pareto anual: {0} - {1}",
+                        lblPiePareto.Text = string.Format("Anual: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
@@ -191,7 +194,8 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                         {
                             total += decimal.Parse(dt.Rows[row][i].ToString());
                         }
-                        lstPareto.Single(s => s.Descripcion == dt.Rows[row][1].ToString()).Total = total;
+                        if (lstPareto.Any(s => s.Id == int.Parse(dt.Rows[row][0].ToString())))
+                            lstPareto.Single(s => s.Id == int.Parse(dt.Rows[row][0].ToString())).Total = total;
                     }
 
                     lstPareto = lstPareto.OrderByDescending(o => o.Total).ToList();
@@ -206,19 +210,21 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
 
                     dtData = ConvertToDataTable(lstPareto);
                     grafico.Width = Unit.Percentage(100);
-                    grafico.Height = Unit.Pixel(500);
-                    grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+                    grafico.Legend.Appearance.Position = ChartLegendPosition.Right;
                     grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Vertical;
                     grafico.PlotArea.XAxis.LabelsAppearance.DataFormatString = "{0}";
                     ColumnSeries column = new ColumnSeries { Name = stack, Stacked = false };
-                    column.TooltipsAppearance.ClientTemplate = "#= series.name# Total: #= dataItem.value#";
+                    column.ColorField = "Color";
+
+                    column.Appearance.Overlay.Gradient = Gradients.None;
+                    column.TooltipsAppearance.ClientTemplate = "#= series.name#: #= dataItem.value#";
                     column.LabelsAppearance.Visible = false;
                     grafico.PlotArea.XAxis.Items.Clear();
                     foreach (DataRow row in dtData.Rows)
                     {
                         if (row[2].ToString() != "Total")
                         {
-                            column.SeriesItems.Add(int.Parse(row[3].ToString()));
+                            column.SeriesItems.Add(int.Parse(row[3].ToString()), ColorTranslator.FromHtml(row[1].ToString()));
                             grafico.PlotArea.XAxis.Items.Add(row[2].ToString());
                         }
                     }
@@ -228,7 +234,16 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
 
                     MakePareto(grafico, dtData, stack);
                 }
-                grafico.PlotArea.XAxis.LabelsAppearance.RotationAngle = 270;
+                grafico.PlotArea.XAxis.LabelsAppearance.RotationAngle = -45;
+
+                grafico.Legend.Appearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                grafico.Legend.Appearance.TextStyle.FontSize = 10;
+
+                grafico.PlotArea.YAxis.LabelsAppearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                grafico.PlotArea.YAxis.LabelsAppearance.TextStyle.FontSize = 10;
+                grafico.PlotArea.XAxis.LabelsAppearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                grafico.PlotArea.XAxis.LabelsAppearance.TextStyle.FontSize = 10;
+
                 grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
                 grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
                 grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
@@ -241,7 +256,6 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                 throw new Exception(ex.Message);
             }
         }
-
         private void MakePareto(RadHtmlChart grafico, DataTable dt, string name)
         {
             try
@@ -249,18 +263,22 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                 grafico.PlotArea.AdditionalYAxes.Clear();
                 grafico.PlotArea.AdditionalYAxes.Add(new AxisY { Name = "Lines" });
                 grafico.PlotArea.AdditionalYAxes[0].MaxValue = 1;
-                grafico.PlotArea.AdditionalYAxes[0].LabelsAppearance.DataFormatString = "{0:P}";
+                grafico.PlotArea.AdditionalYAxes[0].LabelsAppearance.DataFormatString = "{0:P0}";
+
+                grafico.PlotArea.AdditionalYAxes[0].LabelsAppearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                grafico.PlotArea.AdditionalYAxes[0].LabelsAppearance.TextStyle.FontSize = 10;
+
                 LineSeries lineSerie = new LineSeries();
-                lineSerie.LabelsAppearance.DataFormatString = "{0:P}";
+
+                lineSerie.Appearance.Overlay.Gradient = Gradients.None;
+                lineSerie.LabelsAppearance.Position = LineAndScatterLabelsPosition.Below;
+                lineSerie.LabelsAppearance.DataFormatString = "{0:P0}";
                 lineSerie.TooltipsAppearance.DataFormatString = "{0:P}";
                 lineSerie.Name = "Pareto";
                 lineSerie.AxisName = "Lines";
                 foreach (DataRow row in dt.Rows)
                 {
-                    //for (int c = 1; c < dt.Columns.Count; c++)
-                    //{
                     lineSerie.SeriesItems.Add((decimal)row[4]);
-                    //}
                 }
 
                 grafico.PlotArea.Series.Add(lineSerie);
@@ -274,25 +292,26 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
         {
             try
             {
+                grafico.ChartTitle.Appearance.Visible = false;
                 switch (ucFiltrosTicketSla.TipoPeriodo)
                 {
                     case 1:
-                        grafico.ChartTitle.Text = string.Format("Tendencia diario: {0} - {1}",
+                        lblPieTendencia.Text = string.Format("Diario: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
                     case 2:
-                        grafico.ChartTitle.Text = string.Format("Tendencia semanal: {0} - {1}",
+                        lblPieTendencia.Text = string.Format("Semanal: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
                     case 3:
-                        grafico.ChartTitle.Text = string.Format("Tendencia mensual: {0} - {1}",
+                        lblPieTendencia.Text = string.Format("Mensual: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToString("MMM"),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToString("MMM"));
                         break;
                     case 4:
-                        grafico.ChartTitle.Text = string.Format("Tendencia anual: {0} - {1}",
+                        lblPieTendencia.Text = string.Format("Anual: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
@@ -318,19 +337,19 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                     dt = dv.ToTable();
                     dt.Columns.Remove("Totales");
 
-                    grafico.Width = Unit.Percentage(100);
-                    grafico.Height = Unit.Pixel(500);
                     grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
-                    grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Vertical;
+                    grafico.Legend.Appearance.Orientation = ChartLegendOrientation.Horizontal;
                     foreach (DataRow row in dt.Rows)
                     {
                         ColumnSeries column = new ColumnSeries();
+
+                        column.Appearance.Overlay.Gradient = Gradients.None;
                         column.Name = row[1].ToString();
                         column.Appearance.FillStyle.BackgroundColor = ColorTranslator.FromHtml(row[2].ToString());
                         column.GroupName = "Stacked";
                         column.Stacked = true;
 
-                        column.TooltipsAppearance.ClientTemplate = "#= series.name# Total: #= dataItem.value#";
+                        column.TooltipsAppearance.ClientTemplate = "#= series.name#: #= dataItem.value#";
                         column.LabelsAppearance.Visible = false;
                         for (int c = 3; c < dt.Columns.Count; c++)
                         {
@@ -343,7 +362,16 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                         grafico.PlotArea.XAxis.Items.Add(dt.Columns[c].ColumnName);
                     }
                 }
-                grafico.PlotArea.XAxis.LabelsAppearance.RotationAngle = 270;
+                grafico.PlotArea.XAxis.LabelsAppearance.RotationAngle = -45;
+
+                grafico.Legend.Appearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                grafico.Legend.Appearance.TextStyle.FontSize = 10;
+
+                grafico.PlotArea.YAxis.LabelsAppearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                grafico.PlotArea.YAxis.LabelsAppearance.TextStyle.FontSize = 10;
+                grafico.PlotArea.XAxis.LabelsAppearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                grafico.PlotArea.XAxis.LabelsAppearance.TextStyle.FontSize = 10;
+
                 grafico.PlotArea.XAxis.MajorGridLines.Width = 0;
                 grafico.PlotArea.XAxis.MinorGridLines.Width = 0;
                 grafico.PlotArea.YAxis.MajorGridLines.Width = 0;
@@ -356,30 +384,30 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                 throw new Exception(ex.Message);
             }
         }
-
         private void GeneraGraficaStackedPie(RadHtmlChart grafico, DataTable dt)
         {
             try
             {
+                grafico.ChartTitle.Appearance.Visible = false;
                 switch (ucFiltrosTicketSla.TipoPeriodo)
                 {
                     case 1:
-                        grafico.ChartTitle.Text = string.Format("Total diario: {0} - {1}",
+                        lblPieGeneral.Text = string.Format("Diario: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
                     case 2:
-                        grafico.ChartTitle.Text = string.Format("Total semanal: {0} - {1}",
+                        lblPieGeneral.Text = string.Format("Semanal: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
                     case 3:
-                        grafico.ChartTitle.Text = string.Format("Total mensual: {0} - {1}",
+                        lblPieGeneral.Text = string.Format("Mensual: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToString("MMM"),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToString("MMM"));
                         break;
                     case 4:
-                        grafico.ChartTitle.Text = string.Format("Total anual: {0} - {1}",
+                        lblPieGeneral.Text = string.Format("Anual: {0} - {1}",
                             ucFiltrosTicketSla.FiltroFechas == null ? "Historico" : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "inicio").Value.ToShortDateString(),
                             ucFiltrosTicketSla.FiltroFechas == null ? string.Empty : ucFiltrosTicketSla.FiltroFechas.Single(s => s.Key == "fin").Value.ToShortDateString());
                         break;
@@ -397,18 +425,31 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                         {
                             total += decimal.Parse(dt.Rows[row][i].ToString());
                         }
-                        lstPareto.Single(s => s.Descripcion == dt.Rows[row][1].ToString()).Total = total;
+                        lstPareto.Single(s => s.Id == int.Parse(dt.Rows[row][0].ToString())).Total = total;
                     }
 
                     lstPareto = lstPareto.OrderByDescending(o => o.Total).ToList();
-                    PieSeries pieSerie = new PieSeries();
-                    pieSerie.DataFieldY = "Total";
-                    pieSerie.NameField = "Descripcion";
-                    pieSerie.ColorField = "Color";
-                    pieSerie.LabelsAppearance.Visible = true;
-                    pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
-                    grafico.PlotArea.Series.Add(pieSerie);
+                    DonutSeries donutSerie = new DonutSeries();
+                    donutSerie.Appearance.Overlay.Gradient = Gradients.None;
+                    donutSerie.ExplodeField = "false";
+                    donutSerie.DataFieldY = "Total";
+                    donutSerie.NameField = "Descripcion";
+                    donutSerie.ColorField = "Color";
+                    donutSerie.LabelsAppearance.Visible = true;
+                    donutSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
+
+                    grafico.Legend.Appearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                    grafico.Legend.Appearance.TextStyle.FontSize = 10;
+
+                    grafico.PlotArea.YAxis.LabelsAppearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                    grafico.PlotArea.YAxis.LabelsAppearance.TextStyle.FontSize = 10;
+                    grafico.PlotArea.XAxis.LabelsAppearance.TextStyle.FontFamily = ConfigurationManager.AppSettings["TipografiaFuente"];
+                    grafico.PlotArea.XAxis.LabelsAppearance.TextStyle.FontSize = 10;
+
+                    grafico.PlotArea.Series.Add(donutSerie);
                 }
+
+                //}
                 grafico.DataSource = lstPareto;
                 grafico.DataBind();
             }

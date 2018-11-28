@@ -120,6 +120,7 @@
     <Content Include="Properties\DataSources\KiiniNet.Entities.Operacion.Usuarios.UsuarioGrupo.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.EstatusAsignacionSubRolGeneral.datasource" />
     <Content Include="Properties\DataSources\KiiniNet.Entities.Parametros.EstatusTicketSubRolGeneral.datasource" />
+    <Content Include="Properties\DataSources\KiiniNet.Entities.Cat.Sistema.RolTipoArbolAcceso.datasource" />
     <None Include="Service References\ServiceGrupoUsuario\ServiceGrupoUsuario.wsdl" />
     <None Include="Service References\ServiceGrupoUsuario\ServiceGrupoUsuario.xsd">
       <SubType>Designer</SubType>

@@ -17,6 +17,9 @@ namespace KiiniHelp.ServiceSistemaRol {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceRoles/ObtenerRoles", ReplyAction="http://tempuri.org/IServiceRoles/ObtenerRolesResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.Rol> ObtenerRoles(int idTipoUsuario, bool insertarSeleccion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceRoles/ObtenerRolesArbolAcceso", ReplyAction="http://tempuri.org/IServiceRoles/ObtenerRolesArbolAccesoResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.RolTipoArbolAcceso> ObtenerRolesArbolAcceso(int idTipoArbolAcceso);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -48,6 +51,10 @@ namespace KiiniHelp.ServiceSistemaRol {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.Rol> ObtenerRoles(int idTipoUsuario, bool insertarSeleccion) {
             return base.Channel.ObtenerRoles(idTipoUsuario, insertarSeleccion);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Cat.Sistema.RolTipoArbolAcceso> ObtenerRolesArbolAcceso(int idTipoArbolAcceso) {
+            return base.Channel.ObtenerRolesArbolAcceso(idTipoArbolAcceso);
         }
     }
 }

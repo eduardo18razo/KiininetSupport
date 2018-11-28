@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kiinisupport</title>
+    <title>Kiininet CXP</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
 
     <link rel='stylesheet' href="assets/css/font.css" />
@@ -41,7 +41,7 @@
                 </div>
             </ProgressTemplate>
         </asp:UpdateProgress>
-        <asp:HiddenField runat="server" ID="hfNumeroInicial"/>
+        <asp:HiddenField runat="server" ID="hfNumeroInicial" />
         <asp:UpdatePanel ID="upGeneral" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <section class="panelsectionbacground panelsection">
@@ -59,13 +59,13 @@
                                                 <div class="form-group no-margin-bottom text-left">
                                                     <asp:Label runat="server" ID="lblCaracteristicas" Text="La contraseña debe tener:" CssClass="control-label text-bold2" />
                                                     <ul runat="server" id="listParamtros" class="list styleList text-bold2">
-                                                        <li runat="server" ID="paramLongitud">
+                                                        <li runat="server" id="paramLongitud">
                                                             <asp:Label runat="server" ID="lblLongitud" Text="Longitud minima de 8 caracteres"></asp:Label></li>
-                                                        <li runat="server" ID="paramMayuscula">
+                                                        <li runat="server" id="paramMayuscula">
                                                             <asp:Label runat="server" ID="Label3" Text="1 Mayuscula"></asp:Label></li>
-                                                        <li runat="server" ID="paramNumero">
+                                                        <li runat="server" id="paramNumero">
                                                             <asp:Label runat="server" ID="Label6" Text="1 Numero"></asp:Label></li>
-                                                        <li runat="server" ID="paramEspecial">
+                                                        <li runat="server" id="paramEspecial">
                                                             <asp:Label runat="server" ID="Label7" Text="1 Caracter especial"></asp:Label></li>
                                                     </ul>
                                                 </div>
@@ -83,33 +83,35 @@
                                                 <div class="form-group no-margin-bottom">
                                                     <asp:TextBox runat="server" ID="txtConfirmaContrasena" type="password" CssClass="form-control text-no-transform"></asp:TextBox>
                                                 </div>
-                                                <div class="form-group no-margin-bottom">
-                                                    <asp:Label runat="server" class="text-left col-lg-12 no-padding-left" Text="Si tu número celular es correcto envía el código para verificar tu cuenta, en caso contrario puedes modificar tu número celular" />
-                                                </div>
-                                                <asp:Label runat="server" ID="lblId" Visible="False" />
-                                                <asp:Label runat="server" ID="lblTelefono" Visible="False" />
-                                                <asp:Label runat="server" ID="lblIdUsuario" Visible="False" />
-                                                <div class="form-group no-margin-bottom">
-                                                    <asp:Label runat="server" ID="Label1" Text="Número Celular" CssClass="control-label" />
-                                                </div>
-                                                <div class="form-group no-margin-bottom">
-                                                    <asp:TextBox runat="server" CssClass="form-control" Text='<%# Eval("Numero") %>' ID="txtNumeroEdit" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
-                                                </div>
-                                                <div class="form-group no-margin-bottom">
-                                                    <asp:Label runat="server" ID="Label2" Text="Confirma tu número Celular" CssClass="control-label" />
-                                                </div>
-                                                <div class="form-group no-margin-bottom">
-                                                    <asp:TextBox runat="server" CssClass="form-control" Text='<%# Eval("Numero") %>' ID="txtNumeroConfirmEdit" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <asp:Button runat="server" Text="Cambiar Número" CssClass="btn btn-primary " ID="btnChangeNumber" CommandArgument="0" OnClick="btnChangeNumber_OnClick" Width="130px" Visible="False" />
-                                                        <asp:Button runat="server" Text="Confirmar Número" CssClass="btn btn-primary" ID="btnSendNotification" OnClick="btnSendNotification_OnClick" Width="130px" />
+
+                                                <div runat="server" id="divTelefonoConfirmacion">
+                                                    <div class="form-group no-margin-bottom">
+                                                        <asp:Label runat="server" class="text-left col-lg-12 no-padding-left" Text="Si tu número celular es correcto envía el código para verificar tu cuenta, en caso contrario puedes modificar tu número celular" />
+                                                    </div>
+                                                    <asp:Label runat="server" ID="lblId" Visible="False" />
+                                                    <asp:Label runat="server" ID="lblTelefono" Visible="False" />
+                                                    <asp:Label runat="server" ID="lblIdUsuario" Visible="False" />
+                                                    <div class="form-group no-margin-bottom">
+                                                        <asp:Label runat="server" ID="Label1" Text="Número Celular" CssClass="control-label" />
+                                                    </div>
+                                                    <div class="form-group no-margin-bottom">
+                                                        <asp:TextBox runat="server" CssClass="form-control" Text='<%# Eval("Numero") %>' ID="txtNumeroEdit" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
+                                                    </div>
+                                                    <div class="form-group no-margin-bottom">
+                                                        <asp:Label runat="server" ID="Label2" Text="Confirma tu número Celular" CssClass="control-label" />
+                                                    </div>
+                                                    <div class="form-group no-margin-bottom">
+                                                        <asp:TextBox runat="server" CssClass="form-control" Text='<%# Eval("Numero") %>' ID="txtNumeroConfirmEdit" onkeypress="return ValidaCampo(this,2)" MaxLength="10" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <asp:Button runat="server" Text="Cambiar Número" CssClass="btn btn-primary " ID="btnChangeNumber" CommandArgument="0" OnClick="btnChangeNumber_OnClick" Width="130px" Visible="False" />
+                                                            <asp:Button runat="server" Text="Confirmar Número" CssClass="btn btn-primary" ID="btnSendNotification" OnClick="btnSendNotification_OnClick" Width="130px" />
+                                                        </div>
                                                     </div>
                                                 </div>
 
-
-                                                <div runat="server" id="divConfirmacion" visible="False">
+                                                <div runat="server" id="divCodigoConfirmacion" visible="False">
                                                     <div class="form-group no-margin-bottom">
                                                         <asp:Label runat="server" Text="Recibiras un código de confirmación en tu celular, favor de digitarlo" class="text-left col-lg-12 no-padding-left text-bold2" />
                                                     </div>
@@ -126,6 +128,9 @@
                                                     <div class="form-group no-margin-bottom">
                                                         <asp:TextBox runat="server" CssClass="form-control" ID="txtCodigo" onkeypress="return ValidaCampo(this,2)" MaxLength="5" />
                                                     </div>
+                                                </div>
+
+                                                <div runat="server" id="divPreguntaReto" visible="False">
 
                                                     <div class="form-group no-margin-bottom">
                                                         <asp:Label ID="Label4" runat="server" Text="Ingresa tu pregunta secreta" class="text-left col-lg-12 no-padding-left" />
@@ -144,16 +149,17 @@
                                                         <asp:Button ID="btnAceptar" runat="server" CssClass="btn btn-primary" Text="Aceptar" OnClick="btnAceptar_OnClick" />
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row copyright2">
-                                        <img src="assets/images/logo_kinninet_blanco.png"><br />
-                                        &copy; 2018
-                                    </div>
+                                </div>
+                                <div class="row copyright2">
+                                    <img src="assets/images/logo_kinninet_blanco.png"><br />
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </section>
             </ContentTemplate>

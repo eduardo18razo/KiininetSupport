@@ -7,8 +7,8 @@
         <asp:HiddenField runat="server" ID="hfticket" />
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
-                Servicio/Incidente<br />
-                <tc:RadComboBox ID="rcbFiltroServicioIncidente" runat="server" RenderMode="Lightweight"  CheckBoxes="true" EnableCheckAllItemsCheckBox="true" OnClientDropDownClosing="doPostback" />
+                Tipo Ticket<br />
+                <tc:RadComboBox ID="rcbFiltroServicioIncidente" runat="server" RenderMode="Lightweight" CssClass="form-control no-border no-padding-left widht200" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" OnClientDropDownClosing="doPostback" />
             </div>
         </div>
         <script type="text/javascript">

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Recuperar Cuenta</title>
+    <title>Kiininet CXP</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
     <link rel='stylesheet' href="assets/css/font.css" />
     <link rel="stylesheet" href="assets/css/font-awesome.css" />
@@ -68,7 +68,6 @@
                             </div>
                             <div class="row copyright2">
                                 <img src="assets/images/logo_kinninet_blanco.png"><br />
-                                &copy; 2018                       
                             </div>
                         </div>
                     </section>
@@ -123,7 +122,6 @@
                             </div>
                             <div class="row copyright2">
                                 <img src="assets/images/logo_kinninet_blanco.png"><br />
-                                &copy; 2018                       
                             </div>
                         </div>
                     </section>
@@ -168,7 +166,6 @@
                             </div>
                             <div class="row copyright2">
                                 <img src="assets/images/logo_kinninet_blanco.png"><br />
-                                &copy; 2018                       
                             </div>
                         </div>
                     </section>
@@ -232,7 +229,6 @@
                             </div>
                             <div class="row copyright2">
                                 <img src="assets/images/logo_kinninet_blanco.png"><br />
-                                &copy; 2018                       
                             </div>
                         </div>
                     </section>

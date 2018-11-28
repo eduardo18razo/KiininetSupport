@@ -618,7 +618,7 @@ namespace KiiniHelp.UserControls.Altas
                     AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, true);
                     AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, true);
                     AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeContenido, true);
-                    AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ConsultasEspeciales, true);
+                    AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoAnalíticos, true);
                     //Información de Consulta
                     List<InformacionConsulta> infoCons = _servicioSistemaTipoInformacionConsulta.ObtenerTipoInformacionConsulta(false).Select(tipoInf => new InformacionConsulta { TipoInfConsulta = tipoInf }).ToList();
                     rptInformacion.DataSource = infoCons;
@@ -635,7 +635,7 @@ namespace KiiniHelp.UserControls.Altas
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeOperación, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Agente, true);
-                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ConsultasEspeciales, true);
+                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoAnalíticos, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeCategoría, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AgenteUniversal, true);
                 AsociarGrupoUsuario.Limpiar();

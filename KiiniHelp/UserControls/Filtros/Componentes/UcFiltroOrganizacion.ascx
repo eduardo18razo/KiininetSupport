@@ -5,7 +5,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 Organización<br />
-                <tc:RadComboBox ID="rcbFiltroOrganizacion" runat="server" RenderMode="Lightweight"  CheckBoxes="true" EnableCheckAllItemsCheckBox="true" />
+                <tc:RadComboBox ID="rcbFiltroOrganizacion" runat="server" RenderMode="Lightweight" CssClass="form-control no-border no-padding-left widht200" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" />
             </div>
         </div>
     </ContentTemplate>

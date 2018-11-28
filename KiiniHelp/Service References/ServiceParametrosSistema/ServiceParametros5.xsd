@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
-  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
-  <xs:element name="TelefonosObligatorios">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="idTipoUsuario" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="TelefonosObligatoriosResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="TelefonosObligatoriosResult" nillable="true" type="q1:ArrayOfParametrosTelefonos" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+  <xs:import schemaLocation="http://localhost:15277/ServiceParametros.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
   <xs:element name="ObtenerTelefonosParametrosIdTipoUsuario">
     <xs:complexType>
       <xs:sequence>
@@ -27,7 +13,7 @@
   <xs:element name="ObtenerTelefonosParametrosIdTipoUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="ObtenerTelefonosParametrosIdTipoUsuarioResult" nillable="true" type="q2:ArrayOfTelefonoUsuario" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="ObtenerTelefonosParametrosIdTipoUsuarioResult" nillable="true" type="q1:ArrayOfTelefonoUsuario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -42,7 +28,7 @@
   <xs:element name="ObtenerCorreosParametrosIdTipoUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="ObtenerCorreosParametrosIdTipoUsuarioResult" nillable="true" type="q3:ArrayOfCorreoUsuario" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" minOccurs="0" name="ObtenerCorreosParametrosIdTipoUsuarioResult" nillable="true" type="q2:ArrayOfCorreoUsuario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -54,7 +40,21 @@
   <xs:element name="ObtenerParametrosGeneralesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerParametrosGeneralesResult" nillable="true" type="q4:ParametrosGenerales" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerParametrosGeneralesResult" nillable="true" type="q3:ParametrosGenerales" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerParametrosUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idTipoUsuario" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerParametrosUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerParametrosUsuarioResult" nillable="true" type="q4:ParametrosUsuario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -133,6 +133,42 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerFrecuenciasFechaResult" nillable="true" type="q10:ArrayOfFrecuenciaFecha" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerColoresTop">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerColoresTopResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerColoresTopResult" nillable="true" type="q11:ArrayOfColoresTop" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerColoresSla">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerColoresSlaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerColoresSlaResult" nillable="true" type="q12:ArrayOfColoresSla" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerArchivosPermitidos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerArchivosPermitidosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" minOccurs="0" name="ObtenerArchivosPermitidosResult" nillable="true" type="q13:ArrayOfArchivosPermitidos" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -67,7 +67,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                     (int) BusinessVariables.EnumTiposGrupos.AccesoAnalíticos
                 };
 
-                rptGpos.DataSource = _servicioGrupoUsuario.ObtenerGruposByIdUsuario(((Usuario)Session["UserData"]).Id, false).Where(w => w.IdTipoGrupo != (int)BusinessVariables.EnumTiposGrupos.Usuario && filtroGrupos.Contains(w.IdTipoGrupo));
+                rptGpos.DataSource = _servicioGrupoUsuario.ObtenerGruposByIdUsuario(((Usuario)Session["UserData"]).Id, false).Where(w => w.IdTipoGrupo != (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte && filtroGrupos.Contains(w.IdTipoGrupo));
                 rptGpos.DataBind();
             }
             catch (Exception e)

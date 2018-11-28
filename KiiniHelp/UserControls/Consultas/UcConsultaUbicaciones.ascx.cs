@@ -177,7 +177,7 @@ namespace KiiniHelp.UserControls.Consultas
                 }
                 else if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                 {
-                    if (IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agente || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado)
+                    if (IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agentes || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Cliente || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Proveedor || IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Empleado)
                         LlenaUbicaciones();
                 }
             }

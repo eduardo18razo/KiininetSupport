@@ -15,6 +15,10 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         [DataMember]
         public bool Success { get; set; }
         [DataMember]
+        public string SessionId { get; set; }
+        [DataMember]
+        public bool? Terminated { get; set; }
+        [DataMember]
         public virtual Usuario Usuario { get; set; }
     }
 }

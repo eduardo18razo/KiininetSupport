@@ -9,5 +9,8 @@ namespace KiiniNet.Services.Sistema.Interface
     {
         [OperationContract]
         List<Rol> ObtenerRoles(int idTipoUsuario, bool insertarSeleccion);
+
+        [OperationContract]
+        List<RolTipoArbolAcceso> ObtenerRolesArbolAcceso(int idTipoArbolAcceso);
     }
 }

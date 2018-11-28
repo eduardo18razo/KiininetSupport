@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using KiiniHelp.Funciones;
+using KiiniHelp.ServiceSeguridad;
 using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Operacion.Usuarios;
 using System.Web.UI.WebControls;
+using KinniNet.Business.Utils;
 
 
 namespace KiiniHelp
@@ -14,6 +17,7 @@ namespace KiiniHelp
     public partial class Identificar : Page
     {
         private bool ValidCaptcha = false;
+        private readonly ServiceSecurityClient _servicioSeguridad = new ServiceSecurityClient();
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
         private List<string> _lstError = new List<string>();
 
@@ -30,10 +34,41 @@ namespace KiiniHelp
             }
         }
 
+        private void GeneraCoockie()
+        {
+            try
+            {
+                if (Request.Cookies["miui"] != null)
+                {
+                    var value = BusinessQueryString.Decrypt(Request.Cookies["miui"]["iuiu"]);
+                }
+                else
+                {
+                    string llave = _servicioSeguridad.GeneraLlaveMaquina();
+                    HttpCookie myCookie = new HttpCookie("miui");
+                    myCookie.Values.Add("iuiu", BusinessQueryString.Encrypt(llave));
+                    myCookie.Expires = DateTime.Now.AddYears(10);
+                    Response.Cookies.Add(myCookie);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                if (!IsPostBack)
+                    GeneraCoockie();
+                HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (myCookie != null && Session["UserData"] != null)
+                {
+                    Response.Redirect("~/Users/DashBoard.aspx");
+                }
                 Alerta = new List<string>();
                 if (Request.Params["confirmacionalta"] != null)
                 {

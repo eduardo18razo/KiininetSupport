@@ -117,6 +117,12 @@
   <wsdl:message name="IServiceUsuarios_ValidaConfirmacion_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidaConfirmacionResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaConfirmacionCambioCorreo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaConfirmacionCambioCorreo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaConfirmacionCambioCorreo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaConfirmacionCambioCorreoResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceUsuarios_ValidaCodigoVerificacionSms_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidaCodigoVerificacionSms" />
   </wsdl:message>
@@ -259,6 +265,10 @@
     <wsdl:operation name="ValidaConfirmacion">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacion" message="tns:IServiceUsuarios_ValidaConfirmacion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionResponse" message="tns:IServiceUsuarios_ValidaConfirmacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConfirmacionCambioCorreo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreo" message="tns:IServiceUsuarios_ValidaConfirmacionCambioCorreo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreoResponse" message="tns:IServiceUsuarios_ValidaConfirmacionCambioCorreo_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ValidaCodigoVerificacionSms">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionSms" message="tns:IServiceUsuarios_ValidaCodigoVerificacionSms_InputMessage" />
@@ -452,6 +462,15 @@
     </wsdl:operation>
     <wsdl:operation name="ValidaConfirmacion">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaConfirmacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConfirmacionCambioCorreo">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

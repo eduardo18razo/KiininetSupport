@@ -57,24 +57,16 @@ namespace KinniNet.Core.Demonio
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
 
                 //Listas Notificacion Correo
-                List<Ticket> informeDueñoCorreo = new List<Ticket>();
-                List<Ticket> informeMantenimientoCorreo = new List<Ticket>();
-                List<Ticket> informeDesarrolloCorreo = new List<Ticket>();
-                List<Ticket> informeConsultaCorreo = new List<Ticket>();
-                //Listas Notificacion SMS
-                List<Ticket> informeDueñoSms = new List<Ticket>();
-                List<Ticket> informeMantenimientoSms = new List<Ticket>();
-                List<Ticket> informeDesarrolloSms = new List<Ticket>();
-                List<Ticket> informeConsultaSms = new List<Ticket>();
+                List<Ticket> informeNotificacionCorreo = new List<Ticket>();
+
+                ////Listas Notificacion SMS
+                List<Ticket> informeNotificacionSms = new List<Ticket>();
 
                 ParametrosGenerales parametros = db.ParametrosGenerales.SingleOrDefault();
                 if (parametros != null)
                 {
                     List<int> tiposGposNotificar = new List<int>();
-                    tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.Agente);
-                    tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido);
-                    tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo);
-                    tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos);
+                    tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.Notificaciones);
 
                     DateTime fechaConsulta = DateTime.Now;
                     List<TiempoInformeArbol> lstTiempoInforme = (from tia in db.TiempoInformeArbol
@@ -84,7 +76,7 @@ namespace KinniNet.Core.Demonio
                                                                  select tia).Distinct().ToList();
                     foreach (TiempoInformeArbol tiempoInforme in lstTiempoInforme)
                     {
-                        int tiemponotificacionHoras = 0;
+                        int tiemponotificacionHoras;
                         var qry = from t in db.Ticket
                                   where t.IdEstatusTicket < (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto
                                   && t.IdArbolAcceso == tiempoInforme.IdArbol
@@ -161,34 +153,16 @@ namespace KinniNet.Core.Demonio
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo:
                                 switch (tiempoInforme.IdTipoGrupo)
                                 {
-                                    case (int)BusinessVariables.EnumTiposGrupos.Agente:
-                                        informeDueñoCorreo.AddRange(tickets.ToList().Distinct());
-                                        break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido:
-                                        informeMantenimientoCorreo.AddRange(tickets.ToList().Distinct());
-                                        break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo:
-                                        informeDesarrolloCorreo.AddRange(tickets.ToList().Distinct());
-                                        break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
-                                        informeConsultaCorreo.AddRange(tickets.ToList().Distinct());
+                                    case (int)BusinessVariables.EnumTiposGrupos.Notificaciones:
+                                        informeNotificacionCorreo.AddRange(tickets.ToList().Distinct());
                                         break;
                                 }
                                 break;
                             case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms:
                                 switch (tiempoInforme.IdTipoGrupo)
                                 {
-                                    case (int)BusinessVariables.EnumTiposGrupos.Agente:
-                                        informeDueñoSms.AddRange(tickets.ToList().Distinct());
-                                        break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido:
-                                        informeMantenimientoSms.AddRange(tickets.ToList().Distinct());
-                                        break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo:
-                                        informeDesarrolloSms.AddRange(tickets.ToList().Distinct());
-                                        break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
-                                        informeConsultaSms.AddRange(tickets.ToList().Distinct());
+                                    case (int)BusinessVariables.EnumTiposGrupos.Notificaciones:
+                                        informeNotificacionSms.AddRange(tickets.ToList().Distinct());
                                         break;
                                 }
                                 break;
@@ -196,24 +170,12 @@ namespace KinniNet.Core.Demonio
                     }
 
                     // Envia notificacion Correo
-                    if (informeDueñoCorreo.Any())
-                        EnviaNotificacion(informeDueñoCorreo, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeCategoría, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
-                    if (informeMantenimientoCorreo.Any())
-                        EnviaNotificacion(informeMantenimientoCorreo, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
-                    if (informeDesarrolloCorreo.Any())
-                        EnviaNotificacion(informeDesarrolloCorreo, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
-                    if (informeConsultaCorreo.Any())
-                        EnviaNotificacion(informeConsultaCorreo, (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
+                    if (informeNotificacionCorreo.Any())
+                        EnviaNotificacion(informeNotificacionCorreo, (int)BusinessVariables.EnumTiposGrupos.Notificaciones, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
 
                     //Envia Notificacion SMS
-                    if (informeDueñoSms.Any())
-                        EnviaNotificacion(informeDueñoSms, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeCategoría, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
-                    if (informeMantenimientoSms.Any())
-                        EnviaNotificacion(informeMantenimientoSms, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
-                    if (informeDesarrolloSms.Any())
-                        EnviaNotificacion(informeDesarrolloSms, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
-                    if (informeConsultaSms.Any())
-                        EnviaNotificacion(informeConsultaSms, (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
+                    if (informeNotificacionSms.Any())
+                        EnviaNotificacion(informeNotificacionSms, (int)BusinessVariables.EnumTiposGrupos.Notificaciones, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
                 }
             }
             catch (Exception e)
@@ -308,7 +270,7 @@ namespace KinniNet.Core.Demonio
                     TicketNotificacion lastNotificacion = db.TicketNotificacion.Where(w => w.IdTicket == idTicket && w.IdGrupoUsuario == idGrupoUsuario && w.CorreoUsuario == correoUsuario).ToList().LastOrDefault();
                     if (lastNotificacion != null)
                     {
-                        if (lastNotificacion.FechaNotificacion.AddMinutes(parametros.FrecuenciaNotificacionMinutos) >= DateTime.Now)
+                        if (DateTime.Now >= lastNotificacion.FechaNotificacion.AddMinutes(parametros.FrecuenciaNotificacionMinutos))
                         {
 
                             TicketNotificacion tn = new TicketNotificacion

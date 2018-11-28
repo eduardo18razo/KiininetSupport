@@ -278,6 +278,19 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
-
+        public GrupoUsuario ObtenerGrupoDefaultRol(int idRol, int idTipoUsuario)
+        {
+            try
+            {
+                using (BusinessGrupoUsuario negocio = new BusinessGrupoUsuario())
+                {
+                    return negocio.ObtenerGrupoDefaultRol(idRol, idTipoUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

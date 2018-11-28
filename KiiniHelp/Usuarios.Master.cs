@@ -53,11 +53,11 @@ namespace KiiniHelp
             value = value.Trim() == string.Empty ? BusinessErrores.ObtenerMensajeByKey(BusinessVariables.EnumMensajes.Exito) : value;
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('','" + value + "');", true);
         }
-        private void ObtenerAreas()
+        private void ObtenerRoles()
         {
             try
             {
-                List<Rol> lstRoles = _servicioSeguridad.ObtenerRolesUsuario(((Usuario)Session["UserData"]).Id).Where(w => w.Id != (int)BusinessVariables.EnumRoles.AccesoAnalíticos).ToList();
+                List<Rol> lstRoles = _servicioSeguridad.ObtenerRolesUsuario(((Usuario)Session["UserData"]).Id).Where(w => w.Id != (int)BusinessVariables.EnumRoles.Notificaciones).ToList();
                 if (lstRoles.Count > 0 && RolSeleccionado == null)
                 {
                     RolSeleccionado = lstRoles.Any(rol => rol.Id == (int)BusinessVariables.EnumRoles.Agente) ? (int)BusinessVariables.EnumRoles.Agente : lstRoles.First().Id;
@@ -74,6 +74,8 @@ namespace KiiniHelp
                     lblAreaSeleccionada.Text = lstRoles.Single(s => s.Id == int.Parse(RolSeleccionado.ToString())).Descripcion;
                 if (lstRoles.Count <= 1)
                     divRoles.Visible = false;
+                if (lstRoles.Any(a => a.Id == (int) BusinessVariables.EnumRoles.Administrador))
+                    lstRoles.RemoveAll(r => r.Id == (int) BusinessVariables.EnumRoles.AccesoAnalíticos);
                 rptRolesPanel.DataSource = lstRoles;
                 rptRolesPanel.DataBind();
                 lblBadgeRoles.Text = lstRoles.Count.ToString();
@@ -141,11 +143,32 @@ namespace KiiniHelp
             get { return (List<Menu>)Session["MenuRol"]; }
             set { Session["MenuRol"] = value; }
         }
+        private string Maquina
+        {
+            get
+            {
+                string result;
+                if (Request.Cookies["miui"] != null)
+                {
+                    result = BusinessQueryString.Decrypt(Request.Cookies["miui"]["iuiu"]);
+                }
+                else
+                {
+                    result = _servicioSeguridad.GeneraLlaveMaquina();
+                    HttpCookie myCookie = new HttpCookie("miui");
+                    myCookie.Values.Add("iuiu", BusinessQueryString.Encrypt(result));
+                    myCookie.Expires = DateTime.Now.AddYears(10);
+                    Response.Cookies.Add(myCookie);
+                }
+                return result;
+            }
+        }
         private void LlenaMenu(int idUsuario, int idRolSeleccionado, bool arboles)
         {
             try
             {
-                MenuActivo = _servicioSeguridad.ObtenerMenuUsuario(idUsuario, idRolSeleccionado, arboles).Where(w=>w.Id != (int)BusinessVariables.EnumMenu.View).ToList();
+                //MenuActivo = _servicioSeguridad.ObtenerMenuUsuario(idUsuario, idRolSeleccionado, arboles).Where(w=>w.Id != (int)BusinessVariables.EnumMenu.Analiticos).ToList();
+                MenuActivo = _servicioSeguridad.ObtenerMenuUsuario(idUsuario, idRolSeleccionado, arboles).ToList();
             }
             catch (Exception ex)
             {
@@ -170,18 +193,29 @@ namespace KiiniHelp
         {
             try
             {
+
                 HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-                if (myCookie == null || Session["UserData"] == null || (((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Agente && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Empleado && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Cliente && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Proveedor) || bool.Parse(hfSesionExpiro.Value))
+                if (myCookie == null || Session["UserData"] == null || (((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Agentes && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Empleado && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Cliente && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Proveedor) || bool.Parse(hfSesionExpiro.Value))
                 {
-                    Response.Redirect(ResolveUrl("~/Default.aspx"));
+                    Session.RemoveAll();
+                    Session.Clear();
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    Response.Redirect("~/Default.aspx");
+                }
+                if (Session["UserData"] != null)
+                {
+                    if (!_servicioSeguridad.ValidaSesion(((Usuario)Session["UserData"]).Id, SecurityUtils.CreateShaHash(Maquina)))
+                        btnsOut_OnClick(null, null);
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
                 }
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
-
-                if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
-                    if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
-                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx?confirmaCuenta=true"));
-
+                
                 if (!IsPostBack && Session["UserData"] != null)
                 {
                     Session["Reset"] = true;
@@ -201,12 +235,12 @@ namespace KiiniHelp
                     }
                     if (administrador || agente)
                         Session["CargaInicialModal"] = true.ToString();
-                    hfCargaInicial.Value = (Session["C argaInicialModal"] ?? "False").ToString();
+                    hfCargaInicial.Value = (Session["CargaInicialModal"] ?? "False").ToString();
                     lblUsuario.Text = usuario.Nombre;
                     lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
                     int idUsuario = usuario.Id;
                     imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + idUsuario : "~/assets/images/profiles/profile-1.png";
-                    ObtenerAreas();
+                    ObtenerRoles();
                     int rolSeleccionado = agente ? (int)BusinessVariables.EnumRoles.Agente : 0;
                     if (RolSeleccionado != null)
                         rolSeleccionado = int.Parse(RolSeleccionado.ToString());
@@ -219,9 +253,16 @@ namespace KiiniHelp
                     //divMensajes.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.Usuario;
                     divSearch.Visible = rolSeleccionado == (int)BusinessVariables.EnumRoles.AccesoCentroSoporte;
                 }
+                
+
                 rptMenu.DataSource = MenuActivo;
                 rptMenu.DataBind();
                 Session["ParametrosGenerales"] = _servicioParametros.ObtenerParametrosGenerales();
+
+                if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
+                    if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
+                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx?confirmaCuenta=true"));
+
                 if (IsPostBack)
                 {
                     if (Page.Request.Params["__EVENTTARGET"] == "Buscador")
@@ -401,6 +442,9 @@ namespace KiiniHelp
         {
             try
             {
+                Usuario user = (Usuario) Session["UserData"];
+                if(user != null)
+                    _servicioSeguridad.TerminarSesion(user.Id, SecurityUtils.CreateShaHash(Maquina));
                 Session.RemoveAll();
                 Session.Clear();
                 Session.Abandon();
@@ -463,6 +507,10 @@ namespace KiiniHelp
                         case (int)BusinessVariables.EnumRoles.ResponsableDeCategoría:
                             divSearch.Visible = true;
                             Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                            break;
+                        case (int)BusinessVariables.EnumRoles.AccesoAnalíticos:
+                            divSearch.Visible = true;
+                            Response.Redirect("~/Users/FrmReportes.aspx");
                             break;
                         default:
                             divSearch.Visible = true;

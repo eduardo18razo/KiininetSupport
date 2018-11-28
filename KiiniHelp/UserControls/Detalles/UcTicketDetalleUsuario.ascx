@@ -9,11 +9,11 @@
             <asp:HiddenField runat="server" ID="hfIdTicket" />
             <asp:HiddenField runat="server" ID="hfIdEstatusActual" />
             <asp:HiddenField runat="server" ID="hfIdUsuario" />
-            <asp:HiddenField runat="server" ID="hfIdGrupoUsuario"/>
-            <asp:HiddenField runat="server" ID="hfPropietario"/>
-            <asp:HiddenField runat="server" ID="hfTipoTicket"/>
-            <asp:HiddenField runat="server" ID="hfTieneEncuesta" Value ="false"/>
-            <asp:HiddenField runat="server" ID="hfEncuestaRespondida" Value ="false"/>
+            <asp:HiddenField runat="server" ID="hfIdGrupoUsuario" />
+            <asp:HiddenField runat="server" ID="hfPropietario" />
+            <asp:HiddenField runat="server" ID="hfTipoTicket" />
+            <asp:HiddenField runat="server" ID="hfTieneEncuesta" Value="false" />
+            <asp:HiddenField runat="server" ID="hfEncuestaRespondida" Value="false" />
 
 
             <div class="row">
@@ -92,6 +92,20 @@
 
                     <section class="module">
                         <div class="module-inner">
+
+                            <div class="row">
+                                <div class="col-lg-1 col-md-2 col-sm-12 col-lg-1Custom">
+                                    
+                                </div>
+                                 <div class="col-lg-11 col-md-10 col-sm-10 ">
+                                    <div class="row no-padding-top margin-top0" runat="server">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 no-padding-top margin-top0">
+                                            <label>Escribe  un nuevo comentario</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-1 col-md-2 col-sm-12 col-lg-1Custom">
                                     <asp:Image runat="server" ID="imgProfileNewComment" CssClass="imageCircle image40" ImageUrl="~/assets/images/profiles/profile-1.png" />
@@ -102,7 +116,7 @@
                                             <asp:TextBox ID="txtConversacion" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control no-padding-top no-margin-top" MaxLength="999" />
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 text-right padding-10-top padding-10-bottom">
-                                            <asp:Button ID="btnEstatus" runat="server" Text="Estatus" CssClass="btn btn-guardar" OnClick="btnCambiarEstatus_OnClick" />
+                                            <asp:Button ID="btnEstatus" runat="server" Text="Modificar estado del Ticket" CssClass="btn btn-guardar" OnClick="btnCambiarEstatus_OnClick" />
                                             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnEnviar_OnClick" />
                                         </div>
 

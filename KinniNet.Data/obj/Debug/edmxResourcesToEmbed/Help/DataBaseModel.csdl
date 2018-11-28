@@ -20,7 +20,6 @@
     <EntitySet Name="Organizacion" EntityType="KiiniNet_v2Model.Organizacion" />
     <EntitySet Name="Pais" EntityType="KiiniNet_v2Model.Pais" />
     <EntitySet Name="ParametrosAplicaciones" EntityType="KiiniNet_v2Model.ParametrosAplicaciones" />
-    <EntitySet Name="ParametrosTelefonos" EntityType="KiiniNet_v2Model.ParametrosTelefonos" />
     <EntitySet Name="Piso" EntityType="KiiniNet_v2Model.Piso" />
     <EntitySet Name="RespuestaTipoEncuesta" EntityType="KiiniNet_v2Model.RespuestaTipoEncuesta" />
     <EntitySet Name="RolTipoGrupo" EntityType="KiiniNet_v2Model.RolTipoGrupo" />
@@ -33,15 +32,10 @@
     <EntitySet Name="TipoEncuesta" EntityType="KiiniNet_v2Model.TipoEncuesta" />
     <EntitySet Name="TipoGrupo" EntityType="KiiniNet_v2Model.TipoGrupo" />
     <EntitySet Name="TipoInfConsulta" EntityType="KiiniNet_v2Model.TipoInfConsulta" />
-    <EntitySet Name="TipoUsuario" EntityType="KiiniNet_v2Model.TipoUsuario" />
     <EntitySet Name="Torre" EntityType="KiiniNet_v2Model.Torre" />
     <EntitySet Name="Ubicacion" EntityType="KiiniNet_v2Model.Ubicacion" />
     <EntitySet Name="UsuarioGrupo" EntityType="KiiniNet_v2Model.UsuarioGrupo" />
     <EntitySet Name="Zona" EntityType="KiiniNet_v2Model.Zona" />
-    <AssociationSet Name="FK_Campus_TipoUsuario" Association="KiiniNet_v2Model.FK_Campus_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Campus" EntitySet="Campus" />
-    </AssociationSet>
     <AssociationSet Name="FK_Domicilio_Campus" Association="KiiniNet_v2Model.FK_Domicilio_Campus">
       <End Role="Campus" EntitySet="Campus" />
       <End Role="Domicilio" EntitySet="Domicilio" />
@@ -50,73 +44,25 @@
       <End Role="Campus" EntitySet="Campus" />
       <End Role="Ubicacion" EntitySet="Ubicacion" />
     </AssociationSet>
-    <AssociationSet Name="FK_Compania_TipoUsuario" Association="KiiniNet_v2Model.FK_Compania_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Compania" EntitySet="Compania" />
-    </AssociationSet>
     <AssociationSet Name="FK_Organizacion_Compania" Association="KiiniNet_v2Model.FK_Organizacion_Compania">
       <End Role="Compania" EntitySet="Compania" />
       <End Role="Organizacion" EntitySet="Organizacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Direccion_TipoUsuario" Association="KiiniNet_v2Model.FK_Direccion_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Direccion" EntitySet="Direccion" />
     </AssociationSet>
     <AssociationSet Name="FK_Organizacion_Direccion" Association="KiiniNet_v2Model.FK_Organizacion_Direccion">
       <End Role="Direccion" EntitySet="Direccion" />
       <End Role="Organizacion" EntitySet="Organizacion" />
     </AssociationSet>
-    <AssociationSet Name="FK_Gerencia_TipoUsuario" Association="KiiniNet_v2Model.FK_Gerencia_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Gerencia" EntitySet="Gerencia" />
-    </AssociationSet>
     <AssociationSet Name="FK_Organizacion_Gerencia" Association="KiiniNet_v2Model.FK_Organizacion_Gerencia">
       <End Role="Gerencia" EntitySet="Gerencia" />
       <End Role="Organizacion" EntitySet="Organizacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Holding_TipoUsuario" Association="KiiniNet_v2Model.FK_Holding_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Holding" EntitySet="Holding" />
     </AssociationSet>
     <AssociationSet Name="FK_Organizacion_Holding" Association="KiiniNet_v2Model.FK_Organizacion_Holding">
       <End Role="Holding" EntitySet="Holding" />
       <End Role="Organizacion" EntitySet="Organizacion" />
     </AssociationSet>
-    <AssociationSet Name="FK_Jefatura_TipoUsuario" Association="KiiniNet_v2Model.FK_Jefatura_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Jefatura" EntitySet="Jefatura" />
-    </AssociationSet>
     <AssociationSet Name="FK_Organizacion_Jefatura" Association="KiiniNet_v2Model.FK_Organizacion_Jefatura">
       <End Role="Jefatura" EntitySet="Jefatura" />
       <End Role="Organizacion" EntitySet="Organizacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Nivel1_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel1_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Nivel1" EntitySet="Nivel1" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Nivel2_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel2_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Nivel2" EntitySet="Nivel2" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Nivel3_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel3_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Nivel3" EntitySet="Nivel3" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Nivel4_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel4_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Nivel4" EntitySet="Nivel4" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Nivel5_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel5_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Nivel5" EntitySet="Nivel5" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Nivel6_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel6_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Nivel6" EntitySet="Nivel6" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Nivel7_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel7_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Nivel7" EntitySet="Nivel7" />
     </AssociationSet>
     <AssociationSet Name="FK_Organizacion_SubDireccion" Association="KiiniNet_v2Model.FK_Organizacion_SubDireccion">
       <End Role="SubDireccion" EntitySet="SubDireccion" />
@@ -126,25 +72,9 @@
       <End Role="SubGerencia" EntitySet="SubGerencia" />
       <End Role="Organizacion" EntitySet="Organizacion" />
     </AssociationSet>
-    <AssociationSet Name="FK_tblOrganizacion_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Organizacion" EntitySet="Organizacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Pais_TipoUsuario" Association="KiiniNet_v2Model.FK_Pais_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Pais" EntitySet="Pais" />
-    </AssociationSet>
     <AssociationSet Name="FK_Ubicacion_Pais" Association="KiiniNet_v2Model.FK_Ubicacion_Pais">
       <End Role="Pais" EntitySet="Pais" />
       <End Role="Ubicacion" EntitySet="Ubicacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tblParamTelefonos_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblParamTelefonos_tblCatTipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="ParametrosTelefonos" EntitySet="ParametrosTelefonos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Piso_TipoUsuario" Association="KiiniNet_v2Model.FK_Piso_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Piso" EntitySet="Piso" />
     </AssociationSet>
     <AssociationSet Name="FK_Ubicacion_Piso" Association="KiiniNet_v2Model.FK_Ubicacion_Piso">
       <End Role="Piso" EntitySet="Piso" />
@@ -158,45 +88,13 @@
       <End Role="TipoGrupo" EntitySet="TipoGrupo" />
       <End Role="RolTipoGrupo" EntitySet="RolTipoGrupo" />
     </AssociationSet>
-    <AssociationSet Name="FK_RolTipoUsuario_TipoUsuario" Association="KiiniNet_v2Model.FK_RolTipoUsuario_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="RolTipoUsuario" EntitySet="RolTipoUsuario" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SiteRack_TipoUsuario" Association="KiiniNet_v2Model.FK_SiteRack_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="SiteRack" EntitySet="SiteRack" />
-    </AssociationSet>
     <AssociationSet Name="FK_Ubicacion_SiteRack" Association="KiiniNet_v2Model.FK_Ubicacion_SiteRack">
       <End Role="SiteRack" EntitySet="SiteRack" />
       <End Role="Ubicacion" EntitySet="Ubicacion" />
     </AssociationSet>
-    <AssociationSet Name="FK_SubDireccion_TipoUsuario" Association="KiiniNet_v2Model.FK_SubDireccion_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="SubDireccion" EntitySet="SubDireccion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SubGerencia_TipoUsuario" Association="KiiniNet_v2Model.FK_SubGerencia_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="SubGerencia" EntitySet="SubGerencia" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SubZona_TipoUsuario" Association="KiiniNet_v2Model.FK_SubZona_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="SubZona" EntitySet="SubZona" />
-    </AssociationSet>
     <AssociationSet Name="FK_Ubicacion_SubZona" Association="KiiniNet_v2Model.FK_Ubicacion_SubZona">
       <End Role="SubZona" EntitySet="SubZona" />
       <End Role="Ubicacion" EntitySet="Ubicacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Torre_TipoUsuario" Association="KiiniNet_v2Model.FK_Torre_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Torre" EntitySet="Torre" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Ubicacion_TipoUsuario" Association="KiiniNet_v2Model.FK_Ubicacion_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Ubicacion" EntitySet="Ubicacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Zona_TipoUsuario" Association="KiiniNet_v2Model.FK_Zona_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Zona" EntitySet="Zona" />
     </AssociationSet>
     <AssociationSet Name="FK_Ubicacion_Torre" Association="KiiniNet_v2Model.FK_Ubicacion_Torre">
       <End Role="Torre" EntitySet="Torre" />
@@ -331,10 +229,6 @@
       <End Role="Nivel7" EntitySet="Nivel7" />
       <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
     </AssociationSet>
-    <AssociationSet Name="FK_tblArbolAcceso_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
-    </AssociationSet>
     <AssociationSet Name="FK_tblInventarioArbolAcceso_tblArbolAcceso" Association="KiiniNet_v2Model.FK_tblInventarioArbolAcceso_tblArbolAcceso">
       <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
       <End Role="InventarioArbolAcceso" EntitySet="InventarioArbolAcceso" />
@@ -382,16 +276,7 @@
       <End Role="Ubicacion" EntitySet="Ubicacion" />
     </AssociationSet>
     <EntitySet Name="TipoTelefono" EntityType="KiiniNet_v2Model.TipoTelefono" />
-    <AssociationSet Name="FK_tblParamTelefonos_tblCatTipoTelefono" Association="KiiniNet_v2Model.FK_tblParamTelefonos_tblCatTipoTelefono">
-      <End Role="TipoTelefono" EntitySet="TipoTelefono" />
-      <End Role="ParametrosTelefonos" EntitySet="ParametrosTelefonos" />
-    </AssociationSet>
     <EntitySet Name="TipoLink" EntityType="KiiniNet_v2Model.TipoLink" />
-    <EntitySet Name="TelefonoUsuario" EntityType="KiiniNet_v2Model.TelefonoUsuario" />
-    <AssociationSet Name="FK_TelefonoUsuario_TipoTelefono" Association="KiiniNet_v2Model.FK_TelefonoUsuario_TipoTelefono">
-      <End Role="TipoTelefono" EntitySet="TipoTelefono" />
-      <End Role="TelefonoUsuario" EntitySet="TelefonoUsuario" />
-    </AssociationSet>
     <EntitySet Name="SmsService" EntityType="KiiniNet_v2Model.SmsService" />
     <AssociationSet Name="FK_Sms_Service_TipoLink" Association="KiiniNet_v2Model.FK_Sms_Service_TipoLink">
       <End Role="TipoLink" EntitySet="TipoLink" />
@@ -431,10 +316,6 @@
       <End Role="RespuestaEncuesta" EntitySet="RespuestaEncuesta" />
     </AssociationSet>
     <EntitySet Name="Puesto" EntityType="KiiniNet_v2Model.Puesto" />
-    <AssociationSet Name="FK_Puesto_TipoUsuario" Association="KiiniNet_v2Model.FK_Puesto_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Puesto" EntitySet="Puesto" />
-    </AssociationSet>
     <EntitySet Name="HorarioDetalle" EntityType="KiiniNet_v2Model.HorarioDetalle" />
     <EntitySet Name="HorarioSubGrupo" EntityType="KiiniNet_v2Model.HorarioSubGrupo" />
     <AssociationSet Name="FK_HorarioSubGrupo_SubGrupoUsuario" Association="KiiniNet_v2Model.FK_HorarioSubGrupo_SubGrupoUsuario">
@@ -444,10 +325,6 @@
     <EntitySet Name="GrupoUsuario" EntityType="KiiniNet_v2Model.GrupoUsuario" />
     <AssociationSet Name="FK_GrupoUsuario_TipoGrupo1" Association="KiiniNet_v2Model.FK_GrupoUsuario_TipoGrupo1">
       <End Role="TipoGrupo" EntitySet="TipoGrupo" />
-      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GrupoUsuario_TipoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuario_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
       <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
     </AssociationSet>
     <AssociationSet Name="FK_GrupoUsuarioInventarioArbol_GrupoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuarioInventarioArbol_GrupoUsuario">
@@ -558,15 +435,7 @@
       <End Role="Menu1" EntitySet="Menu" />
     </AssociationSet>
     <EntitySet Name="AliasOrganizacion" EntityType="KiiniNet_v2Model.AliasOrganizacion" />
-    <AssociationSet Name="FK_AliasOrganizacion_TipoUsuario" Association="KiiniNet_v2Model.FK_AliasOrganizacion_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="AliasOrganizacion" EntitySet="AliasOrganizacion" />
-    </AssociationSet>
     <EntitySet Name="AliasUbicacion" EntityType="KiiniNet_v2Model.AliasUbicacion" />
-    <AssociationSet Name="FK_AliasUbicacion_TipoUsuario" Association="KiiniNet_v2Model.FK_AliasUbicacion_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="AliasUbicacion" EntitySet="AliasUbicacion" />
-    </AssociationSet>
     <EntitySet Name="CorreoUsuario" EntityType="KiiniNet_v2Model.CorreoUsuario" />
     <EntitySet Name="UsuarioRol" EntityType="KiiniNet_v2Model.UsuarioRol" />
     <AssociationSet Name="FK_UsuarioRol_RolTipoUsuario" Association="KiiniNet_v2Model.FK_UsuarioRol_RolTipoUsuario">
@@ -622,12 +491,7 @@
       <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
       <End Role="Frecuencia" EntitySet="Frecuencia" />
     </AssociationSet>
-    <AssociationSet Name="FK_Frecuencia_TipoUsuario" Association="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Frecuencia" EntitySet="Frecuencia" />
-    </AssociationSet>
     <EntitySet Name="DiaFestivoDefault" EntityType="KiiniNet_v2Model.DiaFestivoDefault" />
-    <EntitySet Name="BitacoraAcceso" EntityType="KiiniNet_v2Model.BitacoraAcceso" />
     <EntitySet Name="Usuario" EntityType="KiiniNet_v2Model.Usuario" />
     <AssociationSet Name="FK_ArbolAcceso_Usuario" Association="KiiniNet_v2Model.FK_ArbolAcceso_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
@@ -640,10 +504,6 @@
     <AssociationSet Name="FK_Area_UsuarioModifico" Association="KiiniNet_v2Model.FK_Area_UsuarioModifico">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Area" EntitySet="Area" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BitacoraAcceso_Usuario" Association="KiiniNet_v2Model.FK_BitacoraAcceso_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="BitacoraAcceso" EntitySet="BitacoraAcceso" />
     </AssociationSet>
     <AssociationSet Name="FK_CorreoUsuario_Usuario" Association="KiiniNet_v2Model.FK_CorreoUsuario_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
@@ -689,10 +549,6 @@
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="SmsService" EntitySet="SmsService" />
     </AssociationSet>
-    <AssociationSet Name="FK_TelefonoUsuario_Usuario" Association="KiiniNet_v2Model.FK_TelefonoUsuario_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="TelefonoUsuario" EntitySet="TelefonoUsuario" />
-    </AssociationSet>
     <AssociationSet Name="FK_TicketAsignacion_UsuarioAsignado" Association="KiiniNet_v2Model.FK_TicketAsignacion_UsuarioAsignado">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="TicketAsignacion" EntitySet="TicketAsignacion" />
@@ -708,10 +564,6 @@
     <AssociationSet Name="FK_TicketEstatus_Usuario" Association="KiiniNet_v2Model.FK_TicketEstatus_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="TicketEstatus" EntitySet="TicketEstatus" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Usuario_TipoUsuario" Association="KiiniNet_v2Model.FK_Usuario_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
     <AssociationSet Name="FK_Usuario_Ubicacion" Association="KiiniNet_v2Model.FK_Usuario_Ubicacion">
       <End Role="Ubicacion" EntitySet="Ubicacion" />
@@ -863,10 +715,6 @@
       <End Role="Rol" EntitySet="Rol" />
       <End Role="RolMenu" EntitySet="RolMenu" />
     </AssociationSet>
-    <AssociationSet Name="FK_RolMenu_TipoUsuario" Association="KiiniNet_v2Model.FK_RolMenu_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="RolMenu" EntitySet="RolMenu" />
-    </AssociationSet>
     <EntitySet Name="InformacionConsultaRate" EntityType="KiiniNet_v2Model.InformacionConsultaRate" />
     <AssociationSet Name="FK_InformacionConsultaRate_InformacionConsulta" Association="KiiniNet_v2Model.FK_InformacionConsultaRate_InformacionConsulta">
       <End Role="InformacionConsulta" EntitySet="InformacionConsulta" />
@@ -917,10 +765,6 @@
       <End Role="Organizacion" EntitySet="Organizacion" />
       <End Role="ParametrosUsuario" EntitySet="ParametrosUsuario" />
     </AssociationSet>
-    <AssociationSet Name="FK_ParametrosUsuario_TipoUsuario" Association="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="ParametrosUsuario" EntitySet="ParametrosUsuario" />
-    </AssociationSet>
     <AssociationSet Name="FK_ParametrosUsuario_Ubicacion" Association="KiiniNet_v2Model.FK_ParametrosUsuario_Ubicacion">
       <End Role="Ubicacion" EntitySet="Ubicacion" />
       <End Role="ParametrosUsuario" EntitySet="ParametrosUsuario" />
@@ -965,15 +809,7 @@
       <End Role="Mascara" EntitySet="Mascara" />
       <End Role="ParametroDatosAdicionales" EntitySet="ParametroDatosAdicionales" />
     </AssociationSet>
-    <AssociationSet Name="FK_ParametroDatosAdicionales_TipoUsuario" Association="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="ParametroDatosAdicionales" EntitySet="ParametroDatosAdicionales" />
-    </AssociationSet>
     <EntitySet Name="TicketCorreo" EntityType="KiiniNet_v2Model.TicketCorreo" />
-    <AssociationSet Name="FK_HitConsulta_TipoUsuario" Association="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="HitConsulta" EntitySet="HitConsulta" />
-    </AssociationSet>
     <EntitySet Name="TicketEvento" EntityType="KiiniNet_v2Model.TicketEvento" />
     <EntitySet Name="TicketEventoAsignacion" EntityType="KiiniNet_v2Model.TicketEventoAsignacion" />
     <EntitySet Name="TicketEventoConversacion" EntityType="KiiniNet_v2Model.TicketEventoConversacion" />
@@ -1037,10 +873,6 @@
       <End Role="TipoGrupo" EntitySet="TipoGrupo" />
       <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
     </AssociationSet>
-    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
-    </AssociationSet>
     <EntitySet Name="ParametrosGenerales" EntityType="KiiniNet_v2Model.ParametrosGenerales" />
     <EntitySet Name="TipoMascara" EntityType="KiiniNet_v2Model.TipoMascara" />
     <AssociationSet Name="FK_Mascara_TipoMascara" Association="KiiniNet_v2Model.FK_Mascara_TipoMascara">
@@ -1063,25 +895,6 @@
     <AssociationSet Name="FK_TicketNotificacion_Usuario" Association="KiiniNet_v2Model.FK_TicketNotificacion_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
-    </AssociationSet>
-    <EntitySet Name="FrecuenciaFecha" EntityType="KiiniNet_v2Model.FrecuenciaFecha" />
-    <EntitySet Name="GraficosDefault" EntityType="KiiniNet_v2Model.GraficosDefault" />
-    <EntitySet Name="GraficosFavoritos" EntityType="KiiniNet_v2Model.GraficosFavoritos" />
-    <AssociationSet Name="FK_GraficosDefault_FrecuenciaFecha" Association="KiiniNet_v2Model.FK_GraficosDefault_FrecuenciaFecha">
-      <End Role="FrecuenciaFecha" EntitySet="FrecuenciaFecha" />
-      <End Role="GraficosDefault" EntitySet="GraficosDefault" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GraficosDefault_Menu" Association="KiiniNet_v2Model.FK_GraficosDefault_Menu">
-      <End Role="Menu" EntitySet="Menu" />
-      <End Role="GraficosDefault" EntitySet="GraficosDefault" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GraficosFavoritos_Menu" Association="KiiniNet_v2Model.FK_GraficosFavoritos_Menu">
-      <End Role="Menu" EntitySet="Menu" />
-      <End Role="GraficosFavoritos" EntitySet="GraficosFavoritos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GraficosFavoritos_Usuario" Association="KiiniNet_v2Model.FK_GraficosFavoritos_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="GraficosFavoritos" EntitySet="GraficosFavoritos" />
     </AssociationSet>
     <EntitySet Name="Ticket" EntityType="KiiniNet_v2Model.Ticket" />
     <AssociationSet Name="FK_tblTicket_tblArbolAcceso" Association="KiiniNet_v2Model.FK_tblTicket_tblArbolAcceso">
@@ -1136,10 +949,6 @@
       <End Role="TipoArbolAcceso" EntitySet="TipoArbolAcceso" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
-    <AssociationSet Name="FK_Ticket_TipoUsuario" Association="KiiniNet_v2Model.FK_Ticket_TipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="Ticket" EntitySet="Ticket" />
-    </AssociationSet>
     <AssociationSet Name="FK_Ticket_Ubicacion" Association="KiiniNet_v2Model.FK_Ticket_Ubicacion">
       <End Role="Ubicacion" EntitySet="Ubicacion" />
       <End Role="Ticket" EntitySet="Ticket" />
@@ -1192,6 +1001,201 @@
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Ticket" EntitySet="Ticket" />
     </AssociationSet>
+    <EntitySet Name="RolTipoArbolAcceso" EntityType="KiiniNet_v2Model.RolTipoArbolAcceso" />
+    <AssociationSet Name="FK_RolTipoArbolAcceso_Rol" Association="KiiniNet_v2Model.FK_RolTipoArbolAcceso_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolTipoArbolAcceso" EntitySet="RolTipoArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolTipoArbolAcceso_TipoArbolAcceso" Association="KiiniNet_v2Model.FK_RolTipoArbolAcceso_TipoArbolAcceso">
+      <End Role="TipoArbolAcceso" EntitySet="TipoArbolAcceso" />
+      <End Role="RolTipoArbolAcceso" EntitySet="RolTipoArbolAcceso" />
+    </AssociationSet>
+    <EntitySet Name="FrecuenciaFecha" EntityType="KiiniNet_v2Model.FrecuenciaFecha" />
+    <EntitySet Name="GraficosDefault" EntityType="KiiniNet_v2Model.GraficosDefault" />
+    <EntitySet Name="GraficosFavoritos" EntityType="KiiniNet_v2Model.GraficosFavoritos" />
+    <AssociationSet Name="FK_GraficosDefault_FrecuenciaFecha" Association="KiiniNet_v2Model.FK_GraficosDefault_FrecuenciaFecha">
+      <End Role="FrecuenciaFecha" EntitySet="FrecuenciaFecha" />
+      <End Role="GraficosDefault" EntitySet="GraficosDefault" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficosDefault_Menu" Association="KiiniNet_v2Model.FK_GraficosDefault_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="GraficosDefault" EntitySet="GraficosDefault" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficosFavoritos_Menu" Association="KiiniNet_v2Model.FK_GraficosFavoritos_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="GraficosFavoritos" EntitySet="GraficosFavoritos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraficosFavoritos_Usuario" Association="KiiniNet_v2Model.FK_GraficosFavoritos_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="GraficosFavoritos" EntitySet="GraficosFavoritos" />
+    </AssociationSet>
+    <EntitySet Name="ColoresTop" EntityType="KiiniNet_v2Model.ColoresTop" />
+    <EntitySet Name="ChatUserDetail" EntityType="KiiniNet_v2Model.ChatUserDetail" />
+    <EntitySet Name="ColoresSla" EntityType="KiiniNet_v2Model.ColoresSla" />
+    <EntitySet Name="TipoUsuario" EntityType="KiiniNet_v2Model.TipoUsuario" />
+    <AssociationSet Name="FK_AliasOrganizacion_TipoUsuario" Association="KiiniNet_v2Model.FK_AliasOrganizacion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="AliasOrganizacion" EntitySet="AliasOrganizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AliasUbicacion_TipoUsuario" Association="KiiniNet_v2Model.FK_AliasUbicacion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="AliasUbicacion" EntitySet="AliasUbicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblArbolAcceso_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Campus_TipoUsuario" Association="KiiniNet_v2Model.FK_Campus_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Campus" EntitySet="Campus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Compania_TipoUsuario" Association="KiiniNet_v2Model.FK_Compania_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Compania" EntitySet="Compania" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direccion_TipoUsuario" Association="KiiniNet_v2Model.FK_Direccion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Direccion" EntitySet="Direccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Frecuencia_TipoUsuario" Association="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Frecuencia" EntitySet="Frecuencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gerencia_TipoUsuario" Association="KiiniNet_v2Model.FK_Gerencia_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Gerencia" EntitySet="Gerencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuario_TipoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuario_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario" Association="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="GrupoUsuarioDefaultOpcion" EntitySet="GrupoUsuarioDefaultOpcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HitConsulta_TipoUsuario" Association="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="HitConsulta" EntitySet="HitConsulta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Holding_TipoUsuario" Association="KiiniNet_v2Model.FK_Holding_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Holding" EntitySet="Holding" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jefatura_TipoUsuario" Association="KiiniNet_v2Model.FK_Jefatura_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Jefatura" EntitySet="Jefatura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel1_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel1_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel1" EntitySet="Nivel1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel2_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel2_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel2" EntitySet="Nivel2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel3_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel3_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel3" EntitySet="Nivel3" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel4_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel4_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel4" EntitySet="Nivel4" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel5_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel5_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel5" EntitySet="Nivel5" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel6_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel6_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel6" EntitySet="Nivel6" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Nivel7_TipoUsuario" Association="KiiniNet_v2Model.FK_Nivel7_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Nivel7" EntitySet="Nivel7" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrganizacion_tblCatTipoUsuario" Association="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Organizacion" EntitySet="Organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pais_TipoUsuario" Association="KiiniNet_v2Model.FK_Pais_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Pais" EntitySet="Pais" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParametroDatosAdicionales_TipoUsuario" Association="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="ParametroDatosAdicionales" EntitySet="ParametroDatosAdicionales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParametrosUsuario_TipoUsuario" Association="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="ParametrosUsuario" EntitySet="ParametrosUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Piso_TipoUsuario" Association="KiiniNet_v2Model.FK_Piso_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Piso" EntitySet="Piso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Puesto_TipoUsuario" Association="KiiniNet_v2Model.FK_Puesto_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Puesto" EntitySet="Puesto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolMenu_TipoUsuario" Association="KiiniNet_v2Model.FK_RolMenu_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="RolMenu" EntitySet="RolMenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolTipoUsuario_TipoUsuario" Association="KiiniNet_v2Model.FK_RolTipoUsuario_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="RolTipoUsuario" EntitySet="RolTipoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteRack_TipoUsuario" Association="KiiniNet_v2Model.FK_SiteRack_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SiteRack" EntitySet="SiteRack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubDireccion_TipoUsuario" Association="KiiniNet_v2Model.FK_SubDireccion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SubDireccion" EntitySet="SubDireccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubGerencia_TipoUsuario" Association="KiiniNet_v2Model.FK_SubGerencia_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SubGerencia" EntitySet="SubGerencia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubZona_TipoUsuario" Association="KiiniNet_v2Model.FK_SubZona_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="SubZona" EntitySet="SubZona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ticket_TipoUsuario" Association="KiiniNet_v2Model.FK_Ticket_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Torre_TipoUsuario" Association="KiiniNet_v2Model.FK_Torre_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Torre" EntitySet="Torre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ubicacion_TipoUsuario" Association="KiiniNet_v2Model.FK_Ubicacion_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Ubicacion" EntitySet="Ubicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_TipoUsuario" Association="KiiniNet_v2Model.FK_Usuario_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zona_TipoUsuario" Association="KiiniNet_v2Model.FK_Zona_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+      <End Role="Zona" EntitySet="Zona" />
+    </AssociationSet>
+    <EntitySet Name="ArchivosPermitidos" EntityType="KiiniNet_v2Model.ArchivosPermitidos" />
+    <EntitySet Name="TelefonoUsuario" EntityType="KiiniNet_v2Model.TelefonoUsuario" />
+    <AssociationSet Name="FK_TelefonoUsuario_TipoTelefono" Association="KiiniNet_v2Model.FK_TelefonoUsuario_TipoTelefono">
+      <End Role="TipoTelefono" EntitySet="TipoTelefono" />
+      <End Role="TelefonoUsuario" EntitySet="TelefonoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TelefonoUsuario_Usuario" Association="KiiniNet_v2Model.FK_TelefonoUsuario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="TelefonoUsuario" EntitySet="TelefonoUsuario" />
+    </AssociationSet>
+    <EntitySet Name="BitacoraAcceso" EntityType="KiiniNet_v2Model.BitacoraAcceso" />
+    <AssociationSet Name="FK_BitacoraAcceso_Usuario" Association="KiiniNet_v2Model.FK_BitacoraAcceso_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="BitacoraAcceso" EntitySet="BitacoraAcceso" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Campus">
     <Key>
@@ -1201,9 +1205,9 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Campus_TipoUsuario" FromRole="Campus" ToRole="TipoUsuario" />
     <NavigationProperty Name="Domicilio" Relationship="KiiniNet_v2Model.FK_Domicilio_Campus" FromRole="Campus" ToRole="Domicilio" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_Campus" FromRole="Campus" ToRole="Ubicacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Campus_TipoUsuario" FromRole="Campus" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Compania">
     <Key>
@@ -1213,8 +1217,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Compania_TipoUsuario" FromRole="Compania" ToRole="TipoUsuario" />
     <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_Organizacion_Compania" FromRole="Compania" ToRole="Organizacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Compania_TipoUsuario" FromRole="Compania" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Direccion">
     <Key>
@@ -1224,8 +1228,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Direccion_TipoUsuario" FromRole="Direccion" ToRole="TipoUsuario" />
     <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_Organizacion_Direccion" FromRole="Direccion" ToRole="Organizacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Direccion_TipoUsuario" FromRole="Direccion" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Domicilio">
     <Key>
@@ -1259,8 +1263,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Gerencia_TipoUsuario" FromRole="Gerencia" ToRole="TipoUsuario" />
     <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_Organizacion_Gerencia" FromRole="Gerencia" ToRole="Organizacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Gerencia_TipoUsuario" FromRole="Gerencia" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Holding">
     <Key>
@@ -1270,8 +1274,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Holding_TipoUsuario" FromRole="Holding" ToRole="TipoUsuario" />
     <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_Organizacion_Holding" FromRole="Holding" ToRole="Organizacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Holding_TipoUsuario" FromRole="Holding" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="InventarioInfConsulta">
     <Key>
@@ -1291,8 +1295,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Jefatura_TipoUsuario" FromRole="Jefatura" ToRole="TipoUsuario" />
     <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_Organizacion_Jefatura" FromRole="Jefatura" ToRole="Organizacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Jefatura_TipoUsuario" FromRole="Jefatura" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Nivel1">
     <Key>
@@ -1302,8 +1306,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel1_TipoUsuario" FromRole="Nivel1" ToRole="TipoUsuario" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel1" FromRole="Nivel1" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel1_TipoUsuario" FromRole="Nivel1" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Nivel2">
     <Key>
@@ -1313,8 +1317,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel2_TipoUsuario" FromRole="Nivel2" ToRole="TipoUsuario" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel2" FromRole="Nivel2" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel2_TipoUsuario" FromRole="Nivel2" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Nivel3">
     <Key>
@@ -1324,8 +1328,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel3_TipoUsuario" FromRole="Nivel3" ToRole="TipoUsuario" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel3" FromRole="Nivel3" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel3_TipoUsuario" FromRole="Nivel3" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Nivel4">
     <Key>
@@ -1335,8 +1339,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel4_TipoUsuario" FromRole="Nivel4" ToRole="TipoUsuario" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel4" FromRole="Nivel4" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel4_TipoUsuario" FromRole="Nivel4" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Nivel5">
     <Key>
@@ -1346,8 +1350,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel5_TipoUsuario" FromRole="Nivel5" ToRole="TipoUsuario" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel5" FromRole="Nivel5" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel5_TipoUsuario" FromRole="Nivel5" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Nivel6">
     <Key>
@@ -1357,8 +1361,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel6_TipoUsuario" FromRole="Nivel6" ToRole="TipoUsuario" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel6" FromRole="Nivel6" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel6_TipoUsuario" FromRole="Nivel6" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Nivel7">
     <Key>
@@ -1368,8 +1372,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel7_TipoUsuario" FromRole="Nivel7" ToRole="TipoUsuario" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel7" FromRole="Nivel7" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Nivel7_TipoUsuario" FromRole="Nivel7" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Organizacion">
     <Key>
@@ -1392,7 +1396,6 @@
     <NavigationProperty Name="Jefatura" Relationship="KiiniNet_v2Model.FK_Organizacion_Jefatura" FromRole="Organizacion" ToRole="Jefatura" />
     <NavigationProperty Name="SubDireccion" Relationship="KiiniNet_v2Model.FK_Organizacion_SubDireccion" FromRole="Organizacion" ToRole="SubDireccion" />
     <NavigationProperty Name="SubGerencia" Relationship="KiiniNet_v2Model.FK_Organizacion_SubGerencia" FromRole="Organizacion" ToRole="SubGerencia" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario" FromRole="Organizacion" ToRole="TipoUsuario" />
     <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_Organizacion" FromRole="Organizacion" ToRole="HitConsulta" />
     <Property Name="IdNivelOrganizacion" Type="Int32" />
     <NavigationProperty Name="NivelOrganizacion" Relationship="KiiniNet_v2Model.FK_Organizacion_NivelOrganizacion" FromRole="Organizacion" ToRole="NivelOrganizacion" />
@@ -1400,6 +1403,7 @@
     <Property Name="Sistema" Type="Boolean" />
     <NavigationProperty Name="ParametrosUsuario" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_Organizacion" FromRole="Organizacion" ToRole="ParametrosUsuario" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_Organizacion" FromRole="Organizacion" ToRole="Ticket" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario" FromRole="Organizacion" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Pais">
     <Key>
@@ -1409,10 +1413,10 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Pais_TipoUsuario" FromRole="Pais" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_Pais" FromRole="Pais" ToRole="Ubicacion" />
     <Property Name="RegionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Estado" Relationship="KiiniNet_v2Model.FK_Estado_Pais" FromRole="Pais" ToRole="Estado" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Pais_TipoUsuario" FromRole="Pais" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="ParametrosAplicaciones">
     <Key>
@@ -1422,18 +1426,6 @@
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Activa" Type="Boolean" />
   </EntityType>
-  <EntityType Name="ParametrosTelefonos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdTipoUsuario" Type="Int32" />
-    <Property Name="IdTipoTelefono" Type="Int32" />
-    <Property Name="NumeroTelefonos" Type="Int32" />
-    <Property Name="Obligatorios" Type="Int32" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblParamTelefonos_tblCatTipoUsuario" FromRole="ParametrosTelefonos" ToRole="TipoUsuario" />
-    <NavigationProperty Name="TipoTelefono" Relationship="KiiniNet_v2Model.FK_tblParamTelefonos_tblCatTipoTelefono" FromRole="ParametrosTelefonos" ToRole="TipoTelefono" />
-  </EntityType>
   <EntityType Name="Piso">
     <Key>
       <PropertyRef Name="Id" />
@@ -1442,8 +1434,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Piso_TipoUsuario" FromRole="Piso" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_Piso" FromRole="Piso" ToRole="Ubicacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Piso_TipoUsuario" FromRole="Piso" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="RespuestaTipoEncuesta">
     <Key>
@@ -1472,9 +1464,9 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdRol" Type="Int32" Nullable="false" />
     <Property Name="IdTipoUsuario" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_RolTipoUsuario_TipoUsuario" FromRole="RolTipoUsuario" ToRole="TipoUsuario" />
     <NavigationProperty Name="Rol" Relationship="KiiniNet_v2Model.FK_RolTipoUsuario_Rol" FromRole="RolTipoUsuario" ToRole="Rol" />
     <NavigationProperty Name="UsuarioRol" Relationship="KiiniNet_v2Model.FK_UsuarioRol_RolTipoUsuario" FromRole="RolTipoUsuario" ToRole="UsuarioRol" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_RolTipoUsuario_TipoUsuario" FromRole="RolTipoUsuario" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="SiteRack">
     <Key>
@@ -1484,8 +1476,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_SiteRack_TipoUsuario" FromRole="SiteRack" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_SiteRack" FromRole="SiteRack" ToRole="Ubicacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_SiteRack_TipoUsuario" FromRole="SiteRack" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="SubDireccion">
     <Key>
@@ -1517,8 +1509,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_SubZona_TipoUsuario" FromRole="SubZona" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_SubZona" FromRole="SubZona" ToRole="Ubicacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_SubZona_TipoUsuario" FromRole="SubZona" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="TipoDocumento">
     <Key>
@@ -1565,60 +1557,6 @@
     <Property Name="Habilitado" Type="Boolean" />
     <NavigationProperty Name="InformacionConsulta" Relationship="KiiniNet_v2Model.FK_tblInformacionConsulta_tblCatTipoInfConsulta" FromRole="TipoInfConsulta" ToRole="InformacionConsulta" />
   </EntityType>
-  <EntityType Name="TipoUsuario">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Abreviacion" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-    <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="EsResidente" Type="Boolean" Nullable="false" />
-    <Property Name="NumeroCorreos" Type="Int32" Nullable="false" />
-    <Property Name="CorreosObligatorios" Type="Int32" Nullable="false" />
-    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Campus" Relationship="KiiniNet_v2Model.FK_Campus_TipoUsuario" FromRole="TipoUsuario" ToRole="Campus" />
-    <NavigationProperty Name="Compania" Relationship="KiiniNet_v2Model.FK_Compania_TipoUsuario" FromRole="TipoUsuario" ToRole="Compania" />
-    <NavigationProperty Name="Direccion" Relationship="KiiniNet_v2Model.FK_Direccion_TipoUsuario" FromRole="TipoUsuario" ToRole="Direccion" />
-    <NavigationProperty Name="Gerencia" Relationship="KiiniNet_v2Model.FK_Gerencia_TipoUsuario" FromRole="TipoUsuario" ToRole="Gerencia" />
-    <NavigationProperty Name="Holding" Relationship="KiiniNet_v2Model.FK_Holding_TipoUsuario" FromRole="TipoUsuario" ToRole="Holding" />
-    <NavigationProperty Name="Jefatura" Relationship="KiiniNet_v2Model.FK_Jefatura_TipoUsuario" FromRole="TipoUsuario" ToRole="Jefatura" />
-    <NavigationProperty Name="Nivel1" Relationship="KiiniNet_v2Model.FK_Nivel1_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel1" />
-    <NavigationProperty Name="Nivel2" Relationship="KiiniNet_v2Model.FK_Nivel2_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel2" />
-    <NavigationProperty Name="Nivel3" Relationship="KiiniNet_v2Model.FK_Nivel3_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel3" />
-    <NavigationProperty Name="Nivel4" Relationship="KiiniNet_v2Model.FK_Nivel4_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel4" />
-    <NavigationProperty Name="Nivel5" Relationship="KiiniNet_v2Model.FK_Nivel5_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel5" />
-    <NavigationProperty Name="Nivel6" Relationship="KiiniNet_v2Model.FK_Nivel6_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel6" />
-    <NavigationProperty Name="Nivel7" Relationship="KiiniNet_v2Model.FK_Nivel7_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel7" />
-    <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario" FromRole="TipoUsuario" ToRole="Organizacion" />
-    <NavigationProperty Name="Pais" Relationship="KiiniNet_v2Model.FK_Pais_TipoUsuario" FromRole="TipoUsuario" ToRole="Pais" />
-    <NavigationProperty Name="ParametrosTelefonos" Relationship="KiiniNet_v2Model.FK_tblParamTelefonos_tblCatTipoUsuario" FromRole="TipoUsuario" ToRole="ParametrosTelefonos" />
-    <NavigationProperty Name="Piso" Relationship="KiiniNet_v2Model.FK_Piso_TipoUsuario" FromRole="TipoUsuario" ToRole="Piso" />
-    <NavigationProperty Name="RolTipoUsuario" Relationship="KiiniNet_v2Model.FK_RolTipoUsuario_TipoUsuario" FromRole="TipoUsuario" ToRole="RolTipoUsuario" />
-    <NavigationProperty Name="SiteRack" Relationship="KiiniNet_v2Model.FK_SiteRack_TipoUsuario" FromRole="TipoUsuario" ToRole="SiteRack" />
-    <NavigationProperty Name="SubDireccion" Relationship="KiiniNet_v2Model.FK_SubDireccion_TipoUsuario" FromRole="TipoUsuario" ToRole="SubDireccion" />
-    <NavigationProperty Name="SubGerencia" Relationship="KiiniNet_v2Model.FK_SubGerencia_TipoUsuario" FromRole="TipoUsuario" ToRole="SubGerencia" />
-    <NavigationProperty Name="SubZona" Relationship="KiiniNet_v2Model.FK_SubZona_TipoUsuario" FromRole="TipoUsuario" ToRole="SubZona" />
-    <NavigationProperty Name="Torre" Relationship="KiiniNet_v2Model.FK_Torre_TipoUsuario" FromRole="TipoUsuario" ToRole="Torre" />
-    <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_TipoUsuario" FromRole="TipoUsuario" ToRole="Ubicacion" />
-    <NavigationProperty Name="Zona" Relationship="KiiniNet_v2Model.FK_Zona_TipoUsuario" FromRole="TipoUsuario" ToRole="Zona" />
-    <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoUsuario" FromRole="TipoUsuario" ToRole="ArbolAcceso" />
-    <NavigationProperty Name="Puesto" Relationship="KiiniNet_v2Model.FK_Puesto_TipoUsuario" FromRole="TipoUsuario" ToRole="Puesto" />
-    <NavigationProperty Name="GrupoUsuario" Relationship="KiiniNet_v2Model.FK_GrupoUsuario_TipoUsuario" FromRole="TipoUsuario" ToRole="GrupoUsuario" />
-    <NavigationProperty Name="AliasOrganizacion" Relationship="KiiniNet_v2Model.FK_AliasOrganizacion_TipoUsuario" FromRole="TipoUsuario" ToRole="AliasOrganizacion" />
-    <NavigationProperty Name="AliasUbicacion" Relationship="KiiniNet_v2Model.FK_AliasUbicacion_TipoUsuario" FromRole="TipoUsuario" ToRole="AliasUbicacion" />
-    <NavigationProperty Name="Frecuencia" Relationship="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario" FromRole="TipoUsuario" ToRole="Frecuencia" />
-    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
-    <NavigationProperty Name="RolMenu" Relationship="KiiniNet_v2Model.FK_RolMenu_TipoUsuario" FromRole="TipoUsuario" ToRole="RolMenu" />
-    <NavigationProperty Name="ParametrosUsuario" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario" FromRole="TipoUsuario" ToRole="ParametrosUsuario" />
-    <NavigationProperty Name="ParametroDatosAdicionales" Relationship="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario" FromRole="TipoUsuario" ToRole="ParametroDatosAdicionales" />
-    <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" FromRole="TipoUsuario" ToRole="HitConsulta" />
-    <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario" FromRole="TipoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
-    <Property Name="Domicilio" Type="Boolean" />
-    <Property Name="UbicacionDomicilio" Type="Boolean" />
-    <Property Name="EsMoral" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_TipoUsuario" FromRole="TipoUsuario" ToRole="Ticket" />
-  </EntityType>
   <EntityType Name="Torre">
     <Key>
       <PropertyRef Name="Id" />
@@ -1627,8 +1565,8 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Torre_TipoUsuario" FromRole="Torre" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_Torre" FromRole="Torre" ToRole="Ubicacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Torre_TipoUsuario" FromRole="Torre" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="Ubicacion">
     <Key>
@@ -1649,7 +1587,6 @@
     <NavigationProperty Name="Piso" Relationship="KiiniNet_v2Model.FK_Ubicacion_Piso" FromRole="Ubicacion" ToRole="Piso" />
     <NavigationProperty Name="SiteRack" Relationship="KiiniNet_v2Model.FK_Ubicacion_SiteRack" FromRole="Ubicacion" ToRole="SiteRack" />
     <NavigationProperty Name="SubZona" Relationship="KiiniNet_v2Model.FK_Ubicacion_SubZona" FromRole="Ubicacion" ToRole="SubZona" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Ubicacion_TipoUsuario" FromRole="Ubicacion" ToRole="TipoUsuario" />
     <NavigationProperty Name="Torre" Relationship="KiiniNet_v2Model.FK_Ubicacion_Torre" FromRole="Ubicacion" ToRole="Torre" />
     <NavigationProperty Name="Zona" Relationship="KiiniNet_v2Model.FK_Ubicacion_Zona" FromRole="Ubicacion" ToRole="Zona" />
     <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_Ubicacion" FromRole="Ubicacion" ToRole="HitConsulta" />
@@ -1659,6 +1596,7 @@
     <Property Name="Sistema" Type="Boolean" />
     <NavigationProperty Name="ParametrosUsuario" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_Ubicacion" FromRole="Ubicacion" ToRole="ParametrosUsuario" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_Ubicacion" FromRole="Ubicacion" ToRole="Ticket" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Ubicacion_TipoUsuario" FromRole="Ubicacion" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="UsuarioGrupo">
     <Key>
@@ -1682,21 +1620,9 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Zona_TipoUsuario" FromRole="Zona" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_Zona" FromRole="Zona" ToRole="Ubicacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Zona_TipoUsuario" FromRole="Zona" ToRole="TipoUsuario" />
   </EntityType>
-  <Association Name="FK_Campus_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Campus" Role="Campus" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Campus">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Domicilio_Campus">
     <End Type="KiiniNet_v2Model.Campus" Role="Campus" Multiplicity="1" />
     <End Type="KiiniNet_v2Model.Domicilio" Role="Domicilio" Multiplicity="*" />
@@ -1721,18 +1647,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Compania_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Compania" Role="Compania" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Compania">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Organizacion_Compania">
     <End Type="KiiniNet_v2Model.Compania" Role="Compania" Multiplicity="0..1" />
     <End Type="KiiniNet_v2Model.Organizacion" Role="Organizacion" Multiplicity="*" />
@@ -1742,18 +1656,6 @@
       </Principal>
       <Dependent Role="Organizacion">
         <PropertyRef Name="IdCompania" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Direccion_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Direccion" Role="Direccion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Direccion">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1769,18 +1671,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Gerencia_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Gerencia" Role="Gerencia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Gerencia">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Organizacion_Gerencia">
     <End Type="KiiniNet_v2Model.Gerencia" Role="Gerencia" Multiplicity="0..1" />
     <End Type="KiiniNet_v2Model.Organizacion" Role="Organizacion" Multiplicity="*" />
@@ -1790,18 +1680,6 @@
       </Principal>
       <Dependent Role="Organizacion">
         <PropertyRef Name="IdGerencia" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Holding_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Holding" Role="Holding" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Holding">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1817,18 +1695,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Jefatura_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Jefatura" Role="Jefatura" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Jefatura">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Organizacion_Jefatura">
     <End Type="KiiniNet_v2Model.Jefatura" Role="Jefatura" Multiplicity="0..1" />
     <End Type="KiiniNet_v2Model.Organizacion" Role="Organizacion" Multiplicity="*" />
@@ -1838,90 +1704,6 @@
       </Principal>
       <Dependent Role="Organizacion">
         <PropertyRef Name="IdJefatura" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Nivel1_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Nivel1" Role="Nivel1" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Nivel1">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Nivel2_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Nivel2" Role="Nivel2" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Nivel2">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Nivel3_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Nivel3" Role="Nivel3" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Nivel3">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Nivel4_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Nivel4" Role="Nivel4" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Nivel4">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Nivel5_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Nivel5" Role="Nivel5" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Nivel5">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Nivel6_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Nivel6" Role="Nivel6" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Nivel6">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Nivel7_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Nivel7" Role="Nivel7" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Nivel7">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1949,30 +1731,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_tblOrganizacion_tblCatTipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.Organizacion" Role="Organizacion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Organizacion">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Pais_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Pais" Role="Pais" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Pais">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Ubicacion_Pais">
     <End Type="KiiniNet_v2Model.Pais" Role="Pais" Multiplicity="1" />
     <End Type="KiiniNet_v2Model.Ubicacion" Role="Ubicacion" Multiplicity="*" />
@@ -1982,30 +1740,6 @@
       </Principal>
       <Dependent Role="Ubicacion">
         <PropertyRef Name="IdPais" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tblParamTelefonos_tblCatTipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.ParametrosTelefonos" Role="ParametrosTelefonos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ParametrosTelefonos">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Piso_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Piso" Role="Piso" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Piso">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2045,30 +1779,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RolTipoUsuario_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.RolTipoUsuario" Role="RolTipoUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RolTipoUsuario">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SiteRack_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.SiteRack" Role="SiteRack" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SiteRack">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Ubicacion_SiteRack">
     <End Type="KiiniNet_v2Model.SiteRack" Role="SiteRack" Multiplicity="0..1" />
     <End Type="KiiniNet_v2Model.Ubicacion" Role="Ubicacion" Multiplicity="*" />
@@ -2081,42 +1791,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SubDireccion_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.SubDireccion" Role="SubDireccion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SubDireccion">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SubGerencia_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.SubGerencia" Role="SubGerencia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SubGerencia">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SubZona_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.SubZona" Role="SubZona" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="SubZona">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Ubicacion_SubZona">
     <End Type="KiiniNet_v2Model.SubZona" Role="SubZona" Multiplicity="0..1" />
     <End Type="KiiniNet_v2Model.Ubicacion" Role="Ubicacion" Multiplicity="*" />
@@ -2126,42 +1800,6 @@
       </Principal>
       <Dependent Role="Ubicacion">
         <PropertyRef Name="IdSubZona" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Torre_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Torre" Role="Torre" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Torre">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Ubicacion_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.Ubicacion" Role="Ubicacion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Ubicacion">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Zona_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Zona" Role="Zona" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Zona">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2264,6 +1902,7 @@
     <NavigationProperty Name="EstatusAsignacionSubRolGeneral" Relationship="KiiniNet_v2Model.FK_EstatusAsignacionSubRolGeneral_Rol" FromRole="Rol" ToRole="EstatusAsignacionSubRolGeneral" />
     <NavigationProperty Name="RolMenu" Relationship="KiiniNet_v2Model.FK_RolMenu_Rol" FromRole="Rol" ToRole="RolMenu" />
     <NavigationProperty Name="HitGrupoUsuario" Relationship="KiiniNet_v2Model.FK_HitGrupoUsuario_Rol" FromRole="Rol" ToRole="HitGrupoUsuario" />
+    <NavigationProperty Name="RolTipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_RolTipoArbolAcceso_Rol" FromRole="Rol" ToRole="RolTipoArbolAcceso" />
   </EntityType>
   <Association Name="FK_GrupoUsuarioInventarioArbol_Rol">
     <End Type="KiiniNet_v2Model.Rol" Role="Rol" Multiplicity="1" />
@@ -2406,6 +2045,7 @@
     <NavigationProperty Name="EstatusAsignacionSubRolGeneralActual" Relationship="KiiniNet_v2Model.FK_EstatusAsignacionSubRolGeneral_EstatusAsignacion" FromRole="EstatusAsignacion" ToRole="EstatusAsignacionSubRolGeneral" />
     <NavigationProperty Name="EstatusAsignacionSubRolGeneralAccion" Relationship="KiiniNet_v2Model.FK_EstatusAsignacionSubRolGeneral_EstatusAsignacion1" FromRole="EstatusAsignacion" ToRole="EstatusAsignacionSubRolGeneral" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_EstatusAsignacion" FromRole="EstatusAsignacion" ToRole="Ticket" />
+    <Property Name="ColorGrafico" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="TicketAsignacion">
     <Key>
@@ -2708,7 +2348,6 @@
     <NavigationProperty Name="Nivel5" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel5" FromRole="ArbolAcceso" ToRole="Nivel5" />
     <NavigationProperty Name="Nivel6" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel6" FromRole="ArbolAcceso" ToRole="Nivel6" />
     <NavigationProperty Name="Nivel7" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Nivel7" FromRole="ArbolAcceso" ToRole="Nivel7" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoUsuario" FromRole="ArbolAcceso" ToRole="TipoUsuario" />
     <NavigationProperty Name="InventarioArbolAcceso" Relationship="KiiniNet_v2Model.FK_tblInventarioArbolAcceso_tblArbolAcceso" FromRole="ArbolAcceso" ToRole="InventarioArbolAcceso" />
     <NavigationProperty Name="Impacto" Relationship="KiiniNet_v2Model.FK_ArbolAcceso_Prioridad" FromRole="ArbolAcceso" ToRole="Impacto" />
     <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_ArbolAcceso" FromRole="ArbolAcceso" ToRole="HitConsulta" />
@@ -2731,6 +2370,7 @@
     <Property Name="Visitas" Type="Int32" Nullable="false" />
     <Property Name="FechaVisita" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_tblTicket_tblArbolAcceso" FromRole="ArbolAcceso" ToRole="Ticket" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoUsuario" FromRole="ArbolAcceso" ToRole="TipoUsuario" />
   </EntityType>
   <Association Name="FK_ArbolAcceso_Nivel1">
     <End Type="KiiniNet_v2Model.Nivel1" Role="Nivel1" Multiplicity="1" />
@@ -2813,18 +2453,6 @@
       </Principal>
       <Dependent Role="ArbolAcceso">
         <PropertyRef Name="IdNivel7" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tblArbolAcceso_tblCatTipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.ArbolAcceso" Role="ArbolAcceso" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ArbolAcceso">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3027,21 +2655,8 @@
     <Property Name="Extension" Type="Boolean" />
     <Property Name="Confirmacion" Type="Boolean" Nullable="false" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="ParametrosTelefonos" Relationship="KiiniNet_v2Model.FK_tblParamTelefonos_tblCatTipoTelefono" FromRole="TipoTelefono" ToRole="ParametrosTelefonos" />
     <NavigationProperty Name="TelefonoUsuario" Relationship="KiiniNet_v2Model.FK_TelefonoUsuario_TipoTelefono" FromRole="TipoTelefono" ToRole="TelefonoUsuario" />
   </EntityType>
-  <Association Name="FK_tblParamTelefonos_tblCatTipoTelefono">
-    <End Type="KiiniNet_v2Model.TipoTelefono" Role="TipoTelefono" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.ParametrosTelefonos" Role="ParametrosTelefonos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoTelefono">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ParametrosTelefonos">
-        <PropertyRef Name="IdTipoTelefono" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="TipoLink">
     <Key>
       <PropertyRef Name="Id" />
@@ -3052,32 +2667,6 @@
     <NavigationProperty Name="SmsService" Relationship="KiiniNet_v2Model.FK_Sms_Service_TipoLink" FromRole="TipoLink" ToRole="SmsService" />
     <NavigationProperty Name="UsuarioLinkPassword" Relationship="KiiniNet_v2Model.FK_UsuarioLinkPassword_TipoLink" FromRole="TipoLink" ToRole="UsuarioLinkPassword" />
   </EntityType>
-  <EntityType Name="TelefonoUsuario">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdTipoTelefono" Type="Int32" />
-    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-    <Property Name="Numero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Extension" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Obligatorio" Type="Boolean" />
-    <Property Name="Confirmado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="TipoTelefono" Relationship="KiiniNet_v2Model.FK_TelefonoUsuario_TipoTelefono" FromRole="TelefonoUsuario" ToRole="TipoTelefono" />
-    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_TelefonoUsuario_Usuario" FromRole="TelefonoUsuario" ToRole="Usuario" />
-  </EntityType>
-  <Association Name="FK_TelefonoUsuario_TipoTelefono">
-    <End Type="KiiniNet_v2Model.TipoTelefono" Role="TipoTelefono" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.TelefonoUsuario" Role="TelefonoUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoTelefono">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TelefonoUsuario">
-        <PropertyRef Name="IdTipoTelefono" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="SmsService">
     <Key>
       <PropertyRef Name="Id" />
@@ -3220,6 +2809,7 @@
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_Canal" FromRole="Canal" ToRole="Ticket" />
+    <Property Name="ColorGrafico" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="UsuarioPassword">
     <Key>
@@ -3298,21 +2888,9 @@
     <Property Name="IdTipoUsuario" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Puesto_TipoUsuario" FromRole="Puesto" ToRole="TipoUsuario" />
     <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_Usuario_Puesto" FromRole="Puesto" ToRole="Usuario" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Puesto_TipoUsuario" FromRole="Puesto" ToRole="TipoUsuario" />
   </EntityType>
-  <Association Name="FK_Puesto_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.Puesto" Role="Puesto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Puesto">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="HorarioDetalle">
     <Key>
       <PropertyRef Name="Id" />
@@ -3363,7 +2941,6 @@
     <Property Name="RecadoTicket" Type="Boolean" />
     <Property Name="Habilitado" Type="Boolean" />
     <NavigationProperty Name="TipoGrupo" Relationship="KiiniNet_v2Model.FK_GrupoUsuario_TipoGrupo1" FromRole="GrupoUsuario" ToRole="TipoGrupo" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_GrupoUsuario_TipoUsuario" FromRole="GrupoUsuario" ToRole="TipoUsuario" />
     <NavigationProperty Name="GrupoUsuarioInventarioArbol" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioInventarioArbol_GrupoUsuario" FromRole="GrupoUsuario" ToRole="GrupoUsuarioInventarioArbol" />
     <NavigationProperty Name="SubGrupoUsuario" Relationship="KiiniNet_v2Model.FK_SubGrupoUsuario_GrupoUsuario" FromRole="GrupoUsuario" ToRole="SubGrupoUsuario" />
     <NavigationProperty Name="TicketGrupoUsuario" Relationship="KiiniNet_v2Model.FK_TicketGrupoUsuario_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TicketGrupoUsuario" />
@@ -3375,6 +2952,7 @@
     <NavigationProperty Name="TiempoInformeArbol" Relationship="KiiniNet_v2Model.FK_TiempoInformeArbol_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TiempoInformeArbol" />
     <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_GrupoUsuario" FromRole="GrupoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
     <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_GrupoUsuario" FromRole="GrupoUsuario" ToRole="TicketNotificacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_GrupoUsuario_TipoUsuario" FromRole="GrupoUsuario" ToRole="TipoUsuario" />
   </EntityType>
   <Association Name="FK_GrupoUsuario_TipoGrupo1">
     <End Type="KiiniNet_v2Model.TipoGrupo" Role="TipoGrupo" Multiplicity="0..1" />
@@ -3385,18 +2963,6 @@
       </Principal>
       <Dependent Role="GrupoUsuario">
         <PropertyRef Name="IdTipoGrupo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GrupoUsuario_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.GrupoUsuario" Role="GrupoUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="GrupoUsuario">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3490,6 +3056,7 @@
     <NavigationProperty Name="EstatusTicketSubRolGeneralDefaultAccion" Relationship="KiiniNet_v2Model.FK_EstatusTicketSubRolGeneralDefault_EstatusTicketAccion" FromRole="EstatusTicket" ToRole="EstatusTicketSubRolGeneralDefault" />
     <NavigationProperty Name="TicketEstatus" Relationship="KiiniNet_v2Model.FK_TicketEstatus_EstatusTicket" FromRole="EstatusTicket" ToRole="TicketEstatus" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_EstatusTicket" FromRole="EstatusTicket" ToRole="Ticket" />
+    <Property Name="ColorGrafico" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="EstatusTicketSubRolGeneral">
     <Key>
@@ -3841,18 +3408,6 @@
     <Property Name="Habilitado" Type="Boolean" />
     <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_AliasOrganizacion_TipoUsuario" FromRole="AliasOrganizacion" ToRole="TipoUsuario" />
   </EntityType>
-  <Association Name="FK_AliasOrganizacion_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.AliasOrganizacion" Role="AliasOrganizacion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AliasOrganizacion">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="AliasUbicacion">
     <Key>
       <PropertyRef Name="Id" />
@@ -3864,18 +3419,6 @@
     <Property Name="Habilitado" Type="Boolean" />
     <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_AliasUbicacion_TipoUsuario" FromRole="AliasUbicacion" ToRole="TipoUsuario" />
   </EntityType>
-  <Association Name="FK_AliasUbicacion_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.AliasUbicacion" Role="AliasUbicacion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="AliasUbicacion">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="CorreoUsuario">
     <Key>
       <PropertyRef Name="Id" />
@@ -4144,8 +3687,8 @@
     <Property Name="NumeroVisitas" Type="Int32" Nullable="false" />
     <Property Name="UltimaVisita" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_Frecuencia_ArbolAcceso" FromRole="Frecuencia" ToRole="ArbolAcceso" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario" FromRole="Frecuencia" ToRole="TipoUsuario" />
     <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_Frecuencia_TipoArbolAcceso" FromRole="Frecuencia" ToRole="TipoArbolAcceso" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario" FromRole="Frecuencia" ToRole="TipoUsuario" />
   </EntityType>
   <Association Name="FK_Frecuencia_ArbolAcceso">
     <End Type="KiiniNet_v2Model.ArbolAcceso" Role="ArbolAcceso" Multiplicity="1" />
@@ -4159,18 +3702,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Frecuencia_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.Frecuencia" Role="Frecuencia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Frecuencia">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="DiaFestivoDefault">
     <Key>
       <PropertyRef Name="Id" />
@@ -4179,16 +3710,6 @@
     <Property Name="Dia" Type="Int32" Nullable="false" />
     <Property Name="Mes" Type="Int32" Nullable="false" />
     <Property Name="Habilitado" Type="Boolean" Nullable="false" />
-  </EntityType>
-  <EntityType Name="BitacoraAcceso">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
-    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Success" Type="Boolean" />
-    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_BitacoraAcceso_Usuario" FromRole="BitacoraAcceso" ToRole="Usuario" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
@@ -4214,7 +3735,6 @@
     <Property Name="Tries" Type="Int32" />
     <Property Name="FechaBloqueo" Type="DateTime" Precision="3" />
     <Property Name="FechaUpdate" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="BitacoraAcceso" Relationship="KiiniNet_v2Model.FK_BitacoraAcceso_Usuario" FromRole="Usuario" ToRole="BitacoraAcceso" />
     <NavigationProperty Name="CorreoUsuario" Relationship="KiiniNet_v2Model.FK_CorreoUsuario_Usuario" FromRole="Usuario" ToRole="CorreoUsuario" />
     <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_Usuario" FromRole="Usuario" ToRole="HitConsulta" />
     <NavigationProperty Name="NotaGeneral" Relationship="KiiniNet_v2Model.FK_NotaGeneral_Usuario" FromRole="Usuario" ToRole="NotaGeneral" />
@@ -4226,12 +3746,10 @@
     <NavigationProperty Name="PreTicketSolicitado" Relationship="KiiniNet_v2Model.FK_PreTicket_UsuarioSolicito" FromRole="Usuario" ToRole="PreTicket" />
     <NavigationProperty Name="Puesto" Relationship="KiiniNet_v2Model.FK_Usuario_Puesto" FromRole="Usuario" ToRole="Puesto" />
     <NavigationProperty Name="SmsService" Relationship="KiiniNet_v2Model.FK_Sms_Service_Usuario" FromRole="Usuario" ToRole="SmsService" />
-    <NavigationProperty Name="TelefonoUsuario" Relationship="KiiniNet_v2Model.FK_TelefonoUsuario_Usuario" FromRole="Usuario" ToRole="TelefonoUsuario" />
     <NavigationProperty Name="TicketAsignado" Relationship="KiiniNet_v2Model.FK_TicketAsignacion_UsuarioAsignado" FromRole="Usuario" ToRole="TicketAsignacion" />
     <NavigationProperty Name="TicketAsigno" Relationship="KiiniNet_v2Model.FK_TicketAsignacion_UsuarioAsigno" FromRole="Usuario" ToRole="TicketAsignacion" />
     <NavigationProperty Name="TicketConversacion" Relationship="KiiniNet_v2Model.FK_TicketConversacion_Usuario" FromRole="Usuario" ToRole="TicketConversacion" />
     <NavigationProperty Name="TicketEstatus" Relationship="KiiniNet_v2Model.FK_TicketEstatus_Usuario" FromRole="Usuario" ToRole="TicketEstatus" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Usuario_Ubicacion" FromRole="Usuario" ToRole="Ubicacion" />
     <NavigationProperty Name="UsuarioGrupo" Relationship="KiiniNet_v2Model.FK_UsuarioGrupo_Usuario" FromRole="Usuario" ToRole="UsuarioGrupo" />
     <NavigationProperty Name="UsuarioLinkPassword" Relationship="KiiniNet_v2Model.FK_UsuarioLinkPassword_Usuario" FromRole="Usuario" ToRole="UsuarioLinkPassword" />
@@ -4251,12 +3769,15 @@
     <NavigationProperty Name="UsuarioNotificacion" Relationship="KiiniNet_v2Model.FK_UsuarioNotificacion_Usuario" FromRole="Usuario" ToRole="UsuarioNotificacion" />
     <NavigationProperty Name="CorreoService" Relationship="KiiniNet_v2Model.FK_CorreoService_Usuario" FromRole="Usuario" ToRole="CorreoService" />
     <NavigationProperty Name="TicketNotificacion" Relationship="KiiniNet_v2Model.FK_TicketNotificacion_Usuario" FromRole="Usuario" ToRole="TicketNotificacion" />
-    <NavigationProperty Name="GraficosFavoritos" Relationship="KiiniNet_v2Model.FK_GraficosFavoritos_Usuario" FromRole="Usuario" ToRole="GraficosFavoritos" />
     <NavigationProperty Name="TicketsLevantados" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario" FromRole="Usuario" ToRole="Ticket" />
     <NavigationProperty Name="TicketsResueltos" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario1" FromRole="Usuario" ToRole="Ticket" />
     <NavigationProperty Name="TicketsSolicitados" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario2" FromRole="Usuario" ToRole="Ticket" />
     <NavigationProperty Name="UltimosTicketsAsignados" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario_UltimoAgente" FromRole="Usuario" ToRole="Ticket" />
     <NavigationProperty Name="TicketsUltimoMovimiento" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario_UltimoMovimiento" FromRole="Usuario" ToRole="Ticket" />
+    <NavigationProperty Name="GraficosFavoritos" Relationship="KiiniNet_v2Model.FK_GraficosFavoritos_Usuario" FromRole="Usuario" ToRole="GraficosFavoritos" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+    <NavigationProperty Name="TelefonoUsuario" Relationship="KiiniNet_v2Model.FK_TelefonoUsuario_Usuario" FromRole="Usuario" ToRole="TelefonoUsuario" />
+    <NavigationProperty Name="BitacoraAcceso" Relationship="KiiniNet_v2Model.FK_BitacoraAcceso_Usuario" FromRole="Usuario" ToRole="BitacoraAcceso" />
   </EntityType>
   <Association Name="FK_ArbolAcceso_Usuario">
     <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
@@ -4291,18 +3812,6 @@
       </Principal>
       <Dependent Role="Area">
         <PropertyRef Name="IdUsuarioModifico" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BitacoraAcceso_Usuario">
-    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.BitacoraAcceso" Role="BitacoraAcceso" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="BitacoraAcceso">
-        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4438,18 +3947,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_TelefonoUsuario_Usuario">
-    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.TelefonoUsuario" Role="TelefonoUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TelefonoUsuario">
-        <PropertyRef Name="IdUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_TicketAsignacion_UsuarioAsignado">
     <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
     <End Type="KiiniNet_v2Model.TicketAsignacion" Role="TicketAsignacion" Multiplicity="*" />
@@ -4495,18 +3992,6 @@
       </Principal>
       <Dependent Role="TicketEstatus">
         <PropertyRef Name="IdUsuarioMovimiento" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Usuario_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Usuario">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5014,6 +4499,8 @@
     <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="HitConsulta" />
     <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="GrupoUsuarioDefaultOpcion" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="Ticket" />
+    <NavigationProperty Name="RolTipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_RolTipoArbolAcceso_TipoArbolAcceso" FromRole="TipoArbolAcceso" ToRole="RolTipoArbolAcceso" />
+    <Property Name="ColorGrafico" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_tblArbolAcceso_tblCatTipoArbolAcceso">
     <End Type="KiiniNet_v2Model.TipoArbolAcceso" Role="TipoArbolAcceso" Multiplicity="1" />
@@ -5154,18 +4641,6 @@
       </Principal>
       <Dependent Role="RolMenu">
         <PropertyRef Name="IdRol" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RolMenu_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.RolMenu" Role="RolMenu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RolMenu">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5320,8 +4795,8 @@
     <Property Name="IdUbicacion" Type="Int32" />
     <Property Name="Habilitado" Type="Boolean" />
     <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_Organizacion" FromRole="ParametrosUsuario" ToRole="Organizacion" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario" FromRole="ParametrosUsuario" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_Ubicacion" FromRole="ParametrosUsuario" ToRole="Ubicacion" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario" FromRole="ParametrosUsuario" ToRole="TipoUsuario" />
   </EntityType>
   <EntityType Name="TiempoInformeArbol">
     <Key>
@@ -5377,18 +4852,6 @@
       </Principal>
       <Dependent Role="ParametrosUsuario">
         <PropertyRef Name="IdOrganizacion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ParametrosUsuario_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.ParametrosUsuario" Role="ParametrosUsuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ParametrosUsuario">
-        <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5564,18 +5027,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ParametroDatosAdicionales_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.ParametroDatosAdicionales" Role="ParametroDatosAdicionales" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ParametroDatosAdicionales">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="TicketCorreo">
     <Key>
       <PropertyRef Name="Id" />
@@ -5585,18 +5036,6 @@
     <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_TicketCorreo_Ticket" FromRole="TicketCorreo" ToRole="Ticket" />
   </EntityType>
-  <Association Name="FK_HitConsulta_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.HitConsulta" Role="HitConsulta" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="HitConsulta">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="TicketEvento">
     <Key>
       <PropertyRef Name="Id" />
@@ -5856,18 +5295,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" Role="GrupoUsuarioDefaultOpcion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="GrupoUsuarioDefaultOpcion">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="ParametrosGenerales">
     <Key>
       <PropertyRef Name="Id" />
@@ -5976,103 +5403,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="FrecuenciaFecha">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PeriodoMaximo" Type="Int32" />
-    <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="GraficosDefault" Relationship="KiiniNet_v2Model.FK_GraficosDefault_FrecuenciaFecha" FromRole="FrecuenciaFecha" ToRole="GraficosDefault" />
-  </EntityType>
-  <EntityType Name="GraficosDefault">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdMenu" Type="Int32" />
-    <Property Name="IdFrecuenciaFecha" Type="Int32" />
-    <Property Name="Periodo" Type="Int32" />
-    <Property Name="Stack" Type="Boolean" />
-    <Property Name="Pareto" Type="Boolean" />
-    <Property Name="Pie" Type="Boolean" />
-    <Property Name="Geografico" Type="Boolean" />
-    <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="FrecuenciaFecha" Relationship="KiiniNet_v2Model.FK_GraficosDefault_FrecuenciaFecha" FromRole="GraficosDefault" ToRole="FrecuenciaFecha" />
-    <NavigationProperty Name="Menu" Relationship="KiiniNet_v2Model.FK_GraficosDefault_Menu" FromRole="GraficosDefault" ToRole="Menu" />
-  </EntityType>
-  <EntityType Name="GraficosFavoritos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IdUsuario" Type="Int32" />
-    <Property Name="IdMenu" Type="Int32" />
-    <Property Name="TipoUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Categoria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="GrupoAtencion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Agentes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Canal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="TipoTicket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="EstatusTicket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Prioridad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Sla" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Vip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Organizacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Estados" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Habilitado" Type="Boolean" />
-    <NavigationProperty Name="Menu" Relationship="KiiniNet_v2Model.FK_GraficosFavoritos_Menu" FromRole="GraficosFavoritos" ToRole="Menu" />
-    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_GraficosFavoritos_Usuario" FromRole="GraficosFavoritos" ToRole="Usuario" />
-  </EntityType>
-  <Association Name="FK_GraficosDefault_FrecuenciaFecha">
-    <End Type="KiiniNet_v2Model.FrecuenciaFecha" Role="FrecuenciaFecha" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.GraficosDefault" Role="GraficosDefault" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FrecuenciaFecha">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="GraficosDefault">
-        <PropertyRef Name="IdFrecuenciaFecha" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GraficosDefault_Menu">
-    <End Type="KiiniNet_v2Model.Menu" Role="Menu" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.GraficosDefault" Role="GraficosDefault" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Menu">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="GraficosDefault">
-        <PropertyRef Name="IdMenu" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GraficosFavoritos_Menu">
-    <End Type="KiiniNet_v2Model.Menu" Role="Menu" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.GraficosFavoritos" Role="GraficosFavoritos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Menu">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="GraficosFavoritos">
-        <PropertyRef Name="IdMenu" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GraficosFavoritos_Usuario">
-    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
-    <End Type="KiiniNet_v2Model.GraficosFavoritos" Role="GraficosFavoritos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="GraficosFavoritos">
-        <PropertyRef Name="IdUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Ticket">
     <Key>
       <PropertyRef Name="Id" />
@@ -6119,7 +5449,6 @@
     <NavigationProperty Name="RespuestaEncuesta" Relationship="KiiniNet_v2Model.FK_tblRespuestaEncuesta_tblTicket" FromRole="Ticket" ToRole="RespuestaEncuesta" />
     <NavigationProperty Name="SlaEstimadoTicket" Relationship="KiiniNet_v2Model.FK_tblTicket_tblSLAEstimadoTicket" FromRole="Ticket" ToRole="SlaEstimadoTicket" />
     <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_Ticket_TipoArbolAcceso" FromRole="Ticket" ToRole="TipoArbolAcceso" />
-    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Ticket_TipoUsuario" FromRole="Ticket" ToRole="TipoUsuario" />
     <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ticket_Ubicacion" FromRole="Ticket" ToRole="Ubicacion" />
     <NavigationProperty Name="UsuarioLevanto" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario" FromRole="Ticket" ToRole="Usuario" />
     <NavigationProperty Name="UsuarioResolvio" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario1" FromRole="Ticket" ToRole="Usuario" />
@@ -6137,6 +5466,7 @@
     <Property Name="FechaUltimoAgenteAsignado" Type="DateTime" Precision="3" />
     <NavigationProperty Name="UltimoAgenteAsignado" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario_UltimoAgente" FromRole="Ticket" ToRole="Usuario" />
     <NavigationProperty Name="UsuarioUltimoMovimiento" Relationship="KiiniNet_v2Model.FK_Ticket_Usuario_UltimoMovimiento" FromRole="Ticket" ToRole="Usuario" />
+    <NavigationProperty Name="TipoUsuario" Relationship="KiiniNet_v2Model.FK_Ticket_TipoUsuario" FromRole="Ticket" ToRole="TipoUsuario" />
   </EntityType>
   <Association Name="FK_tblTicket_tblArbolAcceso">
     <End Type="KiiniNet_v2Model.ArbolAcceso" Role="ArbolAcceso" Multiplicity="1" />
@@ -6294,18 +5624,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Ticket_TipoUsuario">
-    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
-    <End Type="KiiniNet_v2Model.Ticket" Role="Ticket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Ticket">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Ticket_Ubicacion">
     <End Type="KiiniNet_v2Model.Ubicacion" Role="Ubicacion" Multiplicity="1" />
     <End Type="KiiniNet_v2Model.Ticket" Role="Ticket" Multiplicity="*" />
@@ -6459,6 +5777,730 @@
       </Principal>
       <Dependent Role="Ticket">
         <PropertyRef Name="IdUsuarioUltimoMovimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RolTipoArbolAcceso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoArbolAcceso" Type="Int32" />
+    <Property Name="IdRol" Type="Int32" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="Rol" Relationship="KiiniNet_v2Model.FK_RolTipoArbolAcceso_Rol" FromRole="RolTipoArbolAcceso" ToRole="Rol" />
+    <NavigationProperty Name="TipoArbolAcceso" Relationship="KiiniNet_v2Model.FK_RolTipoArbolAcceso_TipoArbolAcceso" FromRole="RolTipoArbolAcceso" ToRole="TipoArbolAcceso" />
+  </EntityType>
+  <Association Name="FK_RolTipoArbolAcceso_Rol">
+    <End Type="KiiniNet_v2Model.Rol" Role="Rol" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.RolTipoArbolAcceso" Role="RolTipoArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoArbolAcceso">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolTipoArbolAcceso_TipoArbolAcceso">
+    <End Type="KiiniNet_v2Model.TipoArbolAcceso" Role="TipoArbolAcceso" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.RolTipoArbolAcceso" Role="RolTipoArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoArbolAcceso">
+        <PropertyRef Name="IdTipoArbolAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FrecuenciaFecha">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PeriodoMaximo" Type="Int32" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="GraficosDefault" Relationship="KiiniNet_v2Model.FK_GraficosDefault_FrecuenciaFecha" FromRole="FrecuenciaFecha" ToRole="GraficosDefault" />
+  </EntityType>
+  <EntityType Name="GraficosDefault">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdMenu" Type="Int32" />
+    <Property Name="IdFrecuenciaFecha" Type="Int32" />
+    <Property Name="Periodo" Type="Int32" />
+    <Property Name="Stack" Type="Boolean" />
+    <Property Name="Pareto" Type="Boolean" />
+    <Property Name="Pie" Type="Boolean" />
+    <Property Name="Geografico" Type="Boolean" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="FrecuenciaFecha" Relationship="KiiniNet_v2Model.FK_GraficosDefault_FrecuenciaFecha" FromRole="GraficosDefault" ToRole="FrecuenciaFecha" />
+    <NavigationProperty Name="Menu" Relationship="KiiniNet_v2Model.FK_GraficosDefault_Menu" FromRole="GraficosDefault" ToRole="Menu" />
+  </EntityType>
+  <EntityType Name="GraficosFavoritos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" />
+    <Property Name="IdMenu" Type="Int32" />
+    <Property Name="TipoUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Categoria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GrupoAtencion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Agentes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Canal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TipoTicket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EstatusTicket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Prioridad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sla" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Vip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Organizacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Estados" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" />
+    <NavigationProperty Name="Menu" Relationship="KiiniNet_v2Model.FK_GraficosFavoritos_Menu" FromRole="GraficosFavoritos" ToRole="Menu" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_GraficosFavoritos_Usuario" FromRole="GraficosFavoritos" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_GraficosDefault_FrecuenciaFecha">
+    <End Type="KiiniNet_v2Model.FrecuenciaFecha" Role="FrecuenciaFecha" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GraficosDefault" Role="GraficosDefault" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FrecuenciaFecha">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosDefault">
+        <PropertyRef Name="IdFrecuenciaFecha" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficosDefault_Menu">
+    <End Type="KiiniNet_v2Model.Menu" Role="Menu" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GraficosDefault" Role="GraficosDefault" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosDefault">
+        <PropertyRef Name="IdMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficosFavoritos_Menu">
+    <End Type="KiiniNet_v2Model.Menu" Role="Menu" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GraficosFavoritos" Role="GraficosFavoritos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosFavoritos">
+        <PropertyRef Name="IdMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraficosFavoritos_Usuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GraficosFavoritos" Role="GraficosFavoritos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraficosFavoritos">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ColoresTop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Orden" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ChatUserDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ConnectionId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ColoresSla">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Dentro" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Abreviacion" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="EsResidente" Type="Boolean" Nullable="false" />
+    <Property Name="EsMoral" Type="Boolean" Nullable="false" />
+    <Property Name="TelefonoObligatorio" Type="Boolean" Nullable="false" />
+    <Property Name="Domicilio" Type="Boolean" />
+    <Property Name="UbicacionDomicilio" Type="Boolean" />
+    <Property Name="Habilitado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AliasOrganizacion" Relationship="KiiniNet_v2Model.FK_AliasOrganizacion_TipoUsuario" FromRole="TipoUsuario" ToRole="AliasOrganizacion" />
+    <NavigationProperty Name="AliasUbicacion" Relationship="KiiniNet_v2Model.FK_AliasUbicacion_TipoUsuario" FromRole="TipoUsuario" ToRole="AliasUbicacion" />
+    <NavigationProperty Name="ArbolAcceso" Relationship="KiiniNet_v2Model.FK_tblArbolAcceso_tblCatTipoUsuario" FromRole="TipoUsuario" ToRole="ArbolAcceso" />
+    <NavigationProperty Name="Campus" Relationship="KiiniNet_v2Model.FK_Campus_TipoUsuario" FromRole="TipoUsuario" ToRole="Campus" />
+    <NavigationProperty Name="Compania" Relationship="KiiniNet_v2Model.FK_Compania_TipoUsuario" FromRole="TipoUsuario" ToRole="Compania" />
+    <NavigationProperty Name="Direccion" Relationship="KiiniNet_v2Model.FK_Direccion_TipoUsuario" FromRole="TipoUsuario" ToRole="Direccion" />
+    <NavigationProperty Name="Frecuencia" Relationship="KiiniNet_v2Model.FK_Frecuencia_TipoUsuario" FromRole="TipoUsuario" ToRole="Frecuencia" />
+    <NavigationProperty Name="Gerencia" Relationship="KiiniNet_v2Model.FK_Gerencia_TipoUsuario" FromRole="TipoUsuario" ToRole="Gerencia" />
+    <NavigationProperty Name="GrupoUsuario" Relationship="KiiniNet_v2Model.FK_GrupoUsuario_TipoUsuario" FromRole="TipoUsuario" ToRole="GrupoUsuario" />
+    <NavigationProperty Name="GrupoUsuarioDefaultOpcion" Relationship="KiiniNet_v2Model.FK_GrupoUsuarioDefaultOpcion_TipoUsuario" FromRole="TipoUsuario" ToRole="GrupoUsuarioDefaultOpcion" />
+    <NavigationProperty Name="HitConsulta" Relationship="KiiniNet_v2Model.FK_HitConsulta_TipoUsuario" FromRole="TipoUsuario" ToRole="HitConsulta" />
+    <NavigationProperty Name="Holding" Relationship="KiiniNet_v2Model.FK_Holding_TipoUsuario" FromRole="TipoUsuario" ToRole="Holding" />
+    <NavigationProperty Name="Jefatura" Relationship="KiiniNet_v2Model.FK_Jefatura_TipoUsuario" FromRole="TipoUsuario" ToRole="Jefatura" />
+    <NavigationProperty Name="Nivel1" Relationship="KiiniNet_v2Model.FK_Nivel1_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel1" />
+    <NavigationProperty Name="Nivel2" Relationship="KiiniNet_v2Model.FK_Nivel2_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel2" />
+    <NavigationProperty Name="Nivel3" Relationship="KiiniNet_v2Model.FK_Nivel3_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel3" />
+    <NavigationProperty Name="Nivel4" Relationship="KiiniNet_v2Model.FK_Nivel4_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel4" />
+    <NavigationProperty Name="Nivel5" Relationship="KiiniNet_v2Model.FK_Nivel5_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel5" />
+    <NavigationProperty Name="Nivel6" Relationship="KiiniNet_v2Model.FK_Nivel6_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel6" />
+    <NavigationProperty Name="Nivel7" Relationship="KiiniNet_v2Model.FK_Nivel7_TipoUsuario" FromRole="TipoUsuario" ToRole="Nivel7" />
+    <NavigationProperty Name="Organizacion" Relationship="KiiniNet_v2Model.FK_tblOrganizacion_tblCatTipoUsuario" FromRole="TipoUsuario" ToRole="Organizacion" />
+    <NavigationProperty Name="Pais" Relationship="KiiniNet_v2Model.FK_Pais_TipoUsuario" FromRole="TipoUsuario" ToRole="Pais" />
+    <NavigationProperty Name="ParametroDatosAdicionales" Relationship="KiiniNet_v2Model.FK_ParametroDatosAdicionales_TipoUsuario" FromRole="TipoUsuario" ToRole="ParametroDatosAdicionales" />
+    <NavigationProperty Name="ParametrosUsuario" Relationship="KiiniNet_v2Model.FK_ParametrosUsuario_TipoUsuario" FromRole="TipoUsuario" ToRole="ParametrosUsuario" />
+    <NavigationProperty Name="Piso" Relationship="KiiniNet_v2Model.FK_Piso_TipoUsuario" FromRole="TipoUsuario" ToRole="Piso" />
+    <NavigationProperty Name="Puesto" Relationship="KiiniNet_v2Model.FK_Puesto_TipoUsuario" FromRole="TipoUsuario" ToRole="Puesto" />
+    <NavigationProperty Name="RolMenu" Relationship="KiiniNet_v2Model.FK_RolMenu_TipoUsuario" FromRole="TipoUsuario" ToRole="RolMenu" />
+    <NavigationProperty Name="RolTipoUsuario" Relationship="KiiniNet_v2Model.FK_RolTipoUsuario_TipoUsuario" FromRole="TipoUsuario" ToRole="RolTipoUsuario" />
+    <NavigationProperty Name="SiteRack" Relationship="KiiniNet_v2Model.FK_SiteRack_TipoUsuario" FromRole="TipoUsuario" ToRole="SiteRack" />
+    <NavigationProperty Name="SubDireccion" Relationship="KiiniNet_v2Model.FK_SubDireccion_TipoUsuario" FromRole="TipoUsuario" ToRole="SubDireccion" />
+    <NavigationProperty Name="SubGerencia" Relationship="KiiniNet_v2Model.FK_SubGerencia_TipoUsuario" FromRole="TipoUsuario" ToRole="SubGerencia" />
+    <NavigationProperty Name="SubZona" Relationship="KiiniNet_v2Model.FK_SubZona_TipoUsuario" FromRole="TipoUsuario" ToRole="SubZona" />
+    <NavigationProperty Name="Ticket" Relationship="KiiniNet_v2Model.FK_Ticket_TipoUsuario" FromRole="TipoUsuario" ToRole="Ticket" />
+    <NavigationProperty Name="Torre" Relationship="KiiniNet_v2Model.FK_Torre_TipoUsuario" FromRole="TipoUsuario" ToRole="Torre" />
+    <NavigationProperty Name="Ubicacion" Relationship="KiiniNet_v2Model.FK_Ubicacion_TipoUsuario" FromRole="TipoUsuario" ToRole="Ubicacion" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
+    <NavigationProperty Name="Zona" Relationship="KiiniNet_v2Model.FK_Zona_TipoUsuario" FromRole="TipoUsuario" ToRole="Zona" />
+  </EntityType>
+  <Association Name="FK_AliasOrganizacion_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.AliasOrganizacion" Role="AliasOrganizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AliasOrganizacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AliasUbicacion_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.AliasUbicacion" Role="AliasUbicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AliasUbicacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblArbolAcceso_tblCatTipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.ArbolAcceso" Role="ArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ArbolAcceso">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Campus_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Campus" Role="Campus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Campus">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Compania_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Compania" Role="Compania" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Compania">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direccion_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Direccion" Role="Direccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Direccion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Frecuencia_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Frecuencia" Role="Frecuencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Frecuencia">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gerencia_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Gerencia" Role="Gerencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gerencia">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuario_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GrupoUsuario" Role="GrupoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GrupoUsuarioDefaultOpcion_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.GrupoUsuarioDefaultOpcion" Role="GrupoUsuarioDefaultOpcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GrupoUsuarioDefaultOpcion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HitConsulta_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.HitConsulta" Role="HitConsulta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HitConsulta">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Holding_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Holding" Role="Holding" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Holding">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jefatura_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Jefatura" Role="Jefatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jefatura">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel1_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Nivel1" Role="Nivel1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel1">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel2_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Nivel2" Role="Nivel2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel2">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel3_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Nivel3" Role="Nivel3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel3">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel4_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Nivel4" Role="Nivel4" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel4">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel5_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Nivel5" Role="Nivel5" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel5">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel6_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Nivel6" Role="Nivel6" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel6">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Nivel7_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Nivel7" Role="Nivel7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Nivel7">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrganizacion_tblCatTipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Organizacion" Role="Organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organizacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pais_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Pais" Role="Pais" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pais">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParametroDatosAdicionales_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.ParametroDatosAdicionales" Role="ParametroDatosAdicionales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParametroDatosAdicionales">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParametrosUsuario_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.ParametrosUsuario" Role="ParametrosUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ParametrosUsuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Piso_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Piso" Role="Piso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Piso">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Puesto_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Puesto" Role="Puesto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Puesto">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolMenu_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.RolMenu" Role="RolMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolMenu">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolTipoUsuario_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.RolTipoUsuario" Role="RolTipoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoUsuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteRack_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.SiteRack" Role="SiteRack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteRack">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubDireccion_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.SubDireccion" Role="SubDireccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubDireccion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubGerencia_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.SubGerencia" Role="SubGerencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubGerencia">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubZona_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.SubZona" Role="SubZona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubZona">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ticket_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Ticket" Role="Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Torre_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Torre" Role="Torre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Torre">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ubicacion_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Ubicacion" Role="Ubicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ubicacion">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zona_TipoUsuario">
+    <End Type="KiiniNet_v2Model.TipoUsuario" Role="TipoUsuario" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.Zona" Role="Zona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Zona">
+        <PropertyRef Name="IdTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ArchivosPermitidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreArchivo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Extensiones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Habilitado" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="TelefonoUsuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoTelefono" Type="Int32" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Numero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Principal" Type="Boolean" />
+    <Property Name="Confirmado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TipoTelefono" Relationship="KiiniNet_v2Model.FK_TelefonoUsuario_TipoTelefono" FromRole="TelefonoUsuario" ToRole="TipoTelefono" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_TelefonoUsuario_Usuario" FromRole="TelefonoUsuario" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_TelefonoUsuario_TipoTelefono">
+    <End Type="KiiniNet_v2Model.TipoTelefono" Role="TipoTelefono" Multiplicity="0..1" />
+    <End Type="KiiniNet_v2Model.TelefonoUsuario" Role="TelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoTelefono">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelefonoUsuario">
+        <PropertyRef Name="IdTipoTelefono" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TelefonoUsuario_Usuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.TelefonoUsuario" Role="TelefonoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TelefonoUsuario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BitacoraAcceso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Success" Type="Boolean" />
+    <Property Name="SessionId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Terminated" Type="Boolean" />
+    <NavigationProperty Name="Usuario" Relationship="KiiniNet_v2Model.FK_BitacoraAcceso_Usuario" FromRole="BitacoraAcceso" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK_BitacoraAcceso_Usuario">
+    <End Type="KiiniNet_v2Model.Usuario" Role="Usuario" Multiplicity="1" />
+    <End Type="KiiniNet_v2Model.BitacoraAcceso" Role="BitacoraAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BitacoraAcceso">
+        <PropertyRef Name="IdUsuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

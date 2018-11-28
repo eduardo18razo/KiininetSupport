@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Configuration;
+using System.Web.Security;
 using System.Web.UI;
+using KiiniHelp.ServiceSeguridad;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KinniNet.Business.Utils;
@@ -11,6 +14,7 @@ namespace KiiniHelp
 {
     public partial class Default1 : Page
     {
+        private readonly ServiceSecurityClient _servicioSeguridad = new ServiceSecurityClient();
         private readonly ServiceTipoUsuarioClient _servicioTipoUsuario = new ServiceTipoUsuarioClient();
         private List<string> _lstError = new List<string>();
 
@@ -73,13 +77,45 @@ namespace KiiniHelp
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message) ;
+                throw new Exception(e.Message);
             }
         }
+
+        private void GeneraCoockie()
+        {
+            try
+            {
+                if (Request.Cookies["miui"] != null)
+                {
+                    var value = BusinessQueryString.Decrypt(Request.Cookies["miui"]["iuiu"]);
+                }
+                else
+                {
+                    string llave = _servicioSeguridad.GeneraLlaveMaquina();
+                    HttpCookie myCookie = new HttpCookie("miui");
+                    myCookie.Values.Add("iuiu", BusinessQueryString.Encrypt(llave));
+                    myCookie.Expires = DateTime.Now.AddYears(10);
+                    Response.Cookies.Add(myCookie);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                if (!IsPostBack)
+                    GeneraCoockie();
+                HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (myCookie != null && Session["UserData"] != null)
+                {
+                    Response.Redirect("~/Users/DashBoard.aspx");
+                }
+
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
                 if (UcLogCopia.Fail)
@@ -91,8 +127,11 @@ namespace KiiniHelp
                         Buscador();
                     }
                 }
-                if(!IsPostBack)
+                if (!IsPostBack)
+                {
                     HabilitaTiposDeUsuario();
+                }
+
             }
             catch (Exception ex)
             {
@@ -210,5 +249,40 @@ namespace KiiniHelp
                 Alerta = _lstError;
             }
         }
+
+        protected void btnCerramodalSessionAbierta_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                UcLogCopia.ResetCaptcha();
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptClose", "CierraPopup(\"#modalSessionAbierta\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
         }
+
+        protected void OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                UcLogCopia.DesbloquearUsuario();
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+    }
 }

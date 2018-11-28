@@ -22,5 +22,20 @@ namespace KiiniNet.Services.Sistema.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<RolTipoArbolAcceso> ObtenerRolesArbolAcceso(int idTipoArbolAcceso)
+        {
+            try
+            {
+                using (BusinessRoles negocio = new BusinessRoles())
+                {
+                    return negocio.ObtenerRolesArbolAcceso(idTipoArbolAcceso);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

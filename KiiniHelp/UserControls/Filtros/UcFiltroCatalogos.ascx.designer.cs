@@ -58,6 +58,24 @@ namespace KiiniHelp.UserControls.Filtros {
         protected global::System.Web.UI.WebControls.HiddenField hfRandom;
         
         /// <summary>
+        /// Control hfFileTypes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFileTypes;
+        
+        /// <summary>
+        /// Control hfMaxSizeAllow.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfMaxSizeAllow;
+        
+        /// <summary>
         /// Control lblDescCatalogo.
         /// </summary>
         /// <remarks>

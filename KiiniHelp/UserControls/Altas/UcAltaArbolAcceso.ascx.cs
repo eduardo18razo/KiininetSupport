@@ -957,7 +957,7 @@ namespace KiiniHelp.UserControls.Altas
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeOperación, false);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, false);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Agente, false);
-                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ConsultasEspeciales, false);
+                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoAnalíticos, false);
                 if (hfIdTipoArbol.Value == ((int)BusinessVariables.EnumTipoArbol.ConsultarInformacion).ToString())
                 {
                     AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoCentroSoporte, true);
@@ -975,7 +975,7 @@ namespace KiiniHelp.UserControls.Altas
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeOperación, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo, true);
                 AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.Agente, true);
-                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.ConsultasEspeciales, true);
+                AsociarGrupoUsuario.HabilitaGrupos((int)BusinessVariables.EnumRoles.AccesoAnalíticos, true);
                 AsociarGrupoUsuario.Limpiar();
 
                 //Ticket

@@ -117,25 +117,6 @@
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="head" />
 </head>
-<%--<body>
-    <form runat="server">
-    <div id="body">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        
-        <asp:ContentPlaceHolder runat="server" ID="ContentPlaceHolder1" />
-        <section class="content-wrapper main-content clear-fix">
-            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
-        </section>
-    </div>
-    <footer>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
-            </div>
-        </div>
-    </footer>
-    </form>
-</body>--%>
 
 <body class="preload">
     <div id="full">
@@ -415,9 +396,9 @@
             </div>
 
             <footer id="footer" class="site-footer">
-                <div class="copyright">&copy; 2017 Kiininet. Todos los derechos reservados </div>
+                <div class="copyright">&copy; Todos los derechos reservados </div>
                 <div class="politicas-Privacidad">
-                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Políticas de Privacidad </asp:HyperLink>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Aviso de Privacidad </asp:HyperLink>
                     <asp:Label runat="server" Text="  |  "></asp:Label>
                     <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx"> Términos y Condiciones</asp:HyperLink>
                 </div>

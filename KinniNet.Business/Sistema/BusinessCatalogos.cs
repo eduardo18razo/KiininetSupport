@@ -14,16 +14,67 @@ using Telerik.Web.UI.ExportInfrastructure;
 
 namespace KinniNet.Core.Sistema
 {
+    /// <summary>
+    /// Capa de negocio Canal de Catalogos
+    /// </summary>
     public class BusinessCatalogos : IDisposable
     {
         private readonly bool _proxy;
+        /// <summary>
+        /// Inicializa Clase
+        /// </summary>
+        /// <param name="proxy">Modelo de base conectado</param>
         public BusinessCatalogos(bool proxy = false)
         {
             _proxy = proxy;
         }
-
+        /// <summary>
+        /// Libera La instancia de la clase
+        /// </summary>
         public void Dispose()
         { }
+
+        private bool CreaEstructuraBaseDatos(string nombreTabla)
+        {
+            try
+            {
+                if (CreaTabla(nombreTabla)) ;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return true;
+        }
+
+        private bool CreaTabla(string nombreCatalogo)
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                string qryCrearTablas = String.Format("CREATE TABLE {0} ( \n" +
+                                                      "Id int IDENTITY(1,1) NOT NULL, \n" +
+                                                      "[Descripcion] [nvarchar](MAX) NOT NULL," +
+                                                      "Habilitado BIT \n" +
+                                                      "CONSTRAINT [PK_{0}] PRIMARY KEY CLUSTERED \n" +
+                                                      "( \n" +
+                                                      "\t[Id] ASC \n" +
+                                                      ")WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY] \n" +
+                                                      ") ON [PRIMARY] \n " +
+                                                      "ALTER TABLE [dbo].[{0}] ADD  CONSTRAINT [DF_{0}_habilitado]  DEFAULT ((1)) FOR [Habilitado]", nombreCatalogo);
+
+                db.ExecuteStoreCommand(qryCrearTablas);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return true;
+        }
 
         public List<Catalogos> ObtenerCatalogos(bool insertarSeleccion)
         {
@@ -102,48 +153,6 @@ namespace KinniNet.Core.Sistema
                 db.Dispose();
             }
             return result;
-        }
-
-        private bool CreaEstructuraBaseDatos(string nombreTabla)
-        {
-            try
-            {
-                if (CreaTabla(nombreTabla)) ;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return true;
-        }
-
-        private bool CreaTabla(string nombreCatalogo)
-        {
-            DataBaseModelContext db = new DataBaseModelContext();
-            try
-            {
-                string qryCrearTablas = String.Format("CREATE TABLE {0} ( \n" +
-                                                      "Id int IDENTITY(1,1) NOT NULL, \n" +
-                                                      "[Descripcion] [nvarchar](MAX) NOT NULL," +
-                                                      "Habilitado BIT \n" +
-                                                      "CONSTRAINT [PK_{0}] PRIMARY KEY CLUSTERED \n" +
-                                                      "( \n" +
-                                                      "\t[Id] ASC \n" +
-                                                      ")WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY] \n" +
-                                                      ") ON [PRIMARY] \n " +
-                                                      "ALTER TABLE [dbo].[{0}] ADD  CONSTRAINT [DF_{0}_habilitado]  DEFAULT ((1)) FOR [Habilitado]", nombreCatalogo);
-
-                db.ExecuteStoreCommand(qryCrearTablas);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                db.Dispose();
-            }
-            return true;
         }
 
         public Catalogos ObtenerCatalogo(int idCatalogo)
@@ -692,6 +701,9 @@ namespace KinniNet.Core.Sistema
             return result;
         }
 
+        /// <summary>
+        /// Objeto de tipo Generico a Catálogo
+        /// </summary>
         public class CamposCatalogo
         {
             public string Descripcion { get; set; }

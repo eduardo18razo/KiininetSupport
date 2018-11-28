@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
 using System.Web.UI;
 using AjaxControlToolkit;
 using KiiniHelp.ServiceArea;
+using KiiniHelp.ServiceParametrosSistema;
 using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Altas
 {
     public partial class AltaArea : UserControl, IControllerModal
     {
+        private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         readonly ServiceAreaClient _servicioArea = new ServiceAreaClient();
         private List<string> _lstError = new List<string>();
         public event DelegateAceptarModal OnAceptarModal;
@@ -54,6 +56,27 @@ namespace KiiniHelp.UserControls.Altas
             }
         }
 
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
+
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
+            }
+        }
+
         private void LimpiarCampos()
         {
             try
@@ -73,6 +96,18 @@ namespace KiiniHelp.UserControls.Altas
             {
                 Alerta = new List<string>();
                 _mp = (UsuariosMaster)Page.Master;
+                if (!IsPostBack)
+                {
+                    ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
+                    if (parametros != null)
+                    {
+                        foreach (ArchivosPermitidos alowedFile in _serviciosParametros.ObtenerArchivosPermitidos())
+                        {
+                            ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                        }
+                        TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                    }
+                }
             }
             catch (Exception ex)
             {

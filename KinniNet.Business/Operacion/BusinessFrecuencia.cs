@@ -135,7 +135,7 @@ namespace KinniNet.Core.Operacion
                                                         && aa.Habilitado
                                                         && ug.IdUsuario == idUsuario
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
-                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario
+                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.EsTerminal && !w.Sistema && w.Habilitado && w.Publico &&
@@ -299,7 +299,7 @@ namespace KinniNet.Core.Operacion
                                                         && aa.Habilitado
                                                         && ug.IdUsuario == idUsuario
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
-                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario
+                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion &&
@@ -466,7 +466,7 @@ namespace KinniNet.Core.Operacion
                                                         && aa.Habilitado
                                                         && ug.IdUsuario == idUsuario
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
-                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario
+                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio &&
@@ -631,7 +631,7 @@ namespace KinniNet.Core.Operacion
                                                         && aa.Habilitado
                                                         && ug.IdUsuario == idUsuario
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
-                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario
+                                                        && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas &&

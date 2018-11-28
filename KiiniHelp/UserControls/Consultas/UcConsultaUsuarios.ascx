@@ -5,10 +5,10 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Administración</li>
-                <li class="breadcrumb-item active">Usuarios</li>
+                <li>Administración</li>
+                <li class="active">Usuarios</li>
             </ol>
 
             <!--MÓDULO-->

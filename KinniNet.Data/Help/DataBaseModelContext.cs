@@ -31,13 +31,16 @@ namespace KinniNet.Data.Help
             try
             {
                 //Sistema
-                _parametrosTelefonos = CreateObjectSet<ParametrosTelefonos>();
+                _coloresTop = CreateObjectSet<ColoresTop>();
+                _archivosPermitidos = CreateObjectSet<ArchivosPermitidos>();
+                _coloresSla = CreateObjectSet<ColoresSla>();
                 _parametroDatosAdicionales = CreateObjectSet<ParametroDatosAdicionales>();
                 _aliasOrganizacion = CreateObjectSet<AliasOrganizacion>();
                 _aliasUbicacion = CreateObjectSet<AliasUbicacion>();
                 _tipoUsuario = CreateObjectSet<TipoUsuario>();
                 _rol = CreateObjectSet<Rol>();
                 _rolTipoUsuario = CreateObjectSet<RolTipoUsuario>();
+                _rolTipoArbolAcceso = CreateObjectSet<RolTipoArbolAcceso>();
                 _rolTipoGrupo = CreateObjectSet<RolTipoGrupo>();
                 _tipoGrupo = CreateObjectSet<TipoGrupo>();
                 _subRol = CreateObjectSet<SubRol>();
@@ -215,11 +218,27 @@ namespace KinniNet.Data.Help
             }
         }
 
-        public ObjectSet<ParametrosTelefonos> ParametrosTelefonos
+        public ObjectSet<ColoresTop> ColoresTop
         {
             get
             {
-                return _parametrosTelefonos;
+                return _coloresTop;
+            }
+        }
+
+        public ObjectSet<ArchivosPermitidos> ArchivosPermitidos
+        {
+            get
+            {
+                return _archivosPermitidos;
+            }
+        }
+
+        public ObjectSet<ColoresSla> ColoresSla
+        {
+            get
+            {
+                return _coloresSla;
             }
         }
         public ObjectSet<AliasOrganizacion> AliasOrganizacion
@@ -238,7 +257,9 @@ namespace KinniNet.Data.Help
             }
         }
 
-        private readonly ObjectSet<ParametrosTelefonos> _parametrosTelefonos;
+        private readonly ObjectSet<ColoresTop> _coloresTop;
+        private readonly ObjectSet<ArchivosPermitidos> _archivosPermitidos;
+        private readonly ObjectSet<ColoresSla> _coloresSla;
         private readonly ObjectSet<ParametroDatosAdicionales> _parametroDatosAdicionales;
         private readonly ObjectSet<AliasOrganizacion> _aliasOrganizacion;
         private readonly ObjectSet<AliasUbicacion> _aliasUbicacion;
@@ -883,6 +904,16 @@ namespace KinniNet.Data.Help
             }
         }
 
+        public ObjectSet<RolTipoArbolAcceso> RolTipoArbolAcceso
+        {
+            get
+            {
+                return _rolTipoArbolAcceso;
+            }
+        }
+
+
+
         public ObjectSet<RolTipoGrupo> RolTipoGrupo
         {
             get
@@ -1110,6 +1141,7 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<TipoTelefono> _tipoTelefono;
         private readonly ObjectSet<Rol> _rol;
         private readonly ObjectSet<RolTipoUsuario> _rolTipoUsuario;
+        private readonly ObjectSet<RolTipoArbolAcceso> _rolTipoArbolAcceso;
         private readonly ObjectSet<RolTipoGrupo> _rolTipoGrupo;
         private readonly ObjectSet<TipoGrupo> _tipoGrupo;
         private readonly ObjectSet<SubRol> _subRol;

@@ -34,7 +34,7 @@ namespace KinniNet.Core.Security
 
             }
 
-            public bool Autenticate(string user, string password)
+            public bool Autenticate(string user, string password, string activeNavigator)
             {
                 DesbloqueaUsuarios();
                 bool result;
@@ -43,9 +43,9 @@ namespace KinniNet.Core.Security
                 {
                     string hashedPdw = SecurityUtils.CreateShaHash(password);
                     var qry = (from u in db.Usuario
-                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
                                join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
-                               where u.NombreUsuario == user || tu.Numero == user || cu.Correo == user
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
+                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
                                select u.Id).Distinct().ToList();
                     if (qry.Count > 1)
                         throw new Exception("Error al ingresar consulte a su administrador.");
@@ -80,7 +80,9 @@ namespace KinniNet.Core.Security
                         {
                             IdUsuario = usuario.Id,
                             Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
-                            Success = true
+                            Success = true,
+                            SessionId = activeNavigator,
+                            Terminated = false
                         });
                         db.SaveChanges();
                     }
@@ -110,7 +112,7 @@ namespace KinniNet.Core.Security
                     result = db.UsuarioRol.Join(db.RolTipoUsuario, ur => ur.IdRolTipoUsuario, rtu => rtu.Id,
                             (ur, rtu) => new { ur, rtu })
                             .Join(db.Rol, @t => @t.rtu.IdRol, r => r.Id, (@t, r) => new { @t, r })
-                            .Where(@t => @t.@t.ur.IdUsuario == idUsuario)
+                            .Where(@t => @t.@t.ur.IdUsuario == idUsuario && @t.r.Habilitado)
                             .Select(@t => @t.r).Distinct().ToList();
                 }
                 catch (Exception ex)
@@ -133,9 +135,9 @@ namespace KinniNet.Core.Security
                     db.ContextOptions.ProxyCreationEnabled = _proxy;
                     string hashedPdw = SecurityUtils.CreateShaHash(password);
                     var qry = (from u in db.Usuario
-                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
                                join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
-                               where u.NombreUsuario == user || tu.Numero == user || cu.Correo == user
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
+                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
                                select u.Id).Distinct().ToList();
                     if (qry.Count() > 1)
                         throw new Exception("Error al ingresar consulte a su administrador.");
@@ -332,7 +334,7 @@ namespace KinniNet.Core.Security
                             new BusinessUsuarios().TerminaCodigoVerificacionSms(idUsuario, idTipoNotificacion, idCorreo, codigo);
                             break;
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -472,6 +474,158 @@ namespace KinniNet.Core.Security
                 }
                 return result;
             }
+
+            public bool UsuariorActivo(string user, string password, string activeNavigator)
+            {
+                bool result = false;
+                DataBaseModelContext db = new DataBaseModelContext();
+                try
+                {
+                    string hashedPdw = SecurityUtils.CreateShaHash(password);
+                    var qry = (from u in db.Usuario
+                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
+                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
+                               select u.Id).Distinct().ToList();
+                    if (qry.Count > 1)
+                        throw new Exception("Error al ingresar consulte a su administrador.");
+                    if (qry.Count <= 0)
+                        throw new Exception("Usuario y/o Contraseña incorrectos.");
+
+                    int idUsuario = qry[0];
+                    Usuario usuario = db.Usuario.SingleOrDefault(s => s.Id == idUsuario && s.Activo && s.Habilitado);
+                    if (usuario != null && usuario.Password == hashedPdw)
+                    {
+                        List<BitacoraAcceso> ultimoAcceso = db.BitacoraAcceso.Where(w => w.IdUsuario == idUsuario && w.Terminated == false).ToList();
+                        if (ultimoAcceso.Any(a => a.SessionId == activeNavigator || a.SessionId != activeNavigator))
+                        {
+                            result = true;
+                        }
+                        else
+                        {
+                            result = false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    db.Dispose();
+                }
+                return result;
+            }
+
+            public void CerrarSessionActiva(string user, string password)
+            {
+                DataBaseModelContext db = new DataBaseModelContext();
+                try
+                {
+                    string hashedPdw = SecurityUtils.CreateShaHash(password);
+                    var qry = (from u in db.Usuario
+                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
+                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
+                               select u.Id).Distinct().ToList();
+                    if (qry.Count > 1)
+                        throw new Exception("Error al ingresar consulte a su administrador.");
+                    if (qry.Count <= 0)
+                        throw new Exception("Usuario y/o Contraseña incorrectos.");
+
+                    int idUsuario = qry[0];
+                    Usuario usuario = db.Usuario.SingleOrDefault(s => s.Id == idUsuario && s.Activo && s.Habilitado);
+                    if (usuario != null && usuario.Password == hashedPdw)
+                    {
+                        List<BitacoraAcceso> accesos = db.BitacoraAcceso.Where(w => w.IdUsuario == idUsuario).ToList();
+                        accesos.ForEach(u => u.Terminated = true);
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    db.Dispose();
+                }
+            }
+
+            public void TerminarSesion(int idUsuario, string activeNavigator)
+            {
+                DataBaseModelContext db = new DataBaseModelContext();
+                try
+                {
+                    List<BitacoraAcceso> accesos = db.BitacoraAcceso.Where(w => w.IdUsuario == idUsuario && w.SessionId == activeNavigator).ToList();
+                    accesos.ForEach(u => u.Terminated = true);
+                    db.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    db.Dispose();
+                }
+            }
+
+            public bool ValidaSesion(int idUsuario, string activeNavigator)
+            {
+                bool result = false;
+                DataBaseModelContext db = new DataBaseModelContext();
+                try
+                {
+                    result = db.BitacoraAcceso.Count(s => s.IdUsuario == idUsuario && s.Terminated == false && s.SessionId != activeNavigator) <= 0;
+                    if (!result)
+                    {
+                        List<BitacoraAcceso> accesosPropios = db.BitacoraAcceso.Where(s => s.IdUsuario == idUsuario && s.Terminated == false && s.SessionId == activeNavigator).ToList();
+                        foreach (BitacoraAcceso bitacoraAcceso in accesosPropios)
+                        {
+                            bitacoraAcceso.Terminated = true;
+                        }
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    db.Dispose();
+                }
+                return result;
+            }
+
+            public string GeneraLlaveMaquina()
+            {
+                string result = string.Empty;
+                DataBaseModelContext db = new DataBaseModelContext();
+                try
+                {
+                    bool valida = false;
+                    while (!valida)
+                    {
+                        result = Guid.NewGuid().ToString();
+                        string llave = SecurityUtils.CreateShaHash(result);
+                        if (!db.BitacoraAcceso.Any(a => a.SessionId == llave))
+                            valida = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    db.Dispose();
+                }
+                return result;
+            }
         }
 
         public class Menus : IDisposable
@@ -565,10 +719,10 @@ namespace KinniNet.Core.Security
                         result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.HelpCenter).Menu1 = result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.HelpCenter).Menu1.OrderBy(o => o.Orden).ToList();
                     }
 
-                    if (result.Any(a => a.Id == (int)BusinessVariables.EnumMenu.View))
-                    {
-                        result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.View).Menu1 = result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.View).Menu1.OrderBy(o => o.Orden).ToList();
-                    }
+                    //if (result.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Analiticos))
+                    //{
+                    //    result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.Analiticos).Menu1 = result.Single(a => a.Id == (int)BusinessVariables.EnumMenu.Analiticos).Menu1.OrderBy(o => o.Orden).ToList();
+                    //}
 
 
                     if (arboles)

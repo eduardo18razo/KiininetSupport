@@ -24,7 +24,7 @@
                         <div class="row form-group">
                             <asp:Label runat="server" Text="Estatus Ticket" CssClass="col-lg-3 margin-top-9" />
                             <div class="col-lg-9 no-padding-right">
-                                <asp:DropDownList runat="server" ID="ddlEstatus" CssClass="form-control" />
+                                <asp:RadioButtonList runat="server" ID="rbtnLstEstatus" RepeatDirection="Horizontal" />
                             </div>
                         </div>
                         <div class="row form-group">

@@ -3,9 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
-using System.Data;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Configuration;
@@ -13,13 +11,9 @@ using System.Net.Mail;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using System.Web.UI.DataVisualization.Charting;
-using KiiniNet.Entities.Cat.Sistema;
-using KiiniNet.Entities.Operacion.Dashboard;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
 using KinniNet.Core.Operacion;
-using KinniNet.Core.Sistema;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KiiniNet.UnitTest
@@ -109,7 +103,8 @@ namespace KiiniNet.UnitTest
         {
             try
             {
-                new BusinessDemonio().EnvioNotificacion();
+                while (true)
+                    new BusinessDemonio().EnvioNotificacion();
                 //new BusinessDashboards().GetDashboardAgente(null, null);
                 //DataTable dt = new DataTable("dt");
                 //dt.Columns.Add(new DataColumn("Ocupado"));
@@ -166,7 +161,7 @@ namespace KiiniNet.UnitTest
             new BusinessMascaras().Test(34);
             new BusinessDemonio().EnvioNotificacion();
             new BusinessDemonio().CierraTicketsResueltos();
-            
+
 
             //TODO: Eliminar Comentarios
             try
@@ -222,7 +217,7 @@ namespace KiiniNet.UnitTest
                 //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessTicketMailService().EnviaCorreoTicketGenerado(1, "VLF0", "Este es el cuerpo del mensaje <b> Hola</b> <s>sub</s>", "ecerritos@kiininet.com");
                 //new BusinessTicketMailService().RecibeCorreos();
-                
+
                 //new KiiniNet.Services.Windows.ServiceNotificacion();
                 //new BusinessDemonio().EnvioNotificacion();
                 //new BusinessDemonio().ActualizaSla();

@@ -157,12 +157,31 @@ namespace KiiniHelp
                 }
             }
         }
-
-        private void ObtenerAreas()
+        private string Maquina
+        {
+            get
+            {
+                string result;
+                if (Request.Cookies["miui"] != null)
+                {
+                    result = BusinessQueryString.Decrypt(Request.Cookies["miui"]["iuiu"]);
+                }
+                else
+                {
+                    result = _servicioSeguridad.GeneraLlaveMaquina();
+                    HttpCookie myCookie = new HttpCookie("miui");
+                    myCookie.Values.Add("iuiu", BusinessQueryString.Encrypt(result));
+                    myCookie.Expires = DateTime.Now.AddYears(10);
+                    Response.Cookies.Add(myCookie);
+                }
+                return result;
+            }
+        }
+        private void ObtenerRoles()
         {
             try
             {
-                List<Rol> lstRoles = _servicioSeguridad.ObtenerRolesUsuario(((Usuario)Session["UserData"]).Id).Where(w => w.Id != (int)BusinessVariables.EnumRoles.AccesoAnalíticos).ToList();
+                List<Rol> lstRoles = _servicioSeguridad.ObtenerRolesUsuario(((Usuario)Session["UserData"]).Id).Where(w => w.Id != (int)BusinessVariables.EnumRoles.Notificaciones).ToList();
                 if (lstRoles.Count == 1)
                 {
                     RolSeleccionado = lstRoles.First().Id;
@@ -170,6 +189,10 @@ namespace KiiniHelp
                 }
                 if (RolSeleccionado != null) hfAreaSeleccionada.Value =
                         lstRoles.Single(s => s.Id == int.Parse(RolSeleccionado.ToString())).Descripcion;
+
+                if (lstRoles.Any(a => a.Id == (int)BusinessVariables.EnumRoles.Administrador))
+                    lstRoles.RemoveAll(r => r.Id == (int)BusinessVariables.EnumRoles.AccesoAnalíticos);
+
                 rptRolesPanel.DataSource = lstRoles;
                 rptRolesPanel.DataBind();
                 lblBadgeRoles.Text = lstRoles.Count.ToString();
@@ -237,21 +260,34 @@ namespace KiiniHelp
                 if (myCookie == null || Session["UserData"] == null || bool.Parse(hfSesionExpiro.Value))
                 {
                     //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalSession\");", true);
-                    Response.Redirect(ResolveUrl("~/Default.aspx"));
+                    Session.RemoveAll();
+                    Session.Clear();
+                    Session.Abandon();
+                    FormsAuthentication.SignOut();
+                    FormsAuthentication.RedirectToLoginPage();
+                    Response.Redirect("~/Default.aspx");
                 }
+                
+                if (Session["UserData"] != null)
+                {
+                    if (!_servicioSeguridad.ValidaSesion(((Usuario)Session["UserData"]).Id, SecurityUtils.CreateShaHash(Maquina)))
+                        btnsOut_OnClick(null, null);
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
-
-                if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
-                    if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
-                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx"));
 
                 if (!IsPostBack && Session["UserData"] != null)
                 {
                     Session["Reset"] = true;
                     double tiempoSesion = double.Parse(ConfigurationManager.AppSettings["TiempoSession"]);
                     double timeout = (double)tiempoSesion * 1000 * 60;
-                    Page.ClientScript.RegisterStartupScript(GetType(), "SessionAlertAgent", "SessionExpireAlertAgent(" + timeout + ");", true);
+                    Page.ClientScript.RegisterStartupScript(GetType(), "SessionAlertAgent",
+                        "SessionExpireAlertAgent(" + timeout + ");", true);
 
                     bool administrador = false;
                     Usuario usuario = ((Usuario)Session["UserData"]);
@@ -265,18 +301,27 @@ namespace KiiniHelp
                     lblUsuario.Text = usuario.Nombre;
                     int idUsuario = usuario.Id;
 
-                    imgPerfil.ImageUrl = usuario.Foto != null ? "~/DisplayImages.ashx?id=" + idUsuario : "~/assets/images/profiles/profile-1.png";
+                    imgPerfil.ImageUrl = usuario.Foto != null
+                        ? "~/DisplayImages.ashx?id=" + idUsuario
+                        : "~/assets/images/profiles/profile-1.png";
                     //lblTipoUsr.Text = usuario.TipoUsuario.Descripcion;
-                    ObtenerAreas();
+                    ObtenerRoles();
                     int rolSeleccionado = 0;
                     if (RolSeleccionado != null)
                         rolSeleccionado = int.Parse(RolSeleccionado.ToString());
-                    rptMenu.DataSource = _servicioSeguridad.ObtenerMenuUsuario(usuario.Id, rolSeleccionado, rolSeleccionado != 0);
+                    rptMenu.DataSource = _servicioSeguridad.ObtenerMenuUsuario(usuario.Id, rolSeleccionado,
+                        rolSeleccionado != 0);
                     rptMenu.DataBind();
-                }
+                } 
+
                 ActualizaTicketsAsignados();
                 Session["ParametrosGenerales"] = _servicioParametros.ObtenerParametrosGenerales();
                 LlenaTicketsAbiertos();
+
+                if (Session["UserData"] != null && HttpContext.Current.Request.Url.Segments[HttpContext.Current.Request.Url.Segments.Count() - 1] != "FrmCambiarContrasena.aspx")
+                    if (_servicioSeguridad.CaducaPassword(((Usuario)Session["UserData"]).Id))
+                        Response.Redirect(ResolveUrl("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx"));
+
                 if (IsPostBack)
                 {
                     if (Page.Request.Params["__EVENTTARGET"] == "Buscador")
@@ -456,6 +501,9 @@ namespace KiiniHelp
         {
             try
             {
+                Usuario user = (Usuario)Session["UserData"];
+                if (user != null)
+                    _servicioSeguridad.TerminarSesion(user.Id, SecurityUtils.CreateShaHash(Maquina));
                 Session.RemoveAll();
                 Session.Clear();
                 Session.Abandon();
@@ -513,6 +561,9 @@ namespace KiiniHelp
                             break;
                         case (int)BusinessVariables.EnumRoles.Administrador:
                             Response.Redirect("~/Users/DashBoard.aspx");
+                            break;
+                        case (int)BusinessVariables.EnumRoles.AccesoAnalíticos:
+                            Response.Redirect("~/Users/FrmReportes.aspx");
                             break;
                         default:
                             Response.Redirect("~/Users/FrmDashboardUser.aspx?");
@@ -674,10 +725,9 @@ namespace KiiniHelp
             {
                 Response.Redirect("~/Users/Administracion/Usuarios/FrmCambiarContrasena.aspx");
             }
-            catch (Exception)
+            catch
             {
 
-                throw;
             }
         }
 

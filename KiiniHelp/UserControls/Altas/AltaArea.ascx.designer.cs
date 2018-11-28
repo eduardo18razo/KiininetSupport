@@ -49,6 +49,24 @@ namespace KiiniHelp.UserControls.Altas {
         protected global::System.Web.UI.WebControls.HiddenField hfFileName;
         
         /// <summary>
+        /// Control hfFileTypes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFileTypes;
+        
+        /// <summary>
+        /// Control hfMaxSizeAllow.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfMaxSizeAllow;
+        
+        /// <summary>
         /// Control btnClose.
         /// </summary>
         /// <remarks>

@@ -23,21 +23,21 @@
     <MetadataSource Address="http://localhost:15277/Sistema/ServiceEstatus.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiceEstatus.xsd" MetadataType="Schema" ID="ef858ada-8103-4d7b-a425-692e501649de" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd8" />
-    <MetadataFile FileName="ServiceEstatus1.xsd" MetadataType="Schema" ID="5c5f78d0-389d-4f3a-92c9-dcfc07f9cd2b" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceEstatus7.xsd" MetadataType="Schema" ID="243d8263-20fd-4126-9241-9cd94a7b4d2b" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceEstatus12.xsd" MetadataType="Schema" ID="a6dfd328-0cdc-4a22-b749-51a62a54c96d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd11" />
     <MetadataFile FileName="ServiceEstatus2.xsd" MetadataType="Schema" ID="57a1258c-b15b-44aa-acc8-ef07bc2408a3" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd5" />
     <MetadataFile FileName="ServiceEstatus3.xsd" MetadataType="Schema" ID="b27e4f85-15ec-4e3b-bb59-ebbd45c8025e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd1" />
     <MetadataFile FileName="ServiceEstatus4.xsd" MetadataType="Schema" ID="74e43919-0291-4085-82d9-781eaed553bb" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceEstatus1.xsd" MetadataType="Schema" ID="5c5f78d0-389d-4f3a-92c9-dcfc07f9cd2b" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd12" />
     <MetadataFile FileName="ServiceEstatus5.xsd" MetadataType="Schema" ID="dc6de665-bf16-47c1-aaba-c9fe727d11fa" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd10" />
     <MetadataFile FileName="ServiceEstatus.wsdl" MetadataType="Wsdl" ID="c8ac57ab-9ae0-4390-9290-660292a77288" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?wsdl" />
     <MetadataFile FileName="ServiceEstatus6.xsd" MetadataType="Schema" ID="35e7ee0b-2a23-4885-95de-a98cdadb1d01" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd0" />
-    <MetadataFile FileName="ServiceEstatus7.xsd" MetadataType="Schema" ID="243d8263-20fd-4126-9241-9cd94a7b4d2b" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceEstatus.xsd" MetadataType="Schema" ID="ef858ada-8103-4d7b-a425-692e501649de" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd8" />
     <MetadataFile FileName="ServiceEstatus8.xsd" MetadataType="Schema" ID="c6206c53-27a2-4bb3-a393-0a86f298a96d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd4" />
     <MetadataFile FileName="ServiceEstatus.disco" MetadataType="Disco" ID="c6671ed6-a533-41b1-893a-89153144f35a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?disco" />
     <MetadataFile FileName="ServiceEstatus9.xsd" MetadataType="Schema" ID="0bacff9f-eac4-4952-9185-096b06b985cd" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd7" />
     <MetadataFile FileName="ServiceEstatus10.xsd" MetadataType="Schema" ID="7d65d249-eab9-498e-8807-9db2628f1667" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd3" />
     <MetadataFile FileName="ServiceEstatus11.xsd" MetadataType="Schema" ID="93b260a9-384b-484b-a463-c90037368582" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd6" />
-    <MetadataFile FileName="ServiceEstatus12.xsd" MetadataType="Schema" ID="a6dfd328-0cdc-4a22-b749-51a62a54c96d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd11" />
     <MetadataFile FileName="ServiceEstatus13.xsd" MetadataType="Schema" ID="8732108d-ed6a-4c3c-88bb-4a62a61da38d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceEstatus.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>

@@ -32,5 +32,17 @@ hr.bold {
 
 .bloque{
     height:450px;
-    border: 1px solid #f3f3f7;
+    /*border: 1px solid #f3f3f7 !important;*/
+    border: 1px solid #dadae7 !important;
+}
+
+.bloque475{
+    height:475px;
+    /*border: 1px solid #f3f3f7 !important;*/
+    border: 1px solid #dadae7 !important;
+}
+.bloque500{
+    height:500px;
+    /*border: 1px solid #f3f3f7 !important;*/
+    border: 1px solid #dadae7 !important;
 }

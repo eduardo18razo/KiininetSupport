@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="txtpwd">Contraseña</label>
                 <div class="col-sm-10">
-                    <asp:TextBox CssClass="form-control obligatorio text-no-transform" ID="txtpwd" placeholder="Enter Password" runat="server" TextMode="Password" />
+                    <asp:TextBox CssClass="form-control obligatorio text-no-transform" ID="txtpwd" placeholder="Enter Password" runat="server" TextMode="Password" autocomplete="off"/>
                 </div>
             </div>
             <div class="form-group">
@@ -53,7 +53,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-3">
-                    <asp:TextBox class="form-control obligatorio" ID="txtCaptcha" runat="server"></asp:TextBox>
+                    <asp:TextBox class="form-control obligatorio" ID="txtCaptcha" runat="server" autocomplete="off"></asp:TextBox>
                 </div>
             </div>
         </div>

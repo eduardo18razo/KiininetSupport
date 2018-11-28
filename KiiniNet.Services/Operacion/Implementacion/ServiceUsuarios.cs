@@ -253,6 +253,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
+        public bool ValidaConfirmacionCambioCorreo(int idUsuario, string guid)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios(true))
+                {
+                    return negocio.ValidaConfirmacionCambioCorreo(idUsuario, guid);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public string ValidaCodigoVerificacionSms(int idUsuario, int idTipoNotificacion, int idTelefono, string codigo)
         {
             try

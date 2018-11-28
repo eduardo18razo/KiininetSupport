@@ -550,6 +550,19 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 hfIdOrganizacion.Value = value.ToString();
             }
         }
+        public void OrganizacionDefault(int idOrganizacion)
+        {
+            try
+            {
+                IdOrganizacion = idOrganizacion;
+                SetOrganizacionSeleccion();
+                btnTerminar_OnClick(btnTerminar, null);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public Organizacion OrganizacionSeleccionada
         {
             get
@@ -729,7 +742,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                 divData.Visible = true;
                 divStep1.Visible = true;
                 int level = hfCatalogo.Value == string.Empty ? 0 : int.Parse(hfCatalogo.Value);
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && (int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agente || level > 1))
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && (int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agentes || level > 1))
                 {
                     pnlAlta.Visible = true;
                     LlenaComboDinamico(ddlNivelSeleccionModal, _servicioOrganizacion.ObtenerHoldings(int.Parse(ddlTipoUsuario.SelectedValue), true));
@@ -1140,11 +1153,20 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                     switch (int.Parse(btnSeleccionarModal.CommandArgument))
                     {
                         case 1:
-                            throw new Exception("Seleccione una ubicacion de nivel 2");
-                            if (btnStatusNivel1.CssClass == "btn btn-primary btn-square")
-                            {
-                                OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), null, null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 1);
-                            }
+                            throw new Exception("Seleccione una ubicacion de nivel 1");
+                            //if (btnStatusNivel1.CssClass == "btn btn-primary btn-square")
+                            //{
+                            //    OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), int.Parse(hfNivel2.Value), null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 2);
+                            //}
+                            //else
+                            //{
+                            //    throw new Exception("Selecciones una ubicacion de nivel 1");
+                            //    OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), null, null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 1);
+                            //}
+                            //if (btnStatusNivel1.CssClass == "btn btn-primary btn-square")
+                            //{
+                            //    OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), null, null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 1);
+                            //}
                             break;
                         case 2:
                             if (btnStatusNivel2.CssClass == "btn btn-primary btn-square")
@@ -1153,7 +1175,7 @@ namespace KiiniHelp.UserControls.Altas.Organizaciones
                             }
                             else
                             {
-                                throw new Exception("Selecciones una ubicacion de nivel 2");
+                                //throw new Exception("Selecciones una ubicacion de nivel 2");
                                 OrganizacionSeleccionada = _servicioOrganizacion.ObtenerOrganizaciones(IdTipoUsuario, int.Parse(hfNivel1.Value), null, null, null, null, null, null).SingleOrDefault(s => s.IdNivelOrganizacion == 1);
                             }
                             break;

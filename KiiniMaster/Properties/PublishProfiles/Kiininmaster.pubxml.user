@@ -42,7 +42,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="assets/css/styles.css">
-      <publishTime>04/18/2018 12:40:18</publishTime>
+      <publishTime>05/15/2018 17:31:21</publishTime>
     </File>
     <File Include="assets/css/sumoselect.css">
       <publishTime>12/13/2017 13:33:15</publishTime>
@@ -141,55 +141,55 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:33:15</publishTime>
     </File>
     <File Include="bin/EAGetMail40.dll">
-      <publishTime>04/16/2018 16:02:53</publishTime>
+      <publishTime>10/05/2018 12:01:15</publishTime>
     </File>
     <File Include="bin/EASendMail40.dll">
-      <publishTime>04/16/2018 16:03:53</publishTime>
+      <publishTime>10/05/2018 12:01:28</publishTime>
     </File>
     <File Include="bin/EPPlus.dll">
       <publishTime>11/08/2017 15:24:33</publishTime>
     </File>
     <File Include="bin/KiiniMaster.dll">
-      <publishTime>04/25/2018 17:19:54</publishTime>
+      <publishTime>10/24/2018 10:45:40</publishTime>
     </File>
     <File Include="bin/KiiniMaster.pdb">
-      <publishTime>04/25/2018 17:19:54</publishTime>
+      <publishTime>10/24/2018 10:45:40</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.dll">
-      <publishTime>04/25/2018 16:18:16</publishTime>
+      <publishTime>10/19/2018 14:49:06</publishTime>
     </File>
     <File Include="bin/KiiniNet.Entities.pdb">
-      <publishTime>04/25/2018 16:18:16</publishTime>
+      <publishTime>10/19/2018 14:49:06</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.dll">
-      <publishTime>04/25/2018 16:30:27</publishTime>
+      <publishTime>10/19/2018 14:49:16</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.pdb">
-      <publishTime>04/25/2018 16:30:27</publishTime>
+      <publishTime>10/19/2018 14:49:16</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.dll">
-      <publishTime>04/25/2018 16:30:28</publishTime>
+      <publishTime>10/19/2018 14:49:19</publishTime>
     </File>
     <File Include="bin/KiiniNet.Services.Web.pdb">
-      <publishTime>04/25/2018 16:30:28</publishTime>
+      <publishTime>10/19/2018 14:49:19</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.dll">
-      <publishTime>04/25/2018 16:18:19</publishTime>
+      <publishTime>10/19/2018 14:49:09</publishTime>
     </File>
     <File Include="bin/KinniNet.Business.Utils.pdb">
-      <publishTime>04/25/2018 16:18:19</publishTime>
+      <publishTime>10/19/2018 14:49:09</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.dll">
-      <publishTime>04/25/2018 16:30:26</publishTime>
+      <publishTime>10/19/2018 14:49:15</publishTime>
     </File>
     <File Include="bin/KinniNet.Core.pdb">
-      <publishTime>04/25/2018 16:30:26</publishTime>
+      <publishTime>10/19/2018 14:49:15</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.dll">
-      <publishTime>04/25/2018 16:18:19</publishTime>
+      <publishTime>10/19/2018 14:49:10</publishTime>
     </File>
     <File Include="bin/KinniNet.Data.pdb">
-      <publishTime>04/25/2018 16:18:19</publishTime>
+      <publishTime>10/19/2018 14:49:10</publishTime>
     </File>
     <File Include="Configuracion/Politicas/FrmPoliticasAsignacionDefault.aspx">
       <publishTime>12/13/2017 13:33:14</publishTime>
@@ -227,6 +227,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Sistema.Rol.datasource">
       <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
+    <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Sistema.RolTipoArbolAcceso.datasource">
+      <publishTime>10/24/2018 10:44:49</publishTime>
+    </File>
     <File Include="Properties/DataSources/KiiniNet.Entities.Cat.Sistema.SubRol.datasource">
       <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
@@ -258,10 +261,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/13/2017 13:33:14</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>04/18/2018 08:54:08</publishTime>
+      <publishTime>09/24/2018 09:30:39</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/19/2018 16:09:53</publishTime>
+      <publishTime>10/24/2018 10:45:41</publishTime>
     </File>
   </ItemGroup>
 </Project>

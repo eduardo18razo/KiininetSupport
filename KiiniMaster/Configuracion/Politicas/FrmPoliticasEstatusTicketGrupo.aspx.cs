@@ -267,12 +267,12 @@ namespace KiiniMaster.Configuracion.Politicas
                 ddlGrupoUsuario.DataBind();
 
                 
-                ddlRolSolicita.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(w => rolespermitidos.Contains(w.Id));
+                ddlRolSolicita.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Agentes, true).Where(w => rolespermitidos.Contains(w.Id));
                 ddlRolSolicita.DataTextField = "Descripcion";
                 ddlRolSolicita.DataValueField = "Id";
                 ddlRolSolicita.DataBind();
 
-                ddlRolPertenece.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Agente, true).Where(w => rolespermitidos.Contains(w.Id));
+                ddlRolPertenece.DataSource = _servicioRoles.ObtenerRoles((int)BusinessVariables.EnumTiposUsuario.Agentes, true).Where(w => rolespermitidos.Contains(w.Id));
                 ddlRolPertenece.DataTextField = "Descripcion";
                 ddlRolPertenece.DataValueField = "Id";
                 ddlRolPertenece.DataBind();

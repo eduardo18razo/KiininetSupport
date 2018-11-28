@@ -17,7 +17,8 @@ namespace KiiniNet.Entities.Cat.Sistema
         public string Abreviacion { get; set; }
         [DataMember]
         public string Color { get; set; }
-
+        [DataMember]
+        public string ColorGrafico { get; set; }
         [DataMember]
         public bool Habilitado { get; set; }
         [DataMember]
@@ -30,5 +31,7 @@ namespace KiiniNet.Entities.Cat.Sistema
         public virtual List<Frecuencia> Frecuencia { get; set; }
         [DataMember]
         public virtual List<GrupoUsuarioDefaultOpcion> GrupoUsuarioDefaultOpcion { get; set; }
+        [DataMember]
+        public virtual List<RolTipoArbolAcceso> RolTipoArbolAcceso { get; set; }
     }
 }

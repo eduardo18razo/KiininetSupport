@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace KinniNet.Business.Utils
 {
     public static class BusinessErrores
     {                 //nuevo
-        private readonly static string fileNotificaciones = ConfigurationManager.AppSettings["ArchivoNotificaciones"];
+        private readonly static string FileNotificaciones = ConfigurationManager.AppSettings["ArchivoNotificaciones"];
         public static void GenerarArchivoErrores()
         {
             try
             {
-                if (File.Exists(fileNotificaciones))
-                    File.Delete(fileNotificaciones);
+                if (File.Exists(FileNotificaciones))
+                    File.Delete(FileNotificaciones);
                 List<HelperMensajes> lst = new List<HelperMensajes>();
                 lst.Add(new HelperMensajes { Key = "Exito", Value = "Se guardó el registro exitosamente." });
                 lst.Add(new HelperMensajes { Key = "Error", Value = "No se puede guardar el registro." });
@@ -25,9 +24,8 @@ namespace KinniNet.Business.Utils
                 lst.Add(new HelperMensajes { Key = "FaltaDescripcion", Value = "Debe especificar una descripción." });
                 lst.Add(new HelperMensajes { Key = "Actualizacion", Value = "Se actualizó el registro exitosamente." });    
 
-                XmlSerializer ser = new XmlSerializer(typeof(List<HelperMensajes>));
                 XmlSerializer writer = new XmlSerializer(typeof(List<HelperMensajes>));
-                using (FileStream file = File.OpenWrite(fileNotificaciones))
+                using (FileStream file = File.OpenWrite(FileNotificaciones))
                 {
                     writer.Serialize(file, lst);
                 }
@@ -44,16 +42,16 @@ namespace KinniNet.Business.Utils
             try
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<HelperMensajes>));
-                using (FileStream input = File.OpenRead(fileNotificaciones))
+                using (FileStream input = File.OpenRead(FileNotificaciones))
                 {
                     result = (List<HelperMensajes>)reader.Deserialize(input);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 GenerarArchivoErrores();
                 XmlSerializer reader = new XmlSerializer(typeof(List<HelperMensajes>));
-                using (FileStream input = File.OpenRead(fileNotificaciones))
+                using (FileStream input = File.OpenRead(FileNotificaciones))
                 {
                     result = (List<HelperMensajes>)reader.Deserialize(input);
                 }
@@ -61,7 +59,7 @@ namespace KinniNet.Business.Utils
             return result;
         }
 
-        public static string ObtenerMensajeByKey(Utils.BusinessVariables.EnumMensajes key)
+        public static string ObtenerMensajeByKey(BusinessVariables.EnumMensajes key)
         {
             string result = string.Empty;
             try

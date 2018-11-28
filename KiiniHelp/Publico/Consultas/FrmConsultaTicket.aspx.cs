@@ -28,6 +28,12 @@ namespace KiiniHelp.Publico.Consultas
             }
         }
 
+        private bool EsLink
+        {
+            get { return bool.Parse(hfLink.Value); }
+            set { hfLink.Value = value.ToString(); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -35,9 +41,14 @@ namespace KiiniHelp.Publico.Consultas
                 Alerta = new List<string>();
                 if (Request.Params["idTicket"] != null && Request.Params["cveRandom"] != null)
                 {
+                    EsLink = true;
                     txtTicket.Text = Request.Params["idTicket"];
                     txtClave.Text = Request.Params["cveRandom"];
                     btnConsultar_OnClick(btnConsultar, null);
+                }
+                else
+                {
+                    EsLink = false;
                 }
             }
             catch (Exception ex)
@@ -55,7 +66,7 @@ namespace KiiniHelp.Publico.Consultas
         {
             try
             {
-                if (!ValidCaptcha)
+                if (!ValidCaptcha && !EsLink)
                 {
                     txtCaptcha.Text = string.Empty;
                     throw new Exception("Captcha incorrecto");

@@ -3,8 +3,6 @@
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="../assets/css/dashboards.css" />
-
     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 </asp:Content>

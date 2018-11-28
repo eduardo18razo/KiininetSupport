@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kiinisupport</title>
+    <title>Kiininet CXP</title>
     <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
 
     <link rel='stylesheet' href="assets/css/font.css" />
@@ -77,7 +77,7 @@
                                                                 <asp:CustomValidator ErrorMessage="" OnServerValidate="OnServerValidate" runat="server" />
                                                                 <ms:CaptchaControl ID="captchaTicket" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="4" CssClass="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                                                                     CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
-                                                                    FontColor="#D20B0C" NoiseColor="white" BackColor="transparent" />
+                                                                    FontColor="#D20B0C" NoiseColor="white" BackColor="white" />
                                                             </div>
                                                             <div class="col-sm-12 col-md-4 col-lg-4">
                                                             </div>
@@ -87,7 +87,7 @@
                                                     <div class="row">
                                                         <div class="form-group">
                                                             <div class="col-sm-12 col-md-2 col-lg-2 col-lg-offset-5 col-md-offset-5">
-                                                                <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);"/>
+                                                                <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);" autocomplete="off"/>
                                                             </div>
                                                             <div class="col-sm-12 col-md-4 col-lg-4">
                                                             </div>
@@ -103,7 +103,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="copyright2 text-center">&copy; 2017 - Powered by Kiininet</div>
                         </div>
                 </section>
             </ContentTemplate>

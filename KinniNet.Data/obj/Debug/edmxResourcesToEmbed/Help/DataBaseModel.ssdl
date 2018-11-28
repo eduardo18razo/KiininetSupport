@@ -49,6 +49,15 @@
     <Property Name="Visitas" Type="int" Nullable="false" />
     <Property Name="FechaVisita" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="ArchivosPermitidos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreArchivo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Extensiones" Type="nvarchar(max)" />
+    <Property Name="Habilitado" Type="bit" />
+  </EntityType>
   <EntityType Name="Area">
     <Key>
       <PropertyRef Name="Id" />
@@ -72,6 +81,8 @@
     <Property Name="IdUsuario" Type="int" Nullable="false" />
     <Property Name="Fecha" Type="datetime" Nullable="false" />
     <Property Name="Success" Type="bit" />
+    <Property Name="SessionId" Type="nvarchar(max)" />
+    <Property Name="Terminated" Type="bit" />
   </EntityType>
   <EntityType Name="CampoMascara">
     <Key>
@@ -110,6 +121,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="ColorGrafico" Type="nvarchar" MaxLength="10" />
     <Property Name="Habilitado" Type="bit" />
   </EntityType>
   <EntityType Name="Catalogos">
@@ -129,6 +141,15 @@
     <Property Name="IdUsuarioModifico" Type="int" />
     <Property Name="Habilitado" Type="bit" />
   </EntityType>
+  <EntityType Name="ChatUserDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConnectionId" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Colonia">
     <Key>
       <PropertyRef Name="Id" />
@@ -138,6 +159,22 @@
     <Property Name="Descripcion" Type="nvarchar(max)" />
     <Property Name="CP" Type="int" />
     <Property Name="Habilitado" Type="bit" />
+  </EntityType>
+  <EntityType Name="ColoresSla">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Color" Type="nvarchar" MaxLength="20" />
+    <Property Name="Dentro" Type="bit" />
+  </EntityType>
+  <EntityType Name="ColoresTop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Color" Type="nvarchar" MaxLength="20" />
+    <Property Name="Orden" Type="int" />
   </EntityType>
   <EntityType Name="Compania">
     <Key>
@@ -295,6 +332,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
     <Property Name="Orden" Type="int" />
+    <Property Name="ColorGrafico" Type="nvarchar" MaxLength="10" />
     <Property Name="Habilitado" Type="bit" />
   </EntityType>
   <EntityType Name="EstatusAsignacionSubRolGeneral">
@@ -334,6 +372,7 @@
     <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
     <Property Name="Orden" Type="int" />
     <Property Name="Color" Type="nvarchar" MaxLength="10" />
+    <Property Name="ColorGrafico" Type="nvarchar" MaxLength="10" />
     <Property Name="Habilitado" Type="bit" />
   </EntityType>
   <EntityType Name="EstatusTicketSubRolGeneral">
@@ -915,16 +954,6 @@
     <Property Name="MaximoMinutos" Type="int" Nullable="false" />
     <Property Name="MaximoSegundos" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="ParametrosTelefonos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdTipoUsuario" Type="int" />
-    <Property Name="IdTipoTelefono" Type="int" />
-    <Property Name="NumeroTelefonos" Type="int" />
-    <Property Name="Obligatorios" Type="int" />
-  </EntityType>
   <EntityType Name="ParametrosUsuario">
     <Key>
       <PropertyRef Name="Id" />
@@ -1020,6 +1049,15 @@
     <Property Name="IdRol" Type="int" Nullable="false" />
     <Property Name="IdMenu" Type="int" Nullable="false" />
     <Property Name="IdTipoUsuario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolTipoArbolAcceso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTipoArbolAcceso" Type="int" />
+    <Property Name="IdRol" Type="int" />
+    <Property Name="Habilitado" Type="bit" />
   </EntityType>
   <EntityType Name="RolTipoGrupo">
     <Key>
@@ -1183,7 +1221,7 @@
     <Property Name="IdUsuario" Type="int" Nullable="false" />
     <Property Name="Numero" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="Extension" Type="nvarchar" MaxLength="20" />
-    <Property Name="Obligatorio" Type="bit" />
+    <Property Name="Principal" Type="bit" />
     <Property Name="Confirmado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Ticket">
@@ -1354,6 +1392,7 @@
     <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Abreviacion" Type="nvarchar" MaxLength="3" />
     <Property Name="Color" Type="nvarchar" MaxLength="10" />
+    <Property Name="ColorGrafico" Type="nvarchar" MaxLength="10" />
     <Property Name="Habilitado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="TipoCampoMascara">
@@ -1482,8 +1521,7 @@
     <Property Name="Color" Type="nvarchar" MaxLength="20" />
     <Property Name="EsResidente" Type="bit" Nullable="false" />
     <Property Name="EsMoral" Type="bit" Nullable="false" />
-    <Property Name="NumeroCorreos" Type="int" Nullable="false" />
-    <Property Name="CorreosObligatorios" Type="int" Nullable="false" />
+    <Property Name="TelefonoObligatorio" Type="bit" Nullable="false" />
     <Property Name="Domicilio" Type="bit" />
     <Property Name="UbicacionDomicilio" Type="bit" />
     <Property Name="Habilitado" Type="bit" Nullable="false" />
@@ -3432,6 +3470,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_RolTipoArbolAcceso_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="RolTipoArbolAcceso" Type="Self.RolTipoArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoArbolAcceso">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RolTipoArbolAcceso_TipoArbolAcceso">
+    <End Role="TipoArbolAcceso" Type="Self.TipoArbolAcceso" Multiplicity="0..1" />
+    <End Role="RolTipoArbolAcceso" Type="Self.RolTipoArbolAcceso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolTipoArbolAcceso">
+        <PropertyRef Name="IdTipoArbolAcceso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RolTipoGrupo_Rol">
     <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
     <End Role="RolTipoGrupo" Type="Self.RolTipoGrupo" Multiplicity="*" />
@@ -3764,30 +3826,6 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Organizacion">
-        <PropertyRef Name="IdTipoUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tblParamTelefonos_tblCatTipoTelefono">
-    <End Role="TipoTelefono" Type="Self.TipoTelefono" Multiplicity="0..1" />
-    <End Role="ParametrosTelefonos" Type="Self.ParametrosTelefonos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoTelefono">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ParametrosTelefonos">
-        <PropertyRef Name="IdTipoTelefono" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tblParamTelefonos_tblCatTipoUsuario">
-    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
-    <End Role="ParametrosTelefonos" Type="Self.ParametrosTelefonos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoUsuario">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ParametrosTelefonos">
         <PropertyRef Name="IdTipoUsuario" />
       </Dependent>
     </ReferentialConstraint>
@@ -4380,6 +4418,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TiempoInformeArbol_ArbolAcceso">
+    <End Role="ArbolAcceso" Type="Self.ArbolAcceso" Multiplicity="0..1" />
+    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArbolAcceso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TiempoInformeArbol">
+        <PropertyRef Name="IdArbol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TiempoInformeArbol_GrupoUsuario">
+    <End Role="GrupoUsuario" Type="Self.GrupoUsuario" Multiplicity="0..1" />
+    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrupoUsuario">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TiempoInformeArbol">
+        <PropertyRef Name="IdGrupoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TiempoInformeArbol_TipoGrupo">
+    <End Role="TipoGrupo" Type="Self.TipoGrupo" Multiplicity="0..1" />
+    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoGrupo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TiempoInformeArbol">
+        <PropertyRef Name="IdTipoGrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TiempoInformeArbol_TipoNotificacion">
+    <End Role="TipoNotificacion" Type="Self.TipoNotificacion" Multiplicity="0..1" />
+    <End Role="TiempoInformeArbol" Type="Self.TiempoInformeArbol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoNotificacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TiempoInformeArbol">
+        <PropertyRef Name="IdTipoNotificacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Torre_TipoUsuario">
     <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="0..1" />
     <End Role="Torre" Type="Self.Torre" Multiplicity="*" />
@@ -4696,13 +4782,17 @@
     <EntitySet Name="AliasOrganizacion" EntityType="Self.AliasOrganizacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AliasUbicacion" EntityType="Self.AliasUbicacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ArbolAcceso" EntityType="Self.ArbolAcceso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ArchivosPermitidos" EntityType="Self.ArchivosPermitidos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BitacoraAcceso" EntityType="Self.BitacoraAcceso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CampoMascara" EntityType="Self.CampoMascara" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Campus" EntityType="Self.Campus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Canal" EntityType="Self.Canal" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Catalogos" EntityType="Self.Catalogos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChatUserDetail" EntityType="Self.ChatUserDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Colonia" EntityType="Self.Colonia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColoresSla" EntityType="Self.ColoresSla" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColoresTop" EntityType="Self.ColoresTop" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Compania" EntityType="Self.Compania" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConversacionArchivo" EntityType="Self.ConversacionArchivo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CorreoService" EntityType="Self.CorreoService" Schema="dbo" store:Type="Tables" />
@@ -4771,7 +4861,6 @@
     <EntitySet Name="ParametrosAplicaciones" EntityType="Self.ParametrosAplicaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParametrosGenerales" EntityType="Self.ParametrosGenerales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParametrosSla" EntityType="Self.ParametrosSla" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ParametrosTelefonos" EntityType="Self.ParametrosTelefonos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParametrosUsuario" EntityType="Self.ParametrosUsuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Piso" EntityType="Self.Piso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PreguntaReto" EntityType="Self.PreguntaReto" Schema="dbo" store:Type="Tables" />
@@ -4782,6 +4871,7 @@
     <EntitySet Name="RespuestaTipoEncuesta" EntityType="Self.RespuestaTipoEncuesta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolMenu" EntityType="Self.RolMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolTipoArbolAcceso" EntityType="Self.RolTipoArbolAcceso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolTipoGrupo" EntityType="Self.RolTipoGrupo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolTipoUsuario" EntityType="Self.RolTipoUsuario" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SiteRack" EntityType="Self.SiteRack" Schema="dbo" store:Type="Tables" />
@@ -5440,6 +5530,14 @@
       <End Role="TipoUsuario" EntitySet="TipoUsuario" />
       <End Role="RolMenu" EntitySet="RolMenu" />
     </AssociationSet>
+    <AssociationSet Name="FK_RolTipoArbolAcceso_Rol" Association="Self.FK_RolTipoArbolAcceso_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolTipoArbolAcceso" EntitySet="RolTipoArbolAcceso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RolTipoArbolAcceso_TipoArbolAcceso" Association="Self.FK_RolTipoArbolAcceso_TipoArbolAcceso">
+      <End Role="TipoArbolAcceso" EntitySet="TipoArbolAcceso" />
+      <End Role="RolTipoArbolAcceso" EntitySet="RolTipoArbolAcceso" />
+    </AssociationSet>
     <AssociationSet Name="FK_RolTipoGrupo_Rol" Association="Self.FK_RolTipoGrupo_Rol">
       <End Role="Rol" EntitySet="Rol" />
       <End Role="RolTipoGrupo" EntitySet="RolTipoGrupo" />
@@ -5551,14 +5649,6 @@
     <AssociationSet Name="FK_tblOrganizacion_tblCatTipoUsuario" Association="Self.FK_tblOrganizacion_tblCatTipoUsuario">
       <End Role="TipoUsuario" EntitySet="TipoUsuario" />
       <End Role="Organizacion" EntitySet="Organizacion" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tblParamTelefonos_tblCatTipoTelefono" Association="Self.FK_tblParamTelefonos_tblCatTipoTelefono">
-      <End Role="TipoTelefono" EntitySet="TipoTelefono" />
-      <End Role="ParametrosTelefonos" EntitySet="ParametrosTelefonos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tblParamTelefonos_tblCatTipoUsuario" Association="Self.FK_tblParamTelefonos_tblCatTipoUsuario">
-      <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-      <End Role="ParametrosTelefonos" EntitySet="ParametrosTelefonos" />
     </AssociationSet>
     <AssociationSet Name="FK_tblRespuestaEncuesta_tblEncuesta" Association="Self.FK_tblRespuestaEncuesta_tblEncuesta">
       <End Role="Encuesta" EntitySet="Encuesta" />
@@ -5755,6 +5845,22 @@
     <AssociationSet Name="FK_TicketNotificacion_Usuario" Association="Self.FK_TicketNotificacion_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="TicketNotificacion" EntitySet="TicketNotificacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TiempoInformeArbol_ArbolAcceso" Association="Self.FK_TiempoInformeArbol_ArbolAcceso">
+      <End Role="ArbolAcceso" EntitySet="ArbolAcceso" />
+      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TiempoInformeArbol_GrupoUsuario" Association="Self.FK_TiempoInformeArbol_GrupoUsuario">
+      <End Role="GrupoUsuario" EntitySet="GrupoUsuario" />
+      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TiempoInformeArbol_TipoGrupo" Association="Self.FK_TiempoInformeArbol_TipoGrupo">
+      <End Role="TipoGrupo" EntitySet="TipoGrupo" />
+      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TiempoInformeArbol_TipoNotificacion" Association="Self.FK_TiempoInformeArbol_TipoNotificacion">
+      <End Role="TipoNotificacion" EntitySet="TipoNotificacion" />
+      <End Role="TiempoInformeArbol" EntitySet="TiempoInformeArbol" />
     </AssociationSet>
     <AssociationSet Name="FK_Torre_TipoUsuario" Association="Self.FK_Torre_TipoUsuario">
       <End Role="TipoUsuario" EntitySet="TipoUsuario" />

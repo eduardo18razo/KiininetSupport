@@ -17,7 +17,9 @@ using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using RepeatDirection = System.Web.UI.WebControls.RepeatDirection;
 
 namespace KiiniHelp.UserControls.Temporal
@@ -37,6 +39,7 @@ namespace KiiniHelp.UserControls.Temporal
         private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         private readonly ServiceArbolAccesoClient _servicioArbolAccesoClient = new ServiceArbolAccesoClient();
         private readonly ServiceUsuariosClient _servicioUsuariosClient = new ServiceUsuariosClient();
+
         private List<Control> _lstControles;
         private List<string> _lstError = new List<string>();
         private bool ValidCaptcha = false;
@@ -95,6 +98,15 @@ namespace KiiniHelp.UserControls.Temporal
                         hfComandoInsertar.Value = mascara.ComandoInsertar;
                         hfComandoActualizar.Value = mascara.ComandoInsertar;
                         hfRandom.Value = mascara.Random.ToString();
+                        ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
+                        if (parametros != null)
+                        {
+                            foreach (ArchivosPermitidos alowedFile in _serviciosParametros.ObtenerArchivosPermitidos())
+                            {
+                                ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                            }
+                            TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                        }
                         PintaControles(mascara.CampoMascara);
                         Session["DataFormularioPortal"] = mascara;
                     }
@@ -138,6 +150,27 @@ namespace KiiniHelp.UserControls.Temporal
         {
             get { return Convert.ToInt32(hfIdMascara.Value); }
             set { hfIdMascara.Value = value.ToString(); }
+        }
+
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
+
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
+            }
         }
 
         public string ComandoInsertar
@@ -719,7 +752,7 @@ namespace KiiniHelp.UserControls.Temporal
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
-                    Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label proxima12" };
+                    Label lbl = new Label { Text = campo.Descripcion + (campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty), CssClass = "col-sm-12 control-label proxima12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
@@ -990,6 +1023,7 @@ namespace KiiniHelp.UserControls.Temporal
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
                             divControles.Controls.Add(hr);
+                            lbl.Text = string.Format("{0} (max {1}MB). {2}", campo.Descripcion, TamañoArchivo, campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty);
                             lbl.Attributes["for"] = "fu" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             AsyncFileUpload asyncFileUpload = new AsyncFileUpload
@@ -1000,7 +1034,8 @@ namespace KiiniHelp.UserControls.Temporal
                                 OnClientUploadStarted = "ShowLanding",
                                 OnClientUploadComplete = "HideLanding"
                             };
-
+                            asyncFileUpload.OnClientUploadStarted = "UploadStart";
+                            asyncFileUpload.OnClientUploadError = "uploadError";
                             asyncFileUpload.Attributes["style"] = "margin-top: 25px";
                             asyncFileUpload.UploadedComplete += asyncFileUpload_UploadedComplete;
                             createDiv.Controls.Add(asyncFileUpload);
@@ -1063,6 +1098,15 @@ namespace KiiniHelp.UserControls.Temporal
         {
             try
             {
+                if (TamañoArchivo > 0)
+                {
+                    if ((double.Parse(e.FileSize) / 1024) > (10 * 1024))
+                    {
+                        Response.Write("Size is limited to 2MB");
+                        throw new Exception(string.Format("El tamaño maximo de carga es de {0}MB", "10"));
+                    }
+                }
+
 
                 List<string> lstArchivo = Session["Files"] == null ? new List<string>() : (List<string>)Session["Files"];
                 if (lstArchivo.Any(archivosCargados => archivosCargados.Split('_')[0] == e.FileName.Split('\\').Last()))

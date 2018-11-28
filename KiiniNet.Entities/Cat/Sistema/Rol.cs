@@ -22,6 +22,8 @@ namespace KiiniNet.Entities.Cat.Sistema
         [DataMember]
         public virtual List<RolTipoUsuario> RolTipoUsuario { get; set; }
         [DataMember]
+        public virtual List<RolTipoArbolAcceso> RolTipoArbolAcceso { get; set; }
+        [DataMember]
         public virtual List<RolTipoGrupo> RolTipoGrupo { get; set; }
         [DataMember]
         public virtual List<SubRol> SubRol { get; set; }

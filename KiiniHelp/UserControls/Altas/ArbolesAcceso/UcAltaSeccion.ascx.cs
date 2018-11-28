@@ -699,7 +699,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                 divData.Visible = true;
                 divStep1.Visible = true;
                 int level = hfCatalogo.Value == string.Empty ? 0 : int.Parse(hfCatalogo.Value);
-                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && (int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agente || level > 1))
+                if (ddlTipoUsuario.SelectedIndex > BusinessVariables.ComboBoxCatalogo.IndexTodos && (int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agentes || level > 1))
                 {
                     pnlAlta.Visible = true;
                     Metodos.LlenaComboCatalogo(ddlNivelSeleccionModal, _servicioArbol.ObtenerNivel1(ArbolSeleccionado.IdArea, ArbolSeleccionado.IdTipoArbolAcceso, ArbolSeleccionado.IdTipoUsuario, true));

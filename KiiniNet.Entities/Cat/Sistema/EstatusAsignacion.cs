@@ -17,6 +17,9 @@ namespace KiiniNet.Entities.Cat.Sistema
 
         [DataMember]
         public string Color { get; set; }
+
+        [DataMember]
+        public string ColorGrafico { get; set; }
         [DataMember]
         public int Orden { get; set; }
         [DataMember]

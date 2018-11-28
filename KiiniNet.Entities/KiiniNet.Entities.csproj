@@ -65,6 +65,7 @@
     <Compile Include="Cat\Sistema\Prioridad.cs" />
     <Compile Include="Cat\Sistema\RespuestaTipoEncuesta.cs" />
     <Compile Include="Cat\Sistema\RolMenu.cs" />
+    <Compile Include="Cat\Sistema\RolTipoArbolAcceso.cs" />
     <Compile Include="Cat\Sistema\RolTipoGrupo.cs" />
     <Compile Include="Cat\Sistema\RolTipoUsuario.cs" />
     <Compile Include="Cat\Sistema\TipoArbolAcceso.cs" />
@@ -190,6 +191,9 @@
     <Compile Include="Parametros\AliasUbicacion.cs" />
     <Compile Include="Parametros\AliasOrganizacion.cs" />
     <Compile Include="Parametros\Aplicaciones.cs" />
+    <Compile Include="Parametros\ArchivosPermitidos.cs" />
+    <Compile Include="Parametros\ColoresSla.cs" />
+    <Compile Include="Parametros\ColoresTop.cs" />
     <Compile Include="Parametros\EstatusAsignacionSubRolGeneral.cs" />
     <Compile Include="Parametros\EstatusAsignacionSubRolGeneralDefault.cs" />
     <Compile Include="Parametros\EstatusTicketSubRolGeneral.cs" />
@@ -203,7 +207,6 @@
     <Compile Include="Parametros\ParametrosAplicacion.cs" />
     <Compile Include="Parametros\ParametrosGenerales.cs" />
     <Compile Include="Parametros\ParametrosSla.cs" />
-    <Compile Include="Parametros\ParametrosTelefonos.cs" />
     <Compile Include="Parametros\ParametrosUsuario.cs" />
     <Compile Include="Parametros\SubRolEscalacionPermitida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

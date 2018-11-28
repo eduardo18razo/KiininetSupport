@@ -363,11 +363,11 @@
         </div>
 
         <footer id="footer" class="site-footer">
-            <div class="copyright">&copy; 2017 Kiininet. Todos los derechos reservados </div>
+            <div class="copyright">&copy; Todos los derechos reservados </div>
             <div class="politicas-Privacidad">
-                <asp:HyperLink runat="server" NavigateUrl="~/PoliticasPrivacidad.aspx">Políticas de Privacidad </asp:HyperLink>
-                <asp:Label runat="server" Text="  |  "></asp:Label>
-                <asp:HyperLink runat="server" NavigateUrl="~/TerminosyCondiciones.aspx"> Términos y Condiciones</asp:HyperLink>
+                <asp:HyperLink runat="server" NavigateUrl="~/PoliticasPrivacidad.aspx">Aviso de Privacidad </asp:HyperLink>
+                <asp:Label runat="server" Text="  |  " Visible="False"></asp:Label>
+                <asp:HyperLink runat="server" NavigateUrl="~/TerminosyCondiciones.aspx" Visible="False"> Términos y Condiciones</asp:HyperLink>
             </div>
         </footer>
 
@@ -413,6 +413,36 @@
                                 </p>
                                 <hr />
                                 En breve recibirás un correo con los datos de tu ticket para que puedas dar seguimiento.
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="modal fade" id="modalSessionAbierta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <asp:LinkButton class="close" runat="server" ID="btnCerramodalSessionAbierta" OnClick="btnCerramodalSessionAbierta_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
+                        <h6 class="modal-title" id="myModalLabel">Sesion abierta </h6>
+                    </div>
+                    <div class="modal-body">
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <p class="h4">
+                                    Tu sesión no fue cerrada correctamente o se encuentra abierta en otro equipo
+                            <br />
+                                    ¿Quieres continuar aquí?
+                                    <br>
+                                </p>
+                                <p>
+                                    <div class="row widht100 text-center">
+                                        <asp:Button runat="server" CssClass="btn btn-primary margin-auto" Text="Aceptar" OnClick="OnClick"/>
+                                    </div>
+                                </p>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>

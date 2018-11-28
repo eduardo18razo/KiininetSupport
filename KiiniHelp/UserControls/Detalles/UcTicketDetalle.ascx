@@ -322,7 +322,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <label class="col-lg-2 col-md-2 col-sm-2 icon-eye margin-top-7" style="font-size: 24px"></label>
                                     <div class="col-lg-10 col-md-10 col-sm-10 margin-top-10">
-                                        <asp:Label runat="server" Text="6 de abril 2017" ID="lblFechaUltimaconexion" />
+                                        <asp:Label runat="server" ID="lblFechaUltimaconexion" />
                                     </div>
                                 </div>
                             </div>

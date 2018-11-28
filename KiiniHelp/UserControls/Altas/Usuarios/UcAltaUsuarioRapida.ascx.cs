@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
+using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniHelp.ServiceUsuario;
+using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 
@@ -14,7 +16,10 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
+
         private readonly ServiceUsuariosClient _servicioUsuario = new ServiceUsuariosClient();
+        private readonly ServiceTipoUsuarioClient _servicioTipoUsuario = new ServiceTipoUsuarioClient();
+
         private List<string> _lstError = new List<string>();
 
         private List<string> Alerta
@@ -39,11 +44,11 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 {
                     throw new Exception("Ya existe una cuenta con estos datos");
                 }
-                if (!string.IsNullOrEmpty(txtTelefonoCelularRapido.Text.Trim()))
-                    if (_servicioUsuario.BuscarUsuario(txtTelefonoCelularRapido.Text.Trim()) != null)
-                    {
-                        throw new Exception("Ya existe una cuenta con estos datos");
-                    }
+                //if (!string.IsNullOrEmpty(txtTelefonoCelularRapido.Text.Trim()))
+                //    if (_servicioUsuario.BuscarUsuario(txtTelefonoCelularRapido.Text.Trim()) != null)
+                //    {
+                //        throw new Exception("Ya existe una cuenta con estos datos");
+                //    }
             }
             catch (Exception ex)
             {
@@ -76,6 +81,20 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             set
             {
                 hfIdTipoUsuario.Value = value.ToString();
+                TipoUsuario tipoUsuario = _servicioTipoUsuario.ObtenerTipoUsuarioById(value);
+                if (tipoUsuario != null)
+                {
+                    if (tipoUsuario.TelefonoObligatorio)
+                    {
+                        lblObligatorio.Text = "*";
+                        lblObligatorio.Style.Add("color", "red");
+                    }
+                    else
+                    {
+                        lblObligatorio.Text = "(opcional)";
+                        lblObligatorio.Style.Remove("color");
+                    }
+                }
             }
         }
 
@@ -99,8 +118,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         {
             try
             {
-                
-                  Alerta = new List<string>();
+
+                Alerta = new List<string>();
                 if (Request.Params["userType"] != null)
                     IdTipoUsuario = int.Parse(Request.Params["userType"]);
                 else
@@ -124,25 +143,36 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
 
                 if (txtApRapido.Text.Trim() == string.Empty)
                     throw new Exception("Apellido Paterno es un campo obligatorio.");
-                if (txtAmRapido.Text.Trim() == string.Empty)
-                    throw new Exception("Apellido Materno es un campo obligatorio.");
                 if (txtNombreRapido.Text.Trim() == string.Empty)
                     throw new Exception("Nombre es un campo obligatorio.");
 
-                bool capturoTelefono = false, capturoCorreo = false;
-                if (txtCorreoRapido.Text.Trim() != string.Empty)
-                    capturoCorreo = true;
-                if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
-                    capturoTelefono = true;
-                if (!capturoCorreo)
-                    throw new Exception("Debe capturar un correo.");
-                if (!capturoTelefono)
-                    txtTelefonoCelularRapido.Text = "";
-                //sb.Add("Debe capturar un telefono.");
+                if (txtCorreoRapido.Text.Trim() == string.Empty)
+                    throw new Exception("Correo es un campo Obligatorio.");
+                if (txtCorreoRapido.Text.Trim() == string.Empty)
+                    throw new Exception("Debe confirmar el correo.");
+
+                if (txtCorreoRapido.Text != txtCorreoRapidoConfirmacion.Text)
+                    throw new Exception("Los correos no coinciden.");
+
                 if (!BusinessCorreo.IsValidEmail(txtCorreoRapido.Text.Trim()) || txtCorreoRapido.Text.Trim().Contains(" "))
                 {
                     throw new Exception(string.Format("Correo {0} con formato invalido", txtCorreoRapido.Text.Trim()));
                 }
+                if (!BusinessCorreo.IsValidEmail(txtCorreoRapidoConfirmacion.Text.Trim()) || txtCorreoRapidoConfirmacion.Text.Trim().Contains(" "))
+                {
+                    throw new Exception(string.Format("Correo {0} con formato invalido", txtCorreoRapidoConfirmacion.Text.Trim()));
+                }
+
+                TipoUsuario tipoUsuario = _servicioTipoUsuario.ObtenerTipoUsuarioById(IdTipoUsuario);
+                if (tipoUsuario != null)
+                {
+                    if (tipoUsuario.TelefonoObligatorio)
+                        if (txtTelefonoCelularRapido.Text.Trim() == string.Empty)
+                            throw new Exception("El Telefono es Obligatorio.");
+                }
+                if(txtTelefonoCelularRapido.Text.Trim() != string.Empty && txtTelefonoCelularRapido.Text.Length <10)
+                    throw new Exception(string.Format("El telefono debe ser de 10 digitos."));
+
             }
             catch (Exception ex)
             {
@@ -206,17 +236,26 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         Autoregistro = true,
                         Habilitado = true
                     };
-                    datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
+                    TipoUsuario tipoUsuario = _servicioTipoUsuario.ObtenerTipoUsuarioById(IdTipoUsuario);
+                    if (tipoUsuario != null)
+                    {
+                        if (tipoUsuario.TelefonoObligatorio)
                         {
-                            new TelefonoUsuario
+                            datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
                             {
-                                IdTipoTelefono = (int) BusinessVariables.EnumTipoTelefono.Celular,
-                                Confirmado = false,
-                                Extension = string.Empty,
-                                Numero = txtTelefonoCelularRapido.Text.Trim(),
-                                Obligatorio = true
-                            }
-                        };
+                                new TelefonoUsuario
+                                {
+                                    IdTipoTelefono = (int) BusinessVariables.EnumTipoTelefono.Celular,
+                                    Confirmado = false,
+                                    Extension = string.Empty,
+                                    Numero = txtTelefonoCelularRapido.Text.Trim(),
+                                    Principal = true
+                                }
+                            };
+                        }
+                    }
+
+
                     if (txtCorreoRapido.Text.Trim() != string.Empty)
                         datosUsuario.CorreoUsuario = new List<CorreoUsuario>
                         {

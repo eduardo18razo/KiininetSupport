@@ -63,7 +63,7 @@ namespace KiiniHelp.UserControls.Detalles
                         lblNivel6.Text = arbol.Nivel6 != null ? arbol.Nivel6.Descripcion : string.Empty;
                         lblNivel7.Text = arbol.Nivel7 != null ? arbol.Nivel7.Descripcion : string.Empty;
 
-                        rptUsuarios.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Usuario).Select(s => s.GrupoUsuario).Distinct().ToList();
+                        rptUsuarios.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).Select(s => s.GrupoUsuario).Distinct().ToList();
                         rptUsuarios.DataBind();
 
                         rptContenido.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido).Select(s => s.GrupoUsuario).Distinct().ToList();

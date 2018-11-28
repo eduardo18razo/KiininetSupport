@@ -166,6 +166,15 @@ namespace KiiniHelp {
         protected global::System.Web.UI.WebControls.TextBox txtConfirmaContrasena;
         
         /// <summary>
+        /// Control divTelefonoConfirmacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTelefonoConfirmacion;
+        
+        /// <summary>
         /// Control lblId.
         /// </summary>
         /// <remarks>
@@ -247,13 +256,13 @@ namespace KiiniHelp {
         protected global::System.Web.UI.WebControls.Button btnSendNotification;
         
         /// <summary>
-        /// Control divConfirmacion.
+        /// Control divCodigoConfirmacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divConfirmacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCodigoConfirmacion;
         
         /// <summary>
         /// Control upReenvio.
@@ -290,6 +299,15 @@ namespace KiiniHelp {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCodigo;
+        
+        /// <summary>
+        /// Control divPreguntaReto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPreguntaReto;
         
         /// <summary>
         /// Control Label4.

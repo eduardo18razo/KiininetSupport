@@ -13,6 +13,15 @@ namespace KiiniHelp.UserControls {
     public partial class UcLogCopia {
         
         /// <summary>
+        /// Control lblPswAbierto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPswAbierto;
+        
+        /// <summary>
         /// Control fhFallo.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace KiiniHelp.UserControls {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtpwd;
+        
+        /// <summary>
+        /// Control customvalidatorCaptcha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator customvalidatorCaptcha;
         
         /// <summary>
         /// Control Captcha1.

@@ -829,7 +829,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 var qry = from o in db.Organizacion
-                          where !o.Sistema && o.TipoUsuario.Habilitado && o.IdNivelOrganizacion == 2
+                          where !o.Sistema && o.TipoUsuario.Habilitado && o.IdNivelOrganizacion == 1
                           select new { o };
                 
                 if (tiposUsuario != null && tiposUsuario.Any())
@@ -1421,13 +1421,13 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public List<int> ObtenerUbicacionesByCompañia(List<int> idCompañia)
+        public List<int> ObtenerOrganizacionesByHolding(List<int> idHolding)
         {
             List<int> result;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                result = db.Organizacion.Where(w => idCompañia.Contains((int)w.IdCompania)).Select(s => s.Id).ToList();
+                result = db.Organizacion.Where(w => idHolding.Contains((int)w.IdHolding)).Select(s => s.Id).ToList();
             }
             catch (Exception ex)
             {

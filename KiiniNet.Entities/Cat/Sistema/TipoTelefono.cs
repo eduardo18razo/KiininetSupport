@@ -21,7 +21,5 @@ namespace KiiniNet.Entities.Cat.Sistema
 
         [DataMember]
         public List<TelefonoUsuario> TelefonoUsuario { get; set; }
-        [DataMember]
-        public virtual List<ParametrosTelefonos> ParametrosTelefonos { get; set; }
     }
 }

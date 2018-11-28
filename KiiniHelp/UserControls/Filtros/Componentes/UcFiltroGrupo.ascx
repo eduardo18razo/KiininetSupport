@@ -5,14 +5,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 Grupo<br />
-                <tc:RadComboBox ID="rcbFiltroGrupos" runat="server" RenderMode="Lightweight" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" /> 
-                <%--OnClientDropDownClosing="doPostback"--%>
+                <tc:RadComboBox ID="rcbFiltroGrupos" runat="server" RenderMode="Lightweight" CssClass="form-control no-border no-padding-left widht200" CheckBoxes="true" EnableCheckAllItemsCheckBox="true" /> 
             </div>
         </div>
-       <%-- <script type="text/javascript">
-            function doPostback() {
-                __doPostBack('Seleccion', 'OnKeyPress');
-            };
-        </script>--%>
     </ContentTemplate>
 </asp:UpdatePanel>

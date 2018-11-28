@@ -147,11 +147,11 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                             break;
                         case 2:
                             txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddDays(-(parametrosGrafico.Periodo * 7)).ToString("dd/MM/yyyy"));
-                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));
+                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.ToString("dd/MM/yyyy"));
                             break;
                         case 3:
                             txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddMonths(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));
-                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.AddDays(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));
+                            txtFechaFin.Text = string.Format("{0}", DateTime.Now.ToString("dd/MM/yyyy"));
                             break;
                         case 4:
                             txtFechaInicio.Text = string.Format("{0}", DateTime.Now.AddYears(-parametrosGrafico.Periodo).ToString("dd/MM/yyyy"));

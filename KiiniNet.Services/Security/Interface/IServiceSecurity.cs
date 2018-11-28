@@ -9,7 +9,7 @@ namespace KiiniNet.Services.Security.Interface
     public interface IServiceSecurity
     {
         [OperationContract]
-        bool Autenticate(string user, string password);
+        bool Autenticate(string user, string password, string activeNavigator);
 
         [OperationContract]
         List<Rol> ObtenerRolesUsuario(int idUsuario);
@@ -37,5 +37,20 @@ namespace KiiniNet.Services.Security.Interface
 
         [OperationContract]
         bool CaducaPassword(int idUsuario);
+
+        [OperationContract]
+        bool UsuariorActivo(string user, string password, string activeNavigator);
+
+        [OperationContract]
+        void CerrarSessionActiva(string user, string password);
+
+        [OperationContract]
+        void TerminarSesion(int idUsuario, string activeNavigator);
+
+        [OperationContract]
+        bool ValidaSesion(int idUsuario, string activeNavigator);
+
+        [OperationContract]
+        string GeneraLlaveMaquina();
     }
 }

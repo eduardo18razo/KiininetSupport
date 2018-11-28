@@ -9,20 +9,6 @@ namespace KiiniNet.Services.Parametros.Implementacion
 {
     public class ServiceParametros : IServiceParametros
     {
-        public List<ParametrosTelefonos> TelefonosObligatorios(int idTipoUsuario)
-        {
-            try
-            {
-                using (BusinessParametros negocio = new BusinessParametros())
-                {
-                    return negocio.TelefonosObligatorios(idTipoUsuario);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
 
         public List<TelefonoUsuario> ObtenerTelefonosParametrosIdTipoUsuario(int idTipoUsuario, bool insertarSeleccion)
         {
@@ -61,6 +47,21 @@ namespace KiiniNet.Services.Parametros.Implementacion
                 using (BusinessParametros negocio = new BusinessParametros())
                 {
                     return negocio.ObtenerParametrosGenerales();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public ParametrosUsuario ObtenerParametrosUsuario(int idTipoUsuario)
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerParametrosUsuario(idTipoUsuario);
                 }
             }
             catch (Exception ex)
@@ -151,6 +152,51 @@ namespace KiiniNet.Services.Parametros.Implementacion
                 using (BusinessParametros negocio = new BusinessParametros())
                 {
                     return negocio.ObtenerFrecuenciasFecha();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<ColoresTop> ObtenerColoresTop()
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerColoresTop();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<ColoresSla> ObtenerColoresSla()
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerColoresSla();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<ArchivosPermitidos> ObtenerArchivosPermitidos()
+        {
+            try
+            {
+                using (BusinessParametros negocio = new BusinessParametros())
+                {
+                    return negocio.ObtenerArchivosPermitidos();
                 }
             }
             catch (Exception ex)

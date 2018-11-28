@@ -5662,6 +5662,9 @@ ul.sortable {
 .widht200 {
     width: 200px !important;
 }
+.widht204 {
+    width: 204px !important;
+}
 
 .widht235 {
     width: 235px !important;
@@ -6712,4 +6715,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .styleList {
     list-style:  disc;
 }
+
+
 

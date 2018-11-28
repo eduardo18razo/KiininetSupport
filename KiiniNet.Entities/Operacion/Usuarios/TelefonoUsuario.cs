@@ -17,7 +17,7 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         [DataMember]
         public string Extension { get; set; }
         [DataMember]
-        public bool Obligatorio { get; set; }
+        public bool Principal { get; set; }
         [DataMember]
         public bool Confirmado { get; set; }
         

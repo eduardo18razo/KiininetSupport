@@ -56,6 +56,8 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         bool ValidaConfirmacion(int idUsuario, string guid);
+        [OperationContract]
+        bool ValidaConfirmacionCambioCorreo(int idUsuario, string guid);
 
         [OperationContract]
         string ValidaCodigoVerificacionSms(int idUsuario, int idTipoNotificacion, int idTelefono, string codigo);

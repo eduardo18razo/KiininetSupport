@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Net;
+using System.Reflection;
 using System.Web;
 using KiiniHelp.ServiceUsuario;
 
@@ -20,15 +22,19 @@ namespace KiiniHelp
                 throw new ArgumentException("No parameter specified");
 
             context.Response.ContentType = "image/jpeg";
-
-            Stream strm = new MemoryStream(new ServiceUsuariosClient().ObtenerFoto(idUsuario));
+            byte[] foto = new ServiceUsuariosClient().ObtenerFoto(idUsuario);
+            Stream strm;
             byte[] buffer = new byte[4096];
-            int byteSeq = strm.Read(buffer, 0, 4096);
-
-            while (byteSeq > 0)
+            int byteSeq;
+            if (foto != null)
             {
-                context.Response.OutputStream.Write(buffer, 0, byteSeq);
+                strm = new MemoryStream(foto);
                 byteSeq = strm.Read(buffer, 0, 4096);
+                while (byteSeq > 0)
+                {
+                    context.Response.OutputStream.Write(buffer, 0, byteSeq);
+                    byteSeq = strm.Read(buffer, 0, 4096);
+                }
             }
             //context.Response.BinaryWrite(buffer);
         }

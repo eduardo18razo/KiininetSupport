@@ -348,7 +348,7 @@ namespace KiiniHelp.UserControls.Altas
                 {
                     LlenaComboOrganizacion(IdTipoUsuario);
                 }
-                btnAltaHolding.Visible = int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agente;
+                btnAltaHolding.Visible = int.Parse(ddlTipoUsuario.SelectedValue) != (int)BusinessVariables.EnumTiposUsuario.Agentes;
             }
             catch (Exception ex)
             {

@@ -76,15 +76,6 @@ namespace KiiniHelp.UserControls.Seleccion {
         protected global::System.Web.UI.WebControls.HyperLink LinkButton3;
         
         /// <summary>
-        /// Control LinkButton4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LinkButton4;
-        
-        /// <summary>
         /// Control LinkButton5.
         /// </summary>
         /// <remarks>
@@ -121,6 +112,15 @@ namespace KiiniHelp.UserControls.Seleccion {
         protected global::System.Web.UI.WebControls.HyperLink LinkButton8;
         
         /// <summary>
+        /// Control LinkButton4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink LinkButton4;
+        
+        /// <summary>
         /// Control HyperLink1.
         /// </summary>
         /// <remarks>
@@ -139,39 +139,39 @@ namespace KiiniHelp.UserControls.Seleccion {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
         
         /// <summary>
-        /// Control HyperLink3.
+        /// Control HyperLink9.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink9;
         
         /// <summary>
-        /// Control HyperLink4.
+        /// Control HyperLink10.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink10;
         
         /// <summary>
-        /// Control HyperLink5.
+        /// Control HyperLink11.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink11;
         
         /// <summary>
-        /// Control HyperLink6.
+        /// Control HyperLink12.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink6;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink12;
     }
 }

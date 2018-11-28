@@ -53,7 +53,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div data-parsley-validate class="form-horizontal">
                                                     <div class="form-group no-margin-bottom">
-                                                        <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa tu usuario, correo electrónico o número celular:</asp:Label>
+                                                        <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa tu usuario, correo electrónico o telefono celular:</asp:Label>
                                                     </div>
 
                                                     <div class="form-group">
@@ -68,7 +68,7 @@
                                                             CaptchaHeight="60" CaptchaWidth="150" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
                                                             FontColor="#D20B0C" NoiseColor="#B1B1B1" />
                                                         <asp:Label runat="server" CssClass="text-left col-lg-12 no-padding-left">Ingresa el texto de la imagen:</asp:Label>
-                                                        <asp:TextBox class="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);"/>
+                                                        <asp:TextBox class="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);" autocomplete="off"/>
                                                     </div>
 
                                                     <div class="form-group">
@@ -85,7 +85,6 @@
                             </div>
                             <div class="row copyright2">
                                 <img src="assets/images/logo_kinninet_blanco.png"><br />
-                                &copy; 2018
                             </div>
 
                         </div>

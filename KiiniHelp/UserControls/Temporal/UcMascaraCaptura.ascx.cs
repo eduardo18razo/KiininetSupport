@@ -17,6 +17,7 @@ using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using RepeatDirection = System.Web.UI.WebControls.RepeatDirection;
 
@@ -44,7 +45,26 @@ namespace KiiniHelp.UserControls.Temporal
                 }
             }
         }
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
 
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
+            }
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             try
@@ -86,6 +106,15 @@ namespace KiiniHelp.UserControls.Temporal
                         hfComandoInsertar.Value = mascara.ComandoInsertar;
                         hfComandoActualizar.Value = mascara.ComandoInsertar;
                         hfRandom.Value = mascara.Random.ToString();
+                        ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
+                        if (parametros != null)
+                        {
+                            foreach (ArchivosPermitidos alowedFile in _serviciosParametros.ObtenerArchivosPermitidos())
+                            {
+                                ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                            }
+                            TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                        }
                         PintaControles(mascara.CampoMascara);
                         Session["PreviewDataFormulario"] = mascara;
                     }
@@ -713,7 +742,7 @@ namespace KiiniHelp.UserControls.Temporal
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group clearfix";
-                    Label lbl = new Label { Text = campo.Descripcion, CssClass = "col-sm-12 control-label" };
+                    Label lbl = new Label { Text = campo.Descripcion + (campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty), CssClass = "col-sm-12 control-label proxima12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
@@ -982,6 +1011,7 @@ namespace KiiniHelp.UserControls.Temporal
                             _lstControles.Add(meeMascara);
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.AdjuntarArchivo:
+                            lbl.Text = string.Format("{0} (max {1}MB). {2}", campo.Descripcion, TamañoArchivo, campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty);
                             lbl.Attributes["for"] = "fu" + campo.NombreCampo;
                             createDiv.Controls.Add(lbl);
                             AsyncFileUpload asyncFileUpload = new AsyncFileUpload
@@ -992,6 +1022,8 @@ namespace KiiniHelp.UserControls.Temporal
                                 OnClientUploadStarted = "ShowLanding",
                                 OnClientUploadComplete = "HideLanding"
                             };
+                            asyncFileUpload.OnClientUploadStarted = "UploadStart";
+                            asyncFileUpload.OnClientUploadError = "uploadError";
                             asyncFileUpload.Attributes.Add("onkeydown", "return (event.keyCode!=13 && event.keyCode!=27);");
                             asyncFileUpload.Attributes["style"] = "margin-top: 25px";
                             asyncFileUpload.UploadedComplete += asyncFileUpload_UploadedComplete;

@@ -67,6 +67,24 @@ namespace KiiniHelp.UserControls.Altas.Usuarios {
         protected global::System.Web.UI.WebControls.TextBox txtCorreoRapido;
         
         /// <summary>
+        /// Control txtCorreoRapidoConfirmacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoRapidoConfirmacion;
+        
+        /// <summary>
+        /// Control lblObligatorio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblObligatorio;
+        
+        /// <summary>
         /// Control txtTelefonoCelularRapido.
         /// </summary>
         /// <remarks>

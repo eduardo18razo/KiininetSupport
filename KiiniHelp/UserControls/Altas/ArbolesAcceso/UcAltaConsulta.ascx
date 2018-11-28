@@ -49,7 +49,7 @@
                             </div>
                             <div class="form-group">
                                 Quién ve el contenido<br />
-                                <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" OnSelectedIndexChanged="ddlTipoUsuarioNivel_OnSelectedIndexChanged" />
+                                <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" />
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 no-padding-top">Público</label>
@@ -140,20 +140,16 @@
                                 Cuáles grupos ven la opción
                             </div>
                             <div class="form-group">
-                                Usuarios<br />
-                                <asp:DropDownList runat="server" ID="ddlGrupoAcceso" CssClass="form-control" />
+                                Acceso a Centro de Soporte<br />
+                                <asp:DropDownList runat="server" ID="ddlGrupoAccesoCentroSoporte" CssClass="form-control" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" runat="server" ID="divGpoResponsableCategoria">
                                 Responsable de Categoría<br />
-                                <asp:DropDownList runat="server" ID="ddlDuenoServicio" CssClass="form-control" />
+                                <asp:DropDownList runat="server" ID="ddlGrupoResponsableCategoria" CssClass="form-control" />
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" runat="server" ID="divGpoResponsableContenido">
                                 Responsable de Contenido<br />
-                                <asp:DropDownList runat="server" ID="ddlGrupoResponsableMantenimiento" CssClass="form-control" />
-                            </div>
-                            <div class="form-group">
-                                Consultas Especiales<br />
-                                <asp:ListBox ID="lstGrupoEspecialConsulta" runat="server" SelectionMode="Multiple"></asp:ListBox>
+                                <asp:DropDownList runat="server" ID="ddlGrupoResponsableContenido" CssClass="form-control" />
                             </div>
                         </div>
 
@@ -174,14 +170,14 @@
         <!--/CONTAINER DERECHA-->
         <script type="text/javascript">
             $(function () {
-                $('[id*=lstGrupoEspecialConsulta]').multiselect({
+                $('[id*=lstGrupoAccesoAnalitico]').multiselect({
                     includeSelectAllOption: true
                 });
             });
             var prm = Sys.WebForms.PageRequestManager.getInstance();
 
             prm.add_endRequest(function () {
-                $('[id*=lstGrupoEspecialConsulta]').multiselect({
+                $('[id*=lstGrupoAccesoAnalitico]').multiselect({
                     includeSelectAllOption: true
                 });
             });

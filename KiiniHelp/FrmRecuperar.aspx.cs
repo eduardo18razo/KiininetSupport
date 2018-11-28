@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
@@ -84,15 +85,15 @@ namespace KiiniHelp
                     hfIdSend.Value = userData.CorreoUsuario.ToList().First().Id.ToString();
                     hfValueSend.Value = userData.CorreoUsuario.ToList().First().Correo;
                     hfValueNotivicacion.Value = _servicioUsuario.EnviaCodigoVerificacionCorreo(int.Parse(QueryString.Decrypt(Request.Params["ldata"])), (int)BusinessVariables.EnumTipoLink.Reset, int.Parse(hfIdSend.Value));
-                   
+
                     divCodigoVerificacion.Visible = true;
                 }
                 else if (rbtnSms.Checked)
                 {
-                    if (userData.TelefonoUsuario.Count(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Obligatorio) <= 0)
+                    if (userData.TelefonoUsuario.Count(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Principal) <= 0)
                         throw new Exception("No cuenta con telefonos registrados contacte a su Administrador.");
-                    hfIdSend.Value = userData.TelefonoUsuario.Where(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Obligatorio).ToList().First().Id.ToString();
-                    hfValueSend.Value = userData.TelefonoUsuario.Where(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Obligatorio).ToList().First().Numero;
+                    hfIdSend.Value = userData.TelefonoUsuario.Where(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Principal).ToList().First().Id.ToString();
+                    hfValueSend.Value = userData.TelefonoUsuario.Where(w => w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && w.Principal).ToList().First().Numero;
                     _servicioUsuario.EnviaCodigoVerificacionSms(int.Parse(QueryString.Decrypt(Request.Params["ldata"])), (int)BusinessVariables.EnumTipoLink.Reset, int.Parse(hfIdSend.Value));
                     divCodigoVerificacion.Visible = true;
                 }
@@ -111,11 +112,41 @@ namespace KiiniHelp
                 throw new Exception(ex.Message);
             }
         }
+        private void GeneraCoockie()
+        {
+            try
+            {
+                if (Request.Cookies["miui"] != null)
+                {
+                    var value = BusinessQueryString.Decrypt(Request.Cookies["miui"]["iuiu"]);
+                }
+                else
+                {
+                    string llave = _servicioSeguridad.GeneraLlaveMaquina();
+                    HttpCookie myCookie = new HttpCookie("miui");
+                    myCookie.Values.Add("iuiu", BusinessQueryString.Encrypt(llave));
+                    myCookie.Expires = DateTime.Now.AddYears(10);
+                    Response.Cookies.Add(myCookie);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                if (!IsPostBack)
+                    GeneraCoockie();
+                HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                if (myCookie != null && Session["UserData"] != null)
+                {
+                    Response.Redirect("~/Users/DashBoard.aspx");
+                }
                 Alerta = new List<string>();
                 if (!IsPostBack)
                     if (Request.Params["ldata"] != null)
@@ -174,6 +205,7 @@ namespace KiiniHelp
                     if (!bool.Parse(hfParametrosConfirmados.Value))
                     {
                         string tiporecuperacion = rbtnCorreo.Checked ? "0" : rbtnSms.Checked ? "1" : rbtnPreguntas.Checked ? "2" : "fail";
+                        //string tiporecuperacion = rbtnCorreo.Checked ? "0" : rbtnPreguntas.Checked ? "2" : "fail";
                         if (rbtnCorreo.Checked)
                         {
                             _servicioUsuario.ValidaCodigoVerificacionCorreo(int.Parse(QueryString.Decrypt(Request.Params["ldata"])), (int)BusinessVariables.EnumTipoLink.Reset, hfValueNotivicacion.Value, int.Parse(hfIdSend.Value), txtCodigo.Text.Trim());
@@ -217,7 +249,7 @@ namespace KiiniHelp
                         if (divChangePwd.Visible)
                         {
                             ValidaCampos();
-                            _servicioSeguridad.ValidaPassword(txtContrasena.Text.Trim(                                                               ));
+                            _servicioSeguridad.ValidaPassword(txtContrasena.Text.Trim());
                             switch (btncontinuar.CommandArgument)
                             {
                                 case "0":
@@ -325,6 +357,6 @@ namespace KiiniHelp
         {
             Response.Redirect("~/Default.aspx");
         }
-        
+
     }
 }

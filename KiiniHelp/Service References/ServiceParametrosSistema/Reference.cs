@@ -15,9 +15,6 @@ namespace KiiniHelp.ServiceParametrosSistema {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceParametrosSistema.IServiceParametros")]
     public interface IServiceParametros {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/TelefonosObligatorios", ReplyAction="http://tempuri.org/IServiceParametros/TelefonosObligatoriosResponse")]
-        System.Collections.Generic.List<KiiniNet.Entities.Parametros.ParametrosTelefonos> TelefonosObligatorios(int idTipoUsuario);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerTelefonosParametrosIdTipoUsuario", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerTelefonosParametrosIdTipoUsuarioResp" +
             "onse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.TelefonoUsuario> ObtenerTelefonosParametrosIdTipoUsuario(int idTipoUsuario, bool insertarSeleccion);
@@ -28,6 +25,9 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerParametrosGenerales", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerParametrosGeneralesResponse")]
         KiiniNet.Entities.Parametros.ParametrosGenerales ObtenerParametrosGenerales();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerParametrosUsuario", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerParametrosUsuarioResponse")]
+        KiiniNet.Entities.Parametros.ParametrosUsuario ObtenerParametrosUsuario(int idTipoUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerAliasOrganizacion", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerAliasOrganizacionResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Parametros.AliasOrganizacion> ObtenerAliasOrganizacion(int idTipoUsuario);
@@ -46,6 +46,15 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerFrecuenciasFecha", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerFrecuenciasFechaResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Parametros.FrecuenciaFecha> ObtenerFrecuenciasFecha();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerColoresTop", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerColoresTopResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Parametros.ColoresTop> ObtenerColoresTop();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerColoresSla", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerColoresSlaResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Parametros.ColoresSla> ObtenerColoresSla();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceParametros/ObtenerArchivosPermitidos", ReplyAction="http://tempuri.org/IServiceParametros/ObtenerArchivosPermitidosResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Parametros.ArchivosPermitidos> ObtenerArchivosPermitidos();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -75,10 +84,6 @@ namespace KiiniHelp.ServiceParametrosSistema {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<KiiniNet.Entities.Parametros.ParametrosTelefonos> TelefonosObligatorios(int idTipoUsuario) {
-            return base.Channel.TelefonosObligatorios(idTipoUsuario);
-        }
-        
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.TelefonoUsuario> ObtenerTelefonosParametrosIdTipoUsuario(int idTipoUsuario, bool insertarSeleccion) {
             return base.Channel.ObtenerTelefonosParametrosIdTipoUsuario(idTipoUsuario, insertarSeleccion);
         }
@@ -89,6 +94,10 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         public KiiniNet.Entities.Parametros.ParametrosGenerales ObtenerParametrosGenerales() {
             return base.Channel.ObtenerParametrosGenerales();
+        }
+        
+        public KiiniNet.Entities.Parametros.ParametrosUsuario ObtenerParametrosUsuario(int idTipoUsuario) {
+            return base.Channel.ObtenerParametrosUsuario(idTipoUsuario);
         }
         
         public System.Collections.Generic.List<KiiniNet.Entities.Parametros.AliasOrganizacion> ObtenerAliasOrganizacion(int idTipoUsuario) {
@@ -113,6 +122,18 @@ namespace KiiniHelp.ServiceParametrosSistema {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Parametros.FrecuenciaFecha> ObtenerFrecuenciasFecha() {
             return base.Channel.ObtenerFrecuenciasFecha();
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Parametros.ColoresTop> ObtenerColoresTop() {
+            return base.Channel.ObtenerColoresTop();
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Parametros.ColoresSla> ObtenerColoresSla() {
+            return base.Channel.ObtenerColoresSla();
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Parametros.ArchivosPermitidos> ObtenerArchivosPermitidos() {
+            return base.Channel.ObtenerArchivosPermitidos();
         }
     }
 }

@@ -176,7 +176,7 @@ namespace KiiniHelp.UserControls.Detalles
                     GrupoConSupervisor = ticket.GrupoConSupervisor;
                     lblNoticket.Text = ticket.IdTicket.ToString();
                     lblTituloTicket.Text = ticket.Tipificacion;
-
+                    imgProfileNewComment.ImageUrl = "~/DisplayImages.ashx?id=" + ((Usuario)Session["UserData"]).Id;
                     lblNombreCorreo.Text = string.Format("{0} &#60;{1}&#62;", ticket.UsuarioLevanto.NombreCompleto, ticket.CorreoTicket);
                     lblNombreU.Text = ticket.UsuarioSolicito.NombreCompleto;
                     lblFechaAlta.Text = ticket.FechaLevanto;
@@ -277,10 +277,10 @@ namespace KiiniHelp.UserControls.Detalles
                     lblPuesto.Text = usuario.Puesto;
                     // usuario.FirstOrDefault(s => s.Obligatorio) != null ? usuario.CorreoUsuario.First(s => s.Obligatorio).Correo : string.Empty;
                     //TODO: Cambia a correo principal
-                    lblCorreoPrincipal.Text = usuario.Correos.First();
+                    lblCorreoPrincipal.Text = usuario.Correos.Any() ? usuario.Correos.First() : string.Empty;
                     //usuario.TelefonoUsuario.FirstOrDefault(s => s.Obligatorio) != null ? usuario.TelefonoUsuario.First(s => s.Obligatorio).Numero : string.Empty;
                     //TODO: Cambia a telefono principal
-                    lblTelefonoPrincipal.Text = usuario.Telefonos.First();
+                    lblTelefonoPrincipal.Text = usuario.Telefonos.Any() ? usuario.Telefonos.First() : string.Empty;
                     lblOrganizacion.Text = usuario.Organizacion;
                     lblUbicacion.Text = usuario.Ubicacion;
                     lblFechaAltaDetalle.Text = usuario.Creado;

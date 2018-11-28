@@ -27,9 +27,7 @@ namespace KiiniNet.Entities.Cat.Sistema
         [DataMember]
         public bool EsMoral { get; set; }
         [DataMember]
-        public int NumeroCorreos { get; set; }
-        [DataMember]
-        public int CorreosObligatorios { get; set; }
+        public bool TelefonoObligatorio { get; set; }
         [DataMember]
         public bool Domicilio { get; set; }
         [DataMember]
@@ -75,8 +73,6 @@ namespace KiiniNet.Entities.Cat.Sistema
         [DataMember]
         public virtual List<Jefatura> Jefatura { get; set; }
 
-        [DataMember]
-        public virtual List<ParametrosTelefonos> ParametrosTelefonos { get; set; }
         [DataMember]
         public virtual List<RolTipoUsuario> RolTipoUsuario { get; set; }
         [DataMember]

@@ -63,6 +63,9 @@ namespace KiiniHelp.ServiceUsuario {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacion", ReplyAction="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionResponse")]
         bool ValidaConfirmacion(int idUsuario, string guid);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreo", ReplyAction="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreoResponse")]
+        bool ValidaConfirmacionCambioCorreo(int idUsuario, string guid);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionSms", ReplyAction="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionSmsResponse")]
         string ValidaCodigoVerificacionSms(int idUsuario, int idTipoNotificacion, int idTelefono, string codigo);
         
@@ -192,6 +195,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public bool ValidaConfirmacion(int idUsuario, string guid) {
             return base.Channel.ValidaConfirmacion(idUsuario, guid);
+        }
+        
+        public bool ValidaConfirmacionCambioCorreo(int idUsuario, string guid) {
+            return base.Channel.ValidaConfirmacionCambioCorreo(idUsuario, guid);
         }
         
         public string ValidaCodigoVerificacionSms(int idUsuario, int idTipoNotificacion, int idTelefono, string codigo) {

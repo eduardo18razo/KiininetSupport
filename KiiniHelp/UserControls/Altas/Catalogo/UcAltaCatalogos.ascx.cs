@@ -6,10 +6,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using KiiniHelp.Funciones;
+using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSistemaCatalogos;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Altas.Catalogo
@@ -17,6 +19,7 @@ namespace KiiniHelp.UserControls.Altas.Catalogo
     public partial class UcAltaCatalogos : UserControl, IControllerModal
     {
         private readonly ServiceCatalogosClient _servicioCatalogo = new ServiceCatalogosClient();
+        private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         private List<string> _lstError = new List<string>();
 
         public event DelegateAceptarModal OnAceptarModal;
@@ -75,6 +78,27 @@ namespace KiiniHelp.UserControls.Altas.Catalogo
                     error += "</ul>";
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "ErrorAlert('Error','" + error + "');", true);
                 }
+            }
+        }
+
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
+
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
             }
         }
 
@@ -137,6 +161,15 @@ namespace KiiniHelp.UserControls.Altas.Catalogo
                 if (!IsPostBack)
                 {
                     Session["registrosCatalogos"] = Session["registrosCatalogos"] ?? new List<CatalogoGenerico>();
+                    ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
+                    if (parametros != null)
+                    {
+                        foreach (ArchivosPermitidos alowedFile in _serviciosParametros.ObtenerArchivosPermitidos())
+                        {
+                            ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                        }
+                        TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                    }
                     //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "disableUpload", "var elms = document.getElementById('ContentPlaceHolder1_ucConsultaCatalogos_ucAltaCatalogos_afuArchivo').getElementsByTagName(\"*\");" + "for (var i = 0; i < elms.length; i++) " + "{" + "elms[i].disabled  = " + true.ToString().ToLower() + "" + "};", true);
                 }
 

@@ -345,7 +345,7 @@ namespace KinniNet.Core.Demonio
                         //result.Append("<p>Saludos,<br>");
                         ////TODO: Change Name Sender
                         //result.Append("KiiniHelp");
-                        result.Append("<p>" + body + "</p>");
+                        result.Append("<p>" + body.Replace("~replaceTicket~", string.Format("Ticket #: {0}<br>Clave: {1}", idTicket, claveRegistro)) + "</p>");
                         result.Append("<br>");
 
                         result.Append("<div>");
