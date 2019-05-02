@@ -15,6 +15,9 @@ namespace KiiniHelp.ServiceUsuario {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceUsuario.IServiceUsuarios")]
     public interface IServiceUsuarios {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadores", ReplyAction="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadoresResponse")]
+        void ValidaLimiteOperadores();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/GuardarUsuarioResponse")]
         void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Domicilio domicilio);
         
@@ -29,6 +32,9 @@ namespace KiiniHelp.ServiceUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarios", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosResponse")]
         System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuarios(System.Nullable<int> idTipoUsuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuarios", ReplyAction="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuariosResponse")]
+        System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ConsultaUsuariosUsuarios(System.Nullable<int> idTipoUsuario, string filtro);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ObtenerDetalleUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/ObtenerDetalleUsuarioResponse")]
         KiiniNet.Entities.Operacion.Usuarios.Usuario ObtenerDetalleUsuario(int idUsuario);
@@ -77,6 +83,9 @@ namespace KiiniHelp.ServiceUsuario {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ConfirmaCuenta", ReplyAction="http://tempuri.org/IServiceUsuarios/ConfirmaCuentaResponse")]
         void ConfirmaCuenta(int idUsuario, string password, System.Collections.Generic.Dictionary<int, string> confirmaciones, System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.PreguntaReto> pregunta, string link);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/ReenviarActivacion", ReplyAction="http://tempuri.org/IServiceUsuarios/ReenviarActivacionResponse")]
+        void ReenviarActivacion(int idUsuario);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUsuarios/BuscarUsuario", ReplyAction="http://tempuri.org/IServiceUsuarios/BuscarUsuarioResponse")]
         KiiniNet.Entities.Operacion.Usuarios.Usuario BuscarUsuario(string usuario);
@@ -133,6 +142,10 @@ namespace KiiniHelp.ServiceUsuario {
                 base(binding, remoteAddress) {
         }
         
+        public void ValidaLimiteOperadores() {
+            base.Channel.ValidaLimiteOperadores();
+        }
+        
         public void GuardarUsuario(KiiniNet.Entities.Operacion.Usuarios.Usuario usuario, KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio.Domicilio domicilio) {
             base.Channel.GuardarUsuario(usuario, domicilio);
         }
@@ -151,6 +164,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ObtenerUsuarios(System.Nullable<int> idTipoUsuario) {
             return base.Channel.ObtenerUsuarios(idTipoUsuario);
+        }
+        
+        public System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.Usuario> ConsultaUsuariosUsuarios(System.Nullable<int> idTipoUsuario, string filtro) {
+            return base.Channel.ConsultaUsuariosUsuarios(idTipoUsuario, filtro);
         }
         
         public KiiniNet.Entities.Operacion.Usuarios.Usuario ObtenerDetalleUsuario(int idUsuario) {
@@ -215,6 +232,10 @@ namespace KiiniHelp.ServiceUsuario {
         
         public void ConfirmaCuenta(int idUsuario, string password, System.Collections.Generic.Dictionary<int, string> confirmaciones, System.Collections.Generic.List<KiiniNet.Entities.Operacion.Usuarios.PreguntaReto> pregunta, string link) {
             base.Channel.ConfirmaCuenta(idUsuario, password, confirmaciones, pregunta, link);
+        }
+        
+        public void ReenviarActivacion(int idUsuario) {
+            base.Channel.ReenviarActivacion(idUsuario);
         }
         
         public KiiniNet.Entities.Operacion.Usuarios.Usuario BuscarUsuario(string usuario) {

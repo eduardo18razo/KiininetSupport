@@ -58,13 +58,13 @@ namespace KiiniHelp {
         protected global::System.Web.UI.UpdateProgress updateProgress;
         
         /// <summary>
-        /// Control lnkHome.
+        /// Control btnRedirectDashboard.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHome;
+        protected global::System.Web.UI.WebControls.LinkButton btnRedirectDashboard;
         
         /// <summary>
         /// Control lblBranding.

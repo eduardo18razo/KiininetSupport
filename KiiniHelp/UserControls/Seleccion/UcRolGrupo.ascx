@@ -17,6 +17,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
+                                <asp:Label runat="server" Text="Seleccionar rol"></asp:Label>
                                 <asp:DropDownList runat="server" ID="ddlRol" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlRol_OnSelectedIndexChanged" />
                             </div>
                         </div>

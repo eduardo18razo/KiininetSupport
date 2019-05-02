@@ -11,24 +11,22 @@
             var fileId = sender.get_id();
             var container = document.getElementById('AjaxFileUpload1_FileInfoContainer_' + fileId);
             var sizeallow = document.getElementById("<%= FindControl("hfMaxSizeAllow").ClientID %>").value;
-            var formatos = document.getElementById("<%= FindControl("hfFileTypes").ClientID %>").value.replace('|', ' ');
             var validFilesTypes = document.getElementById("<%= FindControl("hfFileTypes").ClientID %>").value.split('|');
-            
+
             var ext = "." + sender._inputFile.files[0].name.split('.').pop().toLowerCase();
 
-                var isValidFile = false;
-                for (var i = 0; i < validFilesTypes.length; i++) {
-                    if (ext == validFilesTypes[i]) {
-                        isValidFile = true;
-                        break;
-                    }
+            var isValidFile = false;
+            for (var i = 0; i < validFilesTypes.length; i++) {
+                if (ext == validFilesTypes[i]) {
+                    isValidFile = true;
+                    break;
                 }
-                if (!isValidFile) {
-                    ErrorAlert('', 'Archivo con formato no valido, formatos permitidos: ' + formatos );
-                    args.set_cancel(true);
-                    return false;
-                }
-            
+            }
+            if (!isValidFile) {
+                ErrorAlert('', 'Archivo con formato no valido, formatos permitidos: ' + validFilesTypes.join(' '));
+                args.set_cancel(true);
+                return false;
+            }
 
             if (filesize > sizeallow) {
                 ErrorAlert('', 'Archivo excede el tamaño permitido');
@@ -57,13 +55,15 @@
         <asp:HiddenField runat="server" ID="hfRandom" />
         <asp:HiddenField runat="server" ID="hfFileTypes" />
         <asp:HiddenField runat="server" ID="hfMaxSizeAllow" Value="0" />
+        
+        <div class="margin-bottom-10">
+                <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
+            </div>
 
         <div runat="server" id="divControles">
         </div>
         <div>
-            <div class="margin-bottom-10">
-                <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
-            </div>
+            
             <div class="margin-bottom-10 text-center">
                 <div class="form-group">
                     <asp:CustomValidator ErrorMessage="" OnServerValidate="OnServerValidate" runat="server" />
@@ -73,7 +73,7 @@
                 </div>
                 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-lg-2 col-md-2 col-lg-offset-5 col-md-offset-5 col-sm-12 col-xs-12">
-                        <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);" autocomplete="off"/>
+                        <asp:TextBox CssClass="form-control text-uppercase" ID="txtCaptcha" runat="server" onkeydown="return (event.keyCode!=13);" autocomplete="off" />
                     </div>
                 </div>
                 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">

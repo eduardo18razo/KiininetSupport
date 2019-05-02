@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcPreviewFormulario.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.Formularios.UcPreviewFormulario" %>
+<%@ Register Src="~/UserControls/Altas/Usuarios/UcAltaUsuarioRapida.ascx" TagPrefix="uc1" TagName="UcAltaUsuarioRapida" %>
 <script type="text/javascript">
     var uploadCustomerError = "";
     function UploadStart(sender, args) {
@@ -20,14 +21,13 @@
                 }
             }
             if (!isValidFile) {
-                ErrorAlert('', 'Archivo con formato no valido');
+                ErrorAlert('', 'Archivo con formato no valido, formatos permitidos: ' + validFilesTypes.join(' '));
                 args.set_cancel(true);
                 return false;
             }
 
-
             if (filesize > sizeallow) {
-                ErrorAlert('', 'Archivo demasiado grande');
+                ErrorAlert('', 'Archivo excede el tamaño permitido');
                 args.set_cancel(true);
                 return false;
             }
@@ -58,28 +58,48 @@
         <ol class="breadcrumb">
             <li>
                 <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-            <li>Help Center</li>
+            <li>Centro de Soporte</li>
             <li>Formularios</li>
             <li>Nuevo Formulario</li>
-            <li class="breadcrumb-item active">Previsualizar</li>
-
+            <li class=" active">Previsualizar</li>
         </ol>
 
-        <section class="module">
+        <section class="module no-border">
             <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="module-inner">
-                        <div class="row">
-                            <asp:Label runat="server" ID="lblDescripcionMascara" class="col-lg-10 col-md-10 col-sm-10 TitulosAzul" />
-                            <div class="col-lg-2 col-md-2 col-sm-2 text-right no-padding-right">
-                                <asp:Button type="button" class="btn btn-default" runat="server" Text="Cancelar" ID="btnCancelar" />
-                                <asp:Button type="button" class="btn btn-success" runat="server" Text="Crear ticket" ID="btnGuardar" />
-                            </div>
-                        </div>
-                        <hr />
-                        <div runat="server" id="divControles" class="margin-top-40">
+                <div class="module-inner">
+                    <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+                        <div class="module-heading">
+                            <h3 class="module-title18px">
+                                <asp:Label runat="server" ID="lblTitle" />
+                            </h3>
+                            <p>
+                                <asp:Label runat="server" ID="lblDescripcionMascara" />
+                            </p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="module-inner no-padding-top">
+                        <asp:Label runat="server" ID="Label1" class="col-lg-12 col-md-12 col-sm-12" />
+
+                        <br />
+                        <div runat="server" id="divRegistraUsuario">
+                            <div class="margin-bottom-10">
+                                <uc1:UcAltaUsuarioRapida runat="server" ID="ucAltaUsuarioRapida" />
+                            </div>
+                        </div>
+                        <div runat="server" id="divControles">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row widht100 text-center">
+                    <asp:Button type="button" class="btn btn-default" runat="server" Text="Cancelar" ID="btnCancelar" />
+                    <asp:Button type="button" class="btn btn-success" runat="server" Text="Crear ticket" ID="btnGuardar" />
                 </div>
             </div>
         </section>

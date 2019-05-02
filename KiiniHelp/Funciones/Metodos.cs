@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.UI.WebControls;
 using KinniNet.Business.Utils;
 
@@ -101,13 +100,6 @@ namespace KiiniHelp.Funciones
                 ddl.DataTextField = "Value";
                 ddl.DataValueField = "Key";
                 ddl.DataBind();
-
-                //Array duraciones = Enum.GetValues(typeof(BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion));
-
-                //foreach (BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion duracion in duraciones)
-                //{
-                //    ddl.Items.Add(new ListItem(duracion.ToString(), ((int)duracion).ToString()));
-                //}
             }
             catch (Exception ex)
             {
@@ -256,6 +248,56 @@ namespace KiiniHelp.Funciones
             {
                 try
                 {
+
+                    if (fechaInicio.Trim() != string.Empty || fechaFin.Trim() != string.Empty)
+                    {
+                        if (fechaInicio.Length < 10)
+                        {
+                            string[] fechaParserInicio = fechaInicio.Split('/');
+                            if (fechaParserInicio.Length < 3)
+                                throw new Exception("Formato de fecha incorrecto dd/mm/yyyy");
+                            fechaInicio = string.Empty;
+                            for (int i = 0; i < fechaParserInicio.Length; i++)
+                            {
+
+                                if (i == 2)
+                                {
+                                    if (fechaParserInicio[i].Length < 4)
+                                    {
+                                        throw new Exception("Formato de fecha incorrecto dd/mm/yyyy");
+                                    }
+                                }
+                                else
+                                {
+                                    fechaInicio += fechaParserInicio[i].PadLeft(2, '0') + '/';
+                                }
+                            }
+                        }
+
+                        if (fechaFin.Length < 10)
+                        {
+                            string[] fechaParserFin = fechaFin.Split('/');
+                            if (fechaParserFin.Length < 3)
+                                throw new Exception("Formato de fecha incorrecto dd/mm/yyyy");
+                            fechaFin = string.Empty;
+                            for (int i = 0; i < fechaParserFin.Length; i++)
+                            {
+
+                                if (i == 2)
+                                {
+                                    if (fechaParserFin[i].Length < 4)
+                                    {
+                                        throw new Exception("Formato de fecha incorrecto dd/mm/yyyy");
+                                    }
+                                }
+                                else
+                                {
+                                    fechaFin += fechaParserFin[i].PadLeft(2, '0') + '/';
+                                }
+                            }
+                        }
+                    }
+
                     Dictionary<string, DateTime> result = null;
 
                     switch (idTipoFecha)
@@ -263,88 +305,58 @@ namespace KiiniHelp.Funciones
                         case 1:
                             if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
                                 return null;
-                            if (DateTime.Parse(fechaInicio) > DateTime.Parse(fechaFin))
+                            if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) >
+                                DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
                                 throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
                             result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", Convert.ToDateTime(fechaInicio)},
-                            {"fin", Convert.ToDateTime(fechaFin)}
-                        };
+                            {
+                                {"inicio", DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null)},
+                                {"fin", DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null)}
+                            };
                             break;
                         case 2:
                             if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
                                 return null;
-                            if (DateTime.Parse(fechaInicio) > DateTime.Parse(fechaFin))
+                            if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) >
+                                DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
                                 throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
                             result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", Convert.ToDateTime(fechaInicio)},
-                            {"fin", Convert.ToDateTime(fechaFin)}
-                        };
-                            //    int anioInicialSemana = Convert.ToInt32(fechaInicio.Split('-')[0]);
-                            //    int semanaInicialSemana = Convert.ToInt32(fechaInicio.Split('-')[1].Substring(1));
-                            //    int anioFinSemana = Convert.ToInt32(fechaFin.Split('-')[0]);
-                            //    int semanaFinSemana = Convert.ToInt32(fechaFin.Split('-')[1].Substring(1));
-
-                            //    result = new Dictionary<string, DateTime>
-                            //{
-                            //    {"inicio", BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anioInicialSemana, semanaInicialSemana)},
-                            //    {"fin", BusinessCadenas.Fechas.ObtenerFechaFinSemana(anioFinSemana, semanaFinSemana)}
-                            //};
-                            //    if (result.Single(s => s.Key == "inicio").Value > result.Single(s => s.Key == "fin").Value)
-                            //        throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
+                            {
+                                {"inicio", DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null)},
+                                {"fin", DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null)}
+                            };
                             break;
                         case 3:
                             if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
                                 return null;
-                            if (DateTime.Parse(fechaInicio) > DateTime.Parse(fechaFin))
+                            if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) >
+                                DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
                                 throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
                             result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", Convert.ToDateTime(fechaInicio)},
-                            {"fin", Convert.ToDateTime(fechaFin)}
-                        };
-                            //    if (fechaInicio.Trim() == string.Empty || fechaInicio.Trim() == string.Empty)
-                            //        return null;
-                            //    int anioInicialMes = Convert.ToInt32(fechaInicio.Split('-')[0]);
-                            //    int mesInicialMes = Convert.ToInt32(fechaInicio.Split('-')[1]);
-                            //    int anioFinMes = Convert.ToInt32(fechaFin.Split('-')[0]);
-                            //    int mesFinMes = Convert.ToInt32(fechaFin.Split('-')[1]);
-
-                            //    result = new Dictionary<string, DateTime>
-                            //{
-                            //    {"inicio", new DateTime(anioInicialMes, mesInicialMes, 1)},
-                            //    {"fin", new DateTime(anioFinMes, mesFinMes, DateTime.DaysInMonth(anioFinMes, mesFinMes))}
-                            //};
-                            //    if (result.Single(s => s.Key == "inicio").Value > result.Single(s => s.Key == "fin").Value)
-                            //        throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
-
+                            {
+                                {"inicio", DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null)},
+                                {"fin", DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null)}
+                            };
                             break;
                         case 4:
                             if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
                                 return null;
-                            if (DateTime.Parse(fechaInicio) > DateTime.Parse(fechaFin))
+                            if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) >
+                                DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
                                 throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
                             result = new Dictionary<string, DateTime>
-                        {
-                            {"inicio", Convert.ToDateTime(fechaInicio)},
-                            {"fin", Convert.ToDateTime(fechaFin)}
-                        };
-                            //    if (fechaInicio.Trim() == string.Empty || fechaInicio.Trim() == string.Empty)
-                            //        return null;
-                            //    if (int.Parse(fechaInicio) > int.Parse(fechaFin))
-                            //        throw new Exception("Año Inicio no puede se mayor a año Fin");
-                            //    result = new Dictionary<string, DateTime>
-                            //{
-                            //    {"inicio", new DateTime(int.Parse(fechaInicio), 01, 1)},
-                            //    {"fin", new DateTime(int.Parse(fechaFin), 12, DateTime.DaysInMonth(int.Parse(fechaFin), 12))}
-                            //};
-                            //    if (result.Single(s => s.Key == "inicio").Value > result.Single(s => s.Key == "fin").Value)
-                            //        throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
+                            {
+                                {"inicio", DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null)},
+                                {"fin", DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null)}
+                            };
 
                             break;
                     }
                     return result;
+                }
+                catch (FormatException)
+                {
+                    throw new Exception("Formato de fecha incorrecto dd/mm/yyyy");
                 }
                 catch (Exception e)
                 {
@@ -357,7 +369,46 @@ namespace KiiniHelp.Funciones
                 bool result;
                 try
                 {
-                    if (DateTime.Parse(fechaInicio) > DateTime.Parse(fechaFin))
+                    if (fechaInicio.Trim() != string.Empty || fechaFin.Trim() != string.Empty)
+                    {
+                        if (fechaInicio.Length < 10)
+                        {
+                            string[] fechaParserInicio = fechaInicio.Split('/');
+                            fechaInicio = string.Empty;
+                            for (int i = 0; i < fechaParserInicio.Length; i++)
+                            {
+
+                                if (i == 2)
+                                {
+                                    fechaInicio += fechaParserInicio[i].PadLeft(4, '0');
+                                }
+                                else
+                                {
+                                    fechaInicio += fechaParserInicio[i].PadLeft(2, '0') + '/';
+                                }
+                            }
+                        }
+
+                        if (fechaFin.Length < 10)
+                        {
+                            string[] fechaParserFin = fechaFin.Split('/');
+                            fechaFin = string.Empty;
+                            for (int i = 0; i < fechaParserFin.Length; i++)
+                            {
+
+                                if (i == 2)
+                                {
+                                    fechaFin += fechaParserFin[i].PadLeft(4, '0');
+                                }
+                                else
+                                {
+                                    fechaFin += fechaParserFin[i].PadLeft(2, '0') + '/';
+                                }
+                            }
+                        }
+                    }
+
+                    if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) > DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
                         throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
                     result = true;
                 }

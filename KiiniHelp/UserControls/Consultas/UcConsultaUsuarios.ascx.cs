@@ -55,10 +55,8 @@ namespace KiiniHelp.UserControls.Consultas
                 {
                     idTipoUsuario = int.Parse(ddlTipoUsuario.SelectedValue);
                 }
-                List<Usuario> lstUsuarios = _servicioUsuarios.ObtenerUsuarios(idTipoUsuario);
+                List<Usuario> lstUsuarios = _servicioUsuarios.ConsultaUsuariosUsuarios(idTipoUsuario, txtFiltro.Text.ToLower().Trim());
 
-                if (txtFiltro.Text.Trim() != string.Empty)
-                    lstUsuarios = lstUsuarios.Where(w => w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.ApellidoPaterno.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.Nombre.ToLower().Contains(txtFiltro.Text.ToLower().Trim()) || w.NombreCompleto.ToLower().Contains(txtFiltro.Text.ToLower().Trim())).ToList();
                 tblResults.DataSource = lstUsuarios;
                 tblResults.DataBind();
             }
@@ -89,55 +87,6 @@ namespace KiiniHelp.UserControls.Consultas
                 }
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
-            }
-        }
-
-        void UcAltaUsuarioMoral_OnAceptarModal()
-        {
-            try
-            {
-                LlenaUsuarios();
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalPersonaMoral\");", true);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        void UcAltaUsuarioMoral_OnCancelarModal()
-        {
-            try
-            {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalPersonaMoral\");", true);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        void UcAltaUsuarioFisico_OnAceptarModal()
-        {
-            try
-            {
-                LlenaUsuarios();
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalPersonaFisica\");", true);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        void UcAltaUsuarioFisico_OnCancelarModal()
-        {
-            try
-            {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalPersonaFisica\");", true);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
             }
         }
 
@@ -253,8 +202,8 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                _servicioUsuarios.HabilitarUsuario(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked, ResolveUrl("~/ConfirmacionCuenta.aspx"));
-                LlenaUsuarios();
+                _servicioUsuarios.HabilitarUsuario(int.Parse(((CheckBox) sender).Attributes["data-id"]),
+                    ((CheckBox) sender).Checked, ResolveUrl("~/ConfirmacionCuenta.aspx"));
             }
             catch (Exception ex)
             {
@@ -264,6 +213,10 @@ namespace KiiniHelp.UserControls.Consultas
                 }
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
+            }
+            finally
+            {
+                LlenaUsuarios();
             }
         }
 
@@ -311,9 +264,6 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-
-
-
         #region Paginador
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -323,5 +273,23 @@ namespace KiiniHelp.UserControls.Consultas
 
         #endregion
 
+        protected void btnReenviar_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = int.Parse(((LinkButton) sender).CommandArgument);
+                _servicioUsuarios.ReenviarActivacion(id);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptSuccessAlert", "SuccsessAlert('','Se ha reenviado correo de activacion');", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

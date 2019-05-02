@@ -166,6 +166,15 @@ namespace KiiniHelp.Agente {
         protected global::System.Web.UI.WebControls.LinkButton btnEscalar;
         
         /// <summary>
+        /// Control btnSearchUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSearchUsuario;
+        
+        /// <summary>
         /// Control gvTickets.
         /// </summary>
         /// <remarks>

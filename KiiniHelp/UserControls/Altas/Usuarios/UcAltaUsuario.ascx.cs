@@ -129,14 +129,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             get
             {
                 List<CorreoUsuario> result = Session["CorreoUsuario"] == null ? new List<CorreoUsuario>() : (List<CorreoUsuario>)Session["CorreoUsuario"];
-                //foreach (TextBox correo in rptCorreos.Items.Cast<RepeaterItem>().Select(item => (TextBox)item.FindControl("txtCorreo")).Where(correo => correo != null & correo.Text.Trim() != string.Empty))
-                //{
-                //    result.Add(new CorreoUsuario
-                //    {
-                //        Correo = correo.Text.Trim(),
-                //        Obligatorio = correo.CssClass.Contains("obligatorio")
-                //    });
-                //}
                 return result;
             }
             set { Session["CorreoUsuario"] = value; }
@@ -285,6 +277,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 chkVip.Checked = false;
                 chkDirectoriActivo.Checked = false;
                 ucRolGrupo.Limpiar();
+                TelefonosUsuario = null;
+                CorreosUsuario = null;
                 ucAltaOrganizaciones.OrganizacionSeleccionada = new Organizacion();
                 ucAltaUbicaciones.UbicacionSeleccionada = new Ubicacion();
                 rptOrganizacion.DataSource = null;
@@ -853,7 +847,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     ApellidoMaterno = txtAm.Text.Trim(),
                     Nombre = txtNombre.Text.Trim(),
                     DirectorioActivo = chkDirectoriActivo.Checked,
-                    IdPuesto = ddlPuesto.SelectedIndex == BusinessVariables.ComboBoxCatalogo.IndexSeleccione ? (int?)null : Convert.ToInt32(ddlPuesto.SelectedValue),
+                    IdPuesto = ddlPuesto.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione ? (int?)null : Convert.ToInt32(ddlPuesto.SelectedValue),
                     Vip = chkVip.Checked,
                     PersonaFisica = chkPersonaFisica.Checked,
                     NombreUsuario = txtUserName.Text.Trim(),
@@ -1151,7 +1145,8 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     TipoUsuario tipoUsuario = _servicioSistemaTipoUsuario.ObtenerTipoUsuarioById(idTipoUsuario);
                     if (tipoUsuario != null)
                     {
-
+                        if (idTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agentes && e != null)
+                            _servicioUsuarios.ValidaLimiteOperadores();
                         ucAltaOrganizaciones.EsSeleccion = true;
                         ucAltaOrganizaciones.EsAlta = true;
                         ucAltaOrganizaciones.IdTipoUsuario = idTipoUsuario;
@@ -1208,8 +1203,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                             btnModalOrganizacion.Text = "Actividad";
                             btnModalUbicacion.Text = "Direccion";
                         }
-
-
                     }
 
                 }
@@ -1388,7 +1381,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                             principal = int.Parse(ddlTipoTelefono.SelectedValue) == (int)BusinessVariables.EnumTipoTelefono.Celular ? TelefonosUsuario.Any(a => a.Principal) ? false : true : false;
                             telefono.Principal = principal;
                             telefono.IdTipoTelefono = int.Parse(ddlTipoTelefono.SelectedValue);
-                            telefono.Extension = string.Empty;
+                            telefono.Extension = int.Parse(ddlTipoTelefono.SelectedValue) == (int)BusinessVariables.EnumTipoTelefono.Oficina ? txtExtension.Text.Trim() : string.Empty;
                             telefono.Numero = txtTelefono.Text.Trim();
                         }
                     }
@@ -1502,6 +1495,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                         if (ddlTipoTelefono != null && txtNumeroRepeater != null && txtExtensionRepeater != null && lblTelefonoPrincipal != null)
                         {
                             ddlTipoTelefono.SelectedValue = ddlTipoTelefonoRepeater.SelectedValue;
+                            ddlTipoTelefono_OnSelectedIndexChanged(ddlTipoTelefono, null);
                             txtTelefono.Text = txtNumeroRepeater.Text;
                             txtExtension.Text = txtExtensionRepeater.Text;
                             lblNuevoTelefonoEdicion.Text = false.ToString();

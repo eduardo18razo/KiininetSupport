@@ -82,7 +82,7 @@ namespace KiiniHelp.UserControls.Altas {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Winthusiasm.HtmlEditor.HtmlEditor txtEditor;
+        protected global::System.Web.UI.WebControls.TextBox txtEditor;
         
         /// <summary>
         /// Control btnGuardarNota.

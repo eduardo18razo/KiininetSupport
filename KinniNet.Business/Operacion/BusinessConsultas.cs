@@ -1331,14 +1331,13 @@ namespace KinniNet.Core.Operacion
                     if (fechas.Count == 2)
                     {
                         qry = from q in qry
-                              where q.t.FechaHoraAlta >= fechaInicio
-                                    && q.t.FechaHoraAlta <= fechaFin
+                              where q.t.FechaUltimoMovimiento >= fechaInicio
+                                    && q.t.FechaUltimoMovimiento <= fechaFin
                               select q;
                     }
                 }
 
                 List<Ticket> lstTickets = qry.Select(s => s.t).Distinct().ToList();
-
 
                 string rango = string.Empty;
                 if (lstTickets.Any())
@@ -1362,26 +1361,26 @@ namespace KinniNet.Core.Operacion
                             case 2:
                                 foreach (string fecha in lstFechas)
                                 {
-                                    if (!result.Columns.Contains(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(DateTime.Parse(fecha).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToShortDateString()))
-                                        result.Columns.Add(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(DateTime.Parse(fecha).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToShortDateString());
+                                    if (!result.Columns.Contains(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.ParseExact(fecha, "dd/MM/yyyy", null), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy")))
+                                        result.Columns.Add(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.ParseExact(fecha, "dd/MM/yyyy", null), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy"));
                                     conteo++;
                                 }
                                 break;
                             case 3:
                                 foreach (string fecha in lstFechas)
                                 {
-                                    var firstDayOfMonth = new DateTime(DateTime.Parse(fecha).Year, DateTime.Parse(fecha).Month, 1);
+                                    var firstDayOfMonth = new DateTime(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Month, 1);
 
-                                    if (!result.Columns.Contains(firstDayOfMonth.ToShortDateString()))
-                                        result.Columns.Add(firstDayOfMonth.ToShortDateString());
+                                    if (!result.Columns.Contains(firstDayOfMonth.ToString("dd/MM/yyyy")))
+                                        result.Columns.Add(firstDayOfMonth.ToString("dd/MM/yyyy"));
                                 }
                                 break;
                             case 4:
                                 foreach (string fecha in lstFechas)
                                 {
-                                    DateTime firstDay = new DateTime(DateTime.Parse(fecha).Year, 1, 1);
-                                    if (!result.Columns.Contains(firstDay.ToShortDateString()))
-                                        result.Columns.Add(firstDay.ToShortDateString());
+                                    DateTime firstDay = new DateTime(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, 1, 1);
+                                    if (!result.Columns.Contains(firstDay.ToString("dd/MM/yyyy")))
+                                        result.Columns.Add(firstDay.ToString("dd/MM/yyyy"));
                                 }
                                 break;
                         }
@@ -1389,8 +1388,8 @@ namespace KinniNet.Core.Operacion
                     else
                     {
                         restaMes = true;
-                        fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
-                        fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                        fechaInicio = DateTime.ParseExact(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
+                        fechaFin = DateTime.ParseExact(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
                         if (fechaInicio > fechaFin)
                             throw new Exception("Fechas incorrectas");
 
@@ -1403,7 +1402,7 @@ namespace KinniNet.Core.Operacion
                                 case 1:
                                     if (tmpFecha < fechaFin)
                                     {
-                                        result.Columns.Add(new DataColumn(tmpFecha.ToShortDateString(), typeof(int)));
+                                        result.Columns.Add(new DataColumn(tmpFecha.ToString("dd/MM/yyyy"), typeof(int)));
                                         tmpFecha = tmpFecha.AddDays(1);
                                     }
                                     else
@@ -1413,8 +1412,8 @@ namespace KinniNet.Core.Operacion
                                 case 2:
                                     if (tmpFecha < fechaFin)
                                     {
-                                        if (!result.Columns.Contains(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(tmpFecha.Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToShortDateString()))
-                                            result.Columns.Add(new DataColumn(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(tmpFecha.Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToShortDateString(), typeof(int)));
+                                        if (!result.Columns.Contains(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(tmpFecha.Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy")))
+                                            result.Columns.Add(new DataColumn(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(tmpFecha.Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy"), typeof(int)));
                                         tmpFecha = tmpFecha.AddDays(7);
                                     }
                                     else
@@ -1425,8 +1424,8 @@ namespace KinniNet.Core.Operacion
                                     if (tmpFecha < fechaFin)
                                     {
                                         var firstDayOfMonth = new DateTime(tmpFecha.Year, tmpFecha.Month, 1);
-                                        if (!result.Columns.Contains(firstDayOfMonth.ToShortDateString()))
-                                            result.Columns.Add(firstDayOfMonth.ToShortDateString());
+                                        if (!result.Columns.Contains(firstDayOfMonth.ToString("dd/MM/yyyy")))
+                                            result.Columns.Add(firstDayOfMonth.ToString("dd/MM/yyyy"));
                                         tmpFecha = tmpFecha.AddMonths(1);
                                     }
                                     else
@@ -1436,8 +1435,8 @@ namespace KinniNet.Core.Operacion
                                 case 4:
                                     if (tmpFecha < fechaFin)
                                     {
-                                        if (!result.Columns.Contains(tmpFecha.ToShortDateString()))
-                                            result.Columns.Add(tmpFecha.ToShortDateString());
+                                        if (!result.Columns.Contains(tmpFecha.ToString("dd/MM/yyyy")))
+                                            result.Columns.Add(tmpFecha.ToString("dd/MM/yyyy"));
                                         tmpFecha = tmpFecha.AddYears(1);
                                     }
                                     else
@@ -1446,9 +1445,8 @@ namespace KinniNet.Core.Operacion
                                     break;
                             }
                         }
-
-
                     }
+
 
 
                     int row = 0;
@@ -1468,19 +1466,18 @@ namespace KinniNet.Core.Operacion
                                             break;
                                         case 2:
 
-                                            result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                            result.Rows[row][i] = lstTickets.Count(c => DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                 && c.IdEstatusTicket == idEstatusticket);
                                             break;
                                         case 3:
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM")
+                                                c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM")
                                                 && c.IdEstatusTicket == idEstatusticket);
                                             break;
                                         case 4:
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy")
+                                                c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy")
                                                 && c.IdEstatusTicket == idEstatusticket);
                                             break;
                                     }
@@ -1505,15 +1502,15 @@ namespace KinniNet.Core.Operacion
                                         case 2:
 
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                                DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                 && c.IdTipoArbolAcceso == idTipoArbolAcceso);
                                             break;
                                         case 3:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM") && c.IdTipoArbolAcceso == idTipoArbolAcceso);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM") && c.IdTipoArbolAcceso == idTipoArbolAcceso);
                                             break;
                                         case 4:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy") && c.IdTipoArbolAcceso == idTipoArbolAcceso);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && c.IdTipoArbolAcceso == idTipoArbolAcceso);
                                             break;
                                     }
                                 }
@@ -1537,15 +1534,15 @@ namespace KinniNet.Core.Operacion
                                         case 2:
 
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                                DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                 && c.DentroSla == dentroSla);
                                             break;
                                         case 3:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM") && c.DentroSla == dentroSla);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM") && c.DentroSla == dentroSla);
                                             break;
                                         case 4:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy") && c.DentroSla == dentroSla);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && c.DentroSla == dentroSla);
                                             break;
                                     }
                                 }
@@ -1569,15 +1566,15 @@ namespace KinniNet.Core.Operacion
                                         case 2:
 
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                                DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                 && c.IdArbolAcceso == idArbol);
                                             break;
                                         case 3:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM") && c.IdArbolAcceso == idArbol);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM") && c.IdArbolAcceso == idArbol);
                                             break;
                                         case 4:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy") && c.IdArbolAcceso == idArbol);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && c.IdArbolAcceso == idArbol);
                                             break;
                                     }
                                 }
@@ -1601,15 +1598,15 @@ namespace KinniNet.Core.Operacion
                                         case 2:
 
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                                DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                 && c.IdEstatusAsignacion == idEstatusAsignacion);
                                             break;
                                         case 3:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM") && c.IdEstatusAsignacion == idEstatusAsignacion);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM") && c.IdEstatusAsignacion == idEstatusAsignacion);
                                             break;
                                         case 4:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy") && c.IdEstatusAsignacion == idEstatusAsignacion);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && c.IdEstatusAsignacion == idEstatusAsignacion);
                                             break;
                                     }
                                 }
@@ -1633,15 +1630,15 @@ namespace KinniNet.Core.Operacion
                                         case 2:
 
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                                DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                 && c.IdCanal == idCanal);
                                             break;
                                         case 3:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM") && c.IdCanal == idCanal);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM") && c.IdCanal == idCanal);
                                             break;
                                         case 4:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy") && c.IdCanal == idCanal);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && c.IdCanal == idCanal);
                                             break;
                                     }
                                 }
@@ -1665,15 +1662,15 @@ namespace KinniNet.Core.Operacion
                                         case 2:
 
                                             result.Rows[row][i] = lstTickets.Count(c =>
-                                                DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                                DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                 && c.IdOrganizacion == idOrganizacion);
                                             break;
                                         case 3:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM") && c.IdOrganizacion == idOrganizacion);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM") && c.IdOrganizacion == idOrganizacion);
                                             break;
                                         case 4:
-                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy") && c.IdOrganizacion == idOrganizacion);
+                                            result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && c.IdOrganizacion == idOrganizacion);
                                             break;
                                     }
                                 }
@@ -1702,15 +1699,15 @@ namespace KinniNet.Core.Operacion
                                             case 2:
 
                                                 result.Rows[row][i] = lstTickets.Count(c =>
-                                                    DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) >= DateTime.Parse(result.Columns[i].ColumnName)
-                                                && DateTime.Parse(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy")) < DateTime.Parse(result.Columns[i].ColumnName).AddDays(7)
+                                                    DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null)
+                                                && DateTime.ParseExact(c.FechaUltimoMovimiento.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).AddDays(7)
                                                     && lstUbicaciones.Contains(c.IdUbicacion));
                                                 break;
                                             case 3:
-                                                result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.Parse(result.Columns[i].ColumnName).ToString("MM") && lstUbicaciones.Contains(c.IdUbicacion));
+                                                result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("MM") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("MM") && lstUbicaciones.Contains(c.IdUbicacion));
                                                 break;
                                             case 4:
-                                                result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.Parse(result.Columns[i].ColumnName).ToString("yyyy") && lstUbicaciones.Contains(c.IdUbicacion));
+                                                result.Rows[row][i] = lstTickets.Count(c => c.FechaUltimoMovimiento.ToString("yyyy") == DateTime.ParseExact(result.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && lstUbicaciones.Contains(c.IdUbicacion));
                                                 break;
                                         }
                                     }
@@ -1720,31 +1717,31 @@ namespace KinniNet.Core.Operacion
                             break;
                         #endregion Ubicacion
                     }
-
+                    CultureInfo cultureinfo = new CultureInfo("es-MX");
                     switch (tipoFecha)
                     {
                         case 1:
                             for (int i = 3; i < result.Columns.Count; i++)
                             {
-                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName).ToString("dd MMM yy").Replace(".", string.Empty);
+                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName, cultureinfo).ToString("dd MMM yy").Replace(".", string.Empty);
                             }
                             break;
                         case 2:
                             for (int i = 3; i < result.Columns.Count; i++)
                             {
-                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName).ToString("dd MMM yy").Replace(".", string.Empty);
+                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName, cultureinfo).ToString("dd MMM yy").Replace(".", string.Empty);
                             }
                             break;
                         case 3:
                             for (int i = 3; i < result.Columns.Count; i++)
                             {
-                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName).ToString("dd MMM yy").Replace(".", string.Empty);
+                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName, cultureinfo).ToString("dd MMM yy").Replace(".", string.Empty);
                             }
                             break;
                         case 4:
                             for (int i = 3; i < result.Columns.Count; i++)
                             {
-                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName).ToString("dd MMM yy").Replace(".", string.Empty);
+                                result.Columns[i].ColumnName = DateTime.Parse(result.Columns[i].ColumnName, cultureinfo).ToString("dd MMM yy").Replace(".", string.Empty);
                             }
                             break;
                     }
@@ -1752,7 +1749,7 @@ namespace KinniNet.Core.Operacion
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("error en servicio" +  ex.Message);
             }
             finally { db.Dispose(); }
             return result;
@@ -3493,8 +3490,8 @@ namespace KinniNet.Core.Operacion
                 if (fechas != null)
                     if (fechas.Count == 2)
                         qry = from q in qry
-                              where q.t.FechaHoraAlta >= fechaInicio
-                                    && q.t.FechaHoraAlta <= fechaFin
+                              where q.t.FechaUltimoMovimiento >= fechaInicio
+                                    && q.t.FechaUltimoMovimiento <= fechaFin
                               select q;
 
                 if (tiposUsuario.Any())

@@ -56,11 +56,6 @@
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("DescripcionOpcion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("IdArbol") %>' CommandName='<%# Eval("IdTipoArbol") %>' />
                                                                 </h4>
                                                             </div>
-                                                            <div class="panel-collapse" id='<%# "faq3_" + Eval("IdArbol") %>'>
-                                                                <div class="panel-body">
-                                                                    <%# Eval("DescripcionOpcionLarga") %>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -71,11 +66,6 @@
                                                                 <h4 class="panel-title">
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("Tipificacion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("Id") %>' CommandName='<%# Eval("IdTipoArbolAcceso") %>' />
                                                                 </h4>
-                                                            </div>
-                                                            <div class="panel-collapse" id='<%# "faq5_" + Eval("Id") %>'>
-                                                                <div class="panel-body">
-                                                                    <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>'></asp:Label>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </ItemTemplate>
@@ -109,11 +99,6 @@
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("DescripcionOpcion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("IdArbol") %>' CommandName='<%# Eval("IdTipoArbol") %>' />
                                                                 </h4>
                                                             </div>
-                                                            <div class="panel-collapse" id='<%# "faq3_" + Eval("IdArbol") %>'>
-                                                                <div class="panel-body">
-                                                                    <%# Eval("DescripcionOpcionLarga") %>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -125,11 +110,6 @@
                                                                 <h4 class="panel-title">
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("Tipificacion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("Id") %>' CommandName='<%# Eval("IdTipoArbolAcceso") %>' />
                                                                 </h4>
-                                                            </div>
-                                                            <div class="panel-collapse" id='<%# "faq6_" + Eval("Id") %>'>
-                                                                <div class="panel-body">
-                                                                    <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>' />
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </ItemTemplate>
@@ -163,11 +143,6 @@
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("DescripcionOpcion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("IdArbol") %>' CommandName='<%# Eval("IdTipoArbol") %>' />
                                                                 </h4>
                                                             </div>
-                                                            <div class="panel-collapse" id='<%# "faq3_" + Eval("IdArbol") %>'>
-                                                                <div class="panel-body">
-                                                                    <%# Eval("DescripcionOpcionLarga") %>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -179,11 +154,6 @@
                                                                 <h4 class="panel-title">
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("Tipificacion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("Id") %>' CommandName='<%# Eval("IdTipoArbolAcceso") %>' />
                                                                 </h4>
-                                                            </div>
-                                                            <div class="panel-collapse" id='<%# "faq6_" + Eval("Id") %>'>
-                                                                <div class="panel-body">
-                                                                    <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>' />
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </ItemTemplate>
@@ -219,11 +189,6 @@
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("DescripcionOpcion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("IdArbol") %>' CommandName='<%# Eval("IdTipoArbol") %>' />
                                                                 </h4>
                                                             </div>
-                                                            <div class="panel-collapse" id='<%# "faq3_" + Eval("IdArbol") %>'>
-                                                                <div class="panel-body">
-                                                                    <%# Eval("DescripcionOpcionLarga") %>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -235,11 +200,6 @@
                                                                 <h4 class="panel-title">
                                                                     <asp:LinkButton runat="server" ID="LinkButton1" Text='<%# Eval("Tipificacion") %>' CssClass="text-theme" OnClick="verOpcion_Click" CommandArgument='<%# Eval("Id") %>' CommandName='<%# Eval("IdTipoArbolAcceso") %>' />
                                                                 </h4>
-                                                            </div>
-                                                            <div class="panel-collapse" id='<%# "faq4_" + Eval("Id") %>'>
-                                                                <div class="panel-body">
-                                                                    <asp:Label runat="server" ID="datos" Text='<%# Eval("TipoArbolAcceso.Descripcion") %>' />
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </ItemTemplate>

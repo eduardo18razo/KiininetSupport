@@ -125,7 +125,10 @@ function hidden(tablename) {
 }
 
 function search(evt) {
-    if (evt.charCode == 13) {
+    debugger;
+    var charCode = (window.Event) ? evt.which : evt.keyCode;
+    //if (evt.charCode == 13) {
+    if (charCode == 13) {
         this.__doPostBack('Buscador', 'OnKeyPress');
         evt.preventDefault();
         return false;
@@ -155,9 +158,3 @@ function load() {
         }
     });
 }
-
-//function seleccion(sender, eventArgs) {
-//    var hfComentario = document.getElementById('<%= hfFilaSeleccionada.ClientID%>');
-//    hfComentario.value = true;
-
-//}

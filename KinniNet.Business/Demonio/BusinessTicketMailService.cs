@@ -17,12 +17,13 @@ namespace KinniNet.Core.Demonio
             _proxy = proxy;
         }
 
-        public void RecibeCorreos()
+        public string RecibeCorreos()
         {
             try
             {
                 //TODO: Cambiar cliente por parametro
-                new Imap4Mail.Retrieve().GetMails(BusinessVariables.EnumtServerImap.Gmail);
+                //return new Imap4Mail.Retrieve().GetMails();
+                return new ManejadorCorreo.ClienteImap().LeeCorreo();
             }
             catch (Exception ex)
             {
@@ -30,12 +31,13 @@ namespace KinniNet.Core.Demonio
             }
         }
 
-        public void EnviaCorreoTicketGenerado(int idTicket, string clave, string body, string to)
+        public void EnviaCorreoTicketGenerado(int idTicket, string clave, string subject, string body, string to)
         {
             try
             {
                 //TODO: Cambiar cliente por parametro
-                new Imap4Mail.Retrieve().SendMailTicket(BusinessVariables.EnumtServerImap.Gmail, idTicket, clave, body, to);
+                //new Imap4Mail.Retrieve().SendMailTicket(idTicket, clave, body, to);
+                new ManejadorCorreo.ClienteSmtp().SendMailTicket(idTicket, clave, subject, body, to);
             }
             catch (Exception ex)
             {

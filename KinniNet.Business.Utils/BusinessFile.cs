@@ -511,12 +511,12 @@ namespace KinniNet.Business.Utils
                 try
                 {
                     ExcelPackage pck = new ExcelPackage();
-                    
+
                     //Create the worksheet
                     ExcelWorksheet ws = pck.Workbook.Worksheets.Add("Result");
                     ws.Cells["A1"].LoadFromDataTable(dt, true);
                     string celdaFinHeader = ws.Cells[1, dt.Columns.Count].Address;
-                    
+
                     using (ExcelRange rng = ws.Cells[string.Format("A1:{0}", celdaFinHeader)])
                     {
                         rng.AutoFitColumns();
@@ -555,20 +555,13 @@ namespace KinniNet.Business.Utils
                         celdaFinHeader = ws.Cells[1, i + 1].Address;
                     }
 
-                    //        var mi = typeof(T)
-                    //.GetProperties()
-                    //.Select(pi => (MemberInfo)pi)
-                    //.ToArray();
 
                     //populate our Data
                     if (query.Any())
                     {
                         ws.Cells["A2"].LoadFromCollection(query);
-                        //ws.Cells["A2"].LoadFromCollection(query, false, TableStyles.Custom, BindingFlags.Public, mi);
-
                     }
 
-                    //Format the header
                     using (ExcelRange rng = ws.Cells[string.Format("A1:{0}", celdaFinHeader)])
                     {
                         rng.AutoFitColumns();
@@ -584,6 +577,53 @@ namespace KinniNet.Business.Utils
                 {
                     throw new Exception(ex.Message);
                 }
+                return result;
+            }
+
+            public static ExcelPackage ListsToExcel<T>(List<T> qry, string namePage, ref ExcelPackage excel)
+            {
+                ExcelPackage result = null;
+                try
+                {
+                    ExcelPackage pck = excel ?? new ExcelPackage();
+                    if (qry.Any())
+                    {
+                        string celdaFinHeader = null;
+
+                        ExcelWorksheet workSheet = pck.Workbook.Worksheets.Add(namePage);
+                        
+                        //get our column headings
+                        var t = typeof(T);
+                        var Headings = t.GetProperties();
+                        for (int i = 0; i < Headings.Count(); i++)
+                        {
+                            workSheet.Cells[1, i + 1].Value = Headings[i].Name;
+                            celdaFinHeader = workSheet.Cells[1, i + 1].Address;
+                        }
+
+                        //populate our Data
+                        if (qry.Any())
+                        {
+                            workSheet.Cells["A2"].LoadFromCollection(qry);
+                        }
+                        
+                        using (ExcelRange rng = workSheet.Cells[string.Format("A1:{0}", celdaFinHeader)])
+                        {
+                            rng.AutoFitColumns();
+                            rng.Style.Font.Bold = true;
+                            rng.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            rng.Style.Fill.BackgroundColor.SetColor(Color.FromArgb(79, 129, 189));
+                            rng.Style.Font.Color.SetColor(Color.White);
+                        }
+                        workSheet.Cells.AutoFitColumns();
+                    }
+                    result = pck;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                excel = result;
                 return result;
             }
         }

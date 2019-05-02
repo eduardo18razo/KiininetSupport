@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Web.UI;
@@ -11,7 +10,6 @@ using AjaxControlToolkit;
 using KiiniHelp.ServiceMascaraAcceso;
 using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSistemaCatalogos;
-using KiiniHelp.Test;
 using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Parametros;
@@ -288,7 +286,7 @@ namespace KiiniHelp.UserControls.Filtros
                                 {
                                     if (txtFecha.Text.Trim() != String.Empty)
                                     {
-                                        var d = DateTime.Parse(txtFecha.Text.Trim());
+                                        var d = DateTime.ParseExact(txtFecha.Text.Trim(), "dd/MM/yyyy", null);
                                     }
                                 }
                                 catch
@@ -312,8 +310,8 @@ namespace KiiniHelp.UserControls.Filtros
                                         throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
                                     try
                                     {
-                                        var dI = DateTime.Parse(txtFechaInicio.Text.Trim());
-                                        var dF = DateTime.Parse(txtFechaFin.Text.Trim());
+                                        var dI = DateTime.ParseExact(txtFechaInicio.Text.Trim(), "dd/MM/yyyy", null);
+                                        var dF = DateTime.ParseExact(txtFechaFin.Text.Trim(), "dd/MM/yyyy", null);
                                         if (dI > dF)
                                             throw new Exception(
                                                 string.Format("Campo {0} no es un rango de fechas valido",
@@ -331,8 +329,8 @@ namespace KiiniHelp.UserControls.Filtros
                                     {
                                         try
                                         {
-                                            var dI = DateTime.Parse(txtFechaInicio.Text.Trim());
-                                            var dF = DateTime.Parse(txtFechaFin.Text.Trim());
+                                            var dI = DateTime.ParseExact(txtFechaInicio.Text.Trim(), "dd/MM/yyyy", null);
+                                            var dF = DateTime.ParseExact(txtFechaFin.Text.Trim(), "dd/MM/yyyy", null);
                                             if (dI > dF)
                                                 throw new Exception(string.Format("Campo {0} no es un rango de fechas valido", campo.Descripcion));
                                         }
@@ -542,7 +540,7 @@ namespace KiiniHelp.UserControls.Filtros
                                 campoCapturado = new HelperCampoMascaraCaptura
                                 {
                                     NombreCampo = campo.NombreCampo,
-                                    Valor = txtFechaFin.Text.Trim() == string.Empty ? "" : Convert.ToDateTime(txtFechaInicio.Text.Trim().ToUpper()).ToString("yyyy-MM-dd") + "|" + Convert.ToDateTime(txtFechaFin.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
+                                    Valor = txtFechaFin.Text.Trim() == string.Empty ? "" : DateTime.ParseExact(txtFechaInicio.Text.Trim().ToUpper(), "dd/MM/yyyy", null).ToString("yyyy-MM-dd") + "|" + DateTime.ParseExact(txtFechaFin.Text.Trim().ToUpper(), "dd/MM/yyyy", null).ToString("yyyy-MM-dd"),
                                 };
                                 lstCamposCapturados.Add(campoCapturado);
                             }
@@ -553,7 +551,7 @@ namespace KiiniHelp.UserControls.Filtros
                                         campoCapturado = new HelperCampoMascaraCaptura
                                         {
                                             NombreCampo = campo.NombreCampo,
-                                            Valor = txt.Text.Trim() == string.Empty ? string.Empty : Convert.ToDateTime(txt.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
+                                            Valor = txt.Text.Trim() == string.Empty ? string.Empty : DateTime.ParseExact(txt.Text.Trim().ToUpper(), "dd/MM/yyyy", null).ToString("yyyy-MM-dd"),
                                         };
                                         lstCamposCapturados.Add(campoCapturado);
                                         break;

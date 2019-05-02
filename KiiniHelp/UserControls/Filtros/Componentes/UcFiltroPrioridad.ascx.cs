@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceImpactourgencia;
-using KiiniNet.Entities.Cat.Sistema;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {

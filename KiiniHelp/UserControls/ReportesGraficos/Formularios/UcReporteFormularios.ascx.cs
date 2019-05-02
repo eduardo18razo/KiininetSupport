@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.ServiceMascaraAcceso;
-using Calendar = System.Globalization.Calendar;
 
 namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
 {
@@ -32,10 +30,15 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
             try
             {
                 string descripcion = txtFiltro.Text.ToLower().Trim();
-
-                tblResults.DataSource = _servicioMascaras.Consulta(descripcion);
+                var lst = _servicioMascaras.Consulta(descripcion);
+                if (ucFiltroFechasConsultas.RangoFechas != null)
+                {
+                    lst = lst.Where(w =>
+                           DateTime.ParseExact(w.FechaAlta.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(ucFiltroFechasConsultas.RangoFechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null)
+                        && DateTime.ParseExact(w.FechaAlta.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) <= DateTime.ParseExact(ucFiltroFechasConsultas.RangoFechas.Single(s => s.Key == "fin").Value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null)).ToList();
+                }
+                tblResults.DataSource = lst;
                 tblResults.DataBind();
-                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
             catch (Exception e)
             {
@@ -49,6 +52,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
             {
                 if (!IsPostBack)
                 {
+                    ucFiltroFechasConsultas.LlenaFechas();
                     LlenaMascaras();
                 }
             }
@@ -62,7 +66,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
                 Alerta = _lstError;
             }
         }
-        
+
         protected void btnBuscar_OnClick(object sender, EventArgs e)
         {
             try
@@ -79,7 +83,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
                 Alerta = _lstError;
             }
         }
-        
+
         #region Paginador
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {

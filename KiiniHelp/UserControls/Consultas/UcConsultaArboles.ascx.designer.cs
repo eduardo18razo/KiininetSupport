@@ -58,13 +58,31 @@ namespace KiiniHelp.UserControls.Consultas {
         protected global::System.Web.UI.WebControls.LinkButton btnDownload;
         
         /// <summary>
-        /// Control btnNew.
+        /// Control btnNuevaConsulta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnNew;
+        protected global::System.Web.UI.WebControls.LinkButton btnNuevaConsulta;
+        
+        /// <summary>
+        /// Control btnNuevoServicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnNuevoServicio;
+        
+        /// <summary>
+        /// Control chkActivos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkActivos;
         
         /// <summary>
         /// Control tblResults.
@@ -74,24 +92,6 @@ namespace KiiniHelp.UserControls.Consultas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView tblResults;
-        
-        /// <summary>
-        /// Control upAltaArea.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upAltaArea;
-        
-        /// <summary>
-        /// Control UcAltaAbrolAcceso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::KiiniHelp.UserControls.Altas.ArbolesAcceso.UcAltaAbrolAcceso UcAltaAbrolAcceso;
         
         /// <summary>
         /// Control UpdatePanel2.

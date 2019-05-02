@@ -52,10 +52,11 @@ namespace KinniNet.Core.Operacion
                 DataTable dtTickets = new DataTable("dt");
                 dtTickets.Columns.Add(new DataColumn("Id", typeof(int)));
                 dtTickets.Columns.Add(new DataColumn("Descripcion", typeof(string)));
+                dtTickets.Columns.Add(new DataColumn("Color", typeof(string)));
                 dtTickets.Columns.Add(new DataColumn("Total", typeof(decimal)));
-                foreach (GraficoConteo datos in db.Ticket.Join(db.Canal, ticket => ticket.IdCanal, canal => canal.Id, (ticket, canals) => new { ticket, canals }).GroupBy(g => g.canals).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }).ToList())
+                foreach (GraficoConteo datos in db.Ticket.Join(db.Canal, ticket => ticket.IdCanal, canal => canal.Id, (ticket, canals) => new { ticket, canals }).GroupBy(g => g.canals).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Color = s.Key.ColorGrafico, Total = s.Count() }).ToList())
                 {
-                    dtTickets.Rows.Add(datos.Id, datos.Descripcion, datos.Total);
+                    dtTickets.Rows.Add(datos.Id, datos.Descripcion, datos.Color, datos.Total);
                 }
                 results.GraficoTicketsCreadosCanal = dtTickets;
 
@@ -63,10 +64,11 @@ namespace KinniNet.Core.Operacion
                 DataTable dtUsuarios = new DataTable("dt");
                 dtUsuarios.Columns.Add(new DataColumn("Id", typeof(int)));
                 dtUsuarios.Columns.Add(new DataColumn("Descripcion", typeof(string)));
+                dtUsuarios.Columns.Add(new DataColumn("Color", typeof(string)));
                 dtUsuarios.Columns.Add(new DataColumn("Total", typeof(decimal)));
-                foreach (GraficoConteo datos in db.Usuario.Join(db.TipoUsuario, users => users.IdTipoUsuario, tipoUsuario => tipoUsuario.Id, (users, tipoUsuario) => new { users, tipoUsuario }).Where(w => userFilters.Contains(w.users.IdTipoUsuario)).GroupBy(g => g.tipoUsuario).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }).ToList())
+                foreach (GraficoConteo datos in db.Usuario.Join(db.TipoUsuario, users => users.IdTipoUsuario, tipoUsuario => tipoUsuario.Id, (users, tipoUsuario) => new { users, tipoUsuario }).Where(w => userFilters.Contains(w.users.IdTipoUsuario)).GroupBy(g => g.tipoUsuario).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Color = s.Key.Id == (int)BusinessVariables.EnumTiposUsuario.Cliente ? "#B5E6A1" : s.Key.Id == (int)BusinessVariables.EnumTiposUsuario.Proveedor ? "#FFF0B3" : "#80D9FF", Total = s.Count() }).ToList())
                 {
-                    dtUsuarios.Rows.Add(datos.Id, datos.Descripcion, datos.Total);
+                    dtUsuarios.Rows.Add(datos.Id, datos.Descripcion, datos.Color, datos.Total);
                 }
                 results.GraficoUsuariosRegistrados = dtUsuarios;
 
@@ -75,13 +77,27 @@ namespace KinniNet.Core.Operacion
                 dtAlmacenamiento.Columns.Add(new DataColumn("Libre", typeof(double)));
 
 
-                long maxSize = 1024;
-                string queryString = "SELECT DataBaseName = DB_NAME(database_id), \n" +
-                                     "LogSize = CAST(SUM(CASE WHEN type_desc = 'LOG' THEN size END) * 8 / 1024 AS DECIMAL(8,2)), \n" +
-                                     "RowSize_mb = CAST(SUM(CASE WHEN type_desc = 'ROWS' THEN size END) * 8 / 1024 AS DECIMAL(8,2)), \n" +
-                                     "TotalSize_mb = CAST(SUM(size) * 8 / 1024 AS DECIMAL(8,2)) \n" +
-                                     "FROM sys.master_files \n" +
-                                     "WHERE database_id = DB_ID() GROUP BY database_id";
+                long maxSize = 10024;
+                //string queryString = "SELECT DataBaseName = DB_NAME(database_id), \n" +
+                //                     "LogSize = CAST(SUM(CASE WHEN type_desc = 'LOG' THEN size END) * 8 / 1024 AS DECIMAL(8,2)), \n" +
+                //                     "RowSize_mb = CAST(SUM(CASE WHEN type_desc = 'ROWS' THEN size END) * 8 / 1024 AS DECIMAL(8,2)), \n" +
+                //                     "TotalSize_mb = CAST(SUM(size) * 8 / 1024 AS DECIMAL(8,2)) \n" +
+                //                     "FROM sys.master_files \n" +
+                //                     "WHERE database_id = DB_ID() GROUP BY database_id";
+                string queryString = "select name DataBaseName, \n" +
+"(SELECT cast((size*8)/1024 as decimal) \n" +
+"FROM sys.database_files \n" +
+"where type_desc = 'LOG') LogSize, \n" +
+"cast((size*8)/1024 as decimal) RowSize_mb, \n" +
+
+"(SELECT cast((size*8)/1024 as decimal) \n" +
+"FROM sys.database_files \n" +
+"where type_desc = 'LOG') + cast((size*8)/1024 as decimal) TotalSize_mb \n" +
+
+"FROM sys.database_files \n" +
+"where type_desc = 'ROWS'";
+                //string queryString = "SELECT file_id, name, type_desc, physical_name, size, max_size \n" +
+                //                     "FROM sys.database_files" ;  
                 SqlDataAdapter adapter = new SqlDataAdapter(queryString, connection);
 
                 DataSet ds = new DataSet();
@@ -174,9 +190,14 @@ namespace KinniNet.Core.Operacion
                 DateTime startCurrentDate = Convert.ToDateTime(DateTime.Now.AddDays(-1).ToShortDateString() + " 23:59:59");
                 DateTime endCurrentDate = Convert.ToDateTime(startCurrentDate.AddDays(-daysPeriod).ToShortDateString());
 
+                result.FechaInicioPeriodoActual = startCurrentDate;
+                result.FechaFinPeriodoActual = endCurrentDate;
+
                 //Fechas Periodo anterior
                 DateTime startPreviuosDate = Convert.ToDateTime(endCurrentDate.AddDays(-1).ToShortDateString() + " 23:59:59");
                 DateTime endPreviousDate = Convert.ToDateTime(startPreviuosDate.AddDays(-daysPeriod).ToShortDateString());
+                result.FechaInicioPeriodoAnterior = startPreviuosDate;
+                result.FechaFinPeriodoAnterior = endPreviousDate;
                 var qryCurrentTickets = from t in db.Ticket
                                         join tgu in db.TicketGrupoUsuario on t.Id equals tgu.IdTicket
                                         where t.FechaHoraAlta <= startCurrentDate && t.FechaHoraAlta >= endCurrentDate
@@ -491,11 +512,12 @@ namespace KinniNet.Core.Operacion
                 DataTable dtTicketsCanal = new DataTable("dt");
                 dtTicketsCanal.Columns.Add(new DataColumn("Id", typeof(int)));
                 dtTicketsCanal.Columns.Add(new DataColumn("Descripcion", typeof(string)));
+                dtTicketsCanal.Columns.Add(new DataColumn("Color", typeof(string)));
                 dtTicketsCanal.Columns.Add(new DataColumn("Total", typeof(decimal)));
 
-                foreach (GraficoConteo datos in db.Ticket.Where(w => lstCreatedTicketsCurrent.Contains(w.Id)).Join(db.Canal, t => t.IdCanal, c => c.Id, (t, c) => new { c.Id, c.Descripcion }).GroupBy(g => new { g.Id, g.Descripcion }).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Total = s.Count() }))
+                foreach (GraficoConteo datos in db.Ticket.Where(w => lstCreatedTicketsCurrent.Contains(w.Id)).Join(db.Canal, t => t.IdCanal, c => c.Id, (t, c) => new { c.Id, c.Descripcion, c.ColorGrafico }).GroupBy(g => new { g.Id, g.Descripcion, g.ColorGrafico }).Select(s => new GraficoConteo { Id = s.Key.Id, Descripcion = s.Key.Descripcion, Color = s.Key.ColorGrafico, Total = s.Count() }))
                 {
-                    dtTicketsCanal.Rows.Add(datos.Id, datos.Descripcion, datos.Total);
+                    dtTicketsCanal.Rows.Add(datos.Id, datos.Descripcion, datos.Color, datos.Total);
                 }
                 result.GraficoTicketsCanal = dtTicketsCanal;
 

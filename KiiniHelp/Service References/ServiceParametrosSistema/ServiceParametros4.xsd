@@ -271,7 +271,7 @@
       <xs:element xmlns:q71="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" minOccurs="0" name="SubDireccion" nillable="true" type="q71:ArrayOfSubDireccion" />
       <xs:element xmlns:q72="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" minOccurs="0" name="SubGerencia" nillable="true" type="q72:ArrayOfSubGerencia" />
       <xs:element xmlns:q73="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" minOccurs="0" name="SubZona" nillable="true" type="q73:ArrayOfSubZona" />
-      <xs:element minOccurs="0" name="TelefeonoObligatorio" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TelefonoObligatorio" type="xs:boolean" />
       <xs:element xmlns:q74="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q74:ArrayOfTicket" />
       <xs:element xmlns:q75="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" minOccurs="0" name="Torre" nillable="true" type="q75:ArrayOfTorre" />
       <xs:element xmlns:q76="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" minOccurs="0" name="Ubicacion" nillable="true" type="q76:ArrayOfUbicacion" />

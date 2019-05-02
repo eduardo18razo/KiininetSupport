@@ -344,12 +344,37 @@ namespace KinniNet.Core.Operacion
                 {
                     diadb.Descripcion = item.Descripcion;
                     diadb.FechaModificacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                    
                     List<DiasFeriadosDetalle> diasEliminar = db.DiasFeriadosDetalle.Where(w => w.IdDiasFeriados == diadb.Id).ToList();
                     foreach (DiasFeriadosDetalle detalle in diasEliminar)
                     {
                         db.DiasFeriadosDetalle.DeleteObject(detalle);
                     }
                     diadb.DiasFeriadosDetalle = item.DiasFeriadosDetalle;
+
+                    List<int> subgpos = db.DiaFestivoSubGrupo.Where(w => w.IdDiasFeriados == diadb.Id).Select(s => s.IdSubGrupoUsuario).ToList();
+                    List<int> gpos = db.SubGrupoUsuario.Where(w => subgpos.Contains(w.Id)).Select(s => s.IdGrupoUsuario).Distinct().ToList();
+
+                    List<DiaFestivoSubGrupo> diasSgpoEliminar = db.DiaFestivoSubGrupo.Where(w => w.IdDiasFeriados == diadb.Id).ToList();
+                    foreach (DiaFestivoSubGrupo diaEliminar in diasSgpoEliminar)
+                    {
+                        db.DiaFestivoSubGrupo.DeleteObject(diaEliminar);
+                    }
+
+                    foreach (DiasFeriadosDetalle detalleFeriado in item.DiasFeriadosDetalle)
+                    {
+                        foreach (SubGrupoUsuario subGrupoUsuario in db.SubGrupoUsuario.Where(w => gpos.Contains(w.IdGrupoUsuario)))
+                        {
+                            DiaFestivoSubGrupo diasubgpo = new DiaFestivoSubGrupo
+                            {
+                                IdSubGrupoUsuario = subGrupoUsuario.Id,
+                                IdDiasFeriados = diadb.Id,
+                                Fecha = detalleFeriado.Dia,
+                                Descripcion = detalleFeriado.Descripcion
+                            };
+                            db.DiaFestivoSubGrupo.AddObject(diasubgpo);
+                        }
+                    }
                     db.SaveChanges();
                 }
             }

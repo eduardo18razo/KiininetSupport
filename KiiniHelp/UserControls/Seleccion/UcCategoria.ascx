@@ -3,11 +3,10 @@
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
             <ol class="breadcrumb">
-                <li>
-                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink></li>
-                <li>
-                    <asp:LinkButton runat="server" ID="lnkbtnTipoUsuario" OnClick="lbTipoUsuario_Click">
-                    </asp:LinkButton>
+                <li class="text-theme">
+                    <asp:HyperLink runat="server" NavigateUrl="~/Default.aspx" Text="text-theme">Home</asp:HyperLink></li>
+                <li class="text-theme">
+                    <asp:LinkButton runat="server" ID="lnkbtnTipoUsuario" OnClick="lbTipoUsuario_Click" CssClass="text-theme" />
                 </li>
                 <li class="active">Categorías</li>
             </ol>

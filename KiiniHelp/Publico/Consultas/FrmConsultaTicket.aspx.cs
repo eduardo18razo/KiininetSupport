@@ -86,6 +86,10 @@ namespace KiiniHelp.Publico.Consultas
                     ucTicketDetalleUsuario.IdTicket = detalle.IdTicket;
                     hfMuestraEncuesta.Value = detalle.TieneEncuesta.ToString();
                 }
+                else
+                {
+                    throw new Exception("Datos incorrectos");
+                }
             }
             catch (Exception ex)
             {

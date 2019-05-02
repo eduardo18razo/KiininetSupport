@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -18,6 +19,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 {
     public partial class UcAltaFormulario : UserControl, IControllerModal
     {
+        private const string Coockie = "modalFormulario";
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
@@ -186,6 +188,28 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 Alerta = _lstError;
             }
         }
+
+        private List<CampoMascara> CamposDefaultPublico()
+        {
+            List<CampoMascara> result = new List<CampoMascara>();
+            try
+            {
+                TipoCampoMascara tipoCampoTexto = _servicioSistemaTipoCampoMascara.ObtenerTipoCampoMascara(false).Single(s => s.Id == (int) BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto);
+                TipoCampoMascara tipoCampoCorreo = _servicioSistemaTipoCampoMascara.ObtenerTipoCampoMascara(false).Single(s => s.Id == (int) BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.CorreoElectronico);
+                TipoCampoMascara tipoCampoTelefono = _servicioSistemaTipoCampoMascara.ObtenerTipoCampoMascara(false).Single(s => s.Id == (int) BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Telefono);
+                result.Add(new CampoMascara { Id = -1, Descripcion = "Nombre", Requerido = true, TipoCampoMascara = tipoCampoTexto, IdTipoCampoMascara = tipoCampoTexto.Id });
+                result.Add(new CampoMascara { Id = -2, Descripcion = "Apellido Paterno", Requerido = true, TipoCampoMascara = tipoCampoTexto, IdTipoCampoMascara = tipoCampoTexto.Id });
+                result.Add(new CampoMascara { Id = -3, Descripcion = "Apellido Materno", Requerido = false, TipoCampoMascara = tipoCampoTexto, IdTipoCampoMascara = tipoCampoTexto.Id });
+                result.Add(new CampoMascara { Id = -4, Descripcion = "Correo", Requerido = true, TipoCampoMascara = tipoCampoCorreo, IdTipoCampoMascara = tipoCampoCorreo.Id });
+                result.Add(new CampoMascara { Id = -5, Descripcion = "Confirmar Correo", Requerido = true, TipoCampoMascara = tipoCampoCorreo, IdTipoCampoMascara = tipoCampoCorreo.Id });
+                result.Add(new CampoMascara { Id = -6, Descripcion = "Teléfono Celular", TipoCampoMascara = tipoCampoTelefono, IdTipoCampoMascara = tipoCampoTelefono.Id });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return result;
+        }
         private void LlenaDatosMascara(int idMascara)
         {
             try
@@ -195,12 +219,22 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 {
                     ddlTipoFormulario.SelectedValue = formulario.IdTipoMascara.ToString();
                     txtNombre.Text = formulario.Descripcion;
+
+                    if (!formulario.CampoMascara.Any(c => CamposDefaultPublico().Contains(c)))
+                    {
+                        formulario.CampoMascara.InsertRange(0, CamposDefaultPublico());
+                    }
                     Session["MascaraAlta"] = formulario;
+                    CamposDefaultPublico();
                     if (EsAlta)
-                        foreach (CampoMascara campo in formulario.CampoMascara)
+                    {
+
+                        foreach (CampoMascara campo in formulario.CampoMascara.Where(w => w.Id >= 0))
                         {
                             campo.Id = 0;
                         }
+                    }
+
                     rptControles.DataSource = formulario.CampoMascara;
                     rptControles.DataBind();
                 }
@@ -228,6 +262,30 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             }
         }
 
+        private void ChecaModal()
+        {
+            try
+            {
+                HttpCookie aCookie = Request.Cookies[Coockie];
+                if (aCookie == null)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "Javascript", "MostrarPopup(\"#modalAlertaFormulario\");", true);
+                }
+                else
+                {
+                    bool settingModal = bool.Parse(aCookie.Value);
+                    if (settingModal)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "Javascript", "MostrarPopup(\"#modalAlertaFormulario\");", true);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -242,6 +300,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 LlenaCombos();
                 if (!IsPostBack)
                 {
+                    ChecaModal();
                     if (Request.QueryString["idFormulario"] != null)
                     {
                         if (Request.QueryString["Alta"] != null)
@@ -250,6 +309,14 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                     }
                     else
                     {
+                        if (((Mascara)Session["MascaraAlta"]).CampoMascara == null)
+                            ((Mascara)Session["MascaraAlta"]).CampoMascara = new List<CampoMascara>();
+                        if (!((Mascara)Session["MascaraAlta"]).CampoMascara.Any(c => CamposDefaultPublico().Contains(c)))
+                        {
+                            ((Mascara)Session["MascaraAlta"]).CampoMascara.InsertRange(0, CamposDefaultPublico());
+                        }
+                        rptControles.DataSource = ((Mascara)Session["MascaraAlta"]).CampoMascara;
+                        rptControles.DataBind();
                         EsAlta = true;
                     }
                 }
@@ -351,10 +418,17 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 
                 if (divValorMaximo.Visible)
                 {
-                    //txtValorMinimo.Enabled = EsAlta;
-                    //txtValorMaximo.Enabled = true;
-                    txtValorMinimo.Text = campoEditar.ValorMinimo.ToString();
-                    txtValorMaximo.Text = campoEditar.ValorMaximo.ToString();
+                    if (campoEditar.IdTipoCampoMascara == (int) BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.NúmeroEntero)
+                    {
+                        txtValorMinimo.Text = Convert.ToInt32(campoEditar.ValorMinimo).ToString();
+                        txtValorMaximo.Text = Convert.ToInt32(campoEditar.ValorMaximo).ToString();
+                    }
+                    else
+                    {
+                        txtValorMinimo.Text = campoEditar.ValorMinimo.ToString();
+                        txtValorMaximo.Text = campoEditar.ValorMaximo.ToString();
+                    }
+                    
                 }
                 if (divMascara.Visible)
                 {
@@ -501,10 +575,10 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 }
                 if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
-                    e.Item.FindControl("btnEliminarCampo").Visible = EsAlta;
-                    e.Item.FindControl("btnSubir").Visible = EsAlta;
-                    e.Item.FindControl("btnBajar").Visible = EsAlta;
-                    e.Item.FindControl("lblSeparador").Visible = EsAlta;
+                    e.Item.FindControl("btnEliminarCampo").Visible = EsAlta && ((CampoMascara)e.Item.DataItem).Id >= 0;
+                    e.Item.FindControl("btnSubir").Visible = EsAlta && ((CampoMascara)e.Item.DataItem).Id >= 0;
+                    e.Item.FindControl("btnBajar").Visible = EsAlta && ((CampoMascara)e.Item.DataItem).Id >= 0;
+                    e.Item.FindControl("lblSeparador").Visible = EsAlta && ((CampoMascara)e.Item.DataItem).Id >= 0;
                 }
             }
             catch (Exception ex)
@@ -590,7 +664,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 
 
                 Mascara tmpMascara = ((Mascara)Session["MascaraAlta"]);
-
+                
                 if (bool.Parse(hfAltaCampo.Value))
                 {
                     if (tmpMascara.CampoMascara == null)
@@ -720,12 +794,13 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 Mascara nuevaMascara = ((Mascara)Session["MascaraAlta"]);
                 if (((Mascara)Session["MascaraAlta"]).CampoMascara != null && ((Mascara)Session["MascaraAlta"]).CampoMascara.Count <= 0)
                     throw new Exception("Debe agregar al menos un campo.");
-                if (!((Mascara)Session["MascaraAlta"]).CampoMascara.Any(a => a.Requerido))
+                if (!((Mascara)Session["MascaraAlta"]).CampoMascara.Any(a => a.Requerido && a.Id >= 0))
                     throw new Exception("Debe al menos un campo obligatorio.");
                 nuevaMascara.IdTipoMascara = int.Parse(ddlTipoFormulario.SelectedValue);
                 nuevaMascara.Descripcion = txtNombre.Text.Trim();
                 nuevaMascara.Random = chkClaveRegistro.Checked;
                 nuevaMascara.IdUsuarioAlta = ((Usuario)Session["UserData"]).Id;
+                nuevaMascara.CampoMascara.RemoveAll(r => r.Id < 0);
                 if (EsAlta)
                 {
                     nuevaMascara.Id = 0;
@@ -754,14 +829,16 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             {
                 if (txtNombre.Text.Trim() == string.Empty)
                     throw new Exception("Debe especificar un nombre.");
-                Mascara nuevaMascara = ((Mascara)Session["MascaraAlta"]);
-                if (nuevaMascara.CampoMascara == null || nuevaMascara.CampoMascara.Count <= 0)
+                Mascara nuevaMascara = new Mascara();
+                nuevaMascara = ((Mascara)Session["MascaraAlta"]);
+                if (nuevaMascara.CampoMascara == null || nuevaMascara.CampoMascara.Count(c=> !CamposDefaultPublico().Contains(c)) <= 0)
                     throw new Exception("Debe agregar al menos un campo.");
+
                 nuevaMascara.Descripcion = txtNombre.Text.Trim();
                 nuevaMascara.Random = chkClaveRegistro.Checked;
                 nuevaMascara.IdUsuarioAlta = ((Usuario)Session["UserData"]).Id;
 
-                Session["PreviewDataFormulario"] = nuevaMascara; ;
+                Session["PreviewDataFormulario"] = nuevaMascara; 
                 string url = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
 
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + "Users/Administracion/Formularios/FrmPreviewFormulario.aspx','_blank');", true);
@@ -795,5 +872,57 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             }
         }
 
+        protected void btnAceptarAlerta_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkHideAlert.Checked)
+                {
+                    HttpCookie myCookie = new HttpCookie(Coockie);
+                    myCookie.Value = "false";
+                    myCookie.Expires = DateTime.Now.AddYears(50);
+                    Response.Cookies.Add(myCookie);
+                }
+                else
+                {
+                    HttpCookie myCookie = new HttpCookie(Coockie);
+                    myCookie.Value = "true";
+                    myCookie.Expires = DateTime.Now.AddYears(50);
+                    Response.Cookies.Add(myCookie);
+                }
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAlertaFormulario\");", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void btnHelp_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "Javascript", "MostrarPopup(\"#modalAlertaFormulario\");", true);
+                if (Request.Cookies[Coockie] != null)
+                {
+                    HttpCookie aCookie = Request.Cookies[Coockie];
+                    chkHideAlert.Checked = !bool.Parse(aCookie.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

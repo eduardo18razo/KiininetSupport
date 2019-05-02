@@ -3,18 +3,25 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Configuration;
-using System.Net.Mail;
 using System.Reflection;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using System.ServiceProcess;
+using DemonioCierreTicket;
+using DemonioTicketsCorreo;
+using EASendMail;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
 using KinniNet.Core.Operacion;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MailAddress = System.Net.Mail.MailAddress;
+using MailMessage = System.Net.Mail.MailMessage;
+using SmtpClient = EASendMail.SmtpClient;
 
 namespace KiiniNet.UnitTest
 {
@@ -103,8 +110,128 @@ namespace KiiniNet.UnitTest
         {
             try
             {
+                //    ServiceBase[] servicesToRun = new ServiceBase[] 
+                //{ 
+                //    new ServiceTicketsCorreo("pruebas") 
+                //};
+                //    ServiceBase.Run(servicesToRun);
+                //    try
+                //    {
+                //        string logname = "Lalosss";
+                //        string mensaje = "Mensaje para el log";
+
+                //        if (!EventLog.SourceExists(logname))
+                //            EventLog.CreateEventSource(logname, logname);
+
+                //        EventLog.WriteEntry(logname, mensaje, EventLogEntryType.SuccessAudit);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        //LogError("Kiininet", _serviceName, ex.Message);
+                //    }
                 while (true)
-                    new BusinessDemonio().EnvioNotificacion();
+                    new BusinessTicketMailService().RecibeCorreos();
+                //MailMessage mail = new MailMessage();
+                //mail.From = new MailAddress("Kiininet.desarrollo@gmail.com", "DEsde Desarrollo", Encoding.UTF8);
+                //mail.To.Add("Kiininet.desarrollo@gmail.com");
+
+                //mail.SubjectEncoding = Encoding.UTF8;
+                //mail.Subject = "Asunto";
+
+                //mail.Headers.Add("Reply-To", "Reply-To__ <" + "Kiininet.desarrollo@gmail.com" + ">");
+                //mail.Headers.Add("Sender", "Kiininet.desarrollo@gmail.com");
+                //mail.Headers.Add("Return-Path", "Kiininet.desarrollo@gmail.com");
+                //mail.Headers.Add("MIME-Version", "1.0");
+                //mail.Headers.Add("guidticket", "idticket");
+
+                //string boundary = Guid.NewGuid().ToString();
+                //mail.Headers.Add("Content-Type", "multipart/mixed; boundary=--" + boundary);
+
+                ////mail.Headers.Add("", Environment.NewLine);
+                ////mail.Headers.Add("", Environment.NewLine);
+
+                ////mail.Headers.Add("", "--" + boundary);
+                ////mail.Headers.Add("Content-Type", "text/html; charset=utf-8");
+                ////mail.Headers.Add("Content-Transfer-Encoding", "base64");
+                ////mail.Headers.Add("", Environment.NewLine);
+                ////var bytes = Encoding.UTF8.GetBytes(html_body);
+                ////var base64 = Convert.ToBase64String(bytes);
+                ////mail.Headers.Add("", base64.ToString());
+                ////mail.Headers.Add("", "--" + boundary);
+
+                //SmtpClient smtp = new SmtpClient();
+                //smtp.UseDefaultCredentials = true;
+                //smtp.Credentials = new System.Net.NetworkCredential("Kiininet.desarrollo@gmail.com", "Knnet2018");
+                //smtp.Host = "smtp.gmail.com";
+                //smtp.Port = 587;
+                //smtp.Timeout = 60000;
+
+                //smtp.SendCompleted += (s, e) =>
+                //{
+                //    if (e.Cancelled)
+                //    {
+                //        MessageBox.Show("sending email was canceled");
+                //    }
+                //    if (e.Error != null)
+                //    {
+                //        MessageBox.Show("sending email was failed -> Error : " + e.Error.ToString());
+                //    }
+                //    else
+                //    {
+                //        MessageBox.Show("email was sent successfully");
+                //    }
+
+                //    mail.Dispose();
+                //};
+
+                //try
+                //{
+                //    smtp.SendAsync(mail, null);
+                //}
+                //catch (System.Net.Mail.SmtpException exp)
+                //{
+                //    MessageBox.Show("sending email was failed, SmtpException -> Error : " + exp.ToString());
+
+                //    mail.Dispose();
+                //}
+
+
+
+                //using (var pop = new AE.Net.Mail.Pop3Client("smtp.gmail.com", "kiininet.desarrollo@gmail.com", "Knnet2018", 587, true))
+                //{
+                //    for (var i = pop.GetMessageCount() - 1; i >= 0; i--)
+                //    {
+                //        var msg = pop.GetMessage(i, false);
+                //        Assert.AreEqual(msg.Subject, "Standard API between different protocols?  Yes, please!");
+                //        pop.DeleteMessage(i); //WE DON'T NEED NO STINKIN' EMAIL!
+                //    }
+                //}
+
+                //using (var imap = new AE.Net.Mail.ImapClient("smtp.gmail.com", "kiininet.desarrollo@gmail.com", "Knnet2018", AE.Net.Mail.AuthMethods.Login, 587, true))
+                //{
+
+                //    var msgs = imap.SearchMessages(
+                //      SearchCondition.Undeleted().And(
+                //        SearchCondition.From("david"),
+                //        SearchCondition.SentSince(new DateTime(2000, 1, 1))
+                //      ).Or(SearchCondition.To("andy"))
+                //    );
+
+                //    Assert.AreEqual(msgs[0].Value.Subject, "This is cool!");
+
+                //    imap.NewMessage += (sender, e) =>
+                //    {
+                //        var msg = imap.GetMessage(e.MessageCount - 1);
+                //        Assert.AreEqual(msg.Subject, "IDLE support?  Yes, please!");
+                //    };
+                //}
+
+
+
+                //var ServicesToRun = new ServiceTicketsCorreo();
+                //ServicesToRun.st
+                //ServiceBase.Run(ServicesToRun);
+
                 //new BusinessDashboards().GetDashboardAgente(null, null);
                 //DataTable dt = new DataTable("dt");
                 //dt.Columns.Add(new DataColumn("Ocupado"));
@@ -152,6 +279,66 @@ namespace KiiniNet.UnitTest
         [TestMethod]
         public void TesConsultas()
         {
+            #region comentarios
+            //new BusinessDemonio().EnvioNotificacion();
+            //Program.Main(new[] { "Cierre TIcket Calidad" });
+            //string hora = DateTime.Now.ToString("hh:mm:ss");
+            //hora = DateTime.Now.ToString("HH:mm:ss");
+            //new BusinessDemonio().EnvioNotificacion();
+            //try
+            //{
+            //    SmtpServer result = new SmtpServer("kiininetcxp.com")
+            //    {
+            //        Port = 25,
+            //        ConnectType = SmtpConnectType.ConnectSSLAuto,
+            //        User = "soporte.calidad@kiininetcxp.com",
+            //        Password = "SuppCalidad#.2019"
+            //    };
+
+            //    SmtpMail oMail = new SmtpMail("TryIt");
+            //    SmtpClient oSmtp = new SmtpClient();
+
+            //    oMail.From = "soporte.calidad@kiininetcxp.com";
+            //    oMail.To = "ecerritos@kiininet.com";
+            //    oMail.Subject = "c# project";
+            //    oMail.TextBody = "Contenido";
+
+            //    try
+            //    {
+            //        Console.WriteLine("Enviando correro");
+            //        oSmtp.SendMail(result, oMail);
+            //        Console.WriteLine("email enviado!");
+            //    }
+            //    catch (Exception ep)
+            //    {
+            //        Console.WriteLine("fallo el envio:");
+            //        Console.WriteLine(ep.Message);
+            //    }
+
+
+            //    //SmtpClient smtpClient = new SmtpClient("webmail.kiininetcxp.com", 25);
+
+            //    //smtpClient.Credentials = new System.Net.NetworkCredential("soporte.calidad@kiininetcxp.com", "SuppCalidad#.2019");
+            //    //smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+            //    //MailMessage mailMessage = new MailMessage("soporte.calidad@kiininetcxp.com", "ecerritos@kiininet.com");
+            //    //mailMessage.Subject = "Subject";
+            //    //mailMessage.Body = "body";
+
+            //    //try
+            //    //{
+            //    //    smtpClient.Send(mailMessage);
+            //    //}
+            //    //catch (Exception ex)
+            //    //{
+            //}
+            //catch (Exception e)
+            //{
+
+            //}
+            #endregion comentarios
+
+            new BusinessTicketMailService().RecibeCorreos();
             new BusinessInformacionConsulta().ObtenerReporteInformacionConsulta(1, new Dictionary<string, DateTime>
                         {
                             {"inicio", Convert.ToDateTime("01/01/2018")},
@@ -163,55 +350,55 @@ namespace KiiniNet.UnitTest
             new BusinessDemonio().CierraTicketsResueltos();
 
 
-            //TODO: Eliminar Comentarios
+            ////TODO: Eliminar Comentarios
+            //try
+            //{
+            //    SmtpSection section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+
+            //    MailAddress fromAddress = new MailAddress("support@kiininet.com", "Eduardo Cerritos");
+            //    MailAddress toAddress = new MailAddress("eduardo18razo@gmail.com", "Kiininet Support");
+
+            //    var smtp = new SmtpClient
+            //    {
+            //        Host = section.Network.Host,//"smtp.gmail.com",
+            //        Port = section.Network.Port,
+            //        EnableSsl = section.Network.EnableSsl,
+            //        DeliveryMethod = SmtpDeliveryMethod.Network,
+            //        UseDefaultCredentials = section.Network.DefaultCredentials,
+            //        Credentials = new NetworkCredential(fromAddress.Address, section.Network.Password)
+            //    };
+            //    using (var message = new MailMessage(fromAddress, toAddress)
+            //    {
+            //        Subject = "Alias",
+            //        IsBodyHtml = true,
+            //        Body = "content"
+            //    })
+            //    {
+            //        smtp.Send(message);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.ToString());
+            //}
+
             try
             {
-                SmtpSection section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                //SmtpClient mailClient = new SmtpClient("smtp.gmail.com");
+                //MailMessage msgMail = new MailMessage();
+                //msgMail.From = new MailAddress("ecerritos@kiininet.com", "support@kiininet.com");
+                //mailClient.UseDefaultCredentials = false;
+                //mailClient.Credentials = new NetworkCredential("ecerritos@kiininet.com", "Eyleen231012");
+                //mailClient.EnableSsl = true;
+                //MailAddress sendMailTo = new MailAddress("eduardo18razo@gmail.com", "Mark Twain");
+                //msgMail.To.Add(sendMailTo);
+                //msgMail.Subject = "Test Subject Alias";
 
-                MailAddress fromAddress = new MailAddress("support@kiininet.com", "Eduardo Cerritos");
-                MailAddress toAddress = new MailAddress("eduardo18razo@gmail.com", "Kiininet Support");
+                //msgMail.Body = "Email content";
+                //msgMail.IsBodyHtml = true;
 
-                var smtp = new SmtpClient
-                {
-                    Host = section.Network.Host,//"smtp.gmail.com",
-                    Port = section.Network.Port,
-                    EnableSsl = section.Network.EnableSsl,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = section.Network.DefaultCredentials,
-                    Credentials = new NetworkCredential(fromAddress.Address, section.Network.Password)
-                };
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    Subject = "Alias",
-                    IsBodyHtml = true,
-                    Body = "content"
-                })
-                {
-                    smtp.Send(message);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-
-            try
-            {
-                SmtpClient mailClient = new SmtpClient("smtp.gmail.com");
-                MailMessage msgMail = new MailMessage();
-                msgMail.From = new MailAddress("ecerritos@kiininet.com", "support@kiininet.com");
-                mailClient.UseDefaultCredentials = false;
-                mailClient.Credentials = new NetworkCredential("ecerritos@kiininet.com", "Eyleen231012");
-                mailClient.EnableSsl = true;
-                MailAddress sendMailTo = new MailAddress("eduardo18razo@gmail.com", "Mark Twain");
-                msgMail.To.Add(sendMailTo);
-                msgMail.Subject = "Test Subject Alias";
-
-                msgMail.Body = "Email content";
-                msgMail.IsBodyHtml = true;
-
-                mailClient.Send(msgMail);
-                msgMail.Dispose();
+                //mailClient.Send(msgMail);
+                //msgMail.Dispose();
                 //new BusinessCatalogos().CrearCatalogoExcel(new Catalogos(), false, "file", "hoja");
                 //new BusinessTicketMailService().RecibeCorreos();
                 //new BusinessTicketMailService().RecibeCorreos();

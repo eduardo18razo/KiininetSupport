@@ -28,6 +28,7 @@ namespace KiiniNet.Entities.Helper
         public int IdGrupoUsuario { get; set; }
         public string UsuarioAsignado { get; set; }
         public int IdUsuarioSolicito { get; set; }
+        public DateTime? FechaHoraFinProceso { get; set; }
 
         public bool TieneEncuesta { get; set; }
 

@@ -207,6 +207,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
             }
         }
 
+        public DataTable ObtenerGraficoNpsDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas)
+        {
+            try
+            {
+                using (BusinessEncuesta negocio = new BusinessEncuesta())
+                {
+                    return negocio.ObtenerGraficoNpsDescarga(idArbolAcceso, fechas);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha)
         {
             try

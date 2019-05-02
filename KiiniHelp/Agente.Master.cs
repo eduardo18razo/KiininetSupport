@@ -256,10 +256,10 @@ namespace KiiniHelp
         {
             try
             {
+
                 HttpCookie myCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-                if (myCookie == null || Session["UserData"] == null || bool.Parse(hfSesionExpiro.Value))
+                if (myCookie == null || Session["UserData"] == null || (((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Agentes && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Empleado && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Cliente && ((Usuario)Session["UserData"]).IdTipoUsuario != (int)BusinessVariables.EnumTiposUsuario.Proveedor) || bool.Parse(hfSesionExpiro.Value))
                 {
-                    //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalSession\");", true);
                     Session.RemoveAll();
                     Session.Clear();
                     Session.Abandon();
@@ -267,7 +267,6 @@ namespace KiiniHelp
                     FormsAuthentication.RedirectToLoginPage();
                     Response.Redirect("~/Default.aspx");
                 }
-                
                 if (Session["UserData"] != null)
                 {
                     if (!_servicioSeguridad.ValidaSesion(((Usuario)Session["UserData"]).Id, SecurityUtils.CreateShaHash(Maquina)))

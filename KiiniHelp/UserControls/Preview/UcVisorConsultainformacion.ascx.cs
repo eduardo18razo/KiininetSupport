@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.ServiceArbolAcceso;
@@ -47,7 +44,9 @@ namespace KiiniHelp.UserControls.Preview
                 ArbolAcceso arbol = new ServiceArbolAccesoClient().ObtenerArbolAcceso(value);
                 if (arbol != null)
                 {
+                    lbtnTipoUsuario.Text = arbol.TipoUsuario.Descripcion;
                     IdTipoUsuario = arbol.IdTipoUsuario;
+                    lblDescripcionConsulta.Text = arbol.InventarioArbolAcceso[0].Descripcion;
                     lblTitle.Text = arbol.InventarioArbolAcceso[0].Descripcion;
                     lblDescripcion.Text = arbol.Descripcion;
                     MuestraPreview(_servicioInformacion.ObtenerInformacionConsultaById(arbol.InventarioArbolAcceso.First().InventarioInfConsulta.First().IdInfConsulta));
@@ -181,7 +180,7 @@ namespace KiiniHelp.UserControls.Preview
             try
             {
                 LinkButton btn = (LinkButton)sender;
-                BusinessFile.CopiarSitioTemporal(BusinessVariables.Directorios.RepositorioInformacionConsulta, BusinessVariables.Directorios.Carpetaemporal, new List<string> { btn.CommandArgument });
+                BusinessFile.CopiarSitioTemporal(BusinessVariables.Directorios.RepositorioInformacionConsulta, BusinessVariables.Directorios.CarpetaTemporal, new List<string> { btn.CommandArgument });
                 string url = string.Format("https://docs.google.com/viewer?url={0}{1}", BusinessVariables.Directorios.CarpetaTemporalSitio, btn.CommandArgument);
                 url = Page.ResolveUrl("~/Preview/FrmPreview.aspx?urlGoogle=" + url);
                 string script = string.Format("window.open('{0}','_blank')", url);
@@ -231,6 +230,33 @@ namespace KiiniHelp.UserControls.Preview
                 }
                 _lstError.Add(ex.Message);
                 Alerta = _lstError;
+            }
+        }
+        protected void lbtnHome_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["UserData"] == null)
+                    Response.Redirect("~/Default.aspx");
+                else
+                    Response.Redirect("~/Users/DashBoard.aspx");
+            }
+            catch
+            {
+            }
+        }
+
+        protected void lbtnTipoUsuario_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["UserData"] == null)
+                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + IdTipoUsuario);
+                else
+                    Response.Redirect("~/Users/FrmDashboardUser.aspx");
+            }
+            catch
+            {
             }
         }
     }

@@ -98,15 +98,15 @@ namespace KiiniHelp.Users.Graficos
                                         int semanaNo = int.Parse(fecha.Split(' ')[1]);
                                         int anio = int.Parse(fecha.Split(' ')[3]);
                                         lstConsulta = lstConsulta.Where(w => w.IdUbicacion == idFiltro
-                                            && DateTime.Parse(w.FechaHora) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anio, semanaNo)
-                                            && DateTime.Parse(w.FechaHora) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(anio, semanaNo)
+                                            && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anio, semanaNo)
+                                            && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(anio, semanaNo)
                                             ).ToList();
                                         break;
                                     case 3:
-                                        lstConsulta = lstConsulta.Where(w => w.IdUbicacion == idFiltro && DateTime.Parse(w.FechaHora).ToString("MM") == fecha.PadLeft(2, '0')).ToList();
+                                        lstConsulta = lstConsulta.Where(w => w.IdUbicacion == idFiltro && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null).ToString("MM") == fecha.PadLeft(2, '0')).ToList();
                                         break;
                                     case 4:
-                                        lstConsulta = lstConsulta.Where(w => w.IdUbicacion == idFiltro && DateTime.Parse(w.FechaHora).ToString("yyyy") == fecha.PadLeft(4, '0')).ToList();
+                                        lstConsulta = lstConsulta.Where(w => w.IdUbicacion == idFiltro && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null).ToString("yyyy") == fecha.PadLeft(4, '0')).ToList();
                                         break;
                                 }
                                 break;
@@ -120,15 +120,15 @@ namespace KiiniHelp.Users.Graficos
                                         int semanaNo = int.Parse(fecha.Split(' ')[1]);
                                         int anio = int.Parse(fecha.Split(' ')[3]);
                                         lstConsulta = lstConsulta.Where(w => w.IdOrganizacion == idFiltro
-                                            && DateTime.Parse(w.FechaHora) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anio, semanaNo)
-                                            && DateTime.Parse(w.FechaHora) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(anio, semanaNo)
+                                            && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anio, semanaNo)
+                                            && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(anio, semanaNo)
                                             ).ToList();
                                         break;
                                     case 3:
-                                        lstConsulta = lstConsulta.Where(w => w.IdOrganizacion == idFiltro && DateTime.Parse(w.FechaHora).ToString("MM") == fecha.PadLeft(2, '0')).ToList();
+                                        lstConsulta = lstConsulta.Where(w => w.IdOrganizacion == idFiltro && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null).ToString("MM") == fecha.PadLeft(2, '0')).ToList();
                                         break;
                                     case 4:
-                                        lstConsulta = lstConsulta.Where(w => w.IdOrganizacion == idFiltro && DateTime.Parse(w.FechaHora).ToString("yyyy") == fecha.PadLeft(4, '0')).ToList();
+                                        lstConsulta = lstConsulta.Where(w => w.IdOrganizacion == idFiltro && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null).ToString("yyyy") == fecha.PadLeft(4, '0')).ToList();
                                         break;
                                 }
                                 break;
@@ -142,15 +142,15 @@ namespace KiiniHelp.Users.Graficos
                                         int semanaNo = int.Parse(fecha.Split(' ')[1]);
                                         int anio = int.Parse(fecha.Split(' ')[3]);
                                         lstConsulta = lstConsulta.Where(w => w.IdTipificacion == idFiltro
-                                            && DateTime.Parse(w.FechaHora) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anio, semanaNo)
-                                            && DateTime.Parse(w.FechaHora) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(anio, semanaNo)
+                                            && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(anio, semanaNo)
+                                            && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(anio, semanaNo)
                                             ).ToList();
                                         break;
                                     case 3:
-                                        lstConsulta = lstConsulta.Where(w => w.IdTipificacion == idFiltro && DateTime.Parse(w.FechaHora).ToString("MM") == fecha.PadLeft(2, '0')).ToList();
+                                        lstConsulta = lstConsulta.Where(w => w.IdTipificacion == idFiltro && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null).ToString("MM") == fecha.PadLeft(2, '0')).ToList();
                                         break;
                                     case 4:
-                                        lstConsulta = lstConsulta.Where(w => w.IdTipificacion == idFiltro && DateTime.Parse(w.FechaHora).ToString("yyyy") == fecha.PadLeft(4, '0')).ToList();
+                                        lstConsulta = lstConsulta.Where(w => w.IdTipificacion == idFiltro && DateTime.ParseExact(w.FechaHora, "dd/MM/yyyy", null).ToString("yyyy") == fecha.PadLeft(4, '0')).ToList();
                                         break;
                                 }
                                 break;

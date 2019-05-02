@@ -7,7 +7,6 @@ using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Operacion.Usuarios;
-using KinniNet.Business.Utils;
 
 
 namespace KiiniHelp.UserControls.Seleccion

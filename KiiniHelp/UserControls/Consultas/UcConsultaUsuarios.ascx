@@ -65,7 +65,7 @@
             <!--/MÓDULO-->
 
 
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
@@ -95,6 +95,18 @@
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("NombreUsuario")%>'><%# Eval("NombreUsuario")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Correo" HeaderStyle-Width="15%">
+                                            <ItemTemplate>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("CorreoPrincipal")%>'><%# Eval("CorreoPrincipal")%></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Telefono" HeaderStyle-Width="15%">
+                                            <ItemTemplate>
+                                                <label runat="server" class="ocultaTexto" title='<%# Eval("TelefonoPrincipal")%>'><%# Eval("TelefonoPrincipal")%></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Ult. Movimiento" HeaderStyle-Width="15%">
                                             <ItemTemplate>
@@ -104,7 +116,8 @@
 
                                         <asp:TemplateField HeaderText="Verificado" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("Activo") ? "SI" : "NO"%>'><%# (bool) Eval("Activo") ? "SI" : "NO"%></label>
+                                                <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("Activo") ? "SI" : ""%>' Visible='<%# (bool) Eval("Activo")%>' ><%# (bool) Eval("Activo") ? "SI" : ""%></label>
+                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnReenviar" OnClick="btnReenviar_OnClick" Visible='<%# !(bool) Eval("Activo") &&(bool) Eval("Habilitado") %>'>Reenviar</asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

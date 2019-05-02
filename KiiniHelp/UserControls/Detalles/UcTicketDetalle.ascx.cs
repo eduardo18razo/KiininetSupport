@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceAtencionTicket;
+using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSistemaEstatus;
 using KiiniHelp.ServiceSistemaSubRol;
 using KiiniNet.Entities.Cat.Sistema;
@@ -35,6 +38,7 @@ namespace KiiniHelp.UserControls.Detalles
         private readonly ServiceEstatusClient _servicioEstatus = new ServiceEstatusClient();
         private readonly ServiceUsuariosClient _servicioUsuario = new ServiceUsuariosClient();
         private readonly ServiceSubRolClient _servicioSubRol = new ServiceSubRolClient();
+        private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         private List<string> _lstError = new List<string>();
 
         #region Propiedades
@@ -158,6 +162,26 @@ namespace KiiniHelp.UserControls.Detalles
 
 
         #endregion Propiedades
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
+
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
+            }
+        }
 
         #region Metodos
         public void LlenaTicket(int idTicket, bool asigna)
@@ -314,6 +338,8 @@ namespace KiiniHelp.UserControls.Detalles
                     if (ddlUsuarioAsignacion.Entries.Count <= 0)
                         throw new Exception("Debe seleccionar un agente para asignar");
                 }
+                if (Session["FilesCommentAgent" + IdTicket] != null && txtConversacion.Text.Trim() == string.Empty)
+                    throw new Exception("Debe agregar un comentario");
             }
             catch (Exception ex)
             {
@@ -329,6 +355,15 @@ namespace KiiniHelp.UserControls.Detalles
             {
                 if (!IsPostBack)
                 {
+                    ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
+                    if (parametros != null)
+                    {
+                        foreach (ArchivosPermitidos alowedFile in _serviciosParametros.ObtenerArchivosPermitidos())
+                        {
+                            ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                        }
+                        TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                    }
                     if (Request.QueryString["id"] != null && Request.QueryString["asigna"] != null)
                     {
                          LlenaTicket(int.Parse(Request.QueryString["id"]), bool.Parse(Request.QueryString["asigna"]));
@@ -468,6 +503,7 @@ namespace KiiniHelp.UserControls.Detalles
                 if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
                     Image img = (Image)e.Item.FindControl("imgAgente");
+                    Repeater rptArchivos = (Repeater)e.Item.FindControl("rptArchivos");
                     if (img != null)
                     {
                         byte[] foto = new ServiceUsuariosClient().ObtenerFoto(((HelperConversacionDetalle)e.Item.DataItem).IdUsuario);
@@ -477,6 +513,11 @@ namespace KiiniHelp.UserControls.Detalles
 
                             img.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
 
+                    }
+                    if (rptArchivos != null)
+                    {
+                        rptArchivos.DataSource = ((HelperConversacionDetalle)e.Item.DataItem).Archivo;
+                        rptArchivos.DataBind();
                     }
                 }
             }
@@ -536,10 +577,10 @@ namespace KiiniHelp.UserControls.Detalles
                 idNivelAsignado = IdNivelParaAsignacion;
                 idUsuarioAsignado = IdUsuarioAsignacion;
 
-                
+                List<string> lstArchivo = Session["FilesCommentAgent" + IdTicket] == null ? null : (List<string>)Session["FilesCommentAgent" + IdTicket];
 
-                _servicioAtencionTicket.GenerarEvento(IdTicket, idUsuarioGeneraEvento, idEstatusTicket, idEstatusAsignacion, idNivelAsignado, idUsuarioAsignado, mensajeConversacion, conversacionPrivada, enviaCorreo, sistema, null, comentarioAsignacion, EsPropietario);
-
+                _servicioAtencionTicket.GenerarEvento(IdTicket, idUsuarioGeneraEvento, idEstatusTicket, idEstatusAsignacion, idNivelAsignado, idUsuarioAsignado, mensajeConversacion, conversacionPrivada, enviaCorreo, sistema, lstArchivo, comentarioAsignacion, EsPropietario);
+                Session["FilesCommentAgent" + IdTicket] = null;
                 if (OnCierraTicket != null)
                     OnCierraTicket(IdTicket, idEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado || idEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado || idEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto);
                 Page.Response.Redirect(Page.Request.Url.ToString(), true);
@@ -725,6 +766,44 @@ namespace KiiniHelp.UserControls.Detalles
         }
 
         #endregion Estatus
+
+        protected void afuArchivo_OnUploadedComplete(object sender, AsyncFileUploadEventArgs e)
+        {
+            try
+            {
+                if (TamañoArchivo > 0)
+                {
+                    if ((double.Parse(e.FileSize) / 1024) > (10 * 1024))
+                    {
+                        Response.Write("Size is limited to 2MB");
+                        throw new Exception(string.Format("El tamaño maximo de carga es de {0}MB", "10"));
+                    }
+                }
+
+                Session["FilesCommentAgent" + IdTicket] = null;
+                List<string> lstArchivo = Session["FilesCommentAgent" + IdTicket] == null ? new List<string>() : (List<string>)Session["FilesCommentAgent" + IdTicket];
+                if (lstArchivo.Any(archivosCargados => archivosCargados.Split('_')[0] == e.FileName.Split('\\').Last()))
+                    return;
+                string extension = Path.GetExtension(e.FileName.Split('\\').Last());
+                if (extension == null) return;
+                string filename = string.Format("{0}_{1}_{2}{3}{4}{5}{6}{7}{8}", e.FileName.Split('\\').Last().Replace(extension, string.Empty), lblNoticket.Text, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, extension);
+                AsyncFileUpload uploadControl = (AsyncFileUpload)sender;
+                if (!Directory.Exists(BusinessVariables.Directorios.RepositorioTemporalMascara))
+                    Directory.CreateDirectory(BusinessVariables.Directorios.RepositorioTemporalMascara);
+                uploadControl.SaveAs(BusinessVariables.Directorios.RepositorioTemporalMascara + filename);
+                lstArchivo.Add(filename);
+                Session["FilesCommentAgent" + IdTicket] = lstArchivo;
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
 
         protected void ddlHistorial_OnSelectedIndexChanged(object sender, EventArgs e)
         {

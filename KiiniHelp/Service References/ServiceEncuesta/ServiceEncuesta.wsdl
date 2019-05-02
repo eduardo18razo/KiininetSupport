@@ -100,6 +100,12 @@
   <wsdl:message name="IServiceEncuesta_ObtenerGraficoNps_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerGraficoNpsResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoNpsDescarga_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoNpsDescarga" />
+  </wsdl:message>
+  <wsdl:message name="IServiceEncuesta_ObtenerGraficoNpsDescarga_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerGraficoNpsDescargaResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceEncuesta_ObtenerGraficoCalificacion_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerGraficoCalificacion" />
   </wsdl:message>
@@ -188,6 +194,10 @@
     <wsdl:operation name="ObtenerGraficoNps">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNps" message="tns:IServiceEncuesta_ObtenerGraficoNps_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsResponse" message="tns:IServiceEncuesta_ObtenerGraficoNps_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoNpsDescarga">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsDescarga" message="tns:IServiceEncuesta_ObtenerGraficoNpsDescarga_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsDescargaResponse" message="tns:IServiceEncuesta_ObtenerGraficoNpsDescarga_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ObtenerGraficoCalificacion">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacion" message="tns:IServiceEncuesta_ObtenerGraficoCalificacion_InputMessage" />
@@ -326,6 +336,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerGraficoNps">
       <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerGraficoNpsDescarga">
+      <soap:operation soapAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsDescarga" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

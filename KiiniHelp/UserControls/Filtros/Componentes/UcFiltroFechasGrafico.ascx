@@ -32,22 +32,130 @@
         numOfdaysPastSinceLastMonday = d1.getDay() - 1;
         d1.setDate(d1.getDate() - numOfdaysPastSinceLastMonday);
         d1.setDate(d1.getDate() + (7 * (weekNo - d1.getWeek())));
-        rangeIsFrom = d1.getDate() + "/" + (d1.getMonth() + 1) + "/" + d1.getFullYear();
+        rangeIsFrom = padLeft(d1.getDate(), 2, '0') + "/" + padLeft((d1.getMonth() + 1), 2, '0') + "/" + d1.getFullYear();
         d1.setDate(d1.getDate() + 6);
-        rangeIsTo = +d1.getDate() + "/" + (d1.getMonth() + 1) + "/" + d1.getFullYear();
+        rangeIsTo = padLeft(+d1.getDate(), 2, '0') + "/" + padLeft((d1.getMonth() + 1), 2, '0') + "/" + d1.getFullYear();
         return [rangeIsFrom, rangeIsTo];
         //return rangeIsFrom + " to " + rangeIsTo;
     };
+    function padLeft(data, size, paddingChar) {
+        return (new Array(size + 1).join(paddingChar || '0') + String(data)).slice(-size);
+    }
 
+    function SetStartDate(txt) {
+        debugger;
+        var dateText = txt.value;
+        var dateSplit = dateText.split("/");
+        if (dateSplit.length < 3) {
+            return;
+        }
+        var c;
+        if (dateText.length < 10) {
+            dateText = "";
+            for (c = 0; c < dateSplit.length; c++) {
+                if (c == 2) {
+                    if (dateSplit[c].length < 4) {
+                        return;
+                    }
+                    dateText += padLeft(dateSplit[c], 4, '0');
+                } else {
+                    dateText += padLeft(dateSplit[c], 2, '0') + '/';
+                }
+
+            }
+        }
+        if (dateText.length == 10) {
+
+            switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
+                case "1":
+                    $('#<%= txtFechaInicio.ClientID %>').val(dateText);
+                    break;
+                case "2":
+                    var dateStringWeek = dateText; // Oct 23
+                    var datePartsWeek = dateStringWeek.split("/");
+                    var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
+                    var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
+                    $('#<%= txtFechaInicio.ClientID %>').val(result[0]);
+                    break;
+                case "3":
+                    var dateStringMonth = dateText;
+                    var datePartsMonth = dateStringMonth.split("/");
+                    var firstDay = new Date(datePartsMonth[2], datePartsMonth[1] - 1, 1);
+                    $('#<%= txtFechaInicio.ClientID %>').val(padLeft((firstDay.getDate()), 2, '0') + '/' + padLeft((firstDay.getMonth() + 1), 2, '0') + '/' + firstDay.getFullYear());
+                    break;
+                case "4":
+                    var dateStringYear = dateText; // Oct 23
+                    var datePartsYear = dateStringYear.split("/");
+                    var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
+                    var yearYear = dateObjectYear.getUTCFullYear();
+                    $('#<%= txtFechaInicio.ClientID %>').val('01/01/' + yearYear);
+                    break;
+            }
+        }
+    }
+
+    function SetEndDate(txt) {
+        debugger;
+        var dateText = txt.value;
+        var dateSplit = dateText.split("/");
+        if (dateSplit.length < 3) {
+            return;
+        }
+        var c;
+        if (dateText.length < 10) {
+            dateText = "";
+            for (c = 0; c < dateSplit.length; c++) {
+                if (c == 2) {
+                    if (dateSplit[c].length < 4) {
+                        return;
+                    }
+                    dateText += padLeft(dateSplit[c], 4, '0');
+                } else {
+                    dateText += padLeft(dateSplit[c], 2, '0') + '/';
+                }
+
+            }
+        }
+        if (dateText.length == 10) {
+            switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
+                case "1":
+                    $('#<%= txtFechaFin.ClientID %>').val(dateText);
+                    break;
+                case "2":
+                    var dateStringWeek = dateText; // Oct 23
+                    var datePartsWeek = dateStringWeek.split("/");
+                    var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
+                    var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
+                    $('#<%= txtFechaFin.ClientID %>').val(result[1]);
+                    break;
+                case "3":
+                    var dateStringMonth = dateText;
+                    var datePartsMonth = dateStringMonth.split("/");
+
+                    var lastDay = new Date(datePartsMonth[2], datePartsMonth[1], 0);
+
+                    $('#<%= txtFechaFin.ClientID %>').val(padLeft((lastDay.getDate()), 2, '0') + '/' + padLeft((lastDay.getMonth() + 1), 2, '0') + '/' + lastDay.getFullYear());
+                break;
+            case "4":
+                var dateStringYear = dateText;
+                var datePartsYear = dateStringYear.split("/");
+                var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
+                var yearYear = dateObjectYear.getUTCFullYear();
+                $('#<%= txtFechaFin.ClientID %>').val('31/12/' + yearYear);
+                break;
+        }
+    }
+}
 </script>
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
-        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="col-lg-3">
+        <asp:HiddenField runat="server" ID="hfGrafico" Value="0" />
+        <div class="row no-padding-top no-padding-left">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 no-padding-top no-padding-left">
                 <div class="form-group">
-                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Visualizar:</label>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">
-                        <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="form-control widht204" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
+                    <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">Visualizar gráfica:</label>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">
+                        <asp:DropDownList runat="server" ID="ddlTipoFiltro" CssClass="form-control" OnSelectedIndexChanged="ddlTipoFiltro_OnSelectedIndexChanged">
                             <asp:ListItem Text="Diario" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Semanal" Value="2"></asp:ListItem>
                             <asp:ListItem Text="Mensual" Value="3"></asp:ListItem>
@@ -56,19 +164,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 no-padding-top no-padding-left">
                 <div class="form-group">
-                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Inicio:</label>
-                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                        <asp:TextBox runat="server" CssClass="form-control widht204" ID="txtFechaInicio" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                    <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">Fecha Inicio:</label>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-lg-12 no-padding-left no-margin-left">
+                        <asp:TextBox runat="server" CssClass="form-control" ID="txtFechaInicio" autocomplete="off" onkeyup="SetStartDate(this);" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 no-padding-top no-padding-left">
                 <div class="form-group">
-                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Fecha Fin:</label>
-                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
-                        <asp:TextBox runat="server" CssClass="form-control widht204" ID="txtFechaFin" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
+                    <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">Fecha Fin:</label>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">
+                        <asp:TextBox runat="server" CssClass="form-control" ID="txtFechaFin" autocomplete="off" onkeyup="SetEndDate(this);" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                     </div>
                 </div>
             </div>
@@ -88,26 +196,101 @@
                         switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
                             case "1":
                                 $('#<%= txtFechaInicio.ClientID %>').val(dateText);
-                        break;
-                    case "2":
-                        var dateStringWeek = dateText; // Oct 23
-                        var datePartsWeek = dateStringWeek.split("/");
-                        var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
-                        var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
-                        $('#<%= txtFechaInicio.ClientID %>').val(result[0]);
-                        break;
-                    case "3":
-                        var dateStringMonth = dateText;
-                        var datePartsMonth = dateStringMonth.split("/");
-                        var firstDay = new Date(datePartsMonth[2], datePartsMonth[1] - 1, 1);
-                        $('#<%= txtFechaInicio.ClientID %>').val((firstDay.getDate()) + '/' + (firstDay.getMonth() + 1) + '/' + firstDay.getFullYear());
-                        break;
-                    case "4":
-                        var dateStringYear = dateText; // Oct 23
-                        var datePartsYear = dateStringYear.split("/");
-                        var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
-                        var yearYear = dateObjectYear.getUTCFullYear();
-                        $('#<%= txtFechaInicio.ClientID %>').val('01/01/' + yearYear);
+                                break;
+                            case "2":
+                                var dateStringWeek = dateText; // Oct 23
+                                var datePartsWeek = dateStringWeek.split("/");
+                                var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
+                                var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
+                                $('#<%= txtFechaInicio.ClientID %>').val(result[0]);
+                                break;
+                            case "3":
+                                var dateStringMonth = dateText;
+                                var datePartsMonth = dateStringMonth.split("/");
+                                var firstDay = new Date(datePartsMonth[2], datePartsMonth[1] - 1, 1);
+                                $('#<%= txtFechaInicio.ClientID %>').val(padLeft((firstDay.getDate()), 2, '0') + '/' + padLeft((firstDay.getMonth() + 1), 2, '0') + '/' + firstDay.getFullYear());
+                                break;
+                            case "4":
+                                var dateStringYear = dateText; // Oct 23
+                                var datePartsYear = dateStringYear.split("/");
+                                var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
+                                var yearYear = dateObjectYear.getUTCFullYear();
+                                $('#<%= txtFechaInicio.ClientID %>').val('01/01/' + yearYear);
+                                break;
+                        }
+                    }
+                });
+
+                $('#<%= txtFechaFin.ClientID %>').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    firstDay: 1,
+                    onSelect: function (dateText, inst) {
+                        debugger;
+                        switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
+                            case "1":
+                                $('#<%= txtFechaFin.ClientID %>').val(dateText);
+                                break;
+                            case "2":
+                                var dateStringWeek = dateText; // Oct 23
+                                var datePartsWeek = dateStringWeek.split("/");
+                                var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
+                                var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
+                                $('#<%= txtFechaFin.ClientID %>').val(result[1]);
+                                break;
+                            case "3":
+                                var dateStringMonth = dateText;
+                                var datePartsMonth = dateStringMonth.split("/");
+
+                                var lastDay = new Date(datePartsMonth[2], datePartsMonth[1], 0);
+
+                                $('#<%= txtFechaFin.ClientID %>').val(padLeft((lastDay.getDate()), 2, '0') + '/' + padLeft((lastDay.getMonth() + 1), 2, '0') + '/' + lastDay.getFullYear());
+                                break;
+                            case "4":
+                                var dateStringYear = dateText;
+                                var datePartsYear = dateStringYear.split("/");
+                                var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
+                                var yearYear = dateObjectYear.getUTCFullYear();
+                                $('#<%= txtFechaFin.ClientID %>').val('31/12/' + yearYear);
+                                break;
+                        }
+                    }
+                });
+            });
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+
+            prm.add_endRequest(function () {
+                $('#<%= ddlTipoFiltro.ClientID %>').on('change', function () {
+                    $('#<%= txtFechaInicio.ClientID %>').val('');
+                    $('#<%= txtFechaFin.ClientID %>').val('');
+                });
+                $('#<%= txtFechaInicio.ClientID %>').datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    firstDay: 1,
+                    onSelect: function (dateText, inst) {
+                        debugger;
+                        switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
+                            case "1":
+                                $('#<%= txtFechaInicio.ClientID %>').val(dateText);
+                                break;
+                            case "2":
+                                var dateStringWeek = dateText; // Oct 23
+                                var datePartsWeek = dateStringWeek.split("/");
+                                var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
+                                var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
+                                $('#<%= txtFechaInicio.ClientID %>').val(result[0]);
+                                break;
+                            case "3":
+                                var dateStringMonth = dateText;
+                                var datePartsMonth = dateStringMonth.split("/");
+                                var firstDay = new Date(datePartsMonth[2], datePartsMonth[1] - 1, 1);
+                                $('#<%= txtFechaInicio.ClientID %>').val(padLeft((firstDay.getDate()), 2, '0') + '/' + padLeft((firstDay.getMonth() + 1), 2, '0') + '/' + firstDay.getFullYear());
+                                break;
+                            case "4":
+                                var dateStringYear = dateText; // Oct 23
+                                var datePartsYear = dateStringYear.split("/");
+                                var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
+                                var yearYear = dateObjectYear.getUTCFullYear();
+                                $('#<%= txtFechaInicio.ClientID %>').val('01/01/' + yearYear);
                         break;
                 }
                     }
@@ -121,108 +304,33 @@
                         switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
                             case "1":
                                 $('#<%= txtFechaFin.ClientID %>').val(dateText);
-                        break;
-                    case "2":
-                        var dateStringWeek = dateText; // Oct 23
-                        var datePartsWeek = dateStringWeek.split("/");
-                        var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
-                        var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
-                        $('#<%= txtFechaFin.ClientID %>').val(result[1]);
-                        break;
-                    case "3":
-                        var dateStringMonth = dateText;
-                        var datePartsMonth = dateStringMonth.split("/");
+                                break;
+                            case "2":
+                                var dateStringWeek = dateText; // Oct 23
+                                var datePartsWeek = dateStringWeek.split("/");
+                                var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
+                                var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
+                                $('#<%= txtFechaFin.ClientID %>').val(result[1]);
+                                break;
+                            case "3":
+                                var dateStringMonth = dateText;
+                                var datePartsMonth = dateStringMonth.split("/");
 
-                        var lastDay = new Date(datePartsMonth[2], datePartsMonth[1], 0);
+                                var lastDay = new Date(datePartsMonth[2], datePartsMonth[1], 0);
 
-                        $('#<%= txtFechaFin.ClientID %>').val((lastDay.getDate()) + '/' + (lastDay.getMonth() + 1) + '/' + lastDay.getFullYear());
-                        break;
-                    case "4":
-                        var dateStringYear = dateText;
-                        var datePartsYear = dateStringYear.split("/");
-                        var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
-                        var yearYear = dateObjectYear.getUTCFullYear();
-                        $('#<%= txtFechaFin.ClientID %>').val('31/12/' + yearYear);
+                                $('#<%= txtFechaFin.ClientID %>').val(padLeft((lastDay.getDate()), 2, '0') + '/' + padLeft((lastDay.getMonth() + 1), 2, '0') + '/' + lastDay.getFullYear());
+                                break;
+                            case "4":
+                                var dateStringYear = dateText;
+                                var datePartsYear = dateStringYear.split("/");
+                                var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
+                                var yearYear = dateObjectYear.getUTCFullYear();
+                                $('#<%= txtFechaFin.ClientID %>').val('31/12/' + yearYear);
                         break;
                 }
                     }
                 });
             });
-    var prm = Sys.WebForms.PageRequestManager.getInstance();
-
-    prm.add_endRequest(function () {
-        $('#<%= ddlTipoFiltro.ClientID %>').on('change', function () {
-            $('#<%= txtFechaInicio.ClientID %>').val('');
-            $('#<%= txtFechaFin.ClientID %>').val('');
-        });
-        $('#<%= txtFechaInicio.ClientID %>').datepicker({
-                dateFormat: 'dd/mm/yy',
-                firstDay: 1,
-                onSelect: function (dateText, inst) {
-                    debugger;
-                    switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
-                    case "1":
-                        $('#<%= txtFechaInicio.ClientID %>').val(dateText);
-                        break;
-                    case "2":
-                        var dateStringWeek = dateText; // Oct 23
-                        var datePartsWeek = dateStringWeek.split("/");
-                        var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
-                        var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
-                        $('#<%= txtFechaInicio.ClientID %>').val(result[0]);
-                            break;
-                        case "3":
-                            var dateStringMonth = dateText;
-                            var datePartsMonth = dateStringMonth.split("/");
-                            var firstDay = new Date(datePartsMonth[2], datePartsMonth[1] - 1, 1);
-                            $('#<%= txtFechaInicio.ClientID %>').val((firstDay.getDate()) + '/' + (firstDay.getMonth() + 1) + '/' + firstDay.getFullYear());
-                            break;
-                        case "4":
-                            var dateStringYear = dateText; // Oct 23
-                            var datePartsYear = dateStringYear.split("/");
-                            var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
-                            var yearYear = dateObjectYear.getUTCFullYear();
-                            $('#<%= txtFechaInicio.ClientID %>').val('01/01' + yearYear);
-                            break;
-                    }
-            }
-            });
-
-            $('#<%= txtFechaFin.ClientID %>').datepicker({
-                dateFormat: 'dd/mm/yy',
-                firstDay: 1,
-                onSelect: function (dateText, inst) {
-                    debugger;
-                    switch ($('#<%= ddlTipoFiltro.ClientID %>').val()) {
-                    case "1":
-                        $('#<%= txtFechaFin.ClientID %>').val(dateText);
-                        break;
-                    case "2":
-                        var dateStringWeek = dateText; // Oct 23
-                        var datePartsWeek = dateStringWeek.split("/");
-                        var dateObjectWeek = new Date(datePartsWeek[2], datePartsWeek[1] - 1, datePartsWeek[0]);
-                        var result = getDateRangeOfWeek(getWeekNumber(dateObjectWeek)[1], dateObjectWeek.getFullYear());
-                        $('#<%= txtFechaFin.ClientID %>').val(result[1]);
-                            break;
-                        case "3":
-                            var dateStringMonth = dateText;
-                            var datePartsMonth = dateStringMonth.split("/");
-
-                            var lastDay = new Date(datePartsMonth[2], datePartsMonth[1], 0);
-
-                            $('#<%= txtFechaFin.ClientID %>').val((lastDay.getDate()) + '/' + (lastDay.getMonth() + 1) + '/' + lastDay.getFullYear());
-                            break;
-                        case "4":
-                            var dateStringYear = dateText;
-                            var datePartsYear = dateStringYear.split("/");
-                            var dateObjectYear = new Date(datePartsYear[2], datePartsYear[1] - 1, datePartsYear[0]);
-                            var yearYear = dateObjectYear.getUTCFullYear();
-                            $('#<%= txtFechaFin.ClientID %>').val('31/12/' + yearYear);
-                            break;
-                    }
-            }
-        });
-        });
         </script>
     </ContentTemplate>
 </asp:UpdatePanel>

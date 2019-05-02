@@ -34,7 +34,7 @@
                             </p>
                         </div>
                         <p class="text-right margin-top-10">
-                            <asp:Button runat="server" CssClass="btn btn-success" Text="Terminar" ID="btnTerminar" OnClick="btnTerminar_OnClick"></asp:Button>
+                            <asp:Button runat="server" CssClass="btn btn-success" Text="Terminar" ID="btnTerminar" Visible="False" OnClick="btnTerminar_OnClick"></asp:Button>
                         </p>
                     </div>
                 </div>

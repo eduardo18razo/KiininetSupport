@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -78,10 +77,23 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Encuestas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                LlenaCombos();
-                LlenaArboles();
+                if (!IsPostBack)
+                {
+                    ucFiltroFechasGrafico.ObtenerFechasParametro();
+                    LlenaCombos();
+                    LlenaArboles();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
 

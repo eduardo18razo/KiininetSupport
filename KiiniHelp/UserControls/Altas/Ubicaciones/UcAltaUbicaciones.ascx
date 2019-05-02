@@ -169,6 +169,23 @@
                                     </div>
 
                                     <div runat="server" id="dataCampus" visible="true">
+                                        <!--CALLE-->
+                                        <div class="form-group margin-top">
+                                            Calle*<br />
+                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtCalle" onkeydown="return (event.keyCode!=13);" MaxLength="99"></asp:TextBox>
+                                        </div>
+
+                                        <!--NUM EXT-->
+                                        <div class="form-group margin-top">
+                                            Número Exterior*<br />
+                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtNoExt" onkeydown="return (event.keyCode!=13);" MaxLength="20"></asp:TextBox>
+                                        </div>
+                                        <!--NUM INT-->
+                                        <div class="form-group margin-top">
+                                            Número Interior<br />
+                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtNoInt" onkeydown="return (event.keyCode!=13);" MaxLength="20"></asp:TextBox>
+                                        </div>
+
                                         <!--CP-->
                                         <div class="form-group margin-top">
                                             CP*<br />
@@ -197,27 +214,8 @@
                                             Estado*<br />
                                             <asp:TextBox runat="server" CssClass="form-control" ID="txtEstado" onkeydown="return (event.keyCode!=13);" ReadOnly="True" />
                                         </div>
-
-                                        <!--CALLE-->
-                                        <div class="form-group margin-top">
-                                            Calle*<br />
-                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtCalle" onkeydown="return (event.keyCode!=13);" MaxLength="99"></asp:TextBox>
-                                        </div>
-
-                                        <!--NUM EXT-->
-                                        <div class="form-group margin-top">
-                                            Número Exterior*<br />
-                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtNoExt" onkeydown="return (event.keyCode!=13);" MaxLength="20"></asp:TextBox>
-                                        </div>
-                                        <!--NUM INT-->
-                                        <div class="form-group margin-top">
-                                            Número Interior<br />
-                                            <asp:TextBox runat="server" CssClass="form-control" ID="txtNoInt" onkeydown="return (event.keyCode!=13);" MaxLength="20"></asp:TextBox>
-                                        </div>
-
-                                        <!--BTN GUARDAR-->
                                     </div>
-
+                                    <!--BTN GUARDAR-->
                                     <div class="form-group margin-top" runat="server" id="divCapturaDescripcion">
                                         <div class="text-right">
                                             <asp:LinkButton runat="server" ID="btnGuardarCatalogo" OnClick="btnGuardarCatalogo_OnClick" class="fa fa-plus-circle" />

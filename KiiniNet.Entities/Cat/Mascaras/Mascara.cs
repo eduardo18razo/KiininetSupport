@@ -7,6 +7,7 @@ using KiiniNet.Entities.Parametros;
 
 namespace KiiniNet.Entities.Cat.Mascaras
 {
+    [Serializable]
     [DataContract(IsReference = true)]
     public class Mascara
     {

@@ -122,7 +122,7 @@
 
     .RadComboBox .rcbReadOnly .rcbInput, .RadComboBox .rcbDisabled .rcbInput{
         top: 6px !important;
-        position: absolute !important;
+        /*position: absolute !important;*/
         left: 0 !important;
         padding-left: 5px !important;
         width: 90% !important;

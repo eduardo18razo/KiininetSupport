@@ -165,6 +165,10 @@ namespace KiiniNet.Entities.Operacion.Usuarios
         [DataMember]
         public string UbicacionFinal { get; set; }
         [DataMember]
+        public string CorreoPrincipal { get; set; }
+        [DataMember]
+        public string TelefonoPrincipal { get; set; }
+        [DataMember]
         public string FechaUltimoAccesoExito
         {
             get; set; 

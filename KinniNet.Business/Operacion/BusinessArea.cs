@@ -5,7 +5,6 @@ using System.Linq;
 using KiiniNet.Entities.Operacion;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
-using Telerik.Web.UI;
 
 namespace KinniNet.Core.Operacion
 {
@@ -288,7 +287,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.Area.Where(w => w.Habilitado).OrderBy(o => o.Descripcion).ToList();
+                result = db.Area.Where(w => w.Habilitado && !w.Sistema).OrderBy(o => o.Descripcion).ToList();
                 if (insertarSeleccion)
                     result.Insert(BusinessVariables.ComboBoxCatalogo.IndexSeleccione,
                         new Area
@@ -414,7 +413,7 @@ namespace KinniNet.Core.Operacion
             {
 
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                IQueryable<Area> qry = db.Area;
+                IQueryable<Area> qry = db.Area.Where(w => !w.Sistema);
                 if (descripcion != string.Empty)
                     qry = qry.Where(w => w.Descripcion.Contains(descripcion));
                 result = qry.OrderBy(o => o.Descripcion).ToList();

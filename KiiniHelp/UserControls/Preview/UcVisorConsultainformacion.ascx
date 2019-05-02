@@ -18,6 +18,14 @@
         <asp:HiddenField runat="server" ID="hfIdTipoUsuario" />
         <asp:HiddenField runat="server" ID="hfEvaluacion" />
         <asp:HiddenField runat="server" ID="hfMeGusta" />
+        <ol class="breadcrumb">
+                <li class="text-theme">
+                    <asp:LinkButton runat="server" Text="text-theme" ID="lbtnHome" OnClick="lbtnHome_OnClick">Home</asp:LinkButton></li>
+                <li class="text-theme">
+                    <asp:LinkButton runat="server" Text="text-theme" ID="lbtnTipoUsuario" OnClick="lbtnTipoUsuario_OnClick">TipoUsuario</asp:LinkButton></li>
+                <li class="active">
+                    <asp:Label runat="server" ID="lblDescripcionConsulta" /></li>
+            </ol>
         <section class="module">
             <div class="row">
                 <div class="module-inner">

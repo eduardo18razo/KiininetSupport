@@ -52,7 +52,10 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 result = db.Sla.SingleOrDefault(w => w.Id == idSla);
-                db.LoadProperty(result, "SlaDetalle");
+                if (result != null)
+                {
+                    db.LoadProperty(result, "SlaDetalle");
+                }
             }
             catch (Exception ex)
             {

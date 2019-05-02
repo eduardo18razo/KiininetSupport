@@ -8,7 +8,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -64,10 +66,10 @@
         </asp:UpdateProgress>
 
         <header class="header">
-            <div class="branding">
-                <h1 class="logo text-center">
-                    <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
-                        <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/logo.png" alt="icon" runat="server" />
+            <div class="branding" >
+                <h1 class="logo text-center" style="padding: 5px">
+                    <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server" style="height: 60px; width: 60px">
+                        <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/IconoPage.png" alt="icon" runat="server" style="height: 60px; width: 60px"/>
                         <asp:Label runat="server" ID="lblBranding" Visible="false" />
                     </asp:HyperLink>
                 </h1>
@@ -286,12 +288,12 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalSessionAbierta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <%--<div class="modal fade" id="modalSessionAbierta" tabindex="-1" role="dialog" aria-labelledby="modalSessionAbiertaTitle" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <asp:LinkButton class="close" runat="server" ID="btnCerramodalSessionAbierta" OnClick="btnCerramodalSessionAbierta_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                        <h6 class="modal-title" id="myModalLabel">Sesion abierta </h6>
+                        <h6 class="modal-title" id="modalSessionAbiertaTitle">Sesion abierta </h6>
                     </div>
                     <div class="modal-body">
                         <asp:UpdatePanel runat="server">
@@ -313,7 +315,7 @@
                     <div class="modal-footer"></div>
                 </div>
             </div>
-        </div>
+        </div>--%>
 
         <div class="row">
             <footer id="footer" class="site-footer">

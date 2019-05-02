@@ -460,7 +460,23 @@ namespace KinniNet.Core.Operacion
             {
 
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                mascara.Descripcion = mascara.Descripcion.Trim();
+                string descripcionFormulario = string.Empty;
+                string[] descripcionWord = mascara.Descripcion.Split(' ');
+                for (int i = 0; i < descripcionWord.Length; i++)
+                {
+                    if (descripcionWord[i] != string.Empty)
+                    {
+                        
+                    if (i == descripcionWord.Length - 1)
+                    {
+                        descripcionFormulario += string.Format("{0}", descripcionWord[i]);
+                    }
+                    else
+                        descripcionFormulario += string.Format("{0} ", descripcionWord[i]);
+                    }
+                }
+                descripcionFormulario = descripcionFormulario.Trim();
+                mascara.Descripcion = descripcionFormulario.Trim();
                 if (db.Mascara.Any(a => a.Descripcion == mascara.Descripcion && a.Id != mascara.Id))
                     throw new Exception("Ya existe un Formulario con este nombre");
 
@@ -477,10 +493,15 @@ namespace KinniNet.Core.Operacion
                         campoMascara.Catalogos = null;
                     }
                     Guid id = Guid.NewGuid();
+
                     string[] words = mascara.Descripcion.Split(' ');
-                    string name = words.Aggregate<string, string>(null, (current, word) => current + word.Substring(0, 1));
+
+                    string name = string.Empty;
+                    name = words.Aggregate(name, (current, word) => word.Length > 0 ? current + word.Substring(0, 1) : current);
                     name += id.ToString();
                     mascara.NombreTabla = (BusinessVariables.ParametrosMascaraCaptura.PrefijoTabla + BusinessCadenas.Cadenas.FormatoBaseDatos(name)).ToUpper();
+                    if (mascara.NombreTabla.Trim() == string.Empty)
+                        throw new Exception("Nombre incorrecto");
                     mascara.ComandoInsertar = (BusinessVariables.ParametrosMascaraCaptura.PrefijoComandoInsertar + BusinessCadenas.Cadenas.FormatoBaseDatos(name).Replace(" ", string.Empty)).ToUpper();
                     mascara.ComandoActualizar = (BusinessVariables.ParametrosMascaraCaptura.PrefijoComandoActualizar + BusinessCadenas.Cadenas.FormatoBaseDatos(name).Replace(" ", string.Empty)).ToUpper();
                     mascara.Habilitado = true;

@@ -43,9 +43,11 @@ namespace KinniNet.Core.Security
                 {
                     string hashedPdw = SecurityUtils.CreateShaHash(password);
                     var qry = (from u in db.Usuario
-                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
-                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
-                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
+                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario into cor
+                               from corur in cor.DefaultIfEmpty()
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario into tel
+                               from telur in tel.DefaultIfEmpty()
+                               where u.NombreUsuario == user || (corur.Correo == user && corur.Obligatorio) || (telur.Numero == user && telur.Principal)
                                select u.Id).Distinct().ToList();
                     if (qry.Count > 1)
                         throw new Exception("Error al ingresar consulte a su administrador.");
@@ -135,9 +137,11 @@ namespace KinniNet.Core.Security
                     db.ContextOptions.ProxyCreationEnabled = _proxy;
                     string hashedPdw = SecurityUtils.CreateShaHash(password);
                     var qry = (from u in db.Usuario
-                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
-                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
-                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
+                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario into cor
+                               from corur in cor.DefaultIfEmpty()
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario into tel
+                               from telur in tel.DefaultIfEmpty()
+                               where u.NombreUsuario == user || (corur.Correo == user && corur.Obligatorio) || (telur.Numero == user && telur.Principal)
                                select u.Id).Distinct().ToList();
                     if (qry.Count() > 1)
                         throw new Exception("Error al ingresar consulte a su administrador.");
@@ -483,9 +487,11 @@ namespace KinniNet.Core.Security
                 {
                     string hashedPdw = SecurityUtils.CreateShaHash(password);
                     var qry = (from u in db.Usuario
-                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
-                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
-                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
+                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario into cor
+                               from corur in cor.DefaultIfEmpty()
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario into tel
+                               from telur in tel.DefaultIfEmpty()
+                               where u.NombreUsuario == user || (corur.Correo == user && corur.Obligatorio) || (telur.Numero == user && telur.Principal)
                                select u.Id).Distinct().ToList();
                     if (qry.Count > 1)
                         throw new Exception("Error al ingresar consulte a su administrador.");
@@ -525,9 +531,11 @@ namespace KinniNet.Core.Security
                 {
                     string hashedPdw = SecurityUtils.CreateShaHash(password);
                     var qry = (from u in db.Usuario
-                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario
-                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario
-                               where u.NombreUsuario == user || (cu.Correo == user && cu.Obligatorio) || (tu.Numero == user && tu.Principal)
+                               join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario into cor
+                               from corur in cor.DefaultIfEmpty()
+                               join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario into tel
+                               from telur in tel.DefaultIfEmpty()
+                               where u.NombreUsuario == user || (corur.Correo == user && corur.Obligatorio) || (telur.Numero == user && telur.Principal)
                                select u.Id).Distinct().ToList();
                     if (qry.Count > 1)
                         throw new Exception("Error al ingresar consulte a su administrador.");
@@ -744,7 +752,7 @@ namespace KinniNet.Core.Security
                                     if (lstArboles.Any())
                                     {
                                         menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/General/FrmNodoConsultas.aspx?IdArbol=");
+                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/General/FrmNodoConsultas.aspx?IdArbol=", false);
                                     }
                                 }
                                 if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Servicio))
@@ -753,7 +761,7 @@ namespace KinniNet.Core.Security
                                     if (lstArboles.Any())
                                     {
                                         menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
+                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=", false);
                                     }
                                 }
                                 if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Incidentes))
@@ -762,7 +770,7 @@ namespace KinniNet.Core.Security
                                     if (lstArboles.Any())
                                     {
                                         menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
+                                        GeneraSubMenus(menuToAdd, lstArboles, db, "~/Users/Ticket/FrmTicket.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=", false);
                                     }
                                 }
                             }
@@ -813,7 +821,7 @@ namespace KinniNet.Core.Security
                                 if (lstArboles.Any())
                                 {
                                     menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Publico/FrmConsulta.aspx?IdArbol=");
+                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Publico/FrmConsulta.aspx?IdArbol=", true);
                                 }
                             }
                             if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Servicio))
@@ -822,7 +830,7 @@ namespace KinniNet.Core.Security
                                 if (lstArboles.Any())
                                 {
                                     menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
+                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=", true);
                                 }
                             }
                             if (menusConsulta.Any(a => a.Id == (int)BusinessVariables.EnumMenu.Incidentes))
@@ -831,7 +839,7 @@ namespace KinniNet.Core.Security
                                 if (lstArboles.Any())
                                 {
                                     menuToAdd = result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM");
-                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=");
+                                    GeneraSubMenus(menuToAdd, lstArboles, db, "~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=", true);
                                 }
                             }
                             if (result.Single(s => s.Id == area.Id && s.Url == "DELSYSTEM").Menu1 == null)
@@ -851,7 +859,7 @@ namespace KinniNet.Core.Security
                 return result;
             }
 
-            private void GeneraSubMenus(Menu menu, List<ArbolAcceso> lstArboles, DataBaseModelContext db, string url)
+            private void GeneraSubMenus(Menu menu, List<ArbolAcceso> lstArboles, DataBaseModelContext db, string url, bool publico)
             {
                 try
                 {
@@ -869,7 +877,7 @@ namespace KinniNet.Core.Security
                                 {
                                     Descripcion = n.Descripcion,
                                     Id = n.Id,
-                                    Url = arbol.Nivel2 != null ? string.Empty : url + arbol.Id
+                                    Url = arbol.Nivel2 != null ? string.Empty : publico ? url + arbol.Id + "&userType=" + arbol.IdTipoUsuario : url + arbol.Id 
                                 };
                                 menu.Menu1.Add(menuNivel1);
                             }
@@ -887,7 +895,7 @@ namespace KinniNet.Core.Security
                                 {
                                     Descripcion = n.Descripcion,
                                     Id = n.Id,
-                                    Url = arbol.Nivel3 != null ? string.Empty : url + arbol.Id
+                                    Url = arbol.Nivel3 != null ? string.Empty : publico ? url + arbol.Id + "&userType=" + arbol.IdTipoUsuario : url + arbol.Id 
                                 };
                                 menu.Menu1.Single(s => s.Id == arbol.IdNivel1).Menu1.Add(menuNivel1);
                             }
@@ -905,7 +913,7 @@ namespace KinniNet.Core.Security
                                 {
                                     Descripcion = n.Descripcion,
                                     Id = n.Id,
-                                    Url = arbol.Nivel4 != null ? string.Empty : url + arbol.Id
+                                    Url = arbol.Nivel4 != null ? string.Empty : publico ? url + arbol.Id + "&userType=" + arbol.IdTipoUsuario : url + arbol.Id 
                                 };
                                 menu.Menu1.Single(s => s.Id == arbol.IdNivel1).Menu1.Single(s => s.Id == arbol.IdNivel2).Menu1.Add(menuNivel1);
                             }
@@ -923,7 +931,7 @@ namespace KinniNet.Core.Security
                                 {
                                     Descripcion = n.Descripcion,
                                     Id = n.Id,
-                                    Url = arbol.Nivel5 != null ? string.Empty : url + arbol.Id
+                                    Url = arbol.Nivel5 != null ? string.Empty : publico ? url + arbol.Id + "&userType=" + arbol.IdTipoUsuario : url + arbol.Id 
                                 };
                                 menu.Menu1.Single(s => s.Id == arbol.IdNivel1).Menu1.Single(s => s.Id == arbol.IdNivel2).Menu1.Single(s => s.Id == arbol.IdNivel3).Menu1.Add(menuNivel1);
                             }
@@ -941,7 +949,7 @@ namespace KinniNet.Core.Security
                                 {
                                     Descripcion = n.Descripcion,
                                     Id = n.Id,
-                                    Url = arbol.Nivel6 != null ? string.Empty : url + arbol.Id
+                                    Url = arbol.Nivel6 != null ? string.Empty : publico ? url + arbol.Id + "&userType=" + arbol.IdTipoUsuario : url + arbol.Id 
                                 };
                                 menu.Menu1.Single(s => s.Id == arbol.IdNivel1).Menu1.Single(s => s.Id == arbol.IdNivel2).Menu1.Single(s => s.Id == arbol.IdNivel3).Menu1.Single(s => s.Id == arbol.IdNivel4).Menu1.Add(menuNivel1);
                             }
@@ -959,7 +967,7 @@ namespace KinniNet.Core.Security
                                 {
                                     Descripcion = n.Descripcion,
                                     Id = n.Id,
-                                    Url = arbol.Nivel7 != null ? string.Empty : url + arbol.Id
+                                    Url = arbol.Nivel7 != null ? string.Empty : publico ? url + arbol.Id + "&userType=" + arbol.IdTipoUsuario : url + arbol.Id 
                                 };
                                 menu.Menu1.Single(s => s.Id == arbol.IdNivel1).Menu1.Single(s => s.Id == arbol.IdNivel2).Menu1.Single(s => s.Id == arbol.IdNivel3).Menu1.Single(s => s.Id == arbol.IdNivel4).Menu1.Single(s => s.Id == arbol.IdNivel5).Menu1.Add(menuNivel1);
                             }
@@ -976,7 +984,7 @@ namespace KinniNet.Core.Security
                                 {
                                     Descripcion = n.Descripcion,
                                     Id = n.Id,
-                                    Url = url + arbol.Id
+                                    Url = publico ? url + arbol.Id + "&userType=" + arbol.IdTipoUsuario : url + arbol.Id 
                                 };
                                 menu.Menu1.Single(s => s.Id == arbol.IdNivel1).Menu1.Single(s => s.Id == arbol.IdNivel2).Menu1.Single(s => s.Id == arbol.IdNivel3).Menu1.Single(s => s.Id == arbol.IdNivel4).Menu1.Single(s => s.Id == arbol.IdNivel5).Menu1.Single(s => s.Id == arbol.IdNivel6).Menu1.Add(menuNivel1);
                             }

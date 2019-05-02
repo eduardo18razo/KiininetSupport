@@ -20,14 +20,13 @@
                 }
             }
             if (!isValidFile) {
-                ErrorAlert('', 'Archivo con formato no valido');
+                ErrorAlert('', 'Archivo con formato no valido, formatos permitidos: ' + validFilesTypes.join(' '));
                 args.set_cancel(true);
                 return false;
             }
 
-
             if (filesize > sizeallow) {
-                ErrorAlert('', 'Archivo demasiado grande');
+                ErrorAlert('', 'Archivo excede el tamaño permitido');
                 args.set_cancel(true);
                 return false;
             }

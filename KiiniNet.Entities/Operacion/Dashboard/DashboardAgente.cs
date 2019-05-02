@@ -15,7 +15,11 @@ namespace KiiniNet.Entities.Operacion.Dashboard
         public double TicketsResuletosVsCreados { get; set; }
         public double TicketsResuletosVsReabiertos { get; set; }
         public int TotalTicketsReabiertos { get; set; }
-
+        public DateTime FechaInicioPeriodoActual { get; set; }
+        public DateTime FechaFinPeriodoActual { get; set; }
+        public DateTime FechaInicioPeriodoAnterior { get; set; }
+        
+        public DateTime FechaFinPeriodoAnterior { get; set; }
         //Metricas
         public double PromedioPrimeraRespuestaSegundosActual { get; set; }
         public string PromedioPrimeraRespuestaActual { get; set; }

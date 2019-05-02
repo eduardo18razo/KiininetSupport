@@ -5,8 +5,6 @@
 <%@ Register Src="~/UserControls/Filtros/Graficos/Eficiencia/UcFiltrosTicketEstatusAtencion.ascx" TagPrefix="uc1" TagName="UcFiltrosTicketEstatusAtencion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <style>
         .RadComboBox {
             width: 100% !important;
@@ -87,7 +85,6 @@
                     </div>
                 </div>
             </section>
-
             <asp:HiddenField runat="server" ID="hfRegion" />
             <section class="module">
                 <div class="module-inner">
@@ -97,6 +94,7 @@
                                 <div class="center-content-div">
                                     <asp:UpdatePanel runat="server" UpdateMode="Conditional" Visible="True" ID="upGrafica">
                                         <ContentTemplate>
+                                            <asp:GridView runat="server" ID="preview" AutoGenerateColumns="True"></asp:GridView>
                                             <asp:HiddenField runat="server" ID="hfGraficaGenerada" Value="false" />
                                             <iframe name="geocharts" runat="server" id="frameGeoCharts" visible="false" class="frameGraficas"></iframe>
 
@@ -108,7 +106,7 @@
                                                                 <div class="row center-content-div">
                                                                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                                                                         <div class="form-group text-center clearfix">
-                                                                            <label class="col-lg-12 col-md-12 col-sm-12 h5">Vista General</label>
+                                                                            <label class="col-lg-12 col-md-12 col-sm-12 h5">Vista General: <asp:Label runat="server" ID="lblTotal"></asp:Label></label>
                                                                         </div>
                                                                         <div class="form-group text-center clearfix" style="height: 400px" >
                                                                             <tc:RadHtmlChart runat="server" ID="rhcTicketsPie" Width="100%" EnableViewState="True">

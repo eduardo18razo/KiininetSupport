@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using KinniNet.Business.Utils;
-using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Configuracion
 {

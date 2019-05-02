@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceSistemaTipoArbolAcceso;
 using KinniNet.Business.Utils;
 using Telerik.Web.UI;

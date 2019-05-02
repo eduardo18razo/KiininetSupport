@@ -13,24 +13,6 @@ namespace KiiniHelp.UserControls.Filtros.Graficos.Eficiencia {
     public partial class UcFiltrosTicketOrganizacion {
         
         /// <summary>
-        /// Control ucFiltroFechasGrafico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::KiiniHelp.UserControls.Filtros.Componentes.UcFiltroFechasGrafico ucFiltroFechasGrafico;
-        
-        /// <summary>
-        /// Control btnGraficar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGraficar;
-        
-        /// <summary>
         /// Control ucFiltroOrganizacion.
         /// </summary>
         /// <remarks>
@@ -137,5 +119,23 @@ namespace KiiniHelp.UserControls.Filtros.Graficos.Eficiencia {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::KiiniHelp.UserControls.Filtros.Componentes.UcFiltroUbicacion ucFiltroUbicacion;
+        
+        /// <summary>
+        /// Control ucFiltroFechasGrafico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::KiiniHelp.UserControls.Filtros.Componentes.UcFiltroFechasGrafico ucFiltroFechasGrafico;
+        
+        /// <summary>
+        /// Control btnGraficar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGraficar;
     }
 }

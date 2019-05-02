@@ -47,6 +47,7 @@ namespace KiiniHelp.UserControls.Consultas
                 }
                 Tickets = lst;
                 gvTickets.Rebind();
+                
             }
             catch (Exception e)
             {

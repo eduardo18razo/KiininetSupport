@@ -86,16 +86,16 @@
                             <asp:Label runat="server" Text='<%# Eval("Fecha", "{0:d}") %>' ID="lblFecha" CssClass="col-lg-2 col-md-2 col-sm-2 col-xs-2" />
                             <asp:Label runat="server" Text='<%# Eval("Descripcion") %>' ID="lblDescripcion" CssClass="col-lg-8 col-md-8 col-sm-8 col-xs-7" />
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 text-right">
-                                <asp:LinkButton runat="server" ID="lnkBtnEditar" CssClass="btn lnkBtn fa fa-pencil-square-o" CommandArgument='<%# Eval("Fecha") %>' OnClick="lnkBtnEditar_OnClick"></asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="lnkBtnEditar" CssClass="btn lnkBtn fa fa-pencil-square-o" CommandArgument='<%# ((DateTime)Eval("Fecha")).ToString("dd/MM/yyyy") %>' OnClick="lnkBtnEditar_OnClick"></asp:LinkButton>
                                 <asp:Label runat="server" Text="|" ID="lblSeparador"></asp:Label>
-                                <asp:LinkButton runat="server" ID="lbkBtnBorrar" CssClass="btn lnkBtn fa fa-times" CommandArgument='<%# Eval("Fecha") %>' OnClick="lbkBtnBorrar_OnClick"></asp:LinkButton>
+                                <asp:LinkButton runat="server" ID="lbkBtnBorrar" CssClass="btn lnkBtn fa fa-times" CommandArgument='<%# ((DateTime)Eval("Fecha")).ToString("dd/MM/yyyy") %>' OnClick="lbkBtnBorrar_OnClick"></asp:LinkButton>
                             </div>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
                 <div class="clearfix"></div>
                 <br />
-                <div class="row text-right padding-20-bottom">
+                <div class="row text-right">
                     <asp:Button runat="server" CssClass="btn btn-primary" Text="Guardar" ID="btnGuardar" OnClick="btnGuardar_OnClick" />
                 </div>
             </div>

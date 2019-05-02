@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using KiiniNet.Entities.Operacion;
 using KiiniNet.Entities.Operacion.Tickets;
 using KiiniNet.Entities.Operacion.Usuarios;
@@ -27,33 +28,44 @@ namespace KinniNet.Core.Demonio
             _proxy = proxy;
         }
 
-        public void ActualizaSla()
+        public string ActualizaSla()
         {
+            StringBuilder result = new StringBuilder();
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                var y = db.Ticket.Where(w => w.DentroSla && w.FechaTermino == null);
-                foreach (Ticket ticket in y)
+                List<int> enumEstatusExcluidos = new List<int>();
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado);
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado);
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera);
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.ReTipificado);
+                var ticketDentroSla = db.Ticket.Where(w => w.DentroSla && w.FechaTermino == null && w.FechaHoraFinProceso != null && !enumEstatusExcluidos.Contains(w.IdEstatusTicket));
+                result.AppendLine(string.Format("Procesando {0} tickets ", ticketDentroSla.Count()));
+                foreach (Ticket ticket in ticketDentroSla)
                 {
                     ticket.DentroSla = DateTime.Now <= ticket.FechaHoraFinProceso;
+                    result.AppendLine(string.Format("Ticket {0} {1} ", ticket.Id, ticket.DentroSla ? "Dentro SLA" : "Fuera SLA"));
                 }
                 db.SaveChanges();
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                result.AppendLine("Error: " + e.Message);
             }
             finally
             {
                 db.Dispose();
             }
+            return result.ToString().Trim();
         }
 
-        private void NotificacionesVencimiento(bool antesVencimiento)
+        private string NotificacionesVencimiento(bool antesVencimiento)
         {
+            StringBuilder result = new StringBuilder();
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
+                result.AppendLine(string.Format("Procesando notificaciones {0} de vencimiento", antesVencimiento ? "antes" : "despues"));
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
 
                 //Listas Notificacion Correo
@@ -61,18 +73,25 @@ namespace KinniNet.Core.Demonio
 
                 ////Listas Notificacion SMS
                 List<Ticket> informeNotificacionSms = new List<Ticket>();
-
+                List<int> enumEstatusExcluidos = new List<int>();
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado);
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado);
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera);
+                enumEstatusExcluidos.Add((int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.ReTipificado);
                 ParametrosGenerales parametros = db.ParametrosGenerales.SingleOrDefault();
                 if (parametros != null)
                 {
                     List<int> tiposGposNotificar = new List<int>();
                     tiposGposNotificar.Add((int)BusinessVariables.EnumTiposGrupos.Notificaciones);
 
+                    //DateTime fechaConsulta = antesVencimiento ? DateTime.Now : DateTime.Now.AddMinutes(parametros.MensajesNotificacion * 10);
                     DateTime fechaConsulta = DateTime.Now;
+                    DateTime fechaInicioConsulta = fechaConsulta.AddMinutes((parametros.MensajesNotificacion * 10) * -1);
+                    DateTime fechaFinConsulta = fechaConsulta.AddMinutes(parametros.MensajesNotificacion * 10);
                     List<TiempoInformeArbol> lstTiempoInforme = (from tia in db.TiempoInformeArbol
                                                                  join t in db.Ticket on tia.IdArbol equals t.IdArbolAcceso
                                                                  where tia.AntesVencimiento == antesVencimiento
-                                                                 && t.DentroSla == antesVencimiento
+                                                                 && t.DentroSla == antesVencimiento && t.FechaHoraFinProceso != null && !enumEstatusExcluidos.Contains(t.IdEstatusTicket)
                                                                  select tia).Distinct().ToList();
                     foreach (TiempoInformeArbol tiempoInforme in lstTiempoInforme)
                     {
@@ -89,6 +108,8 @@ namespace KinniNet.Core.Demonio
                                 qry = from q in qry
                                       where System.Data.Objects.EntityFunctions.AddDays((DateTime?)q.FechaHoraFinProceso, -tiemponotificacionHoras) <= fechaConsulta
                                       select q;
+                                //where System.Data.Objects.EntityFunctions.AddDays((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) >= fechaInicioConsulta
+                                //&& System.Data.Objects.EntityFunctions.AddMinutes((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaFinConsulta
                             }
                             if (tiempoInforme.Horas > 0)
                             {
@@ -118,32 +139,37 @@ namespace KinniNet.Core.Demonio
                             {
                                 tiemponotificacionHoras = decimal.ToInt32(tiempoInforme.Dias);
                                 qry = from q in qry
-                                      where System.Data.Objects.EntityFunctions.AddDays((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaConsulta
+                                      where System.Data.Objects.EntityFunctions.AddDays((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) >= fechaInicioConsulta
+                                      && System.Data.Objects.EntityFunctions.AddMinutes((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaFinConsulta
                                       select q;
                             }
                             if (tiempoInforme.Horas > 0)
                             {
                                 tiemponotificacionHoras = decimal.ToInt32(tiempoInforme.Horas);
                                 qry = from q in qry
-                                      where System.Data.Objects.EntityFunctions.AddHours((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaConsulta
+                                      where System.Data.Objects.EntityFunctions.AddHours((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) >= fechaInicioConsulta
+                                      && System.Data.Objects.EntityFunctions.AddMinutes((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaFinConsulta
                                       select q;
                             }
                             if (tiempoInforme.Minutos > 0)
                             {
                                 tiemponotificacionHoras = decimal.ToInt32(tiempoInforme.Minutos);
                                 qry = from q in qry
-                                      where System.Data.Objects.EntityFunctions.AddMinutes((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaConsulta
+                                      where System.Data.Objects.EntityFunctions.AddMinutes((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) >= fechaInicioConsulta
+                                      && System.Data.Objects.EntityFunctions.AddMinutes((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaFinConsulta
                                       select q;
                             }
                             if (tiempoInforme.Segundos > 0)
                             {
                                 tiemponotificacionHoras = decimal.ToInt32(tiempoInforme.Segundos);
                                 qry = from q in qry
-                                      where System.Data.Objects.EntityFunctions.AddSeconds((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaConsulta
+                                      where System.Data.Objects.EntityFunctions.AddSeconds((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) >= fechaInicioConsulta
+                                      && System.Data.Objects.EntityFunctions.AddMinutes((DateTime?)q.FechaHoraFinProceso, tiemponotificacionHoras) <= fechaFinConsulta
                                       select q;
                             }
                         }
                         List<Ticket> tickets = qry.Distinct().ToList();
+                        result.AppendLine(string.Format("Se encontraron {0} para procesar", tickets.Count));
                         foreach (Ticket t in tickets)
                         {
                             db.LoadProperty(t, "UsuarioLevanto");
@@ -171,11 +197,11 @@ namespace KinniNet.Core.Demonio
 
                     // Envia notificacion Correo
                     if (informeNotificacionCorreo.Any())
-                        EnviaNotificacion(informeNotificacionCorreo, (int)BusinessVariables.EnumTiposGrupos.Notificaciones, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros);
+                        result.AppendLine(EnviaNotificacion(informeNotificacionCorreo, (int)BusinessVariables.EnumTiposGrupos.Notificaciones, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Correo, parametros));
 
                     //Envia Notificacion SMS
                     if (informeNotificacionSms.Any())
-                        EnviaNotificacion(informeNotificacionSms, (int)BusinessVariables.EnumTiposGrupos.Notificaciones, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros);
+                        result.AppendLine(EnviaNotificacion(informeNotificacionSms, (int)BusinessVariables.EnumTiposGrupos.Notificaciones, antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms, parametros));
                 }
             }
             catch (Exception e)
@@ -186,10 +212,12 @@ namespace KinniNet.Core.Demonio
             {
                 db.Dispose();
             }
+            return result.ToString().Trim();
         }
 
-        private void EnviaNotificacion(List<Ticket> lstInforme, int idTipoGrupo, bool antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion tipoNotificacion, ParametrosGenerales parametros)
+        private string EnviaNotificacion(List<Ticket> lstInforme, int idTipoGrupo, bool antesVencimiento, BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion tipoNotificacion, ParametrosGenerales parametros)
         {
+            StringBuilder result = new StringBuilder();
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
@@ -225,7 +253,7 @@ namespace KinniNet.Core.Demonio
                                             ticket.FechaHoraAlta, ticket.FechaHoraFinProceso);
                                         GeneraCorreo(ticket.Id, ug.IdGrupoUsuario, correoUsuario.IdUsuario, correoUsuario.Correo, antesVencimiento, mensaje,
                                             parametros);
-
+                                        result.AppendLine(string.Format("Se envio notificación de ticket {0} a correo: {1}", ticket.Id, correoUsuario.Correo));
                                     }
                                     break;
                                 case BusinessVariables.EnumeradoresKiiniNet.EnumTipoNotificacion.Sms:
@@ -245,7 +273,7 @@ namespace KinniNet.Core.Demonio
                                             ticket.UsuarioLevanto.NombreCompleto,
                                             ticket.FechaHoraAlta, ticket.FechaHoraFinProceso);
                                         GeneraSms(ticket.Id, ug.IdGrupoUsuario, telefono.IdUsuario, telefono.Numero, mensaje, parametros);
-
+                                        result.AppendLine(string.Format("Se envio notificación de ticket {0} a numero: {1}", ticket.Id, telefono.Numero));
                                     }
                                     break;
                             }
@@ -258,6 +286,7 @@ namespace KinniNet.Core.Demonio
             {
                 db.Dispose();
             }
+            return result.ToString().Trim();
         }
 
         private void GeneraCorreo(int idTicket, int idGrupoUsuario, int idUsuario, string correoUsuario, bool antesVencimiento, string mensaje, ParametrosGenerales parametros)
@@ -389,47 +418,55 @@ namespace KinniNet.Core.Demonio
             }
         }
 
-        public void EnvioNotificacion()
+        public string EnvioNotificacion()
         {
+            StringBuilder result = new StringBuilder();
             try
             {
-                ActualizaSla();
-                NotificacionesVencimiento(true);
-                NotificacionesVencimiento(false);
+                result.AppendLine(ActualizaSla());
+                result.AppendLine(NotificacionesVencimiento(false));
+                result.AppendLine(NotificacionesVencimiento(true));
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
+            return result.ToString().Trim();
         }
 
-        public void CierraTicketsResueltos()
+        public string CierraTicketsResueltos()
         {
+            StringBuilder result = new StringBuilder();
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
+                result.AppendLine("Obteniendo parametros generales");
                 ParametrosGenerales parametros = new BusinessParametros().ObtenerParametrosGenerales();
                 if (parametros != null)
                 {
                     if (parametros.DiasCierreTicket != null)
                     {
                         DateTime fecha = DateTime.Now.AddDays(-(double)parametros.DiasCierreTicket);
+                        result.AppendLine(string.Format("Fecha aplicada {0} - {1}", fecha.ToLongDateString(), fecha.ToLongTimeString()));
                         var tickets = db.Ticket.Where(w => w.IdEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto && w.FechaTermino <= fecha);
+                        result.AppendLine(string.Format("{0} Tickets encontrados", tickets.Count()));
                         foreach (Ticket ticket in tickets)
                         {
                             new BusinessAtencionTicket().CambiarEstatus(ticket.Id, (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado, ticket.IdUsuarioSolicito, "Cerrado por sistema");
+                            result.AppendLine(string.Format("Cierre de ticket {0} correctamente", ticket.Id));
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                result.AppendLine(e.Message);
             }
             finally
             {
                 db.Dispose();
             }
+            return result.ToString().Trim();
         }
     }
 }

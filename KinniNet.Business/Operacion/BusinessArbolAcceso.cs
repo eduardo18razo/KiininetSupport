@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using KiiniNet.Entities.Cat.Arbol.Nodos;
@@ -814,15 +815,74 @@ namespace KinniNet.Core.Operacion
                 {
                     //arbol.InventarioArbolAcceso.First().Sla.TiempoHoraProceso = (arbol.InventarioArbolAcceso.First().Sla.Dias * 24) + arbol.InventarioArbolAcceso.First().Sla.Horas + (arbol.InventarioArbolAcceso.First().Sla.Minutos / 60) + ((arbol.InventarioArbolAcceso.First().Sla.Minutos / 60) / 60); ;
                 }
+                #region Arbol Terminal
+
                 if (arbol.EsTerminal)
                 {
+                    string descripcionFinal = arbol.InventarioArbolAcceso.First().Descripcion.Trim();
+                    bool existe = false;
+                    int nivelArbol = ObtenerNivelArbol(arbol);
+                    switch (nivelArbol)
+                    {
+                        case 1:
+                            existe = db.Nivel1.Join(db.ArbolAcceso, n1 => n1.Id, aa => aa.IdNivel1, (n1, aa) => new { n1, aa }).Any(@t => @t.n1.Descripcion == descripcionFinal && @t.n1.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea);
+                            break;
+                        case 2:
+                            existe = db.Nivel2.Join(db.ArbolAcceso, n2 => n2.Id, aa => aa.IdNivel2, (n2, aa) => new { n2, aa }).Any(@t => @t.n2.Descripcion == descripcionFinal && @t.n2.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                && @t.aa.IdNivel1 == arbol.IdNivel1);
+                            break;
+                        case 3:
+                            existe = db.Nivel3.Join(db.ArbolAcceso, n3 => n3.Id, aa => aa.IdNivel3, (n3, aa) => new { n3, aa }).Any(@t => @t.n3.Descripcion == descripcionFinal && @t.n3.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea);
+                            break;
+                        case 4:
+                            existe = db.Nivel4.Join(db.ArbolAcceso, n4 => n4.Id, aa => aa.IdNivel4, (n4, aa) => new { n4, aa }).Any(@t => @t.n4.Descripcion == descripcionFinal && @t.n4.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2);
+                            break;
+                        case 5:
+                            existe = db.Nivel5.Join(db.ArbolAcceso, n5 => n5.Id, aa => aa.IdNivel5, (n5, aa) => new { n5, aa }).Any(@t => @t.n5.Descripcion == descripcionFinal && @t.n5.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4);
+                            break;
+                        case 6:
+                            existe = db.Nivel6.Join(db.ArbolAcceso, n6 => n6.Id, aa => aa.IdNivel6, (n6, aa) => new { n6, aa }).Any(@t => @t.n6.Descripcion == descripcionFinal && @t.n6.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4
+                                && @t.aa.IdNivel5 == arbol.IdNivel5
+                                );
+                            break;
+                        case 7:
+                            existe = db.Nivel7.Join(db.ArbolAcceso, n7 => n7.Id, aa => aa.IdNivel7, (n7, aa) => new { n7, aa }).Any(@t =>
+                                @t.n7.Descripcion == descripcionFinal && @t.n7.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4
+                                && @t.aa.IdNivel5 == arbol.IdNivel5
+                                && @t.aa.IdNivel6 == arbol.IdNivel6
+                                );
+                            break;
+                    }
+
+                    if (existe)
+                        throw new Exception("Esta opcion ya se encuentra registrada");
+
                     // TODO: ESTE FRAGMENTO AGREGA LOS GRUPOS ESPECIALES DE CONSULTA ESPECIFICOS AL TIPO DE USUARIO
 
                     List<GrupoUsuario> gpoEspCons;
                     if (arbol.IdTipoArbolAcceso != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
-                        if (!arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeContenido))
+                        if (
+                            !arbol.InventarioArbolAcceso.First()
+                                .GrupoUsuarioInventarioArbol.Any(
+                                    a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeContenido))
                         {
-                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido, arbol.IdTipoUsuario);
+                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(
+                                arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido,
+                                arbol.IdTipoUsuario);
                             foreach (GrupoUsuario grupoUsuario in gpoEspCons)
                             {
                                 if (
@@ -841,72 +901,145 @@ namespace KinniNet.Core.Operacion
                         }
 
                     if (arbol.IdTipoArbolAcceso != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
-                        if (!arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeOperación))
+                        if (
+                            !arbol.InventarioArbolAcceso.First()
+                                .GrupoUsuarioInventarioArbol.Any(
+                                    a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeOperación))
                         {
-                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeOperación, arbol.IdTipoUsuario);
+                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(
+                                arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeOperación,
+                                arbol.IdTipoUsuario);
                             foreach (GrupoUsuario grupoUsuario in gpoEspCons)
                             {
-                                if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
+                                if (
+                                    arbol.InventarioArbolAcceso.First()
+                                        .GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
                                 {
-                                    arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                                    {
-                                        IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeOperación,
-                                        IdGrupoUsuario = grupoUsuario.Id,
-                                        IdSubGrupoUsuario = null
-                                    });
+                                    arbol.InventarioArbolAcceso.First()
+                                        .GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
+                                        {
+                                            IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeOperación,
+                                            IdGrupoUsuario = grupoUsuario.Id,
+                                            IdSubGrupoUsuario = null
+                                        });
                                 }
                             }
                         }
 
                     if (arbol.IdTipoArbolAcceso != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
-                        if (!arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo))
+                        if (
+                            !arbol.InventarioArbolAcceso.First()
+                                .GrupoUsuarioInventarioArbol.Any(
+                                    a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo))
                         {
-                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo, arbol.IdTipoUsuario);
+                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(
+                                arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo,
+                                arbol.IdTipoUsuario);
                             foreach (GrupoUsuario grupoUsuario in gpoEspCons)
                             {
-                                if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
+                                if (
+                                    arbol.InventarioArbolAcceso.First()
+                                        .GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
                                 {
-                                    arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                                    {
-                                        IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo,
-                                        IdGrupoUsuario = grupoUsuario.Id,
-                                        IdSubGrupoUsuario = null
-                                    });
+                                    arbol.InventarioArbolAcceso.First()
+                                        .GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
+                                        {
+                                            IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo,
+                                            IdGrupoUsuario = grupoUsuario.Id,
+                                            IdSubGrupoUsuario = null
+                                        });
                                 }
                             }
                         }
 
-                    gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos, arbol.IdTipoUsuario);
+                    gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso,
+                        (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos, arbol.IdTipoUsuario);
                     foreach (GrupoUsuario grupoUsuario in gpoEspCons)
                     {
-                        if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
+                        if (
+                            arbol.InventarioArbolAcceso.First()
+                                .GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
                         {
-                            arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                            {
-                                IdRol = (int)BusinessVariables.EnumRoles.AccesoAnalíticos,
-                                IdGrupoUsuario = grupoUsuario.Id,
-                                IdSubGrupoUsuario = null
-                            });
+                            arbol.InventarioArbolAcceso.First()
+                                .GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
+                                {
+                                    IdRol = (int)BusinessVariables.EnumRoles.AccesoAnalíticos,
+                                    IdGrupoUsuario = grupoUsuario.Id,
+                                    IdSubGrupoUsuario = null
+                                });
                         }
                     }
 
                     if (arbol.IdTipoArbolAcceso != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
-                        if (!arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo))
+                        if (
+                            !arbol.InventarioArbolAcceso.First()
+                                .GrupoUsuarioInventarioArbol.Any(
+                                    a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeDesarrollo))
                         {
-                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeCategoría, arbol.IdTipoUsuario);
+                            gpoEspCons = new BusinessGrupoUsuario().ObtenerGrupoDefaultRolOpcion(
+                                arbol.IdTipoArbolAcceso, (int)BusinessVariables.EnumTiposGrupos.ResponsableDeCategoría,
+                                arbol.IdTipoUsuario);
                             foreach (GrupoUsuario grupoUsuario in gpoEspCons)
                             {
-                                if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
+                                if (
+                                    arbol.InventarioArbolAcceso.First()
+                                        .GrupoUsuarioInventarioArbol.All(a => a.IdGrupoUsuario != grupoUsuario.Id))
                                 {
-                                    arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
-                                    {
-                                        IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeCategoría,
-                                        IdGrupoUsuario = grupoUsuario.Id,
-                                        IdSubGrupoUsuario = null
-                                    });
+                                    arbol.InventarioArbolAcceso.First()
+                                        .GrupoUsuarioInventarioArbol.Add(new GrupoUsuarioInventarioArbol
+                                        {
+                                            IdRol = (int)BusinessVariables.EnumRoles.ResponsableDeCategoría,
+                                            IdGrupoUsuario = grupoUsuario.Id,
+                                            IdSubGrupoUsuario = null
+                                        });
                                 }
                             }
                         }
+                }
+                #endregion Arbol Terminal
+
+                else
+                {
+                    if (arbol.Nivel1 != null)
+                    {
+                        if (db.ArbolAcceso.Any(a => a.IdArea == arbol.IdArea && a.Nivel1.IdTipoUsuario == arbol.IdTipoUsuario && a.Nivel1.Descripcion == arbol.Nivel1.Descripcion.Trim()))
+                            throw new Exception("Esta sección ya se encuentra registrada");
+                    }
+                    if (arbol.Nivel2 != null)
+                    {
+                        if (db.ArbolAcceso.Any(a => a.IdArea == arbol.IdArea && a.Nivel1.IdTipoUsuario == arbol.IdTipoUsuario && a.Nivel2.Descripcion == arbol.Nivel2.Descripcion.Trim() && a.IdNivel1 == arbol.IdNivel1))
+                            throw new Exception("Esta sección ya se encuentra registrada");
+                    }
+                    if (arbol.Nivel3 != null)
+                    {
+                        if (db.ArbolAcceso.Any(a => a.IdArea == arbol.IdArea && a.Nivel1.IdTipoUsuario == arbol.IdTipoUsuario && a.Nivel3.Descripcion == arbol.Nivel3.Descripcion.Trim()
+                            && a.IdNivel1 == arbol.IdNivel1 && a.IdNivel2 == arbol.IdNivel2))
+                            throw new Exception("Esta sección ya se encuentra registrada");
+                    }
+                    if (arbol.Nivel4 != null)
+                    {
+                        if (db.ArbolAcceso.Any(a => a.IdArea == arbol.IdArea && a.Nivel1.IdTipoUsuario == arbol.IdTipoUsuario && a.Nivel4.Descripcion == arbol.Nivel4.Descripcion.Trim()
+                                && a.IdNivel1 == arbol.IdNivel1 && a.IdNivel2 == arbol.IdNivel2 && a.IdNivel3 == arbol.IdNivel3))
+                            throw new Exception("Esta sección ya se encuentra registrada");
+                    }
+                    if (arbol.Nivel5 != null)
+                    {
+                        if (db.ArbolAcceso.Any(a => a.IdArea == arbol.IdArea && a.Nivel1.IdTipoUsuario == arbol.IdTipoUsuario && a.Nivel5.Descripcion == arbol.Nivel5.Descripcion.Trim()
+                            && a.IdNivel1 == arbol.IdNivel1 && a.IdNivel2 == arbol.IdNivel2 && a.IdNivel3 == arbol.IdNivel3 && a.IdNivel4 == arbol.IdNivel4))
+                            throw new Exception("Esta sección ya se encuentra registrada");
+                    }
+                    if (arbol.Nivel6 != null)
+                    {
+                        if (db.ArbolAcceso.Any(a => a.IdArea == arbol.IdArea && a.Nivel1.IdTipoUsuario == arbol.IdTipoUsuario && a.Nivel6.Descripcion == arbol.Nivel6.Descripcion.Trim()
+                            && a.IdNivel1 == arbol.IdNivel1 && a.IdNivel2 == arbol.IdNivel2 && a.IdNivel3 == arbol.IdNivel3 && a.IdNivel4 == arbol.IdNivel4 && a.IdNivel5 == arbol.IdNivel5))
+                            throw new Exception("Esta sección ya se encuentra registrada");
+                    }
+                    if (arbol.Nivel7 != null)
+                    {
+                        if (db.ArbolAcceso.Any(a => a.IdArea == arbol.IdArea && a.Nivel1.IdTipoUsuario == arbol.IdTipoUsuario && a.Nivel7.Descripcion == arbol.Nivel7.Descripcion.Trim()
+                            && a.IdNivel1 == arbol.IdNivel1 && a.IdNivel2 == arbol.IdNivel2 && a.IdNivel3 == arbol.IdNivel3 && a.IdNivel4 == arbol.IdNivel4 && a.IdNivel5 == arbol.IdNivel5 && a.IdNivel6 == arbol.IdNivel6))
+                            throw new Exception("Esta sección ya se encuentra registrada");
+                    }
                 }
                 if (arbol.Id == 0)
                     db.ArbolAcceso.AddObject(arbol);
@@ -1207,7 +1340,6 @@ namespace KinniNet.Core.Operacion
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-
                 var qry = from re in db.RespuestaEncuesta
                           join te in db.TicketEstatus on re.IdTicket equals te.IdTicket
                           join t in db.Ticket on re.IdTicket equals t.Id
@@ -1250,11 +1382,10 @@ namespace KinniNet.Core.Operacion
                                                    && te.IdEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado
                                                    && re.ValorRespuesta <= 6
                                              select new { re, te };
-
                         if (fechas != null)
                         {
-                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
-                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            DateTime fechaInicio = DateTime.ParseExact(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
+                            DateTime fechaFin = DateTime.ParseExact(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
                             qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
 
                             qryPromotores = from q in qryPromotores
@@ -1323,8 +1454,8 @@ namespace KinniNet.Core.Operacion
 
                         if (fechas != null)
                         {
-                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
-                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            DateTime fechaInicio = DateTime.ParseExact(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
+                            DateTime fechaFin = DateTime.ParseExact(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
                             qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
 
                             qryCeroCinco = from q in qryCeroCinco
@@ -1346,6 +1477,7 @@ namespace KinniNet.Core.Operacion
                                             && q.te.FechaMovimiento < fechaFin
                                       select q;
                         }
+
                         result = qry.Select(s => s.aa).Distinct().ToList();
 
                         var rateCeroCinco = qryCeroCinco.Distinct().ToList();
@@ -1407,8 +1539,8 @@ namespace KinniNet.Core.Operacion
 
                         if (fechas != null)
                         {
-                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
-                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            DateTime fechaInicio = DateTime.ParseExact(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
+                            DateTime fechaFin = DateTime.ParseExact(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
                             qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
 
                             qryPesimo = from q in qryPesimo
@@ -1486,8 +1618,8 @@ namespace KinniNet.Core.Operacion
 
                         if (fechas != null)
                         {
-                            DateTime fechaInicio = DateTime.Parse(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"));
-                            DateTime fechaFin = DateTime.Parse(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"));
+                            DateTime fechaInicio = DateTime.ParseExact(fechas.Single(s => s.Key == "inicio").Value.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
+                            DateTime fechaFin = DateTime.ParseExact(fechas.Single(s => s.Key == "fin").Value.AddDays(1).ToString("dd/MM/yyyy"), "dd/MM/yyyy", null);
                             qry = qry.Where(w => w.te.FechaMovimiento >= fechaInicio && w.te.FechaMovimiento < fechaFin);
 
                             qrySi = from q in qrySi
@@ -1530,9 +1662,9 @@ namespace KinniNet.Core.Operacion
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Error al Obtener Arboles");
+                throw new Exception("Error al Obtener Arboles " + ex.Message);
             }
             finally
             {
@@ -1806,6 +1938,35 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
+        private int ObtenerNivelArbol(ArbolAcceso arbol)
+        {
+            int result = 0;
+            try
+            {
+                if (arbol != null)
+                {
+                    if (arbol.Nivel1 != null)
+                        result = 1;
+                    if (arbol.Nivel2 != null)
+                        result = 2;
+                    if (arbol.Nivel3 != null)
+                        result = 3;
+                    if (arbol.Nivel4 != null)
+                        result = 4;
+                    if (arbol.Nivel5 != null)
+                        result = 5;
+                    if (arbol.Nivel6 != null)
+                        result = 6;
+                    if (arbol.Nivel7 != null)
+                        result = 7;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return result;
+        }
         public int ObtenerNivel(int idArbol)
         {
             int result = 0;
@@ -1851,326 +2012,6 @@ namespace KinniNet.Core.Operacion
                 ArbolAcceso arbol = db.ArbolAcceso.SingleOrDefault(w => w.Id == idArbol);
                 if (arbol != null) arbol.Habilitado = habilitado;
                 db.SaveChanges();
-
-                //db.ContextOptions.LazyLoadingEnabled = true;
-                //db.ContextOptions.ProxyCreationEnabled = true;
-                //ArbolAcceso arbol = db.ArbolAcceso.SingleOrDefault(w => w.Id == idArbol);
-                //if (arbol != null)
-                //{
-                //    int nivel = ObtenerNivel(idArbol);
-                //    arbol.Habilitado = habilitado;
-                //    var qry = db.ArbolAcceso.Where(w => w.IdTipoUsuario == arbol.IdTipoUsuario);
-                //    if (!habilitado)
-                //    {
-                //        switch (nivel)
-                //        {
-                //            case 1:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1);
-                //                arbol.Habilitado = false;
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = false;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = false;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = false;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = false;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = false;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = false;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = false;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = false;
-                //                }
-                //                break;
-                //            case 2:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && w.IdNivel2 == arbol.IdNivel2);
-                //                arbol.Habilitado = false;
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = false;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = false;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = false;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = false;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = false;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = false;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = false;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = false;
-                //                }
-                //                break;
-                //            case 3:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && w.IdNivel2 == arbol.IdNivel2 && w.IdNivel3 == arbol.IdNivel3);
-                //                arbol.Habilitado = false;
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = false;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = false;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = false;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = false;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = false;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = false;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = false;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = false;
-                //                }
-                //                break;
-                //            case 4:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && w.IdNivel2 == arbol.IdNivel2 && w.IdNivel3 == arbol.IdNivel3 && w.IdNivel4 == arbol.IdNivel4);
-                //                arbol.Habilitado = false;
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = false;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = false;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = false;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = false;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = false;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = false;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = false;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = false;
-                //                }
-                //                break;
-                //            case 5:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && w.IdNivel2 == arbol.IdNivel2 && w.IdNivel3 == arbol.IdNivel3 && w.IdNivel4 == arbol.IdNivel4 && w.IdNivel5 == arbol.IdNivel5);
-                //                arbol.Habilitado = false;
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = false;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = false;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = false;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = false;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = false;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = false;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = false;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = false;
-                //                }
-                //                break;
-                //            case 6:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && w.IdNivel2 == arbol.IdNivel2 && w.IdNivel3 == arbol.IdNivel3 && w.IdNivel4 == arbol.IdNivel4 && w.IdNivel5 == arbol.IdNivel5 && w.IdNivel6 == arbol.IdNivel6);
-                //                arbol.Habilitado = false;
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = false;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = false;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = false;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = false;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = false;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = false;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = false;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = false;
-                //                }
-                //                break;
-                //            case 7:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1
-                //                    && w.IdNivel2 == arbol.IdNivel2
-                //                    && w.IdNivel3 == arbol.IdNivel3
-                //                    && w.IdNivel4 == arbol.IdNivel4
-                //                    && w.IdNivel5 == arbol.IdNivel5
-                //                    && w.IdNivel6 == arbol.IdNivel6
-                //                    && w.IdNivel7 == arbol.IdNivel7
-                //                    );
-                //                arbol.Habilitado = false;
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = false;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = false;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = false;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = false;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = false;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = false;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = false;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = false;
-                //                }
-                //                break;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        switch (nivel)
-                //        {
-                //            case 1:
-                //                arbol.Habilitado = true;
-                //                if (arbol.IdNivel1.HasValue)
-                //                    arbol.Nivel1.Habilitado = true;
-                //                break;
-                //            case 2:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && w.Id <= arbol.Id);
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-                //                    arboles.Habilitado = true;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = true;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = true;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = true;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = true;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = true;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = true;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = true;
-                //                }
-                //                break;
-                //            case 3:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && (w.IdNivel2 == arbol.IdNivel2 || w.IdNivel2 == null) && w.Id <= arbol.Id);
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-
-                //                    arboles.Habilitado = true;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = true;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = true;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = true;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = true;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = true;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = true;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = true;
-                //                }
-                //                break;
-                //            case 4:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && (w.IdNivel2 == arbol.IdNivel2 || w.IdNivel2 == null) && (w.IdNivel3 == arbol.IdNivel3 || w.IdNivel3 == null) && w.Id <= arbol.Id);
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-
-                //                    arboles.Habilitado = true;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = true;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = true;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = true;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = true;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = true;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = true;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = true;
-                //                }
-                //                break;
-                //            case 5:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && (w.IdNivel2 == arbol.IdNivel2 || w.IdNivel2 == null) && (w.IdNivel3 == arbol.IdNivel3 || w.IdNivel3 == null) && (w.IdNivel4 == arbol.IdNivel4 || w.IdNivel4 == null) && w.Id <= arbol.Id);
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-
-                //                    arboles.Habilitado = true;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = true;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = true;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = true;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = true;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = true;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = true;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = true;
-                //                }
-                //                break;
-                //            case 6:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && (w.IdNivel2 == arbol.IdNivel2 || w.IdNivel2 == null) && (w.IdNivel3 == arbol.IdNivel3 || w.IdNivel3 == null) && (w.IdNivel4 == arbol.IdNivel4 || w.IdNivel4 == null) && (w.IdNivel5 == arbol.IdNivel5 || w.IdNivel5 == null) && w.Id <= arbol.Id);
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-
-                //                    arboles.Habilitado = true;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = true;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = true;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = true;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = true;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = true;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = true;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = true;
-                //                }
-                //                break;
-                //            case 7:
-                //                qry = qry.Where(w => w.IdNivel1 == arbol.IdNivel1 && (w.IdNivel2 == arbol.IdNivel2 || w.IdNivel2 == null) && (w.IdNivel3 == arbol.IdNivel3 || w.IdNivel3 == null) && (w.IdNivel4 == arbol.IdNivel4 || w.IdNivel4 == null) && (w.IdNivel5 == arbol.IdNivel5 || w.IdNivel5 == null) && (w.IdNivel6 == arbol.IdNivel6 || w.IdNivel6 == null) && w.Id <= arbol.Id);
-                //                foreach (ArbolAcceso arboles in qry.OrderBy(o => o.Id))
-                //                {
-
-                //                    arboles.Habilitado = true;
-                //                    if (arboles.IdNivel1.HasValue)
-                //                        arboles.Nivel1.Habilitado = true;
-                //                    if (arboles.IdNivel2.HasValue)
-                //                        arboles.Nivel2.Habilitado = true;
-                //                    if (arboles.IdNivel3.HasValue)
-                //                        arboles.Nivel3.Habilitado = true;
-                //                    if (arboles.IdNivel4.HasValue)
-                //                        arboles.Nivel4.Habilitado = true;
-                //                    if (arboles.IdNivel5.HasValue)
-                //                        arboles.Nivel5.Habilitado = true;
-                //                    if (arboles.IdNivel6.HasValue)
-                //                        arboles.Nivel6.Habilitado = true;
-                //                    if (arboles.IdNivel7.HasValue)
-                //                        arboles.Nivel7.Habilitado = true;
-                //                }
-                //                break;
-                //        }
-                //    }
-                //}
-                //db.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -2229,105 +2070,413 @@ namespace KinniNet.Core.Operacion
                 ArbolAcceso arbol = db.ArbolAcceso.SingleOrDefault(s => s.Id == idArbolAcceso);
                 if (arbol != null)
                 {
-                    List<GrupoUsuarioInventarioArbol> gpoToRemove = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(gpo => !arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(a => a.IdGrupoUsuario == gpo.IdGrupoUsuario && a.IdRol == gpo.IdRol && a.IdSubGrupoUsuario == gpo.IdSubGrupoUsuario)).ToList();
+                    arbol.Descripcion = arbolAccesoActualizar.Descripcion;
+                    arbol.Publico = arbolAccesoActualizar.Publico;
+                    arbol.InventarioArbolAcceso.First().Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion;
+                    arbol.IdArea = arbolAccesoActualizar.IdArea;
 
-                    foreach (GrupoUsuarioInventarioArbol gpo in gpoToRemove)
+                    //Grupo acceso
+                    #region Grupos Acceso
+
+                    int idGpoAccesoActualizar = arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.First(s => s.IdRol == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).IdGrupoUsuario;
+                    int idGpoAccesoExistente = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(s => s.IdRol == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte) ? arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.First(s => s.IdRol == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).IdGrupoUsuario : 0;
+                    if (idGpoAccesoExistente != idGpoAccesoActualizar)
                     {
-                        db.GrupoUsuarioInventarioArbol.DeleteObject(gpo);
+                        arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.IdGrupoUsuario == idGpoAccesoExistente).ToList().ForEach(d => db.GrupoUsuarioInventarioArbol.DeleteObject(d));
+                        arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.AddRange(arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.IdGrupoUsuario == idGpoAccesoActualizar));
                     }
 
-                    foreach (GrupoUsuarioInventarioArbol gpo in arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(gpo => !arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(a => a.IdGrupoUsuario == gpo.IdGrupoUsuario && a.IdRol == gpo.IdRol && a.IdSubGrupoUsuario == gpo.IdSubGrupoUsuario)))
+                    #endregion GruposAgente
+                    if (arbol.IdTipoArbolAcceso != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
                     {
-                        arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Add(gpo);
-                    }
+                        arbol.IdTipoArbolAcceso = arbolAccesoActualizar.IdTipoArbolAcceso;
 
-                    foreach (InventarioInfConsulta infConsulta in arbolAccesoActualizar.InventarioArbolAcceso.First().InventarioInfConsulta)
-                    {
-                        InformacionConsulta info = db.InformacionConsulta.Single(s => s.Id == infConsulta.IdInfConsulta);
-                        arbol.InventarioArbolAcceso.First().InventarioInfConsulta.Single(w => w.InformacionConsulta.IdTipoInfConsulta == info.IdTipoInfConsulta).IdInfConsulta = infConsulta.IdInfConsulta;
-                    }
+                        //Grupo Agente
+                        #region Grupo Agente
 
-                    if (arbol.IdTipoUsuario != (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
-                    {
-                        arbol.InventarioArbolAcceso.First().Sla.Dias =
-                            arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Dias;
-                        arbol.InventarioArbolAcceso.First().Sla.Horas =
-                            arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Horas;
-                        arbol.InventarioArbolAcceso.First().Sla.Minutos =
-                            arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Minutos;
-                        arbol.InventarioArbolAcceso.First().Sla.Segundos =
-                            arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Segundos;
-                        arbol.InventarioArbolAcceso.First().Sla.TiempoHoraProceso =
-                            arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.TiempoHoraProceso;
-                        arbol.InventarioArbolAcceso.First().Sla.Detallado =
-                            arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Detallado;
-                        if (arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Detallado)
+                        int idGpoAgenteActualizar = arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.First(s => s.IdRol == (int)BusinessVariables.EnumTiposGrupos.Agente).IdGrupoUsuario;
+                        int idGpoAgenteExistente = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(s => s.IdRol == (int)BusinessVariables.EnumTiposGrupos.Agente) ? arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.First(s => s.IdRol == (int)BusinessVariables.EnumTiposGrupos.Agente).IdGrupoUsuario : 0;
+                        if (idGpoAgenteExistente == idGpoAgenteActualizar)
                         {
-                            if (arbol.InventarioArbolAcceso.First().Sla.SlaDetalle == null)
-                                arbol.InventarioArbolAcceso.First().Sla.SlaDetalle = new List<SlaDetalle>();
+                            if (db.SubGrupoUsuario.Count(c => c.IdGrupoUsuario == idGpoAgenteActualizar) != arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Count(c => c.IdGrupoUsuario == idGpoAgenteActualizar))
+                            {
+                                arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.IdGrupoUsuario == idGpoAgenteExistente).ToList().ForEach(d => db.GrupoUsuarioInventarioArbol.DeleteObject(d));
+                                arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.AddRange(arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.IdGrupoUsuario == idGpoAgenteActualizar));
+                            }
+                        }
+                        else
+                        {
+                            arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.IdGrupoUsuario == idGpoAgenteExistente).ToList().ForEach(d => db.GrupoUsuarioInventarioArbol.DeleteObject(d));
+                            arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.AddRange(arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.IdGrupoUsuario == idGpoAgenteActualizar));
                         }
 
-                        if (arbol.TiempoInformeArbol.Count > 0)
-                            foreach (TiempoInformeArbol informeArbol in arbolAccesoActualizar.TiempoInformeArbol.Distinct())
-                            {
-                                switch (informeArbol.IdTipoGrupo)
-                                {
-                                    case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeContenido:
-                                        TiempoInformeArbol tInformeMto = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
-                                        if (tInformeMto != null)
-                                        {
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Dias = informeArbol.Dias;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Horas = informeArbol.Horas;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Minutos = informeArbol.Minutos;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Segundos = informeArbol.Segundos;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).IdTipoNotificacion = informeArbol.IdTipoNotificacion;
-                                        }
-                                        break;
-                                    case (int)BusinessVariables.EnumTiposGrupos.ResponsableDeDesarrollo:
-                                        TiempoInformeArbol tInformeDev = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
-                                        if (tInformeDev != null)
-                                        {
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Dias = informeArbol.Dias;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Horas = informeArbol.Horas;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Minutos = informeArbol.Minutos;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Segundos = informeArbol.Segundos;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).IdTipoNotificacion = informeArbol.IdTipoNotificacion;
-                                        }
-                                        break;
+                        #endregion Grupo Agente
 
-                                    case (int)BusinessVariables.EnumTiposGrupos.AccesoAnalíticos:
-                                        TiempoInformeArbol tInformeCons = arbol.TiempoInformeArbol.SingleOrDefault(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo);
-                                        if (tInformeCons != null)
+
+
+                        #region Sla
+                        if (arbolAccesoActualizar.InventarioArbolAcceso.First().Sla == null) //Borra sla
+                        {
+                            if (arbol.InventarioArbolAcceso.First().IdSla != null)
+                            {
+                                db.Sla.DeleteObject(arbol.InventarioArbolAcceso.First().Sla);
+                                arbol.InventarioArbolAcceso.First().IdSla = null;
+                                arbol.TiempoInformeArbol.ForEach(d => db.TiempoInformeArbol.DeleteObject(d));
+                                arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.IdRol == (int)BusinessVariables.EnumRoles.Notificaciones).ToList().ForEach(d => db.GrupoUsuarioInventarioArbol.DeleteObject(d));
+                            }
+                        }
+                        else //Actualizacion sla y notificaciones
+                        {
+                            if ((arbol.InventarioArbolAcceso.First().IdSla == null))
+                            {
+                                arbol.InventarioArbolAcceso.First().Sla = arbolAccesoActualizar.InventarioArbolAcceso.First().Sla;
+                            }
+                            else  //Actualiza SLA si tiene
+                            {
+                                arbol.InventarioArbolAcceso.First().Sla.Dias = arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Dias;
+                                arbol.InventarioArbolAcceso.First().Sla.Horas = arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Horas;
+                                arbol.InventarioArbolAcceso.First().Sla.Minutos = arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Minutos;
+                                arbol.InventarioArbolAcceso.First().Sla.Segundos = arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.Segundos;
+                                arbol.InventarioArbolAcceso.First().Sla.TiempoHoraProceso = arbolAccesoActualizar.InventarioArbolAcceso.First().Sla.TiempoHoraProceso;
+
+                                if (arbolAccesoActualizar.TiempoInformeArbol == null)
+                                {
+                                    arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.IdRol == (int)BusinessVariables.EnumRoles.Notificaciones).ToList().ForEach(d => db.GrupoUsuarioInventarioArbol.DeleteObject(d));
+                                }
+                                else
+                                {
+                                    if (arbolAccesoActualizar.TiempoInformeArbol.Count <= 0)
+                                    {
+                                        arbol.TiempoInformeArbol.ForEach(d => db.TiempoInformeArbol.DeleteObject(d));
+                                        arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.IdRol == (int)BusinessVariables.EnumRoles.Notificaciones).ToList().ForEach(d => db.GrupoUsuarioInventarioArbol.DeleteObject(d));
+                                    }
+                                    else
+                                    {
+                                        if (arbol.TiempoInformeArbol == null)
                                         {
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Dias = informeArbol.Dias;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Horas = informeArbol.Horas;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Minutos = informeArbol.Minutos;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).Segundos = informeArbol.Segundos;
-                                            arbol.TiempoInformeArbol.Single(s => s.IdArbol == arbol.Id && s.IdGrupoUsuario == informeArbol.IdGrupoUsuario && s.IdTipoGrupo == informeArbol.IdTipoGrupo).IdTipoNotificacion = informeArbol.IdTipoNotificacion;
+                                            if (arbol.TiempoInformeArbol == null)
+                                                arbol.TiempoInformeArbol = new List<TiempoInformeArbol>();
                                         }
-                                        break;
+                                        if (arbol.TiempoInformeArbol != null && arbol.TiempoInformeArbol.Count <= 0)
+                                        {
+                                            arbol.TiempoInformeArbol.Add(new TiempoInformeArbol());
+                                        }
+
+                                        arbol.TiempoInformeArbol.First().IdTipoGrupo = arbolAccesoActualizar.TiempoInformeArbol.First().IdTipoGrupo;
+                                        arbol.TiempoInformeArbol.First().IdGrupoUsuario = arbolAccesoActualizar.TiempoInformeArbol.First().IdGrupoUsuario;
+                                        arbol.TiempoInformeArbol.First().Dias = arbolAccesoActualizar.TiempoInformeArbol.First().Dias;
+                                        arbol.TiempoInformeArbol.First().Horas = arbolAccesoActualizar.TiempoInformeArbol.First().Horas;
+                                        arbol.TiempoInformeArbol.First().Minutos = arbolAccesoActualizar.TiempoInformeArbol.First().Minutos;
+                                        arbol.TiempoInformeArbol.First().Segundos = arbolAccesoActualizar.TiempoInformeArbol.First().Segundos;
+                                        arbol.TiempoInformeArbol.First().TiempoNotificacion = arbolAccesoActualizar.TiempoInformeArbol.First().TiempoNotificacion;
+                                        arbol.TiempoInformeArbol.First().IdTipoNotificacion = arbolAccesoActualizar.TiempoInformeArbol.First().IdTipoNotificacion;
+                                        arbol.TiempoInformeArbol.First().AntesVencimiento = arbolAccesoActualizar.TiempoInformeArbol.First().AntesVencimiento;
+                                        if (arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Any(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Notificaciones))
+                                            arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.First(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Notificaciones).IdGrupoUsuario = arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.First(f => f.IdRol == (int)BusinessVariables.EnumRoles.Notificaciones).IdGrupoUsuario;
+                                        else
+                                            arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.AddRange(arbolAccesoActualizar.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(f => f.IdRol == (int)BusinessVariables.EnumRoles.Notificaciones));
+                                    }
                                 }
                             }
+
+                        }
+                        #endregion Sla
                     }
+                    else if (arbol.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
+                        arbol.Evaluacion = arbolAccesoActualizar.Evaluacion;
 
-                    arbol.IdImpacto = arbolAccesoActualizar.IdImpacto;
-                    arbol.InventarioArbolAcceso.First().IdMascara = arbolAccesoActualizar.InventarioArbolAcceso.First().IdMascara;
-                    arbol.InventarioArbolAcceso.First().IdEncuesta = arbolAccesoActualizar.InventarioArbolAcceso.First().IdEncuesta;
+                    int nivelArbolBase = ObtenerNivelArbol(arbol);
+                    int nivelArbolActualizar = ObtenerNivelArbol(arbolAccesoActualizar);
+                    if (nivelArbolBase != nivelArbolActualizar)
+                    {
+                        switch (nivelArbolBase)
+                        {
+                            case 1:
+                                db.Nivel1.DeleteObject(arbol.Nivel1);
+                                break;
+                            case 2:
+                                db.Nivel2.DeleteObject(arbol.Nivel2);
+                                break;
+                            case 3:
+                                db.Nivel3.DeleteObject(arbol.Nivel3);
+                                break;
+                            case 4:
+                                db.Nivel4.DeleteObject(arbol.Nivel4);
+                                break;
+                            case 5:
+                                db.Nivel5.DeleteObject(arbol.Nivel5);
+                                break;
+                            case 6:
+                                db.Nivel6.DeleteObject(arbol.Nivel6);
+                                break;
+                            case 7:
+                                db.Nivel7.DeleteObject(arbol.Nivel7);
+                                break;
+                        }
+                        string descripcionFinal;
+                        bool existe;
+                        switch (nivelArbolActualizar)
+                        {
+                            case 1:
+                                descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                existe = db.Nivel1.Join(db.ArbolAcceso, n1 => n1.Id, aa => aa.IdNivel1, (n1, aa) => new { n1, aa }).Any(@t => @t.n1.Descripcion == descripcionFinal && @t.n1.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea);
 
-                    if (arbol.Nivel7 != null)
-                        arbol.Nivel7.Descripcion = descripcion.Trim();
-                    else if (arbol.Nivel6 != null)
-                        arbol.Nivel6.Descripcion = descripcion.Trim();
-                    else if (arbol.Nivel5 != null)
-                        arbol.Nivel5.Descripcion = descripcion.Trim();
-                    else if (arbol.Nivel4 != null)
-                        arbol.Nivel4.Descripcion = descripcion.Trim();
-                    else if (arbol.Nivel3 != null)
-                        arbol.Nivel3.Descripcion = descripcion.Trim();
-                    else if (arbol.Nivel2 != null)
-                        arbol.Nivel2.Descripcion = descripcion.Trim();
-                    else if (arbol.Nivel1 != null)
-                        arbol.Nivel1.Descripcion = descripcion.Trim();
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel1 = new Nivel1();
+                                arbol.Nivel1.Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel1.IdTipoUsuario = arbol.IdTipoUsuario;
+                                arbol.Nivel1.Habilitado = true;
+                                arbol.IdNivel2 = null;
+                                arbol.IdNivel3 = null;
+                                arbol.IdNivel4 = null;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 2:
+                                descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                existe = db.Nivel2.Join(db.ArbolAcceso, n2 => n2.Id, aa => aa.IdNivel2, (n2, aa) => new { n2, aa }).Any(@t => @t.n2.Descripcion == descripcionFinal && @t.n2.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1);
+
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel2 = new Nivel2();
+                                arbol.Nivel2.Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel2.IdTipoUsuario = arbol.IdTipoUsuario;
+                                arbol.Nivel2.Habilitado = true;
+                                arbol.IdNivel3 = null;
+                                arbol.IdNivel4 = null;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 3:
+                                descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                existe = db.Nivel3.Join(db.ArbolAcceso, n3 => n3.Id, aa => aa.IdNivel3, (n3, aa) => new { n3, aa }).Any(@t => @t.n3.Descripcion == descripcionFinal && @t.n3.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2);
+
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel3 = new Nivel3();
+                                arbol.Nivel3.Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel3.IdTipoUsuario = arbol.IdTipoUsuario;
+                                arbol.Nivel3.Habilitado = true;
+                                arbol.IdNivel4 = null;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 4:
+                                descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                existe = db.Nivel4.Join(db.ArbolAcceso, n4 => n4.Id, aa => aa.IdNivel4, (n4, aa) => new { n4, aa }).Any(@t => @t.n4.Descripcion == descripcionFinal && @t.n4.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3);
+
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel4 = new Nivel4();
+                                arbol.Nivel4.Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel4.IdTipoUsuario = arbol.IdTipoUsuario;
+                                arbol.Nivel4.Habilitado = true;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 5:
+                                descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel5 = new Nivel5();
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                arbol.IdNivel4 = arbolAccesoActualizar.IdNivel4;
+                                existe = db.Nivel5.Join(db.ArbolAcceso, n5 => n5.Id, aa => aa.IdNivel5, (n5, aa) => new { n5, aa }).Any(@t => @t.n5.Descripcion == descripcionFinal && @t.n5.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4);
+
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel5.Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel5.IdTipoUsuario = arbol.IdTipoUsuario;
+                                arbol.Nivel5.Habilitado = true;
+
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 6:
+                                descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                arbol.IdNivel4 = arbolAccesoActualizar.IdNivel4;
+                                arbol.IdNivel5 = arbolAccesoActualizar.IdNivel5;
+                                existe = db.Nivel6.Join(db.ArbolAcceso, n6 => n6.Id, aa => aa.IdNivel6, (n6, aa) => new { n6, aa }).Any(@t => @t.n6.Descripcion == descripcionFinal && @t.n6.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4
+                                && @t.aa.IdNivel5 == arbol.IdNivel5);
+
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel6 = new Nivel6();
+
+                                arbol.Nivel6.Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel6.IdTipoUsuario = arbol.IdTipoUsuario;
+                                arbol.Nivel6.Habilitado = true;
+
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 7:
+                                descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                arbol.IdNivel4 = arbolAccesoActualizar.IdNivel4;
+                                arbol.IdNivel5 = arbolAccesoActualizar.IdNivel5;
+                                arbol.IdNivel6 = arbolAccesoActualizar.IdNivel6;
+                                existe = db.Nivel7.Join(db.ArbolAcceso, n7 => n7.Id, aa => aa.IdNivel7, (n7, aa) => new { n7, aa }).Any(@t => @t.n7.Descripcion == descripcionFinal && @t.n7.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4
+                                && @t.aa.IdNivel5 == arbol.IdNivel5
+                                && @t.aa.IdNivel6 == arbol.IdNivel6);
+
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel7 = new Nivel7();
+                                arbol.Nivel7.Descripcion = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                                arbol.Nivel7.IdTipoUsuario = arbol.IdTipoUsuario;
+                                arbol.Nivel7.Habilitado = true;
+                                break;
+                        }
+                    }
+                    else if (nivelArbolBase == nivelArbolActualizar)
+                    {
+                        string descripcionFinal = arbolAccesoActualizar.InventarioArbolAcceso.First().Descripcion.Trim();
+                        bool existe;
+                        switch (nivelArbolBase)
+                        {
+                            case 1:
+                                existe = db.Nivel1.Join(db.ArbolAcceso, n1 => n1.Id, aa => aa.IdNivel1, (n1, aa) => new { n1, aa }).Any(@t => @t.n1.Descripcion == descripcionFinal && @t.n1.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea);
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel1.Descripcion = descripcionFinal;
+                                arbol.IdNivel2 = null;
+                                arbol.IdNivel3 = null;
+                                arbol.IdNivel4 = null;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 2:
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                existe = db.Nivel2.Join(db.ArbolAcceso, n2 => n2.Id, aa => aa.IdNivel2, (n2, aa) => new { n2, aa }).Any(@t => @t.n2.Descripcion == descripcionFinal && @t.n2.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1);
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel2.Descripcion = descripcionFinal;
+                                arbol.IdNivel3 = null;
+                                arbol.IdNivel4 = null;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 3:
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                existe = db.Nivel3.Join(db.ArbolAcceso, n3 => n3.Id, aa => aa.IdNivel3, (n3, aa) => new { n3, aa }).Any(@t => @t.n3.Descripcion == descripcionFinal && @t.n3.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2);
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel3.Descripcion = descripcionFinal;
+                                arbol.IdNivel4 = null;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 4:
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                existe = db.Nivel4.Join(db.ArbolAcceso, n4 => n4.Id, aa => aa.IdNivel4, (n4, aa) => new { n4, aa }).Any(@t => @t.n4.Descripcion == descripcionFinal && @t.n4.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3);
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel4.Descripcion = descripcionFinal;
+                                arbol.IdNivel5 = null;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 5:
+
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                arbol.IdNivel4 = arbolAccesoActualizar.IdNivel4;
+                                existe = db.Nivel5.Join(db.ArbolAcceso, n5 => n5.Id, aa => aa.IdNivel5, (n5, aa) => new { n5, aa }).Any(@t => @t.n5.Descripcion == descripcionFinal && @t.n5.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4);
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel5.Descripcion = descripcionFinal;
+                                arbol.IdNivel6 = null;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 6:
+                                existe = db.Nivel6.Join(db.ArbolAcceso, n6 => n6.Id, aa => aa.IdNivel6, (n6, aa) => new { n6, aa }).Any(@t => @t.n6.Descripcion == descripcionFinal && @t.n6.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4
+                                && @t.aa.IdNivel5 == arbol.IdNivel5);
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                arbol.IdNivel4 = arbolAccesoActualizar.IdNivel4;
+                                arbol.IdNivel5 = arbolAccesoActualizar.IdNivel5;
+                                arbol.Nivel6.Descripcion = descripcionFinal;
+                                arbol.IdNivel7 = null;
+                                break;
+                            case 7:
+
+                                arbol.IdNivel1 = arbolAccesoActualizar.IdNivel1;
+                                arbol.IdNivel2 = arbolAccesoActualizar.IdNivel2;
+                                arbol.IdNivel3 = arbolAccesoActualizar.IdNivel3;
+                                arbol.IdNivel4 = arbolAccesoActualizar.IdNivel4;
+                                arbol.IdNivel5 = arbolAccesoActualizar.IdNivel5;
+                                arbol.IdNivel6 = arbolAccesoActualizar.IdNivel6;
+                                existe = db.Nivel7.Join(db.ArbolAcceso, n7 => n7.Id, aa => aa.IdNivel7, (n7, aa) => new { n7, aa }).Any(@t => @t.n7.Descripcion == descripcionFinal && @t.n7.IdTipoUsuario == arbol.IdTipoUsuario && @t.aa.EsTerminal && @t.aa.Id != arbol.Id && @t.aa.IdArea == arbol.IdArea
+                                    && @t.aa.IdNivel1 == arbol.IdNivel1
+                                && @t.aa.IdNivel2 == arbol.IdNivel2
+                                && @t.aa.IdNivel3 == arbol.IdNivel3
+                                && @t.aa.IdNivel4 == arbol.IdNivel4
+                                && @t.aa.IdNivel5 == arbol.IdNivel5
+                                && @t.aa.IdNivel6 == arbol.IdNivel6);
+                                if (existe)
+                                    throw new Exception("Esta opcion ya se encuentra registrada");
+                                arbol.Nivel7.Descripcion = descripcionFinal;
+                                break;
+                        }
+                    }
 
                     db.SaveChanges();
                 }

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.IO;
 using System.ServiceProcess;
 using System.Threading;
 using System.Timers;
@@ -12,10 +12,12 @@ namespace DemonioSla
 {
     public partial class ServiceSla : ServiceBase
     {
+        private readonly string _serviceLog;
         private Timer _intervaloEjecucion;
-        public ServiceSla()
+        public ServiceSla(string serviceName)
         {
             InitializeComponent();
+            _serviceLog = serviceName;
         }
 
         protected override void OnStart(string[] args)
@@ -27,7 +29,7 @@ namespace DemonioSla
                 double intervalo = 60000;
                 if (parametros != null)
                 {
-                    intervalo = parametros.FrecuenciaDemonioSegundos * 1000;
+                    intervalo = parametros.FrecuenciaNotificacionMinutos * 1000;
                     _intervaloEjecucion = new Timer(intervalo);
                 }
                 else
@@ -37,58 +39,32 @@ namespace DemonioSla
 
                 _intervaloEjecucion.Elapsed += intervaloEjecucion_Elapsed;
                 _intervaloEjecucion.Start();
-                LogCorrect("KiiniNet notificaciones SLA", "Sla", "Timer Start");
+                LogCorrect("Servicio Iniciado");
             }
             catch (Exception ex)
             {
-                LogError("KiiniNet notificaciones SLA", "Sla", ex.Message);
+                LogError(ex.Message);
             }
         }
-        void LogCorrect(string source, string application, string mensaje)
-        {
-            try
-            {
-                if (!EventLog.SourceExists(source))
-                    EventLog.CreateEventSource(source, application);
-
-                EventLog.WriteEntry(source, mensaje);
-                EventLog.WriteEntry(source, mensaje,
-                    EventLogEntryType.SuccessAudit, 234);
-            }
-            catch (Exception ex)
-            {
-                LogError("KiiniNet notificaciones SLA", "Sla", ex.Message);
-            }
-        }
-
-        void LogError(string source, string application, string mensaje)
-        {
-            try
-            {
-                if (!EventLog.SourceExists(source))
-                    EventLog.CreateEventSource(source, application);
-
-                EventLog.WriteEntry(source, mensaje);
-                EventLog.WriteEntry(source, mensaje,
-                    EventLogEntryType.Error, 234);
-            }
-            catch (Exception ex)
-            {
-                LogError("KiiniNet notificaciones SLA", "Sla", ex.Message);
-            }
-        }
+        
         void intervaloEjecucion_Elapsed(object sender, ElapsedEventArgs e)
         {
             try
             {
                 Thread.Sleep(1000);
-                LogCorrect("KiiniNet notificaciones SLA", "Sla", "Iniciando Envio de Notificaciones SLA");
-                new BusinessDemonio().EnvioNotificacion();
+                LogCorrect("-------------------------Iniciando Envio de Notificaciones SLA-------------------------");
+                _intervaloEjecucion.Stop();
+                LogCorrect(new BusinessDemonio().EnvioNotificacion());
+                LogCorrect("-------------------------Termino Envio de Notificaciones SLA-------------------------");
             }
             catch (Exception ex)
             {
-                LogError("KiiniNet notificaciones SLA", "Sla", ex.Message);
+                LogError(ex.Message);
 
+            }
+            finally
+            {
+                _intervaloEjecucion.Start();
             }
         }
 
@@ -100,7 +76,73 @@ namespace DemonioSla
             }
             catch (Exception ex)
             {
-                LogError("KiiniNet notificaciones SLA", "Sla", ex.Message);
+                LogError(ex.Message);
+            }
+        }
+
+        void VerificaDirectorio()
+        {
+            try
+            {
+                if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\Logs"))
+                    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\Logs");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        void LogCorrect(string mensaje)
+        {
+            try
+            {
+                VerificaDirectorio();
+                string pathFile = string.Format("{0}\\Log_{1}.txt", AppDomain.CurrentDomain.BaseDirectory + "\\Logs", _serviceLog);
+                if (File.Exists(pathFile))
+                {
+                    DateTime logCreatedDate = File.GetCreationTime(pathFile);
+                    if (logCreatedDate < DateTime.Now.AddDays(-30))
+                    {
+                        File.Move(pathFile, string.Format("{0}\\Log_{1}_Respaldo{2}-{3}.txt", System.Reflection.Assembly.GetExecutingAssembly().Location, _serviceLog, DateTime.Now.AddDays(-30).ToShortDateString(), DateTime.Now.ToShortDateString()));
+                    }
+                }
+
+                FileStream objFilestream = new FileStream(pathFile, FileMode.Append, FileAccess.Write);
+                StreamWriter objStreamWriter = new StreamWriter((Stream)objFilestream);
+                objStreamWriter.WriteLine("{0} - {1} ", DateTime.Now, mensaje);
+                objStreamWriter.Close();
+                objFilestream.Close();
+            }
+            catch (Exception ex)
+            {
+                LogError(ex.Message);
+            }
+        }
+
+        void LogError(string mensaje)
+        {
+            try
+            {
+                VerificaDirectorio();
+                string pathFile = string.Format("{0}\\Log_{1}.txt", AppDomain.CurrentDomain.BaseDirectory + "\\Logs", _serviceLog);
+                if (File.Exists(pathFile))
+                {
+                    DateTime logCreatedDate = File.GetCreationTime(pathFile);
+                    if (logCreatedDate < DateTime.Now.AddDays(-30))
+                    {
+                        File.Move(pathFile, string.Format("{0}\\Log_{1}_Respaldo{2}-{3}.txt", System.Reflection.Assembly.GetExecutingAssembly().Location, _serviceLog, DateTime.Now.AddDays(-30).ToShortDateString(), DateTime.Now.ToShortDateString()));
+                    }
+                }
+
+                FileStream objFilestream = new FileStream(pathFile, FileMode.Append, FileAccess.Write);
+                StreamWriter objStreamWriter = new StreamWriter((Stream)objFilestream);
+                objStreamWriter.WriteLine("Error: {0} - {1} ", DateTime.Now, mensaje);
+                objStreamWriter.Close();
+                objFilestream.Close();
+            }
+            catch (Exception ex)
+            {
+                LogError(ex.Message);
             }
         }
     }

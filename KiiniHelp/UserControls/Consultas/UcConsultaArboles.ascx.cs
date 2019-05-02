@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceSistemaTipoUsuario;
+using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KinniNet.Business.Utils;
 using System.IO;
@@ -36,6 +38,94 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
+        bool _sorted = false;
+        private string GridViewSortDirection
+        {
+            get
+            {
+                if (ViewState["SortDirection"] == null)
+                {
+                    ViewState["SortDirection"] = "ASC";
+                }
+                return ViewState["SortDirection"].ToString();
+            }
+
+            set
+            {
+                ViewState["SortDirection"] = value;
+            }
+
+        }
+        private string GridViewSortExpression
+        {
+            get
+            {
+                return ViewState["SortExpression"] as string ?? string.Empty;
+            }
+
+            set
+            {
+                ViewState["SortExpression"] = value;
+            }
+
+        }
+
+        protected List<ArbolAcceso> SortList(List<ArbolAcceso> data, bool isPageIndexChanging)
+        {
+            List<ArbolAcceso> result = data;
+            if (data != null)
+            {
+                if (chkActivos.Checked)
+                    data = data.Where(w => w.Habilitado).ToList();
+                if (GridViewSortExpression != string.Empty)
+                {
+                    if (data.Count > 0)
+                    {
+                        PropertyInfo[] propertys = data[0].GetType().GetProperties();
+                        foreach (PropertyInfo p in propertys)
+                        {
+                            if (p.Name == GridViewSortExpression)
+                            {
+                                if (GridViewSortDirection == "ASC")
+                                {
+                                    if (isPageIndexChanging)
+                                    {
+                                        result = data.OrderByDescending(key => p.GetValue(key, null)).ToList();
+                                    }
+                                    else
+                                    {
+                                        result = data.OrderBy(key =>
+                                            p.GetValue(key, null)).ToList();
+                                        GridViewSortDirection = "DESC";
+                                    }
+                                }
+                                else
+                                {
+                                    if (isPageIndexChanging)
+                                    {
+                                        result = data.OrderBy(key =>
+                                            p.GetValue(key, null)).ToList();
+                                    }
+                                    else
+                                    {
+                                        result = data.OrderByDescending(key => p.GetValue(key, null)).ToList();
+                                        GridViewSortDirection = "ASC";
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    result = data.OrderBy(o => o.Descripcion).ToList();
+                }
+            }
+            _sorted = true;
+            return result;
+        }
+
         private void LlenaCombos()
         {
             try
@@ -49,7 +139,7 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
-        private void LlenaArboles()
+        private void LlenaArboles(bool isPageIndexChanging)
         {
             try
             {
@@ -65,8 +155,9 @@ namespace KiiniHelp.UserControls.Consultas
                 List<ArbolAcceso> lstArboles = _servicioArbolAcceso.ObtenerArbolesAccesoAll(idArea, idTipoUsuario, null, null, null, null, null, null, null, null).Where(w => w.EsTerminal).ToList();
                 if (filtro != string.Empty)
                     lstArboles = lstArboles.Where(w => w.Tipificacion.ToLower().Contains(filtro)).ToList();
-
-                tblResults.DataSource = lstArboles;
+                if (chkActivos.Checked)
+                    lstArboles = lstArboles.Where(w => w.Habilitado).ToList();
+                tblResults.DataSource = SortList(lstArboles, isPageIndexChanging);
                 tblResults.DataBind();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
@@ -80,12 +171,11 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                UcAltaAbrolAcceso.OnCancelarModal += UcAltaAbrolAccesoOnOnCancelarModal;
                 ucDetalleArbolAcceso.OnCancelarModal += ucDetalleArbolAcceso_OnCancelarModal;
                 if (!IsPostBack)
                 {
                     LlenaCombos();
-                    LlenaArboles();
+                    LlenaArboles(false);
                 }
             }
             catch (Exception ex)
@@ -103,27 +193,8 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                LlenaArboles();
+                LlenaArboles(false);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalDetalleOpciones\");", true);
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        private void UcAltaAbrolAccesoOnOnCancelarModal()
-        {
-            try
-            {
-                LlenaArboles();
-                UcAltaAbrolAcceso.Cancelar();
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
             }
             catch (Exception ex)
             {
@@ -140,7 +211,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                LlenaArboles();
+                LlenaArboles(false);
             }
             catch (Exception ex)
             {
@@ -156,7 +227,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                LlenaArboles();
+                LlenaArboles(false);
             }
             catch (Exception ex)
             {
@@ -172,24 +243,11 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAtaOpcion\");", true);
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void btnNew_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "MostrarPopup(\"#modalAtaOpcion\");", true);
+                int tipoArbol = int.Parse(((LinkButton)sender).CommandName);
+                if (tipoArbol == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion)
+                    Response.Redirect("~/Users/Administracion/ArbolesAcceso/FrmEdicionOpcionConsulta.aspx?IdArbolAccesoConsulta=" + ((LinkButton)sender).CommandArgument);
+                else
+                    Response.Redirect("~/Users/Administracion/ArbolesAcceso/FrmEdicionOpcionServicio.aspx?IdArbolAccesoServicioProblema=" + ((LinkButton)sender).CommandArgument);
             }
             catch (Exception ex)
             {
@@ -206,7 +264,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                LlenaArboles();
+                LlenaArboles(false);
             }
             catch (Exception ex)
             {
@@ -224,7 +282,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 _servicioArbolAcceso.HabilitarArbol(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
-                LlenaArboles();
+                LlenaArboles(false);
             }
             catch (Exception ex)
             {
@@ -241,7 +299,7 @@ namespace KiiniHelp.UserControls.Consultas
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             tblResults.PageIndex = e.NewPageIndex;
-            LlenaArboles();
+            LlenaArboles(true);
         }
 
         #endregion
@@ -311,5 +369,49 @@ namespace KiiniHelp.UserControls.Consultas
             }
         }
 
+        protected void chkActivos_OnCheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LlenaArboles(false);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void tblResults_OnSorting(object sender, GridViewSortEventArgs e)
+        {
+            try
+            {
+                GridViewSortExpression = e.SortExpression;
+                LlenaArboles(true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void btnNuevaConsulta_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Users/Administracion/ArbolesAcceso/FrmEdicionOpcionConsulta.aspx");
+        }
+
+        protected void btnNuevoServicio_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Users/Administracion/ArbolesAcceso/FrmEdicionOpcionServicio.aspx");
+        }
     }
 }

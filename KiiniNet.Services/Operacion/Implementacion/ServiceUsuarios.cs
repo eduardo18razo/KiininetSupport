@@ -10,6 +10,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
 {
     public class ServiceUsuarios : IServiceUsuarios
     {
+        public void ValidaLimiteOperadores()
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    negocio.ValidaLimiteOperadores();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public void GuardarUsuario(Usuario usuario, Domicilio domicilio)
         {
             try
@@ -80,6 +95,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
                     return negocio.ObtenerUsuarios(idTipoUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Usuario> ConsultaUsuariosUsuarios(int? idTipoUsuario, string filtro)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    return negocio.ConsultaUsuariosUsuarios(idTipoUsuario, filtro);
                 }
             }
             catch (Exception ex)
@@ -320,6 +350,21 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 using (BusinessUsuarios negocio = new BusinessUsuarios())
                 {
                     negocio.ConfirmaCuenta(idUsuario, password, confirmaciones, pregunta, link);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void ReenviarActivacion(int idUsuario)
+        {
+            try
+            {
+                using (BusinessUsuarios negocio = new BusinessUsuarios())
+                {
+                    negocio.ReenviarActivacion(idUsuario);
                 }
             }
             catch (Exception ex)

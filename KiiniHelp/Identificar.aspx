@@ -19,6 +19,16 @@
     <link rel="stylesheet" href="assets/css/divs.css" />
     <link rel="stylesheet" href="assets/css/modales_movil.css" />
     <link rel="stylesheet" href="assets/css/main_movil.css" />
+    <script type="text/javascript">
+        function MostrarPopup(modalName) {
+            $(modalName).on('shown.bs.modal', function () {
+                $(this).find('[autofocus]').focus();
+            });
+            $(modalName).modal({ backdrop: 'static', keyboard: false });
+            $(modalName).modal('show');
+            return true;
+        };
+    </script>
 </head>
 <body class="bodyBackgroundPassword" >
     <form id="form1" runat="server">
@@ -28,6 +38,8 @@
                 <asp:ScriptReference Path="~/assets/js/bootstrap.js" />
                 <asp:ScriptReference Path="~/assets/js/bootstrap-notify.js" />
                 <asp:ScriptReference Path="~/assets/js/bootstrap-notify.min.js" />
+                <asp:ScriptReference Path="~/assets/js/Notificaciones.js" />
+                <asp:ScriptReference Path="~/assets/js/validation.js" />
             </Scripts>
         </asp:ScriptManager>
         <asp:UpdateProgress ID="updateProgress" runat="server" ClientIDMode="Static">
@@ -92,6 +104,29 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
+        <div class="modal fade" id="modalRegistroExito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <asp:LinkButton class="close" runat="server" ID="btnCerrarExito" OnClick="btnCerrarExito_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
+                        <h6 id="modal-new-ticket-label" class="modal-title">Registro Exitoso
+                        </h6>
+                    </div>
+                    <div class="modal-body">
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
+                                <p class="h4 centered">
+                                    <strong>En breve recibirás un correo electrónico para confirmar tu registro.</strong><br>
+                                </p>
+                                <p class="h4 centered">
+                                    <asp:Button runat="server" Text="Aceptar" ID="btnAceptar" OnClick="btnCerrarExito_OnClick" CssClass="btn btn-primary" />
+                                </p>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </body>
 </html>

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using KiiniHelp.ServiceInformacionConsulta;
 using KiiniNet.Entities.Operacion;
-using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Preview
 {
@@ -16,6 +14,7 @@ namespace KiiniHelp.UserControls.Preview
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
 
+        private readonly ServiceInformacionConsultaClient _servicioInformacionConsulta = new ServiceInformacionConsultaClient();
         private List<string> _lstError = new List<string>();
 
         private List<string> Alerta
@@ -56,7 +55,11 @@ namespace KiiniHelp.UserControls.Preview
         {
             try
             {
-                if (Session["PreviewDataConsulta"] != null)
+                if (Request.Params["Id"] != null)
+                {
+                    MuestraPreview(_servicioInformacionConsulta.ObtenerInformacionConsultaById(int.Parse(Request.Params["Id"])));
+                }
+                else if (Session["PreviewDataConsulta"] != null)
                 {
                     MuestraPreview((InformacionConsulta)Session["PreviewDataConsulta"]);
                 }
@@ -77,11 +80,11 @@ namespace KiiniHelp.UserControls.Preview
             try
             {
                 return;
-                LinkButton btn = (LinkButton)sender;
-                BusinessFile.MoverTemporales(BusinessVariables.Directorios.Carpetaemporal, BusinessVariables.Directorios.RepositorioTemporal, new List<string> { btn.CommandArgument });
+                //LinkButton btn = (LinkButton)sender;
+                //BusinessFile.MoverTemporales(BusinessVariables.Directorios.CarpetaTemporal, BusinessVariables.Directorios.RepositorioTemporal, new List<string> { btn.CommandArgument });
 
-                string script = string.Format("window.open('https://docs.google.com/viewer?url=http://{0}/tmp/{1}','_blank')", WebConfigurationManager.AppSettings["siteUrl"], btn.CommandArgument);
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptViewer", script, true);
+                //string script = string.Format("window.open('https://docs.google.com/viewer?url=http://{0}/tmp/{1}','_blank')", WebConfigurationManager.AppSettings["siteUrl"], btn.CommandArgument);
+                //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptViewer", script, true);
             }
             catch (Exception ex)
             {

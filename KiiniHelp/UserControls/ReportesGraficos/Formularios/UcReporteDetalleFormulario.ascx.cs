@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceMascaraAcceso;
 using KiiniNet.Entities.Cat.Mascaras;
 using KinniNet.Business.Utils;
 using Telerik.Web.UI;
-using Calendar = System.Web.UI.WebControls.Calendar;
 
 namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
 {
@@ -62,7 +59,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
         {
             try
             {
-                Lista = _servicioMascara.ObtenerReporteMascara(IdMascara, ucFiltroFechasGrafico.RangoFechas);
+                Lista = _servicioMascara.ObtenerReporteMascara(IdMascara, ucFiltroFechasConsultas.RangoFechas);
                 return Lista;
             }
             catch (Exception ex)
@@ -75,7 +72,9 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
         {
             try
             {
+                lblTituloFormulario.Text = _servicioMascara.ObtenerMascaraCaptura(IdMascara).Descripcion;
                 object lst = GetDataTable();
+                lblTotal.Text = string.Format("{0} formularios completados", ((DataTable)lst).Rows.Count);
                 rgResult.DataSource = lst;
                 rgResult.Rebind();
                 rgExport.DataSource = lst;
@@ -105,13 +104,15 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
             {
                 if (!IsPostBack)
                 {
+
+                    ucFiltroFechasConsultas.LlenaFechas();
                     if (Request.Params["idMascara"] != null)
                     {
                         IdMascara = int.Parse(Request.Params["idMascara"]);
                         LoadDataForrgResult();
                     }
                     else
-                        Response.Redirect("~/Users/Administracion/Formularios/FrmConsultaFormularios.aspx");
+                        Response.Redirect("~/Users/ReportesGraficos/Formularios/FrmFormularios.aspx");
                 }
 
             }
@@ -294,7 +295,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios
                 Alerta = _lstError;
             }
         }
-        
+
         protected void rgResult_OnItemDataBound(object sender, GridItemEventArgs e)
         {
             try

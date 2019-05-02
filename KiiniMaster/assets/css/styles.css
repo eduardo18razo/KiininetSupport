@@ -87,12 +87,15 @@ body {
 .video-container iframe {
     max-width: 100%;
 }
+
 .margin-top0 {
     margin-top: 0 !important;
 }
+
 .margin-top {
     margin-top: 20px;
 }
+
 .margin-top-5 {
     margin-top: 5px;
 }
@@ -191,16 +194,16 @@ button.close:focus {
     position: fixed;
 }
 
-    .header .branding {
-        background: #40babd;
-        float: left;
-        height: 80px;
-        transition: width 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
-        width: 180px;
-        overflow: hidden;
-        position: relative;
-        will-change: width;
-    }
+.header .branding {
+    background: #40babd;
+    float: left;
+    height: 80px;
+    transition: width 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    width: 180px;
+    overflow: hidden;
+    position: relative;
+    will-change: width;
+}
 
 .compact:not(.nav-toggled) .header .branding,
 .mobile.nav-toggled .header .branding,
@@ -894,7 +897,6 @@ button.close:focus {
     height: 20px; /*50*/
     margin-left: 0;
     padding: 15px;
-
     border-top: 1px solid #f3f3f3;
     box-shadow: 0 0 5px #000000;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -1104,7 +1106,7 @@ button.close:focus {
     }
 
     .module .module-inner {
-		padding: 2px 30px;
+        padding: 2px 30px;
     }
 
     .module .module-content-has-chart {
@@ -4554,6 +4556,7 @@ ul.sortable {
 .margin-left {
     margin: auto;
 }
+
 .margin-left-5 {
     margin-left: 5px;
 }
@@ -5561,12 +5564,14 @@ ul.sortable {
     .file-uploader {
         display: none;
     }
+
     .file-uploader-label {
         display: inline-block;
         padding: 6px 12px;
         cursor: pointer;
         text-decoration-line: underline;
     }
+
     .view-account .mail-subject {
         max-width: 100px;
         white-space: nowrap;
@@ -5690,18 +5695,23 @@ ul.sortable {
     border-radius: 25px;
     border: 1px solid;
 }
+
 .padding-10 {
     padding: 10px !important;
 }
+
 .padding-10-left {
     padding: 10px !important;
 }
+
 .padding-10-top {
     padding: 10px !important;
 }
+
 .padding-10-right {
     padding: 10px !important;
 }
+
 .padding-10-bottom {
     padding: 10px !important;
 }
@@ -5713,12 +5723,15 @@ ul.sortable {
 .no-padding-left {
     padding-left: 0 !important;
 }
+
 .no-padding-top {
     padding-top: 0 !important;
 }
+
 .no-padding-right {
     padding-right: 0 !important;
 }
+
 .no-padding-bottom {
     padding-bottom: 0 !important;
 }
@@ -5730,6 +5743,7 @@ ul.sortable {
 .borderright {
     border-right: 1px solid #f3f3f7;
 }
+
 .borderbootom {
     border-bottom: 1px solid #f3f3f7;
 }

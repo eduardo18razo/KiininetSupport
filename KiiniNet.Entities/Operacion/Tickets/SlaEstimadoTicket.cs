@@ -10,8 +10,6 @@ namespace KiiniNet.Entities.Operacion.Tickets
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public int IdTicket { get; set; }
-        [DataMember]
         public DateTime FechaInicio { get; set; }
         [DataMember]
         public DateTime FechaFin { get; set; }

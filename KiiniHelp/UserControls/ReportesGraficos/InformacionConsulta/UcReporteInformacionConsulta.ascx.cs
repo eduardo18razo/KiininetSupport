@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using KiiniHelp.Funciones;
 using KiiniHelp.ServiceInformacionConsulta;
 using KiiniNet.Entities.Helper;
-using Calendar = System.Globalization.Calendar;
 
 namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
 {
@@ -51,6 +48,7 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
             {
                 if (!IsPostBack)
                 {
+                    ucFiltroFechasGrafico.ObtenerFechasParametro();
                     LlenaInformacionConsulta(false);
                 }
                 Alerta = new List<string>();
@@ -199,8 +197,20 @@ namespace KiiniHelp.UserControls.ReportesGraficos.InformacionConsulta
 
         protected void tblResults_OnSorting(object sender, GridViewSortEventArgs e)
         {
-            GridViewSortExpression = e.SortExpression;
-            LlenaInformacionConsulta(false);
+            try
+            {
+                GridViewSortExpression = e.SortExpression;
+                LlenaInformacionConsulta(false);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
         }
 
         protected void btnDetalle_OnClick(object sender, EventArgs e)

@@ -15,6 +15,7 @@
       <xs:element minOccurs="0" name="ApellidoPaterno" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Autoregistro" type="xs:boolean" />
       <xs:element minOccurs="0" name="BitacoraAcceso" nillable="true" type="tns:ArrayOfBitacoraAcceso" />
+      <xs:element minOccurs="0" name="CorreoPrincipal" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="CorreoService" nillable="true" type="q1:ArrayOfCorreoService" />
       <xs:element minOccurs="0" name="CorreoUsuario" nillable="true" type="tns:ArrayOfCorreoUsuario" />
       <xs:element minOccurs="0" name="DirectorioActivo" type="xs:boolean" />
@@ -58,6 +59,7 @@
       <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />
       <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="SmsService" nillable="true" type="q18:ArrayOfSmsService" />
       <xs:element minOccurs="0" name="Supervisor" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TelefonoPrincipal" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TelefonoUsuario" nillable="true" type="tns:ArrayOfTelefonoUsuario" />
       <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="TicketAsignado" nillable="true" type="q19:ArrayOfTicketAsignacion" />
       <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="TicketAsigno" nillable="true" type="q20:ArrayOfTicketAsignacion" />
@@ -226,6 +228,8 @@
       <xs:element minOccurs="0" name="Respuesta" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Usuario" nillable="true" type="tns:Usuario" />
     </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="PreguntaReto" nillable="true" type="tns:PreguntaReto" />
   <xs:complexType name="ArrayOfTelefonoUsuario">

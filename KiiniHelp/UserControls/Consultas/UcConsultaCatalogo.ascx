@@ -7,11 +7,11 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item">Catálogos</li>
-                <li class="breadcrumb-item active">Registro</li>
+                <li>Centro de Soporte</li>
+                <li>Catálogos</li>
+                <li class="active">Registro</li>
             </ol>
 
             <section class="module">

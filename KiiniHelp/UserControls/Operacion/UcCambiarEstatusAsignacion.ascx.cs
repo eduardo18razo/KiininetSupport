@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Configuration;
 using System.Web.UI;
 using KiiniHelp.ServiceAtencionTicket;
 using KiiniHelp.ServiceGrupoUsuario;
@@ -21,7 +20,7 @@ namespace KiiniHelp.UserControls.Operacion
         private readonly ServiceUsuariosClient _servicioUsuarios = new ServiceUsuariosClient();
         private readonly ServiceSubRolClient _servicioSubRol = new ServiceSubRolClient();
         private readonly ServiceAtencionTicketClient _servicioAtencionTicket = new ServiceAtencionTicketClient();
-        private readonly  ServiceGrupoUsuarioClient _servicioGrupo = new ServiceGrupoUsuarioClient();
+        private readonly ServiceGrupoUsuarioClient _servicioGrupo = new ServiceGrupoUsuarioClient();
         public event DelegateAceptarModal OnAceptarModal;
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
@@ -70,9 +69,7 @@ namespace KiiniHelp.UserControls.Operacion
 
         public int IdSubRolActual
         {
-            //get { return int.Parse(hfSubRolActual.Value); }
             get { return IdNivelEstatusAsignacionActual + 2; }
-            //set { hfSubRolActual.Value = value.ToString(); }
             set { hfSubRolActual.Value = (value + 2).ToString(); }
         }
 
@@ -105,20 +102,28 @@ namespace KiiniHelp.UserControls.Operacion
                 int subRol = (int)BusinessVariables.EnumSubRoles.Supervisor;
                 GrupoUsuario gpo = _servicioGrupo.ObtenerGrupoUsuarioById(IdGrupo);
                 if (IdNivelEstatusAsignacionActual <= 2)
-                    subRol = gpo.TieneSupervisor ? (int)BusinessVariables.EnumSubRoles.Supervisor : (int)BusinessVariables.EnumSubRoles.PrimererNivel;
+                {
+                    if (gpo.TieneSupervisor)
+                    {
+                        if (IdNivelEstatusAsignacionActual < 2)
+                            subRol = (int)BusinessVariables.EnumSubRoles.Supervisor;
+                        else
+                            subRol = (int)BusinessVariables.EnumSubRoles.PrimererNivel;
+                    }
+                    else if (!gpo.TieneSupervisor)
+                    {
+                        if (IdNivelEstatusAsignacionActual < 2)
+                            subRol = (int)BusinessVariables.EnumSubRoles.PrimererNivel;
+                    }
+                }
+
                 else
-                    subRol = IdNivelEstatusAsignacionActual;
+                    subRol = IdSubRolActual;
                 ddlEstatus.DataSource = _servicioEstatus.ObtenerEstatusAsignacionUsuario(IdUsuario, IdGrupo, IdEstatusAsignacionActual, EsPropietario, subRol, true);
                 ddlEstatus.DataTextField = "Descripcion";
                 ddlEstatus.DataValueField = "Id";
                 ddlEstatus.DataBind();
                 OcultaUsuarios();
-                //divUsuariosNivel1.Visible = false;
-                //divUsuariosNivel2.Visible = false;
-                //divUsuariosNivel3.Visible = false;
-                //divUsuariosNivel4.Visible = false;
-                //divUsuariosSupervisor.Visible = false;
-
             }
             catch (Exception e)
             {
@@ -137,7 +142,6 @@ namespace KiiniHelp.UserControls.Operacion
                 divUsuariosNivel4.Visible = false;
                 List<int> lstSubRoles = ((Usuario)Session["UserData"]).UsuarioGrupo.Where(w => w.SubGrupoUsuario != null && w.IdGrupoUsuario == IdGrupo).Select(s => s.SubGrupoUsuario).Select(subRol => subRol.IdSubRol).ToList();
                 var supervisor = lstSubRoles.Contains((int)BusinessVariables.EnumSubRoles.Supervisor);
-                //if (!EsPropietario && !supervisor) return;
                 List<Usuario> lstUsuarios;
                 List<SubRolEscalacionPermitida> lstAsignacionesPermitidas = new List<SubRolEscalacionPermitida>();
                 switch (int.Parse(ddlEstatus.SelectedValue))
@@ -312,7 +316,6 @@ namespace KiiniHelp.UserControls.Operacion
             try
             {
                 Alerta = new List<string>();
-                //lblBrandingModal.Text = WebConfigurationManager.AppSettings["Brand"];
                 if (!IsPostBack)
                 {
 

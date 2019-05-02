@@ -66,6 +66,7 @@ namespace KiiniHelp.Agente
                 int? idUsuario = ddlAgente.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione ? (int?)null : int.Parse(ddlAgente.SelectedValue);
 
                 DashboardAgente datos = _servicioDashBoard.GetDashboardAgente(idGrupo, idUsuario);
+                lblTitlePeriodo.Text = string.Format(" {0} - {1}", datos.FechaFinPeriodoActual.ToString("dd/MM/yyyy"), datos.FechaInicioPeriodoActual.ToString("dd/MM/yyyy"));
                 lblTicketsAcumulados.Text = datos.TotalTickets.ToString();
                 lblTicketsAbiertos7dias.Text = datos.TicketsAbiertos.ToString();
                 lblTicketsCreados7dias.Text = datos.TicketsCreados.ToString();
@@ -104,9 +105,9 @@ namespace KiiniHelp.Agente
                 lblClientesUnicosAtendidosAnterior.Text = datos.ClientesAtendidosAnterior.ToString();
 
 
-                GeneraGraficaPie(rhcTicketsAbiertos, datos.GraficoTicketsAbiertos);
+                GeneraGraficaPie(rhcTicketsAbiertos, datos.GraficoTicketsAbiertos, false);
                 GeneraGraficaStackedBar(rhcTicketsPrioridad, datos.GraficoTicketsPrioridad);
-                GeneraGraficaPie(rhcTicketsCanal, datos.GraficoTicketsCanal);
+                GeneraGraficaPie(rhcTicketsCanal, datos.GraficoTicketsCanal, true);
                 GeneraGraficaArea(datos.GraficoTicketsCreadosResueltos);
 
                 rptMetricasGrupo.DataSource = datos.GruposMetricas;
@@ -186,10 +187,12 @@ namespace KiiniHelp.Agente
                 throw new Exception(ex.Message);
             }
         }
-        private void GeneraGraficaPie(RadHtmlChart grafico, DataTable dt)
+        private void GeneraGraficaPie(RadHtmlChart grafico, DataTable dt, bool aplicaColor)
         {
             grafico.PlotArea.Series.Clear();
             PieSeries pieSerie = new PieSeries { DataFieldY = "Total", NameField = "Descripcion" };
+            if (aplicaColor)
+                pieSerie.ColorField = "Color";
             pieSerie.LabelsAppearance.Visible = true;
             pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
             grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
@@ -232,10 +235,22 @@ namespace KiiniHelp.Agente
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try
             {
-                LlenaCombos();
-                CargaDatosDashboard();
+                if (!IsPostBack)
+                {
+                    LlenaCombos();
+                    CargaDatosDashboard();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
             }
         }
 

@@ -31,6 +31,15 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios {
         protected global::System.Web.UI.WebControls.HiddenField hfNombreformulario;
         
         /// <summary>
+        /// Control lblTituloFormulario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTituloFormulario;
+        
+        /// <summary>
         /// Control lblSeccion.
         /// </summary>
         /// <remarks>
@@ -40,13 +49,22 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Formularios {
         protected global::System.Web.UI.WebControls.Label lblSeccion;
         
         /// <summary>
-        /// Control ucFiltroFechasGrafico.
+        /// Control lblTotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::KiiniHelp.UserControls.Filtros.Componentes.UcFiltroFechasGrafico ucFiltroFechasGrafico;
+        protected global::System.Web.UI.WebControls.Label lblTotal;
+        
+        /// <summary>
+        /// Control ucFiltroFechasConsultas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::KiiniHelp.UserControls.Filtros.Componentes.UcFiltroFechasConsultas ucFiltroFechasConsultas;
         
         /// <summary>
         /// Control btnDownload.

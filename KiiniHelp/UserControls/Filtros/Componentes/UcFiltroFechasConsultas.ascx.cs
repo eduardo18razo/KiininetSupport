@@ -33,8 +33,8 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
                 if (txtFechaInicio.Text.Trim() != string.Empty && txtFechaFin.Text.Trim() != string.Empty)
                     result = new Dictionary<string, DateTime>
                 {
-                    {"inicio", Convert.ToDateTime(txtFechaInicio.Text)},
-                    {"fin", Convert.ToDateTime(txtFechaFin.Text)}
+                    {"inicio", DateTime.ParseExact(txtFechaInicio.Text, "dd/MM/yyyy", null)},
+                    {"fin", DateTime.ParseExact(txtFechaFin.Text, "dd/MM/yyyy", null)}
                 };
                 return result;
             }
@@ -46,7 +46,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             {
                 if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
                     throw new Exception("Debe Seleccionar un rango de fechas");
-                if (DateTime.Parse(txtFechaInicio.Text) > DateTime.Parse(txtFechaFin.Text))
+                if (DateTime.ParseExact(txtFechaInicio.Text, "dd/MM/yyyy", null) > DateTime.ParseExact(txtFechaFin.Text, "dd/MM/yyyy", null))
                     throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
             }
             catch (Exception e)
@@ -55,11 +55,26 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
+        public void LlenaFechas()
+        {
+            try
+            {
+                //txtFechaInicio.Text = DateTime.Now.AddDays(-30).ToString("dd/MM/yyyy");
+                //txtFechaFin.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-
+                if (!IsPostBack)
+                {
+                    LlenaFechas();
+                }
             }
             catch (Exception ex)
             {

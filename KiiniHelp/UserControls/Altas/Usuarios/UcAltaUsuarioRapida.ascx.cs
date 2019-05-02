@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
 using KiiniHelp.ServiceSistemaTipoUsuario;
@@ -16,12 +17,10 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
         public event DelegateLimpiarModal OnLimpiarModal;
         public event DelegateCancelarModal OnCancelarModal;
         public event DelegateTerminarModal OnTerminarModal;
-
         private readonly ServiceUsuariosClient _servicioUsuario = new ServiceUsuariosClient();
         private readonly ServiceTipoUsuarioClient _servicioTipoUsuario = new ServiceTipoUsuarioClient();
-
+        
         private List<string> _lstError = new List<string>();
-
         private List<string> Alerta
         {
             set
@@ -35,6 +34,21 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
             }
         }
 
+        public void LLenaDatosDeCorreo(string nombre,string apellidoPaterno,string apellidoMaterno,string correo)
+        {
+            try
+            {
+                txtNombreRapido.Text = nombre;
+                txtApRapido.Text = apellidoPaterno;
+                txtAmRapido.Text = apellidoMaterno;
+                txtCorreoRapido.Text = correo;
+                txtCorreoRapidoConfirmacion.Text = correo;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public bool ValidaUsuarioExiste()
         {
             try
@@ -68,13 +82,11 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 throw new Exception(ex.Message);
             }
         }
-
         public int IdUsuario
         {
             get { return int.Parse(hfIdUsuario.Value); }
             set { hfIdUsuario.Value = value.ToString(); }
         }
-
         public int IdTipoUsuario
         {
             get { return hfIdTipoUsuario.Value == string.Empty ? 0 : int.Parse(hfIdTipoUsuario.Value); }
@@ -97,7 +109,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 }
             }
         }
-
         private void Limpiar()
         {
             try
@@ -106,6 +117,7 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 txtApRapido.Text = string.Empty;
                 txtAmRapido.Text = string.Empty;
                 txtCorreoRapido.Text = string.Empty;
+                txtCorreoRapidoConfirmacion.Text = string.Empty;
                 txtTelefonoCelularRapido.Text = string.Empty;
             }
             catch (Exception ex)
@@ -113,7 +125,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 throw new Exception(ex.Message);
             }
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -135,7 +146,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 Alerta = _lstError;
             }
         }
-
         private void ValidaCaptura()
         {
             try
@@ -179,7 +189,6 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                 throw new Exception(ex.Message);
             }
         }
-
         private string GeneraNombreUsuario()
         {
             string result = null;
@@ -240,6 +249,20 @@ namespace KiiniHelp.UserControls.Altas.Usuarios
                     if (tipoUsuario != null)
                     {
                         if (tipoUsuario.TelefonoObligatorio)
+                        {
+                            datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
+                            {
+                                new TelefonoUsuario
+                                {
+                                    IdTipoTelefono = (int) BusinessVariables.EnumTipoTelefono.Celular,
+                                    Confirmado = false,
+                                    Extension = string.Empty,
+                                    Numero = txtTelefonoCelularRapido.Text.Trim(),
+                                    Principal = true
+                                }
+                            };
+                        }
+                        else if (txtTelefonoCelularRapido.Text.Trim() != string.Empty)
                         {
                             datosUsuario.TelefonoUsuario = new List<TelefonoUsuario>
                             {

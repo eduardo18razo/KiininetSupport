@@ -7,12 +7,8 @@ using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceArea;
-using KiiniHelp.ServiceOrganizacion;
-using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSistemaTipoUsuario;
 using KiiniNet.Entities.Cat.Operacion;
-using KiiniNet.Entities.Cat.Sistema;
-using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Consultas

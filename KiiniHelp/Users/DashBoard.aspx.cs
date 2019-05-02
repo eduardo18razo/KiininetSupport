@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using System.Data;
-using System.Web.UI.WebControls;
+using System.Drawing;
 using KiiniHelp.ServiceDashboard;
 using KiiniNet.Entities.Operacion.Dashboard;
 using Telerik.Web.UI;
@@ -60,21 +60,21 @@ namespace KiiniHelp.Users
 
         private void GeneraGraficaStackedAdministrador(RadHtmlChart grafico, DataTable dt)
         {
-            grafico.Width = Unit.Percentage(100);
-            grafico.Height = Unit.Pixel(250);
             grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
 
             int maxValue = int.Parse(Math.Truncate(double.Parse(dt.Rows[0][0].ToString()) + double.Parse(dt.Rows[0][1].ToString())).ToString());
-            for (int c = 0; c < dt.Columns.Count; c++)
+            foreach (DataColumn row in dt.Columns)
             {
-                BarSeries serie = new BarSeries();
-                serie.Stacked = true;
-                serie.LabelsAppearance.Visible = false;
-                serie.LabelsAppearance.Position = BarColumnLabelsPosition.Center;
-                serie.LabelsAppearance.DataFormatString = "{0} MB";
-                serie.TooltipsAppearance.DataFormatString = "{0} MB";
-                serie.DataFieldY = dt.Columns[c].ColumnName;
-                grafico.PlotArea.Series.Add(serie);
+                BarSeries column = new BarSeries();
+                //column.Appearance.Overlay.Gradient = Gradients.None;
+                column.Name = row.ColumnName;
+                column.GroupName = "Likes";
+                column.Stacked = true;
+                column.Appearance.FillStyle.BackgroundColor = row.ColumnName == "Ocupado" ? ColorTranslator.FromHtml("#E36F5B") : ColorTranslator.FromHtml("#B5E6A1");
+                column.TooltipsAppearance.ClientTemplate = "#= series.name#: #=value#";
+                column.LabelsAppearance.Visible = false;
+                column.DataFieldY = row.ColumnName;
+                grafico.PlotArea.Series.Add(column);
             }
             grafico.PlotArea.XAxis.MaxValue = maxValue;
             grafico.PlotArea.YAxis.MaxValue = maxValue;
@@ -91,13 +91,15 @@ namespace KiiniHelp.Users
         private void GeneraGraficaPie(RadHtmlChart grafico, DataTable dt)
         {
             grafico.PlotArea.Series.Clear();
-            PieSeries pieSerie = new PieSeries();
-            pieSerie.DataFieldY = "Total";
-            pieSerie.NameField = "Descripcion";
-            pieSerie.LabelsAppearance.Visible = true;
-            pieSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
+            grafico.Legend.Appearance.Position = ChartLegendPosition.Bottom;
+            DonutSeries donutSerie = new DonutSeries();
+            donutSerie.DataFieldY = "Total";
+            donutSerie.ColorField = "Color";
+            donutSerie.NameField = "Descripcion";
+            donutSerie.LabelsAppearance.Visible = true;
+            donutSerie.LabelsAppearance.Position = PieAndDonutLabelsPosition.Center;
 
-            grafico.PlotArea.Series.Add(pieSerie);
+            grafico.PlotArea.Series.Add(donutSerie);
             grafico.DataSource = dt;
             grafico.DataBind();
         }

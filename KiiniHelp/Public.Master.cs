@@ -34,8 +34,8 @@ namespace KiiniHelp
 
         public int TipoUsuario
         {
-            get { return int.Parse(Session["TipoUsuario"].ToString()); }
-            set { Session["TipoUsuario"] = value.ToString(); }
+            get { return int.Parse(ViewState["TipoUsuario"].ToString()); }
+            set { ViewState["TipoUsuario"] = value.ToString(); }
         }
 
         private void ObtenerMenuPublico(int areaSeleccionada, bool arboles)
@@ -89,15 +89,15 @@ namespace KiiniHelp
                         {
                             case (int)BusinessVariables.EnumTiposUsuario.Empleado:
                                 areaSeleccionada = 6;
-                                Session["AreaSeleccionada"] = areaSeleccionada;
+                                ViewState["AreaSeleccionada"] = areaSeleccionada;
                                 break;
                             case (int)BusinessVariables.EnumTiposUsuario.Cliente:
                                 areaSeleccionada = 6;
-                                Session["AreaSeleccionada"] = areaSeleccionada;
+                                ViewState["AreaSeleccionada"] = areaSeleccionada;
                                 break;
                             case (int)BusinessVariables.EnumTiposUsuario.Proveedor:
                                 areaSeleccionada = 6;
-                                Session["AreaSeleccionada"] = areaSeleccionada;
+                                ViewState["AreaSeleccionada"] = areaSeleccionada;
                                 break;
                         }
                     }
@@ -341,7 +341,7 @@ namespace KiiniHelp
             try
             {
                 int areaSeleccionada = Convert.ToInt32(((LinkButton)sender).CommandArgument);
-                Session["AreaSeleccionada"] = areaSeleccionada;
+                ViewState["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico(TipoUsuario, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();
                 UcLogIn.AutenticarUsuarioPublico((int)BusinessVariables.EnumTiposUsuario.Cliente);
@@ -362,7 +362,7 @@ namespace KiiniHelp
             try
             {
                 int areaSeleccionada = (int)BusinessVariables.EnumRoles.AccesoCentroSoporte;
-                Session["AreaSeleccionada"] = areaSeleccionada;
+                ViewState["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico(idUsuario, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();
             }
@@ -377,7 +377,7 @@ namespace KiiniHelp
             try
             {
                 int areaSeleccionada = Convert.ToInt32(((LinkButton)sender).CommandArgument);
-                Session["AreaSeleccionada"] = areaSeleccionada;
+                ViewState["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico((int)BusinessVariables.EnumTiposUsuario.Empleado, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();
             }
@@ -397,7 +397,7 @@ namespace KiiniHelp
             try
             {
                 int areaSeleccionada = Convert.ToInt32(((LinkButton)sender).CommandArgument);
-                Session["AreaSeleccionada"] = areaSeleccionada;
+                ViewState["AreaSeleccionada"] = areaSeleccionada;
                 rptMenu.DataSource = _servicioSeguridad.ObtenerMenuPublico((int)BusinessVariables.EnumTiposUsuario.Proveedor, areaSeleccionada, areaSeleccionada != 0);
                 rptMenu.DataBind();
             }

@@ -13,11 +13,9 @@
             <asp:HiddenField runat="server" ID="hfIdSla" />
             <asp:HiddenField runat="server" ID="hfIdCanal" />
             <asp:HiddenField runat="server" ID="hfIdUsuarioSolicita" />
-            <asp:Label runat="server" ID="lblTicketDescripcion"/>
+            <asp:Label runat="server" ID="lblTicketDescripcion" />
 
-            <div class="panel-body">
-                <uc1:UcFormulario runat="server" ID="ucFormulario" />                
-            </div>
+            <uc1:UcFormulario runat="server" ID="ucFormulario" />
         </ContentTemplate>
     </asp:UpdatePanel>
 

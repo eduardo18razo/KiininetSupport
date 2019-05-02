@@ -31,13 +31,31 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Encuestas {
         protected global::System.Web.UI.WebControls.Label lblTitulo;
         
         /// <summary>
-        /// Control rhcLikeBarra.
+        /// Control ucFiltroFechasGrafico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart rhcLikeBarra;
+        protected global::KiiniHelp.UserControls.Filtros.Componentes.UcFiltroFechasGrafico ucFiltroFechasGrafico;
+        
+        /// <summary>
+        /// Control btnBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscar;
+        
+        /// <summary>
+        /// Control btnDownload.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnDownload;
         
         /// <summary>
         /// Control rhcLikePie.
@@ -47,5 +65,32 @@ namespace KiiniHelp.UserControls.ReportesGraficos.Encuestas {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::Telerik.Web.UI.RadHtmlChart rhcLikePie;
+        
+        /// <summary>
+        /// Control lblPieGeneral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPieGeneral;
+        
+        /// <summary>
+        /// Control rhcLikeBarra.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart rhcLikeBarra;
+        
+        /// <summary>
+        /// Control lblPieTendencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPieTendencia;
     }
 }

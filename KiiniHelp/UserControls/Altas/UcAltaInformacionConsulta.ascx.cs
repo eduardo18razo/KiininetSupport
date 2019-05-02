@@ -73,7 +73,7 @@ namespace KiiniHelp.UserControls.Altas
                 switch (tipoInformacion)
                 {
                     case BusinessVariables.EnumTiposInformacionConsulta.EditorDeContenido:
-                        if (txtEditor.Text.Trim() == string.Empty)
+                        if (txtSummerEditor.Text.Trim() == string.Empty)
                             throw new Exception("Debe especificar un contenido");
                         break;
                     //case BusinessVariables.EnumTiposInformacionConsulta.DocumentoOffice:
@@ -111,7 +111,7 @@ namespace KiiniHelp.UserControls.Altas
                 InformacionConsulta info = _servicioInformacionConsulta.ObtenerInformacionConsultaById(value);
                 if (info == null) throw new Exception("Error al obtener informacion");
                 txtDescripcion.Text = info.Descripcion;
-                txtEditor.Text = info.InformacionConsultaDatos.First().Datos;
+                txtSummerEditor.Text = info.InformacionConsultaDatos.First().Datos;
                 txtBusqueda.Text = info.InformacionConsultaDatos.First().Busqueda;
                 txtTags.Text = info.InformacionConsultaDatos.First().Tags;
                 List<HelperFiles> lstArchivos = new List<HelperFiles>();
@@ -134,6 +134,23 @@ namespace KiiniHelp.UserControls.Altas
                 LlenaArchivosCargados();
 
                 hfIdInformacionConsulta.Value = value.ToString();
+                var script = "$('#txtSummerEditor').summernote({ \n" +
+                             "toolbar: [\n" +
+                             "['estilos', ['fontname', 'fontsize', 'forecolor', 'bold', 'iatlic', 'underline', 'strikethrough', 'superscript', 'subscript']],\n" +
+                             "['insertar', ['picture', 'link', 'video', 'table', 'hr']],\n" +
+                             "['parrafos', ['style', 'ol', 'ul', 'paragraph', 'height']],\n" +
+                             "['utilerias', ['undo', 'redo', 'fullscreen', 'codeview', 'clear']]\n" +
+                             "],\n" +
+                             "lang: 'es-ES',\n" +
+                             "tabsize: 2,\n" +
+                             "height: 350\n" +
+                             "});\n" +
+                             "$('#txtSummerEditor').on('summernote.blur', function () {\n" +
+                             "    $('#txtSummerEditor').html($('#txtSummerEditor').summernote('code'));\n" +
+                             "});\n" +
+                             "} \n" +
+                             "$('#txtSummerEditor').summernote('code', contents)";
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Scriptupdateinformacion", script, true);
             }
         }
         public double TamañoArchivo
@@ -185,7 +202,7 @@ namespace KiiniHelp.UserControls.Altas
             try
             {
                 txtDescripcion.Text = string.Empty;
-                txtEditor.Text = string.Empty;
+                txtSummerEditor.Text = string.Empty;
                 txtBusqueda.Text = string.Empty;
                 txtTags.Text = string.Empty;
                 Session["FileSize"] = 0;
@@ -204,7 +221,7 @@ namespace KiiniHelp.UserControls.Altas
             {
                 if (txtDescripcion.Text.Trim() == string.Empty)
                     throw new Exception("Ingrese un Título");
-                if (txtEditor.Text.Trim() == string.Empty)
+                if (txtSummerEditor.Text.Trim() == string.Empty)
                     throw new Exception("Debe ingresar información para mostrar.");
             }
             catch (Exception e)
@@ -231,7 +248,7 @@ namespace KiiniHelp.UserControls.Altas
 
                 InformacionConsultaDatos datos = new InformacionConsultaDatos
                 {
-                    Datos = txtEditor.Text,
+                    Datos = txtSummerEditor.Text,
                     Busqueda = txtBusqueda.Text.Trim().ToUpper(),
                     Tags = txtTags.Text.Trim().ToUpper(),
                     Habilitado = true
@@ -320,7 +337,7 @@ namespace KiiniHelp.UserControls.Altas
             try
             {
                 LlenaArchivosCargados();
-                Session["txtEditor"] = txtEditor.Text;
+                Session["txtEditor"] = txtSummerEditor.Text;
 
             }
             catch (Exception ex)
@@ -418,7 +435,7 @@ namespace KiiniHelp.UserControls.Altas
             {
                 Session["PreviewDataConsulta"] = ObtenerInformacionCapturada();
                 string url = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/"; ;
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + "Publico/Consultas/FrmPreviewConsulta.aspx','_blank');", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + "Users/Administracion/InformaciondeConsulta/FrmPreviewConsulta.aspx','_blank');", true);
             }
             catch (Exception ex)
             {

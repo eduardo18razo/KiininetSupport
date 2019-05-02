@@ -167,6 +167,7 @@ namespace KinniNet.Data.Help
                 _correoService = CreateObjectSet<CorreoService>();
                 _preguntaReto = CreateObjectSet<PreguntaReto>();
                 _preTicket = CreateObjectSet<PreTicket>();
+                _preTicketCorreo = CreateObjectSet<PreTicketCorreo>();
                 _horario = CreateObjectSet<Horario>();
                 _horarioDetalle = CreateObjectSet<HorarioDetalle>();
                 _notaGeneral = CreateObjectSet<NotaGeneral>();
@@ -652,6 +653,14 @@ namespace KinniNet.Data.Help
             }
         }
 
+        public ObjectSet<PreTicketCorreo> PreTicketCorreo
+        {
+            get
+            {
+                return _preTicketCorreo;
+            }
+        }
+
         public ObjectSet<NotaGeneral> NotaGeneral
         {
             get
@@ -791,6 +800,7 @@ namespace KinniNet.Data.Help
         private readonly ObjectSet<SmsService> _smsService;
         private readonly ObjectSet<PreguntaReto> _preguntaReto;
         private readonly ObjectSet<PreTicket> _preTicket;
+        private readonly ObjectSet<PreTicketCorreo> _preTicketCorreo;
         private readonly ObjectSet<NotaGeneral> _notaGeneral;
         private readonly ObjectSet<NotaGeneralGrupo> _notaGeneralGrupo;
         private readonly ObjectSet<NotaOpcionUsuario> _notaOpcionUsuario;

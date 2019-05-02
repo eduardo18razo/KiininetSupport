@@ -494,29 +494,7 @@ namespace KiiniHelp
                     rptMenu.DataSource = MenuActivo;
                     rptMenu.DataBind();
                     Session["CargaInicialModal"] = "True";
-                    switch (RolSeleccionado)
-                    {
-                        case (int)BusinessVariables.EnumRoles.Agente:
-                            divSearch.Visible = false;
-                            Response.Redirect("~/Agente/DashBoardAgente.aspx");
-                            break;
-                        case (int)BusinessVariables.EnumRoles.Administrador:
-                            divSearch.Visible = false;
-                            Response.Redirect("~/Users/DashBoard.aspx");
-                            break;
-                        case (int)BusinessVariables.EnumRoles.ResponsableDeCategoría:
-                            divSearch.Visible = true;
-                            Response.Redirect("~/Users/FrmDashboardUser.aspx?");
-                            break;
-                        case (int)BusinessVariables.EnumRoles.AccesoAnalíticos:
-                            divSearch.Visible = true;
-                            Response.Redirect("~/Users/FrmReportes.aspx");
-                            break;
-                        default:
-                            divSearch.Visible = true;
-                            Response.Redirect("~/Users/FrmDashboardUser.aspx?");
-                            break;
-                    }
+                    btnRedirectDashboard_OnClick(btnRedirectDashboard, null);
                 }
                 catch (Exception ex)
                 {
@@ -655,6 +633,41 @@ namespace KiiniHelp
             catch (Exception)
             {
 
+                throw;
+            }
+        }
+
+        protected void btnRedirectDashboard_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (RolSeleccionado)
+                {
+                    case (int)BusinessVariables.EnumRoles.Agente:
+                        divSearch.Visible = false;
+                        Response.Redirect("~/Agente/DashBoardAgente.aspx");
+                        break;
+                    case (int)BusinessVariables.EnumRoles.Administrador:
+                        divSearch.Visible = false;
+                        Response.Redirect("~/Users/DashBoard.aspx");
+                        break;
+                    case (int)BusinessVariables.EnumRoles.ResponsableDeCategoría:
+                        divSearch.Visible = true;
+                        Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                        break;
+                    case (int)BusinessVariables.EnumRoles.AccesoAnalíticos:
+                        divSearch.Visible = true;
+                        Response.Redirect("~/Users/FrmReportes.aspx");
+                        break;
+                    default:
+                        divSearch.Visible = true;
+                        Response.Redirect("~/Users/FrmDashboardUser.aspx?");
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                
                 throw;
             }
         }

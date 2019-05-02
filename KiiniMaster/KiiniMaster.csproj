@@ -67,6 +67,7 @@
     <Content Include="assets\css\pe-7-icons.css" />
     <Content Include="assets\css\styles.css" />
     <Content Include="assets\css\sumoselect.css" />
+    <Content Include="assets\css\test.css" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\fonts\Pe-icon-7-strokebb1d.svg" />

@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Helper;
 using KinniNet.Business.Utils;
 using KinniNet.Data.Help;
-using Telerik.Web.UI.ExportInfrastructure;
 
 namespace KinniNet.Core.Sistema
 {

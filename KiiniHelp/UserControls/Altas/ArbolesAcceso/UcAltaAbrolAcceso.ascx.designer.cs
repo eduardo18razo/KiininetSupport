@@ -49,21 +49,21 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso {
         protected global::System.Web.UI.WebControls.LinkButton btnClose;
         
         /// <summary>
-        /// Control UcAltaConsulta.
+        /// Control ucAltaConsulta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::KiiniHelp.UserControls.Altas.ArbolesAcceso.UcAltaConsulta UcAltaConsulta;
+        protected global::KiiniHelp.UserControls.Altas.ArbolesAcceso.UcAltaConsulta ucAltaConsulta;
         
         /// <summary>
-        /// Control UcAltaServicio.
+        /// Control ucAltaServicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::KiiniHelp.UserControls.Altas.ArbolesAcceso.UcAltaServicio UcAltaServicio;
+        protected global::KiiniHelp.UserControls.Altas.ArbolesAcceso.UcAltaServicio ucAltaServicio;
     }
 }

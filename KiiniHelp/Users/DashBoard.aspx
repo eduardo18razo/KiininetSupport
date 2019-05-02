@@ -3,8 +3,51 @@
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        (function (global) {
+            var chartPie;
+            var chartBar;
+            var chartPareto;
+            var chartColumn;
+
+            function chartLoadPie(sender, args) {
+                chartPie = sender.get_kendoWidget();
+            }
+            function chartLoadPareto(sender, args) {
+                chartPareto = sender.get_kendoWidget();
+            }
+            function chartLoadBar(sender, args) {
+                chartBar = sender.get_kendoWidget();
+            }
+            function chartLoadColumn(sender, args) {
+                chartBar = sender.get_kendoWidget();
+            }
+
+            global.chartLoadPie = chartLoadPie;
+            global.chartLoadPareto = chartLoadPareto;
+            global.chartLoadBar = chartLoadBar;
+            global.chartLoadColumn = chartLoadColumn;
+
+            function resizeChart() {
+                if (chartPie)
+                    chartPie.resize();
+                if (chartBar)
+                    chartBar.resize();
+                if (chartPareto)
+                    chartPareto.resize();
+                if (chartColumn)
+                    chartColumn.resize();
+            }
+
+            var to = false;
+            window.onresize = function () {
+                if (to !== false)
+                    clearTimeout(to);
+                to = setTimeout(resizeChart, 200);
+            }
+
+        })(window);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -64,6 +107,7 @@
                                                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold" />
                                                     </div>
                                                     <tc:RadHtmlChart runat="server" ID="rhcTicketsCanal">
+                                                        <ClientEvents OnLoad="chartLoadPie" />
                                                     </tc:RadHtmlChart>
                                                 </div>
                                             </div>
@@ -78,7 +122,8 @@
                                                         <label class="col-lg-12 col-md-12 col-sm-12 h5">Usuarios Registrados</label>
                                                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold" />
                                                     </div>
-                                                    <tc:RadHtmlChart runat="server" ID="rhcUsuarios">
+                                                    <tc:RadHtmlChart runat="server" ID="rhcUsuarios" Width="100%" EnableViewState="True">
+                                                        <ClientEvents OnLoad="chartLoadPie" />
                                                     </tc:RadHtmlChart>
                                                 </div>
                                             </div>
@@ -99,7 +144,8 @@
                                                         <asp:Label runat="server" CssClass="col-lg-6" ID="lblEspacio"></asp:Label>
                                                         <asp:Label runat="server" CssClass="col-lg-6" ID="lblArchivos"></asp:Label>
                                                     </div>
-                                                    <tc:RadHtmlChart runat="server" ID="rhcEspacio">
+                                                    <tc:RadHtmlChart runat="server" ID="rhcEspacio" Width="100%" EnableViewState="True">
+                                                        <ClientEvents OnLoad="chartLoadColumn" />
                                                     </tc:RadHtmlChart>
                                                 </div>
                                             </div>
@@ -111,7 +157,7 @@
                                             <div class="row center-content-div">
                                                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
                                                     <div class="form-group text-center">
-                                                        <label class="col-lg-12 col-md-12 col-sm-12 h5">Help center</label> <%--margin-top-10 margin-bottom-10 --%>
+                                                        <label class="col-lg-12 col-md-12 col-sm-12 h5">Help center</label>
                                                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold" />
                                                     </div>
 

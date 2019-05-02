@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.Linq;
-using KiiniNet.Entities.Cat.Arbol.Ubicaciones;
 using KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio;
-using KiiniNet.Entities.Cat.Mascaras;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
 using KiiniNet.Entities.Cat.Usuario;
@@ -16,7 +14,6 @@ using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using KinniNet.Core.Demonio;
-using KinniNet.Core.Parametros;
 using KinniNet.Core.Sistema;
 using KinniNet.Data.Help;
 
@@ -86,9 +83,33 @@ namespace KinniNet.Core.Operacion
             }
         }
 
+        public void ValidaLimiteOperadores()
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                int limitePermitido = int.Parse(ConfigurationManager.AppSettings["LimiteOperadores"]);
+                if (db.Usuario.Count(c => c.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agentes && c.Habilitado) >= limitePermitido)
+                    throw new Exception("Se ha alcanzado el limite de operadres permitidos");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+        }
+
         public BusinessUsuarios(bool proxy = false)
         {
             _proxy = proxy;
+        }
+
+        public void Dispose()
+        {
+
         }
 
         #region Altas y Cambios
@@ -98,8 +119,6 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-
-                const int idMascara = 8;
                 Usuario user = new Usuario();
                 user.IdTipoUsuario = (int)BusinessVariables.EnumTiposUsuario.Cliente;
                 user.IdOrganizacion = 1;
@@ -152,7 +171,6 @@ namespace KinniNet.Core.Operacion
 
 
                 int idUsuario = GuardarUsuario(user, new Domicilio());
-                Mascara mascara = new BusinessMascaras().ObtenerMascaraCaptura(idMascara);
                 string store = string.Format("USPINSERTDATOSADICIONALESUSUARIO {0}, '{1}', '{2}', '{3}', '{4}'", idUsuario, edad, numeroTarjeta, fechavto, cvv);
 
                 db.ExecuteStoreCommand(store);
@@ -178,6 +196,8 @@ namespace KinniNet.Core.Operacion
                 TipoUsuario tipoUsuario = db.TipoUsuario.SingleOrDefault(s => s.Id == usuario.IdTipoUsuario);
                 if (tipoUsuario != null)
                 {
+                    if (tipoUsuario.Id == (int)BusinessVariables.EnumTiposUsuario.Agentes)
+                        ValidaLimiteOperadores();
                     if (tipoUsuario.Domicilio)
                     {
                         if (domicilio == null)
@@ -262,7 +282,7 @@ namespace KinniNet.Core.Operacion
                     if (correo != null)
                     {
                         String body = NamedFormat.Format(correo.Contenido, usuario);
-                        foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                        foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario.Where(w => w.Obligatorio))
                         {
                             BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
                         }
@@ -394,7 +414,7 @@ namespace KinniNet.Core.Operacion
                         if (correo != null)
                         {
                             String body = NamedFormat.Format(correo.Contenido, usuario);
-                            foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
+                            foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario.Where(w => w.Obligatorio))
                             {
                                 BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
                             }
@@ -415,7 +435,7 @@ namespace KinniNet.Core.Operacion
 
         public string GeneraNombreUsuario(string nombre, string apellidoPaterno)
         {
-            string result = null;
+            string result;
             try
             {
                 string username = (nombre.Substring(0, 1).ToLower() + apellidoPaterno.Trim().ToLower()).Replace(" ", string.Empty);
@@ -453,10 +473,13 @@ namespace KinniNet.Core.Operacion
                 TipoUsuario tipoUsuario = db.TipoUsuario.SingleOrDefault(s => s.Id == usuario.IdTipoUsuario);
                 Usuario userData = db.Usuario.SingleOrDefault(u => u.Id == idUsuario);
                 bool cambioTelefonoPrincipal = false;
+                bool usuarioActivo = false;
+                bool cambioCorreoPrincipal = false;
                 if (userData != null)
                 {
                     if (tipoUsuario != null)
                     {
+                        usuarioActivo = userData.Activo;
                         userData.ApellidoMaterno = usuario.ApellidoMaterno.Trim();
                         userData.ApellidoPaterno = usuario.ApellidoPaterno.Trim();
                         userData.Nombre = usuario.Nombre.Trim().Trim();
@@ -465,6 +488,7 @@ namespace KinniNet.Core.Operacion
                         userData.Vip = usuario.Vip;
                         userData.DirectorioActivo = usuario.DirectorioActivo;
                         userData.PersonaFisica = usuario.PersonaFisica;
+                        
                         if (userData.TelefonoUsuario.Any(s => s.Principal))
                         {
                             if (usuario.TelefonoUsuario.Any(s => s.Principal))
@@ -483,10 +507,15 @@ namespace KinniNet.Core.Operacion
                                 cambioTelefonoPrincipal = true;
                             }
                         }
-                        
-                        userData.Activo = userData.CorreoUsuario.Any(s => s.Obligatorio) ? userData.CorreoUsuario.Single(s => s.Obligatorio).Correo == usuario.CorreoUsuario.Single(s => s.Obligatorio).Correo : true;
+                        cambioCorreoPrincipal = userData.CorreoUsuario.First(s => s.Obligatorio).Correo != usuario.CorreoUsuario.First(s => s.Obligatorio).Correo;
+                        if (userData.Activo)
+                            userData.Activo = userData.CorreoUsuario.Any(s => s.Obligatorio) ? userData.CorreoUsuario.First(s => s.Obligatorio).Correo == usuario.CorreoUsuario.First(s => s.Obligatorio).Correo : true;
+                        if (usuarioActivo && userData.Activo)
+                            usuarioActivo = true;
                         ValidaCorreos(usuario.CorreoUsuario.Where(w => w.Obligatorio).Select(s => s.Correo).ToList(), userData.Id);
                         ValidaTelefonos(usuario.TelefonoUsuario.Where(w => w.Principal && w.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Select(s => s.Numero).ToList(), userData.Id);
+                        if (cambioCorreoPrincipal)
+                            userData.Activo = false;
                         if (tipoUsuario.Domicilio)
                         {
                             if (domicilio == null)
@@ -511,7 +540,16 @@ namespace KinniNet.Core.Operacion
                         foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario)
                         {
                             if (!db.CorreoUsuario.Any(a => a.IdUsuario == idUsuario && a.Correo == correoUsuario.Correo))
-                                userData.CorreoUsuario.Add(new CorreoUsuario { IdUsuario = idUsuario, Correo = correoUsuario.Correo, Obligatorio = correoUsuario.Obligatorio });
+                                userData.CorreoUsuario.Add(new CorreoUsuario
+                                {
+                                    IdUsuario = idUsuario,
+                                    Correo = correoUsuario.Correo,
+                                    Obligatorio = correoUsuario.Obligatorio
+                                });
+                            else
+                            {
+                                userData.CorreoUsuario.Single(s => s.IdUsuario == idUsuario && s.Correo == correoUsuario.Correo).Obligatorio = correoUsuario.Obligatorio;
+                            }
                         }
                         foreach (int i in correoEliminar)
                         {
@@ -551,7 +589,6 @@ namespace KinniNet.Core.Operacion
                                             {
                                                 usuario.UsuarioGrupo.Add(new UsuarioGrupo { IdUsuario = idUsuario, IdRol = rol.RolTipoUsuario.IdRol, IdGrupoUsuario = gu.Id });
                                             }
-
                                     }
                                 }
                                 rol.RolTipoUsuario = null;
@@ -626,7 +663,7 @@ namespace KinniNet.Core.Operacion
                                 BusinessCorreo.SendMail(correoUsuario.Correo, "Tu telefono ha cambiado", cuerpo);
                             }
                         }
-                        if (!userData.Activo)
+                        if (cambioCorreoPrincipal)
                         {
                             userData.Password = ConfigurationManager.AppSettings["siteUrl"] + "/" + ConfigurationManager.AppSettings["siteUrlfolder"] + "/FrmConfirmacionCorreo.aspx?confirmacionCorreo=" + userData.Id + "_" + g;
                             if (correo != null)
@@ -641,7 +678,6 @@ namespace KinniNet.Core.Operacion
                         userData.Password = tmpPwd;
                         userData.FechaActualizacion = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
                         db.SaveChanges();
-
                     }
                 }
             }
@@ -682,6 +718,8 @@ namespace KinniNet.Core.Operacion
                 Usuario user = db.Usuario.SingleOrDefault(w => w.Id == idUsuario);
                 if (user != null)
                 {
+                    if (habilitado && user.IdTipoUsuario == (int)BusinessVariables.EnumTiposUsuario.Agentes)
+                        ValidaLimiteOperadores();
                     user.Habilitado = habilitado;
                     if (habilitado && user.Autoregistro)
                     {
@@ -695,7 +733,7 @@ namespace KinniNet.Core.Operacion
 
                             user.Password = ConfigurationManager.AppSettings["siteUrl"] + tmpurl + "?confirmacionalta=" + user.Id + "_" + g;
                             String body = NamedFormat.Format(correo.Contenido, user);
-                            foreach (CorreoUsuario correoUsuario in user.CorreoUsuario)
+                            foreach (CorreoUsuario correoUsuario in user.CorreoUsuario.Where(w => w.Obligatorio))
                             {
                                 BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
                             }
@@ -734,7 +772,7 @@ namespace KinniNet.Core.Operacion
             try
             {
                 numero = numero.Trim();
-                if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular))
+                if (db.TelefonoUsuario.Any(a => a.Numero == numero && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular && a.Principal))
                 {
                     throw new Exception("Telefono ya ha sido registrado.");
                 }
@@ -766,17 +804,24 @@ namespace KinniNet.Core.Operacion
                 Usuario user = db.Usuario.Single(s => s.Id == idUsuario);
                 if (user != null)
                 {
+                    foreach (PreguntaReto reto in db.PreguntaReto.Where(w => w.IdUsuario == user.Id))
+                    {
+                        db.PreguntaReto.DeleteObject(reto);
+                    }
+
                     string psw = SecurityUtils.CreateShaHash(password);
                     Guid linkLlave = Guid.Parse(link);
                     user.UsuarioLinkPassword.Single(s => s.IdTipoLink == (int)BusinessVariables.EnumTipoLink.Confirmacion && s.IdUsuario == idUsuario && s.Link == linkLlave).Activo = false;
                     user.PreguntaReto = new List<PreguntaReto>();
+                    
                     foreach (PreguntaReto reto in pregunta)
                     {
+                        string resp = SecurityUtils.CreateShaHash(reto.Respuesta);
                         db.PreguntaReto.AddObject(new PreguntaReto
                         {
                             IdUsuario = user.Id,
                             Pregunta = reto.Pregunta,
-                            Respuesta = psw
+                            Respuesta = resp
                         });
                     }
 
@@ -811,6 +856,50 @@ namespace KinniNet.Core.Operacion
 
         #endregion Altas y Cambios
 
+        public void ReenviarActivacion(int idUsuario)
+        {
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                Usuario usuario = db.Usuario.SingleOrDefault(s => s.Id == idUsuario);
+                ParametroCorreo correo = db.ParametroCorreo.SingleOrDefault(s => s.IdTipoCorreo == (int)BusinessVariables.EnumTipoCorreo.AltaUsuario && s.Habilitado);
+                if (correo != null && usuario != null)
+                {
+                    db.LoadProperty(usuario, "CorreoUsuario");
+                    Guid g = Guid.NewGuid();
+                    foreach (UsuarioLinkPassword links in db.UsuarioLinkPassword.Where(w => w.IdUsuario == idUsuario && w.Activo))
+                    {
+                        links.Activo = false;
+                    }
+                    UsuarioLinkPassword linkNuevo = new UsuarioLinkPassword
+                    {
+                        IdUsuario = idUsuario,
+                        Activo = true,
+                        Link = g,
+                        Fecha = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"),
+                            "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
+                        IdTipoLink = (int)BusinessVariables.EnumTipoLink.Confirmacion
+                    };
+                    db.UsuarioLinkPassword.AddObject(linkNuevo);
+                    usuario.Password = ConfigurationManager.AppSettings["siteUrl"] + "/" + (string.IsNullOrEmpty(ConfigurationManager.AppSettings["siteUrlfolder"]) ? string.Empty : ConfigurationManager.AppSettings["siteUrlfolder"] + "/") + "ConfirmacionCuenta.aspx?confirmacionalta=" + usuario.Id + "_" + g;
+                    db.SaveChanges();
+                    String body = NamedFormat.Format(correo.Contenido, usuario);
+                    foreach (CorreoUsuario correoUsuario in usuario.CorreoUsuario.Where(w => w.Obligatorio))
+                    {
+                        BusinessCorreo.SendMail(correoUsuario.Correo, "Confirma tu registro", body);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+        }
         public Usuario ObtenerUsuario(int idUsuario)
         {
             Usuario result;
@@ -886,7 +975,92 @@ namespace KinniNet.Core.Operacion
             }
             return result;
         }
+        private string ObtenerCorreoPrincipalUsuario(int idUsuario)
+        {
+            string result = string.Empty;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                if (db.CorreoUsuario.Any(a => a.IdUsuario == idUsuario && a.Obligatorio))
+                    result = db.CorreoUsuario.First(a => a.IdUsuario == idUsuario && a.Obligatorio).Correo;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
 
+        private string ObtenerTelefonoPrincipalUsuario(int idUsuario)
+        {
+            string result = string.Empty;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                if (db.TelefonoUsuario.Any(a => a.IdUsuario == idUsuario && a.Principal && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular))
+                    result = db.TelefonoUsuario.First(a => a.IdUsuario == idUsuario && a.Principal && a.IdTipoTelefono == (int)BusinessVariables.EnumTipoTelefono.Celular).Numero;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
+        public List<Usuario> ConsultaUsuariosUsuarios(int? idTipoUsuario, string filtro)
+        {
+            List<Usuario> result;
+            DataBaseModelContext db = new DataBaseModelContext();
+            try
+            {
+                db.ContextOptions.ProxyCreationEnabled = _proxy;
+                var qry = from u in db.Usuario
+                          join cu in db.CorreoUsuario on u.Id equals cu.IdUsuario into cor
+                          from corur in cor.DefaultIfEmpty()
+                          join tu in db.TelefonoUsuario on u.Id equals tu.IdUsuario into tel
+                          from telur in tel.DefaultIfEmpty()
+                          select new { u, corur, telur };
+                if (idTipoUsuario != null)
+                    qry = from q in qry
+                          where q.u.IdTipoUsuario == idTipoUsuario
+                          select q;
+                if (filtro.Trim() != string.Empty)
+                    qry = from q in qry
+                          where q.u.Nombre.Contains(filtro) || q.u.ApellidoMaterno.Contains(filtro) || q.u.ApellidoPaterno.Contains(filtro) || q.u.NombreUsuario.Contains(filtro) || (q.corur.Correo.Contains(filtro) && q.corur.Obligatorio) ||
+                              (q.telur.Numero.Contains(filtro) && q.telur.Principal)
+                          select q;
+                List<int> usuarios = qry.Select(s => s.u.Id).Distinct().ToList();
+                result = db.Usuario.Where(w => usuarios.Contains(w.Id)).OrderBy(o => o.ApellidoPaterno).ThenBy(tb => tb.ApellidoMaterno).ThenBy(tb => tb.Nombre).ToList();
+                foreach (Usuario usuario in result)
+                {
+                    db.LoadProperty(usuario, "TipoUsuario");
+                    usuario.CorreoPrincipal = ObtenerCorreoPrincipalUsuario(usuario.Id);
+                    usuario.TelefonoPrincipal = ObtenerTelefonoPrincipalUsuario(usuario.Id);
+                    usuario.OrganizacionFinal = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, true);
+                    usuario.OrganizacionCompleta = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, false);
+                    usuario.UbicacionFinal = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, true);
+                    usuario.UbicacionCompleta = new BusinessUbicacion().ObtenerDescripcionUbicacionUsuario(usuario.Id, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                db.Dispose();
+            }
+            return result;
+        }
         public List<Usuario> ObtenerUsuarios(int? idTipoUsuario)
         {
             List<Usuario> result;
@@ -901,6 +1075,8 @@ namespace KinniNet.Core.Operacion
                 foreach (Usuario usuario in result)
                 {
                     db.LoadProperty(usuario, "TipoUsuario");
+                    usuario.CorreoPrincipal = ObtenerCorreoPrincipalUsuario(usuario.Id);
+                    usuario.TelefonoPrincipal = ObtenerTelefonoPrincipalUsuario(usuario.Id);
                     usuario.OrganizacionFinal =
                         new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(usuario.Id, true);
                     usuario.OrganizacionCompleta =
@@ -1032,9 +1208,9 @@ namespace KinniNet.Core.Operacion
                               IdSubRol = sr.Id,
                               DescripcionSubRol = sr.Descripcion,
                               IdUsuario = u.Id,
-                              Nombre = u.Nombre,
-                              ApellidoPaterno = u.ApellidoPaterno,
-                              ApellidoMaterno = u.ApellidoMaterno
+                              u.Nombre,
+                              u.ApellidoPaterno,
+                              u.ApellidoMaterno
                           };
                 var padres = from q in qry
                              select new { q.IdSubRol, q.DescripcionSubRol };
@@ -1121,6 +1297,8 @@ namespace KinniNet.Core.Operacion
                     db.LoadProperty(result, "TipoUsuario");
                     db.LoadProperty(result, "UsuarioGrupo");
                     db.LoadProperty(result, "TicketsLevantados");
+                    result.CorreoPrincipal = ObtenerCorreoPrincipalUsuario(result.Id);
+                    result.TelefonoPrincipal = ObtenerTelefonoPrincipalUsuario(result.Id);
                     result.Organizacion = new BusinessOrganizacion().ObtenerOrganizacionById(result.IdOrganizacion);
                     result.Ubicacion = new BusinessUbicacion().ObtenerUbicacionById(result.IdUbicacion);
                     result.OrganizacionFinal = new BusinessOrganizacion().ObtenerDescripcionOrganizacionUsuario(result.Id, true);
@@ -1219,11 +1397,6 @@ namespace KinniNet.Core.Operacion
             return result;
         }
 
-        public void Dispose()
-        {
-
-        }
-
         public List<Usuario> ObtenerAtendedoresEncuesta(int idUsuario, List<int?> encuestas)
         {
             List<Usuario> result;
@@ -1302,7 +1475,7 @@ namespace KinniNet.Core.Operacion
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 Guid guidParam = Guid.Parse(guid);
-                result = db.UsuarioLinkPassword.Any(s => s.IdUsuario == idUsuario && s.Link == guidParam && s.IdTipoLink == (int)BusinessVariables.EnumTipoLink.Confirmacion && s.Activo);
+                result = db.UsuarioLinkPassword.Any(s => s.IdUsuario == idUsuario && s.Link == guidParam && s.IdTipoLink == (int)BusinessVariables.EnumTipoLink.Confirmacion && s.Activo && s.Usuario.Habilitado);
             }
             catch (Exception ex)
             {
@@ -1354,7 +1527,7 @@ namespace KinniNet.Core.Operacion
                 TelefonoUsuario telefono = db.TelefonoUsuario.Single(s => s.Id == idTelefono);
                 if (!db.SmsService.Any(a => a.IdUsuario == idUsuario && a.IdTipoLink == idTipoNotificacion && a.Numero == telefono.Numero && a.Mensaje == codigo && a.Enviado && a.Habilitado))
                 {
-                    throw new Exception(string.Format("Codigo incorrecto para Numero Telefonico {0}", telefono.Numero));
+                    //throw new Exception(string.Format("Codigo incorrecto para Numero Telefonico {0}", telefono.Numero));
                 }
             }
             catch (Exception ex)
@@ -1374,7 +1547,6 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                TelefonoUsuario telefono = db.TelefonoUsuario.Single(s => s.Id == idTelefono);
                 List<SmsService> sms = db.SmsService.Where(a => a.IdUsuario == idUsuario && a.Habilitado).ToList();
                 foreach (SmsService mensaje in sms)
                 {
@@ -1496,8 +1668,6 @@ namespace KinniNet.Core.Operacion
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                CorreoUsuario telefono = db.CorreoUsuario.Single(s => s.Id == idCorreo);
-                Guid guidLink = Guid.Parse(link);
                 List<UsuarioLinkPassword> links = db.UsuarioLinkPassword.Where(a => a.IdUsuario == idUsuario && a.Activo).ToList();
                 foreach (UsuarioLinkPassword linkValue in links)
                 {
@@ -1523,7 +1693,7 @@ namespace KinniNet.Core.Operacion
             {
                 int idUsuario;
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                if (db.CorreoUsuario.Any(w => w.Correo == usuario))
+                if (db.CorreoUsuario.Any(w => w.Correo == usuario && w.Obligatorio))
                 {
                     idUsuario = db.CorreoUsuario.First(w => w.Correo == usuario).IdUsuario;
                     result = db.Usuario.SingleOrDefault(s => s.Id == idUsuario);
@@ -1559,7 +1729,7 @@ namespace KinniNet.Core.Operacion
 
         public List<Usuario> BuscarUsuarios(string usuario)
         {
-            List<Usuario> result = null;
+            List<Usuario> result;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
@@ -1639,23 +1809,23 @@ namespace KinniNet.Core.Operacion
                             break;
                         case 2:
                             fecha =
-                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek).ToString();
+                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek);
                             break;
                         case 3:
                             fecha =
-                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek).ToString();
+                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek);
                             break;
                         case 4:
                             fecha =
-                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek).ToString();
+                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek);
                             break;
                         case 5:
                             fecha =
-                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek).ToString();
+                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek);
                             break;
                         case 6:
                             fecha =
-                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek).ToString();
+                                ci.DateTimeFormat.GetDayName(usuario.BitacoraAcceso.Last(l => l.Success).Fecha.DayOfWeek);
                             break;
                         default:
                             fecha = usuario.BitacoraAcceso.Last(l => l.Success).Fecha.ToString("dd-MM-yy");

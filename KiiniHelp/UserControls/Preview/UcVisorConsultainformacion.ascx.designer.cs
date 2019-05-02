@@ -67,6 +67,33 @@ namespace KiiniHelp.UserControls.Preview {
         protected global::System.Web.UI.WebControls.HiddenField hfMeGusta;
         
         /// <summary>
+        /// Control lbtnHome.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnHome;
+        
+        /// <summary>
+        /// Control lbtnTipoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnTipoUsuario;
+        
+        /// <summary>
+        /// Control lblDescripcionConsulta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcionConsulta;
+        
+        /// <summary>
         /// Control lblTitle.
         /// </summary>
         /// <remarks>

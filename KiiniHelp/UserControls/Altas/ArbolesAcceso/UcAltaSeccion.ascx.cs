@@ -5,13 +5,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceArbolAcceso;
-using KiiniHelp.ServiceOrganizacion;
 using KiiniHelp.ServiceParametrosSistema;
 using KiiniHelp.ServiceSistemaTipoUsuario;
-using KiiniNet.Entities.Cat.Arbol.Organizacion;
 using KiiniNet.Entities.Cat.Operacion;
 using KiiniNet.Entities.Cat.Sistema;
-using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Altas.ArbolesAcceso

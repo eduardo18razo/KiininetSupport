@@ -1,20 +1,20 @@
-﻿using System.ServiceProcess;
-
-namespace DemonioCierreTicket
+﻿namespace DemonioCierreTicket
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
-        static void Main()
+        public static void Main(string[] args)
         {
-            ServiceBase[] servicesToRun = new ServiceBase[] 
-            { 
-                new ServiceCierreTicket()
+            ScheduleCierreTicket schedule = new ScheduleCierreTicket(args[0]);
+            schedule.ExecutaProceso();
+            //ServiceBase[] servicesToRun = new ServiceBase[] 
+            //{ 
+            //    new ServiceCierreTicket(args[0])
 
-            };
-            ServiceBase.Run(servicesToRun);
+            //};
+            //ServiceBase.Run(servicesToRun);
         }
     }
 }

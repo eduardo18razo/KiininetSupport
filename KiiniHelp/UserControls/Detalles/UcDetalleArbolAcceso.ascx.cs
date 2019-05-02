@@ -87,7 +87,7 @@ namespace KiiniHelp.UserControls.Detalles
                         rptUniversal.DataSource = arbol.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(w => w.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AgenteUniversal).Select(s => s.GrupoUsuario).Distinct().ToList();
                         rptUniversal.DataBind();
 
-                        lblSlaTotal.Text = arbol.InventarioArbolAcceso.First().Sla != null ? arbol.InventarioArbolAcceso.First().Sla.TiempoHoraProceso.ToString() : string.Empty;
+                        lblSlaTotal.Text = arbol.InventarioArbolAcceso.First().Sla != null ? arbol.InventarioArbolAcceso.First().Sla.TiempoHoraProceso.ToString() : "N/A";
                         lblPrioridad.Text = arbol.Impacto != null ? arbol.Impacto.Prioridad.Descripcion : string.Empty;
                         lblImpacto.Text = arbol.Impacto != null ? arbol.Impacto.Urgencia.Descripcion : string.Empty;
 

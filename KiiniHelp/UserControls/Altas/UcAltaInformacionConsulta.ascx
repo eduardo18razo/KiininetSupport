@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaInformacionConsulta.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaInformacionConsulta" %>
 
 <%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
-<%@ Register TagPrefix="ctrlExterno" Namespace="Winthusiasm.HtmlEditor" Assembly="Winthusiasm.HtmlEditor" %>
 <script>
     var uploadCustomerError = "";
     function UploadStart(sender, args) {
@@ -23,14 +22,13 @@
                 }
             }
             if (!isValidFile) {
-                ErrorAlert('', 'Archivo con formato no valido');
+                ErrorAlert('', 'Archivo con formato no valido, formatos permitidos: ' + validFilesTypes.join(' '));
                 args.set_cancel(true);
                 return false;
             }
 
-
             if (filesize > sizeallow) {
-                ErrorAlert('', 'Archivo demasiado grande');
+                ErrorAlert('', 'Archivo excede el tamaño permitido');
                 args.set_cancel(true);
                 return false;
             }
@@ -45,6 +43,9 @@
         //    uploadCustomerError = "";
         //}
     }
+    function uploadComplete() {
+        $get("<%=ReloadThePanel.ClientID %>").click();
+    }
 </script>
 <asp:HiddenField runat="server" ID="hfFileName" />
 <asp:HiddenField runat="server" ID="hfEsAlta" Value="true" />
@@ -54,7 +55,7 @@
 <ol class="breadcrumb">
     <li>
         <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-    <li>Help Center</li>
+    <li>Centro de Soporte</li>
     <li>Artículos</li>
     <li class="active">Nuevo</li>
 </ol>
@@ -88,7 +89,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8">
                     <div class="module-inner">
-                        <ctrlExterno:HtmlEditor runat="Server" ID="txtEditor" Height="350px" ToggleMode="ToggleButton" ColorScheme="VisualStudio" />
+                        <asp:TextBox runat="server" ID="txtSummerEditor" Height="350px" ClientIDMode="Static" Style="width: 100%" TextMode="MultiLine"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
@@ -128,7 +129,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span class="span-upload">
-                                        <ajax:AsyncFileUpload ID="afuArchivo" runat="server" CssClass="FileUploadClass" UploaderStyle="Traditional" OnClientUploadStarted="UploadStart" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadError="uploadError" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
+                                        <ajax:AsyncFileUpload ID="afuArchivo" runat="server" CssClass="FileUploadClass" UploaderStyle="Traditional" OnClientUploadStarted="UploadStart" OnClientUploadComplete="uploadComplete" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadError="uploadError" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
                                         Cargar archivos (max 10 MB)
                                                 <br />
                                         <br />
@@ -146,17 +147,40 @@
         <script>
             Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(SetComment);
             function SetComment() {
-                var txtEditor = document.getElementById('ContentPlaceHolder1_ucAltaInformacionConsulta_txtEditor_designEditor');
-                if (txtEditor != undefined) {
-                    var hfComentario = document.getElementById('<%= hfComentario.ClientID%>');
-                    if (hfComentario != undefined) {
-                        hfComentario.value = txtEditor.contentDocument.body.innerHTML;
-                    }
-                }
+                $('#txtSummerEditor').summernote({
+                    toolbar: [
+   // [groupName, [list of button]]
+   ['estilos', ['fontname', 'fontsize', 'forecolor', 'bold', 'iatlic', 'underline', 'strikethrough', 'superscript', 'subscript']],
+   ['insertar', ['picture', 'link', 'video', 'table', 'hr']],
+   ['parrafos', ['style', 'ol', 'ul', 'paragraph', 'height']],
+   ['utilerias', ['undo', 'redo', 'fullscreen', 'codeview', 'clear']]
+                    ],
+                    lang: 'es-ES',
+                    tabsize: 2,
+                    height: 350
+                });
+                $("#txtSummerEditor").on('summernote.blur', function () {
+                    $('#txtSummerEditor').html($('#txtSummerEditor').summernote('code'));
+                });
             }
 
             $(document).ready(SetTags);
             function SetTags() {
+                $('#txtSummerEditor').summernote({
+                    toolbar: [
+   // [groupName, [list of button]]
+   ['estilos', ['fontname', 'fontsize', 'forecolor', 'bold', 'iatlic', 'underline', 'strikethrough', 'superscript', 'subscript']],
+   ['insertar', ['picture', 'link', 'video', 'table', 'hr']],
+   ['parrafos', ['style', 'ol', 'ul', 'paragraph', 'height']],
+   ['utilerias', ['undo', 'redo', 'fullscreen', 'codeview', 'clear']]
+                    ],
+                    lang: 'es-ES',
+                    tabsize: 2,
+                    height: 350
+                });
+                $("#txtSummerEditor").on('summernote.blur', function () {
+                    $('#txtSummerEditor').html($('#txtSummerEditor').summernote('code'));
+                });
                 $('#txtBusqueda').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
                 $('#txtTags').tagsInput({ width: 'auto', defaultText: 'Agregar', delimiter: '|' });
             }

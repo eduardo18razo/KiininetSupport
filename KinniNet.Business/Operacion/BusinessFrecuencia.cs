@@ -30,7 +30,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado
+                                   where f.ArbolAcceso.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
                                    group f by f.IdArbolAcceso
                                        into frec
                                        orderby frec.Key
@@ -59,7 +59,7 @@ namespace KinniNet.Core.Operacion
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.EsTerminal && !w.Sistema && w.Publico && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
@@ -102,7 +102,7 @@ namespace KinniNet.Core.Operacion
                         join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
                         //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
                         where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
-                            && f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
+                            && aa.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
                             .OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
@@ -137,9 +137,11 @@ namespace KinniNet.Core.Operacion
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
                                                         && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
+                    List<int> opcionesListadas = opciones.Select(s => s.Id).Distinct().ToList();
+                    
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.EsTerminal && !w.Sistema && w.Habilitado && w.Publico &&
-                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id))
+                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id) && !opcionesListadas.Contains(w.Id))
                             .OrderByDescending(d => d.FechaAlta)
                             .Take(take)
                             .ToList());
@@ -192,7 +194,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
+                                   where f.ArbolAcceso.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
                                    && f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion
                                    group f by f.IdArbolAcceso
                                        into frec
@@ -222,7 +224,7 @@ namespace KinniNet.Core.Operacion
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion && w.EsTerminal && w.Publico && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
@@ -265,7 +267,7 @@ namespace KinniNet.Core.Operacion
                         //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
                         where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
                         && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion
-                            && f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
+                            && aa.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
                             .OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
@@ -301,10 +303,11 @@ namespace KinniNet.Core.Operacion
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
                                                         && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
+                    List<int> opcionesListadas = opciones.Select(s => s.Id).Distinct().ToList();
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion &&
                                 w.EsTerminal && !w.Sistema && w.Habilitado && w.Publico &&
-                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id))
+                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id) && !opcionesListadas.Contains(w.Id))
                             .OrderByDescending(d => d.FechaAlta)
                             .Take(take)
                             .ToList());
@@ -359,7 +362,7 @@ namespace KinniNet.Core.Operacion
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
 
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
+                                   where f.ArbolAcceso.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
                                    && f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio
                                    group f by f.IdArbolAcceso
                                        into frec
@@ -389,7 +392,7 @@ namespace KinniNet.Core.Operacion
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio && w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio && w.EsTerminal && w.Publico && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
@@ -433,7 +436,7 @@ namespace KinniNet.Core.Operacion
                         //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
                         where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
                             && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio &&
-                        f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
+                        aa.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
                             .OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
@@ -468,10 +471,11 @@ namespace KinniNet.Core.Operacion
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
                                                         && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
+                    List<int> opcionesListadas = opciones.Select(s => s.Id).Distinct().ToList();
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.SolicitarServicio &&
                                 w.EsTerminal && !w.Sistema && w.Habilitado && w.Publico &&
-                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id))
+                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id) && !opcionesListadas.Contains(w.Id))
                             .OrderByDescending(d => d.FechaAlta)
                             .Take(take)
                             .ToList());
@@ -525,7 +529,7 @@ namespace KinniNet.Core.Operacion
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
                 BusinessArbolAcceso bArbol = new BusinessArbolAcceso();
                 var frecuencias = (from f in db.Frecuencia
-                                   where f.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
+                                   where f.ArbolAcceso.IdTipoUsuario == idTipoUsuario && !f.ArbolAcceso.Sistema && f.ArbolAcceso.Habilitado && f.ArbolAcceso.Publico
                                    && f.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas
                                    group f by f.IdArbolAcceso
                                        into frec
@@ -555,7 +559,7 @@ namespace KinniNet.Core.Operacion
                 int take = 10 - result.Count;
                 if (result.Count < 10)
                 {
-                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas && w.EsTerminal && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
+                    List<ArbolAcceso> opciones = db.ArbolAcceso.Where(w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas && w.EsTerminal && w.Publico && !w.Sistema && w.Habilitado && w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id)).OrderByDescending(d => d.FechaAlta).Take(take).ToList();
                     foreach (ArbolAcceso opcion in opciones)
                     {
                         ArbolAcceso arbol = bArbol.ObtenerArbolAcceso(opcion.Id);
@@ -598,7 +602,7 @@ namespace KinniNet.Core.Operacion
                         //join ug in db.UsuarioGrupo on new { idgpo = guia.IdGrupoUsuario, idsbgpo = guia.IdSubGrupoUsuario } equals new { idgpo = ug.IdGrupoUsuario, idsbgpo = ug.IdSubGrupoUsuario }
                         where gpos.Contains(guia.IdGrupoUsuario) //ug.IdUsuario == idUsuario 
                         && aa.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas
-                        && f.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
+                        && aa.IdTipoUsuario == idTipoUsuario && !aa.Sistema && aa.Habilitado && aa.EsTerminal
                         select f).Distinct().GroupBy(g => new { g.IdArbolAcceso, g.NumeroVisitas })
                             .Select(s => new { s.Key.IdArbolAcceso, NumeroVisitas = s.Sum(sa => sa.NumeroVisitas) })
                             .OrderByDescending(o => o.NumeroVisitas).Take(10).ToList();
@@ -633,10 +637,11 @@ namespace KinniNet.Core.Operacion
                                                         && aa.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(aa.Id)
                                                         && ug.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte
                                                   select aa).Distinct().ToList();
+                    List<int> opcionesListadas = opciones.Select(s => s.Id).Distinct().ToList();
                     opciones.AddRange(db.ArbolAcceso.Where(
                             w => w.IdTipoArbolAcceso == (int)BusinessVariables.EnumTipoArbol.ReportarProblemas &&
                                 w.EsTerminal && !w.Sistema && w.Habilitado && w.Publico &&
-                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id))
+                                w.IdTipoUsuario == idTipoUsuario && !arbolesAgregados.Contains(w.Id) && !opcionesListadas.Contains(w.Id))
                             .OrderByDescending(d => d.FechaAlta)
                             .Take(take)
                             .ToList());

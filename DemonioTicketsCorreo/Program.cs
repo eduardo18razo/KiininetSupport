@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
+﻿using System.ServiceProcess;
 
 namespace DemonioTicketsCorreo
 {
@@ -11,14 +7,11 @@ namespace DemonioTicketsCorreo
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
-        static void Main()
+        public static void Main(string[] args)
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-            { 
-                new ServiceTicketsCorreo() 
-            };
-            ServiceBase.Run(ServicesToRun);
+            ServiceBase[] servicesToRun = new ServiceBase[] { new ServiceTicketsCorreo(args[0]) };
+            ServiceBase.Run(servicesToRun);
+
         }
     }
 }

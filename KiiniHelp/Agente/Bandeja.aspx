@@ -46,27 +46,32 @@
                                             </div>
                                         </div>
                                         <div class="row margin-top-18">
-                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 no-padding-left">
-                                                <asp:LinkButton runat="server" CssClass="btn col-sm-4 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
+                                            <div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 no-padding-left">
+                                                <asp:LinkButton runat="server" CssClass="btn col-lg-2 col-md-3 col-sm-4 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAutoasignar" OnClick="btnAutoasignar_OnClick">
                                                         <i class="fa fa-long-arrow-down"></i>
                                                         Asignármelo
                                                 </asp:LinkButton>
 
-                                                <asp:LinkButton runat="server" CssClass="btn col-sm-4 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAsignar" OnClick="btnAsignar_OnClick">
+                                                <asp:LinkButton runat="server" CssClass="btn col-lg-2 col-md-3 col-sm-4 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnAsignar" OnClick="btnAsignar_OnClick">
                                                         <i class="fa fa-long-arrow-right"></i>
                                                         Asignar
                                                 </asp:LinkButton>
 
-                                                <asp:LinkButton runat="server" CssClass="btn col-sm-4 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick" Visible="False">
+                                                <asp:LinkButton runat="server" CssClass="btn col-lg-2 col-md-3 col-sm-4 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnCambiarEstatus" OnClick="btnCambiarEstatus_OnClick" Visible="False">
                                                         <i class="fa fa-long-arrow-right"></i>
                                                         Cambiar Estatus
                                                 </asp:LinkButton>
 
-                                                <asp:LinkButton runat="server" CssClass="btn col-sm-1 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnRefresh" OnClick="btnRefresh_OnClick">
+                                                <asp:LinkButton runat="server" CssClass="btn col-lg-1 col-md-1 col-sm-1 col-xs-12 btnManejoTickets margin-right-10 margin-bottom-10" ID="btnRefresh" OnClick="btnRefresh_OnClick">
                                                         <i class="fa fa-refresh"></i>
                                                 </asp:LinkButton>
 
                                                 <asp:LinkButton runat="server" CssClass="btn col-xs-12 fa fa-long-arrow-right margin-bottom-10" Text="Escalar" ID="btnEscalar" OnClick="btnEscalar_OnClick" Visible="False" />
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 text-right no-padding-right">
+                                                <asp:LinkButton runat="server" CssClass="btn col-sm-11 col-xs-12 btn-success" ID="btnSearchUsuario" OnClick="btnSearchUsuario_OnClick">
+                                            <i class="fa fa-search"></i>  Usuarios                                          
+                                                </asp:LinkButton>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12 text-right no-padding-right">
                                                 <asp:LinkButton runat="server" CssClass="btn col-sm-11 col-xs-12 btn-success" OnClick="OnClick">
@@ -144,13 +149,13 @@
                                                     <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" Visible="false" DataField="TipoTicketAbreviacion" HeaderText="Tipo" SortExpression="TipoTicketAbreviacion" UniqueName="Tipo" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                     </tc:GridBoundColumn>
 
-                                                    <tc:GridDateTimeColumn FilterCheckListEnableLoadOnDemand="True" DataField="FechaHora" DataFormatString="{0:MM/dd/yy HH:mm}" HeaderText="Solicitado" SortExpression="FechaHora" UniqueName="Solicitado" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
+                                                    <tc:GridDateTimeColumn FilterCheckListEnableLoadOnDemand="True" DataField="FechaHora" DataFormatString="{0:dd/MM/yy HH:mm}" HeaderText="Solicitado" SortExpression="FechaHora" UniqueName="Solicitado" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                     </tc:GridDateTimeColumn>
 
                                                     <tc:GridBoundColumn FilterCheckListEnableLoadOnDemand="True" DataField="EstatusTicket.Descripcion" HeaderText="Estatus" SortExpression="EstatusTicket.Descripcion" UniqueName="EstatusTicket" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                     </tc:GridBoundColumn>
                                                     
-                                                    <tc:GridDateTimeColumn FilterCheckListEnableLoadOnDemand="True" DataField="FechaUltimoEvento" HeaderText="Ultimo Mov." DataFormatString="{0:MM/dd/yy HH:mm}" SortExpression="FechaUltimoEvento" UniqueName="FechaUltimoEvento" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
+                                                    <tc:GridDateTimeColumn FilterCheckListEnableLoadOnDemand="True" DataField="FechaUltimoEvento" HeaderText="Ultimo Mov." DataFormatString="{0:dd/MM/yy HH:mm}" SortExpression="FechaUltimoEvento" UniqueName="FechaUltimoEvento" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">
                                                     </tc:GridDateTimeColumn>
                                                     
                                                     <tc:GridTemplateColumn  FilterCheckListEnableLoadOnDemand="True" DataField="UsuarioAsignado" HeaderText="Asignado a" SortExpression="UsuarioAsignado" UniqueName="UsuarioAsignaco" CurrentFilterFunction="Contains" AutoPostBackOnFilter="True" ShowFilterIcon="False">

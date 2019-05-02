@@ -1,7 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcReporteDetalleFormulario.ascx.cs" Inherits="KiiniHelp.UserControls.ReportesGraficos.Formularios.UcReporteDetalleFormulario" %>
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
-<%@ Register Src="~/UserControls/Filtros/Componentes/UcFiltroFechasGrafico.ascx" TagPrefix="uc1" TagName="UcFiltroFechasGrafico" %>
+<%@ Register Src="~/UserControls/Filtros/Componentes/UcFiltroFechasConsultas.ascx" TagPrefix="uc1" TagName="UcFiltroFechasConsultas" %>
 
+<style>
+    .pull-bottom {
+        display: inline-block;
+        vertical-align: bottom;
+        float: none;
+    }
+</style>
 <div class="heigth100">
     <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
@@ -11,8 +18,13 @@
             <ol class="breadcrumb">
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li>Administración</li>
-                <li class="active">Usuarios</li>
+                <li>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Users/FrmReportes.aspx">Analíticos</asp:HyperLink>
+                </li>
+                <li>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Users/ReportesGraficos/Formularios/FrmFormularios.aspx">Formularios</asp:HyperLink>
+                </li>
+                <li class="active"><asp:Label runat="server" ID="lblTituloFormulario"></asp:Label></li>
             </ol>
 
             <!--MÓDULO-->
@@ -20,33 +32,41 @@
                 <div class="row">
                     <div class="module-inner">
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-                            <div class="module-heading">
-                                <h3 class="module-title">
+                            <div class="module-heading clearfix">
+                                <h3 class="module-title col-lg-8 col-md-7 col-sm-12 col-xs-12">
                                     <asp:Label runat="server" ID="lblSeccion" Text="Formulario Reporte" /></h3>
+                                <h3 class="module-title col-lg-4 col-md-5 col-sm-12 col-xs-12">
+                                    <asp:Label runat="server" ID="lblTotal"></asp:Label>
+                                </h3>
                             </div>
+                            
                         </div>
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            
-                            <div class="col-lg-5">
+
+                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
                                 <div class="form-group">
-                                    <uc1:UcFiltroFechasGrafico runat="server" ID="ucFiltroFechasGrafico" />
+                                    <uc1:UcFiltroFechasConsultas runat="server" ID="ucFiltroFechasConsultas" />
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 pull-bottom">
+                                <div class="form-group">
+                                    <label class="col-lg-12 col-md-12 col-sm-12" style="color: transparent">h</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-11 margin-top-3">
+                                        <asp:LinkButton runat="server" class="btn btn-primary" OnClick="btnBuscar_OnClick">Aplicar</asp:LinkButton>
+                                        <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">Descargar</asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                <div class="form-group margin-top-btn-consulta">
-                                    <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
-                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
-                                </div>
-                            </div>
+                            
                         </div>
 
 
                     </div>
             </section>
             <!--/MÓDULO-->
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
@@ -58,10 +78,11 @@
                                 OnBiffExporting="rgResult_BiffExporting">
                                 <MasterTableView AutoGenerateColumns="true" IsFilterItemExpanded="True" CommandItemDisplay="None" EnableViewState="True">
                                 </MasterTableView>
-                                
+                                <ClientSettings>
+                                    <Scrolling AllowScroll="True"></Scrolling>
+                                </ClientSettings>
                             </tc:RadGrid>
-                            <tc:RadGrid RenderMode="Classic" runat="server" ID="rgExport" OnBiffExporting="rgResult_BiffExporting" Visible="False" EnableViewState="True"
-                                >
+                            <tc:RadGrid RenderMode="Classic" runat="server" ID="rgExport" OnBiffExporting="rgResult_BiffExporting" Visible="False" EnableViewState="True">
                                 <MasterTableView AutoGenerateColumns="true" EnableViewState="True"></MasterTableView>
                             </tc:RadGrid>
                         </div>

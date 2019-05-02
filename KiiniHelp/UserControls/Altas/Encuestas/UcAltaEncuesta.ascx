@@ -22,10 +22,10 @@
                         </div>
                         <div>Título</div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtTitulo" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtTitulo" MaxLength="64" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <b>Configuración para el cliente</b>
+                            <b>Visualización para el cliente</b>
                         </div>
                         <div class="form-group">
                             Asigna un nombre a esta encuesta que será visible para los clientes. Puedes agregar una breve descripción o instrucciones para facilitar su llenado.
@@ -33,7 +33,7 @@
                         </div>
                         <div>Título</div>
                         <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtTituloCliente" MaxLength="50" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtTituloCliente" MaxLength="64" onkeydown="return (event.keyCode!=13);" CssClass="form-control"></asp:TextBox>
                         </div>
                         <div>Descripción</div>
                         <div class="form-group">
@@ -58,7 +58,7 @@
                                     <div class="row">
                                         <div>
                                             <div class="col-xs-6 col-md-5">
-                                                <asp:TextBox runat="server" ID="txtPregunta" CssClass="form-control" Text='<%# Eval("Pregunta") %>' MaxLength="50" onkeydown="return (event.keyCode!=13);" />
+                                                <asp:TextBox runat="server" ID="txtPregunta" CssClass="form-control" Text='<%# Eval("Pregunta") %>' MaxLength="64" onkeydown="return (event.keyCode!=13);" />
                                             </div>
                                             <div class="col-xs-5 col-md-2">
                                                 <asp:TextBox runat="server" ID="txtPonderacion" CssClass="form-control" Text='<%# Decimal.ToInt32(decimal.Parse(Eval("Ponderacion").ToString())) %>' MaxLength="6" onkeypress="return ValidaCampo(this,2)" onkeydown="return (event.keyCode!=13);" OnTextChanged="txtPonderacion_OnTextChanged" />

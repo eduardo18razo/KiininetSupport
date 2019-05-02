@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Web.UI;
 using KiiniHelp.ServiceArbolAcceso;
-using KiiniHelp.ServiceInformacionConsulta;
 using KiiniNet.Entities.Cat.Operacion;
-using KiiniNet.Entities.Operacion;
 
 namespace KiiniHelp.Users.General
 {

@@ -10,7 +10,7 @@
             <ol class="breadcrumb">
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li>Help Center</li>
+                <li>Centro de Soporte</li>
                 <li class=" active">Secciones</li>
             </ol>
 

@@ -37,6 +37,12 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<int> CapturaCasillaTicket(int idTicket, string nombreCampo);
+
+        [OperationContract]
+        PreTicketCorreo ObtenerPreticketCorreo(string guid);
+
+        [OperationContract]
+        void ConfirmaPreTicket(string guid, int idUsuario);
     }
 
 }

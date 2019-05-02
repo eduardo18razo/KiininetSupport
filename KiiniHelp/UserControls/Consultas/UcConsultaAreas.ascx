@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li >
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li >Help Center</li>
+                <li >Centro de Soporte</li>
                 <li class="active">Categorías</li>
             </ol>
 
@@ -22,7 +22,7 @@
                                     <asp:Label runat="server" ID="lblSeccion" Text="Categorías" /></h3>
                             </div>
                             <p>
-                                Las categorías son contenedores que te ayudan a organizar todo el contenido de tu Help Center. En ellas se agrupan las consultas, los servicios o los problemas y poseen una estructura de árbol:
+                                Las categorías son contenedores que te ayudan a organizar todo el contenido de tu Centro de Soporte. En ellas se agrupan las consultas, los servicios o los problemas y poseen una estructura de árbol:
                                 <br />
                                 Categoría > Consulta, Servicio o Problema > Nivel 1 > Nivel 2 > Nivel 3 > Nivel 4 > Nivel 5 > Nivel 6 > Nivel 7
                             </p>

@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 
 namespace KinniNet.Business.Utils
@@ -29,18 +30,90 @@ namespace KinniNet.Business.Utils
 
         public static class Directorios
         {
-            public static string RepositorioTemporalInformacionConsulta = ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioInfomracionConsultas"] + ConfigurationManager.AppSettings["CarpetaTemporal"];
-            public static string RepositorioInformacionConsulta = ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioInfomracionConsultas"];
-            public static string RepositorioInformacionConsultaHtml = ConfigurationManager.AppSettings["PathInformacionConsultaHtml"];
-            public static string RepositorioTemporalMascara = ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioMascara"] + ConfigurationManager.AppSettings["CarpetaTemporal"];
-            public static string RepositorioMascara = ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioMascara"];
-            public static string RepositorioTemporal = ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["CarpetaTemporal"];
-            public static string RepositorioRepositorio = ConfigurationManager.AppSettings["Repositorio"];
-            public static string RepositorioCorreo = ConfigurationManager.AppSettings["RepositorioCorreos"];
-            public static string RepositorioCarrusel = ConfigurationManager.AppSettings["RepositorioCarousel"] + "\\";
-            public static string Carpetaemporal = HttpRuntime.AppDomainAppPath + ConfigurationManager.AppSettings["CarpetaTemporal"];
-            public static string CarpetaTemporalSitio = ConfigurationManager.AppSettings["siteUrlRemporal"];
-            public static string OnlyTempFolder = ConfigurationManager.AppSettings["CarpetaTemporal"];
+            public static string RepositorioTemporalInformacionConsulta
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioInfomracionConsultas"] + ConfigurationManager.AppSettings["CarpetaTemporal"];
+                }
+            }
+            public static string RepositorioInformacionConsulta
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioInfomracionConsultas"];
+                }
+            }
+
+            public static string RepositorioInformacionConsultaHtml
+            {
+                get { return ConfigurationManager.AppSettings["PathInformacionConsultaHtml"]; }
+            }
+
+            public static string RepositorioTemporalMascara
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioMascara"] + ConfigurationManager.AppSettings["CarpetaTemporal"];
+                }
+            }
+
+            public static string RepositorioMascara
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["RepositorioMascara"];
+                }
+            }
+            public static string RepositorioTemporal
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["Repositorio"] + ConfigurationManager.AppSettings["CarpetaTemporal"];
+                }
+            }
+            public static string RepositorioRepositorio
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["Repositorio"];
+                }
+            }
+            public static string RepositorioCorreo
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["RepositorioCorreos"];
+                }
+            }
+            public static string RepositorioCarrusel
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["RepositorioCarousel"] + "\\";
+                }
+            }
+            public static string CarpetaTemporal
+            {
+                get
+                {
+                    return HttpRuntime.AppDomainAppPath + ConfigurationManager.AppSettings["CarpetaTemporal"];
+                }
+            }
+            public static string CarpetaTemporalSitio
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["siteUrlRemporal"];
+                }
+            }
+            public static string OnlyTempFolder
+            {
+                get
+                {
+                    return ConfigurationManager.AppSettings["CarpetaTemporal"];
+                }
+            }
         }
 
         public static class ComboBoxCatalogo
@@ -182,22 +255,7 @@ namespace KinniNet.Business.Utils
                 Popup = 5
             }
         }
-
-        public static class Correo
-        {
-            public static string HotmailAccount = ConfigurationManager.AppSettings["HotmailAccount"];
-            public static string HotmailPassword = ConfigurationManager.AppSettings["HotmailPassword"];
-            public static string GmailAccount = ConfigurationManager.AppSettings["GmailAccount"];
-            public static string GmailPassword = ConfigurationManager.AppSettings["GmailPassword"];
-            public static string YahooAccount = ConfigurationManager.AppSettings["YahooAccount"];
-            public static string YahooPassword = ConfigurationManager.AppSettings["YahooPassword"];
-            public static string OtherSmtp = ConfigurationManager.AppSettings["OtherSmtp"];
-            public static int OtherPort = int.Parse(ConfigurationManager.AppSettings["OtherPort"]);
-            public static string OtherAccount = ConfigurationManager.AppSettings["OtherAccount"];
-            public static string OtherPassword = ConfigurationManager.AppSettings["OtherPassword"];
-
-        }
-
+        
         //public static int[] IdsPublicos =
         //{
         //    (int) EnumTiposUsuario.ClienteInvitado,
@@ -318,6 +376,21 @@ namespace KinniNet.Business.Utils
 
         }
 
+        public enum EnumGraficos
+        {
+            ReporteEstatusAtención = 45,
+            ReporteEncuestaCalificación = 46,
+            ReporteEncuestaSatisfacción = 47,
+            ReporteEncuestaLogica = 48,
+            ReporteTipoTicket = 49,
+            ReporteDentroFueraSla = 50,
+            ReporteOpción = 51,
+            ReporteEstatusAsignación = 52,
+            ReporteCanal = 53,
+            ReporteOrganización = 54,
+            ReporteEstados = 55
+        }
+
         public enum EnumTipoEncuesta
         {
             SiNo = 1,
@@ -347,14 +420,6 @@ namespace KinniNet.Business.Utils
             Casa = 1,
             Celular = 2,
             Oficina = 3
-        }
-
-        public enum EnumtServerImap
-        {
-            Hotmail = 1,
-            Gmail = 2,
-            Yahoo = 3,
-            Other = 4
         }
 
         public enum EnumMensajes

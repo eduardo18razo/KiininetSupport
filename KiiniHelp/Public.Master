@@ -119,10 +119,10 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
         <header class="header">
-            <div class="branding ">
-                <h1 class="logo text-center">
-                    <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server">
-                        <asp:Image class="logo-icon" ImageUrl="~/assets/images/logoBlanco.jpg" alt="icon" runat="server" />
+             <div class="branding" >
+                <h1 class="logo text-center" style="padding: 5px">
+                    <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server" style="height: 60px; width: 60px">
+                        <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/IconoPage.png" alt="icon" runat="server" style="height: 60px; width: 60px"/>
                         <asp:Label runat="server" ID="lblBranding" Visible="false" />
                     </asp:HyperLink>
                 </h1>
@@ -422,12 +422,12 @@
         </div>
         
         
-        <div class="modal fade" id="modalSessionAbierta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalSessionAbierta" tabindex="-1" role="dialog" aria-labelledby="modalSessionAbiertaTitle" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <asp:LinkButton class="close" runat="server" ID="btnCerramodalSessionAbierta" OnClick="btnCerramodalSessionAbierta_OnClick"><span aria-hidden="true">&times;</span></asp:LinkButton>
-                        <h6 class="modal-title" id="myModalLabel">Sesion abierta </h6>
+                        <h6 class="modal-title" id="modalSessionAbiertaTitle">Sesion abierta </h6>
                     </div>
                     <div class="modal-body">
                         <asp:UpdatePanel runat="server">

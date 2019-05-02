@@ -199,26 +199,6 @@
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="ParametrosUsuario" nillable="true" type="tns:ParametrosUsuario" />
-  <xs:complexType name="ArrayOfParametrosTelefonos">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="ParametrosTelefonos" nillable="true" type="tns:ParametrosTelefonos" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfParametrosTelefonos" nillable="true" type="tns:ArrayOfParametrosTelefonos" />
-  <xs:complexType name="ParametrosTelefonos">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="IdTipoTelefono" type="xs:int" />
-      <xs:element minOccurs="0" name="IdTipoUsuario" type="xs:int" />
-      <xs:element minOccurs="0" name="NumeroTelefonos" type="xs:int" />
-      <xs:element minOccurs="0" name="Obligatorios" type="xs:int" />
-      <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoTelefono" nillable="true" type="q31:TipoTelefono" />
-      <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoUsuario" nillable="true" type="q32:TipoUsuario" />
-    </xs:sequence>
-    <xs:attribute ref="ser:Id" />
-    <xs:attribute ref="ser:Ref" />
-  </xs:complexType>
-  <xs:element name="ParametrosTelefonos" nillable="true" type="tns:ParametrosTelefonos" />
   <xs:complexType name="ArrayOfGraficosDefault">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="GraficosDefault" nillable="true" type="tns:GraficosDefault" />
@@ -233,7 +213,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IdFrecuenciaFecha" type="xs:int" />
       <xs:element minOccurs="0" name="IdMenu" type="xs:int" />
-      <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="Menu" nillable="true" type="q33:Menu" />
+      <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="Menu" nillable="true" type="q31:Menu" />
       <xs:element minOccurs="0" name="Pareto" type="xs:boolean" />
       <xs:element minOccurs="0" name="Periodo" type="xs:int" />
       <xs:element minOccurs="0" name="Pie" type="xs:boolean" />
@@ -263,14 +243,14 @@
   <xs:element name="ArrayOfSubRolEscalacionPermitida" nillable="true" type="tns:ArrayOfSubRolEscalacionPermitida" />
   <xs:complexType name="SubRolEscalacionPermitida">
     <xs:sequence>
-      <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusAsignacion" nillable="true" type="q34:EstatusAsignacion" />
+      <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="EstatusAsignacion" nillable="true" type="q32:EstatusAsignacion" />
       <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IdEstatusAsignacion" type="xs:int" />
       <xs:element minOccurs="0" name="IdSubRol" type="xs:int" />
       <xs:element minOccurs="0" name="IdSubRolPermitido" type="xs:int" />
-      <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRol" nillable="true" type="q35:SubRol" />
-      <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRolPermitido" nillable="true" type="q36:SubRol" />
+      <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRol" nillable="true" type="q33:SubRol" />
+      <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="SubRolPermitido" nillable="true" type="q34:SubRol" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SubRolEscalacionPermitida" nillable="true" type="tns:SubRolEscalacionPermitida" />

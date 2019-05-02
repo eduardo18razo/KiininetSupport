@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using KiiniHelp.Funciones;
 using KiiniHelp.ServiceParametrosSistema;
 using KiiniNet.Entities.Parametros;
-using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes
 {
@@ -32,6 +30,16 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
+        public int IdReporteGrafico
+        {
+            get { return int.Parse(hfGrafico.Value); }
+            set
+            {
+                hfGrafico.Value = value.ToString();
+                LlenaFrecuencias();
+                ObtenerFechasParametro();
+            }
+        }
         public int TipoPeriodo
         {
             get { return Convert.ToInt32(ddlTipoFiltro.SelectedValue); }
@@ -42,22 +50,39 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             get
             {
-                DateTime result;
-                ValidaFechas();
-                DateTime.TryParse(txtFechaInicio.Text, out result);
-                return result.ToShortDateString();
+                string result;
+
+                if (ValidaFechas())
+                {
+                    DateTime fecha;
+                    DateTime.TryParse(txtFechaInicio.Text, out fecha);
+                    result = fecha.ToString("dd/MM/yyyy");
+                }
+                else
+                    result = string.Empty;
+
+                return result;
             }
+            set { txtFechaInicio.Text = value; }
         }
 
         public string FechaFin
         {
             get
             {
-                DateTime result;
-                ValidaFechas();
-                DateTime.TryParse(txtFechaFin.Text, out result);
-                return result.ToShortDateString();
+                string result;
+                if (ValidaFechas())
+                {
+                    DateTime fecha;
+                    DateTime.TryParse(txtFechaFin.Text, out fecha);
+                    result = fecha.ToString("dd/MM/yyyy");
+                }
+                else
+                    result = string.Empty;
+
+                return result;
             }
+            set { txtFechaFin.Text = value; }
         }
 
         public Dictionary<string, DateTime> RangoFechas
@@ -68,45 +93,82 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
         }
 
-        private void ValidaFechas()
+        private bool ValidaFechas()
         {
             try
             {
                 if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                    throw new Exception("Debe Seleccionar un rango de fechas");
+                    return false;
+
+                string fechaInicio = txtFechaInicio.Text, fechaFin = txtFechaFin.Text;
+                if (fechaInicio.Trim() != string.Empty || fechaFin.Trim() != string.Empty)
+                {
+                    if (fechaInicio.Length < 10)
+                    {
+                        string[] fechaParserInicio = fechaInicio.Split('/');
+                        if (fechaParserInicio.Length < 3)
+                            throw new Exception("Formato de fecha incorrecto dd/mm/yyyy");
+                        fechaInicio = string.Empty;
+                        for (int i = 0; i < fechaParserInicio.Length; i++)
+                        {
+
+                            if (i == 2)
+                            {
+                                fechaInicio += fechaParserInicio[i].PadLeft(4, '0');
+                            }
+                            else
+                            {
+                                fechaInicio += fechaParserInicio[i].PadLeft(2, '0') + '/';
+                            }
+                        }
+                    }
+
+                    if (fechaFin.Length < 10)
+                    {
+                        string[] fechaParserFin = fechaFin.Split('/');
+                        if (fechaParserFin.Length < 3)
+                            throw new Exception("Formato de fecha incorrecto dd/mm/yyyy");
+                        fechaFin = string.Empty;
+                        for (int i = 0; i < fechaParserFin.Length; i++)
+                        {
+
+                            if (i == 2)
+                            {
+                                fechaFin += fechaParserFin[i].PadLeft(4, '0');
+                            }
+                            else
+                            {
+                                fechaFin += fechaParserFin[i].PadLeft(2, '0') + '/';
+                            }
+                        }
+                    }
+                }
+
                 switch (ddlTipoFiltro.SelectedValue)
                 {
                     case "1":
-                        if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                            throw new Exception("Debe Seleccionar un rango de fechas");
-                        if (DateTime.Parse(txtFechaInicio.Text) > DateTime.Parse(txtFechaFin.Text))
-                            throw new Exception("Fecha Inicio no puede se mayor a Fecha Fin");
+                        if (fechaInicio == string.Empty || fechaFin == string.Empty)
+                            return false;
+                        if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) > DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
+                            return false;
                         break;
                     case "2":
-                        int anioInicialSemana = Convert.ToInt32(txtFechaInicio.Text.Split('-')[0]);
-                        int semanaInicialSemana = Convert.ToInt32(txtFechaInicio.Text.Split('-')[1].Substring(1));
-                        int anioFinSemana = Convert.ToInt32(txtFechaFin.Text.Split('-')[0]);
-                        int semanaFinSemana = Convert.ToInt32(txtFechaFin.Text.Split('-')[1].Substring(1));
-                        if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                            throw new Exception("Debe Seleccionar un rango de fechas");
-                        if ((anioInicialSemana > anioFinSemana) || (semanaInicialSemana > semanaFinSemana))
-                            throw new Exception("Semana Inicio no puede se mayor a Semana Fin");
-
+                        if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
+                            return false;
+                        if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) > DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
+                            return false;
                         break;
                     case "3":
-
-                        int anioInicialMes = Convert.ToInt32(txtFechaInicio.Text.Split('-')[0]);
-                        int semanaInicialMes = Convert.ToInt32(txtFechaInicio.Text.Split('-')[1]);
-                        int anioFinMes = Convert.ToInt32(txtFechaFin.Text.Split('-')[0]);
-                        int semanaFinMes = Convert.ToInt32(txtFechaFin.Text.Split('-')[1]);
-                        if ((anioInicialMes > anioFinMes) || (semanaInicialMes > semanaFinMes))
-                            throw new Exception("Mes Inicio no puede se mayor a Mes Fin");
+                        if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
+                            return false;
+                        if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) > DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
+                            return false;
                         break;
                     case "4":
-                        if (txtFechaInicio.Text.Trim() == string.Empty || txtFechaFin.Text.Trim() == string.Empty)
-                            throw new Exception("Debe Seleccionar un rango de fechas");
-                        if (int.Parse(txtFechaInicio.Text) > int.Parse(txtFechaFin.Text))
-                            throw new Exception("Año Inicio no puede se mayor a año Fin");
+                        if (fechaInicio.Trim() == string.Empty || fechaFin.Trim() == string.Empty)
+                            return false;
+                        if (DateTime.ParseExact(fechaInicio, "dd/MM/yyyy", null) > DateTime.ParseExact(fechaFin, "dd/MM/yyyy", null))
+                            return false;
                         break;
                 }
 
@@ -116,6 +178,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             {
                 throw new Exception(e.Message);
             }
+            return true;
         }
 
         private void LlenaFrecuencias()
@@ -134,7 +197,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                GraficosDefault parametrosGrafico = _servicioParametros.ObtenerParametrosGraficoDefault();
+                GraficosDefault parametrosGrafico = _servicioParametros.ObtenerParametrosGraficoDefault(IdReporteGrafico);
                 if (parametrosGrafico != null)
                 {
                     ddlTipoFiltro.SelectedValue = parametrosGrafico.IdFrecuenciaFecha.ToString();
@@ -163,7 +226,7 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Error obtener fechas parametro: " + ex.InnerException.Message);
             }
         }
 
@@ -173,8 +236,11 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
             {
                 if (!IsPostBack)
                 {
-                    LlenaFrecuencias();
-                    ObtenerFechasParametro();
+                    if (FechaInicio == string.Empty && FechaFin == string.Empty)
+                    {
+                        LlenaFrecuencias();
+                        ObtenerFechasParametro();
+                    }
                 }
             }
             catch (Exception ex)
@@ -192,49 +258,24 @@ namespace KiiniHelp.UserControls.Filtros.Componentes
         {
             try
             {
-                //if (txtFechaInicio.Attributes["type"] != null)
-                //    txtFechaInicio.Attributes.Remove("type");
-                //if (txtFechaFin.Attributes["type"] != null)
-                //    txtFechaFin.Attributes.Remove("type");
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
 
-                //if (txtFechaInicio.Attributes["min"] != null)
-                //    txtFechaInicio.Attributes.Remove("type");
-                //if (txtFechaFin.Attributes["max"] != null)
-                //    txtFechaFin.Attributes.Remove("max");
-
-                //switch (ddlTipoFiltro.SelectedValue)
-                //{
-                //    case "1":
-                //        txtFechaInicio.Attributes["type"] = "date";
-                //        txtFechaFin.Attributes["type"] = "date";
-                //        txtFechaFin.Attributes["max"] = DateTime.Now.ToString("yyyy-MM-dd");
-                //        break;
-                //    case "2":
-                //        txtFechaInicio.Attributes["type"] = "week";
-                //        txtFechaFin.Attributes["type"] = "week";
-                //        DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-                //        DateTime date1 = new DateTime(DateTime.Now.Year, 12, 31);
-                //        System.Globalization.Calendar cal = dfi.Calendar;
-                //        txtFechaInicio.Attributes["min"] = string.Format("{0}-W{1}", DateTime.Now.Year, "01");
-                //        txtFechaInicio.Attributes["max"] = string.Format("{0}-W{1}", DateTime.Now.Year, cal.GetWeekOfYear(date1, dfi.CalendarWeekRule, dfi.FirstDayOfWeek));
-
-                //        break;
-                //    case "3":
-                //        txtFechaInicio.Attributes["type"] = "month";
-                //        txtFechaFin.Attributes["type"] = "month";
-                //        txtFechaInicio.Attributes["min"] = new DateTime(DateTime.Now.Year, 1, 1).ToString("yyyy-MM");
-                //        txtFechaInicio.Attributes["max"] = new DateTime(DateTime.Now.Year, 12, 31).ToString("yyyy-MM");
-
-                //        break;
-                //    case "4":
-                //        txtFechaInicio.Attributes["type"] = "number";
-                //        txtFechaFin.Attributes["type"] = "number";
-                //        txtFechaInicio.Attributes["min"] = "2000";
-                //        txtFechaInicio.Attributes["max"] = DateTime.Now.Year.ToString();
-                //        txtFechaInicio.Text = DateTime.Now.AddYears(-1).Year.ToString();
-                //        txtFechaFin.Text = DateTime.Now.Year.ToString();
-                //        break;
-                //}
+        protected void btnAplicar_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (OnAceptarModal != null)
+                    OnAceptarModal();
             }
             catch (Exception ex)
             {

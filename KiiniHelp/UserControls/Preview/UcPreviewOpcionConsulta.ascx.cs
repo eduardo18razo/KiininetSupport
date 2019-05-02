@@ -92,7 +92,7 @@ namespace KiiniHelp.UserControls.Preview
             try
             {
                 LinkButton btn = (LinkButton) sender;
-                BusinessFile.MoverTemporales(BusinessVariables.Directorios.Carpetaemporal, BusinessVariables.Directorios.RepositorioTemporal, new List<string>{btn.CommandArgument});
+                BusinessFile.MoverTemporales(BusinessVariables.Directorios.CarpetaTemporal, BusinessVariables.Directorios.RepositorioTemporal, new List<string>{btn.CommandArgument});
 
                 string script = string.Format("window.open('https://docs.google.com/viewer?url=http://{0}/tmp/{1}','_blank')", WebConfigurationManager.AppSettings["siteUrl"], btn.CommandArgument);
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptViewer", script, true);

@@ -4,7 +4,44 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../assets/css/dashboards.css" rel="stylesheet" />
-    
+    <script>
+        (function (global) {
+            var chartPie;
+            var chartBar;
+            var chartPareto;
+
+            function chartLoadPie(sender, args) {
+                chartPie = sender.get_kendoWidget();
+            }
+            function chartLoadPareto(sender, args) {
+                chartPareto = sender.get_kendoWidget();
+            }
+            function chartLoadBar(sender, args) {
+                chartBar = sender.get_kendoWidget();
+            }
+
+            global.chartLoadPie = chartLoadPie;
+            global.chartLoadPareto = chartLoadPareto;
+            global.chartLoadBar = chartLoadBar;
+
+            function resizeChart() {
+                if (chartPie)
+                    chartPie.resize();
+                if (chartBar)
+                    chartBar.resize();
+                if (chartPareto)
+                    chartPareto.resize();
+            }
+
+            var to = false;
+            window.onresize = function () {
+                if (to !== false)
+                    clearTimeout(to);
+                to = setTimeout(resizeChart, 200);
+            }
+
+        })(window);
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,7 +80,7 @@
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-10 no-padding-right">
                                         <div class="form-group padding-10-top">
-                                            <strong class="h5">Últimos 7 Días</strong>
+                                            <strong class="h5">Últimos 7 Días <asp:Label runat="server" ID="lblTitlePeriodo"></asp:Label></strong>
                                             <hr />
                                         </div>
                                     </div>
@@ -231,7 +268,8 @@
                                                         <label class="col-lg-12 col-md-12 col-sm-12 h5">Tickets Abiertos</label>
                                                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold" />
                                                     </div>
-                                                    <tc:RadHtmlChart runat="server" ID="rhcTicketsAbiertos">
+                                                    <tc:RadHtmlChart runat="server" ID="rhcTicketsAbiertos" Width="100%" EnableViewState="True">
+                                                        <ClientEvents OnLoad="chartLoadPie" />
                                                     </tc:RadHtmlChart>
                                                 </div>
                                             </div>
@@ -266,7 +304,8 @@
                                                         <label class="col-lg-12 col-md-12 col-sm-12 h5">Tickets Creados por Canal</label>
                                                         <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bold" />
                                                     </div>
-                                                    <tc:RadHtmlChart runat="server" ID="rhcTicketsCanal">
+                                                    <tc:RadHtmlChart runat="server" ID="rhcTicketsCanal" Width="100%" EnableViewState="True">
+                                                        <ClientEvents OnLoad="chartLoadPie" />
                                                     </tc:RadHtmlChart>
                                                 </div>
                                             </div>
@@ -327,7 +366,7 @@
 
                                                                 <label class="col-lg-1"><%# Eval("TotalImpactoAltoActual") %>    </label>
                                                                 <asp:Label runat="server" CssClass='<%# (int)Eval("TotalImpactoAltoPorcentaje")  == 0 ? "col-lg-1 fa fa-minus" : ((int)Eval("TotalImpactoAltoPorcentaje") < 0 ? "col-lg-1 icon-down-dir-fontello fontGreen" : "col-lg-1 icon-up-dir-fontello fontRed")%>' />
-                                                               <%-- <label class="col-lg-1"><%# Eval("TotalImpactoAltoAnterior") %>  </label>--%>
+                                                                <%-- <label class="col-lg-1"><%# Eval("TotalImpactoAltoAnterior") %>  </label>--%>
                                                                 <asp:Label runat="server" CssClass='<%# (int)Eval("TotalImpactoAltoPorcentaje") == 0 ? "col-lg-1 borderright fa fa-minus" : ((int)Eval("TotalImpactoAltoPorcentaje") < 0 ? "col-lg-1 borderright fontGreen" : "col-lg-1 borderright fontRed")%>' Text='<%# (int)Eval("TotalImpactoAltoPorcentaje") == 0 ? "" : Eval("TotalImpactoAltoPorcentaje") %>' />
 
                                                             </div>

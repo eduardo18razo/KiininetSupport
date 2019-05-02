@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.IO;
 using System.ServiceProcess;
 using System.Threading;
 using System.Timers;
@@ -12,10 +12,13 @@ namespace DemonioCierreTicket
 {
     public partial class ServiceCierreTicket : ServiceBase
     {
+        private readonly string _serviceLog;
         private Timer _intervaloEjecucion;
-        public ServiceCierreTicket()
+        StreamWriter _log;
+        public ServiceCierreTicket(string serviceName)
         {
             InitializeComponent();
+            _serviceLog = serviceName;
         }
 
         protected override void OnStart(string[] args)
@@ -37,44 +40,11 @@ namespace DemonioCierreTicket
 
                 _intervaloEjecucion.Elapsed += intervaloEjecucion_Elapsed;
                 _intervaloEjecucion.Start();
-                LogCorrect("KiiniNet Cierre de Tickets", "Cierre De Ticket", "Timer Start");
+                LogCorrect("Servicio en ejecución");
             }
             catch (Exception ex)
             {
-                LogError("KiiniNet Cierre de Tickets", "Cierre De Ticket", ex.Message);
-            }
-        }
-        void LogCorrect(string source, string application, string mensaje)
-        {
-            try
-            {
-                if (!EventLog.SourceExists(source))
-                    EventLog.CreateEventSource(source, application);
-
-                EventLog.WriteEntry(source, mensaje);
-                EventLog.WriteEntry(source, mensaje,
-                    EventLogEntryType.SuccessAudit, 234);
-            }
-            catch (Exception ex)
-            {
-                LogError("KiiniNet Cierre de Tickets", "Cierre De Ticket", ex.Message);
-            }
-        }
-
-        void LogError(string source, string application, string mensaje)
-        {
-            try
-            {
-                if (!EventLog.SourceExists(source))
-                    EventLog.CreateEventSource(source, application);
-
-                EventLog.WriteEntry(source, mensaje);
-                EventLog.WriteEntry(source, mensaje,
-                    EventLogEntryType.Error, 234);
-            }
-            catch (Exception ex)
-            {
-                LogError("KiiniNet Cierre de Tickets", "Cierre De Ticket", ex.Message);
+                LogError(ex.Message);
             }
         }
         void intervaloEjecucion_Elapsed(object sender, ElapsedEventArgs e)
@@ -82,25 +52,58 @@ namespace DemonioCierreTicket
             try
             {
                 Thread.Sleep(1000);
-                LogCorrect("KiiniNet Cierre de Tickets", "Cierre De Ticket", "Iniciando Tickets Resuletos Sin Cerrar");
+                LogCorrect("Iniciando Tickets Resuletos Sin Cerrar");
+                _intervaloEjecucion.Stop();
                 new BusinessDemonio().CierraTicketsResueltos();
             }
             catch (Exception ex)
             {
-                LogError("KiiniNet Cierre de Tickets", "Cierre De Ticket", ex.Message);
+                LogError(ex.Message);
 
             }
+            finally
+            {
+                _intervaloEjecucion.Start();
+            }
         }
-
         protected override void OnStop()
         {
             try
             {
                 _intervaloEjecucion.Stop();
+                LogCorrect("Termino Servicio Cierre de tickets");
             }
             catch (Exception ex)
             {
-                LogError("KiiniNet Cierre de Tickets", "Cierre De Ticket", ex.Message);
+                LogError(ex.Message);
+            }
+        }
+
+        void LogCorrect(string mensaje)
+        {
+            try
+            {
+                _log = !File.Exists(string.Format("Log_{0}.txt", _serviceLog)) ? new StreamWriter(string.Format("log{0}.txt", _serviceLog)) : File.AppendText(string.Format("log{0}.txt", _serviceLog));
+                _log.WriteLine("Ejecucion (correcta): {0} - {1} ", DateTime.Now, mensaje);
+                _log.Close();
+            }
+            catch (Exception ex)
+            {
+                LogError(ex.Message);
+            }
+        }
+
+        void LogError(string mensaje)
+        {
+            try
+            {
+                _log = !File.Exists(string.Format("Log_{0}.txt", _serviceLog)) ? new StreamWriter(string.Format("log{0}.txt", _serviceLog)) : File.AppendText(string.Format("log{0}.txt", _serviceLog));
+                _log.WriteLine("Ejecucion (error): {0} - {1} ", DateTime.Now, mensaje);
+                _log.Close();
+            }
+            catch (Exception ex)
+            {
+                LogError(ex.Message);
             }
         }
     }

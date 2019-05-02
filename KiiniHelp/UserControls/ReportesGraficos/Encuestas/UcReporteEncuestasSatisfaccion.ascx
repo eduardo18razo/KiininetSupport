@@ -11,7 +11,7 @@
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/FrmReportes.aspx">Analíticos</asp:HyperLink>
                 </li>
-                <li class="active">Encuesta Satisfacción</li>
+                <li class="active">Escala de Valoración</li>
             </ol>
 
             <section class="module">
@@ -20,41 +20,49 @@
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Encuesta Satisfacción" /></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="Escala de Valoración" /></h3>
                             </div>
                         </div>
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                            <div class="col-lg-2">
+                            <div class="col-lg-4 col-md-3 col-sm-5 col-xs-12">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Opciones de Menú:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
+                                    <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">Opción donde está la encuesta:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding-left no-margin-left">
                                         <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <div class="col-lg-1 col-md-2 col-sm-3 col-xs-12">
                                 <div class="form-group">
-                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">... o Consulta por Categoría y Tipo de Usuario</label>
-                                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8  no-padding-left no-margin-left">
-                                        <asp:DropDownList runat="server" ID="ddlArea" CssClass="form-control no-padding-left no-margin-left" Width="220px" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged" />
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4  no-padding-left no-margin-left">
-                                        <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" Style="width: 120px;" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" />
+                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Categoría:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  no-padding-left no-margin-left">
+                                        <asp:DropDownList runat="server" ID="ddlArea" CssClass="form-control no-padding-left no-margin-left" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlArea_OnSelectedIndexChanged" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-5">
+
+                            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
                                 <div class="form-group">
-                                    <uc1:ucfiltrofechasgrafico runat="server" id="ucFiltroFechasGrafico" />
+                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Tipo de Usuario:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  no-padding-left no-margin-left">
+                                        <asp:DropDownList runat="server" ID="ddlTipoUsuario" CssClass="form-control" AutoPostBack="True" AppendDataBoundItems="True" OnSelectedIndexChanged="ddlTipoUsuario_OnSelectedIndexChanged" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 separador-vertical-derecho">
+
+                            <div class="col-lg-3 col-md-4 col-sm-10 col-xs-12">
                                 <div class="form-group">
+                                    <uc1:UcFiltroFechasGrafico runat="server" ID="ucFiltroFechasGrafico" />
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-1 col-sm-2 col-xs-12 pull-bottom">
+                                <div class="form-group">
+                                    <label class="col-lg-12 col-md-12 col-sm-12" style="color: transparent">h</label>
                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
-                                        <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton runat="server" class="btn btn-primary" OnClick="btnBuscar_OnClick">Aplicar</asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +98,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="No. Encuestas" HeaderStyle-Width="15%">
+                                        <asp:TemplateField HeaderText="Total encuestas" HeaderStyle-Width="15%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("NumeroEncuestas")%>'><%# Eval("NumeroEncuestas")%></label>
                                             </ItemTemplate>
@@ -127,14 +135,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Promedio ponderado" HeaderStyle-Width="15%">
                                             <ItemTemplate>
-                                                <label runat="server" class="ocultaTexto" title='<%# Eval("PromedioPonderado")%>'><%# Eval("PromedioPonderado")%></label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-
-                                        <asp:TemplateField HeaderText="Gráfico" HeaderStyle-Width="10%">
-                                            <ItemTemplate>
-                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnGraficar" Text="Ver" OnClick="btnGraficar_OnClick"></asp:LinkButton>
+                                                <label runat="server" class="ocultaTexto" title='<%# String.Format("{0:f1}", Eval("PromedioPonderado"))%>'><%# String.Format("{0:f1}", Eval("PromedioPonderado"))%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -151,7 +152,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="12%">
+                                        <%--<asp:TemplateField HeaderText="Tipo" HeaderStyle-Width="12%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# (bool) Eval("EsTerminal") ? "Opción" : "Sección" %>'><%# (bool) Eval("EsTerminal") ? "Opción" : "Sección" %></label>
                                             </ItemTemplate>
@@ -167,6 +168,11 @@
                                         <asp:TemplateField HeaderText="Ult. Movimiento" HeaderStyle-Width="15%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta")%>'><%# Eval("FechaAlta")%></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>--%>
+                                        <asp:TemplateField HeaderText="Gráfico" HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnGraficar" Text="Ver" OnClick="btnGraficar_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

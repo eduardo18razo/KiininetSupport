@@ -26,7 +26,8 @@ namespace KinniNet.Core.Demonio
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
-                if (!db.Usuario.Any(a => a.Id == idUsuario) && !db.TelefonoUsuario.Any(a => a.Id == idTelefono && a.IdUsuario == idUsuario)) return;
+                if (!db.Usuario.Any(a => a.Id == idUsuario) && !
+                    db.TelefonoUsuario.Any(a => a.Id == idTelefono && a.IdUsuario == idUsuario)) return;
                 List<SmsService> smsHabilitados = db.SmsService.Where(a => a.IdUsuario == idUsuario && a.IdTipoLink == idTipoLink && a.Habilitado).ToList();
                 foreach (SmsService mensajeHabillitados in smsHabilitados)
                 {

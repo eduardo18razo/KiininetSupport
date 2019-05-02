@@ -314,6 +314,21 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                         throw new Exception("El tiempo debe ser mayor a 0.");
                     if (ddlTiempoTotal.SelectedIndex <= BusinessVariables.ComboBoxCatalogo.IndexSeleccione)
                         throw new Exception("Debe especificar unidad de medida de tiempo de SLA.");
+                    switch (int.Parse(ddlTiempoTotal.SelectedValue))
+                    {
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Dias:
+                            if (int.Parse(txtTiempoTotal.Text) > 180)
+                                throw new Exception("El tiempo debe ser menor a 180 días.");
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Horas:
+                            if (int.Parse(txtTiempoTotal.Text) > 168)
+                                throw new Exception("El tiempo debe ser menor a 168 horas.");
+                            break;
+                        case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiempoDuracion.Minutos:
+                            if (int.Parse(txtTiempoTotal.Text) > 1440)
+                                throw new Exception("El tiempo debe ser menor a 1440 minutos.");
+                            break;
+                    }
                     if (chkEstimado.Checked)
                         foreach (RepeaterItem item in rptSubRoles.Items)
                         {
@@ -495,6 +510,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
             {
                 _mp = (UsuariosMaster)Page.Master;
                 Alerta = new List<string>();
+
                 if (!IsPostBack)
                 {
                     LlenaCombos();
@@ -1283,17 +1299,18 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
         #region Sla
         public Sla ObtenerSla()
         {
+            Sla result = null;
             try
             {
-                Sla sla = new Sla
-                {
-                    SlaDetalle = new List<SlaDetalle>(),
-                    Detallado = chkEstimado.Checked,
-                    Habilitado = true
-                };
-                decimal tDias = 3650, tHoras = 0, tminutos = 0, tsegundos = 0;
                 if (chkSla.Checked)
                 {
+                    result = new Sla
+                    {
+                        SlaDetalle = new List<SlaDetalle>(),
+                        Detallado = chkEstimado.Checked,
+                        Habilitado = true
+                    };
+                    decimal tDias = 0, tHoras = 0, tminutos = 0, tsegundos = 0;
                     tDias = 0;
                     if (chkEstimado.Checked)
                         foreach (RepeaterItem item in rptSubRoles.Items)
@@ -1307,7 +1324,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                                 tDias += detalle.Dias;
                             }
                             detalle.TiempoProceso = (detalle.Dias * 24) + detalle.Horas + (detalle.Minutos / 60) + ((detalle.Minutos / 60) / 60);
-                            sla.SlaDetalle.Add(detalle);
+                            result.SlaDetalle.Add(detalle);
                         }
                     else
                     {
@@ -1324,20 +1341,19 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                                 break;
                         }
                     }
-                }
-                sla.Dias = tDias;
-                sla.Horas = tHoras;
-                sla.Minutos = tminutos;
-                sla.Segundos = tsegundos;
-                sla.TiempoHoraProceso = (tDias * 24) + tHoras + (tminutos / 60) + ((tsegundos / 60) / 60);
 
-                return sla;
+                    result.Dias = tDias;
+                    result.Horas = tHoras;
+                    result.Minutos = tminutos;
+                    result.Segundos = tsegundos;
+                    result.TiempoHoraProceso = (tDias * 24) + tHoras + (tminutos / 60) + ((tsegundos / 60) / 60);
+                }
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
+            return result;
         }
         protected void chkEstimado_OnCheckedChanged(object sender, EventArgs e)
         {
@@ -1551,7 +1567,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
                     });
                 }
                 #endregion Responsable Desarrollo
-                
+
                 #region Responsable Categoria
 
                 if (RolesActivos.Any(a => a.IdRol == (int)BusinessVariables.EnumRoles.ResponsableDeCategoría))
@@ -1610,7 +1626,7 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
 
                 #region Notificacion
 
-                #region 
+                #region
 
                 if (chkNotificacion.Checked)
                 {

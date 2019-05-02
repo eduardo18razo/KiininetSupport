@@ -101,7 +101,9 @@ namespace KiiniHelp
                     {
                         if (!_servicioUsuarios.ObtenerDetalleUsuario(usuarios.First().Id).Activo)
                         {
-                            throw new Exception("Debe primero confirmar su cuenta");
+                            _servicioUsuarios.ReenviarActivacion(usuarios.First().Id);
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptOpen", "MostrarPopup(\"#modalRegistroExito\");", true);
+                            return;
                         }
                         Response.Redirect("~/FrmRecuperar.aspx?ldata=" + QueryString.Encrypt(usuarios.First().Id.ToString()));
                     }
@@ -136,12 +138,12 @@ namespace KiiniHelp
         {
             try
             {
-                if (txtUserName.Text.Trim() == string.Empty || txtCaptcha.Text.Trim() == string.Empty) return;
                 Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
                 e.IsValid = Captcha1.UserValidated;
                 ValidCaptcha = e.IsValid;
                 if (!e.IsValid)
                 {
+                    if (txtUserName.Text.Trim() == string.Empty || txtCaptcha.Text.Trim() == string.Empty) return;
                     List<string> sb = new List<string>();
                     sb.Add("Captcha incorrecto.");
                     if (sb.Count > 0)
@@ -166,6 +168,23 @@ namespace KiiniHelp
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Default.aspx");
+        }
+
+        protected void btnCerrarExito_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Default.aspx");
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
         }
 
     }

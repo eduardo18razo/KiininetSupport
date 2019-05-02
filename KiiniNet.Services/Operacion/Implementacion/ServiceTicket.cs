@@ -153,5 +153,35 @@ namespace KiiniNet.Services.Operacion.Implementacion
                 throw new Exception(ex.Message);
             }
         }
+
+        public PreTicketCorreo ObtenerPreticketCorreo(string guid)
+        {
+            try
+            {
+                using (BusinessTicket negocio = new BusinessTicket())
+                {
+                    return negocio.ObtenerPreticketCorreo(guid);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void ConfirmaPreTicket(string guid, int idUsuario)
+        {
+            try
+            {
+                using (BusinessTicket negocio = new BusinessTicket())
+                {
+                    negocio.ConfirmaPreTicket(guid, idUsuario);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

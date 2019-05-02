@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
+using KinniNet.Business.Utils;
 
 namespace KiiniHelp.UserControls.Filtros.Graficos.Eficiencia
 {
@@ -66,16 +67,11 @@ namespace KiiniHelp.UserControls.Filtros.Graficos.Eficiencia
             get { return ucFiltroFechasGrafico.RangoFechas; }
         }
 
-        public void ObtenerParametros()
+        public int IdReporte
         {
-            try
-            {
-                ucFiltroFechasGrafico.ObtenerFechasParametro();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            get { return (int)BusinessVariables.EnumGraficos.ReporteEstatusAsignación; }
+            set { ucFiltroFechasGrafico.IdReporteGrafico = value; }
+
         }
         #endregion Propiedades publicas
 
@@ -96,7 +92,10 @@ namespace KiiniHelp.UserControls.Filtros.Graficos.Eficiencia
                 }
             }
         }
-
+        public void InicializaFiltros()
+        {
+            IdReporte = (int)BusinessVariables.EnumGraficos.ReporteEstatusAsignación;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             try

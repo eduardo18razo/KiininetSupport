@@ -10,6 +10,8 @@ namespace KiiniNet.Services.Operacion.Interface
     public interface IServiceUsuarios
     {
         [OperationContract]
+        void ValidaLimiteOperadores();
+        [OperationContract]
         void GuardarUsuario(Usuario usuario, Domicilio domicilio);
 
         [OperationContract]
@@ -23,6 +25,9 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         List<Usuario> ObtenerUsuarios(int? idTipoUsuario);
+
+        [OperationContract]
+        List<Usuario> ConsultaUsuariosUsuarios(int? idTipoUsuario, string filtro);
 
         [OperationContract]
         Usuario ObtenerDetalleUsuario(int idUsuario);
@@ -70,6 +75,9 @@ namespace KiiniNet.Services.Operacion.Interface
 
         [OperationContract]
         void ConfirmaCuenta(int idUsuario, string password, Dictionary<int, string> confirmaciones, List<PreguntaReto> pregunta, string link);
+
+        [OperationContract]
+        void ReenviarActivacion(int idUsuario);
 
         [OperationContract]
         Usuario BuscarUsuario(string usuario);

@@ -16,29 +16,45 @@ namespace KiiniHelp.UserControls.Altas.ArbolesAcceso
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            UcAltaConsulta.OnCancelarModal += UcAltaConsulta_OnCancelarModal;
-            UcAltaServicio.OnCancelarModal += UcAltaServicio_OnCancelarModal;
-
+            ucAltaConsulta.OnAceptarModal += UcAltaConsulta_OnAceptarModal;
+            ucAltaConsulta.OnCancelarModal += UcAltaConsulta_OnCancelarModal;
+            ucAltaServicio.OnAceptarModal += UcAltaServicio_OnAceptarModal;
+            ucAltaServicio.OnCancelarModal += UcAltaServicio_OnCancelarModal;
         }
 
-        void UcAltaServicio_OnCancelarModal()
+
+
+        void UcAltaConsulta_OnAceptarModal()
         {
-            UcAltaConsulta.LimpiarPantalla();
+            if (OnAceptarModal != null)
+                OnAceptarModal();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
         }
-
         void UcAltaConsulta_OnCancelarModal()
         {
-            UcAltaServicio.LimpiarPantalla();
+            ucAltaServicio.LimpiarPantalla();
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
         }
+        void UcAltaServicio_OnCancelarModal()
+        {
+            if (OnAceptarModal != null)
+                OnAceptarModal();
+            ucAltaConsulta.LimpiarPantalla();
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
+        }
+        void UcAltaServicio_OnAceptarModal()
+        {
+            ucAltaConsulta.LimpiarPantalla();
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "CierraPopup(\"#modalAtaOpcion\");", true);
+        }
+
 
         public void Cancelar()
         {
             try
             {
-                UcAltaConsulta.LimpiarPantalla();
-                UcAltaServicio.LimpiarPantalla();
+                ucAltaConsulta.LimpiarPantalla();
+                ucAltaServicio.LimpiarPantalla();
             }
             catch (Exception ex)
             {

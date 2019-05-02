@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FrmTestTelerik.aspx.cs" Inherits="KiiniHelp.Test.FrmTestTelerik" %>
 
-<%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2017.2.711.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
+<%@ Register Src="~/UserControls/Filtros/Componentes/UcFiltroFechasGrafico.ascx" TagPrefix="uc1" TagName="UcFiltroFechasGrafico" %>
+
 
 
 
@@ -37,6 +39,7 @@
     <link rel="stylesheet" href="../assets/tmp/jquery.tagsinput.min.css" />
     <link rel="stylesheet" href="../assets/css/elusive-icons.css" />
     <link rel="stylesheet" href="../assets/css/telerikControl.css" />
+    <link href="../assets/css/Summernote/summernote.css" rel="stylesheet" />
 
     <script type="text/javascript">
         (function (global) {
@@ -92,9 +95,67 @@
                 <asp:ScriptReference Path="~/assets/js/validation.js" />
                 <asp:ScriptReference Path="~/assets/js/functions.js" />
                 <asp:ScriptReference Path="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
+                <asp:ScriptReference Path="~/assets/js/summernote/summernote.js" />
             </Scripts>
         </asp:ScriptManager>
-        <asp:Label runat="server" ID="lblMaquina"></asp:Label>
+        <asp:UpdatePanel runat="server">
+            <Telerik:RadButton runat="server" ></Telerik:RadButton>
+            <ContentTemplate>
+                <div id="summernote"><p>Hello Summernote</p></div>
+  <script>
+      $(document).ready(function () {
+          $('#summernote').summernote({
+              toolbar: [
+    // [groupName, [list of button]]
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']],
+    ['undo', ['undo']],
+    ['redo', ['redo']]
+              ]
+          });
+      });
+  </script>
+                <textarea id="txtTest" runat="server"></textarea>
+
+
+                <uc1:UcFiltroFechasGrafico runat="server" ID="UcFiltroFechasGrafico" />
+                <div class="form-group">
+                    <asp:Label runat="server" Text="Agrega nuevo un día feriado al grupo:" CssClass="control-label col-lg-12 col-md-12" />
+                    <asp:Label runat="server" Text="Descripción" CssClass="control-label col-lg-12 col-md-12" />
+                    <div class="col-lg-7 col-md-7">
+                        <asp:TextBox ID="txtDescripcionDia" runat="server" MaxLength="50" CssClass="form-control" onkeydown="return (event.keyCode!=13);" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <asp:Label runat="server" Text="Fecha" CssClass="control-label col-lg-12 col-md-12" />
+
+                    <div class="col-lg-7 col-md-7">
+                        <asp:TextBox ID="txtDate" runat="server" CssClass="form-control" step="1" onkeydown="return (event.keyCode!=13);" />
+                    </div>
+
+                    <div class="col-lg-2 col-md-2">
+                        <i class="fa fa-calendar fa-20x margin-top-6" id="imgPopup2" runat="server"></i>
+                        <ajax:CalendarExtender runat="server" ID="ctrlCalendar" TargetControlID="txtDate" Format="dd/MM/yyyy" PopupButtonID="imgPopup2" />
+                        <ajax:MaskedEditExtender ID="MaskedEditExtender1" runat="server"
+                            TargetControlID="txtDate" Mask="99/99/9999"
+                            MaskType="Date" MessageValidatorTip="true"
+                            OnFocusCssClass="MaskedEditFocus"
+                            ClearMaskOnLostFocus="false" OnInvalidCssClass="MaskedEditError"
+                            InputDirection="LeftToRight" />
+                    </div>
+
+                    <asp:LinkButton runat="server" CssClass="btn btn-primary fa fa-calendar " Visible="False"></asp:LinkButton>
+                </div>
+                <div class="form-group">
+                    <asp:LinkButton runat="server" ID="btnAddDiaDescanso" class="fa fa-plus-circle margin-left-5 margin-top-7" OnClick="btnAddDiaDescanso_OnClick" />
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <%--<asp:Label runat="server" ID="lblMaquina"></asp:Label>
         <tc:RadDropDownTree runat="server" ID="RadDropDownTree1"></tc:RadDropDownTree>
 
 
@@ -156,7 +217,17 @@
                     </tc:BarSeries>
                 </Series>
             </PlotArea>
-        </tc:RadHtmlChart>
+        </tc:RadHtmlChart>--%>
+        <script>
+            $(function () {
+                // Set up your summernote instance
+                $("#txtTest").summernote();
+                // When the summernote instance loses focus, update the content of your <textarea>
+                $("#txtTest").on('summernote.blur', function () {
+                    $('#txtTest').html($('#txtTest').summernote('code'));
+                });
+            });
+        </script>
     </form>
 </body>
 </html>

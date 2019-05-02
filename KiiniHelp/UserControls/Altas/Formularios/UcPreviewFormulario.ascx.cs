@@ -60,13 +60,19 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             base.OnInit(e);
             _lstControles = new List<Control>();
-            Mascara mascara = (Mascara)Session["PreviewDataFormulario"];
+            Mascara mascara = null;
+            if (Request.Params["Id"] != null)
+            {
+                mascara = _servicioMascaras.ObtenerMascaraCaptura(int.Parse(Request.Params["Id"]));
+            }
+            else
+                mascara = (Mascara)Session["PreviewDataFormulario"];
             if (mascara != null)
             {
                 hfComandoInsertar.Value = mascara.ComandoInsertar;
                 hfComandoActualizar.Value = mascara.ComandoInsertar;
                 hfRandom.Value = mascara.Random.ToString();
-                lblDescripcionMascara.Text = mascara.Descripcion;
+                lblTitle.Text = mascara.Descripcion;
                 ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
                 if (parametros != null)
                 {
@@ -161,12 +167,14 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 
                 foreach (CampoMascara campo in lstControles)
                 {
+                    if (campo.Id < 0) continue;
                     HtmlGenericControl hr = new HtmlGenericControl("HR");
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.Descripcion.Replace(" ", "_") };
                     createDiv.Attributes["class"] = "form-group clearfix";
                     Label lbl = new Label { Text = campo.Descripcion + (campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty), CssClass = "col-sm-12 control-label proxima12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
+
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:
                             lbl.Attributes["for"] = "txt" + campo.Descripcion.Replace(" ", "_");
                             createDiv.Controls.Add(lbl);
@@ -534,7 +542,10 @@ namespace KiiniHelp.UserControls.Altas.Formularios
         {
             try
             {
-
+                if (Request.Params["publico"] != null)
+                {
+                    divRegistraUsuario.Visible = bool.Parse(Request.Params["publico"]);
+                }
             }
             catch (Exception ex)
             {

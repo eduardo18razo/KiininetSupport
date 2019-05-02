@@ -130,13 +130,13 @@ namespace KiiniNet.Services.Parametros.Implementacion
             }
         }
 
-        public GraficosDefault ObtenerParametrosGraficoDefault()
+        public GraficosDefault ObtenerParametrosGraficoDefault(int idReporte)
         {
             try
             {
                 using (BusinessParametros negocio = new BusinessParametros())
                 {
-                    return negocio.ObtenerParametrosGraficoDefault();
+                    return negocio.ObtenerParametrosGraficoDefault(idReporte);
                 }
             }
             catch (Exception ex)

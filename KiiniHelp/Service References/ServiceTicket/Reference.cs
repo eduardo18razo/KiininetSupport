@@ -41,6 +41,12 @@ namespace KiiniHelp.ServiceTicket {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTicket/CapturaCasillaTicket", ReplyAction="http://tempuri.org/IServiceTicket/CapturaCasillaTicketResponse")]
         System.Collections.Generic.List<int> CapturaCasillaTicket(int idTicket, string nombreCampo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTicket/ObtenerPreticketCorreo", ReplyAction="http://tempuri.org/IServiceTicket/ObtenerPreticketCorreoResponse")]
+        KiiniNet.Entities.Operacion.Tickets.PreTicketCorreo ObtenerPreticketCorreo(string guid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceTicket/ConfirmaPreTicket", ReplyAction="http://tempuri.org/IServiceTicket/ConfirmaPreTicketResponse")]
+        void ConfirmaPreTicket(string guid, int idUsuario);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -104,6 +110,14 @@ namespace KiiniHelp.ServiceTicket {
         
         public System.Collections.Generic.List<int> CapturaCasillaTicket(int idTicket, string nombreCampo) {
             return base.Channel.CapturaCasillaTicket(idTicket, nombreCampo);
+        }
+        
+        public KiiniNet.Entities.Operacion.Tickets.PreTicketCorreo ObtenerPreticketCorreo(string guid) {
+            return base.Channel.ObtenerPreticketCorreo(guid);
+        }
+        
+        public void ConfirmaPreTicket(string guid, int idUsuario) {
+            base.Channel.ConfirmaPreTicket(guid, idUsuario);
         }
     }
 }

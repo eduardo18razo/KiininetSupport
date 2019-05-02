@@ -14,6 +14,10 @@ namespace KiiniNet.Entities.Operacion.Tickets
         [DataMember]
         public string Nombre { get; set; }
         [DataMember]
+        public string ApellidoPaterno { get; set; }
+        [DataMember]
+        public string ApellidoMaterno { get; set; }
+        [DataMember]
         public string Correo { get; set; }
         [DataMember]
         public string Asunto { get; set; }
@@ -25,5 +29,7 @@ namespace KiiniNet.Entities.Operacion.Tickets
         public bool Confirmado { get; set; }
         [DataMember]
         public DateTime FechaSolicito { get; set; }
+        [DataMember]
+        public DateTime? FechaConfirmo { get; set; }
     }
 }

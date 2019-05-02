@@ -96,9 +96,11 @@ namespace KiiniHelp.UserControls.Altas.Formularios
 
             if (arbol != null)
             {
+                hfIdTipoUsuario.Value = arbol.IdTipoUsuario.ToString();
+                lbtnTipoUsuario.Text = arbol.TipoUsuario.Descripcion;
+                lblDescripcionFormulario.Text = arbol.InventarioArbolAcceso[0].Descripcion;
                 lblTitle.Text = arbol.InventarioArbolAcceso[0].Descripcion;
                 lblDescripcion.Text = arbol.Descripcion;
-                lblTitle.Text = arbol.InventarioArbolAcceso[0].Descripcion;
                 int? idMascara = arbol.InventarioArbolAcceso.First().IdMascara;
                 if (idMascara != null) IdMascara = (int)idMascara;
                 Mascara mascara = _servicioMascaras.ObtenerMascaraCaptura(IdMascara);
@@ -341,7 +343,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 {
                                     if (txtFecha.Text.Trim() != String.Empty)
                                     {
-                                        var d = DateTime.Parse(txtFecha.Text.Trim());
+                                        var d = DateTime.ParseExact(txtFecha.Text.Trim(), "dd/MM/yyyy", null);
                                     }
                                 }
                                 catch
@@ -365,8 +367,8 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                         throw new Exception(string.Format("Campo {0} es obligatorio", campo.Descripcion));
                                     try
                                     {
-                                        var dI = DateTime.Parse(txtFechaInicio.Text.Trim());
-                                        var dF = DateTime.Parse(txtFechaFin.Text.Trim());
+                                        var dI = DateTime.ParseExact(txtFechaInicio.Text.Trim(), "dd/MM/yyyy", null);
+                                        var dF = DateTime.ParseExact(txtFechaFin.Text.Trim(), "dd/MM/yyyy", null);
                                         if (dI > dF)
                                             throw new Exception(
                                                 string.Format("Campo {0} no es un rango de fechas valido",
@@ -384,8 +386,8 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                     {
                                         try
                                         {
-                                            var dI = DateTime.Parse(txtFechaInicio.Text.Trim());
-                                            var dF = DateTime.Parse(txtFechaFin.Text.Trim());
+                                            var dI = DateTime.ParseExact(txtFechaInicio.Text.Trim(), "dd/MM/yyyy", null);
+                                            var dF = DateTime.ParseExact(txtFechaFin.Text.Trim(), "dd/MM/yyyy", null);
                                             if (dI > dF)
                                                 throw new Exception(string.Format("Campo {0} no es un rango de fechas valido", campo.Descripcion));
                                         }
@@ -604,7 +606,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                 campoCapturado = new HelperCampoMascaraCaptura
                                 {
                                     NombreCampo = campo.NombreCampo,
-                                    Valor = txtFechaFin.Text.Trim() == string.Empty ? "" : Convert.ToDateTime(txtFechaInicio.Text.Trim().ToUpper()).ToString("yyyy-MM-dd") + "|" + Convert.ToDateTime(txtFechaFin.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
+                                    Valor = txtFechaFin.Text.Trim() == string.Empty ? "" : DateTime.ParseExact(txtFechaInicio.Text.Trim().ToUpper(), "dd/MM/yyyy", null).ToString("yyyy-MM-dd") + "|" + DateTime.ParseExact(txtFechaFin.Text.Trim().ToUpper(), "dd/MM/yyyy", null).ToString("yyyy-MM-dd"),
                                 };
                                 lstCamposCapturados.Add(campoCapturado);
                             }
@@ -615,7 +617,7 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                                         campoCapturado = new HelperCampoMascaraCaptura
                                         {
                                             NombreCampo = campo.NombreCampo,
-                                            Valor = txt.Text.Trim() == string.Empty ? string.Empty : Convert.ToDateTime(txt.Text.Trim().ToUpper()).ToString("yyyy-MM-dd"),
+                                            Valor = txt.Text.Trim() == string.Empty ? string.Empty : DateTime.ParseExact(txt.Text.Trim().ToUpper(), "dd/MM/yyyy", null).ToString("yyyy-MM-dd"),
                                         };
                                         lstCamposCapturados.Add(campoCapturado);
                                         break;
@@ -1114,7 +1116,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios
             try
             {
                 Alerta = new List<string>();
-
                 if (!IsPostBack)
                 {
                     divRegistraUsuario.Visible = Session["UserData"] == null;
@@ -1256,6 +1257,34 @@ namespace KiiniHelp.UserControls.Altas.Formularios
                 }
 
                 Alerta = _lstError;
+            }
+        }
+
+        protected void lbtnHome_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["UserData"] == null)
+                    Response.Redirect("~/Default.aspx");
+                else
+                    Response.Redirect("~/Users/DashBoard.aspx");
+            }
+            catch
+            {
+            }
+        }
+
+        protected void lbtnTipoUsuario_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["UserData"] == null)
+                    Response.Redirect("~/Publico/FrmUserSelect.aspx?userType=" + hfIdTipoUsuario.Value);
+                else
+                    Response.Redirect("~/Users/FrmDashboardUser.aspx");
+            }
+            catch
+            {
             }
         }
     }

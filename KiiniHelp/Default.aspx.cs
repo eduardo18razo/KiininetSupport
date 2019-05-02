@@ -116,6 +116,7 @@ namespace KiiniHelp
                     Response.Redirect("~/Users/DashBoard.aspx");
                 }
 
+
                 lblBranding.Text = WebConfigurationManager.AppSettings["Brand"];
                 ucTicketPortal.OnAceptarModal += UcTicketPortal_OnAceptarModal;
                 if (UcLogCopia.Fail)

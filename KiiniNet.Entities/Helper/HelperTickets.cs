@@ -32,7 +32,7 @@ namespace KiiniNet.Entities.Helper
         public bool EsPropietario { get; set; }
         public bool CambiaEstatus { get; set; }
         public bool Asigna { get; set; }
-
+        public DateTime? FechaEstimadaTermino { get; set; }
         public bool DentroSla { get; set; }
         public bool RecienCerrado { get; set; }
 

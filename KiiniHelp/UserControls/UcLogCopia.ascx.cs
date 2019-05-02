@@ -179,8 +179,9 @@ namespace KiiniHelp.UserControls
                 {
                     customvalidatorCaptcha.Enabled = false;
                     lblPswAbierto.Text = txtpwd.Text.Trim();
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptOpen", "MostrarPopup(\"#modalSessionAbierta\");", true);
-                    return;
+                    DesbloquearUsuario();
+                    //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptOpen", "MostrarPopup(\"#modalSessionAbierta\");", true);
+                    //return;
                 }
                 if (!_servicioSeguridad.Autenticate(txtUsuario.Text.Trim(), txtpwd.Text.Trim(), SecurityUtils.CreateShaHash(Maquina)))
                     throw new Exception("Usuario y/o contraseña no validos");

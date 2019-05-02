@@ -10,11 +10,11 @@
         <ContentTemplate>
 
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item">Formularios</li>
-                <li class="breadcrumb-item active">Nuevo Formulario</li>
+                <li>Centro de Soporte</li>
+                <li>Formularios</li>
+                <li class="active">Nuevo Formulario</li>
             </ol>
 
             <uc1:UcAltaFormulario runat="server" ID="ucAltaFormulario" />

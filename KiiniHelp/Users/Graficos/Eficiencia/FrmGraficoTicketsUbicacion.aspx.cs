@@ -46,7 +46,7 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                 ucDetalleGeograficoTickets.OnCancelarModal += UcDetalleGeograficoTicketsOnCancelarModal;
                 if (!IsPostBack)
                 {
-                    ucFiltrosTicketUbicacion.ObtenerParametros();
+                    ucFiltrosTicketUbicacion.InicializaFiltros();
                     GeneraGraficas();
                 }
             }
@@ -93,86 +93,88 @@ namespace KiiniHelp.Users.Graficos.Eficiencia
                     ucFiltrosTicketUbicacion.FiltroEstatus,
                     "Ubicaciones", ucFiltrosTicketUbicacion.TipoPeriodo);
 
-                List<ColoresTop> lstColores = _servicioParametros.ObtenerColoresTop();
-                List<Top> topResult = new List<Top>();
-                foreach (DataRow row in dtDatos.Rows)
+                DataTable dtResultTop = null;
+                if (dtDatos != null)
                 {
-                    if (topResult.All(a => a.Id != int.Parse(row[0].ToString())))
+                    dtResultTop = dtDatos.Copy();
+                    DataTable dtOtros = dtDatos.Copy();
+                    List<ColoresTop> lstColores = _servicioParametros.ObtenerColoresTop();
+                    List<Top> topResult = new List<Top>();
+                    foreach (DataRow row in dtDatos.Rows)
                     {
-                        double total = 0;
-                        for (int i = 3; i < dtDatos.Columns.Count; i++)
+                        if (topResult.All(a => a.Id != int.Parse(row[0].ToString())))
                         {
-                            total += double.Parse(row[i].ToString());
+                            double total = 0;
+                            for (int i = 3; i < dtDatos.Columns.Count; i++)
+                            {
+                                total += double.Parse(row[i].ToString());
+                            }
+                            topResult.Add(new Top { Id = int.Parse(row[0].ToString()), Descripcion = row[1].ToString(), Total = total });
                         }
-                        topResult.Add(new Top { Id = int.Parse(row[0].ToString()), Descripcion = row[1].ToString(), Total = total });
                     }
-                }
 
-                topResult = topResult.OrderByDescending(o => o.Total).ToList();
-
-                DataTable dtResultTop = dtDatos.Copy();
-                DataTable dtOtros = dtDatos.Copy();
-
-                foreach (Top top in topResult.Skip(20))
-                {
-                    DataRow[] dr = null;
-                    dr = dtResultTop.Select("Id =" + top.Id);
-                    foreach (DataRow row in dr)
-                    {
-                        dtResultTop.Rows.Remove(row);
-                    }
-                }
-
-                if (topResult.Count > 20)
-                {
-
-                    foreach (Top top in topResult.Take(20))
+                    topResult = topResult.OrderByDescending(o => o.Total).ToList();
+                    
+                    foreach (Top top in topResult.Skip(20))
                     {
                         DataRow[] dr = null;
-                        dr = dtOtros.Select("Id =" + top.Id);
+                        dr = dtResultTop.Select("Id =" + top.Id);
                         foreach (DataRow row in dr)
                         {
-                            dtOtros.Rows.Remove(row);
+                            dtResultTop.Rows.Remove(row);
                         }
                     }
 
-                    dtResultTop.Rows.Add(-1, "Otros");
-
-                    for (int i = 3; i < dtOtros.Columns.Count; i++)
+                    if (topResult.Count > 20)
                     {
-                        DataRow dr = dtResultTop.Select("Id=-1").FirstOrDefault();
-                        if (dr != null)
+
+                        foreach (Top top in topResult.Take(20))
                         {
-                            dr[i] = (from item in dtOtros.AsEnumerable()
-                                     select item.Field<int>(dtDatos.Columns[i].ColumnName)).Sum(); ;
+                            DataRow[] dr = null;
+                            dr = dtOtros.Select("Id =" + top.Id);
+                            foreach (DataRow row in dr)
+                            {
+                                dtOtros.Rows.Remove(row);
+                            }
+                        }
 
+                        dtResultTop.Rows.Add(-1, "Otros");
+
+                        for (int i = 3; i < dtOtros.Columns.Count; i++)
+                        {
+                            DataRow dr = dtResultTop.Select("Id=-1").FirstOrDefault();
+                            if (dr != null)
+                            {
+                                dr[i] = (from item in dtOtros.AsEnumerable()
+                                         select item.Field<int>(dtDatos.Columns[i].ColumnName)).Sum(); ;
+
+                            }
                         }
                     }
-                }
 
-
-                int contadorColor = 0;
-                foreach (ColoresTop color in lstColores)
-                {
-                    if (contadorColor < dtResultTop.Rows.Count)
+                    int contadorColor = 0;
+                    foreach (ColoresTop color in lstColores)
                     {
-                        dtResultTop.Rows[contadorColor][2] = color.Color;
-                        contadorColor++;
-                    }
-                    else
-                    {
-                        break;
+                        if (contadorColor < dtResultTop.Rows.Count)
+                        {
+                            dtResultTop.Rows[contadorColor][2] = color.Color;
+                            contadorColor++;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
 
                 GeneraGraficaPareto(rhcTicketsPareto, dtResultTop, "Ubicaciones");
-
                 GeneraGraficaStackedPie(rhcTicketsPie, dtResultTop);
-
                 GeneraGraficaStackedColumn(rhcTicketsStack, dtResultTop);
-
-
-
+                
+                rhcTicketsPie.Visible = true;
+                rhcTicketsPareto.Visible = true;
+                rhcTicketsStack.Visible = true;
+                
                 hfGraficaGenerada.Value = true.ToString();
                 upGrafica.Update();
             }

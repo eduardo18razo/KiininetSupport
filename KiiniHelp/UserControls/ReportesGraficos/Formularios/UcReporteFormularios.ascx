@@ -1,5 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcReporteFormularios.ascx.cs" Inherits="KiiniHelp.UserControls.ReportesGraficos.Formularios.UcReporteFormularios" %>
+<%@ Register Src="~/UserControls/Filtros/Componentes/UcFiltroFechasConsultas.ascx" TagPrefix="uc1" TagName="UcFiltroFechasConsultas" %>
 
+
+<style>
+    .pull-bottom {
+        display: inline-block;
+        vertical-align: bottom;
+        float: none;
+    }
+</style>
 
 <div class="heigth100">
     <asp:UpdatePanel runat="server" class="heigth100">
@@ -8,7 +17,9 @@
             <ol class="breadcrumb">
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li>Help Center</li>
+                <li>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Users/FrmReportes.aspx">Analíticos</asp:HyperLink>
+                </li>
                 <li class="active">Formularios</li>
             </ol>
 
@@ -27,18 +38,27 @@
                         </div>
 
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-lg-6 separador-vertical-derecho">
+                            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Formularios:</label>
-                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">
                                         <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-5 col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <uc1:UcFiltroFechasConsultas runat="server" ID="ucFiltroFechasConsultas" />
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-1 col-sm-2 col-xs-12 pull-bottom">
+                                <div class="form-group">
+                                    <label class="col-lg-12 col-md-12 col-sm-12" style="color: transparent">h</label>
                                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 margin-top-3">
                                         <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -63,11 +83,11 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Formulario" HeaderStyle-Width="30%">
+                                        <%--<asp:TemplateField HeaderText="Formulario" HeaderStyle-Width="30%">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("NombreTabla")%>'><%# Eval("NombreTabla")%></label>
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="14%">
                                             <ItemTemplate>
@@ -81,12 +101,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Datos" HeaderStyle-Width="4%">
-                                            <ItemTemplate>
-                                                        <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnDetalle" OnClick="btnDetalle_OnClick" Text="Ver"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
                                         <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled">
@@ -94,6 +108,12 @@
                                                         <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Enabled="False" CssClass="chkIphone" Width="30px" Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' />
                                                     </li>
                                                 </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Datos" HeaderStyle-Width="4%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnDetalle" OnClick="btnDetalle_OnClick" Text="Ver"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

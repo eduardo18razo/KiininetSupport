@@ -7,8 +7,10 @@
             <ol class="breadcrumb">
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li>Help Center</li>
-                <li class="active">Articulos (Like Dont Like)</li>
+                <li>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Users/FrmReportes.aspx">Analíticos</asp:HyperLink>
+                </li>
+                <li class="active">Valoración artículos</li>
             </ol>
 
             <section class="module">
@@ -17,14 +19,11 @@
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
                             <div class="module-heading">
                                 <h3 class="module-title">
-                                    <asp:Label runat="server" ID="lblSeccion" Text="Artículos" /></h3>
+                                    <asp:Label runat="server" ID="lblSeccion" Text="Valoración artículos" /></h3>
                             </div>
-                            <p>
-                                Los artículos forman parte de las categorías y son contenidos tales como manuales de ayuda, fichas técnicas, etc.
-                            </p>
                         </div>
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-lg-2">
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Artículos:</label>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">
@@ -32,14 +31,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-5">
+                            <div class="col-lg-4 col-md-5 col-sm-10 col-xs-12">
                                 <div class="form-group">
-                                    <uc1:ucfiltrofechasgrafico runat="server" id="ucFiltroFechasGrafico" />
+                                    <uc1:UcFiltroFechasGrafico runat="server" ID="ucFiltroFechasGrafico" />
                                 </div>
                             </div>
-                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                <div class="form-group margin-top-btn-consulta">
-                                    <asp:LinkButton runat="server" class="btn btn-primary btn-single-icon" OnClick="btnBuscar_OnClick"><i class="fa fa-search"></i></asp:LinkButton>
+                            <div class="col-lg-2 col-md-1 col-sm-2 col-xs-12 pull-bottom">
+                                <div class="form-group">
+                                    <label class="col-lg-12 col-md-12 col-sm-12" style="color: transparent">h</label>
+                                    <div class="col-xs-11 col-sm-12 col-md-12 col-lg-12 margin-top-3">
+                                        <asp:LinkButton runat="server" class="btn btn-primary" OnClick="btnBuscar_OnClick">Aplicar</asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,6 +66,30 @@
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Total" HeaderStyle-Width="4%" ItemStyle-CssClass="altoFijo" SortExpression="Gusta">
+                                            <ItemTemplate>
+                                                <div>
+                                                    <label runat="server" class="ocultaTexto" title='<%# int.Parse(Eval("MeGusta").ToString()) + int.Parse(Eval("NoMeGusta").ToString()) %>'><%# int.Parse(Eval("MeGusta").ToString()) + int.Parse(Eval("NoMeGusta").ToString())%></label>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Me gusta" HeaderStyle-Width="4%" ItemStyle-CssClass="altoFijo" SortExpression="Gusta">
+                                            <ItemTemplate>
+                                                <div>
+                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("MeGusta")%>'><%# Eval("MeGusta")%></label>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="No me gusta" HeaderStyle-Width="5%" ItemStyle-CssClass="altoFijo" SortExpression="NoGusta">
+                                            <ItemTemplate>
+                                                <div>
+                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("NoMeGusta")%>'><%# Eval("NoMeGusta")%></label>
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Autor" HeaderStyle-Width="20%">
                                             <ItemTemplate>
@@ -83,28 +109,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Gusta" HeaderStyle-Width="4%" ItemStyle-CssClass="altoFijo" SortExpression="Gusta">
-                                            <ItemTemplate>
-                                                <div>
-                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("MeGusta")%>'><%# Eval("MeGusta")%></label>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="NoGusta" HeaderStyle-Width="4%" ItemStyle-CssClass="altoFijo" SortExpression="NoGusta">
-                                            <ItemTemplate>
-                                                <div>
-                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("NoMeGusta")%>'><%# Eval("NoMeGusta")%></label>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Graficar" HeaderStyle-Width="4%">
-                                            <ItemTemplate>
-                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnDetalle" OnClick="btnDetalle_OnClick" Visible='<%# (int)Eval("NoMeGusta") > 0 || (int)Eval("MeGusta") > 0 %>' Text="Ver"></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-
                                         <asp:TemplateField HeaderText="Activo" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
@@ -112,6 +116,12 @@
                                                         <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Enabled="False" CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' />
                                                     </li>
                                                 </ul>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Graficar" HeaderStyle-Width="4%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnDetalle" OnClick="btnDetalle_OnClick" Visible='<%# (int)Eval("NoMeGusta") > 0 || (int)Eval("MeGusta") > 0 %>' Text="Ver"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

@@ -1,7 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcTicketDetalle.ascx.cs" Inherits="KiiniHelp.UserControls.Detalles.UcTicketDetalle" %>
 
+<%@ Import Namespace="KinniNet.Business.Utils" %>
 <%@ Register TagPrefix="tc" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Src="~/UserControls/Detalles/UcDetalleMascaraCaptura.ascx" TagPrefix="uc1" TagName="UcDetalleMascaraCaptura" %>
+<%@ Register TagPrefix="ajax" Namespace="AjaxControlToolkit" Assembly="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e" %>
 
 <style>
     
@@ -16,6 +18,49 @@
         else {
             sender.closeDropDown();
         }
+    }
+    var uploadCustomerError = "";
+    function UploadStart(sender, args) {
+        debugger;
+        if (sender._inputFile.files.length > 0) {
+            var filesize = ((sender._inputFile.files[0].size) / 1024) / 1024;
+            var fileId = sender.get_id();
+            var container = document.getElementById('AjaxFileUpload1_FileInfoContainer_' + fileId);
+            var sizeallow = document.getElementById("<%= FindControl("hfMaxSizeAllow").ClientID %>").value;
+            var validFilesTypes = document.getElementById("<%= FindControl("hfFileTypes").ClientID %>").value.split('|');
+
+            var ext = "." + sender._inputFile.files[0].name.split('.').pop().toLowerCase();
+
+            var isValidFile = false;
+            for (var i = 0; i < validFilesTypes.length; i++) {
+                if (ext == validFilesTypes[i]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if (!isValidFile) {
+                ErrorAlert('', 'Archivo con formato no valido, formatos permitidos: ' + validFilesTypes.join(' '));
+                args.set_cancel(true);
+                return false;
+            }
+
+            if (filesize > sizeallow) {
+                ErrorAlert('', 'Archivo excede el tamaño permitido');
+                args.set_cancel(true);
+                return false;
+            }
+        }
+        ShowLanding();
+        return true;
+
+    };
+    function uploadError(sender, args) {
+
+        //alert("You have selected a file: " + args._fileName);
+        //if (uploadCustomerError != "") {
+        //    alert(+ "The ErrorMessage is " + uploadCustomerError);
+        //    uploadCustomerError = "";
+        //}
     }
 </script>
 
@@ -35,6 +80,8 @@
 
             <asp:HiddenField runat="server" ID="hfIdUsuarioAsignacion" />
             <asp:HiddenField runat="server" ID="hdIdRolAsignacionPertenece" />
+            <asp:HiddenField runat="server" ID="hfFileTypes" />
+            <asp:HiddenField runat="server" ID="hfMaxSizeAllow" Value="0" />
 
 
             <div class="row">
@@ -118,23 +165,23 @@
                                     <div class="col-lg-1 col-md-1 col-sm-1 col-lg-1Custom"></div>
                                     <div>
                                         <div class="form-group col-lg-3 col-md-2 col-sm-2 minWidth225">
-                                            <asp:Label runat="server" Text="Estatus" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235"/>
+                                            <asp:Label runat="server" Text="Estatus" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235" />
                                             <div class="col-lg-12 col-md-12 col-sm-12 no-padding-left">
                                                 <asp:DropDownList runat="server" CssClass="form-control widht200" ID="ddlCambiarEstatus" />
                                             </div>
                                         </div>
 
                                         <div class="form-group col-lg-3 col-md-2 col-sm-2 minWidth225">
-                                            <asp:Label runat="server" Text="Asignación" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235"/>
+                                            <asp:Label runat="server" Text="Asignación" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235" />
                                             <div class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235">
                                                 <asp:DropDownList runat="server" CssClass="form-control widht200" ID="ddlCambiarAsignar" AutoPostBack="True" OnSelectedIndexChanged="ddlCambiarAsignar_OnSelectedIndexChanged" Style="width: 120px; display: inline-block" />
                                                 <asp:LinkButton runat="server" ID="lnkBtndeshacer" CssClass="icon-cancel" OnClick="lnkBtndeshacer_OnClick" />
                                             </div>
-
+                                            
                                         </div>
                                         <div class="form-group col-lg-3 col-md-3 col-sm-3 minWidth225">
                                             <div class="form-group" runat="server" id="divUsuariosAsignacion" visible="False">
-                                                <asp:Label runat="server" Text="Usuario" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235"/>
+                                                <asp:Label runat="server" Text="Usuario" class="col-lg-12 col-md-12 col-sm-12 no-padding-left widht235" />
                                                 <div class="col-lg-12 col-md-12 col-sm-12 no-padding-left">
                                                     <tc:RadDropDownTree runat="server" CssClass="form-control no-border no-padding-left widht200" ID="ddlUsuarioAsignacion" AutoPostBack="True" RenderMode="Lightweight" ExpandNodeOnSingleClick="true" CheckNodeOnClick="False"
                                                         DefaultMessage="-" EnableFiltering="True" OnClientEntryAdding="OnClientEntryAdding" OnEntriesAdded="ddlUsuarioAsignacion_OnEntriesAdded">
@@ -164,6 +211,7 @@
                                         <div class="wrapperResponse col-lg-12 col-md-12 col-sm-12 no-padding-top margin-top0">
                                             <asp:TextBox ID="txtConversacion" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control no-padding-top no-margin-top" MaxLength="999" />
                                         </div>
+                                        <ajax:AsyncFileUpload ID="afuArchivo" runat="server" UploaderStyle="Traditional" OnClientUploadStarted="UploadStart" OnUploadedComplete="afuArchivo_OnUploadedComplete" OnClientUploadComplete="HideLanding" OnClientUploadError="uploadError" ClientIDMode="AutoID" PersistFile="True" ViewStateMode="Enabled" />
                                         <div class="wrapperResponse col-lg-12 col-md-12 col-sm-12 text-right padding-10-top padding-10-bottom">
                                             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-guardar" OnClick="btnEnviar_OnClick" />
                                         </div>
@@ -206,6 +254,11 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                                     <asp:Label runat="server" ID="lblMensaje" Text='<%# Eval("Comentario") %>'></asp:Label>
                                                 </div>
+                                                <asp:Repeater runat="server" ID="rptArchivos">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink runat="server" NavigateUrl='<%# ResolveUrl(string.Format("~/Downloads/FrmDownloads.aspx?file={0}", BusinessVariables.Directorios.RepositorioMascara + "~" + Eval("Archivo"))) %>' Text='<%# Eval("Archivo") %>'></asp:HyperLink>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -235,14 +288,14 @@
                                                                 <asp:Label runat="server" ID="Label5" Text='<%# Eval("Conversacion") %>'></asp:Label>
                                                             </div>
                                                         </div>
-                                                        
+
                                                         <div runat="server" visible='<%# Eval("EsMovimientoEstatusTicket") %>' class="col-lg-11 col-md-10 col-sm-10 gray margin-top-10 col-lg-offset-1Custom">
                                                             <div class="col-lg-11 col-md-12 col-sm-12">
                                                                 <asp:Label runat="server" Text="Estatus" CssClass="fontbold"></asp:Label>
                                                                 <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' />
                                                                 <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' CssClass="text-decoration-line-through" />
                                                             </div>
-                                                            
+
                                                             <div class="col-lg-11 col-md-12 col-sm-12">
                                                                 <asp:Label runat="server" Text="Usuario asignado" CssClass="fontbold" />
                                                                 <asp:Label runat="server" Text='<%# Eval("NombreCambioEstatus") %>' />
@@ -256,7 +309,7 @@
                                                                 <asp:Label runat="server" Text='<%# Eval("DescripcionEstatus") %>' />
                                                                 <asp:Label runat="server" Text='<%# Eval("DescripcionEstatusAnterior") %>' CssClass="text-decoration-line-through" />
                                                             </div>
-                                                            
+
                                                             <div class="col-lg-11 col-md-12 col-sm-12">
                                                                 <asp:Label runat="server" Text="Usuario asignado"></asp:Label>
                                                                 <asp:Label runat="server" Text='<%# Eval("NombreUsuarioAsignado") %>'></asp:Label>
@@ -310,7 +363,7 @@
                                         <asp:Label runat="server" ID="lblNombreDetalle" Text="" CssClass="titulosBandeja" /><br />
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 no-padding-top">
-                                        <span class="btn btn-default-alt btn-square-usuario" style="margin-left: 2px; top: 0;" runat="server" ID="spanTu">
+                                        <span class="btn btn-default-alt btn-square-usuario" style="margin-left: 2px; top: 0;" runat="server" id="spanTu">
                                             <asp:Label runat="server" ID="lblTipoUsuarioDetalle" CssClass="lbl" />
                                         </span>
                                         <i id="iVip" runat="server" class="fa fa-star iconoFont20" style="margin-top: 1px; margin-left: 10px; vertical-align: middle"></i>

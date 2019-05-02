@@ -981,43 +981,46 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                GridDataItem row = (GridDataItem)e.Item;
-                if (row == null) return;
-                int idTicket = int.Parse(row.GetDataKeyValue("NumeroTicket").ToString());
-                string titulo = row["Tipificacion"].Text;
-                bool asigna = bool.Parse(row["puedeasignar"].Text);
-                bool propietaro = bool.Parse(row["EsPropietario"].Text);
-                switch (e.CommandName)
+                if (e.Item.ItemType == GridItemType.Item || e.Item.ItemType == GridItemType.AlternatingItem)
                 {
-                    case "RowClick":
-                        bool seleccionado = e.Item.Selected;
-                        int itemIndex = e.Item.ItemIndex;
-                        if (bool.Parse(hfFilaSeleccionada.Value))
-                        {
-                            AgenteMaster master = Master as AgenteMaster;
-                            if (master != null)
+                    GridDataItem row = (GridDataItem)e.Item;
+                    if (row == null) return;
+                    int idTicket = int.Parse(row.GetDataKeyValue("NumeroTicket").ToString());
+                    string titulo = row["Tipificacion"].Text;
+                    bool asigna = bool.Parse(row["puedeasignar"].Text);
+                    bool propietaro = bool.Parse(row["EsPropietario"].Text);
+                    switch (e.CommandName)
+                    {
+                        case "RowClick":
+                            bool seleccionado = e.Item.Selected;
+                            int itemIndex = e.Item.ItemIndex;
+                            if (bool.Parse(hfFilaSeleccionada.Value))
                             {
-                                master.AddTicketOpen(idTicket, titulo, asigna);
+                                AgenteMaster master = Master as AgenteMaster;
+                                if (master != null)
+                                {
+                                    master.AddTicketOpen(idTicket, titulo, asigna);
+                                }
                             }
-                        }
-                        else
-                        {
-                            btnAutoasignar.Enabled = asigna;
-                            btnAsignar.Enabled = asigna;
-                            btnCambiarEstatus.Enabled = propietaro;
-                        }
+                            else
+                            {
+                                btnAutoasignar.Enabled = asigna;
+                                btnAsignar.Enabled = asigna;
+                                btnCambiarEstatus.Enabled = propietaro;
+                            }
 
-                        //hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
+                            //hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
 
-                        //if (!seleccionado && (hfFilaSeleccionada.Value.ToString() != itemIndex.ToString()))
-                        //    {
+                            //if (!seleccionado && (hfFilaSeleccionada.Value.ToString() != itemIndex.ToString()))
+                            //    {
 
-                        //    }
-                        //    else
-                        //    {
+                            //    }
+                            //    else
+                            //    {
 
-                        //    }
-                        break;
+                            //    }
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -1182,6 +1185,10 @@ namespace KiiniHelp.Agente
                             e.ListBox.DataSource = Tickets.Select(s => s.FechaHora).Distinct().ToList();
                             e.ListBox.DataBind();
                             break;
+                        case "FechaUltimoEvento":
+                            e.ListBox.DataSource = Tickets.Select(s => s.FechaHora).Distinct().ToList();
+                            e.ListBox.DataBind();
+                            break;
                         case "EstatusTicket.Descripcion":
                             e.ListBox.DataSource = Tickets.Select(s => s.EstatusTicket.Descripcion).Distinct().ToList();
                             e.ListBox.DataBind();
@@ -1265,5 +1272,21 @@ namespace KiiniHelp.Agente
             }
         }
 
+        protected void btnSearchUsuario_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("~/Agente/ConsultaUsuariosAgente.aspx");
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

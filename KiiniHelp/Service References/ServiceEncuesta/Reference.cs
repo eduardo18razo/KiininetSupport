@@ -54,6 +54,9 @@ namespace KiiniHelp.ServiceEncuesta {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNps", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsResponse")]
         KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsDescarga", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoNpsDescargaResponse")]
+        System.Data.DataTable ObtenerGraficoNpsDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacion", ReplyAction="http://tempuri.org/IServiceEncuesta/ObtenerGraficoCalificacionResponse")]
         KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha);
         
@@ -150,6 +153,10 @@ namespace KiiniHelp.ServiceEncuesta {
         
         public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoNps(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {
             return base.Channel.ObtenerGraficoNps(idArbolAcceso, fechas, tipoFecha);
+        }
+        
+        public System.Data.DataTable ObtenerGraficoNpsDescarga(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas) {
+            return base.Channel.ObtenerGraficoNpsDescarga(idArbolAcceso, fechas);
         }
         
         public KiiniNet.Entities.Helper.Reportes.HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, System.Collections.Generic.Dictionary<string, System.DateTime> fechas, int tipoFecha) {

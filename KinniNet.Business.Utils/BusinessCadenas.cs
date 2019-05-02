@@ -31,6 +31,7 @@ namespace KinniNet.Business.Utils
                 {
                     throw new Exception(ex.Message);
                 }
+                
                 return result;
             }
 

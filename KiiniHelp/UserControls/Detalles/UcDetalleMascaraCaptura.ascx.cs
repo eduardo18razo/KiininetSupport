@@ -116,7 +116,7 @@ namespace KiiniHelp.UserControls.Detalles
                     HtmlGenericControl createDiv = new HtmlGenericControl("DIV") { ID = "createDiv" + campo.NombreCampo };
                     createDiv.Attributes["class"] = "form-group col-lg-12 col-md-12 col-sm-12 col-xs-12  tableHeadTicket clearfix";
                     //createDiv.InnerHtml = campo.Descripcion;
-                    Label lbl = new Label { Text = campo.Descripcion + (campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty), CssClass = "col-lg-12 col-md-12 col-sm-12 col-xs-12 control-label proxima12" };
+                    Label lbl = new Label { Text = campo.Descripcion + (campo.Requerido ? "<span style='color: red'> *</span>" : string.Empty), CssClass = "col-lg-12 col-md-12 col-sm-12 col-xs-12 proxima12" };
                     switch (campo.TipoCampoMascara.Id)
                     {
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumTiposCampo.Texto:

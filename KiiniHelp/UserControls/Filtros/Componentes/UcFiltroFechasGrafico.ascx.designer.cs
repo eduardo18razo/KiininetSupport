@@ -13,6 +13,15 @@ namespace KiiniHelp.UserControls.Filtros.Componentes {
     public partial class UcFiltroFechasGrafico {
         
         /// <summary>
+        /// Control hfGrafico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfGrafico;
+        
+        /// <summary>
         /// Control ddlTipoFiltro.
         /// </summary>
         /// <remarks>

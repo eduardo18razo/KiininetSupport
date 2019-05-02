@@ -4,9 +4,7 @@ using System.Linq;
 using System.Web.UI;
 using KiiniHelp.ServiceGrupoUsuario;
 using KiiniNet.Entities.Cat.Usuario;
-using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
-using OfficeOpenXml;
 using Telerik.Web.UI;
 
 namespace KiiniHelp.UserControls.Filtros.Componentes

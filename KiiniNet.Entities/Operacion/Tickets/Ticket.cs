@@ -48,7 +48,7 @@ namespace KiiniNet.Entities.Operacion.Tickets
         [DataMember]
         public DateTime FechaHoraAlta { get; set; }
         [DataMember]
-        public DateTime FechaHoraFinProceso { get; set; }
+        public DateTime? FechaHoraFinProceso { get; set; }
         [DataMember]
         public DateTime? FechaTermino { get; set; }
         [DataMember]

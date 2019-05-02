@@ -43,23 +43,7 @@
 
         var seconds;
         function SessionExpireAlertAgent(timeout) {
-            var time = timeout / 1000;
             seconds = timeout / 1000;
-            //document.onmousemove = function () {
-            //    seconds = time;
-            //};
-            //document.onkeypress = function () {
-            //    seconds = time;
-            //};
-            //document.onclick = function () {
-            //    seconds = time;
-            //};
-            //document.onscroll = function () {
-            //    seconds = time;
-            //};
-            //document.onkeydown = function () {
-            //    seconds = time;
-            //};
             setInterval(function () {
                 seconds--;
                 if (seconds <= 0) {
@@ -107,12 +91,12 @@
             <asp:HiddenField runat="server" ID="hfAreaSeleccionada" />
             <asp:HiddenField runat="server" ID="hfCambiaTickes" />
             <header class="header">
-                <div class="branding ">
-                    <h1 class="logo text-center">
-                        <asp:LinkButton runat="server" ID="lnkHome" OnClick="lnkHome_OnClick">
-                            <asp:Image class="logo-icon" ImageUrl="~/assets/images/logo.png" alt="icon" runat="server" />
+                <div class="branding">
+                    <h1 class="logo text-center" style="padding: 5px">
+                        <asp:HyperLink NavigateUrl="~/Agente/DashBoardAgente.aspx" runat="server" Style="height: 60px; width: 60px">
+                            <asp:Image CssClass="logo-icon" ImageUrl="~/assets/images/IconoPage.png" alt="icon" runat="server" Style="height: 60px; width: 60px" />
                             <asp:Label runat="server" ID="lblBranding" Visible="false" />
-                        </asp:LinkButton>
+                        </asp:HyperLink>
                     </h1>
                 </div>
                 <div class="topbar bg_w_header">

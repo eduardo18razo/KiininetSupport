@@ -497,26 +497,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SlaEstimadoTicket">
-      <EntityTypeMapping TypeName="KiiniNet_v2Model.SlaEstimadoTicket">
-        <MappingFragment StoreEntitySet="SlaEstimadoTicket">
-          <ScalarProperty Name="Terminado" ColumnName="Terminado" />
-          <ScalarProperty Name="TiempoDesface" ColumnName="TiempoDesface" />
-          <ScalarProperty Name="TiempoRetenido" ColumnName="TiempoRetenido" />
-          <ScalarProperty Name="TiempoHoraProceso" ColumnName="TiempoHoraProceso" />
-          <ScalarProperty Name="Segundos" ColumnName="Segundos" />
-          <ScalarProperty Name="Minutos" ColumnName="Minutos" />
-          <ScalarProperty Name="Horas" ColumnName="Horas" />
-          <ScalarProperty Name="Dias" ColumnName="Dias" />
-          <ScalarProperty Name="FechaFinProceso" ColumnName="FechaFinProceso" />
-          <ScalarProperty Name="FechaInicioProceso" ColumnName="FechaInicioProceso" />
-          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
-          <ScalarProperty Name="IdTicket" ColumnName="IdTicket" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SlaEstimadoTicketDetalle">
       <EntityTypeMapping TypeName="KiiniNet_v2Model.SlaEstimadoTicketDetalle">
         <MappingFragment StoreEntitySet="SlaEstimadoTicketDetalle">
@@ -1783,6 +1763,43 @@
           <ScalarProperty Name="Success" ColumnName="Success" />
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PreTicketCorreo">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.PreTicketCorreo">
+        <MappingFragment StoreEntitySet="PreTicketCorreo">
+          <ScalarProperty Name="FechaConfirmo" ColumnName="FechaConfirmo" />
+          <ScalarProperty Name="FechaSolicito" ColumnName="FechaSolicito" />
+          <ScalarProperty Name="Confirmado" ColumnName="Confirmado" />
+          <ScalarProperty Name="ArchivoAdjunto" ColumnName="ArchivoAdjunto" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+          <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SlaEstimadoTicket">
+      <EntityTypeMapping TypeName="KiiniNet_v2Model.SlaEstimadoTicket">
+        <MappingFragment StoreEntitySet="SlaEstimadoTicket">
+          <ScalarProperty Name="Terminado" ColumnName="Terminado" />
+          <ScalarProperty Name="TiempoDesface" ColumnName="TiempoDesface" />
+          <ScalarProperty Name="TiempoRetenido" ColumnName="TiempoRetenido" />
+          <ScalarProperty Name="TiempoHoraProceso" ColumnName="TiempoHoraProceso" />
+          <ScalarProperty Name="Segundos" ColumnName="Segundos" />
+          <ScalarProperty Name="Minutos" ColumnName="Minutos" />
+          <ScalarProperty Name="Horas" ColumnName="Horas" />
+          <ScalarProperty Name="Dias" ColumnName="Dias" />
+          <ScalarProperty Name="FechaFinProceso" ColumnName="FechaFinProceso" />
+          <ScalarProperty Name="FechaInicioProceso" ColumnName="FechaInicioProceso" />
+          <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

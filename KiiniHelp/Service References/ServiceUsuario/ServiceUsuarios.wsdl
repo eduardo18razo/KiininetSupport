@@ -21,6 +21,12 @@
       <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd16" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IServiceUsuarios_ValidaLimiteOperadores_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaLimiteOperadores" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaLimiteOperadores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaLimiteOperadoresResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceUsuarios_GuardarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:GuardarUsuario" />
   </wsdl:message>
@@ -50,6 +56,12 @@
   </wsdl:message>
   <wsdl:message name="IServiceUsuarios_ObtenerUsuarios_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ConsultaUsuariosUsuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaUsuariosUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ConsultaUsuariosUsuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaUsuariosUsuariosResponse" />
   </wsdl:message>
   <wsdl:message name="IServiceUsuarios_ObtenerDetalleUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerDetalleUsuario" />
@@ -147,6 +159,12 @@
   <wsdl:message name="IServiceUsuarios_ConfirmaCuenta_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConfirmaCuentaResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ReenviarActivacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReenviarActivacion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ReenviarActivacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReenviarActivacionResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceUsuarios_BuscarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:BuscarUsuario" />
   </wsdl:message>
@@ -202,6 +220,10 @@
     <wsdl:part name="parameters" element="tns:ObtenerAgentesPermitidosResponse" />
   </wsdl:message>
   <wsdl:portType name="IServiceUsuarios">
+    <wsdl:operation name="ValidaLimiteOperadores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadores" message="tns:IServiceUsuarios_ValidaLimiteOperadores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadoresResponse" message="tns:IServiceUsuarios_ValidaLimiteOperadores_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GuardarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario" message="tns:IServiceUsuarios_GuardarUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioResponse" message="tns:IServiceUsuarios_GuardarUsuario_OutputMessage" />
@@ -221,6 +243,10 @@
     <wsdl:operation name="ObtenerUsuarios">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarios" message="tns:IServiceUsuarios_ObtenerUsuarios_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosResponse" message="tns:IServiceUsuarios_ObtenerUsuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaUsuariosUsuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuarios" message="tns:IServiceUsuarios_ConsultaUsuariosUsuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuariosResponse" message="tns:IServiceUsuarios_ConsultaUsuariosUsuarios_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ObtenerDetalleUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerDetalleUsuario" message="tns:IServiceUsuarios_ObtenerDetalleUsuario_InputMessage" />
@@ -286,6 +312,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ConfirmaCuenta" message="tns:IServiceUsuarios_ConfirmaCuenta_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ConfirmaCuentaResponse" message="tns:IServiceUsuarios_ConfirmaCuenta_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ReenviarActivacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ReenviarActivacion" message="tns:IServiceUsuarios_ReenviarActivacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ReenviarActivacionResponse" message="tns:IServiceUsuarios_ReenviarActivacion_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="BuscarUsuario">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/BuscarUsuario" message="tns:IServiceUsuarios_BuscarUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/BuscarUsuarioResponse" message="tns:IServiceUsuarios_BuscarUsuario_OutputMessage" />
@@ -325,6 +355,15 @@
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceUsuarios">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidaLimiteOperadores">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GuardarUsuario">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GuardarUsuario" style="document" />
       <wsdl:input>
@@ -363,6 +402,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerUsuarios">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaUsuariosUsuarios">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuarios" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -507,6 +555,15 @@
     </wsdl:operation>
     <wsdl:operation name="ConfirmaCuenta">
       <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ConfirmaCuenta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReenviarActivacion">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ReenviarActivacion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

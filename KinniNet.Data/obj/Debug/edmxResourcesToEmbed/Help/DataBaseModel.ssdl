@@ -669,7 +669,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdTipoMascara" Type="int" Nullable="false" />
-    <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="100" />
     <Property Name="NoCampos" Type="int" />
     <Property Name="NombreTabla" Type="nvarchar" MaxLength="150" />
     <Property Name="ComandoInsertar" Type="nvarchar" MaxLength="250" />
@@ -994,6 +994,23 @@
     <Property Name="FechaHora" Type="datetime" />
     <Property Name="Observaciones" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="PreTicketCorreo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Guid" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="ApellidoPaterno" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="ApellidoMaterno" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Asunto" Type="nvarchar" MaxLength="100" />
+    <Property Name="Comentario" Type="nvarchar" MaxLength="3900" />
+    <Property Name="ArchivoAdjunto" Type="nvarchar" MaxLength="3900" />
+    <Property Name="Confirmado" Type="bit" Nullable="false" />
+    <Property Name="FechaSolicito" Type="datetime" Nullable="false" />
+    <Property Name="FechaConfirmo" Type="datetime" />
+  </EntityType>
   <EntityType Name="Prioridad">
     <Key>
       <PropertyRef Name="Id" />
@@ -1115,7 +1132,6 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IdTicket" Type="int" />
     <Property Name="FechaInicio" Type="datetime" />
     <Property Name="FechaFin" Type="datetime" />
     <Property Name="FechaInicioProceso" Type="datetime" />
@@ -1375,11 +1391,11 @@
     <Property Name="IdArbol" Type="int" />
     <Property Name="IdTipoGrupo" Type="int" />
     <Property Name="IdGrupoUsuario" Type="int" />
-    <Property Name="Dias" Type="decimal" Precision="18" Scale="15" />
-    <Property Name="Horas" Type="decimal" Precision="18" Scale="15" />
-    <Property Name="Minutos" Type="decimal" Precision="18" Scale="15" />
-    <Property Name="Segundos" Type="decimal" Precision="18" Scale="15" />
-    <Property Name="TiempoNotificacion" Type="decimal" Precision="18" Scale="15" />
+    <Property Name="Dias" Type="decimal" Precision="38" Scale="15" />
+    <Property Name="Horas" Type="decimal" Precision="38" Scale="15" />
+    <Property Name="Minutos" Type="decimal" Precision="38" Scale="15" />
+    <Property Name="Segundos" Type="decimal" Precision="38" Scale="15" />
+    <Property Name="TiempoNotificacion" Type="decimal" Precision="38" Scale="15" />
     <Property Name="IdTipoNotificacion" Type="int" />
     <Property Name="AntesVencimiento" Type="bit" />
     <Property Name="Habilitado" Type="bit" />
@@ -4865,6 +4881,7 @@
     <EntitySet Name="Piso" EntityType="Self.Piso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PreguntaReto" EntityType="Self.PreguntaReto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PreTicket" EntityType="Self.PreTicket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PreTicketCorreo" EntityType="Self.PreTicketCorreo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Prioridad" EntityType="Self.Prioridad" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RespuestaEncuesta" EntityType="Self.RespuestaEncuesta" Schema="dbo" store:Type="Tables" />

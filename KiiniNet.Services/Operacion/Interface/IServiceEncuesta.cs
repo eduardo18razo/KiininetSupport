@@ -50,6 +50,9 @@ namespace KiiniNet.Services.Operacion.Interface
         HelperReporteEncuesta ObtenerGraficoNps(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
 
         [OperationContract]
+        DataTable ObtenerGraficoNpsDescarga(int idArbolAcceso, Dictionary<string, DateTime> fechas);
+
+        [OperationContract]
         HelperReporteEncuesta ObtenerGraficoCalificacion(int idArbolAcceso, Dictionary<string, DateTime> fechas, int tipoFecha);
 
         [OperationContract]

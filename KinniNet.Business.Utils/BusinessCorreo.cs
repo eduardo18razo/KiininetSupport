@@ -53,31 +53,45 @@ namespace KinniNet.Business.Utils
             {
                 SmtpSection section = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
 
-                MailAddress fromAddress = new MailAddress(section.From, "Eduardo Cerritos");
-                MailAddress toAddress = new MailAddress(addressTo, "Prueba");
+                var smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                string servidor;
+                int puerto;
+                bool ssl;
+                string usuario;
+                string contraseña;
+                if (smtpSection != null)
+                {
+                    servidor = smtpSection.Network.Host;
+                    puerto = int.Parse(smtpSection.Network.TargetName);
+                    ssl = smtpSection.Network.EnableSsl;
+                    usuario = smtpSection.Network.UserName;
+                    contraseña = smtpSection.Network.Password;
 
-                var smtp = new SmtpClient
-                {
-                    Host = section.Network.Host,//"smtp.gmail.com",
-                    Port = section.Network.Port,
-                    EnableSsl = section.Network.EnableSsl,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = section.Network.DefaultCredentials,
-                    Credentials = new NetworkCredential(fromAddress.Address, section.Network.Password)
-                };
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    Subject = subject,
-                    IsBodyHtml = true,
-                    Body = content
-                })
-                {
-                    smtp.Send(message);
+                    SmtpClient smtpClient = new SmtpClient(servidor, puerto)
+                    {
+                        Credentials = new NetworkCredential(usuario, contraseña),
+                        DeliveryMethod = SmtpDeliveryMethod.Network
+                    };
+
+                    var message = new MailMessage(usuario, addressTo)
+                    {
+
+                        Subject = subject,
+                        IsBodyHtml = true,
+                        Body = content
+                    };
+                    message.ReplyToList.Add("noreply@kiininetcxp.com");
+                    message.Headers.Add("References", "AutoReply");
+                    message.Headers.Add("X-Auto-Response-Suppress", "AutoReply");
+                    message.Headers.Add("Auto-submitted", "auto-replied");
+                    {
+                        smtpClient.Send(message);
+                    }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                throw new Exception(ex.ToString());
+
             }
         }
     }

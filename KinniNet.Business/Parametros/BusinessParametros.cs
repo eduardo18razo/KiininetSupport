@@ -289,14 +289,14 @@ namespace KinniNet.Core.Parametros
             return result;
         }
 
-        public GraficosDefault ObtenerParametrosGraficoDefault()
+        public GraficosDefault ObtenerParametrosGraficoDefault(int idReporte)
         {
             GraficosDefault result;
             DataBaseModelContext db = new DataBaseModelContext();
             try
             {
                 db.ContextOptions.ProxyCreationEnabled = _proxy;
-                result = db.GraficosDefault.FirstOrDefault();
+                result = db.GraficosDefault.SingleOrDefault(s => s.IdMenu == idReporte);
             }
             catch (Exception ex)
             {

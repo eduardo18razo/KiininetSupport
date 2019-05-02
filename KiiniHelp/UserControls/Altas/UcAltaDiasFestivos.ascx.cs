@@ -179,7 +179,7 @@ namespace KiiniHelp.UserControls.Altas
                     {
 
                         tmpSeleccionados.Single(a => a.Fecha == selectedDay.Fecha).Descripcion = txtDescripcionDia.Text.ToUpper();
-                        tmpSeleccionados.Single(a => a.Fecha == selectedDay.Fecha).Fecha = Convert.ToDateTime(txtDate.Text);
+                        tmpSeleccionados.Single(a => a.Fecha == selectedDay.Fecha).Fecha = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", null);
 
                     }
                     else
@@ -216,10 +216,10 @@ namespace KiiniHelp.UserControls.Altas
                     throw new Exception("Ingrese una fecha");
                 if (txtDescripcionDia.Text.Trim() == string.Empty)
                     throw new Exception("Ingrese una descripción");
-                if (DateTime.Parse(txtDate.Text) < DateTime.Parse(DateTime.Now.ToShortDateString()))
+                if (DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", null) < DateTime.Parse(DateTime.Now.ToShortDateString()))
                     throw new Exception("La fecha no puede ser anterior al dia actual");
 
-                DiaFeriado newDay = new DiaFeriado { Id = IdDiaFeriadoEdicion == 0 ? 0 : IdDiaFeriadoEdicion, Descripcion = txtDescripcionDia.Text, Fecha = Convert.ToDateTime(txtDate.Text), IdUsuarioAlta = ((Usuario)Session["UserData"]).Id };
+                DiaFeriado newDay = new DiaFeriado { Id = IdDiaFeriadoEdicion == 0 ? 0 : IdDiaFeriadoEdicion, Descripcion = txtDescripcionDia.Text, Fecha = DateTime.ParseExact(txtDate.Text, "dd/MM/yyyy", null), IdUsuarioAlta = ((Usuario)Session["UserData"]).Id };
                 _servicioDias.AgregarDiaFeriado(newDay);
                 if (newDay.Id != 0)
                 {
@@ -243,6 +243,26 @@ namespace KiiniHelp.UserControls.Altas
                 Alerta = _lstError;
             }
         }
+        protected void rptDias_OnItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            try
+            {
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+                    e.Item.FindControl("lblSeparador").Visible = EsAlta;
+                    e.Item.FindControl("lbkBtnBorrar").Visible = EsAlta;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
         protected void lnkBtnEditar_OnClick(object sender, EventArgs e)
         {
             try
@@ -250,7 +270,7 @@ namespace KiiniHelp.UserControls.Altas
                 LinkButton btn = (LinkButton)sender;
                 if (btn != null)
                 {
-                    DateTime fecha = Convert.ToDateTime(btn.CommandArgument);
+                    DateTime fecha = DateTime.ParseExact(btn.CommandArgument, "dd/MM/yyyy", null);
                     IdDiaFeriadoEdicion = _servicioDias.ObtenerDiaByFecha(fecha).Id;
                     hfEditando.Value = btn.CommandArgument;
                 }
@@ -272,7 +292,7 @@ namespace KiiniHelp.UserControls.Altas
                 LinkButton btn = (LinkButton)sender;
                 if (btn != null)
                 {
-                    DateTime fecha = Convert.ToDateTime(btn.CommandArgument);
+                    DateTime fecha = DateTime.ParseExact(btn.CommandArgument, "dd/MM/yyyy", null);
                     List<DiaFeriado> tmpSeleccionados = DiasFeriadosDetalle ?? new List<DiaFeriado>();
                     tmpSeleccionados.Remove(tmpSeleccionados.Single(f => f.Fecha == fecha));
                     DiasFeriadosDetalle = tmpSeleccionados;
@@ -380,29 +400,6 @@ namespace KiiniHelp.UserControls.Altas
                 LimpiarPantalla();
                 if (OnCancelarModal != null)
                     OnCancelarModal();
-            }
-            catch (Exception ex)
-            {
-                if (_lstError == null)
-                {
-                    _lstError = new List<string>();
-                }
-                _lstError.Add(ex.Message);
-                Alerta = _lstError;
-            }
-        }
-
-        protected void rptDias_OnItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            try
-            {
-                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-                {
-                    //e.Item.FindControl("lnkBtnEditar").Visible = EsAlta;
-                    e.Item.FindControl("lblSeparador").Visible = EsAlta;
-                    e.Item.FindControl("lbkBtnBorrar").Visible = EsAlta;
-                }
-
             }
             catch (Exception ex)
             {

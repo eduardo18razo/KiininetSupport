@@ -74,7 +74,7 @@
                             </p>
                         </div>
                         <p class="text-right margin-top-40">
-                            <asp:Button runat="server" CssClass="btn btn-success" Text="Terminar" ID="btnTerminar" OnClick="btnTerminar_OnClick"></asp:Button>
+                            <asp:Button runat="server" CssClass="btn btn-success" Text="Terminar" ID="btnTerminar" visible="False" OnClick="btnTerminar_OnClick"></asp:Button>
                         </p>
                     </div>
                 </div>

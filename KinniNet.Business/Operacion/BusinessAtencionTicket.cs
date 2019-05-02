@@ -24,7 +24,7 @@ namespace KinniNet.Core.Operacion
 
         }
 
-        private DateTime TiempoGeneral(List<HorarioSubGrupo> horarioSubGrupo, decimal? tiempoProceso)
+        private DateTime TiempoGeneral(List<HorarioSubGrupo> horarioSubGrupo, List<DiaFestivoSubGrupo> diasFeriados, DateTime fechaLevanta, double tiempoProceso)
         {
             DateTime result;
             try
@@ -32,41 +32,168 @@ namespace KinniNet.Core.Operacion
                 List<DateTime> diasAsignados = new List<DateTime>();
                 string horarioInicio = horarioSubGrupo.Min(s => s.HoraInicio);
                 string horarioFin = horarioSubGrupo.Max(s => s.HoraFin);
-                double tiempotrabajo = double.Parse(horarioFin.Replace(':', '.').Substring(0, 5)) - double.Parse(horarioInicio.Replace(':', '.').Substring(0, 5));
+                double tiempotrabajo = Double.Parse(horarioFin.Replace(':', '.').Substring(0, 5)) - Double.Parse(horarioInicio.Replace(':', '.').Substring(0, 5));
 
-                decimal? horasTotalSolucion = tiempoProceso;
-                int contador = 0;
-                while (horasTotalSolucion > 0)
+                if (tiempoProceso <= 0)
+                    diasAsignados.Add(fechaLevanta);
+                if (tiempoProceso != null)
                 {
-                    if (horarioSubGrupo.Any(a => a.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek))
+                    double horasTotalSolucion = Double.Parse(tiempoProceso.ToString());
+                    int contador = 0;
+                    while (horasTotalSolucion > 0)
                     {
-                        horarioInicio = horarioSubGrupo.Where(w => w.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek).Min(m => m.HoraInicio);
-                        horarioFin = horarioSubGrupo.Where(w => w.Dia == (int)DateTime.Now.AddDays(contador).DayOfWeek).Max(m => m.HoraFin);
-                        if (diasAsignados.Count <= 0)
+                        if (horarioSubGrupo.Any(a => a.Dia == (int)fechaLevanta.AddDays(contador).DayOfWeek))
                         {
-                            horasTotalSolucion -= decimal.Parse(Math.Round((DateTime.Parse(DateTime.Now.ToShortDateString() + " " + horarioFin) - DateTime.Now).TotalHours, 2, MidpointRounding.ToEven).ToString());
-                            diasAsignados.Add(DateTime.Now.AddDays(contador));
+                            horarioInicio = horarioSubGrupo.Where(w => w.Dia == (int)fechaLevanta.AddDays(contador).DayOfWeek).Min(m => m.HoraInicio);
+                            horarioFin = horarioSubGrupo.Where(w => w.Dia == (int)fechaLevanta.AddDays(contador).DayOfWeek).Max(m => m.HoraFin);
+                            if (horarioFin == "23:00:00")
+                                horarioFin = "23:59:59";
+                            else
+                                horarioFin = DateTime.Parse(DateTime.Now.ToShortDateString() + " " + horarioFin).AddHours(1).ToString("HH:mm:ss");
+                            if (!diasFeriados.Any(a => a.Fecha.ToShortDateString() == DateTime.Now.AddDays(contador).ToShortDateString()))
+                                if (DateTime.Parse(DateTime.Now.AddDays(contador).ToShortDateString() + " " + horarioFin) > fechaLevanta)
+                                {
+                                    if (contador == 0)
+                                        tiempotrabajo = Double.Parse(Math.Round((DateTime.Parse(fechaLevanta.ToShortDateString() + " " + horarioFin) - fechaLevanta).TotalHours, 2, MidpointRounding.ToEven).ToString());
+                                    else
+                                        tiempotrabajo = Double.Parse(Math.Round((DateTime.Parse(fechaLevanta.AddDays(contador).ToShortDateString() + " " + horarioInicio) - DateTime.Parse(fechaLevanta.AddDays(contador).ToShortDateString() + " " + horarioFin)).TotalHours, 2, MidpointRounding.ToEven).ToString());
+                                    tiempotrabajo = Math.Abs(tiempotrabajo);
+                                    if (tiempotrabajo >= horasTotalSolucion)
+                                    {
+                                        if (diasAsignados.Count <= 0)
+                                        {
+                                            if (contador == 0)
+                                                diasAsignados.Add(fechaLevanta.AddHours(horasTotalSolucion));
+                                            else
+                                                diasAsignados.Add(DateTime.Parse(fechaLevanta.AddDays(contador).ToShortDateString() + " " + horarioInicio).AddHours(horasTotalSolucion));
+                                        }
+                                        else
+                                            diasAsignados.Add(DateTime.Parse(fechaLevanta.AddDays(contador).ToShortDateString() + " " + horarioInicio).AddHours(horasTotalSolucion));
+                                        horasTotalSolucion -= horasTotalSolucion;
+                                    }
+                                    else
+                                    {
+                                        if (tiempotrabajo > 0)
+                                        {
+                                            if (diasAsignados.Count <= 0)
+                                                if (contador == 0)
+                                                    diasAsignados.Add(fechaLevanta.AddHours(tiempotrabajo));
+                                                else
+                                                    diasAsignados.Add(DateTime.Parse(fechaLevanta.AddDays(contador).ToShortDateString() + " " + horarioInicio).AddHours(tiempotrabajo));
+                                            else
+                                                diasAsignados.Add(DateTime.Parse(fechaLevanta.AddDays(contador).ToShortDateString() + " " + horarioInicio).AddHours(tiempotrabajo));
+                                        }
+                                        else
+                                        {
+                                            if (diasAsignados.Count <= 0)
+                                            {
+                                                diasAsignados.Add(fechaLevanta.AddDays(contador + 1).AddHours(horasTotalSolucion));
+                                            }
+                                            else
+                                                diasAsignados.Add(diasAsignados.Last().AddHours(horasTotalSolucion));
+                                        }
+                                        horasTotalSolucion -= tiempotrabajo;
+                                    }
+                                }
                         }
-                        else
+                        contador++;
+                    }
+                }
+                if (tiempoProceso == 0)
+                    diasAsignados.Add(fechaLevanta);
+                result = DateTime.ParseExact(diasAsignados.Max().ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            return result;
+        }
+
+        private double TiempoEnespera(List<HorarioSubGrupo> horarioSubGrupo, List<DiaFestivoSubGrupo> diasFeriados, DateTime fechaInicioEspera, DateTime fechaFinEspera, double tiempoEspera)
+        {
+            double result = 0;
+            try
+            {
+                List<DateTime> diasAsignados = new List<DateTime>();
+                string horarioInicio = horarioSubGrupo.Min(s => s.HoraInicio);
+                string horarioFin = horarioSubGrupo.Max(s => s.HoraFin);
+                double tiempotrabajo = Double.Parse(horarioFin.Replace(':', '.').Substring(0, 5)) - Double.Parse(horarioInicio.Replace(':', '.').Substring(0, 5));
+                DateTime? ultimaFechaAplicada = null;
+                if (tiempoEspera != null)
+                {
+                    double horasTotalEspera = Double.Parse(tiempoEspera.ToString());
+                    int contador = 0;
+                    horarioInicio = fechaInicioEspera.ToString("HH:mm:ss");
+                    while (horasTotalEspera > 0)
+                    {
+                        if (horarioSubGrupo.Any(a => a.Dia == (int)fechaInicioEspera.AddDays(contador).DayOfWeek))
                         {
-                            if (horasTotalSolucion >= decimal.Parse(tiempotrabajo.ToString()))
+                            horarioFin = horarioSubGrupo.Where(w => w.Dia == (int)fechaInicioEspera.AddDays(contador).DayOfWeek).Max(m => m.HoraFin);
+                            if (horarioFin == "23:00:00")
                             {
-                                horasTotalSolucion -= decimal.Parse(tiempotrabajo.ToString());
-                                diasAsignados.Add(DateTime.Now.AddDays(contador));
+                                horarioFin = "23:59:59";
                             }
                             else
                             {
-                                DateTime fecha = DateTime.Parse(DateTime.Now.AddDays(contador).ToShortDateString() + " " + horarioInicio).AddHours(double.Parse(horasTotalSolucion.ToString()));
-                                horasTotalSolucion -= horasTotalSolucion;
-                                diasAsignados.Add(fecha);
+                                horarioFin = DateTime.Parse(fechaInicioEspera.ToShortDateString() + " " + horarioFin).ToString("HH:mm:ss");
                             }
+                            if (ultimaFechaAplicada != null)
+                            {
+                                TimeSpan ts = DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioInicio) - ultimaFechaAplicada.Value;
+                                horasTotalEspera -= ts.TotalHours;
+                            }
+                            if (horasTotalEspera > 0)
+                                if (!diasFeriados.Any(a => a.Fecha.ToShortDateString() == fechaInicioEspera.AddDays(contador).ToShortDateString()))
+                                {
+                                    if (DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioFin) >= fechaInicioEspera)
+                                    {
+                                        if (contador == 0)
+                                            tiempotrabajo = Double.Parse(Math.Round((DateTime.Parse(fechaInicioEspera.ToShortDateString() + " " + horarioFin) - fechaInicioEspera).TotalHours, 2, MidpointRounding.ToEven).ToString());
+                                        else
+                                            tiempotrabajo = Double.Parse(Math.Round((DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioInicio) - DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioFin)).TotalHours, 2, MidpointRounding.ToEven).ToString());
+                                        tiempotrabajo = Math.Abs(tiempotrabajo);
+                                        if (tiempotrabajo >= horasTotalEspera)
+                                        {
+                                            result += horasTotalEspera;
+                                            horasTotalEspera -= horasTotalEspera;
+                                        }
+                                        else
+                                        {
+                                            if (tiempotrabajo > 0)
+                                            {
+                                                result += tiempotrabajo;
+                                            }
+                                            else
+                                            {
+                                                result += horasTotalEspera;
+                                            }
+                                            horasTotalEspera -= tiempotrabajo;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        TimeSpan ts = DateTime.Parse(fechaInicioEspera.AddDays(contador + 1).ToShortDateString() + " " + horarioInicio) - DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioFin);
+                                        horasTotalEspera -= ts.TotalHours;
+                                        if (horasTotalEspera < 0)
+                                            horasTotalEspera = 0;
+                                    }
+                                    ultimaFechaAplicada = DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioFin);
+                                }
+                                else
+                                {
+                                    TimeSpan ts = DateTime.Parse(fechaInicioEspera.AddDays(contador + 1).ToShortDateString() + " " + horarioInicio) - DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioFin);
+                                    horasTotalEspera -= ts.TotalHours;
+                                    if (horasTotalEspera < 0)
+                                        horasTotalEspera = 0;
+                                    ultimaFechaAplicada = DateTime.Parse(fechaInicioEspera.AddDays(contador).ToShortDateString() + " " + horarioFin);
+                                }
                         }
+                        //if (ultimaFechaAplicada != null)
+                        contador++;
+                        horarioInicio = horarioSubGrupo.Where(w => w.Dia == (int)fechaInicioEspera.AddDays(contador).DayOfWeek).Min(m => m.HoraInicio);
                     }
-                    contador++;
                 }
-                if (tiempoProceso == 0)
-                    diasAsignados.Add(DateTime.Now);
-                result = DateTime.ParseExact(diasAsignados.Max().ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -207,7 +334,7 @@ namespace KinniNet.Core.Operacion
                         int idGpoAtencion = ticketGrupoUsuario.IdGrupoUsuario;
 
                         ticket.IdNivelTicket = ObtenerNivelAutoAsignacion(idUsuario, idGpoAtencion, false) - 2;
-                        ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado; 
+                        ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.Autoasignado;
                         TicketEvento evento = new TicketEvento
                         {
                             IdTicket = idTicket,
@@ -334,26 +461,32 @@ namespace KinniNet.Core.Operacion
                     #region Estatus
                     if (ticket.IdEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera)
                     {
-                        if (idEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera)
-                            throw new Exception("Ticket ya se encuentra en espera");
-
-                        db.LoadProperty(ticket, "SlaEstimadoTicket");
-                        List<HorarioSubGrupo> lstHorarioGrupo = new List<HorarioSubGrupo>();
-                        List<DiaFestivoSubGrupo> lstDiasFestivosGrupo = new List<DiaFestivoSubGrupo>();
-                        foreach (SubGrupoUsuario sGpoUsuario in ticket.TicketGrupoUsuario.SelectMany(tgrupoUsuario => db.GrupoUsuario.Where(w => w.Id == tgrupoUsuario.IdGrupoUsuario && w.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).SelectMany(gpoUsuario => gpoUsuario.SubGrupoUsuario)))
-                        {
-                            lstHorarioGrupo.AddRange(db.HorarioSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id).ToList());
-                            lstDiasFestivosGrupo.AddRange(db.DiaFestivoSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id));
-                        }
-
                         ticket.FechaFinEspera = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                        if (ticket.FechaInicioEspera != null)
+                        DateTime oldDate = (DateTime)ticket.FechaInicioEspera;
+                        DateTime newDate = (DateTime)ticket.FechaFinEspera;
+                        TimeSpan ts = newDate - oldDate;
+                        ticket.TiempoEspera = ticket.TiempoEspera == null ? (0 + ts.TotalHours).ToString() : (double.Parse(ticket.TiempoEspera) + ts.TotalHours).ToString();
+
+                        if (ticket.FechaHoraFinProceso != null)
                         {
-                            DateTime oldDate = (DateTime)ticket.FechaInicioEspera;
-                            DateTime newDate = (DateTime)ticket.FechaFinEspera;
-                            TimeSpan ts = newDate - oldDate;
-                            ticket.TiempoEspera = ticket.TiempoEspera == null ? (0 + ts.TotalHours).ToString() : (double.Parse(ticket.TiempoEspera) + ts.TotalHours).ToString();
-                            ticket.FechaHoraFinProceso = TiempoGeneral(lstHorarioGrupo, ticket.SlaEstimadoTicket.TiempoHoraProceso).AddHours(ts.TotalHours);
+
+                            if (idEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera)
+                                throw new Exception("Ticket ya se encuentra en espera");
+
+                            db.LoadProperty(ticket, "SlaEstimadoTicket");
+                            List<HorarioSubGrupo> lstHorarioGrupo = new List<HorarioSubGrupo>();
+                            List<DiaFestivoSubGrupo> lstDiasFestivosGrupo = new List<DiaFestivoSubGrupo>();
+                            foreach (SubGrupoUsuario sGpoUsuario in ticket.TicketGrupoUsuario.SelectMany(tgrupoUsuario => db.GrupoUsuario.Where(w => w.Id == tgrupoUsuario.IdGrupoUsuario && w.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).SelectMany(gpoUsuario => gpoUsuario.SubGrupoUsuario)))
+                            {
+                                lstHorarioGrupo.AddRange(db.HorarioSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id).ToList());
+                                lstDiasFestivosGrupo.AddRange(db.DiaFestivoSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id));
+                            }
+
+                            if (ticket.FechaInicioEspera != null)
+                            {
+                                if (ticket.SlaEstimadoTicket != null)
+                                    ticket.FechaHoraFinProceso = TiempoGeneral(lstHorarioGrupo, lstDiasFestivosGrupo, ticket.FechaHoraFinProceso.Value, ts.TotalHours);
+                            }
                         }
                     }
 
@@ -381,6 +514,7 @@ namespace KinniNet.Core.Operacion
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.ReAbierto:
                             ticket.IdEstatusAsignacion = (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusAsignacion.PorAsignar;
                             ticket.IdNivelTicket = null;
+                            ticket.FechaTermino = null;
                             evento.TicketEventoAsignacion.Add(new TicketEventoAsignacion
                             {
                                 FechaHora = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture),
@@ -415,8 +549,11 @@ namespace KinniNet.Core.Operacion
                             break;
                         case (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera:
                             ticket.Espera = true;
-                            ticket.FechaInicioEspera = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
-                            ticket.FechaFinEspera = null;
+                            if (ticket.FechaHoraFinProceso != null)
+                            {
+                                ticket.FechaInicioEspera = DateTime.ParseExact(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+                                ticket.FechaFinEspera = null;
+                            }
                             break;
                     }
                     #endregion Estatus
@@ -459,7 +596,7 @@ namespace KinniNet.Core.Operacion
                         string cuerpo = string.Format("Hola {0},<br>" +
                                     "¡Tu solicitud ha sido resuelta! Te invitamos a cerrar tu solicitud. <br>" +
                                     "<a href='\"" + ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + idTicket + "&cveRandom=" + cve + "'\"> cerrar solicitud </a>Gracias", usuario.Nombre);
-                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(idTicket, cve, cuerpo, correo);
+                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(idTicket, cve, "Seguimiento", cuerpo, correo);
                     }
                 }
 
@@ -503,14 +640,45 @@ namespace KinniNet.Core.Operacion
                     }
                     db.TicketConversacion.AddObject(comment);
                     db.SaveChanges();
+                    if (archivos != null)
+                    {
+                        BusinessFile.MoverTemporales(BusinessVariables.Directorios.RepositorioTemporalMascara, BusinessVariables.Directorios.RepositorioMascara, archivos);
+                    }
                     Usuario usuario = new BusinessUsuarios().ObtenerUsuario(ticket.IdUsuarioSolicito);
                     string correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio).Correo;
                     if (correo != string.Empty && enviaCorreo)
                     {
-                        string cuerpo = string.Format("Hola {0},<br>" +
-                                        "¡Se ha registrado un nuevo comentario en tu soicitud!" +
-                                        "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
-                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
+                        string urlPortal = ConfigurationManager.AppSettings["siteUrl"] + "/";
+                        if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["siteUrlfolder"]))
+                        {
+                            urlPortal += string.Empty;
+                        }
+                        else
+                        {
+                            urlPortal = ConfigurationManager.AppSettings["siteUrlfolder"] + "/";
+                        }
+
+                        string urlTicket = urlPortal + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro;
+
+                        string cuerpo = string.Format("Hola {0},<br><br>", usuario.Nombre);
+                        cuerpo += string.Format("Hemos recibido una actualización a tu solicitud, los datos de tu ticket son:<br><p>Ticket #: {0}<br>Clave: {1}<br>Comentario: {2}</p>", ticket.Id, ticket.ClaveRegistro, mensaje.Replace("\n", "<br/>"));
+                        cuerpo += string.Format("<p><a href='{0}'>Ver ticket</a></p><br><br>", urlTicket);
+                        if (ticket.IdUsuarioSolicito == idUsuario)
+                        {
+                            cuerpo += string.Format("Has realizado un nuevo comentario, si requieres hacer una actualización a tu solicitud por favor contesta este correo electrónico o ingresa a tu <a href='{0}'>cuenta</a>.", urlPortal);
+                        }
+                        else
+                        {
+                            if (archivos != null)
+                            {
+                                cuerpo += string.Format("Nuestro personal de atención lo está revisando, si requieres hacer una actualización a tu solicitud por favor contesta este correo electrónico o ingresa a tu <a href='{0}'>cuenta</a>.", urlPortal);
+                            }
+                            else
+                            {
+                                cuerpo += string.Format("Nuestro personal de atención lo está revisando, favor de ingresar a ver archivos adjuntos, si requieres hacer una actualización a tu solicitud por favor contesta este correo electrónico o ingresa a tu <a href='{0}'>cuenta</a>.", urlPortal);
+                            }
+                        }
+                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, "Seguimiento", cuerpo, correo);
                     }
                 }
 
@@ -669,12 +837,13 @@ namespace KinniNet.Core.Operacion
                         result.DescripcionEstatusAsignacion = ticket.EstatusAsignacion.Descripcion;
                         result.PuedeAsignar = propietarioTicket && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado && ticket.IdEstatusTicket != (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Resuelto;
                         result.EsPropietario = idUsuario == ticket.TicketAsignacion.Last().IdUsuarioAsignado;
-                        result.IdGrupoAsignado = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().IdGrupoUsuario;
-                        result.IdGrupoUsuario = ticket.ArbolAcceso.InventarioArbolAcceso.First().GrupoUsuarioInventarioArbol.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).Distinct().First().IdGrupoUsuario;
+                        result.IdGrupoAsignado = ticket.TicketGrupoUsuario.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).Distinct().First().IdGrupoUsuario;
+                        result.IdGrupoUsuario = ticket.TicketGrupoUsuario.Where(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).Distinct().First().IdGrupoUsuario;
                         result.UsuarioAsignado = ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado != null ? ticket.TicketAsignacion.OrderBy(o => o.Id).Last().UsuarioAsignado.NombreCompleto : "";
                         result.EstatusDisponibles = CambiaEstatus(ticket.IdEstatusTicket, ticket.TicketGrupoUsuario.Single(s => s.GrupoUsuario.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.AccesoCentroSoporte).IdGrupoUsuario, UtilsTicket.ObtenerRolAsignacionByIdNivel(ticket.IdNivelTicket));
                         result.TieneEncuesta = ticket.ArbolAcceso.InventarioArbolAcceso.First().IdEncuesta != null;
                         result.EncuestaRespondida = ticket.EncuestaRespondida;
+                        result.FechaHoraFinProceso = ticket.FechaHoraFinProceso ?? null;
                         #region Usuario Levanto
                         if (ticket.UsuarioLevanto != null)
                         {
@@ -859,6 +1028,7 @@ namespace KinniNet.Core.Operacion
                                     FechaHora = conversacion.FechaGeneracion,
                                     Comentario = conversacion.Mensaje,
                                     Privado = conversacion.Privado != null ? (bool)conversacion.Privado : false,
+                                    Archivo = conversacion.ConversacionArchivo.Select(s => new HelperConversacionArchivo { IdConversacion = s.IdTicketConversacion, Archivo = s.Archivo }).ToList()
                                 });
                             }
                         #endregion Conversaciones
@@ -966,27 +1136,43 @@ namespace KinniNet.Core.Operacion
                         int idEstatus = (int)idEstatusTicket;
                         if (ticket.IdEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera)
                         {
-                            if (idEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera)
-                                throw new Exception("Ticket ya se encuentra en espera");
-
-                            db.LoadProperty(ticket, "SlaEstimadoTicket");
-                            db.LoadProperty(ticket, "TicketGrupoUsuario");
-                            List<HorarioSubGrupo> lstHorarioGrupo = new List<HorarioSubGrupo>();
-                            List<DiaFestivoSubGrupo> lstDiasFestivosGrupo = new List<DiaFestivoSubGrupo>();
-                            foreach (SubGrupoUsuario sGpoUsuario in ticket.TicketGrupoUsuario.SelectMany(tgrupoUsuario => db.GrupoUsuario.Where(w => w.Id == tgrupoUsuario.IdGrupoUsuario && w.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).SelectMany(gpoUsuario => gpoUsuario.SubGrupoUsuario)))
-                            {
-                                lstHorarioGrupo.AddRange(db.HorarioSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id).ToList());
-                                lstDiasFestivosGrupo.AddRange(db.DiaFestivoSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id));
-                            }
-
                             ticket.FechaFinEspera = fechaMovimiento;
-                            if (ticket.FechaInicioEspera != null)
+                            DateTime oldDate = (DateTime)ticket.FechaInicioEspera;
+                            DateTime newDate = (DateTime)ticket.FechaFinEspera;
+                            TimeSpan ts = newDate - oldDate;
+
+
+                            if (ticket.FechaHoraFinProceso != null)
                             {
-                                DateTime oldDate = (DateTime)ticket.FechaInicioEspera;
-                                DateTime newDate = (DateTime)ticket.FechaFinEspera;
-                                TimeSpan ts = newDate - oldDate;
-                                ticket.TiempoEspera = ticket.TiempoEspera == null ? (0 + ts.TotalHours).ToString() : (double.Parse(ticket.TiempoEspera) + ts.TotalHours).ToString();
-                                ticket.FechaHoraFinProceso = TiempoGeneral(lstHorarioGrupo, ticket.SlaEstimadoTicket.TiempoHoraProceso).AddHours(ts.TotalHours);
+                                if (idEstatus == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.EnEspera)
+                                    throw new Exception("Ticket ya se encuentra en espera");
+
+                                db.LoadProperty(ticket, "SlaEstimadoTicket");
+                                db.LoadProperty(ticket, "TicketGrupoUsuario");
+                                List<HorarioSubGrupo> lstHorarioGrupo = new List<HorarioSubGrupo>();
+                                List<DiaFestivoSubGrupo> lstDiasFestivosGrupo = new List<DiaFestivoSubGrupo>();
+                                var qry = from tgrupoUsuario in ticket.TicketGrupoUsuario
+                                          join gu in db.GrupoUsuario on tgrupoUsuario.IdGrupoUsuario equals gu.Id
+                                          join sgu in db.SubGrupoUsuario on gu.Id equals sgu.IdGrupoUsuario
+                                          where gu.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente
+                                          select new { tgrupoUsuario, gu, sgu };
+                                List<SubGrupoUsuario> sgpoAgente = qry.Select(s => s.sgu).Distinct().ToList();
+
+                                //foreach (SubGrupoUsuario sGpoUsuario in ticket.TicketGrupoUsuario.SelectMany(tgrupoUsuario => db.GrupoUsuario.Where(w => w.Id == tgrupoUsuario.IdGrupoUsuario && w.IdTipoGrupo == (int)BusinessVariables.EnumTiposGrupos.Agente).SelectMany(gpoUsuario => gpoUsuario.SubGrupoUsuario).Distinct()))
+                                foreach (SubGrupoUsuario sGpoUsuario in sgpoAgente)
+                                {
+                                    lstHorarioGrupo.AddRange(db.HorarioSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id).ToList());
+                                    lstDiasFestivosGrupo.AddRange(db.DiaFestivoSubGrupo.Where(w => w.IdSubGrupoUsuario == sGpoUsuario.Id));
+                                }
+                                double tiempoTotalEsperaLaboral = TiempoEnespera(lstHorarioGrupo, lstDiasFestivosGrupo, ticket.FechaInicioEspera.Value, ticket.FechaFinEspera.Value, ts.TotalHours);
+                                ticket.TiempoEspera = ticket.TiempoEspera == null ? (0 + tiempoTotalEsperaLaboral).ToString() : (double.Parse(ticket.TiempoEspera) + tiempoTotalEsperaLaboral).ToString();
+
+                                if (ticket.FechaInicioEspera != null)
+                                {
+
+                                    if (ticket.SlaEstimadoTicket != null)
+                                        ticket.FechaHoraFinProceso = TiempoGeneral(lstHorarioGrupo, lstDiasFestivosGrupo, ticket.FechaHoraFinProceso.Value, tiempoTotalEsperaLaboral);
+                                }
                             }
                         }
                         cambioEstatus = new TicketEstatus
@@ -1109,16 +1295,49 @@ namespace KinniNet.Core.Operacion
 
                     db.TicketEvento.AddObject(evento);
                     db.SaveChanges();
+
+                    if (archivos != null)
+                    {
+                        BusinessFile.MoverTemporales(BusinessVariables.Directorios.RepositorioTemporalMascara, BusinessVariables.Directorios.RepositorioMascara, archivos);
+                    }
+
                     if (conversacion != null && enviaCorreo && !conversacionPrivada)
                     {
                         Usuario usuario = new BusinessUsuarios().ObtenerUsuario(ticket.IdUsuarioSolicito);
                         string correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.First(f => f.Obligatorio).Correo;
                         if (correo != string.Empty)
                         {
-                            string cuerpo = string.Format("Hola {0},<br>" +
-                                            "¡Se ha registrado un nuevo comentario en tu soicitud!" +
-                                            "Si requieres hacer una actualización de tu solicitud, por favor contesta este correo o ingresa <a href='{1}'>aquí</a> Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?userType=" + (int)BusinessVariables.EnumTiposUsuario.Cliente + "&idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro);
-                            new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, cuerpo, correo);
+                            string urlPortal = ConfigurationManager.AppSettings["siteUrl"] + "/";
+                            if (string.IsNullOrEmpty(ConfigurationManager.AppSettings["siteUrlfolder"]))
+                            {
+                                urlPortal += string.Empty;
+                            }
+                            else
+                            {
+                                urlPortal = ConfigurationManager.AppSettings["siteUrlfolder"] + "/";
+                            }
+
+                            string urlTicket = urlPortal + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + ticket.Id + "&cveRandom=" + ticket.ClaveRegistro;
+
+                            string cuerpo = string.Format("Hola {0},<br><br>", usuario.Nombre);
+                            cuerpo += string.Format("Hemos recibido una actualización a tu solicitud, los datos de tu ticket son:<br><p>Ticket #: {0}<br>Clave: {1}<br>Comentario: {2}</p>", ticket.Id, ticket.ClaveRegistro, mensajeConversacion.Replace("\n", "<br/>"));
+                            cuerpo += string.Format("<p><a href='{0}'>Ver ticket</a></p><br><br>", urlTicket);
+                            if (ticket.IdUsuarioSolicito == idUsuarioGeneraEvento)
+                            {
+                                cuerpo += string.Format("Has realizado un nuevo comentario, si requieres hacer una actualización a tu solicitud por favor contesta este correo electrónico o ingresa a tu <a href='{0}'>cuenta</a>.", urlPortal);
+                            }
+                            else
+                            {
+                                if (archivos != null)
+                                {
+                                    cuerpo += string.Format("Nuestro personal de atención lo está revisando, si requieres hacer una actualización a tu solicitud por favor contesta este correo electrónico o ingresa a tu <a href='{0}'>cuenta</a>.", urlPortal);
+                                }
+                                else
+                                {
+                                    cuerpo += string.Format("Nuestro personal de atención lo está revisando, favor de ingresar a ver archivos adjuntos, si requieres hacer una actualización a tu solicitud por favor contesta este correo electrónico o ingresa a tu <a href='{0}'>cuenta</a>.", urlPortal);
+                                }
+                            }
+                            new BusinessTicketMailService().EnviaCorreoTicketGenerado(ticket.Id, ticket.ClaveRegistro, "seguimiento" + ticket.Id, cuerpo, correo);
                         }
                     }
                     if (resolvio)
@@ -1129,8 +1348,8 @@ namespace KinniNet.Core.Operacion
                         string correo = usuario.CorreoUsuario.FirstOrDefault(f => f.Obligatorio) == null ? string.Empty : usuario.CorreoUsuario.First(f => f.Obligatorio).Correo;
                         string cuerpo = string.Format("Hola {0},<br>" +
                                     "¡Tu solicitud ha sido resuelta! Te invitamos a cerrar tu solicitud. <br>" +
-                                    "<a href='{1}'> cerrar solicitud </a>Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + idTicket + "&cveRandom=" + cve );
-                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(idTicket, cve, cuerpo, correo);
+                                    "<a href='{1}'> cerrar solicitud </a>Gracias", usuario.Nombre, ConfigurationManager.AppSettings["siteUrl"] + ConfigurationManager.AppSettings["siteUrlfolder"] + "/Publico/Consultas/FrmConsultaTicket.aspx?idTicket=" + idTicket + "&cveRandom=" + cve);
+                        new BusinessTicketMailService().EnviaCorreoTicketGenerado(idTicket, cve, "Seguimiento", cuerpo, correo);
                     }
                 }
             }

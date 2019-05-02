@@ -32,7 +32,7 @@
       <xs:element name="_x003C_EsPropietario_x003E_k__BackingField" type="xs:boolean" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusAsignacion_x003E_k__BackingField" nillable="true" type="q1:EstatusAsignacion" />
       <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_EstatusTicket_x003E_k__BackingField" nillable="true" type="q2:EstatusTicket" />
-      <xs:element name="_x003C_FechaCambioEstatusAsignacion_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_FechaCambioEstatusAsignacion_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
       <xs:element name="_x003C_FechaCambioEstatusTicket_x003E_k__BackingField" type="xs:dateTime" />
       <xs:element name="_x003C_FechaHora_x003E_k__BackingField" type="xs:dateTime" />
       <xs:element name="_x003C_FechaUltimoEvento_x003E_k__BackingField" nillable="true" type="xs:dateTime" />

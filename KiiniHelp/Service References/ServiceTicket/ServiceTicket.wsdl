@@ -74,6 +74,18 @@
   <wsdl:message name="IServiceTicket_CapturaCasillaTicket_OutputMessage">
     <wsdl:part name="parameters" element="tns:CapturaCasillaTicketResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceTicket_ObtenerPreticketCorreo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPreticketCorreo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceTicket_ObtenerPreticketCorreo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPreticketCorreoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceTicket_ConfirmaPreTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmaPreTicket" />
+  </wsdl:message>
+  <wsdl:message name="IServiceTicket_ConfirmaPreTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmaPreTicketResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceTicket">
     <wsdl:operation name="CrearTicketAndroid">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceTicket/CrearTicketAndroid" message="tns:IServiceTicket_CrearTicketAndroid_InputMessage" />
@@ -110,6 +122,14 @@
     <wsdl:operation name="CapturaCasillaTicket">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceTicket/CapturaCasillaTicket" message="tns:IServiceTicket_CapturaCasillaTicket_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceTicket/CapturaCasillaTicketResponse" message="tns:IServiceTicket_CapturaCasillaTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPreticketCorreo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceTicket/ObtenerPreticketCorreo" message="tns:IServiceTicket_ObtenerPreticketCorreo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceTicket/ObtenerPreticketCorreoResponse" message="tns:IServiceTicket_ObtenerPreticketCorreo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaPreTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceTicket/ConfirmaPreTicket" message="tns:IServiceTicket_ConfirmaPreTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceTicket/ConfirmaPreTicketResponse" message="tns:IServiceTicket_ConfirmaPreTicket_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EndPointSeguridad" type="tns:IServiceTicket">
@@ -188,6 +208,24 @@
     </wsdl:operation>
     <wsdl:operation name="CapturaCasillaTicket">
       <soap:operation soapAction="http://tempuri.org/IServiceTicket/CapturaCasillaTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPreticketCorreo">
+      <soap:operation soapAction="http://tempuri.org/IServiceTicket/ObtenerPreticketCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaPreTicket">
+      <soap:operation soapAction="http://tempuri.org/IServiceTicket/ConfirmaPreTicket" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace KinniNet.Core.Operacion
 {
     public class BusinessInformacionConsulta : IDisposable
     {
+        CultureInfo cultureInfo = new CultureInfo("es-MX");
         private readonly bool _proxy;
 
         public void Dispose()
@@ -300,11 +302,11 @@ namespace KinniNet.Core.Operacion
                         DateTime fechaInicio = fechas.Single(s => s.Key == "inicio").Value;
                         DateTime fechaFin = fechas.Single(s => s.Key == "fin").Value.AddDays(1);
                         var infoJoin = qryJoin.ToList();
-                        infoJoin = infoJoin.Where(w => DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) >= DateTime.Parse(fechaInicio.ToString("dd/MM/yyyy"))
-                                    && DateTime.Parse(w.icr.FechaModificacion.ToString("dd/MM/yyyy")) < DateTime.Parse(fechaFin.ToString("dd/MM/yyyy"))).ToList();
+                        infoJoin = infoJoin.Where(w => DateTime.ParseExact(w.icr.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(fechaInicio.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null)
+                                    && DateTime.ParseExact(w.icr.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(fechaFin.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null)).ToList();
                         info = infoJoin.Select(s => s.q).Distinct().ToList();
 
-                        qryLike = qryLike.Where(w => DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= DateTime.Parse(fechaInicio.ToString("dd/MM/yyyy")) && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) < DateTime.Parse(fechaFin.ToString("dd/MM/yyyy"))).Distinct().ToList();
+                        qryLike = qryLike.Where(w => DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(fechaInicio.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(fechaFin.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null)).Distinct().ToList();
                     }
 
                     result = new List<HelperInformacionConsulta>();
@@ -483,6 +485,7 @@ namespace KinniNet.Core.Operacion
         {
             ReporteInformacionConsulta result = null;
             DataBaseModelContext db = new DataBaseModelContext();
+            int conteo = 1;
             try
             {
                 bool restaMes = false;
@@ -505,9 +508,10 @@ namespace KinniNet.Core.Operacion
 
                 DataTable dtBarras = new DataTable("dt");
                 dtBarras.Columns.Add("Descripcion", typeof(string));
+                dtBarras.Columns.Add("Color", typeof(string));
 
-                dtBarras.Rows.Add("Like");
-                dtBarras.Rows.Add("Dont Like");
+                dtBarras.Rows.Add("Like", ConfigurationManager.AppSettings["ColorLike"]);
+                dtBarras.Rows.Add("Dont Like", ConfigurationManager.AppSettings["ColorDontLike"]);
 
                 if (fechas != null)
                 {
@@ -526,7 +530,7 @@ namespace KinniNet.Core.Operacion
                             case 1:
                                 if (tmpFecha < fechaFin)
                                 {
-                                    dtBarras.Columns.Add(new DataColumn(tmpFecha.ToShortDateString(), typeof(int)));
+                                    dtBarras.Columns.Add(new DataColumn(tmpFecha.ToString("dd/MM/yyyy"), typeof(int)));
                                     tmpFecha = tmpFecha.AddDays(1);
                                 }
                                 else
@@ -536,8 +540,8 @@ namespace KinniNet.Core.Operacion
                             case 2:
                                 if (tmpFecha < fechaFin)
                                 {
-                                    if (!dtBarras.Columns.Contains("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + tmpFecha.Year.ToString()))
-                                        dtBarras.Columns.Add(new DataColumn("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + tmpFecha.Year.ToString(), typeof(int)));
+                                    if (!dtBarras.Columns.Contains(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(tmpFecha.Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy")))
+                                        dtBarras.Columns.Add(new DataColumn(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(tmpFecha.Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(tmpFecha, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy"), typeof(int)));
                                     tmpFecha = tmpFecha.AddDays(7);
                                 }
                                 else
@@ -547,8 +551,9 @@ namespace KinniNet.Core.Operacion
                             case 3:
                                 if (tmpFecha < fechaFin)
                                 {
-                                    if (!dtBarras.Columns.Contains(tmpFecha.Month.ToString()))
-                                        dtBarras.Columns.Add(new DataColumn(tmpFecha.Month.ToString(), typeof(int)));
+                                    var firstDayOfMonth = new DateTime(tmpFecha.Year, tmpFecha.Month, 1);
+                                    if (!dtBarras.Columns.Contains(firstDayOfMonth.ToString("dd/MM/yyyy")))
+                                        dtBarras.Columns.Add(firstDayOfMonth.ToString("dd/MM/yyyy"));
                                     tmpFecha = tmpFecha.AddMonths(1);
                                 }
                                 else
@@ -558,8 +563,8 @@ namespace KinniNet.Core.Operacion
                             case 4:
                                 if (tmpFecha < fechaFin)
                                 {
-                                    if (!dtBarras.Columns.Contains(tmpFecha.Year.ToString()))
-                                        dtBarras.Columns.Add(new DataColumn(tmpFecha.Year.ToString(), typeof(int)));
+                                    if (!dtBarras.Columns.Contains(tmpFecha.ToString("dd/MM/yyyy")))
+                                        dtBarras.Columns.Add(tmpFecha.ToString("dd/MM/yyyy"));
                                     tmpFecha = tmpFecha.AddYears(1);
                                 }
                                 else
@@ -582,7 +587,7 @@ namespace KinniNet.Core.Operacion
                         case 1:
                             foreach (DataColumn column in dtBarras.Columns)
                             {
-                                if (column.ColumnName != "Descripcion")
+                                if (column.ColumnName != "Descripcion" && column.ColumnName != "Color")
                                 {
                                     dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == column.ColumnName && w.MeGusta);
                                     dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == column.ColumnName && w.NoMeGusta);
@@ -592,38 +597,38 @@ namespace KinniNet.Core.Operacion
                         case 2:
                             foreach (DataColumn column in dtBarras.Columns)
                             {
-                                if (column.ColumnName != "Descripcion")
+                                if (column.ColumnName != "Descripcion" && column.ColumnName != "Color")
                                 {
                                     dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1]))
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1])));
+                                        && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null)
+                                        && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).AddDays(7));
                                     dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1]))
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(column.ColumnName.Split(' ')[3]), int.Parse(column.ColumnName.Split(' ')[1])));
+                                        && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null)
+                                        && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).AddDays(7));
                                 }
                             }
                             break;
                         case 3:
                             foreach (DataColumn column in dtBarras.Columns)
                             {
-                                if (column.ColumnName != "Descripcion")
+                                if (column.ColumnName != "Descripcion" && column.ColumnName != "Color")
                                 {
                                     dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
-                                        && w.FechaModificacion.ToString("MM") == column.ColumnName.PadLeft(2, '0'));
+                                        && w.FechaModificacion.ToString("MM") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("MM"));
                                     dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
-                                        && w.FechaModificacion.ToString("MM") == column.ColumnName.PadLeft(2, '0'));
+                                        && w.FechaModificacion.ToString("MM") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("MM"));
                                 }
                             }
                             break;
                         case 4:
                             foreach (DataColumn column in dtBarras.Columns)
                             {
-                                if (column.ColumnName != "Descripcion")
+                                if (column.ColumnName != "Descripcion" && column.ColumnName != "Color")
                                 {
                                     dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
-                                        && w.FechaModificacion.ToString("yyyy") == column.ColumnName.PadLeft(4, '0'));
+                                        && w.FechaModificacion.ToString("yyyy") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("yyyy"));
                                     dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
-                                        && w.FechaModificacion.ToString("yyyy") == column.ColumnName.PadLeft(4, '0'));
+                                        && w.FechaModificacion.ToString("yyyy") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("yyyy"));
                                 }
                             }
                             break;
@@ -634,8 +639,8 @@ namespace KinniNet.Core.Operacion
                     restaMes = false;
                     var rate = qry.Distinct().ToList();
                     List<string> lstFechas = rate.OrderBy(o => o.FechaModificacion).Distinct().ToList().Select(s => s.FechaModificacion.ToString("dd/MM/yyyy")).Distinct().ToList();
-                    fechaInicio = DateTime.Parse(lstFechas.First());
-                    fechaFin = DateTime.Parse(lstFechas.Last());
+                    fechaInicio = DateTime.ParseExact(lstFechas.First(), "dd/MM/yyyy", null);
+                    fechaFin = DateTime.ParseExact(lstFechas.Last(), "dd/MM/yyyy", null);
                     switch (tipoFecha)
                     {
                         case 1:
@@ -647,91 +652,123 @@ namespace KinniNet.Core.Operacion
                         case 2:
                             foreach (string fecha in lstFechas)
                             {
-                                if (!dtBarras.Columns.Contains("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()))
-                                    dtBarras.Columns.Add(new DataColumn("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString(), typeof(int)));
+                                if (!dtBarras.Columns.Contains(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.ParseExact(fecha, "dd/MM/yyyy", null), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy")))
+                                    dtBarras.Columns.Add(BusinessCadenas.Fechas.ObtenerFechaInicioSemana(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.ParseExact(fecha, "dd/MM/yyyy", null), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday)).ToString("dd/MM/yyyy"));
+                                conteo++;
                             }
-                            rango = "Semanal";
                             break;
                         case 3:
                             foreach (string fecha in lstFechas)
                             {
-                                if (!dtBarras.Columns.Contains(DateTime.Parse(fecha).Month.ToString()))
-                                    dtBarras.Columns.Add(new DataColumn(DateTime.Parse(fecha).Month.ToString(), typeof(int)));
+                                var firstDayOfMonth = new DateTime(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Month, 1);
+
+                                if (!dtBarras.Columns.Contains(firstDayOfMonth.ToString("dd/MM/yyyy")))
+                                    dtBarras.Columns.Add(firstDayOfMonth.ToString("dd/MM/yyyy"));
                             }
-                            rango = "Mensual";
                             break;
                         case 4:
                             foreach (string fecha in lstFechas)
                             {
-                                if (!dtBarras.Columns.Contains(DateTime.Parse(fecha).Year.ToString()))
-                                    dtBarras.Columns.Add(new DataColumn(DateTime.Parse(fecha).Year.ToString(), typeof(int)));
+                                DateTime firstDay = new DateTime(DateTime.ParseExact(fecha, "dd/MM/yyyy", null).Year, 1, 1);
+                                if (!dtBarras.Columns.Contains(firstDay.ToString("dd/MM/yyyy")))
+                                    dtBarras.Columns.Add(firstDay.ToString("dd/MM/yyyy"));
                             }
-                            rango = "Anual";
                             break;
                     }
-                    foreach (string fecha in lstFechas)
+                    foreach (DataColumn column in dtBarras.Columns)
                     {
-                        switch (tipoFecha)
+                        if (column.ColumnName != "Descripcion" && column.ColumnName != "Color")
                         {
-                            case 1:
-                                dtBarras.Rows[0][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.MeGusta);
-                                dtBarras.Rows[1][fecha] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == fecha && w.NoMeGusta);
-                                break;
-                            case 2:
-                                dtBarras.Rows[0]["SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1]))
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1])));
-                                dtBarras.Rows[1]["SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()] =
-                                     rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) >= BusinessCadenas.Fechas.ObtenerFechaInicioSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1]))
-                                        && DateTime.Parse(w.FechaModificacion.ToString("dd/MM/yyyy")) <= BusinessCadenas.Fechas.ObtenerFechaFinSemana(int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[3]), int.Parse(("SEMANA " + CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(DateTime.Parse(fecha), CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday) + " AÑO " + DateTime.Parse(fecha).Year.ToString()).ToString().Split(' ')[1])));
-                                break;
-                            case 3:
-                                dtBarras.Rows[0][DateTime.Parse(fecha).Month.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("MM") == DateTime.Parse(fecha.ToString()).ToString("MM") && w.MeGusta);
-                                dtBarras.Rows[1][DateTime.Parse(fecha).Month.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("MM") == DateTime.Parse(fecha.ToString()).ToString("MM") && w.NoMeGusta);
-                                break;
-                            case 4:
-                                dtBarras.Rows[0][DateTime.Parse(fecha).Year.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("yy") == DateTime.Parse(fecha.ToString()).ToString("yy") && w.MeGusta);
-                                dtBarras.Rows[1][DateTime.Parse(fecha).Year.ToString()] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("yy") == DateTime.Parse(fecha.ToString()).ToString("yy") && w.NoMeGusta);
-                                break;
+                            switch (tipoFecha)
+                            {
+                                case 1:
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == column.ColumnName && w.MeGusta);
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("dd/MM/yyyy") == column.ColumnName && w.NoMeGusta);
+                                    break;
+                                case 2:
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.MeGusta
+                                            && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null)
+                                            && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).AddDays(7));
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.NoMeGusta
+                                            && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) >= DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null)
+                                            && DateTime.ParseExact(w.FechaModificacion.ToString("dd/MM/yyyy"), "dd/MM/yyyy", null) < DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).AddDays(7));
+                                    break;
+                                case 3:
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("MM") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("MM") && w.MeGusta);
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("MM") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("MM") && w.NoMeGusta);
+                                    break;
+                                case 4:
+                                    dtBarras.Rows[0][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("yyyy") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && w.MeGusta);
+                                    dtBarras.Rows[1][column.ColumnName] = rate.Count(w => w.IdInformacionConsulta == idInformacionConsulta && w.FechaModificacion.ToString("yyyy") == DateTime.ParseExact(column.ColumnName, "dd/MM/yyyy", null).ToString("yyyy") && w.NoMeGusta);
+                                    break;
+                            }
                         }
                     }
                 }
+                switch (tipoFecha)
+                {
+                    case 1:
+                        for (int i = 2; i < dtBarras.Columns.Count; i++)
+                        {
+                            dtBarras.Columns[i].ColumnName = DateTime.ParseExact(dtBarras.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("dd MMM yy").Replace(".", string.Empty);
+                        }
+                        break;
+                    case 2:
+                        for (int i = 2; i < dtBarras.Columns.Count; i++)
+                        {
+                            dtBarras.Columns[i].ColumnName = DateTime.ParseExact(dtBarras.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("dd MMM yy").Replace(".", string.Empty);
+                        }
+                        break;
+                    case 3:
+                        for (int i = 2; i < dtBarras.Columns.Count; i++)
+                        {
+                            dtBarras.Columns[i].ColumnName = DateTime.ParseExact(dtBarras.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("dd MMM yy").Replace(".", string.Empty);
+                        }
+                        break;
+                    case 4:
+                        for (int i = 2; i < dtBarras.Columns.Count; i++)
+                        {
+                            dtBarras.Columns[i].ColumnName = DateTime.ParseExact(dtBarras.Columns[i].ColumnName, "dd/MM/yyyy", null).ToString("dd MMM yy").Replace(".", string.Empty);
+                        }
+                        break;
+                }
+
                 result.GraficoBarras = dtBarras;
 
                 DataTable dtPie = new DataTable("dtPie");
                 dtPie.Columns.Add("Descripcion", typeof(string));
+                dtPie.Columns.Add("Color", typeof(string));
                 dtPie.Columns.Add("Total", typeof(int));
 
-                dtPie.Rows.Add("Like");
-                dtPie.Rows.Add("Dont Like");
+                dtPie.Rows.Add("Like", ConfigurationManager.AppSettings["ColorLike"]);
+                dtPie.Rows.Add("Dont Like", ConfigurationManager.AppSettings["ColorDontLike"]);
                 int totalLike = 0;
                 int totaldontLike = 0;
                 foreach (DataColumn column in dtBarras.Columns)
                 {
-                    if (column.ColumnName != "Descripcion")
+                    if (column.ColumnName != "Descripcion" && column.ColumnName != "Color")
                     {
-                        totalLike += (int)dtBarras.Rows[0][column.ColumnName];
-                        totaldontLike += (int)dtBarras.Rows[1][column.ColumnName];
+                        totalLike += int.Parse(dtBarras.Rows[0][column.ColumnName].ToString());
+                        totaldontLike += int.Parse(dtBarras.Rows[1][column.ColumnName].ToString());
                     }
                 }
 
-                dtPie.Rows[0][1] = totalLike;
-                dtPie.Rows[1][1] = totaldontLike;
+                dtPie.Rows[0][2] = totalLike;
+                dtPie.Rows[1][2] = totaldontLike;
                 result.GraficoPie = dtPie;
                 switch (tipoFecha)
                 {
                     case 1:
-                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToShortDateString(), fechaFin.ToShortDateString());
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("dd/MM/yyyy", cultureInfo), fechaFin.ToString("dd/MM/yyyy", cultureInfo));
                         break;
                     case 2:
-                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToShortDateString(), fechaFin.ToShortDateString());
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("dd/MM/yyyy", cultureInfo), fechaFin.ToString("dd/MM/yyyy", cultureInfo));
                         break;
                     case 3:
-                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("MMM"), restaMes ? fechaFin.AddDays(-1).ToString("MMM") : fechaFin.ToString("MMM"));
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("MMM", cultureInfo), restaMes ? fechaFin.AddDays(-1).ToString("MMM", cultureInfo) : fechaFin.ToString("MMM", cultureInfo));
                         break;
                     case 4:
-                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("yyyy"), restaMes ? fechaFin.AddDays(-1).ToString("yyyy") : fechaFin.ToString("yyyy"));
+                        titulo += string.Format(" {0} {1} - {2}", rango, fechaInicio.ToString("yyyy", cultureInfo), restaMes ? fechaFin.AddDays(-1).ToString("yyyy", cultureInfo) : fechaFin.ToString("yyyy", cultureInfo));
                         break;
                 }
 

@@ -5,7 +5,6 @@ using System.Web.UI;
 using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceTicket;
 using KiiniNet.Entities.Cat.Operacion;
-using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
 
 namespace KiiniHelp.Publico

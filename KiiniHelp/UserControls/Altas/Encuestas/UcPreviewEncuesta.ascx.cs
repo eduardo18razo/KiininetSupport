@@ -31,7 +31,7 @@ namespace KiiniHelp.UserControls.Altas.Encuestas
 
             if (encuesta != null)
             {
-                lbltitulo.Text = encuesta.Titulo;
+                lbltitulo.Text = string.Format("{0} {1}", encuesta.TituloCliente, encuesta.Tipificacion);
                 lblDescripcionCliente.Text = encuesta.Descripcion;
                 PintaControles(encuesta.EncuestaPregunta, encuesta.IdTipoEncuesta);
                 Session["EncuestaActiva"] = encuesta;

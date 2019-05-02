@@ -23,7 +23,7 @@
                 </div>
                 <div class="row">
                     <label for="txtCorreoRapido" class="col-sm-12 col-md-12 col-lg-12">Correo <span style="color: red">*</span></label>
-                    <asp:TextBox class="form-control" type="email" ID="txtCorreoRapido" ClientIDMode="Static" runat="server" onkeydown="return (event.keyCode!=13);" />
+                    <asp:TextBox class="form-control" type="email" ID="txtCorreoRapido" ClientIDMode="Static" runat="server" onkeydown="return (event.keyCode!=13);" Rows="10" />
                 </div>
                 <div class="row">
                     <label for="txtCorreoRapido" class="col-sm-12 col-md-12 col-lg-12">Confirmar Correo <span style="color: red">*</span></label>

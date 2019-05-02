@@ -29,6 +29,7 @@
       <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" minOccurs="0" name="RespuestaEncuesta" nillable="true" type="q2:ArrayOfRespuestaEncuesta" />
       <xs:element minOccurs="0" name="Sistema" type="xs:boolean" />
       <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" minOccurs="0" name="Ticket" nillable="true" type="q3:ArrayOfTicket" />
+      <xs:element minOccurs="0" name="Tipificacion" nillable="true" type="xs:string" />
       <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" minOccurs="0" name="TipoEncuesta" nillable="true" type="q4:TipoEncuesta" />
       <xs:element minOccurs="0" name="Titulo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TituloCliente" nillable="true" type="xs:string" />

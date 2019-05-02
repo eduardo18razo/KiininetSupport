@@ -264,5 +264,24 @@ namespace KiiniHelp.UserControls.Consultas
             GridViewSortExpression = e.SortExpression;
             LlenaInformacionConsulta(false);
         }
+
+        protected void btnPreview_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                string url = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/"; ;
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + "Users/Administracion/InformaciondeConsulta/FrmPreviewConsulta.aspx?Id=" + ((LinkButton)sender).CommandArgument + "','_blank');", true);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
     }
 }

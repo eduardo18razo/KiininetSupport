@@ -103,6 +103,15 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
+        /// Control btnHelp.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnHelp;
+        
+        /// <summary>
         /// Control rptControles.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,24 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptTiposControles;
+        
+        /// <summary>
+        /// Control chkHideAlert.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkHideAlert;
+        
+        /// <summary>
+        /// Control btnAceptarAlerta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarAlerta;
         
         /// <summary>
         /// Control upAgregarCampo.

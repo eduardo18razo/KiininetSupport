@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.UI;
 using System.Linq;
-using KiiniHelp.ServiceArbolAcceso;
 using KiiniHelp.ServiceArea;
 using KiiniHelp.ServiceFrecuencia;
 using KiiniHelp.ServiceSistemaTipoUsuario;
@@ -113,15 +112,15 @@ namespace KiiniHelp.UserControls.Seleccion
                 switch (tipoArbol)
                 {
                     case (int)BusinessVariables.EnumTipoArbol.ConsultarInformacion:
-                        Response.Redirect("~/Publico/FrmConsulta.aspx?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        Response.Redirect("~/Publico/FrmConsulta.aspx?IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument) + "&userType=" + Request.Params["userType"]);
                         break;
 
                     case (int)BusinessVariables.EnumTipoArbol.SolicitarServicio:
-                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument) + "&userType=" + Request.Params["userType"]);
                         break;
 
                     case (int)BusinessVariables.EnumTipoArbol.ReportarProblemas:
-                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument));
+                        Response.Redirect("~/Publico/FrmTicketPublico.aspx?Canal=" + (int)BusinessVariables.EnumeradoresKiiniNet.EnumCanal.Portal + "&IdArbol=" + Convert.ToInt32(((LinkButton)sender).CommandArgument) + "&userType=" + Request.Params["userType"]);
                         break;
                 }
             else

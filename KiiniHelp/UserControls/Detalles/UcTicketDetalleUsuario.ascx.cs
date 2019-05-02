@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit;
 using KiiniHelp.ServiceAtencionTicket;
+using KiiniHelp.ServiceParametrosSistema;
 using KiiniNet.Entities.Helper;
-using KiiniNet.Entities.Operacion.Tickets;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KiiniHelp.ServiceUsuario;
+using KiiniNet.Entities.Parametros;
 using KinniNet.Business.Utils;
 using Image = System.Web.UI.WebControls.Image;
 
@@ -21,6 +24,7 @@ namespace KiiniHelp.UserControls.Detalles
         public event DelegateTerminarModal OnTerminarModal;
 
         private readonly ServiceAtencionTicketClient _servicioAtencionTicket = new ServiceAtencionTicketClient();
+        private readonly ServiceParametrosClient _serviciosParametros = new ServiceParametrosClient();
         private List<string> _lstError = new List<string>();
 
         #region Propiedades
@@ -115,6 +119,26 @@ namespace KiiniHelp.UserControls.Detalles
             set { Session["ConversacionTicketActivo"] = value; }
         }
         #endregion Propiedades
+        public double TamañoArchivo
+        {
+            get
+            {
+                return double.Parse(hfMaxSizeAllow.Value);
+            }
+            set { hfMaxSizeAllow.Value = value.ToString(); }
+        }
+
+        public string ArchivosPermitidos
+        {
+            get
+            {
+                return hfFileTypes.Value;
+            }
+            set
+            {
+                hfFileTypes.Value = value;
+            }
+        }
 
         #region Metodos
         public void LlenaTicket(int idTicket)
@@ -124,7 +148,6 @@ namespace KiiniHelp.UserControls.Detalles
                 HelperTicketEnAtencion ticket = _servicioAtencionTicket.ObtenerTicketEnAtencion(idTicket, IdUsuario, true);
                 if (ticket != null)
                 {
-                    
                     lblNoticket.Text = ticket.IdTicket.ToString();
                     lblTituloTicket.Text = ticket.Tipificacion;
                     imgProfileNewComment.ImageUrl = new ServiceUsuariosClient().ObtenerFoto(ticket.IdUsuarioSolicito) != null ? "~/DisplayImages.ashx?id=" + ticket.IdUsuarioSolicito : "~/assets/images/profiles/profile-1.png";
@@ -150,6 +173,7 @@ namespace KiiniHelp.UserControls.Detalles
                     ConversacionTicketActivo = ticket.Conversaciones;
                     LlenaConversacion(1);
                     UcDetalleMascaraCaptura.IdTicket = IdTicket;
+                    lblFechaSla.Text = ticket.FechaHoraFinProceso != null ? ((DateTime)ticket.FechaHoraFinProceso).ToString("dd/MM/yyyy hh:mm tt") : string.Empty;
                     if (ticket.IdEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cerrado ||
                         ticket.IdEstatusTicket == (int)BusinessVariables.EnumeradoresKiiniNet.EnumEstatusTicket.Cancelado)
                     {
@@ -199,6 +223,15 @@ namespace KiiniHelp.UserControls.Detalles
                 ucCambiarEstatusTicket.OnCancelarModal += UcCambiarEstatusTicketOnCancelarModal;
                 if (!IsPostBack)
                 {
+                    ParametrosGenerales parametros = _serviciosParametros.ObtenerParametrosGenerales();
+                    if (parametros != null)
+                    {
+                        foreach (ArchivosPermitidos alowedFile in _serviciosParametros.ObtenerArchivosPermitidos())
+                        {
+                            ArchivosPermitidos += string.Format("{0}|", alowedFile.Extensiones);
+                        }
+                        TamañoArchivo = double.Parse(parametros.TamanoDeArchivo);
+                    }
                     if (Request.QueryString["IdTicket"] != null)
                     {
                         IdTicket = int.Parse(Request.QueryString["IdTicket"]);
@@ -268,6 +301,43 @@ namespace KiiniHelp.UserControls.Detalles
                 Alerta = _lstError;
             }
         }
+        protected void afuArchivo_OnUploadedComplete(object sender, AsyncFileUploadEventArgs e)
+        {
+            try
+            {
+                if (TamañoArchivo > 0)
+                {
+                    if ((double.Parse(e.FileSize) / 1024) > (10 * 1024))
+                    {
+                        Response.Write("Size is limited to 2MB");
+                        throw new Exception(string.Format("El tamaño maximo de carga es de {0}MB", "10"));
+                    }
+                }
+
+
+                List<string> lstArchivo = Session["FilesComment"] == null ? new List<string>() : (List<string>)Session["FilesComment"];
+                if (lstArchivo.Any(archivosCargados => archivosCargados.Split('_')[0] == e.FileName.Split('\\').Last()))
+                    return;
+                string extension = Path.GetExtension(e.FileName.Split('\\').Last());
+                if (extension == null) return;
+                string filename = string.Format("{0}_{1}_{2}{3}{4}{5}{6}{7}{8}", e.FileName.Split('\\').Last().Replace(extension, string.Empty), lblNoticket.Text, DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, extension);
+                AsyncFileUpload uploadControl = (AsyncFileUpload)sender;
+                if (!Directory.Exists(BusinessVariables.Directorios.RepositorioTemporalMascara))
+                    Directory.CreateDirectory(BusinessVariables.Directorios.RepositorioTemporalMascara);
+                uploadControl.SaveAs(BusinessVariables.Directorios.RepositorioTemporalMascara + filename);
+                lstArchivo.Add(filename);
+                Session["FilesComment"] = lstArchivo;
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
         protected void rptConversaciones_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             try
@@ -276,6 +346,7 @@ namespace KiiniHelp.UserControls.Detalles
                 if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
                 {
                     Image img = (Image)e.Item.FindControl("imgAgente");
+                    Repeater rptArchivos = (Repeater)e.Item.FindControl("rptArchivos");
                     if (img != null)
                     {
                         byte[] foto = new ServiceUsuariosClient().ObtenerFoto(((HelperConversacionDetalle)e.Item.DataItem).IdUsuario);
@@ -285,6 +356,11 @@ namespace KiiniHelp.UserControls.Detalles
 
                             img.ImageUrl = "~/assets/images/profiles/profile-square-1.png";
 
+                    }
+                    if (rptArchivos != null)
+                    {
+                        rptArchivos.DataSource = ((HelperConversacionDetalle)e.Item.DataItem).Archivo;
+                        rptArchivos.DataBind();
                     }
                 }
             }
@@ -307,9 +383,10 @@ namespace KiiniHelp.UserControls.Detalles
 
                 const bool sistema = false;
                 string mensajeConversacion = txtConversacion.Text.Trim();
-
-                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, IdUsuario, mensajeConversacion, sistema, null, false, true);
+                List<string> lstArchivo = Session["FilesComment"] == null ? null : (List<string>)Session["FilesComment"];
+                _servicioAtencionTicket.AgregarComentarioConversacionTicket(IdTicket, IdUsuario, mensajeConversacion, sistema, lstArchivo, false, true);
                 txtConversacion.Text = string.Empty;
+                Session["FilesComment"] = null;
                 if (Session["UserData"] != null)
                     Response.Redirect("~/Users/General/FrmMisTickets.aspx");
                 else

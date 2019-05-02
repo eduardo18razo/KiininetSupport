@@ -97,6 +97,12 @@
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion")%>'><%# Eval("FechaModificacion")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Preview" HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnPreview" Text="Ver" OnClick="btnPreview_OnClick"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                          <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="4%">
                                             <ItemTemplate>

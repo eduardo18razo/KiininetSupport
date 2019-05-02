@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using KiiniHelp.ServiceMascaraAcceso;
@@ -27,14 +28,101 @@ namespace KiiniHelp.UserControls.Consultas
                 }
             }
         }
+        bool _sorted = false;
+        private string GridViewSortDirection
+        {
+            get
+            {
+                if (ViewState["SortDirection"] == null)
+                {
+                    ViewState["SortDirection"] = "ASC";
+                }
+                return ViewState["SortDirection"].ToString();
+            }
 
-        private void LlenaMascaras()
+            set
+            {
+                ViewState["SortDirection"] = value;
+            }
+
+        }
+        private string GridViewSortExpression
+        {
+            get
+            {
+                return ViewState["SortExpression"] as string ?? string.Empty;
+            }
+
+            set
+            {
+                ViewState["SortExpression"] = value;
+            }
+
+        }
+
+        protected List<Mascara> SortList(List<Mascara> data, bool isPageIndexChanging)
+        {
+            List<Mascara> result = data;
+            if (data != null)
+            {
+                if (chkActivos.Checked)
+                    data = data.Where(w => w.Habilitado).ToList();
+                if (GridViewSortExpression != string.Empty)
+                {
+                    if (data.Count > 0)
+                    {
+                        PropertyInfo[] propertys = data[0].GetType().GetProperties();
+                        foreach (PropertyInfo p in propertys)
+                        {
+                            if (p.Name == GridViewSortExpression)
+                            {
+                                if (GridViewSortDirection == "ASC")
+                                {
+                                    if (isPageIndexChanging)
+                                    {
+                                        result = data.OrderByDescending(key => p.GetValue(key, null)).ToList();
+                                    }
+                                    else
+                                    {
+                                        result = data.OrderBy(key =>
+                                            p.GetValue(key, null)).ToList();
+                                        GridViewSortDirection = "DESC";
+                                    }
+                                }
+                                else
+                                {
+                                    if (isPageIndexChanging)
+                                    {
+                                        result = data.OrderBy(key =>
+                                            p.GetValue(key, null)).ToList();
+                                    }
+                                    else
+                                    {
+                                        result = data.OrderByDescending(key => p.GetValue(key, null)).ToList();
+                                        GridViewSortDirection = "ASC";
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    result = data.OrderBy(o => o.Descripcion).ToList();
+                }
+            }
+            _sorted = true;
+            return result;
+        }
+
+        private void LlenaMascaras(bool isPageIndexChanging)
         {
             try
             {
                 string descripcion = txtFiltro.Text.ToLower().Trim();
 
-                tblResults.DataSource = _servicioMascaras.Consulta(descripcion);
+                tblResults.DataSource = SortList(_servicioMascaras.Consulta(descripcion), isPageIndexChanging);
                 tblResults.DataBind();
                 //ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptTable", "hidden();", true);
             }
@@ -50,7 +138,7 @@ namespace KiiniHelp.UserControls.Consultas
             {
                 if (!IsPostBack)
                 {
-                    LlenaMascaras();
+                    LlenaMascaras(false);
                 }
             }
             catch (Exception ex)
@@ -85,7 +173,7 @@ namespace KiiniHelp.UserControls.Consultas
         {
             try
             {
-                LlenaMascaras();
+                LlenaMascaras(false);
             }
             catch (Exception ex)
             {
@@ -139,7 +227,7 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 _servicioMascaras.HabilitarMascara(int.Parse(((CheckBox)sender).Attributes["data-id"]), ((CheckBox)sender).Checked);
-                LlenaMascaras();
+                LlenaMascaras(false);
             }
             catch (Exception ex)
             {
@@ -194,7 +282,7 @@ namespace KiiniHelp.UserControls.Consultas
         protected void gvPaginacion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             tblResults.PageIndex = e.NewPageIndex;
-            LlenaMascaras();
+            LlenaMascaras(true);
         }
 
         #endregion
@@ -204,6 +292,60 @@ namespace KiiniHelp.UserControls.Consultas
             try
             {
                 Response.Redirect("~/Users/Administracion/Formularios/FrmConsultaDetalleFormulario.aspx?idMascara=" + ((LinkButton)sender).CommandArgument);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void tblResults_OnSorting(object sender, GridViewSortEventArgs e)
+        {
+            try
+            {
+                GridViewSortExpression = e.SortExpression;
+                LlenaMascaras(false);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void chkActivos_OnCheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LlenaMascaras(false);
+            }
+            catch (Exception ex)
+            {
+                if (_lstError == null)
+                {
+                    _lstError = new List<string>();
+                }
+                _lstError.Add(ex.Message);
+                Alerta = _lstError;
+            }
+        }
+
+        protected void btnPreview_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string url = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ScriptErrorAlert", "window.open('" + url + "Users/Administracion/Formularios/FrmPreviewFormulario.aspx?Id=" + ((LinkButton)sender).CommandArgument + "','_blank');", true);
             }
             catch (Exception ex)
             {

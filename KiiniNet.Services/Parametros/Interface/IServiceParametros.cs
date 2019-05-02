@@ -33,7 +33,7 @@ namespace KiiniNet.Services.Parametros.Interface
         ParametroPassword ObtenerParemtrosPassword();
 
         [OperationContract]
-        GraficosDefault ObtenerParametrosGraficoDefault();
+        GraficosDefault ObtenerParametrosGraficoDefault(int idReporte);
         [OperationContract]
         List<FrecuenciaFecha> ObtenerFrecuenciasFecha();
 

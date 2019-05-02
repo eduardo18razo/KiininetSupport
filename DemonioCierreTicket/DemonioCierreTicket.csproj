@@ -51,6 +51,7 @@
     <Compile Include="ProjectInstaller.Designer.cs">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScheduleCierreTicket.cs" />
     <Compile Include="ServiceCierreTicket.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -17,9 +17,9 @@
                 <ContentTemplate>
                     <div class="row">
                         <div class="module-content-inner">
-                            <div class="faq-section text-center margin-bottom-lg">
-                                <div class="faqs-tabbed tabpanel" role="tabpanel">
-                                    <ul class="nav nav-tabs nav-tabs margin-bottom-lg" role="tablist">
+                            <div class="text-center">
+                                <div role="tabpanel">
+                                    <ul class="nav nav-tabs nav-tabs" role="tablist">
                                         <li role="presentation" class="active">
                                             <a href="#tabAltaConsulta" aria-controls="tabAltaConsulta" role="tab" data-toggle="tab">
                                                 <span class="pe-icon fa fa-group icon"></span>
@@ -36,7 +36,7 @@
                                             <div class="row">
                                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <uc1:UcAltaConsulta runat="server" ID="UcAltaConsulta" />
+                                                        <uc1:UcAltaConsulta runat="server" ID="ucAltaConsulta" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>
@@ -46,7 +46,7 @@
                                             <div class="row">
                                                 <asp:UpdatePanel runat="server" UpdateMode="Conditional">
                                                     <ContentTemplate>
-                                                        <uc1:UcAltaServicio runat="server" ID="UcAltaServicio" />
+                                                        <uc1:UcAltaServicio runat="server" ID="ucAltaServicio" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>

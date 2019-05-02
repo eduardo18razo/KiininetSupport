@@ -5,10 +5,10 @@
     <asp:UpdatePanel runat="server" class="heigth100">
         <ContentTemplate>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
+                <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li class="breadcrumb-item">Help Center</li>
-                <li class="breadcrumb-item active">Encuestas</li>
+                <li>Centro de Soporte</li>
+                <li class="active">Encuestas</li>
             </ol>
 
             <section class="module">
@@ -69,7 +69,7 @@
                                         <asp:TemplateField HeaderText="Títulos" HeaderStyle-Width="30%" ItemStyle-CssClass="altoFijo">
                                             <ItemTemplate>
                                                 <div>
-                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Titulo")%>'> <%# Eval("Titulo")%> </label>
+                                                    <label runat="server" class="ocultaTexto" title='<%# Eval("Titulo")%>'><%# Eval("Titulo")%> </label>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -92,7 +92,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="4%">
+                                        <asp:TemplateField HeaderText="Clonar" HeaderStyle-Width="4%">
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled hidden" id="hiddenClonar">
                                                     <li>
@@ -117,7 +117,7 @@
                                             <ItemTemplate>
                                                 <ul class="list list-unstyled" id="hiddenEnabled">
                                                     <li>
-                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged"/>
+                                                        <asp:CheckBox runat="server" AutoPostBack="true" Checked='<%# (bool) Eval("Habilitado") %>' Visible='<%# !(bool)Eval("Sistema") %>' CssClass="chkIphone" Width="30px" data-id='<%# Eval("Id")%>' Text='<%# (bool) Eval("Habilitado") ? "SI" : "NO"%>' OnCheckedChanged="OnCheckedChanged" />
                                                     </li>
                                                 </ul>
                                             </ItemTemplate>

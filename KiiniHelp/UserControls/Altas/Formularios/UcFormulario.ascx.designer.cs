@@ -22,6 +22,15 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         protected global::System.Web.UI.UpdatePanel upMascara;
         
         /// <summary>
+        /// Control hfIdTipoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIdTipoUsuario;
+        
+        /// <summary>
         /// Control hfIdMascara.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,33 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         protected global::System.Web.UI.WebControls.HiddenField hfMaxSizeAllow;
         
         /// <summary>
+        /// Control lbtnHome.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnHome;
+        
+        /// <summary>
+        /// Control lbtnTipoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnTipoUsuario;
+        
+        /// <summary>
+        /// Control lblDescripcionFormulario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescripcionFormulario;
+        
+        /// <summary>
         /// Control lblTitle.
         /// </summary>
         /// <remarks>
@@ -128,6 +164,33 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDescripcionMascara;
+        
+        /// <summary>
+        /// Control divRegistraUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRegistraUsuario;
+        
+        /// <summary>
+        /// Control ucAltaUsuarioRapida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::KiiniHelp.UserControls.Altas.Usuarios.UcAltaUsuarioRapida ucAltaUsuarioRapida;
+        
+        /// <summary>
+        /// Control divControles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divControles;
         
         /// <summary>
         /// Control divCaptcha.
@@ -173,33 +236,6 @@ namespace KiiniHelp.UserControls.Altas.Formularios {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
-        
-        /// <summary>
-        /// Control divControles.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divControles;
-        
-        /// <summary>
-        /// Control divRegistraUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRegistraUsuario;
-        
-        /// <summary>
-        /// Control ucAltaUsuarioRapida.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::KiiniHelp.UserControls.Altas.Usuarios.UcAltaUsuarioRapida ucAltaUsuarioRapida;
         
         /// <summary>
         /// Control btnCerrarExito.

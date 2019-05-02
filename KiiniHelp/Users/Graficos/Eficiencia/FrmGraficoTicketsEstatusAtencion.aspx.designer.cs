@@ -49,6 +49,15 @@ namespace KiiniHelp.Users.Graficos.Eficiencia {
         protected global::System.Web.UI.UpdatePanel upGrafica;
         
         /// <summary>
+        /// Control preview.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView preview;
+        
+        /// <summary>
         /// Control hfGraficaGenerada.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace KiiniHelp.Users.Graficos.Eficiencia {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl frameGeoCharts;
+        
+        /// <summary>
+        /// Control lblTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
         /// Control rhcTicketsPie.

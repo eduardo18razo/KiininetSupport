@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UcAltaNotaUsuario.ascx.cs" Inherits="KiiniHelp.UserControls.Altas.UcAltaNotaUsuario" %>
-<%@ Register TagPrefix="ctrlExterno" Namespace="Winthusiasm.HtmlEditor" Assembly="Winthusiasm.HtmlEditor" %>
+
 <asp:UpdatePanel runat="server" ID="updateAltaNotaUsuario">
     <ContentTemplate>
         <header id="panelAlerta" runat="server" visible="false">
@@ -46,9 +46,7 @@
                     <div class="form-group">
                         <asp:Label runat="server" Text="Contenido" CssClass="col-sm-2 control-label" />
                         <div class="col-sm-10">
-                            <ctrlExterno:HtmlEditor runat="Server" ID="txtEditor" Toolbars="Select#Format,Select#Font,Select#Size:ForeColor,BackColor;Bold,Italic,Underline|Left,Center,Right,Justify|OrderedList,BulletedList|
-                                    Outdent,Indent|Rule|Subscript,Superscript:Link,Image"
-                                Width="700px" />
+                            <asp:TextBox runat="server" ID="txtEditor"></asp:TextBox>
                         </div>
                     </div>
 

@@ -8,9 +8,7 @@
             <ol class="breadcrumb">
                 <li>
                     <asp:HyperLink runat="server" NavigateUrl="~/Users/DashBoard.aspx">Home</asp:HyperLink></li>
-                <li>
-                    <asp:HyperLink runat="server" NavigateUrl="~/Users/FrmReportes.aspx">Analíticos</asp:HyperLink>
-                </li>
+                <li>Centro de Soporte</li>
                 <li class="active">Formularios</li>
             </ol>
 
@@ -32,9 +30,10 @@
                         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 
-                            <div class="form col-lg-6 separador-vertical-derecho">
+                            <div class="col-lg-6 col-md-6 col-sm-5 col-xs-12 separador-vertical-derecho">
                                 <div class="form-group">
                                     <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Consulta Formularios:</label>
+
                                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 no-padding-left no-margin-left">
                                         <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control no-padding-left no-margin-left" onkeydown="return (event.keyCode!=13 && event.keyCode!=27);" />
                                     </div>
@@ -44,17 +43,30 @@
                                 </div>
                             </div>
 
-                            <div class="form col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
-                                <div class="form-group margin-top-btn-consulta">
-                                    <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick">
-                                 <i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
-
-                                    <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server">
-                                <i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
-
+                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 text-right">
+                                <div class="form-group">
+                                    <label class="col-lg-12 col-md-12 col-sm-12" style="color: transparent">h</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div>
+                                            <asp:LinkButton ID="btnDownload" runat="server" CssClass="btn btn-primary" OnClick="btnDownload_OnClick"><i class="fa fa-download"></i>  Descargar reporte</asp:LinkButton>
+                                            <asp:LinkButton CssClass="btn btn-success" ID="btnNew" OnClick="btnNew_OnClick" runat="server"><i class="fa fa-plus"></i>Nuevo</asp:LinkButton>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12 text-right">
+                                <div class="form-group">
+                                    <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-left no-margin-left">Ver solo Activos:</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
+                                        <div>
 
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-3 text-right text-hide">
+                                                <asp:CheckBox runat="server" ID="chkActivos" Text="Si" OnCheckedChanged="chkActivos_OnCheckedChanged" AutoPostBack="True" Checked="True" CssClass="chkIphone" Width="30px" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -62,19 +74,19 @@
             </section>
 
 
-            <section class="module module-headings">
+            <section class="module">
                 <div class="module-inner">
 
                     <div class="module-content collapse in" id="content-1">
                         <div class="module-content-inner no-padding-bottom">
                             <div class="table-responsive">
 
-                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%"
-                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25"
+                                <asp:GridView runat="server" ID="tblResults" AllowPaging="true" AutoGenerateColumns="false" Width="99%" AllowSorting="True"
+                                    OnPageIndexChanging="gvPaginacion_PageIndexChanging" PagerSettings-PageButtonCount="25" OnSorting="tblResults_OnSorting"
                                     BorderStyle="None" PagerSettings-Mode="Numeric" PageSize="15" PagerSettings-Position="Bottom" PagerStyle-BorderStyle="None"
                                     PagerStyle-HorizontalAlign="Right" PagerStyle-CssClass="paginador" CssClass="table table-striped display alineaTablaIzquierda">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Titulo" HeaderStyle-Width="30%" ItemStyle-CssClass="altoFijo">
+                                        <asp:TemplateField HeaderText="Titulo" HeaderStyle-Width="30%" ItemStyle-CssClass="altoFijo" SortExpression="Descripcion">
                                             <ItemTemplate>
                                                 <div>
                                                     <label runat="server" class="ocultaTexto" title='<%# Eval("Descripcion")%>'><%# Eval("Descripcion")%></label>
@@ -88,15 +100,21 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="14%">
+                                        <asp:TemplateField HeaderText="Creación" HeaderStyle-Width="14%" SortExpression="FechaAlta">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaAlta")%>'><%# Eval("FechaAlta")%></label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="14%">
+                                        <asp:TemplateField HeaderText="Últ. Edición" HeaderStyle-Width="14%" SortExpression="FechaModificacion">
                                             <ItemTemplate>
                                                 <label runat="server" class="ocultaTexto" title='<%# Eval("FechaModificacion")%>'><%# Eval("FechaModificacion")%></label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Preview" HeaderStyle-Width="10%">
+                                            <ItemTemplate>
+                                                <asp:LinkButton runat="server" CommandArgument='<%# Eval("Id")%>' ID="btnPreview" Text="Ver" OnClick="btnPreview_OnClick"></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

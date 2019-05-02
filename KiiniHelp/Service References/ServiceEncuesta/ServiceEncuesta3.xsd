@@ -184,11 +184,38 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ObtenerGraficoCalificacion">
+  <xs:element name="ObtenerGraficoNpsDescarga">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
         <xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q15:ArrayOfKeyValueOfstringdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerGraficoNpsDescargaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ObtenerGraficoNpsDescargaResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerGraficoCalificacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q16:ArrayOfKeyValueOfstringdateTime" />
         <xs:element minOccurs="0" name="tipoFecha" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -196,7 +223,7 @@
   <xs:element name="ObtenerGraficoCalificacionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" minOccurs="0" name="ObtenerGraficoCalificacionResult" nillable="true" type="q16:HelperReporteEncuesta" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" minOccurs="0" name="ObtenerGraficoCalificacionResult" nillable="true" type="q17:HelperReporteEncuesta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -204,7 +231,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
-        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q17:ArrayOfKeyValueOfstringdateTime" />
+        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q18:ArrayOfKeyValueOfstringdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -231,7 +258,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
-        <xs:element xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q18:ArrayOfKeyValueOfstringdateTime" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q19:ArrayOfKeyValueOfstringdateTime" />
         <xs:element minOccurs="0" name="tipoFecha" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -239,7 +266,7 @@
   <xs:element name="ObtenerGraficoSatisfaccionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" minOccurs="0" name="ObtenerGraficoSatisfaccionResult" nillable="true" type="q19:HelperReporteEncuesta" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" minOccurs="0" name="ObtenerGraficoSatisfaccionResult" nillable="true" type="q20:HelperReporteEncuesta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -247,7 +274,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
-        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q20:ArrayOfKeyValueOfstringdateTime" />
+        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q21:ArrayOfKeyValueOfstringdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -274,7 +301,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
-        <xs:element xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q21:ArrayOfKeyValueOfstringdateTime" />
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q22:ArrayOfKeyValueOfstringdateTime" />
         <xs:element minOccurs="0" name="tipoFecha" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
@@ -282,7 +309,7 @@
   <xs:element name="ObtenerGraficoLogicaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" minOccurs="0" name="ObtenerGraficoLogicaResult" nillable="true" type="q22:HelperReporteEncuesta" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper.Reportes" minOccurs="0" name="ObtenerGraficoLogicaResult" nillable="true" type="q23:HelperReporteEncuesta" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -290,7 +317,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idArbolAcceso" type="xs:int" />
-        <xs:element xmlns:q23="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q23:ArrayOfKeyValueOfstringdateTime" />
+        <xs:element xmlns:q24="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fechas" nillable="true" type="q24:ArrayOfKeyValueOfstringdateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
