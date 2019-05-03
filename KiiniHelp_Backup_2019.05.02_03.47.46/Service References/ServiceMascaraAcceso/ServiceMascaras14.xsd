@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfCatalogoGenerico">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CatalogoGenerico" nillable="true" type="tns:CatalogoGenerico" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCatalogoGenerico" nillable="true" type="tns:ArrayOfCatalogoGenerico" />
+  <xs:complexType name="CatalogoGenerico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Habilitado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CatalogoGenerico" nillable="true" type="tns:CatalogoGenerico" />
+  <xs:complexType name="ArrayOfHelperMascaraData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperMascaraData" nillable="true" type="tns:HelperMascaraData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperMascaraData" nillable="true" type="tns:ArrayOfHelperMascaraData" />
+  <xs:complexType name="HelperMascaraData">
+    <xs:sequence>
+      <xs:element name="_x003C_Campo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Value_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperMascaraData" nillable="true" type="tns:HelperMascaraData" />
+</xs:schema>

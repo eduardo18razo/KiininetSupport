@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ebc624be-b9f4-4df1-be23-6f4c0e7ceec4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceUbicacion.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceUbicacion.xsd" MetadataType="Schema" ID="367ae4c4-85ae-4834-b511-433068057805" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceUbicacion1.xsd" MetadataType="Schema" ID="727f62ce-c5e7-49fd-9fe8-eb63f857dd25" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceUbicacion2.xsd" MetadataType="Schema" ID="068ce38b-f8c7-4df7-bf31-b66beebe0f93" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceUbicacion3.xsd" MetadataType="Schema" ID="cd062d9c-16d6-49e4-8444-0899201984cf" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceUbicacion.wsdl" MetadataType="Wsdl" ID="90fd8161-7b40-45ec-b4e0-80b7e42c1430" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?wsdl" />
+    <MetadataFile FileName="ServiceUbicacion4.xsd" MetadataType="Schema" ID="15421b5b-e8b5-4549-ac24-eac0d9c2d162" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceUbicacion5.xsd" MetadataType="Schema" ID="d794d19f-241f-41d8-a49b-0084b6535917" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd14" />
+    <MetadataFile FileName="ServiceUbicacion6.xsd" MetadataType="Schema" ID="d3b53e7b-5cc9-481c-ac28-73a4b9bead17" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceUbicacion7.xsd" MetadataType="Schema" ID="e72d9e95-2524-4f4f-9ad4-9542f6a4936d" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceUbicacion8.xsd" MetadataType="Schema" ID="9171c0df-b16b-42f6-ab59-03df83255cc9" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceUbicacion9.xsd" MetadataType="Schema" ID="66928a4e-dcfc-4812-8c44-66e723b2a3d7" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceUbicacion10.xsd" MetadataType="Schema" ID="bb24558a-04b6-4d16-8fec-77c94ac25238" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceUbicacion11.xsd" MetadataType="Schema" ID="a1f2c95c-8d8c-41c2-9dad-6b4f0d3d4967" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceUbicacion12.xsd" MetadataType="Schema" ID="62532785-60d9-4f37-83a7-acd90381198c" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceUbicacion13.xsd" MetadataType="Schema" ID="56d63f89-643b-433c-8804-dc30dfce851d" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceUbicacion.disco" MetadataType="Disco" ID="03a184e7-7a09-41ba-9be3-063b6fc5aba2" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?disco" />
+    <MetadataFile FileName="ServiceUbicacion14.xsd" MetadataType="Schema" ID="029fe825-5f66-4203-ba8c-e63d8526d7ee" SourceId="1" SourceUrl="http://localhost:15277/ServiceUbicacion.svc?xsd=xsd9" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

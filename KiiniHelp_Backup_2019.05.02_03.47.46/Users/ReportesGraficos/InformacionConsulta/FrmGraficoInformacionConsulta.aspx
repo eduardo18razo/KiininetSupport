@@ -1,0 +1,13 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Usuarios.Master" AutoEventWireup="true" CodeBehind="FrmGraficoInformacionConsulta.aspx.cs" Inherits="KiiniHelp.Users.ReportesGraficos.InformacionConsulta.FrmGraficoInformacionConsulta" %>
+
+<%@ Register Src="~/UserControls/ReportesGraficos/InformacionConsulta/UcGraficoInformacionConsulta.ascx" TagPrefix="uc1" TagName="UcGraficoInformacionConsulta" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <uc1:UcGraficoInformacionConsulta runat="server" id="UcGraficoInformacionConsulta" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>

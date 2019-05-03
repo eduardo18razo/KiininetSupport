@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7aeb3805-3a97-485e-99de-2f8fb16e56a4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceNota.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceNota.xsd" MetadataType="Schema" ID="7f75aac9-1a83-49db-b900-97b26778be40" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceNota1.xsd" MetadataType="Schema" ID="11379de5-3c29-4233-a96c-da21de52bc44" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceNota5.xsd" MetadataType="Schema" ID="2cfd6a19-167c-405f-a9e9-9df6f5e71547" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceNota10.xsd" MetadataType="Schema" ID="778434af-5164-463f-8bdb-db36f2e780ae" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceNota.wsdl" MetadataType="Wsdl" ID="24258420-f4df-4940-85fa-d9026079264e" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?wsdl" />
+    <MetadataFile FileName="ServiceNota14.xsd" MetadataType="Schema" ID="71eef9ea-90d8-4731-b508-1bbb0186e614" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd14" />
+    <MetadataFile FileName="ServiceNota4.xsd" MetadataType="Schema" ID="ee8cba73-af82-4314-a29c-89f0eb6136b5" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceNota2.xsd" MetadataType="Schema" ID="5905cce4-dd21-4c4b-af37-02a0ee8640ee" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceNota6.xsd" MetadataType="Schema" ID="9fc7ed41-a1ab-4f49-9533-3c29cfccbd37" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceNota7.xsd" MetadataType="Schema" ID="543afaba-22eb-49e9-b9cd-cff14f4d7fde" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceNota8.xsd" MetadataType="Schema" ID="8a863b23-152d-4f6d-a237-b79f4f543b6c" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceNota9.xsd" MetadataType="Schema" ID="b8761aa9-8ed8-4c28-a82b-5e15efbccff4" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceNota11.xsd" MetadataType="Schema" ID="632c8ea1-843f-4210-8e43-9979e625f49f" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceNota13.xsd" MetadataType="Schema" ID="91f6b59f-6485-4cb1-86a7-bcef687dc76f" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceNota.disco" MetadataType="Disco" ID="5e2042b4-1e61-49bd-875b-1cafbcd98789" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?disco" />
+    <MetadataFile FileName="ServiceNota3.xsd" MetadataType="Schema" ID="d2959936-71f2-4141-b356-097a8d41dfaa" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceNota12.xsd" MetadataType="Schema" ID="7c9901b1-da87-4386-bfca-0ff471b9a524" SourceId="1" SourceUrl="http://localhost:15277/ServiceNota.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

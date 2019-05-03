@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:15277/ServiceConsultas.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+  <xs:complexType name="ArrayOfHelperReportesTicket">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperReportesTicket" nillable="true" type="tns:HelperReportesTicket" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperReportesTicket" nillable="true" type="tns:ArrayOfHelperReportesTicket" />
+  <xs:complexType name="HelperReportesTicket">
+    <xs:sequence>
+      <xs:element name="_x003C_Canal_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DentroSla_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Estatus_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaHora_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GrupoAtendedor_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GrupoDesarrollo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GrupoEspecialConsulta_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GrupoMantenimiento_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GrupoOperacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IdCanal_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdEstatus_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdNivelOrganizacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdNivelUbicacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdOrganizacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdServicioIncidente_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdTipificacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdUbicacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Impacto_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Organizacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Prioridad_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Respuesta_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ServicioIncidente_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Sla_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" name="_x003C_TipoUsuario_x003E_k__BackingField" nillable="true" type="q1:TipoUsuario" />
+      <xs:element name="_x003C_Ubicacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Urgencia_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperReportesTicket" nillable="true" type="tns:HelperReportesTicket" />
+  <xs:complexType name="ArrayOfHelperHits">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperHits" nillable="true" type="tns:HelperHits" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperHits" nillable="true" type="tns:ArrayOfHelperHits" />
+  <xs:complexType name="HelperHits">
+    <xs:sequence>
+      <xs:element name="_x003C_FechaHora_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Grupo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Hora_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IdHit_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdOrganizacion_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_IdTipificacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdTipoArbolAcceso_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdUbicacion_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_IdUsuario_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_NombreUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Organizacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Rol_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TipoServicio_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TipoUsuarioAbreviacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TipoUsuarioColor_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Total_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Ubicacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Vip_x003E_k__BackingField" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperHits" nillable="true" type="tns:HelperHits" />
+</xs:schema>

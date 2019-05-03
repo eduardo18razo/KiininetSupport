@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4d0fbf13-1d49-4008-a1ca-6aa94e6bf1ed" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceParametros.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceParametros.wsdl" MetadataType="Wsdl" ID="acbbb9f5-84b4-44fd-af13-dcc4acc9c60a" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?wsdl" />
+    <MetadataFile FileName="ServiceParametros10.xsd" MetadataType="Schema" ID="6aa68e42-51b7-46b8-95dd-772f48a60a5f" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceParametros.xsd" MetadataType="Schema" ID="a7785b3c-d4fa-449d-8a67-ad87432d9ff9" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceParametros2.xsd" MetadataType="Schema" ID="9fb32ef9-4fe8-41e4-8f33-b866fabbc759" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceParametros3.xsd" MetadataType="Schema" ID="b3006650-3f4f-4b2c-840b-e0e469d434bb" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceParametros4.xsd" MetadataType="Schema" ID="1de08331-3995-45c8-b65a-fd338acadba2" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceParametros5.xsd" MetadataType="Schema" ID="54e31158-8b78-4941-9259-226f8a7580e2" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceParametros6.xsd" MetadataType="Schema" ID="f393a4dd-0620-44b3-8fbd-87df61f5704f" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceParametros7.xsd" MetadataType="Schema" ID="aad6d9ca-cb99-43f1-99f0-2584a18c6174" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceParametros8.xsd" MetadataType="Schema" ID="d48acb12-7ab3-4ff1-a5dd-3c87aa03e13d" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceParametros9.xsd" MetadataType="Schema" ID="3548c95a-810a-4efc-b3ba-ac10250432c7" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceParametros1.xsd" MetadataType="Schema" ID="c8b1e8cb-73e6-4dc3-9b84-5203d8089362" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceParametros13.xsd" MetadataType="Schema" ID="b3235ced-a457-4c90-88f9-b6ab1658ba5c" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceParametros11.xsd" MetadataType="Schema" ID="da04f173-52bb-4364-b339-c4da382d26dd" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceParametros12.xsd" MetadataType="Schema" ID="43465171-5090-40a5-88c2-d7de03f992f9" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceParametros.disco" MetadataType="Disco" ID="ea1de575-c9eb-481c-979f-3551b2c267cf" SourceId="1" SourceUrl="http://localhost:15277/ServiceParametros.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

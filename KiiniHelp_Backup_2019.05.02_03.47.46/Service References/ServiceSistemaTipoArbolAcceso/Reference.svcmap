@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6cb39b12-2d88-4f10-9175-f8531af6344c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceTipoArbolAcceso.xsd" MetadataType="Schema" ID="44a5e112-d47b-4a3d-a5e5-29928017576f" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso.wsdl" MetadataType="Wsdl" ID="6ccf5b34-746f-4bec-a024-36697857404e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?wsdl" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso1.xsd" MetadataType="Schema" ID="de7f8905-46c0-4dfc-81f7-b208316dc96e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso2.xsd" MetadataType="Schema" ID="29cd2409-1067-480b-bc87-42e83a30a2c6" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso3.xsd" MetadataType="Schema" ID="6f3da806-18a9-4387-9a7c-b2c8782c0cb3" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso4.xsd" MetadataType="Schema" ID="ce3d1473-6d95-4cca-9224-1754e660b47e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso5.xsd" MetadataType="Schema" ID="c7f5036b-6359-4104-93a1-2dcccd223639" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso6.xsd" MetadataType="Schema" ID="2b2130bb-20f6-4bd5-ac3c-d4032cb274f5" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso.disco" MetadataType="Disco" ID="c4998183-a9df-47e3-acce-98d04632e416" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?disco" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso7.xsd" MetadataType="Schema" ID="3548c64f-1d63-4be0-bc40-24958bbd91f9" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso13.xsd" MetadataType="Schema" ID="b03a8f39-aafd-49e1-9d78-23c78b924bd6" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso8.xsd" MetadataType="Schema" ID="97e7eeea-59c6-485d-bfb7-1b8f0a2e3c79" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso9.xsd" MetadataType="Schema" ID="28eaa7fb-e1fb-429a-ac57-22000bef4a8d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso14.xsd" MetadataType="Schema" ID="156da41c-74c7-4dfe-903d-268e1d81874f" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd14" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso10.xsd" MetadataType="Schema" ID="724b8ad3-76d1-4ada-996c-e9edf1ec423b" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso11.xsd" MetadataType="Schema" ID="3f68a1f4-3db8-4ee3-b947-a6fad146c63d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceTipoArbolAcceso12.xsd" MetadataType="Schema" ID="c48adb6e-5bbc-4265-822f-41230ac538e7" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceTipoArbolAcceso.svc?xsd=xsd9" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

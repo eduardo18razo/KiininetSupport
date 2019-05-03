@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="95d21b3f-706e-4ad9-80c6-1970c71fd81d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceCanal.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceCanal.xsd" MetadataType="Schema" ID="af35f951-80c3-43a1-9662-8c64c1c3dcea" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceCanal1.xsd" MetadataType="Schema" ID="9467f828-7742-49c4-9f24-db00c58e305f" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceCanal.wsdl" MetadataType="Wsdl" ID="d820afcc-91fa-468e-ac54-2ee6d1a37309" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?wsdl" />
+    <MetadataFile FileName="ServiceCanal2.xsd" MetadataType="Schema" ID="406b597b-f519-49e7-89c1-6cbac0751977" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceCanal3.xsd" MetadataType="Schema" ID="d165bb9f-0c94-48be-bf36-fce16fe6d4f1" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceCanal4.xsd" MetadataType="Schema" ID="38904346-0bf5-41c5-95bf-ebad9e13a8ae" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceCanal5.xsd" MetadataType="Schema" ID="aacd8a6a-a222-4429-bfa2-2aac0349d821" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceCanal.disco" MetadataType="Disco" ID="1a922656-9f44-4636-acf6-79e5ce7e9546" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?disco" />
+    <MetadataFile FileName="ServiceCanal6.xsd" MetadataType="Schema" ID="8ff72dc5-281a-4ef1-bc58-0043c4bf1f76" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceCanal7.xsd" MetadataType="Schema" ID="3aa37f03-e7df-48de-8909-336417b1bbcd" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceCanal8.xsd" MetadataType="Schema" ID="67c0bd59-306c-4c81-bd43-3088a5e1eef1" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceCanal9.xsd" MetadataType="Schema" ID="45e24b15-dd4d-45cf-80f7-cc4d0c3f1683" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceCanal10.xsd" MetadataType="Schema" ID="dc2418eb-163f-4885-ad2d-4f47c4b3d6ac" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceCanal11.xsd" MetadataType="Schema" ID="1badd474-4d83-4cfe-b7a3-19d72656f87a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceCanal12.xsd" MetadataType="Schema" ID="301afeb9-106e-4e66-89fa-c7fe37020026" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceCanal13.xsd" MetadataType="Schema" ID="f4015c5b-17ce-4f61-9f03-46ba32b00ef9" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceCanal.svc?xsd=xsd13" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

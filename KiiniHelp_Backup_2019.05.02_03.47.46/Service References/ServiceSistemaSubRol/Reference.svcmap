@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8adc2496-a0d1-42ed-bd10-c9e6db9cec81" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceSubRol.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceSubRol.xsd" MetadataType="Schema" ID="ca206593-add8-44c8-a649-00f0e96b2b18" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceSubRol1.xsd" MetadataType="Schema" ID="1123320a-a126-44bb-95ea-14a2c7219a72" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceSubRol2.xsd" MetadataType="Schema" ID="869c3bae-78b3-4299-af54-e2840bf15a8d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceSubRol13.xsd" MetadataType="Schema" ID="99d097c2-7ab8-476f-be78-05a5e8453266" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceSubRol3.xsd" MetadataType="Schema" ID="7f84e6bf-f155-43db-86b5-4094deed3707" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceSubRol4.xsd" MetadataType="Schema" ID="9d066b1a-ae81-4597-9d25-f6173127b975" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceSubRol5.xsd" MetadataType="Schema" ID="1dac1ed1-71b3-42cd-9faa-6532384abff6" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceSubRol6.xsd" MetadataType="Schema" ID="5d95deb5-6da3-47ab-a6f2-a973654921ea" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceSubRol7.xsd" MetadataType="Schema" ID="417a28a7-25bd-49cc-a627-c3dc6fb646d7" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceSubRol8.xsd" MetadataType="Schema" ID="03b1c3a2-8193-4008-b86b-bd2668d60174" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceSubRol9.xsd" MetadataType="Schema" ID="85512235-ba7a-41d0-88c1-5e6d3d6d4842" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceSubRol10.xsd" MetadataType="Schema" ID="762c2cc2-cff4-4059-bfd4-9bceb3feab93" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceSubRol.wsdl" MetadataType="Wsdl" ID="5cab3647-9e8e-4d69-ae01-2af0784a43da" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?wsdl" />
+    <MetadataFile FileName="ServiceSubRol11.xsd" MetadataType="Schema" ID="b34f53d4-a90e-4e5a-81b0-f702f28cc019" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceSubRol.disco" MetadataType="Disco" ID="2da5fedf-a5b7-491b-adc0-50fa013d4647" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?disco" />
+    <MetadataFile FileName="ServiceSubRol12.xsd" MetadataType="Schema" ID="0a0b8f95-dabe-43c5-a403-1f4adb9c78f6" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceSubRol.svc?xsd=xsd11" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

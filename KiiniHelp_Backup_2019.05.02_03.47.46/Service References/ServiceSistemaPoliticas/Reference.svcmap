@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="138556f2-75b1-4986-b214-a1fc74065345" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServicePoliticas.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicePoliticas.wsdl" MetadataType="Wsdl" ID="27d6567d-febb-4217-9ef7-3f7c659535f1" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?wsdl" />
+    <MetadataFile FileName="ServicePoliticas.xsd" MetadataType="Schema" ID="6116236e-1553-4e44-9d40-584d34ff9c2e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServicePoliticas.disco" MetadataType="Disco" ID="da102931-28d8-4d0c-8403-01ba05d6750e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?disco" />
+    <MetadataFile FileName="ServicePoliticas1.xsd" MetadataType="Schema" ID="8d733b10-e248-4da6-a082-ac8ee26c5816" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServicePoliticas2.xsd" MetadataType="Schema" ID="453ab5ae-517f-409b-8e75-d11d6b9c75d3" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServicePoliticas3.xsd" MetadataType="Schema" ID="e5916e65-ca1a-4f20-9adb-b8e199f63a9a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServicePoliticas4.xsd" MetadataType="Schema" ID="07f3a3f5-9f17-4f4d-8324-6bc05f839437" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServicePoliticas5.xsd" MetadataType="Schema" ID="809d6573-8db5-4604-a28b-8f0b51b252be" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicePoliticas6.xsd" MetadataType="Schema" ID="e8466b33-2b83-46fe-b42f-303ba830a926" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServicePoliticas7.xsd" MetadataType="Schema" ID="1684bcd4-4bc9-4ece-8207-16d5e7ee60be" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServicePoliticas8.xsd" MetadataType="Schema" ID="e4999a55-c629-4510-91fc-f1c25fbc883e" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServicePoliticas9.xsd" MetadataType="Schema" ID="7cb8b7af-df1f-4df0-9c1c-faf426bea806" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServicePoliticas10.xsd" MetadataType="Schema" ID="7ea3d498-49df-436c-a1be-927d0f023702" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicePoliticas11.xsd" MetadataType="Schema" ID="e044ecdf-ea94-4b34-9d75-18d3577259d2" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicePoliticas12.xsd" MetadataType="Schema" ID="54a8bf0f-be9e-4b87-918f-35ef4c7e9aa7" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicePoliticas13.xsd" MetadataType="Schema" ID="fa5d063a-afde-4978-9c7b-85f75281cefd" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServicePoliticas.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4ac794df-052b-4f11-8291-867d92e8574f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/Sistema/ServiceRoles.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceRoles.disco" MetadataType="Disco" ID="7c43d8e9-f688-4e0c-9986-356c0b491412" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?disco" />
+    <MetadataFile FileName="ServiceRoles13.xsd" MetadataType="Schema" ID="64092dfc-46fb-427b-86f4-484377d34eb9" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceRoles1.xsd" MetadataType="Schema" ID="5deaf46d-5734-4b1b-b3ec-9e34383e6295" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceRoles2.xsd" MetadataType="Schema" ID="5f24e41b-d575-45a9-9ef8-ef6c156dd339" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceRoles.xsd" MetadataType="Schema" ID="cc20995b-cbf8-4f89-9d7c-68b3944c7a51" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceRoles3.xsd" MetadataType="Schema" ID="adadfbc3-a16d-4f82-8fcc-22379975c38d" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceRoles4.xsd" MetadataType="Schema" ID="a6f834a8-6020-4832-aed6-2a9bd6420e85" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceRoles5.xsd" MetadataType="Schema" ID="8f517165-7218-4f8f-841b-408fde564259" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceRoles6.xsd" MetadataType="Schema" ID="c74d822e-afac-446b-85e6-b761d865495a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceRoles7.xsd" MetadataType="Schema" ID="8b10e5c3-13cb-4d44-803b-6804213d8b5a" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceRoles8.xsd" MetadataType="Schema" ID="d66e8629-7b99-4417-9a52-7895684c9ff0" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceRoles9.xsd" MetadataType="Schema" ID="b8d3b29a-9801-42f3-afd4-47c36c8207e8" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceRoles10.xsd" MetadataType="Schema" ID="38a2e4b3-547a-4871-8b91-ed6626be0084" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceRoles11.xsd" MetadataType="Schema" ID="4f60cd99-cab1-43ef-b0cb-5ae495099479" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceRoles.wsdl" MetadataType="Wsdl" ID="23267f6d-5509-4573-9a53-a9c107dbcd07" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?wsdl" />
+    <MetadataFile FileName="ServiceRoles12.xsd" MetadataType="Schema" ID="72c359f1-275c-4061-8200-7dc070683ff2" SourceId="1" SourceUrl="http://localhost:15277/Sistema/ServiceRoles.svc?xsd=xsd5" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

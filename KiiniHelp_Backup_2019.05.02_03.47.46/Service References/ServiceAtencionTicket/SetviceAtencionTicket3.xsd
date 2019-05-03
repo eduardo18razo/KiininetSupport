@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:15277/SetviceAtencionTicket.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="HelperTicketEnAtencion">
+    <xs:sequence>
+      <xs:element name="_x003C_ColorEstatus_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Conversaciones_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperConversacionDetalle" />
+      <xs:element name="_x003C_CorreoTicket_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DentroSla_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_DescripcionEstatusAsignacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DescripcionEstatusTicket_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EsPropietario_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Eventos_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperEvento" />
+      <xs:element name="_x003C_FechaLevanto_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_GrupoConSupervisor_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_IdEstatusAsignacion_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdEstatusTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdGrupoAsignado_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdNivelAsignacion_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Impacto_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_PuedeAsignar_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsuarioAsignado_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_UsuarioLevanto_x003E_k__BackingField" nillable="true" type="tns:HelperUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperTicketEnAtencion" nillable="true" type="tns:HelperTicketEnAtencion" />
+  <xs:complexType name="ArrayOfHelperConversacionDetalle">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperConversacionDetalle" nillable="true" type="tns:HelperConversacionDetalle" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperConversacionDetalle" nillable="true" type="tns:ArrayOfHelperConversacionDetalle" />
+  <xs:complexType name="HelperConversacionDetalle">
+    <xs:sequence>
+      <xs:element name="_x003C_Archivo_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperConversacionArchivo" />
+      <xs:element name="_x003C_Comentario_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaHora_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_Foto_x003E_k__BackingField" nillable="true" type="xs:base64Binary" />
+      <xs:element name="_x003C_IdUsuario_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Nombre_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Privado_x003E_k__BackingField" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperConversacionDetalle" nillable="true" type="tns:HelperConversacionDetalle" />
+  <xs:complexType name="ArrayOfHelperConversacionArchivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperConversacionArchivo" nillable="true" type="tns:HelperConversacionArchivo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperConversacionArchivo" nillable="true" type="tns:ArrayOfHelperConversacionArchivo" />
+  <xs:complexType name="HelperConversacionArchivo">
+    <xs:sequence>
+      <xs:element name="_x003C_Archivo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IdConversacion_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperConversacionArchivo" nillable="true" type="tns:HelperConversacionArchivo" />
+  <xs:complexType name="ArrayOfHelperEvento">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperEvento" nillable="true" type="tns:HelperEvento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperEvento" nillable="true" type="tns:ArrayOfHelperEvento" />
+  <xs:complexType name="HelperEvento">
+    <xs:sequence>
+      <xs:element name="_x003C_FechaHoraEventoFormato_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaHoraEvento_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_Foto_x003E_k__BackingField" nillable="true" type="xs:base64Binary" />
+      <xs:element name="_x003C_IdEvento_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_IdUsuarioGenero_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Movimientos_x003E_k__BackingField" nillable="true" type="tns:ArrayOfHelperMovimientoEvento" />
+      <xs:element name="_x003C_NombreUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperEvento" nillable="true" type="tns:HelperEvento" />
+  <xs:complexType name="ArrayOfHelperMovimientoEvento">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperMovimientoEvento" nillable="true" type="tns:HelperMovimientoEvento" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperMovimientoEvento" nillable="true" type="tns:ArrayOfHelperMovimientoEvento" />
+  <xs:complexType name="HelperMovimientoEvento">
+    <xs:sequence>
+      <xs:element name="_x003C_ComentarioPublico_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Comentarios_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Conversacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DescripcionEstatusAnterior_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DescripcionEstatus_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_EsMovimientoAsignacion_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_EsMovimientoConversacion_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_EsMovimientoEstatusTicket_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Foto_x003E_k__BackingField" nillable="true" type="xs:base64Binary" />
+      <xs:element name="_x003C_IdEstatusAnterior_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_IdEstatus_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_IdMovimiento_x003E_k__BackingField" type="xs:long" />
+      <xs:element name="_x003C_IdUsuarioAsignado_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_IdUsuarioAsigno_x003E_k__BackingField" nillable="true" type="xs:int" />
+      <xs:element name="_x003C_NombreCambioEstatus_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_NombreUsuarioAsignado_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperMovimientoEvento" nillable="true" type="tns:HelperMovimientoEvento" />
+  <xs:complexType name="HelperUsuario">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Correos" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Creado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaUltimoLogin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdUsuario" type="xs:int" />
+      <xs:element minOccurs="0" name="NombreCompleto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumeroTicketsAbiertos" type="xs:int" />
+      <xs:element minOccurs="0" name="Organizacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Puesto" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Telefonos" nillable="true" type="q2:ArrayOfstring" />
+      <xs:element minOccurs="0" name="TicketsAbiertos" nillable="true" type="tns:ArrayOfHelperTicketsUsuario" />
+      <xs:element minOccurs="0" name="TipoUsuarioColor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TipoUsuarioDescripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ubicacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UltimaActualizacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Vip" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperUsuario" nillable="true" type="tns:HelperUsuario" />
+  <xs:complexType name="ArrayOfHelperTicketsUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperTicketsUsuario" nillable="true" type="tns:HelperTicketsUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperTicketsUsuario" nillable="true" type="tns:ArrayOfHelperTicketsUsuario" />
+  <xs:complexType name="HelperTicketsUsuario">
+    <xs:sequence>
+      <xs:element name="_x003C_DescripcionEstatusTicket_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaCreacionFormato_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaCreacion_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_IdEstatusTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IdTicket_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_PuedeVer_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Tipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperTicketsUsuario" nillable="true" type="tns:HelperTicketsUsuario" />
+</xs:schema>

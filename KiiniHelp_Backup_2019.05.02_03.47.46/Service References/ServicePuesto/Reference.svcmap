@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a114454c-b18c-4b00-8d97-1e07648742c7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServicePuesto.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicePuesto.xsd" MetadataType="Schema" ID="ccd8c47f-73a4-428e-b526-29c88ec7eecf" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServicePuesto1.xsd" MetadataType="Schema" ID="74fb66b0-6f30-4cd6-881d-93c93f46111b" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServicePuesto2.xsd" MetadataType="Schema" ID="60a73e43-25a4-404c-9ddf-cfee7506b36c" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServicePuesto.disco" MetadataType="Disco" ID="9a97191d-954d-419a-abb4-bac698f6c005" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?disco" />
+    <MetadataFile FileName="ServicePuesto3.xsd" MetadataType="Schema" ID="f712c7e3-3d36-4f77-a03f-5e651f7f95f9" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServicePuesto4.xsd" MetadataType="Schema" ID="9f5c731b-1391-4798-84a6-9be51a697b66" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServicePuesto5.xsd" MetadataType="Schema" ID="2fee469c-4bfd-4998-bdd4-32f5fb9c5bc6" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServicePuesto6.xsd" MetadataType="Schema" ID="ae033ace-c4ed-4064-b34a-352ddd04f052" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServicePuesto.wsdl" MetadataType="Wsdl" ID="4fc3c69c-3866-4e86-a2fd-cd63666a5e73" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?wsdl" />
+    <MetadataFile FileName="ServicePuesto7.xsd" MetadataType="Schema" ID="db40b591-8ec7-4c84-9b1a-83697db9c848" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServicePuesto8.xsd" MetadataType="Schema" ID="14f00441-896e-41a9-931c-5dfa96cb33ba" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServicePuesto9.xsd" MetadataType="Schema" ID="b3ee3913-5e7e-42de-87f7-f0bc4a6ee337" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServicePuesto10.xsd" MetadataType="Schema" ID="2d238561-a542-42f2-aa3f-5393d2cfef28" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicePuesto11.xsd" MetadataType="Schema" ID="dcef06b8-7b14-4bb7-b96f-2cbe81b57095" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServicePuesto12.xsd" MetadataType="Schema" ID="4454d910-463c-4c6a-b59e-31023255938b" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicePuesto13.xsd" MetadataType="Schema" ID="657ea8df-8285-4dfb-a739-009f9f1b7981" SourceId="1" SourceUrl="http://localhost:15277/ServicePuesto.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

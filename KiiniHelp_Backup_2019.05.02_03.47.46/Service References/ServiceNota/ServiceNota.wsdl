@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceNota" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceNota.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceNota_CrearNotaGeneralUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearNotaGeneralUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_CrearNotaGeneralUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearNotaGeneralUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_CrearNotaOpcionUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearNotaOpcionUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_CrearNotaOpcionUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearNotaOpcionUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_CrearNotaOpcionGrupo_InputMessage">
+    <wsdl:part name="parameters" element="tns:CrearNotaOpcionGrupo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_CrearNotaOpcionGrupo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearNotaOpcionGrupoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_ObtenerNotasUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNotasUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_ObtenerNotasUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNotasUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_ObtenerNotasOpcion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNotasOpcion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_ObtenerNotasOpcion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNotasOpcionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_ObtenerNotasGrupo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNotasGrupo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceNota_ObtenerNotasGrupo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNotasGrupoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceNota">
+    <wsdl:operation name="CrearNotaGeneralUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceNota/CrearNotaGeneralUsuario" message="tns:IServiceNota_CrearNotaGeneralUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceNota/CrearNotaGeneralUsuarioResponse" message="tns:IServiceNota_CrearNotaGeneralUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearNotaOpcionUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceNota/CrearNotaOpcionUsuario" message="tns:IServiceNota_CrearNotaOpcionUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceNota/CrearNotaOpcionUsuarioResponse" message="tns:IServiceNota_CrearNotaOpcionUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CrearNotaOpcionGrupo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceNota/CrearNotaOpcionGrupo" message="tns:IServiceNota_CrearNotaOpcionGrupo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceNota/CrearNotaOpcionGrupoResponse" message="tns:IServiceNota_CrearNotaOpcionGrupo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNotasUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceNota/ObtenerNotasUsuario" message="tns:IServiceNota_ObtenerNotasUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceNota/ObtenerNotasUsuarioResponse" message="tns:IServiceNota_ObtenerNotasUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNotasOpcion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceNota/ObtenerNotasOpcion" message="tns:IServiceNota_ObtenerNotasOpcion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceNota/ObtenerNotasOpcionResponse" message="tns:IServiceNota_ObtenerNotasOpcion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNotasGrupo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceNota/ObtenerNotasGrupo" message="tns:IServiceNota_ObtenerNotasGrupo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceNota/ObtenerNotasGrupoResponse" message="tns:IServiceNota_ObtenerNotasGrupo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointSeguridad" type="tns:IServiceNota">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CrearNotaGeneralUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceNota/CrearNotaGeneralUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearNotaOpcionUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceNota/CrearNotaOpcionUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CrearNotaOpcionGrupo">
+      <soap:operation soapAction="http://tempuri.org/IServiceNota/CrearNotaOpcionGrupo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNotasUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceNota/ObtenerNotasUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNotasOpcion">
+      <soap:operation soapAction="http://tempuri.org/IServiceNota/ObtenerNotasOpcion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNotasGrupo">
+      <soap:operation soapAction="http://tempuri.org/IServiceNota/ObtenerNotasGrupo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceNota">
+    <wsdl:port name="EndPointSeguridad" binding="tns:EndPointSeguridad">
+      <soap:address location="http://localhost:15277/ServiceNota.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

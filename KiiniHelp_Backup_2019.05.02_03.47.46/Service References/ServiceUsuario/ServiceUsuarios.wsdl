@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServiceUsuarios" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Usuarios" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Operacion.Tickets" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Operacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Sistema" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Usuario" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Parametros" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Mascaras" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Ubicaciones.Domicilio" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd12" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Organizacion" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd13" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Cat.Arbol.Nodos" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd14" namespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd15" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:15277/ServiceUsuarios.svc?xsd=xsd16" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServiceUsuarios_ValidaLimiteOperadores_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaLimiteOperadores" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaLimiteOperadores_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaLimiteOperadoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GuardarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GuardarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_RegistrarCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarCliente" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_RegistrarCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GuardarUsuarioAdicional_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarUsuarioAdicional" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GuardarUsuarioAdicional_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarUsuarioAdicionalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentes" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ConsultaUsuariosUsuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaUsuariosUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ConsultaUsuariosUsuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConsultaUsuariosUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerDetalleUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDetalleUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerDetalleUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDetalleUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuariosByGrupo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosByGrupo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuariosByGrupo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosByGrupoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuariosByGrupoAgente_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosByGrupoAgente" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuariosByGrupoAgente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosByGrupoAgenteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuariosByGrupoAtencion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosByGrupoAtencion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuariosByGrupoAtencion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosByGrupoAtencionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ActualizarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ActualizarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GuardarFoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarFoto" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GuardarFoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarFotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerFoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFoto" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerFoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_HabilitarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_HabilitarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HabilitarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAtendedoresEncuesta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAtendedoresEncuesta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAtendedoresEncuesta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAtendedoresEncuestaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaUserName" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaConfirmacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaConfirmacion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaConfirmacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaConfirmacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaConfirmacionCambioCorreo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaConfirmacionCambioCorreo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaConfirmacionCambioCorreo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaConfirmacionCambioCorreoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaCodigoVerificacionSms_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaCodigoVerificacionSms" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaCodigoVerificacionSms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaCodigoVerificacionSmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_EnviaCodigoVerificacionSms_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnviaCodigoVerificacionSms" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_EnviaCodigoVerificacionSms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnviaCodigoVerificacionSmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ActualizarTelefono_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarTelefono" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ActualizarTelefono_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarTelefonoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ConfirmaCuenta_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmaCuenta" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ConfirmaCuenta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmaCuentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ReenviarActivacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReenviarActivacion" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ReenviarActivacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReenviarActivacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_BuscarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_BuscarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_BuscarUsuarios_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_BuscarUsuarios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_EnviaCodigoVerificacionCorreo_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnviaCodigoVerificacionCorreo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_EnviaCodigoVerificacionCorreo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnviaCodigoVerificacionCorreoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaCodigoVerificacionCorreo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaCodigoVerificacionCorreo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaCodigoVerificacionCorreo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaCodigoVerificacionCorreoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaRespuestasReto_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaRespuestasReto" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ValidaRespuestasReto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidaRespuestasRetoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerDatosTicketUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosTicketUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerDatosTicketUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosTicketUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GetUsuarioByCorreo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsuarioByCorreo" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_GetUsuarioByCorreo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsuarioByCorreoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioAgenteByGrupoUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioAgenteByGrupoUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentesPermitidos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentesPermitidos" />
+  </wsdl:message>
+  <wsdl:message name="IServiceUsuarios_ObtenerAgentesPermitidos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAgentesPermitidosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServiceUsuarios">
+    <wsdl:operation name="ValidaLimiteOperadores">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadores" message="tns:IServiceUsuarios_ValidaLimiteOperadores_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadoresResponse" message="tns:IServiceUsuarios_ValidaLimiteOperadores_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuario" message="tns:IServiceUsuarios_GuardarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioResponse" message="tns:IServiceUsuarios_GuardarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/RegistrarCliente" message="tns:IServiceUsuarios_RegistrarCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/RegistrarClienteResponse" message="tns:IServiceUsuarios_RegistrarCliente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUsuarioAdicional">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicional" message="tns:IServiceUsuarios_GuardarUsuarioAdicional_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicionalResponse" message="tns:IServiceUsuarios_GuardarUsuarioAdicional_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentes" message="tns:IServiceUsuarios_ObtenerAgentes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentesResponse" message="tns:IServiceUsuarios_ObtenerAgentes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarios" message="tns:IServiceUsuarios_ObtenerUsuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosResponse" message="tns:IServiceUsuarios_ObtenerUsuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaUsuariosUsuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuarios" message="tns:IServiceUsuarios_ConsultaUsuariosUsuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuariosResponse" message="tns:IServiceUsuarios_ConsultaUsuariosUsuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDetalleUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerDetalleUsuario" message="tns:IServiceUsuarios_ObtenerDetalleUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerDetalleUsuarioResponse" message="tns:IServiceUsuarios_ObtenerDetalleUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosByGrupo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupo" message="tns:IServiceUsuarios_ObtenerUsuariosByGrupo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoResponse" message="tns:IServiceUsuarios_ObtenerUsuariosByGrupo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosByGrupoAgente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAgente" message="tns:IServiceUsuarios_ObtenerUsuariosByGrupoAgente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAgenteResponse" message="tns:IServiceUsuarios_ObtenerUsuariosByGrupoAgente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosByGrupoAtencion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAtencion" message="tns:IServiceUsuarios_ObtenerUsuariosByGrupoAtencion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAtencionResponse" message="tns:IServiceUsuarios_ObtenerUsuariosByGrupoAtencion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ActualizarUsuario" message="tns:IServiceUsuarios_ActualizarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ActualizarUsuarioResponse" message="tns:IServiceUsuarios_ActualizarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarFoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarFoto" message="tns:IServiceUsuarios_GuardarFoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GuardarFotoResponse" message="tns:IServiceUsuarios_GuardarFoto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerFoto" message="tns:IServiceUsuarios_ObtenerFoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerFotoResponse" message="tns:IServiceUsuarios_ObtenerFoto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/HabilitarUsuario" message="tns:IServiceUsuarios_HabilitarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/HabilitarUsuarioResponse" message="tns:IServiceUsuarios_HabilitarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAtendedoresEncuesta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAtendedoresEncuesta" message="tns:IServiceUsuarios_ObtenerAtendedoresEncuesta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAtendedoresEncuestaResponse" message="tns:IServiceUsuarios_ObtenerAtendedoresEncuesta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaUserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaUserName" message="tns:IServiceUsuarios_ValidaUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaUserNameResponse" message="tns:IServiceUsuarios_ValidaUserName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConfirmacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacion" message="tns:IServiceUsuarios_ValidaConfirmacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionResponse" message="tns:IServiceUsuarios_ValidaConfirmacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConfirmacionCambioCorreo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreo" message="tns:IServiceUsuarios_ValidaConfirmacionCambioCorreo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreoResponse" message="tns:IServiceUsuarios_ValidaConfirmacionCambioCorreo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaCodigoVerificacionSms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionSms" message="tns:IServiceUsuarios_ValidaCodigoVerificacionSms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionSmsResponse" message="tns:IServiceUsuarios_ValidaCodigoVerificacionSms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCodigoVerificacionSms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/EnviaCodigoVerificacionSms" message="tns:IServiceUsuarios_EnviaCodigoVerificacionSms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/EnviaCodigoVerificacionSmsResponse" message="tns:IServiceUsuarios_EnviaCodigoVerificacionSms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarTelefono">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ActualizarTelefono" message="tns:IServiceUsuarios_ActualizarTelefono_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ActualizarTelefonoResponse" message="tns:IServiceUsuarios_ActualizarTelefono_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaCuenta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ConfirmaCuenta" message="tns:IServiceUsuarios_ConfirmaCuenta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ConfirmaCuentaResponse" message="tns:IServiceUsuarios_ConfirmaCuenta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReenviarActivacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ReenviarActivacion" message="tns:IServiceUsuarios_ReenviarActivacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ReenviarActivacionResponse" message="tns:IServiceUsuarios_ReenviarActivacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/BuscarUsuario" message="tns:IServiceUsuarios_BuscarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/BuscarUsuarioResponse" message="tns:IServiceUsuarios_BuscarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuarios">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/BuscarUsuarios" message="tns:IServiceUsuarios_BuscarUsuarios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/BuscarUsuariosResponse" message="tns:IServiceUsuarios_BuscarUsuarios_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCodigoVerificacionCorreo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/EnviaCodigoVerificacionCorreo" message="tns:IServiceUsuarios_EnviaCodigoVerificacionCorreo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/EnviaCodigoVerificacionCorreoResponse" message="tns:IServiceUsuarios_EnviaCodigoVerificacionCorreo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaCodigoVerificacionCorreo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionCorreo" message="tns:IServiceUsuarios_ValidaCodigoVerificacionCorreo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionCorreoResponse" message="tns:IServiceUsuarios_ValidaCodigoVerificacionCorreo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidaRespuestasReto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaRespuestasReto" message="tns:IServiceUsuarios_ValidaRespuestasReto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ValidaRespuestasRetoResponse" message="tns:IServiceUsuarios_ValidaRespuestasReto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosTicketUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuario" message="tns:IServiceUsuarios_ObtenerDatosTicketUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuarioResponse" message="tns:IServiceUsuarios_ObtenerDatosTicketUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioByCorreo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" message="tns:IServiceUsuarios_GetUsuarioByCorreo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreoResponse" message="tns:IServiceUsuarios_GetUsuarioByCorreo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuarioResponse" message="tns:IServiceUsuarios_ObtenerUsuarioAgenteByGrupoUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentesPermitidos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidos" message="tns:IServiceUsuarios_ObtenerAgentesPermitidos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidosResponse" message="tns:IServiceUsuarios_ObtenerAgentesPermitidos_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EndPointSeguridad" type="tns:IServiceUsuarios">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ValidaLimiteOperadores">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaLimiteOperadores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GuardarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarCliente">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/RegistrarCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUsuarioAdicional">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GuardarUsuarioAdicional" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentes">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerAgentes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarios">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaUsuariosUsuarios">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ConsultaUsuariosUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDetalleUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerDetalleUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosByGrupo">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosByGrupoAgente">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAgente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosByGrupoAtencion">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuariosByGrupoAtencion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ActualizarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarFoto">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GuardarFoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFoto">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerFoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HabilitarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/HabilitarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAtendedoresEncuesta">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerAtendedoresEncuesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaUserName">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConfirmacion">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaConfirmacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaConfirmacionCambioCorreo">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaConfirmacionCambioCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaCodigoVerificacionSms">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionSms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCodigoVerificacionSms">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/EnviaCodigoVerificacionSms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarTelefono">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ActualizarTelefono" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmaCuenta">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ConfirmaCuenta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReenviarActivacion">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ReenviarActivacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/BuscarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarUsuarios">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/BuscarUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCodigoVerificacionCorreo">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/EnviaCodigoVerificacionCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaCodigoVerificacionCorreo">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaCodigoVerificacionCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidaRespuestasReto">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ValidaRespuestasReto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosTicketUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerDatosTicketUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsuarioByCorreo">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/GetUsuarioByCorreo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioAgenteByGrupoUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerUsuarioAgenteByGrupoUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAgentesPermitidos">
+      <soap:operation soapAction="http://tempuri.org/IServiceUsuarios/ObtenerAgentesPermitidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceUsuarios">
+    <wsdl:port name="EndPointSeguridad" binding="tns:EndPointSeguridad">
+      <soap:address location="http://localhost:15277/ServiceUsuarios.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

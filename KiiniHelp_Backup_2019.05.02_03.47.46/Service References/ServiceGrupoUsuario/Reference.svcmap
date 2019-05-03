@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="673f3641-9782-46e8-b463-d846ab7ba325" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceGrupoUsuario.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceGrupoUsuario2.xsd" MetadataType="Schema" ID="a8339528-62f1-43b8-8737-0eb2866933e9" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceGrupoUsuario1.xsd" MetadataType="Schema" ID="2c3dd741-c9d3-43ab-9ee5-236527183fa5" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceGrupoUsuario.xsd" MetadataType="Schema" ID="d391bbaf-5434-44c7-849a-6d0424b79620" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceGrupoUsuario3.xsd" MetadataType="Schema" ID="9ddcc97a-aba2-4eca-a31a-10d665c67b06" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceGrupoUsuario4.xsd" MetadataType="Schema" ID="f1c7d8dc-7183-470a-b923-44e8c77278fd" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceGrupoUsuario5.xsd" MetadataType="Schema" ID="46e31dde-4bcd-4c2d-866f-4427df49a349" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceGrupoUsuario13.xsd" MetadataType="Schema" ID="a596ab93-801a-4635-8cb1-cef9a2f3851c" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceGrupoUsuario6.xsd" MetadataType="Schema" ID="b30cd15e-2b4d-41ee-8ec1-19315b7e55c2" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceGrupoUsuario14.xsd" MetadataType="Schema" ID="ae05a4be-a8e3-4b22-b73a-9c89399f8585" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd14" />
+    <MetadataFile FileName="ServiceGrupoUsuario7.xsd" MetadataType="Schema" ID="ee744046-12af-4f97-a794-16e2788ee423" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceGrupoUsuario.wsdl" MetadataType="Wsdl" ID="6cc46b9e-cd43-475b-ae33-924218fe7464" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?wsdl" />
+    <MetadataFile FileName="ServiceGrupoUsuario8.xsd" MetadataType="Schema" ID="aa8d9b22-7cac-4c27-90d2-640054ddb5c8" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceGrupoUsuario.disco" MetadataType="Disco" ID="f4a8048e-8b00-426f-aec6-b922ab73c7f5" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?disco" />
+    <MetadataFile FileName="ServiceGrupoUsuario9.xsd" MetadataType="Schema" ID="3a2774af-9dd3-4769-b911-a2f63e00abc6" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceGrupoUsuario10.xsd" MetadataType="Schema" ID="0aaa2fb3-bda2-43da-b01f-610872a60ae2" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceGrupoUsuario11.xsd" MetadataType="Schema" ID="33a1d66a-5b25-4c54-8b5d-5a16f13cb7f4" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceGrupoUsuario12.xsd" MetadataType="Schema" ID="fce3c5b6-7d52-4517-934a-0a819f343169" SourceId="1" SourceUrl="http://localhost:15277/ServiceGrupoUsuario.svc?xsd=xsd6" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0d6b7de8-5ad9-4054-93af-71638f7e5fd0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:15277/ServiceEncuesta.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceEncuesta.xsd" MetadataType="Schema" ID="bc55e416-78bd-45bc-a709-0960b36034ba" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd12" />
+    <MetadataFile FileName="ServiceEncuesta5.xsd" MetadataType="Schema" ID="25e0c2cc-c225-4658-9a43-b409e344d355" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceEncuesta14.xsd" MetadataType="Schema" ID="cbf91f93-cdcc-4ff8-89e9-e78bce364ece" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd14" />
+    <MetadataFile FileName="ServiceEncuesta.wsdl" MetadataType="Wsdl" ID="bd1b84e9-a82a-4899-8b25-fa68025dd087" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?wsdl" />
+    <MetadataFile FileName="ServiceEncuesta2.xsd" MetadataType="Schema" ID="3309c554-5d94-4f1e-9f51-05b56c28c779" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd4" />
+    <MetadataFile FileName="ServiceEncuesta.disco" MetadataType="Disco" ID="4321f63f-eef4-4e1a-bd50-ca66598663b0" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?disco" />
+    <MetadataFile FileName="ServiceEncuesta3.xsd" MetadataType="Schema" ID="e28b601a-7181-4c29-adfe-e520b08edddc" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceEncuesta16.xsd" MetadataType="Schema" ID="a09eaf98-7c31-4a16-88d7-85370b4c767e" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd16" />
+    <MetadataFile FileName="ServiceEncuesta4.xsd" MetadataType="Schema" ID="aee0dc06-6ce4-4e3a-8806-933de7d09df9" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd11" />
+    <MetadataFile FileName="ServiceEncuesta1.xsd" MetadataType="Schema" ID="6ada9d78-6795-4f4a-8bb8-373f2fbc0197" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd9" />
+    <MetadataFile FileName="ServiceEncuesta6.xsd" MetadataType="Schema" ID="7fdd8e24-21f0-4911-893e-d6e5ed0ff972" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd7" />
+    <MetadataFile FileName="ServiceEncuesta15.xsd" MetadataType="Schema" ID="245eb7b5-b4a3-40bd-9468-5fb4aa4fdcad" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd15" />
+    <MetadataFile FileName="ServiceEncuesta7.xsd" MetadataType="Schema" ID="fbabc05f-902c-4275-9bbf-a132092853a9" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd6" />
+    <MetadataFile FileName="ServiceEncuesta161.xsd" MetadataType="Schema" ID="023ab823-2dcf-4499-91a3-be9184c23992" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd17" />
+    <MetadataFile FileName="ServiceEncuesta8.xsd" MetadataType="Schema" ID="c57c0e66-8ebc-42e4-8977-513f888d2526" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd5" />
+    <MetadataFile FileName="ServiceEncuesta9.xsd" MetadataType="Schema" ID="71e7c949-6613-4101-abf1-e8cc1f65083e" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceEncuesta13.xsd" MetadataType="Schema" ID="fb2795ab-3881-404f-ae0e-04982f926164" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd13" />
+    <MetadataFile FileName="ServiceEncuesta10.xsd" MetadataType="Schema" ID="fc1538d5-c63a-4c5f-9c21-df7c04b3f2b3" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd10" />
+    <MetadataFile FileName="ServiceEncuesta11.xsd" MetadataType="Schema" ID="8999821a-341c-4cf5-9290-87b06ecbc70c" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd8" />
+    <MetadataFile FileName="ServiceEncuesta12.xsd" MetadataType="Schema" ID="4fec04ed-cd1f-4419-852b-6135b9cf9c75" SourceId="1" SourceUrl="http://localhost:15277/ServiceEncuesta.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/KiiniNet.Entities.Helper" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfHelperArbolAcceso">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperArbolAcceso" nillable="true" type="tns:HelperArbolAcceso" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperArbolAcceso" nillable="true" type="tns:ArrayOfHelperArbolAcceso" />
+  <xs:complexType name="HelperArbolAcceso">
+    <xs:sequence>
+      <xs:element name="_x003C_Activo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Categoria_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DescripcionLarga_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_DescripcionTipificacion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Nivel_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Ruta_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TipoUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Tipo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Titulo_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperArbolAcceso" nillable="true" type="tns:HelperArbolAcceso" />
+  <xs:complexType name="ArrayOfHelperBusquedaArbolAcceso">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HelperBusquedaArbolAcceso" nillable="true" type="tns:HelperBusquedaArbolAcceso" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHelperBusquedaArbolAcceso" nillable="true" type="tns:ArrayOfHelperBusquedaArbolAcceso" />
+  <xs:complexType name="HelperBusquedaArbolAcceso">
+    <xs:sequence>
+      <xs:element name="_x003C_Categoria_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Descripcion_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_IdCategoria_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Likes_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TipoUsuario_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Titulo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_TotalLikes_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_TotalPage_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelperBusquedaArbolAcceso" nillable="true" type="tns:HelperBusquedaArbolAcceso" />
+</xs:schema>

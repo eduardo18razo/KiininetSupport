@@ -12,8 +12,8 @@ using KiiniHelp.ServiceUsuario;
 using KiiniNet.Entities.Helper;
 using KiiniNet.Entities.Operacion.Usuarios;
 using KinniNet.Business.Utils;
-using Telerik.Web.UI;
 using KiiniNet.Entities.Cat.Usuario;
+using Telerik.Web.UI;
 
 namespace KiiniHelp.Agente
 {
@@ -981,45 +981,37 @@ namespace KiiniHelp.Agente
         {
             try
             {
-                if (e.Item.ItemType == GridItemType.Item || e.Item.ItemType == GridItemType.AlternatingItem)
+                if (e.Item != null)
                 {
-                    GridDataItem row = (GridDataItem)e.Item;
-                    if (row == null) return;
-                    int idTicket = int.Parse(row.GetDataKeyValue("NumeroTicket").ToString());
-                    string titulo = row["Tipificacion"].Text;
-                    bool asigna = bool.Parse(row["puedeasignar"].Text);
-                    bool propietaro = bool.Parse(row["EsPropietario"].Text);
-                    switch (e.CommandName)
+                    if (e.Item.ItemType == GridItemType.Item || e.Item.ItemType == GridItemType.AlternatingItem)
                     {
-                        case "RowClick":
-                            bool seleccionado = e.Item.Selected;
-                            int itemIndex = e.Item.ItemIndex;
-                            if (bool.Parse(hfFilaSeleccionada.Value))
-                            {
-                                AgenteMaster master = Master as AgenteMaster;
-                                if (master != null)
+                        GridDataItem row = (GridDataItem)e.Item;
+                        if (row == null) return;
+                        int idTicket = int.Parse(row.GetDataKeyValue("NumeroTicket").ToString());
+                        string titulo = row["Tipificacion"].Text;
+                        bool asigna = bool.Parse(row["puedeasignar"].Text);
+                        bool propietaro = bool.Parse(row["EsPropietario"].Text);
+                        switch (e.CommandName)
+                        {
+                            case "RowClick":
+                                bool seleccionado = e.Item.Selected;
+                                int itemIndex = e.Item.ItemIndex;
+                                if (bool.Parse(hfFilaSeleccionada.Value))
                                 {
-                                    master.AddTicketOpen(idTicket, titulo, asigna);
+                                    AgenteMaster master = Master as AgenteMaster;
+                                    if (master != null)
+                                    {
+                                        master.AddTicketOpen(idTicket, titulo, asigna);
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                btnAutoasignar.Enabled = asigna;
-                                btnAsignar.Enabled = asigna;
-                                btnCambiarEstatus.Enabled = propietaro;
-                            }
-
-                            //hfFilaSeleccionada.Value = gvTickets.SelectedItems[0].ItemIndex.ToString();
-
-                            //if (!seleccionado && (hfFilaSeleccionada.Value.ToString() != itemIndex.ToString()))
-                            //    {
-
-                            //    }
-                            //    else
-                            //    {
-
-                            //    }
-                            break;
+                                else
+                                {
+                                    btnAutoasignar.Enabled = asigna;
+                                    btnAsignar.Enabled = asigna;
+                                    btnCambiarEstatus.Enabled = propietaro;
+                                }
+                                break;
+                        }
                     }
                 }
             }
